@@ -7,12 +7,14 @@ import unittest
 from builtins import open
 
 from line_bot import (
+    SignatureValidator, WebhookParser, WebhookHandler
+)
+from line_bot.models import (
     MessageEvent, FollowEvent, UnfollowEvent, JoinEvent,
     LeaveEvent, PostbackEvent, BeaconEvent,
     TextMessage, ImageMessage, VideoMessage, AudioMessage,
     LocationMessage, StickerMessage,
     SourceUser, SourceRoom, SourceGroup,
-    SignatureValidator, WebhookParser, WebhookHandler
 )
 
 

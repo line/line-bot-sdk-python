@@ -8,16 +8,20 @@ from argparse import ArgumentParser
 from flask import Flask, request, abort
 
 from line_bot import (
-    LineBotApi, MessageEvent, TextMessage, TextSendMessage,
-    WebhookHandler,
+    LineBotApi, WebhookHandler
+)
+from line_bot.exceptions import (
+    InvalidSignatureError
+)
+from line_bot.models import (
+    MessageEvent, TextMessage, TextSendMessage,
     SourceUser, SourceGroup, SourceRoom,
     TemplateSendMessage, ConfirmTemplate, MessageTemplateAction,
     ButtonsTemplate, URITemplateAction, PostbackTemplateAction,
     CarouselTemplate, CarouselColumn, PostbackEvent,
     StickerMessage, StickerSendMessage, LocationMessage, LocationSendMessage,
     ImageMessage, VideoMessage, AudioMessage,
-    UnfollowEvent, FollowEvent, JoinEvent, LeaveEvent, BeaconEvent,
-    InvalidSignatureError
+    UnfollowEvent, FollowEvent, JoinEvent, LeaveEvent, BeaconEvent
 )
 
 app = Flask(__name__)

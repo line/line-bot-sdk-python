@@ -4,8 +4,13 @@ from argparse import ArgumentParser
 from flask import Flask, request, abort
 
 from line_bot import (
-    LineBotApi, MessageEvent, TextMessage, TextSendMessage,
-    WebhookParser, InvalidSignatureError
+    LineBotApi, WebhookParser
+)
+from line_bot.exceptions import (
+    InvalidSignatureError
+)
+from line_bot.models import (
+    MessageEvent, TextMessage, TextSendMessage,
 )
 
 app = Flask(__name__)

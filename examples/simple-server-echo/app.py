@@ -5,8 +5,13 @@ import wsgiref.simple_server
 from argparse import ArgumentParser
 
 from line_bot import (
-    LineBotApi, MessageEvent, TextMessage,
-    TextSendMessage, WebhookParser, InvalidSignatureError
+    LineBotApi, WebhookParser
+)
+from line_bot.exceptions import (
+    InvalidSignatureError
+)
+from line_bot.models import (
+    MessageEvent, TextMessage, TextSendMessage
 )
 
 # get from os env

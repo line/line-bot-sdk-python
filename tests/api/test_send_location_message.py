@@ -2,11 +2,15 @@
 from __future__ import unicode_literals, absolute_import
 
 import json
-import responses
 import unittest
 
+import responses
+
 from line_bot import (
-    LineBotApi, LocationSendMessage
+    LineBotApi
+)
+from line_bot.models import (
+    LocationSendMessage
 )
 
 
@@ -46,7 +50,7 @@ class TestLineBotApi(unittest.TestCase):
             LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/message/push'
         )
         self.assertEqual(
-            json.loads(request.body.decode("utf-8")),
+            json.loads(request.body),
             {
                 "to": "to",
                 "messages": self.message
@@ -70,7 +74,7 @@ class TestLineBotApi(unittest.TestCase):
             LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/message/reply'
         )
         self.assertEqual(
-            json.loads(request.body.decode("utf-8")),
+            json.loads(request.body),
             {
                 "replyToken": "replyToken",
                 "messages": self.message

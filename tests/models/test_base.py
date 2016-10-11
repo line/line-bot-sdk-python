@@ -4,7 +4,7 @@ from __future__ import unicode_literals, absolute_import
 import json
 import unittest
 
-from line_bot import Base
+from line_bot.models import Base
 
 
 class Hoge(Base):

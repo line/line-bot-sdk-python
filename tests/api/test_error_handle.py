@@ -1,11 +1,18 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals, absolute_import
 
-import responses
 import unittest
 
+import responses
+
 from line_bot import (
-    LineBotApi, LineBotApiError, TextSendMessage
+    LineBotApi
+)
+from line_bot.exceptions import (
+    LineBotApiError
+)
+from line_bot.models import (
+    TextSendMessage
 )
 
 

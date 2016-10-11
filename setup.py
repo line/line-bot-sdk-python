@@ -24,14 +24,14 @@ def _requirements_test():
 
 
 setup(
-    name="line-bot-sdk-python",
+    name="line-bot-sdk",
     version=__version__,
     author="Ryosuke Hasebe",
     author_email="ryosuke.hasebe@linecorp.com",
     url="https://github.com/line/line-bot-sdk-python",
     description="LINE Messaging API SDK for Python",
     packages=[
-        "line_bot"
+        "line_bot", "line_bot.models"
     ],
     install_requires=_requirements(),
     tests_require=_requirements_test(),

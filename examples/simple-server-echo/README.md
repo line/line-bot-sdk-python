@@ -1,6 +1,6 @@
 # Simple Server Echo
 
-Sample echo-bot using [wsgiref.simple_server](http://docs.python.jp/2/library/wsgiref.html)
+Sample echo-bot using [wsgiref.simple_server](https://docs.python.org/3/library/wsgiref.html)
 
 ## Getting Start
 

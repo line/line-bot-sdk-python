@@ -84,7 +84,8 @@ https://devdocs.line.me/en/#reply-message
 
 ```python
 line_bot_api.reply_message(
-    reply_token, TextSendMessage(text='Hello World!'))
+    reply_token, TextSendMessage(text='Hello World!')
+)
 ```
 
 #### push_message(self, to, messages, timeout=None)
@@ -95,8 +96,8 @@ https://devdocs.line.me/en/#push-message
 
 ```python
 line_bot_api.push_message(
-    to, TextSendMessage(text='Hello World!'))
-
+    to, TextSendMessage(text='Hello World!')
+)
 ```
 
 #### get_profile(self, user_id, timeout=None)
@@ -166,7 +167,7 @@ except LineBotApiError as e:
 
 ### Send message object
 
-How to build for Send message object
+How to create Send message object
 
 (See also https://devdocs.line.me/en/#send-message-object)
 
@@ -369,6 +370,9 @@ If signature does NOT match, raise InvalidSignatureError.
 
 ```python
 events = parser.parse(body, signature)
+
+for event in events:
+    # Do something
 ```
 
 ### WebhookHandler
@@ -516,7 +520,7 @@ https://devdocs.line.me/en/#webhooks
 
 #### [simple-server-echo](https://github.com/line/line-bot-sdk-python/tree/master/examples/simple-server-echo)
 
-Sample echo-bot using [wsgiref.simple_server](http://docs.python.jp/2/library/wsgiref.html)
+Sample echo-bot using [wsgiref.simple_server](https://docs.python.org/3/library/wsgiref.html)
 
 #### [flask-echo](https://github.com/line/line-bot-sdk-python/tree/master/examples/flask-echo)
 

@@ -1,0 +1,135 @@
+{
+  "events": [{
+    "replyToken": "nHuyWiB7yP5Zw52FIkcQobQuGDXCTA",
+    "type": "message",
+    "timestamp": 1462629479859,
+    "source": {
+      "type": "user",
+      "userId": "U206d25c2ea6bd87c17655609a1c37cb8"
+    },
+    "message": {
+      "id": "325708",
+      "type": "text",
+      "text": "Hello, world"
+    }
+  }, {
+    "replyToken": "nHuyWiB7yP5Zw52FIkcQobQuGDXCTA",
+    "type": "message",
+    "timestamp": 1462629479859,
+    "source": {
+      "type": "room",
+      "roomId": "U206d25c2ea6bd87c17655609a1c37cb8"
+    },
+    "message": {
+      "id": "325708",
+      "type": "image"
+    }
+  }, {
+    "replyToken": "nHuyWiB7yP5Zw52FIkcQobQuGDXCTA",
+    "type": "message",
+    "timestamp": 1462629479859,
+    "source": {
+      "type": "user",
+      "userId": "U206d25c2ea6bd87c17655609a1c37cb8"
+    },
+    "message": {
+      "id": "325708",
+      "type": "video"
+    }
+  }, {
+    "replyToken": "nHuyWiB7yP5Zw52FIkcQobQuGDXCTA",
+    "type": "message",
+    "timestamp": 1462629479859,
+    "source": {
+      "type": "user",
+      "userId": "U206d25c2ea6bd87c17655609a1c37cb8"
+    },
+    "message": {
+      "id": "325708",
+      "type": "audio"
+    }
+  }, {
+    "replyToken": "nHuyWiB7yP5Zw52FIkcQobQuGDXCTA",
+    "type": "message",
+    "timestamp": 1462629479859,
+    "source": {
+      "type": "user",
+      "userId": "U206d25c2ea6bd87c17655609a1c37cb8"
+    },
+    "message": {
+      "id": "325708",
+      "type": "location",
+      "title": "my location",
+      "address": "Tokyo",
+      "latitude": 35.65910807942215,
+      "longitude": 139.70372892916203
+    }
+  }, {
+    "replyToken": "nHuyWiB7yP5Zw52FIkcQobQuGDXCTA",
+    "type": "message",
+    "timestamp": 1462629479859,
+    "source": {
+      "type": "user",
+      "userId": "U206d25c2ea6bd87c17655609a1c37cb8"
+    },
+    "message": {
+      "id": "325708",
+      "type": "sticker",
+      "packageId": "1",
+      "stickerId": "1"
+    }
+  }, {
+    "replyToken": "nHuyWiB7yP5Zw52FIkcQobQuGDXCTA",
+    "type": "follow",
+    "timestamp": 1462629479859,
+    "source": {
+      "type": "user",
+      "userId": "U206d25c2ea6bd87c17655609a1c37cb8"
+    }
+  }, {
+    "type": "unfollow",
+    "timestamp": 1462629479859,
+    "source": {
+      "type": "user",
+      "userId": "U206d25c2ea6bd87c17655609a1c37cb8"
+    }
+  }, {
+    "replyToken": "nHuyWiB7yP5Zw52FIkcQobQuGDXCTA",
+    "type": "join",
+    "timestamp": 1462629479859,
+    "source": {
+      "type": "group",
+      "groupId": "cxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    }
+  }, {
+    "type": "leave",
+    "timestamp": 1462629479859,
+    "source": {
+      "type": "group",
+      "groupId": "cxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    }
+  }, {
+    "replyToken": "nHuyWiB7yP5Zw52FIkcQobQuGDXCTA",
+    "type": "postback",
+    "timestamp": 1462629479859,
+    "source": {
+      "type": "user",
+      "userId": "U206d25c2ea6bd87c17655609a1c37cb8"
+    },
+    "postback": {
+      "data": "action=buyItem&itemId=123123&color=red"
+    }
+  }, {
+    "replyToken": "nHuyWiB7yP5Zw52FIkcQobQuGDXCTA",
+    "type": "beacon",
+    "timestamp": 1462629479859,
+    "source": {
+      "type": "user",
+      "userId": "U206d25c2ea6bd87c17655609a1c37cb8"
+    },
+    "beacon": {
+      "hwid": "d41d8cd98f",
+      "type": "enter"
+    }
+  }]
+}

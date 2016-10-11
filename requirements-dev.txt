@@ -1,0 +1,4 @@
+-r requirements.txt
+-r requirements-test.txt
+tox
+wheel

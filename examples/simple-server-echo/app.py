@@ -1,26 +1,31 @@
 # -*- coding: utf-8 -*-
-
 import os
+import sys
 import wsgiref.simple_server
 from argparse import ArgumentParser
 
-from line_bot import (
+from builtins import bytes
+
+from linebot import (
     LineBotApi, WebhookParser
 )
-from line_bot.exceptions import (
+from linebot.exceptions import (
     InvalidSignatureError
 )
-from line_bot.models import (
+from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage
 )
+from linebot.utils import PY3
 
-# get from os env
+# get channel_secret and channel_access_token from your environment variable
 channel_secret = os.getenv('LINE_CHANNEL_SECRET', None)
-if channel_secret is None:
-    print('Specify LINE_CHANNEL_SECRET as env.')
 channel_access_token = os.getenv('LINE_CHANNEL_ACCESS_TOKEN', None)
+if channel_secret is None:
+    print('Specify LINE_CHANNEL_SECRET as environment variable.')
+    sys.exit(1)
 if channel_access_token is None:
-    print('Specify LINE_CHANNEL_ACCESS_TOKEN as env.')
+    print('Specify LINE_CHANNEL_ACCESS_TOKEN as environment variable.')
+    sys.exit(1)
 
 line_bot_api = LineBotApi(channel_access_token)
 parser = WebhookParser(channel_secret)
@@ -30,12 +35,12 @@ def application(environ, start_response):
     # check request path
     if environ['PATH_INFO'] != '/callback':
         start_response('404 Not Found', [])
-        return 'Not Found'
+        return create_body('Not Found')
 
     # check request method
     if environ['REQUEST_METHOD'] != 'POST':
         start_response('405 Method Not Allowed', [])
-        return 'Method Not Allowed'
+        return create_body('Method Not Allowed')
 
     # get X-Line-Signature header value
     signature = environ['HTTP_X_LINE_SIGNATURE']
@@ -50,7 +55,7 @@ def application(environ, start_response):
         events = parser.parse(body, signature)
     except InvalidSignatureError:
         start_response('400 Bad Request', [])
-        return 'Bad Request'
+        return create_body('Bad Request')
 
     # if event is MessageEvent and message is TextMessage, then echo text
     for event in events:
@@ -65,7 +70,14 @@ def application(environ, start_response):
         )
 
     start_response('200 OK', [])
-    return 'OK'
+    return create_body('OK')
+
+
+def create_body(text):
+    if PY3:
+        return [bytes(text, 'utf-8')]
+    else:
+        return text
 
 
 if __name__ == '__main__':

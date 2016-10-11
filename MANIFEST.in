@@ -1,3 +1,5 @@
 include LICENSE
 include requirements.txt
 include requirements-test.txt
+include requirements-dev.txt
+include tox.ini

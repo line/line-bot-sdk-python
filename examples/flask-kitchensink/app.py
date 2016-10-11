@@ -3,17 +3,18 @@ from __future__ import unicode_literals
 
 import errno
 import os
+import sys
 from argparse import ArgumentParser
 
 from flask import Flask, request, abort
 
-from line_bot import (
+from linebot import (
     LineBotApi, WebhookHandler
 )
-from line_bot.exceptions import (
+from linebot.exceptions import (
     InvalidSignatureError
 )
-from line_bot.models import (
+from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage,
     SourceUser, SourceGroup, SourceRoom,
     TemplateSendMessage, ConfirmTemplate, MessageTemplateAction,
@@ -28,11 +29,13 @@ app = Flask(__name__)
 
 # get channel_secret and channel_access_token from your environment variable
 channel_secret = os.getenv('LINE_CHANNEL_SECRET', None)
-if channel_secret is None:
-    print('Specify LINE_CHANNEL_SECRET as env.')
 channel_access_token = os.getenv('LINE_CHANNEL_ACCESS_TOKEN', None)
+if channel_secret is None:
+    print('Specify LINE_CHANNEL_SECRET as environment variable.')
+    sys.exit(1)
 if channel_access_token is None:
-    print('Specify LINE_CHANNEL_ACCESS_TOKEN as env.')
+    print('Specify LINE_CHANNEL_ACCESS_TOKEN as environment variable.')
+    sys.exit(1)
 
 line_bot_api = LineBotApi(channel_access_token)
 handler = WebhookHandler(channel_secret)

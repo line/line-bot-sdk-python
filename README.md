@@ -13,7 +13,7 @@ ja: https://devdocs.line.me/ja/
 ## Install
 
 ```
-$ pip install line_bot
+$ pip install line-bot-sdk
 ```
 
 ## Synopsis
@@ -23,9 +23,14 @@ Usage is:
 ```python
 from flask import Flask, request, abort
 
-from line_bot import (
-    LineBotApi, MessageEvent, TextMessage, TextSendMessage,
-    WebhookParser, InvalidSignatureError
+from linebot import (
+    LineBotApi, WebhookHandler
+)
+from linebot.exceptions import (
+    InvalidSignatureError
+)
+from linebot.models import (
+    MessageEvent, TextMessage, TextSendMessage,
 )
 
 app = Flask(__name__)
@@ -70,7 +75,7 @@ def handle_message(event):
 Create a new LineBotApi instance.
 
 ```python
-line_bot_api = LineBotApi('YOUR_CHANNEL_ACCESS_TOKEN')
+line_bot_api = linebot.LineBotApi('YOUR_CHANNEL_ACCESS_TOKEN')
 ```
 
 You can override `timeout` value at each methods.
@@ -160,16 +165,16 @@ try:
         'to',
         TextSendMessage(text='Hello World!')
     )
-except LineBotApiError as e:
+except linebot.LineBotApiError as e:
     print(e.error.message)
     print(e.error.details)
 ```
 
 ### Send message object
 
-How to create Send message object
+https://devdocs.line.me/en/#send-message-object
 
-(See also https://devdocs.line.me/en/#send-message-object)
+These following class in `linebot.models` package.
 
 #### TextSendMessage
 
@@ -360,7 +365,7 @@ carousel_template_message = TemplateSendMessage(
 #### \__init__(self, channel_secret)
 
 ```python
-parser = WebhookParser('YOUR_CHANNEL_SECRET')
+parser = linebot.WebhookParser('YOUR_CHANNEL_SECRET')
 ```
 
 #### parse(self, body, signature)
@@ -382,7 +387,7 @@ for event in events:
 #### \__init__(self, channel_secret)
 
 ```python
-handler = WebhookHandler('YOUR_CHANNEL_SECRET')
+handler = linebot.WebhookHandler('YOUR_CHANNEL_SECRET')
 ```
 
 #### handle(self, body, signature)
@@ -430,6 +435,8 @@ There is no handler for event, this default handler method is called.
 ### Webhook event object
 
 https://devdocs.line.me/en/#webhooks
+
+These following class in `linebot.models` package.
 
 #### Event
 

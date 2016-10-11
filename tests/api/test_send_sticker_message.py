@@ -5,10 +5,10 @@ import json
 import responses
 import unittest
 
-from line_bot import (
+from linebot import (
     LineBotApi
 )
-from line_bot.models import (
+from linebot.models import (
     StickerSendMessage
 )
 

@@ -6,7 +6,7 @@ import re
 from setuptools import setup
 
 __version__ = ''
-with open('line_bot/__about__.py', 'r') as fd:
+with open('linebot/__about__.py', 'r') as fd:
     reg = re.compile(r'__version__ = [\'"]([^\'"]*)[\'"]')
     for line in fd:
         m = reg.match(line)
@@ -26,17 +26,21 @@ def _requirements_test():
 setup(
     name="line-bot-sdk",
     version=__version__,
-    author="Ryosuke Hasebe",
-    author_email="ryosuke.hasebe@linecorp.com",
+    author="RyosukeHasebe",
+    author_email="hsb.1014@gmail.com",
+    maintainer="RyosukeHasebe",
+    maintainer_email="hsb.1014@gmail.com",
     url="https://github.com/line/line-bot-sdk-python",
     description="LINE Messaging API SDK for Python",
+    long_description="LINE Messaging API SDK for Python",
     packages=[
-        "line_bot", "line_bot.models"
+        "linebot", "linebot.models"
     ],
     install_requires=_requirements(),
     tests_require=_requirements_test(),
     classifiers=[
-        "Development Status :: 5 - Production/Stable",
+        "Development Status :: 1 - Planning",
+        # "Development Status :: 5 - Production/Stable",
         "License :: OSI Approved :: Apache Software License",
         "Intended Audience :: Developers",
         "Programming Language :: Python",
@@ -45,7 +49,7 @@ setup(
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.3",
         "Programming Language :: Python :: 3.4",
-        "Programming Language :: Python :: 3.5"
+        "Programming Language :: Python :: 3.5",
         "Topic :: Software Development"
     ]
 )

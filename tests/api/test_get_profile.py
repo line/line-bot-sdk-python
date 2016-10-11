@@ -5,7 +5,7 @@ import unittest
 
 import responses
 
-from line_bot import (
+from linebot import (
     LineBotApi
 )
 

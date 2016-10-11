@@ -1,1 +1,1 @@
-line_bot
+line-bot-sdk

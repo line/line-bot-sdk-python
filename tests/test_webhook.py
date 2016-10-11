@@ -6,10 +6,10 @@ import unittest
 
 from builtins import open
 
-from line_bot import (
+from linebot import (
     SignatureValidator, WebhookParser, WebhookHandler
 )
-from line_bot.models import (
+from linebot.models import (
     MessageEvent, FollowEvent, UnfollowEvent, JoinEvent,
     LeaveEvent, PostbackEvent, BeaconEvent,
     TextMessage, ImageMessage, VideoMessage, AudioMessage,

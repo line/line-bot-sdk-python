@@ -5,13 +5,13 @@ import unittest
 
 import responses
 
-from line_bot import (
+from linebot import (
     LineBotApi
 )
-from line_bot.exceptions import (
+from linebot.exceptions import (
     LineBotApiError
 )
-from line_bot.models import (
+from linebot.models import (
     TextSendMessage
 )
 

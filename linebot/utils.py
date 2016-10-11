@@ -5,7 +5,7 @@ import logging
 import re
 import sys
 
-LOGGER = logging.getLogger('line_bot')
+LOGGER = logging.getLogger('linebot')
 
 PY3 = sys.version_info[0] == 3
 

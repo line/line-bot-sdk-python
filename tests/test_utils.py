@@ -3,7 +3,7 @@ from __future__ import unicode_literals, absolute_import
 
 import unittest
 
-from line_bot.utils import to_camel_case, to_snake_case
+from linebot.utils import to_camel_case, to_snake_case
 
 
 class TestUtils(unittest.TestCase):

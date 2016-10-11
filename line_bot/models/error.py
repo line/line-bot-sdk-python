@@ -8,7 +8,7 @@ class Error(Base):
     def __init__(self, message=None, details=None, **kwargs):
         """Error
 
-        https://devdocs.line.me/ja/#error-response
+        https://devdocs.line.me/en/#error-response
 
         Args:
             message: Summary of the error
@@ -32,7 +32,7 @@ class ErrorDetail(Base):
     def __init__(self, message=None, property=None, **kwargs):
         """ErrorDetail
 
-        https://devdocs.line.me/ja/#error-response
+        https://devdocs.line.me/en/#error-response
 
         Args:
             message: Details of the error message

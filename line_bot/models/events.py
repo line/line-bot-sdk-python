@@ -15,7 +15,7 @@ from .sources import SourceUser, SourceGroup, SourceRoom
 
 class Event(Base):
     """Webhook Event
-    https://devdocs.line.me/ja/#webhook-event-object
+    https://devdocs.line.me/en/#webhook-event-object
     """
 
     def __init__(self, timestamp=None, source=None, **kwargs):
@@ -39,7 +39,7 @@ class MessageEvent(Event):
     ):
         """MessageEvent
 
-        https://devdocs.line.me/ja/#message-event
+        https://devdocs.line.me/en/#message-event
 
         Event object which contains the sent message.
         The message field contains a message object which corresponds with the message type.
@@ -76,7 +76,7 @@ class FollowEvent(Event):
     ):
         """FollowEvent
 
-        https://devdocs.line.me/ja/#follow-event
+        https://devdocs.line.me/en/#follow-event
 
         Event object for when your account is added as a friend (or unblocked). You can reply to follow events.
 
@@ -98,7 +98,7 @@ class UnfollowEvent(Event):
     def __init__(self, timestamp=None, source=None, **kwargs):
         """UnfollowEvent
 
-        https://devdocs.line.me/ja/#unfollow-event
+        https://devdocs.line.me/en/#unfollow-event
 
         Event object for when your account is blocked.
 
@@ -120,7 +120,7 @@ class JoinEvent(Event):
     ):
         """JoinEvent
 
-        https://devdocs.line.me/ja/#join-event
+        https://devdocs.line.me/en/#join-event
 
         Event object for when your account joins a group or talk room. You can reply to join events.
 
@@ -142,7 +142,7 @@ class LeaveEvent(Event):
     def __init__(self, timestamp=None, source=None, **kwargs):
         """LeaveEvent
 
-        https://devdocs.line.me/ja/#leave-event
+        https://devdocs.line.me/en/#leave-event
 
         Event object for when your account leaves a group.
 
@@ -165,7 +165,7 @@ class PostbackEvent(Event):
     ):
         """PostbackEvent
 
-        https://devdocs.line.me/ja/#postback-event
+        https://devdocs.line.me/en/#postback-event
 
         Event object for when a user performs an action on a template message which initiates a postback.
         You can reply to postback events.
@@ -195,7 +195,7 @@ class BeaconEvent(Event):
     ):
         """BeaconEvent
 
-        https://devdocs.line.me/ja/#beacon-event
+        https://devdocs.line.me/en/#beacon-event
 
         Event object for when a user detects a LINE Beacon. You can reply to beacon events.
 
@@ -221,7 +221,7 @@ class Postback(Base):
     def __init__(self, data=None, **kwargs):
         """Postback
 
-        https://devdocs.line.me/ja/#postback-event
+        https://devdocs.line.me/en/#postback-event
 
         Args:
             data: Postback data
@@ -234,13 +234,13 @@ class Postback(Base):
 
 class Beacon(Base):
     """Beacon
-    https://devdocs.line.me/ja/#beacon-event
+    https://devdocs.line.me/en/#beacon-event
     """
 
     def __init__(self, type=None, hwid=None, **kwargs):
         """Beacon
 
-        https://devdocs.line.me/ja/#beacon-event
+        https://devdocs.line.me/en/#beacon-event
 
         Args:
             type: Type of beacon event

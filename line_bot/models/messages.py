@@ -35,7 +35,7 @@ class ImageMessage(Message):
     def __init__(self, id=None, **kwargs):
         """ImageMessage
 
-        https://devdocs.line.me/ja/#image-message
+        https://devdocs.line.me/en/#image-message
 
         Message object which contains the image content sent from the source.
         The binary image data can be retrieved with the Content API.
@@ -53,7 +53,7 @@ class VideoMessage(Message):
     def __init__(self, id=None, **kwargs):
         """VideoMessage
 
-        https://devdocs.line.me/ja/#video-message
+        https://devdocs.line.me/en/#video-message
 
         Message object which contains the video content sent from the source.
         The binary video data can be retrieved with the Content API.
@@ -71,7 +71,7 @@ class AudioMessage(Message):
     def __init__(self, id=None, **kwargs):
         """AudioMessage
 
-        https://devdocs.line.me/ja/#audio-message
+        https://devdocs.line.me/en/#audio-message
 
         Message object which contains the audio content sent from the source.
         The binary audio data can be retrieved with the Content API.
@@ -92,7 +92,7 @@ class LocationMessage(Message):
     ):
         """LocationMessage
 
-        https://devdocs.line.me/ja/#location-message
+        https://devdocs.line.me/en/#location-message
 
         Args:
             id: Message ID
@@ -115,7 +115,7 @@ class StickerMessage(Message):
     def __init__(self, id=None, package_id=None, sticker_id=None, **kwargs):
         """StickerMessage
 
-        https://devdocs.line.me/ja/#sticker-message
+        https://devdocs.line.me/en/#sticker-message
 
         Message object which contains the sticker data sent from the source.
         For a list of basic LINE stickers and sticker IDs, see sticker list.

@@ -3,6 +3,7 @@ from __future__ import unicode_literals, absolute_import
 
 import os
 import unittest
+
 from builtins import open
 
 from line_bot import (
@@ -11,8 +12,27 @@ from line_bot import (
     TextMessage, ImageMessage, VideoMessage, AudioMessage,
     LocationMessage, StickerMessage,
     SourceUser, SourceRoom, SourceGroup,
-    WebhookParser, WebhookHandler
+    SignatureValidator, WebhookParser, WebhookHandler
 )
+
+
+class TestSignatureValidator(unittest.TestCase):
+    def test_validate(self):
+        signature_validator = SignatureValidator('channel_secret')
+
+        self.assertEqual(
+            signature_validator.validate(
+                'bodybodybodybody',
+                '/gg9a+LvFevTH1sd7XCQycD7tsWclCsInj7MhBHxN7k='
+            ),
+            True
+        )
+        self.assertEqual(
+            signature_validator.validate(
+                'bodybodybodybody', 'invalid_signature'
+            ),
+            False
+        )
 
 
 class TestWebhookParser(unittest.TestCase):
@@ -22,9 +42,11 @@ class TestWebhookParser(unittest.TestCase):
             os.path.join(file_dir, 'text', 'webhook.json')
         ).read()
 
-        parser = WebhookParser()
+        parser = WebhookParser('channel_secret')
+        # mock
+        parser.signature_validator.validate = lambda a, b: True
 
-        events = parser.parse(body)
+        events = parser.parse(body, 'channel_secret')
 
         # MessageEvent, SourceUser, TextMessage
         self.assertIsInstance(events[0], MessageEvent)
@@ -249,7 +271,7 @@ class TestWebhookParser(unittest.TestCase):
 
 class TestWebhookHandler(unittest.TestCase):
     def setUp(self):
-        self.handler = WebhookHandler()
+        self.handler = WebhookHandler('channel_secret')
         self.calls = []
 
         @self.handler.add(MessageEvent, message=TextMessage)
@@ -295,9 +317,11 @@ class TestWebhookHandler(unittest.TestCase):
             os.path.join(file_dir, 'text', 'webhook.json')
         ).read()
 
-        print(self.handler._handlers)
-        self.handler.handle(body=body)
-        print(self.calls)
+        # mock
+        self.handler.parser.signature_validator.validate = lambda a, b: True
+
+        self.handler.handle(body, 'signature')
+
         self.assertEqual(self.calls[0], '1 message_text')
         self.assertEqual(self.calls[1], '2 message_image')
         self.assertEqual(self.calls[2], '2 message_video')

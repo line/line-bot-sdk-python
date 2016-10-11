@@ -1,9 +1,13 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+import base64
+import hashlib
+import hmac
 import inspect
 import json
 
+from .exceptions import InvalidSignatureError
 from .models.events import (
     MessageEvent,
     FollowEvent,
@@ -16,19 +20,59 @@ from .models.events import (
 from .utils import LOGGER, PY3
 
 
-class WebhookParser(object):
-    def __init__(self):
-        pass
+class SignatureValidator(object):
+    def __init__(self, channel_secret):
+        """Signature validator
 
-    def parse(self, body):
-        """Parse webhook request body.
+        https://devdocs.line.me/en/#webhook-authentication
 
         Args:
-            body: Webhook request body
+            channel_secret: Channel secret
+        """
+        self.channel_secret = channel_secret.encode('utf-8')
+
+    def validate(self, body, signature):
+        """Check signature.
+
+        https://devdocs.line.me/en/#webhook-authentication
+
+        Args:
+            body: Request body (as text)
+            signature: X-Line-Signature value (as text)
+
+        Returns:
+
+        """
+        gen_signature = hmac.new(
+            self.channel_secret,
+            body.encode('utf-8'),
+            hashlib.sha256
+        ).digest()
+
+        return hmac.compare_digest(
+            signature.encode('utf-8'), base64.b64encode(gen_signature)
+        )
+
+
+class WebhookParser(object):
+    def __init__(self, channel_secret):
+        self.signature_validator = SignatureValidator(channel_secret)
+
+    def parse(self, body, signature):
+        """Parse webhook request body as text.
+
+        Args:
+            body: Webhook request body (as test)
+            signature: X-Line-Signature value (as text)
 
         Returns: Event object list
 
         """
+
+        if not self.signature_validator.validate(body, signature):
+            raise InvalidSignatureError(
+                'Invalid signature. signature=' + signature)
+
         body_json = json.loads(body)
         events = []
         for event in body_json['events']:
@@ -54,8 +98,8 @@ class WebhookParser(object):
 
 
 class WebhookHandler(object):
-    def __init__(self):
-        self.parser = WebhookParser()
+    def __init__(self, channel_secret):
+        self.parser = WebhookParser(channel_secret)
         self._handlers = {}
         self._default = None
 
@@ -94,18 +138,15 @@ class WebhookHandler(object):
 
         return decorator
 
-    def handle(self, events=None, body=None):
+    def handle(self, body, signature):
         """Handle webhook
 
-        Specify events or body
-
         Args:
-            events: (optional) Event object list
-            body: (optional) Webhook request body (as test)
+            body: Webhook request body (as test)
+            signature: X-Line-Signature value (as text)
         """
 
-        if events is None:
-            events = self.parser.parse(body)
+        events = self.parser.parse(body, signature)
 
         for event in events:
             func = None

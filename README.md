@@ -13,7 +13,7 @@ ja: https://devdocs.line.me/ja/
 ## Install
 
 ```
-pip install line_bot
+$ pip install line_bot
 ```
 
 ## Synopsis
@@ -23,48 +23,54 @@ Usage is:
 ```python
 from flask import Flask, request, abort
 
-import line_bot
+from line_bot import (
+    LineBotApi, MessageEvent, TextMessage, TextSendMessage,
+    WebhookParser, InvalidSignatureError
+)
 
 app = Flask(__name__)
 
-line_bot_api = line_bot.LineBotApi('CHANNEL_ACCESS_TOKEN')
-signature_validator = line_bot.SignatureValidator('CHANNEL_SECRET')
-handler = line_bot.WebhookHandler()
+line_bot_api = LineBotApi('YOUR_CHANNEL_ACCESS_TOKEN')
+handler = WebhookHandler('YOUR_CHANNEL_SECRET')
 
 
 @app.route("/callback", methods=['POST'])
 def callback():
+    # get X-Line-Signature header value
     signature = request.headers['X-Line-Signature']
-    body = request.get_data(as_text=True)
 
-    # check signature
-    if not signature_validator.validate(body, signature):
-        abort(400)
+    # get request body as text
+    body = request.get_data(as_text=True)
+    app.logger.info("Request body: " + body)
 
     # handle webhook body
-    handler.handle(body=body)
+    try:
+        handler.handle(body, signature)
+    except InvalidSignatureError:
+        abort(400)
+
     return 'OK'
 
 
-@handler.add(line_bot.MessageEvent, message=line_bot.TextMessage)
+@handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     line_bot_api.reply_message(
         event.reply_token,
-        line_bot.TextSendMessage(text=event.message.text)
+        TextSendMessage(text=event.message.text)
     )
 
 ```
 
 ## API
 
-### line_bot.LineBotApi
+### LineBotApi
 
 #### \__init__(self, channel_access_token, endpoint='https://api.line.me', timeout=5, http_client=RequestsHttpClient)
 
 Create a new LineBotApi instance.
 
 ```python
-line_bot_api = line_bot.LineBotApi('CHANNEL_ACCESS_TOKEN')
+line_bot_api = LineBotApi('YOUR_CHANNEL_ACCESS_TOKEN')
 ```
 
 You can override `timeout` value at each methods.
@@ -72,13 +78,13 @@ You can override `timeout` value at each methods.
 #### reply_message(self, reply_token, messages, timeout=None)
 
 Respond to events from users, groups, and rooms.  
-You can get a reply_token by a Webhook Event Object. And see also parse method's document.
+You can get a reply_token by a Webhook Event Object.
 
 https://devdocs.line.me/en/#reply-message
 
 ```python
 line_bot_api.reply_message(
-    reply_token, line_bot.TextSendMessage(text='Hello World!'))
+    reply_token, TextSendMessage(text='Hello World!'))
 ```
 
 #### push_message(self, to, messages, timeout=None)
@@ -89,7 +95,7 @@ https://devdocs.line.me/en/#push-message
 
 ```python
 line_bot_api.push_message(
-    to, line_bot.TextSendMessage(text='Hello World!'))
+    to, TextSendMessage(text='Hello World!'))
 
 ```
 
@@ -151,51 +157,379 @@ https://devdocs.line.me/en/#error-response
 try:
     line_bot_api.push_message(
         'to',
-        TextSendMessage(text='hoge')
+        TextSendMessage(text='Hello World!')
     )
 except LineBotApiError as e:
     print(e.error.message)
     print(e.error.details)
 ```
 
+### Send message object
+
+How to build for Send message object
+
+(See also https://devdocs.line.me/en/#send-message-object)
+
+#### TextSendMessage
+
+```python
+text_message = TextSendMessage(text='Hello, world')
+```
+
+#### ImageSendMessage
+
+```python
+image_message = ImageSendMessage(
+    original_content_url='https://example.com/original.jpg',
+    preview_image_url='https://example.com/preview.jpg'
+)
+```
+
+#### VideoSendMessage
+
+```python
+video_message = VideoSendMessage(
+    original_content_url='https://example.com/original.mp4',
+    preview_image_url='https://example.com/preview.jpg'
+)
+```
+
+#### AudioSendMessage
+
+```python
+audio_message = AudioSendMessage(
+    original_content_url='https://example.com/original.m4a',
+    duration=240000
+)
+```
+
+#### LocationSendMessage
+
+```python
+location_message = LocationSendMessage(
+    title='my location',
+    address='Tokyo',
+    latitude=35.65910807942215,
+    longitude=139.70372892916203
+)
+```
+
+#### StickerSendMessage
+
+```python
+sticker_message = StickerSendMessage(
+    package_id='1',
+    sticker_id='1'
+)
+```
+
+#### ImagemapSendMessage
+
+```python
+imagemap_message = ImagemapSendMessage(
+    base_url='https://example.com/base',
+    alt_text='this is an imagemap',
+    base_size=BaseSize(height=1040, width=1040),
+    actions=[
+        URIImagemapAction(
+            link_uri='https://example.com/',
+            area=ImagemapArea(
+                x=0, y=0, width=520, height=1040
+            )
+        ),
+        MessageImagemapAction(
+            text='hello',
+            area=ImagemapArea(
+                x=520, y=0, width=520, height=1040
+            )
+        )
+    ]
+)
+```
+
+#### TemplateSendMessage - ButtonsTemplate
+
+```python
+buttons_template_message = TemplateSendMessage(
+    alt_text='Buttons template',
+    template=ButtonsTemplate(
+        thumbnail_image_url='https://example.com/image.jpg',
+        title='Menu',
+        text='Please select',
+        actions=[
+            PostbackTemplateAction(
+                label='postback',
+                text='postback text',
+                data='action=buy&itemid=1'
+            ),
+            MessageTemplateAction(
+                label='message',
+                text='message text'
+            ),
+            URITemplateAction(
+                label='uri',
+                uri='http://example.com/'
+            )
+        ]
+    )
+)
+```
+
+#### TemplateSendMessage - ConfirmTemplate
+
+```python
+confirm_template_message = TemplateSendMessage(
+    alt_text='Confirm template',
+    template=ConfirmTemplate(
+        text='Are you sure?',
+        actions=[
+            PostbackTemplateAction(
+                label='postback',
+                text='postback text',
+                data='action=buy&itemid=1'
+            ),
+            MessageTemplateAction(
+                label='message',
+                text='message text'
+            )
+        ]
+    )
+)
+```
+
+#### TemplateSendMessage - CarouselTemplate
+
+```python
+carousel_template_message = TemplateSendMessage(
+    alt_text='Carousel template',
+    template=CarouselTemplate(
+        columns=[
+            CarouselColumn(
+                thumbnail_image_url='https://example.com/item1.jpg'
+                title='this is menu1',
+                text='description1',
+                actions=[
+                    PostbackTemplateAction(
+                        label='postback1',
+                        text='postback text1',
+                        data='action=buy&itemid=1'
+                    ),
+                    MessageTemplateAction(
+                        label='message1',
+                        text='message text1'
+                    ),
+                    URITemplateAction(
+                        label='uri1',
+                        uri='http://example.com/1'
+                    )
+                ]
+            ),
+            CarouselColumn(
+                thumbnail_image_url='https://example.com/item2.jpg'
+                title='this is menu2',
+                text='description2',
+                actions=[
+                    PostbackTemplateAction(
+                        label='postback2',
+                        text='postback text2',
+                        data='action=buy&itemid=2'
+                    ),
+                    MessageTemplateAction(
+                        label='message2',
+                        text='message text2'
+                    ),
+                    URITemplateAction(
+                        label='uri2',
+                        uri='http://example.com/2'
+                    )
+                ]
+            )
+        ]
+    )
+)
+
+```
+
 ## Webhook
 
-### line_bot.SignatureValidator
+### WebhookParser
+
+※ You can use WebhookParser or WebhookHandler
 
 #### \__init__(self, channel_secret)
 
-Create a new SignatureValidator instance.
-
 ```python
-signature_validator = line_bot.SignatureValidator('CHANNEL_SECRET')
+parser = WebhookParser('YOUR_CHANNEL_SECRET')
 ```
 
-#### validate(self, body, signature):
+#### parse(self, body, signature)
 
-validate signature(X-Line-Signature header value) to confirm that the request was sent from the LINE platform.
-
-https://devdocs.line.me/ja/#webhook-authentication
-
-```python
-result = signature_validator.validate(body, signature)
-```
-
-### line_bot.WebhookParser
-
-#### \__init__(self)
+Parse webhook body and build Event Objects List.  
+If signature does NOT match, raise InvalidSignatureError.
 
 ```python
-parser = WebhookParser()
+events = parser.parse(body, signature)
 ```
 
-#### parse(self, body)
+### WebhookHandler
 
-(Optional)  
-Parse webhook body and build Event Objects List.
+※ You can use WebhookParser or WebhookHandler
+
+#### \__init__(self, channel_secret)
 
 ```python
-events = parser.parse(body)
+handler = WebhookHandler('YOUR_CHANNEL_SECRET')
 ```
 
-### line_bot.WebhookHandler
+#### handle(self, body, signature)
 
+Handle webhook.
+If signature does NOT match, raise InvalidSignatureError.
+
+```python
+handler.handle(body, signature)
+```
+
+#### Add handler method
+
+You can add handler method by using `add` decorator.
+
+`add(self, event, message=None)`
+
+```python
+@handler.add(MessageEvent, message=TextMessage)
+def handle_message(event):
+    line_bot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(text=event.message.text)
+    )
+
+```
+
+When event is instance of MessageEvent and event.message is instance of TextMessage, this handler method is called.
+
+#### Set default handler method
+
+You can set default handler method by using `default` decorator.  
+
+`default(self)`
+
+```python
+@handler.default()
+def default(event):
+    print(event)
+
+```
+
+There is no handler for event, this default handler method is called.
+
+### Webhook event object
+
+https://devdocs.line.me/en/#webhooks
+
+#### Event
+
+* MessageEvent
+  * type
+  * timestamp
+  * source: [Source](#source)
+  * reply_token
+  * message: [Message](#message)
+* FollowEvent
+  * type
+  * timestamp
+  * source: [Source](#source)
+  * reply_token
+* UnfollowEvent
+  * type
+  * timestamp
+  * source: [Source](#source)
+* JoinEvent
+  * type
+  * timestamp
+  * source: [Source](#source)
+  * reply_token
+* LeaveEvent
+  * type
+  * timestamp
+  * source: [Source](#source)
+* PostbackEvent
+  * type
+  * timestamp
+  * source: [Source](#source)
+  * reply_token
+  * postback: Postback
+    * data
+* BeaconEvent
+  * type
+  * timestamp
+  * source: [Source](#source)
+  * reply_token
+  * beacon: Beacon
+    * type
+    * hwid
+
+#### Source
+
+* SourceUser
+  * type
+  * user_id
+* SourceGroup
+  * type
+  * group_id
+* SourceRoom
+  * type
+  * room_id
+
+#### Message
+
+* TextMessage
+  * type
+  * id
+  * text
+* ImageMessage
+  * type
+  * id
+* VideoMessage
+  * type
+  * id
+* AudioMessage
+  * type
+  * id
+* LocationMessage
+  * type
+  * id
+  * title
+  * address
+  * latitude
+  * longitude
+* LocationMessage
+  * type
+  * id
+  * package_id
+  * sticker_id
+
+
+## Hints
+
+### Examples
+
+#### [simple-server-echo](https://github.com/line/line-bot-sdk-python/tree/master/examples/simple-server-echo)
+
+Sample echo-bot using [wsgiref.simple_server](http://docs.python.jp/2/library/wsgiref.html)
+
+#### [flask-echo](https://github.com/line/line-bot-sdk-python/tree/master/examples/flask-echo)
+
+Sample echo-bot using [Flask](http://flask.pocoo.org/)
+
+#### [flask-kitchensink](https://github.com/line/line-bot-sdk-python/tree/master/examples/flask-kitchensink)
+
+Sample bot using [Flask](http://flask.pocoo.org/)
+
+## Requirements
+
+* python >= 2.7 or >= 3.3
+
+## For SDK developers
+
+TBD

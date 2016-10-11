@@ -5,8 +5,8 @@ import wsgiref.simple_server
 from argparse import ArgumentParser
 
 from line_bot import (
-    LineBotApi, MessageEvent, TextMessage, TextSendMessage, SignatureValidator,
-    WebhookParser
+    LineBotApi, MessageEvent, TextMessage,
+    TextSendMessage, WebhookParser, InvalidSignatureError
 )
 
 # get from os env
@@ -18,8 +18,7 @@ if channel_access_token is None:
     print('Specify LINE_CHANNEL_ACCESS_TOKEN as env.')
 
 line_bot_api = LineBotApi(channel_access_token)
-signature_validator = SignatureValidator(channel_secret)
-parser = WebhookParser()
+parser = WebhookParser(channel_secret)
 
 
 def application(environ, start_response):
@@ -41,13 +40,12 @@ def application(environ, start_response):
     content_length = int(environ['CONTENT_LENGTH'])
     body = wsgi_input.read(content_length).decode('utf-8')
 
-    # check signature
-    if not signature_validator.validate(body, signature):
+    # parse webhook body
+    try:
+        events = parser.parse(body, signature)
+    except InvalidSignatureError:
         start_response('400 Bad Request', [])
         return 'Bad Request'
-
-    # parse webhook body
-    events = parser.parse(body)
 
     # if event is MessageEvent and message is TextMessage, then echo text
     for event in events:
@@ -62,7 +60,7 @@ def application(environ, start_response):
         )
 
     start_response('200 OK', [])
-    return ''
+    return 'OK'
 
 
 if __name__ == '__main__':

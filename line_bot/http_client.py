@@ -47,14 +47,13 @@ class HttpClient(object):
         """
         raise NotImplementedError
 
-    def post(self, url, headers=None, data=None, json=None, timeout=None):
+    def post(self, url, headers=None, data=None, timeout=None):
         """POST request.
 
         Args:
             url: Request url
             headers: Request headers
             data: Dictionary, bytes, or file-like object to send in the body
-            json: json data to send in the body
             timeout: How long to wait for the server to send data before giving up,
                 as a float, or a :ref:`(connect timeout, read timeout) <timeouts>` tuple. Default is self.timeout
         """
@@ -135,14 +134,13 @@ class RequestsHttpClient(HttpClient):
                 status_code=response.status_code, headers=response.headers,
                 body=response.text)
 
-    def post(self, url, headers=None, data=None, json=None, timeout=None):
+    def post(self, url, headers=None, data=None, timeout=None):
         """POST request.
 
         Args:
             url: Request url
             headers: Request headers
             data: Dictionary, bytes, or file-like object to send in the body
-            json: json data to send in the body
             timeout: How long to wait for the server to send data before giving up,
                 as a float, or a :ref:`(connect timeout, read timeout) <timeouts>` tuple. Default is self.timeout
 
@@ -152,7 +150,7 @@ class RequestsHttpClient(HttpClient):
             timeout = self.timeout
 
         response = requests.post(
-            url, headers=headers, data=data, json=json, timeout=timeout
+            url, headers=headers, data=data, timeout=timeout
         )
 
         return HttpResponse(

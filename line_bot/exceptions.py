@@ -15,6 +15,11 @@ class BaseError(Exception):
         )
 
 
+class InvalidSignatureError(BaseError):
+    def __init__(self, message='-'):
+        super(InvalidSignatureError, self).__init__(message)
+
+
 class LineBotApiError(BaseError):
     def __init__(self, status_code, error=None):
         """When BOT API response error, this error will be thrown.

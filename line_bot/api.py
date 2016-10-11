@@ -67,7 +67,7 @@ class LineBotApi(object):
             'messages': [message.as_json_dict() for message in messages]
         }
         self._post(
-            '/v2/bot/message/reply', json=data, timeout=timeout
+            '/v2/bot/message/reply', data=json.dumps(data), timeout=timeout
         )
 
     def push_message(self, to, messages, timeout=None):
@@ -91,7 +91,7 @@ class LineBotApi(object):
             'messages': [message.as_json_dict() for message in messages]
         }
         self._post(
-            '/v2/bot/message/push', json=data, timeout=timeout
+            '/v2/bot/message/push', data=json.dumps(data), timeout=timeout
         )
 
     def get_profile(self, user_id, timeout=None):
@@ -194,13 +194,13 @@ class LineBotApi(object):
         self.__check_error(response)
         return response.body_stream
 
-    def _post(self, path, json=None, timeout=None):
+    def _post(self, path, data=None, timeout=None):
         url = self.endpoint + path
         headers = {'Content-Type': 'application/json'}
         headers.update(self.headers)
 
         response = self.http_client.post(
-            url, headers=headers, json=json, timeout=timeout
+            url, headers=headers, data=data, timeout=timeout
         )
 
         self.__check_error(response)

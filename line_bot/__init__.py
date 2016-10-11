@@ -7,7 +7,7 @@ from .api import (
     LineBotApi
 )
 from .exceptions import (
-    BaseError, LineBotApiError
+    BaseError, LineBotApiError, InvalidSignatureError
 )
 from .http_client import (
     HttpClient, RequestsHttpClient, HttpResponse
@@ -48,9 +48,6 @@ from .models.template import (
     TemplateAction, PostbackTemplateAction, MessageTemplateAction,
     URITemplateAction
 )
-from .signature import (
-    SignatureValidator
-)
 from .webhook import (
-    WebhookParser, WebhookHandler
+    SignatureValidator, WebhookParser, WebhookHandler
 )

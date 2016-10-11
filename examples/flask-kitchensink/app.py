@@ -4,18 +4,20 @@ from __future__ import unicode_literals
 import errno
 import os
 from argparse import ArgumentParser
+
 from flask import Flask, request, abort
 
 from line_bot import (
     LineBotApi, MessageEvent, TextMessage, TextSendMessage,
-    SignatureValidator, WebhookHandler,
+    WebhookHandler,
     SourceUser, SourceGroup, SourceRoom,
     TemplateSendMessage, ConfirmTemplate, MessageTemplateAction,
     ButtonsTemplate, URITemplateAction, PostbackTemplateAction,
     CarouselTemplate, CarouselColumn, PostbackEvent,
     StickerMessage, StickerSendMessage, LocationMessage, LocationSendMessage,
     ImageMessage, VideoMessage, AudioMessage,
-    UnfollowEvent, FollowEvent, JoinEvent, LeaveEvent, BeaconEvent
+    UnfollowEvent, FollowEvent, JoinEvent, LeaveEvent, BeaconEvent,
+    InvalidSignatureError
 )
 
 app = Flask(__name__)
@@ -29,8 +31,7 @@ if channel_access_token is None:
     print('Specify LINE_CHANNEL_ACCESS_TOKEN as env.')
 
 line_bot_api = LineBotApi(channel_access_token)
-signature_validator = SignatureValidator(channel_secret)
-handler = WebhookHandler()
+handler = WebhookHandler(channel_secret)
 
 static_tmp_path = os.path.join(os.path.dirname(__file__), 'static', 'tmp')
 
@@ -55,13 +56,13 @@ def callback():
     body = request.get_data(as_text=True)
     app.logger.info("Request body: " + body)
 
-    # check signature
-    if not signature_validator.validate(body, signature):
+    # handle webhook body
+    try:
+        handler.handle(body, signature)
+    except InvalidSignatureError:
         abort(400)
 
-    # handle webhook body
-    handler.handle(body=body)
-    return ''
+    return 'OK'
 
 
 @handler.add(MessageEvent, message=TextMessage)

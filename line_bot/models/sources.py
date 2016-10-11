@@ -20,7 +20,7 @@ class SourceUser(Source):
     def __init__(self, user_id=None, **kwargs):
         """SourceUser
 
-        https://devdocs.line.me/ja/#source-user
+        https://devdocs.line.me/en/#source-user
 
         JSON object which contains the source user of the event.
 
@@ -42,7 +42,7 @@ class SourceGroup(Source):
     def __init__(self, group_id=None, **kwargs):
         """SourceGroup
 
-        https://devdocs.line.me/ja/#source-group
+        https://devdocs.line.me/en/#source-group
 
         JSON object which contains the source group of the event.
 
@@ -64,7 +64,7 @@ class SourceRoom(Source):
     def __init__(self, room_id=None, **kwargs):
         """SourceRoom
 
-        https://devdocs.line.me/ja/#source-room
+        https://devdocs.line.me/en/#source-room
 
         JSON object which contains the source room of the event.
 

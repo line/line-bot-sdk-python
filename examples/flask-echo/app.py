@@ -1,10 +1,11 @@
 import os
 from argparse import ArgumentParser
+
 from flask import Flask, request, abort
 
 from line_bot import (
     LineBotApi, MessageEvent, TextMessage, TextSendMessage,
-    SignatureValidator, WebhookParser
+    WebhookParser, InvalidSignatureError
 )
 
 app = Flask(__name__)
@@ -18,8 +19,7 @@ if channel_access_token is None:
     print('Specify LINE_CHANNEL_ACCESS_TOKEN as env.')
 
 line_bot_api = LineBotApi(channel_access_token)
-signature_validator = SignatureValidator(channel_secret)
-parser = WebhookParser()
+parser = WebhookParser(channel_secret)
 
 
 @app.route("/callback", methods=['POST'])
@@ -31,12 +31,11 @@ def callback():
     body = request.get_data(as_text=True)
     app.logger.info("Request body: " + body)
 
-    # check signature
-    if not signature_validator.validate(body, signature):
-        abort(400)
-
     # parse webhook body
-    events = parser.parse(body)
+    try:
+        events = parser.parse(body, signature)
+    except InvalidSignatureError:
+        abort(400)
 
     # if event is MessageEvent and message is TextMessage, then echo text
     for event in events:
@@ -50,7 +49,7 @@ def callback():
             TextSendMessage(text=event.message.text)
         )
 
-    return ''
+    return 'OK'
 
 
 if __name__ == "__main__":

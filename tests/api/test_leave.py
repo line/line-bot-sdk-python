@@ -19,7 +19,7 @@ class TestLineBotApi(unittest.TestCase):
         responses.add(
             responses.POST,
             LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/group/gid/leave',
-            body='{}', status=200
+            json={}, status=200
         )
 
         self.tested.leave_group('gid')
@@ -36,7 +36,7 @@ class TestLineBotApi(unittest.TestCase):
         responses.add(
             responses.POST,
             LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/room/rid/leave',
-            body='{}', status=200
+            json={}, status=200
         )
 
         self.tested.leave_room('rid')

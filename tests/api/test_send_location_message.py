@@ -38,7 +38,7 @@ class TestLineBotApi(unittest.TestCase):
         responses.add(
             responses.POST,
             LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/message/push',
-            body='{}', status=200
+            json={}, status=200
         )
 
         self.tested.push_message('to', self.location_message)
@@ -62,7 +62,7 @@ class TestLineBotApi(unittest.TestCase):
         responses.add(
             responses.POST,
             LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/message/reply',
-            body='{}', status=200
+            json={}, status=200
         )
 
         self.tested.reply_message('replyToken', self.location_message)

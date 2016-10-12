@@ -5,9 +5,7 @@ import json
 
 from .__about__ import __version__
 from .exceptions import LineBotApiError
-from .http_client import (
-    RequestsHttpClient, HttpClient
-)
+from .http_client import RequestsHttpClient
 from .models.error import Error
 from .models.profile import Profile
 
@@ -16,7 +14,7 @@ class LineBotApi(object):
     DEFAULT_API_ENDPOINT = 'https://api.line.me'
 
     def __init__(self, channel_access_token, endpoint=DEFAULT_API_ENDPOINT,
-                 timeout=HttpClient.DEFAULT_TIMEOUT, http_client=RequestsHttpClient):
+                 timeout=RequestsHttpClient.DEFAULT_TIMEOUT, http_client=RequestsHttpClient):
         """Constructor of LineBotApi Client
 
         Args:

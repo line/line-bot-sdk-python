@@ -41,3 +41,48 @@ class Profile(Base):
         self.user_id = user_id
         self.picture_url = picture_url
         self.status_message = status_message
+
+
+class MessageContent(object):
+    """MessageContent.
+
+    https://devdocs.line.me/ja/#get-content
+    """
+
+    def __init__(self, response):
+        """__init__ method.
+
+        :param T <= linebot.http_client.HttpResponse response: HttpResponse object
+        :param kwargs:
+        """
+        self.response = response
+
+    @property
+    def content_type(self):
+        """Get Content-type header value.
+
+        :rtype: str
+        :return: content-type header value
+        """
+        return self.response.headers.get('content-type')
+
+    @property
+    def content(self):
+        """Get content.
+
+        If content size is large, should use iter_content.
+
+        :rtype: binary
+        """
+        return self.response.content
+
+    def iter_content(self, chunk_size=1024):
+        """Get content as iterator (stream).
+
+        If content size is large, should use this.
+
+        :param chunk_size: Chunk size
+        :rtype: iterator
+        :return:
+        """
+        return self.response.iter_content(chunk_size=chunk_size)

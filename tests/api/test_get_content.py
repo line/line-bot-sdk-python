@@ -27,9 +27,9 @@ class TestLineBotApi(unittest.TestCase):
 
     def test_get_content(self):
         pass
-        # stream = self.tested.get_content(12345)
+        # message_content = self.tested.get_content(12345)
         # with open('/tmp/content.jpg', 'wb') as f:
-        #     for chunk in stream:
+        #     for chunk in message_content.iter_content():
         #         f.write(chunk)
         #     f.close()
 

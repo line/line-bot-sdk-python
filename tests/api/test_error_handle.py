@@ -103,7 +103,7 @@ class TestLineBotApi(unittest.TestCase):
         )
 
         try:
-            self.tested.get_content_stream(1)
+            self.tested.get_content(1)
         except LineBotApiError as e:
             self.assertEqual(e.status_code, 404)
             self.assertEqual(e.error.message, 'Invalid reply token')

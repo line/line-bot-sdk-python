@@ -22,7 +22,7 @@ from .__about__ import __version__
 from .exceptions import LineBotApiError
 from .http_client import HttpClient, RequestsHttpClient
 from .models.error import Error
-from .models.responses import Profile
+from .models.responses import Profile, MessageContent
 
 
 class LineBotApi(object):
@@ -83,6 +83,7 @@ class LineBotApi(object):
             'replyToken': reply_token,
             'messages': [message.as_json_dict() for message in messages]
         }
+
         self._post(
             '/v2/bot/message/reply', data=json.dumps(data), timeout=timeout
         )
@@ -109,6 +110,7 @@ class LineBotApi(object):
             'to': to,
             'messages': [message.as_json_dict() for message in messages]
         }
+
         self._post(
             '/v2/bot/message/push', data=json.dumps(data), timeout=timeout
         )
@@ -129,13 +131,14 @@ class LineBotApi(object):
         :return:
 
         """
-        body = self._get(
+        response = self._get(
             '/v2/bot/profile/{user_id}'.format(user_id=user_id),
             timeout=timeout
         )
-        return Profile.new_from_json_dict(json.loads(body))
 
-    def get_content_stream(self, message_id, chunk_size=1024, timeout=None):
+        return Profile.new_from_json_dict(response.json)
+
+    def get_content(self, message_id, timeout=None):
         """Call get content API.
 
         https://devdocs.line.me/en/#get-content
@@ -143,22 +146,20 @@ class LineBotApi(object):
         Retrieve image, video, and audio data sent by users.
 
         :param message_id: Message ID
-        :param int chunk_size: Chunk size
         :param float|tuple(float, float) timeout: (optional) How long to wait for the server
             to send data before giving up, as a float,
             or a (connect timeout, readtimeout) float tuple.
             Default is self.http_client.timeout
-        :rtype: iterator
+        :rtype: linebot.models.MessageContent
         :return:
 
         """
-        body_stream = self._get_stream(
-            '/v2/bot/message/{message_id}/content'.format(
-                message_id=message_id),
-            chunk_size=chunk_size, timeout=timeout
+        response = self._get(
+            '/v2/bot/message/{message_id}/content'.format(message_id=message_id),
+            stream=True, timeout=timeout
         )
 
-        return body_stream
+        return MessageContent(response)
 
     def leave_group(self, group_id, timeout=None):
         """Call leave group API.
@@ -196,26 +197,15 @@ class LineBotApi(object):
             timeout=timeout
         )
 
-    def _get(self, path, timeout=None):
+    def _get(self, path, stream=False, timeout=None):
         url = self.endpoint + path
 
         response = self.http_client.get(
-            url, headers=self.headers, timeout=timeout
+            url, headers=self.headers, stream=stream, timeout=timeout
         )
 
         self.__check_error(response)
-        return response.body
-
-    def _get_stream(self, path, chunk_size=1024, decode_unicode=False, timeout=None):
-        url = self.endpoint + path
-
-        response = self.http_client.get_stream(
-            url, headers=self.headers, timeout=timeout,
-            chunk_size=chunk_size, decode_unicode=decode_unicode
-        )
-
-        self.__check_error(response)
-        return response.body_stream
+        return response
 
     def _post(self, path, data=None, timeout=None):
         url = self.endpoint + path
@@ -227,12 +217,12 @@ class LineBotApi(object):
         )
 
         self.__check_error(response)
-        return response.body
+        return response
 
     @staticmethod
     def __check_error(response):
         if 200 <= response.status_code < 300:
             pass
         else:
-            error = Error.new_from_json_dict(json.loads(response.body))
+            error = Error.new_from_json_dict(response.json)
             raise LineBotApiError(response.status_code, error)

@@ -17,6 +17,7 @@ from __future__ import unicode_literals
 import errno
 import os
 import sys
+import tempfile
 from argparse import ArgumentParser
 
 from flask import Flask, request, abort
@@ -190,23 +191,29 @@ def handle_sticker_message(event):
 @handler.add(MessageEvent, message=(ImageMessage, VideoMessage, AudioMessage))
 def handle_content_message(event):
     if isinstance(event.message, ImageMessage):
-        ext = '.jpg'
+        ext = 'jpg'
     elif isinstance(event.message, VideoMessage):
-        ext = '.mp4'
+        ext = 'mp4'
     elif isinstance(event.message, AudioMessage):
-        ext = '.m4a'
+        ext = 'm4a'
     else:
         return
 
-    stream = line_bot_api.get_content_stream(event.message.id)
-    file_path = os.path.join(static_tmp_path, event.message.id + ext)
-    with open(file_path, 'wb') as f:
-        for chunk in stream:
-            f.write(chunk)
+    message_content = line_bot_api.get_content(event.message.id)
+    with tempfile.NamedTemporaryFile(dir=static_tmp_path, prefix=ext + '-', delete=False) as tf:
+        for chunk in message_content.iter_content():
+            tf.write(chunk)
+        tempfile_path = tf.name
+
+    dist_path = tempfile_path + '.' + ext
+    dist_name = os.path.basename(dist_path)
+    os.rename(tempfile_path, dist_path)
 
     line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text='Save content at ' + file_path))
+        event.reply_token, [
+            TextSendMessage(text='Save content.'),
+            TextSendMessage(text=request.host_url + os.path.join('static', 'tmp', dist_name))
+        ])
 
 
 @handler.add(FollowEvent)

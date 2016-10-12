@@ -16,7 +16,7 @@
 
 from __future__ import unicode_literals
 
-from abc import ABCMeta, abstractmethod
+from abc import ABCMeta, abstractmethod, abstractproperty
 
 import requests
 from future.utils import with_metaclass
@@ -38,33 +38,17 @@ class HttpClient(with_metaclass(ABCMeta)):
         self.timeout = timeout
 
     @abstractmethod
-    def get(self, url, headers=None, params=None, timeout=None):
+    def get(self, url, headers=None, params=None, stream=False, timeout=None):
         """GET request.
 
         :param str url: Request url
         :param dict headers: (optional) Request headers
         :param dict params: (optional) Request query parameter
+        :param bool stream: (optional) get content as stream
         :param float|tuple(float, float) timeout: (optional), How long to wait for the server
             to send data before giving up, as a float,
             or a (connect timeout, readtimeout) float tuple.
             Default is DEFAULT_TIMEOUT
-        """
-        raise NotImplementedError
-
-    @abstractmethod
-    def get_stream(self, url, headers=None, params=None, timeout=None,
-                   chunk_size=1024, decode_unicode=False):
-        """GET request. Response is chunk content.
-
-        :param str url: Request url
-        :param dict headers: (optional) Request headers
-        :param dict params: (optional) Request query parameter
-        :param float|tuple(float, float) timeout: (optional), How long to wait for the server
-            to send data before giving up, as a float,
-            or a (connect timeout, readtimeout) float tuple.
-            Default is DEFAULT_TIMEOUT
-        :param int chunk_size: (optional) Chunk size
-        :param boole decode_unicode: (optional) Decode unicode
         """
         raise NotImplementedError
 
@@ -96,12 +80,13 @@ class RequestsHttpClient(HttpClient):
         """
         super(RequestsHttpClient, self).__init__(timeout)
 
-    def get(self, url, headers=None, params=None, timeout=None):
+    def get(self, url, headers=None, params=None, stream=False, timeout=None):
         """GET request.
 
         :param str url: Request url
         :param dict headers: (optional) Request headers
         :param dict params: (optional) Request query parameter
+        :param bool stream: (optional) get content as stream
         :param float|tuple(float, float) timeout: (optional), How long to wait for the server
             to send data before giving up, as a float,
             or a (connect timeout, readtimeout) float tuple.
@@ -113,48 +98,10 @@ class RequestsHttpClient(HttpClient):
             timeout = self.timeout
 
         response = requests.get(
-            url, headers=headers, params=params, timeout=timeout
+            url, headers=headers, params=params, stream=stream, timeout=timeout
         )
 
-        return HttpResponse(
-            status_code=response.status_code, headers=response.headers,
-            body=response.text)
-
-    def get_stream(self, url, headers=None, params=None, timeout=None,
-                   chunk_size=1024, decode_unicode=False):
-        """GET request. Response is chunk content.
-
-        :param str url: Request url
-        :param dict headers: (optional) Request headers
-        :param dict params: (optional) Request query parameter
-        :param float|tuple(float, float) timeout: (optional), How long to wait for the server
-            to send data before giving up, as a float,
-            or a (connect timeout, readtimeout) float tuple.
-            Default is DEFAULT_TIMEOUT
-        :param int chunk_size: (optional) Chunk size
-        :param boole decode_unicode: (optional) Decode unicode
-        :rtype: HttpResponse
-        :return:
-        """
-        if timeout is None:
-            timeout = self.timeout
-
-        response = requests.get(
-            url, headers=headers, params=params, timeout=timeout,
-            stream=True
-        )
-
-        if 200 <= response.status_code < 300:
-            return HttpResponse(
-                status_code=response.status_code, headers=response.headers,
-                body_stream=response.iter_content(
-                    chunk_size=chunk_size, decode_unicode=decode_unicode
-                )
-            )
-        else:
-            return HttpResponse(
-                status_code=response.status_code, headers=response.headers,
-                body=response.text)
+        return RequestsHttpResponse(response)
 
     def post(self, url, headers=None, data=None, timeout=None):
         """POST request.
@@ -176,23 +123,82 @@ class RequestsHttpClient(HttpClient):
             url, headers=headers, data=data, timeout=timeout
         )
 
-        return HttpResponse(
-            status_code=response.status_code, headers=response.headers,
-            body=response.text)
+        return RequestsHttpResponse(response)
 
 
-class HttpResponse(object):
-    """HttpResponse container."""
+class HttpResponse(with_metaclass(ABCMeta)):
+    """HttpResponse."""
 
-    def __init__(self, status_code=None, body=None, headers=None, body_stream=None):
+    @abstractproperty
+    def status_code(self):
+        """Get status code."""
+        raise NotImplementedError
+
+    @abstractproperty
+    def headers(self):
+        """Get headers."""
+        raise NotImplementedError
+
+    @abstractproperty
+    def text(self):
+        """Get request body as text-decoded."""
+        raise NotImplementedError
+
+    @abstractproperty
+    def content(self):
+        """Get request body as binary."""
+        raise NotImplementedError
+
+    @abstractproperty
+    def json(self):
+        """Get request body as json-decoded."""
+        raise NotImplementedError
+
+    @abstractmethod
+    def iter_content(self, chunk_size=1024, decode_unicode=False):
+        """Get request body as iterator content (stream)."""
+        raise NotImplementedError
+
+
+class RequestsHttpResponse(HttpResponse):
+    """HttpResponse implemented by requests lib's response."""
+
+    def __init__(self, response):
         """__init__ method.
 
-        :param str status_code: Status code
-        :param str body: Response body as text
-        :param dict headers: Response headers
-        :param iterator body_stream:
+        :param response: requests lib's response
         """
-        self.status_code = status_code
-        self.headers = headers
-        self.body = body
-        self.body_stream = body_stream
+        self.response = response
+
+    @property
+    def status_code(self):
+        """Get status code."""
+        return self.response.status_code
+
+    @property
+    def headers(self):
+        """Get headers."""
+        return self.response.headers
+
+    @property
+    def text(self):
+        """Get request body as text-decoded."""
+        return self.response.text
+
+    @property
+    def content(self):
+        """Get request body as binary."""
+        return self.response.content
+
+    @property
+    def json(self):
+        """Get request body as json-decoded."""
+        return self.response.json()
+
+    def iter_content(self, chunk_size=1024, decode_unicode=False):
+        """Get request body as iterator content (stream).
+
+        :param chunk_size:
+        :param decode_unicode:
+        """
+        return self.response.iter_content(chunk_size=chunk_size, decode_unicode=decode_unicode)

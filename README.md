@@ -114,17 +114,17 @@ print(profile.picture_url)
 print(profile.status_message)
 ```
 
-#### get_content_stream(self, message_id, chunk_size=1024, timeout=None)
+#### get_content(self, message_id, timeout=None)
 
 Retrieve image, video, and audio data sent by users.
 
 https://devdocs.line.me/en/#get-content
 
 ```python
-stream = line_bot_api.get_content_stream(message_id)
+message_content = line_bot_api.get_content(message_id)
 
 with open(file_path, 'wb') as fd:
-    for chunk in stream:
+    for chunk in message_content.iter_content():
         fd.write(chunk)
 ```
 

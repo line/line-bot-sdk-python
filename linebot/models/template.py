@@ -27,7 +27,7 @@ class TemplateSendMessage(SendMessage):
         """TemplateSendMessage
 
         https://devdocs.line.me/en/#template-messages
-        
+
         Template messages are messages with predefined layouts which you can customize.
         There are three types of templates available that can be used to interact with users through your bot.
 

@@ -15,6 +15,7 @@ from .sources import SourceUser, SourceGroup, SourceRoom
 
 class Event(Base):
     """Webhook Event
+
     https://devdocs.line.me/en/#webhook-event-object
     """
 
@@ -234,6 +235,7 @@ class Postback(Base):
 
 class Beacon(Base):
     """Beacon
+
     https://devdocs.line.me/en/#beacon-event
     """
 

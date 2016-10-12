@@ -10,7 +10,7 @@ class Base(object):
     """Base class of model.
 
     Suitable for JSON base data.
-    
+
     """
 
     def __init__(self, **kwargs):

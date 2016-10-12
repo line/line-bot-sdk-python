@@ -7,7 +7,7 @@ from linebot.utils import to_camel_case, to_snake_case
 
 
 class TestUtils(unittest.TestCase):
-    def test_to_camel_case(self):
+    def test_to_snake_case(self):
         self.assertEqual(
             to_snake_case('hogeBar'),
             'hoge_bar'

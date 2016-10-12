@@ -302,7 +302,7 @@ class TestWebhookHandler(unittest.TestCase):
             self.calls.append('5 ' + event.type)
 
         @self.handler.add(PostbackEvent)
-        def join(event):
+        def postback(event):
             self.calls.append('6 ' + event.type)
 
         @self.handler.add(BeaconEvent)
@@ -313,7 +313,7 @@ class TestWebhookHandler(unittest.TestCase):
         def default(event):
             self.calls.append('default ' + event.type)
 
-    def test_hoge(self):
+    def test_handler(self):
         file_dir = os.path.dirname(__file__)
         webhook_sample_json_path = os.path.join(file_dir, 'text', 'webhook.json')
         with open(webhook_sample_json_path) as fp:

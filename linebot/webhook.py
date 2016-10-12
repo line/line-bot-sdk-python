@@ -62,7 +62,7 @@ class WebhookParser(object):
         """Parse webhook request body as text.
 
         Args:
-            body: Webhook request body (as test)
+            body: Webhook request body (as text)
             signature: X-Line-Signature value (as text)
 
         Returns: Event object list
@@ -142,7 +142,7 @@ class WebhookHandler(object):
         """Handle webhook
 
         Args:
-            body: Webhook request body (as test)
+            body: Webhook request body (as text)
             signature: X-Line-Signature value (as text)
         """
 

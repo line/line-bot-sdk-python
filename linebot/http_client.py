@@ -7,9 +7,7 @@ import requests
 class HttpClient(object):
     DEFAULT_TIMEOUT = 5
 
-    def __init__(
-            self, timeout=DEFAULT_TIMEOUT
-    ):
+    def __init__(self, timeout=DEFAULT_TIMEOUT):
         """Constructor of HttpClient
 
         Args:
@@ -61,9 +59,7 @@ class HttpClient(object):
 
 
 class RequestsHttpClient(HttpClient):
-    def __init__(
-            self, timeout=HttpClient.DEFAULT_TIMEOUT
-    ):
+    def __init__(self, timeout=HttpClient.DEFAULT_TIMEOUT):
         """Constructor of RequestsHttpClient
 
         'requests' implementation.

@@ -15,10 +15,8 @@ from .models.profile import Profile
 class LineBotApi(object):
     DEFAULT_API_ENDPOINT = 'https://api.line.me'
 
-    def __init__(
-            self, channel_access_token, endpoint=DEFAULT_API_ENDPOINT,
-            timeout=HttpClient.DEFAULT_TIMEOUT, http_client=RequestsHttpClient
-    ):
+    def __init__(self, channel_access_token, endpoint=DEFAULT_API_ENDPOINT,
+                 timeout=HttpClient.DEFAULT_TIMEOUT, http_client=RequestsHttpClient):
         """Constructor of LineBotApi Client
 
         Args:
@@ -114,9 +112,7 @@ class LineBotApi(object):
         )
         return Profile.new_from_json_dict(json.loads(body))
 
-    def get_content_stream(
-            self, message_id, chunk_size=1024, timeout=None
-    ):
+    def get_content_stream(self, message_id, chunk_size=1024, timeout=None):
         """Call get content API
 
         Retrieve image, video, and audio data sent by users.
@@ -181,9 +177,7 @@ class LineBotApi(object):
         self.__check_error(response)
         return response.body
 
-    def _get_stream(
-            self, path, chunk_size=1024, decode_unicode=False, timeout=None
-    ):
+    def _get_stream(self, path, chunk_size=1024, decode_unicode=False, timeout=None):
         url = self.endpoint + path
 
         response = self.http_client.get_stream(

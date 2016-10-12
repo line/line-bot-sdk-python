@@ -72,9 +72,7 @@ class MessageEvent(Event):
 
 
 class FollowEvent(Event):
-    def __init__(
-            self, timestamp=None, source=None, reply_token=None, **kwargs
-    ):
+    def __init__(self, timestamp=None, source=None, reply_token=None, **kwargs):
         """FollowEvent
 
         https://devdocs.line.me/en/#follow-event
@@ -116,9 +114,7 @@ class UnfollowEvent(Event):
 
 
 class JoinEvent(Event):
-    def __init__(
-            self, timestamp=None, source=None, reply_token=None, **kwargs
-    ):
+    def __init__(self, timestamp=None, source=None, reply_token=None, **kwargs):
         """JoinEvent
 
         https://devdocs.line.me/en/#join-event
@@ -160,10 +156,8 @@ class LeaveEvent(Event):
 
 
 class PostbackEvent(Event):
-    def __init__(
-            self, timestamp=None, source=None,
-            reply_token=None, postback=None, **kwargs
-    ):
+    def __init__(self, timestamp=None, source=None,
+                 reply_token=None, postback=None, **kwargs):
         """PostbackEvent
 
         https://devdocs.line.me/en/#postback-event
@@ -190,10 +184,8 @@ class PostbackEvent(Event):
 
 
 class BeaconEvent(Event):
-    def __init__(
-            self, timestamp=None, source=None, reply_token=None,
-            beacon=None, **kwargs
-    ):
+    def __init__(self, timestamp=None, source=None, reply_token=None,
+                 beacon=None, **kwargs):
         """BeaconEvent
 
         https://devdocs.line.me/en/#beacon-event

@@ -52,16 +52,12 @@ class TestWebhookParser(unittest.TestCase):
 
         # MessageEvent, SourceUser, TextMessage
         self.assertIsInstance(events[0], MessageEvent)
-        self.assertEqual(
-            events[0].reply_token, 'nHuyWiB7yP5Zw52FIkcQobQuGDXCTA'
-        )
+        self.assertEqual(events[0].reply_token, 'nHuyWiB7yP5Zw52FIkcQobQuGDXCTA')
         self.assertEqual(events[0].type, 'message')
         self.assertEqual(events[0].timestamp, 1462629479859)
         self.assertIsInstance(events[0].source, SourceUser)
         self.assertEqual(events[0].source.type, 'user')
-        self.assertEqual(
-            events[0].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8'
-        )
+        self.assertEqual(events[0].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
         self.assertEqual(
             events[0].source.sender_id, 'U206d25c2ea6bd87c17655609a1c37cb8'
         )
@@ -72,102 +68,69 @@ class TestWebhookParser(unittest.TestCase):
 
         # MessageEvent, SourceRoom, TextMessage
         self.assertIsInstance(events[1], MessageEvent)
-        self.assertEqual(
-            events[1].reply_token, 'nHuyWiB7yP5Zw52FIkcQobQuGDXCTA'
-        )
+        self.assertEqual(events[1].reply_token, 'nHuyWiB7yP5Zw52FIkcQobQuGDXCTA')
         self.assertEqual(events[1].type, 'message')
         self.assertEqual(events[1].timestamp, 1462629479859)
         self.assertIsInstance(events[1].source, SourceRoom)
         self.assertEqual(events[1].source.type, 'room')
-        self.assertEqual(
-            events[1].source.room_id, 'U206d25c2ea6bd87c17655609a1c37cb8'
-        )
-        self.assertEqual(
-            events[1].source.sender_id, 'U206d25c2ea6bd87c17655609a1c37cb8'
-        )
+        self.assertEqual(events[1].source.room_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
+        self.assertEqual(events[1].source.sender_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
         self.assertIsInstance(events[1].message, ImageMessage)
         self.assertEqual(events[1].message.id, '325708')
         self.assertEqual(events[1].message.type, 'image')
 
         # MessageEvent, SourceUser, VideoMessage
         self.assertIsInstance(events[2], MessageEvent)
-        self.assertEqual(
-            events[2].reply_token, 'nHuyWiB7yP5Zw52FIkcQobQuGDXCTA'
-        )
+        self.assertEqual(events[2].reply_token, 'nHuyWiB7yP5Zw52FIkcQobQuGDXCTA')
         self.assertEqual(events[2].type, 'message')
         self.assertEqual(events[2].timestamp, 1462629479859)
         self.assertIsInstance(events[2].source, SourceUser)
         self.assertEqual(events[2].source.type, 'user')
-        self.assertEqual(
-            events[2].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8'
-        )
-        self.assertEqual(
-            events[2].source.sender_id, 'U206d25c2ea6bd87c17655609a1c37cb8'
-        )
+        self.assertEqual(events[2].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
+        self.assertEqual(events[2].source.sender_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
         self.assertIsInstance(events[2].message, VideoMessage)
         self.assertEqual(events[2].message.id, '325708')
         self.assertEqual(events[2].message.type, 'video')
 
         # MessageEvent, SourceUser, AudioMessage
         self.assertIsInstance(events[3], MessageEvent)
-        self.assertEqual(
-            events[3].reply_token, 'nHuyWiB7yP5Zw52FIkcQobQuGDXCTA'
-        )
+        self.assertEqual(events[3].reply_token, 'nHuyWiB7yP5Zw52FIkcQobQuGDXCTA')
         self.assertEqual(events[3].type, 'message')
         self.assertEqual(events[3].timestamp, 1462629479859)
         self.assertIsInstance(events[3].source, SourceUser)
         self.assertEqual(events[3].source.type, 'user')
-        self.assertEqual(
-            events[3].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8'
-        )
-        self.assertEqual(
-            events[3].source.sender_id, 'U206d25c2ea6bd87c17655609a1c37cb8'
-        )
+        self.assertEqual(events[3].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
+        self.assertEqual(events[3].source.sender_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
         self.assertIsInstance(events[3].message, AudioMessage)
         self.assertEqual(events[3].message.id, '325708')
         self.assertEqual(events[3].message.type, 'audio')
 
         # MessageEvent, SourceUser, LocationMessage
         self.assertIsInstance(events[4], MessageEvent)
-        self.assertEqual(
-            events[4].reply_token, 'nHuyWiB7yP5Zw52FIkcQobQuGDXCTA'
-        )
+        self.assertEqual(events[4].reply_token, 'nHuyWiB7yP5Zw52FIkcQobQuGDXCTA')
         self.assertEqual(events[4].type, 'message')
         self.assertEqual(events[4].timestamp, 1462629479859)
         self.assertIsInstance(events[4].source, SourceUser)
         self.assertEqual(events[4].source.type, 'user')
-        self.assertEqual(
-            events[4].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8'
-        )
-        self.assertEqual(
-            events[4].source.sender_id, 'U206d25c2ea6bd87c17655609a1c37cb8'
-        )
+        self.assertEqual(events[4].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
+        self.assertEqual(events[4].source.sender_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
         self.assertIsInstance(events[4].message, LocationMessage)
         self.assertEqual(events[4].message.id, '325708')
         self.assertEqual(events[4].message.type, 'location')
         self.assertEqual(events[4].message.title, 'my location')
-        self.assertEqual(
-            events[4].message.address,
-            'Tokyo'
-        )
+        self.assertEqual(events[4].message.address, 'Tokyo')
         self.assertEqual(events[4].message.latitude, 35.65910807942215)
         self.assertEqual(events[4].message.longitude, 139.70372892916203)
 
         # MessageEvent, SourceUser, StickerMessage
         self.assertIsInstance(events[5], MessageEvent)
-        self.assertEqual(
-            events[5].reply_token, 'nHuyWiB7yP5Zw52FIkcQobQuGDXCTA'
-        )
+        self.assertEqual(events[5].reply_token, 'nHuyWiB7yP5Zw52FIkcQobQuGDXCTA')
         self.assertEqual(events[5].type, 'message')
         self.assertEqual(events[5].timestamp, 1462629479859)
         self.assertIsInstance(events[5].source, SourceUser)
         self.assertEqual(events[5].source.type, 'user')
-        self.assertEqual(
-            events[5].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8'
-        )
-        self.assertEqual(
-            events[5].source.sender_id, 'U206d25c2ea6bd87c17655609a1c37cb8'
-        )
+        self.assertEqual(events[5].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
+        self.assertEqual(events[5].source.sender_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
         self.assertIsInstance(events[5].message, StickerMessage)
         self.assertEqual(events[5].message.id, '325708')
         self.assertEqual(events[5].message.type, 'sticker')
@@ -176,19 +139,13 @@ class TestWebhookParser(unittest.TestCase):
 
         # FollowEvent, SourceUser
         self.assertIsInstance(events[6], FollowEvent)
-        self.assertEqual(
-            events[6].reply_token, 'nHuyWiB7yP5Zw52FIkcQobQuGDXCTA'
-        )
+        self.assertEqual(events[6].reply_token, 'nHuyWiB7yP5Zw52FIkcQobQuGDXCTA')
         self.assertEqual(events[6].type, 'follow')
         self.assertEqual(events[6].timestamp, 1462629479859)
         self.assertIsInstance(events[6].source, SourceUser)
         self.assertEqual(events[6].source.type, 'user')
-        self.assertEqual(
-            events[6].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8'
-        )
-        self.assertEqual(
-            events[6].source.sender_id, 'U206d25c2ea6bd87c17655609a1c37cb8'
-        )
+        self.assertEqual(events[6].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
+        self.assertEqual(events[6].source.sender_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
 
         # UnfollowEvent, SourceUser
         self.assertIsInstance(events[7], UnfollowEvent)
@@ -196,28 +153,18 @@ class TestWebhookParser(unittest.TestCase):
         self.assertEqual(events[7].timestamp, 1462629479859)
         self.assertIsInstance(events[7].source, SourceUser)
         self.assertEqual(events[7].source.type, 'user')
-        self.assertEqual(
-            events[7].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8'
-        )
-        self.assertEqual(
-            events[7].source.sender_id, 'U206d25c2ea6bd87c17655609a1c37cb8'
-        )
+        self.assertEqual(events[7].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
+        self.assertEqual(events[7].source.sender_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
 
         # JoinEvent, SourceGroup
         self.assertIsInstance(events[8], JoinEvent)
-        self.assertEqual(
-            events[8].reply_token, 'nHuyWiB7yP5Zw52FIkcQobQuGDXCTA'
-        )
+        self.assertEqual(events[8].reply_token, 'nHuyWiB7yP5Zw52FIkcQobQuGDXCTA')
         self.assertEqual(events[8].type, 'join')
         self.assertEqual(events[8].timestamp, 1462629479859)
         self.assertIsInstance(events[8].source, SourceGroup)
         self.assertEqual(events[8].source.type, 'group')
-        self.assertEqual(
-            events[8].source.group_id, 'cxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
-        )
-        self.assertEqual(
-            events[8].source.sender_id, 'cxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
-        )
+        self.assertEqual(events[8].source.group_id, 'cxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
+        self.assertEqual(events[8].source.sender_id, 'cxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
 
         # LeaveEvent, SourceGroup
         self.assertIsInstance(events[9], LeaveEvent)
@@ -225,48 +172,29 @@ class TestWebhookParser(unittest.TestCase):
         self.assertEqual(events[9].timestamp, 1462629479859)
         self.assertIsInstance(events[9].source, SourceGroup)
         self.assertEqual(events[9].source.type, 'group')
-        self.assertEqual(
-            events[9].source.group_id, 'cxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
-        )
-        self.assertEqual(
-            events[9].source.sender_id, 'cxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
-        )
+        self.assertEqual(events[9].source.group_id, 'cxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
+        self.assertEqual(events[9].source.sender_id, 'cxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
 
         # PostbackEvent, SourceUser
         self.assertIsInstance(events[10], PostbackEvent)
-        self.assertEqual(
-            events[10].reply_token, 'nHuyWiB7yP5Zw52FIkcQobQuGDXCTA'
-        )
+        self.assertEqual(events[10].reply_token, 'nHuyWiB7yP5Zw52FIkcQobQuGDXCTA')
         self.assertEqual(events[10].type, 'postback')
         self.assertEqual(events[10].timestamp, 1462629479859)
         self.assertIsInstance(events[10].source, SourceUser)
         self.assertEqual(events[10].source.type, 'user')
-        self.assertEqual(
-            events[10].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8'
-        )
-        self.assertEqual(
-            events[10].source.sender_id, 'U206d25c2ea6bd87c17655609a1c37cb8'
-        )
-        self.assertEqual(
-            events[10].postback.data,
-            'action=buyItem&itemId=123123&color=red'
-        )
+        self.assertEqual(events[10].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
+        self.assertEqual(events[10].source.sender_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
+        self.assertEqual(events[10].postback.data, 'action=buyItem&itemId=123123&color=red')
 
         # BeaconEvent, SourceUser
         self.assertIsInstance(events[11], BeaconEvent)
-        self.assertEqual(
-            events[11].reply_token, 'nHuyWiB7yP5Zw52FIkcQobQuGDXCTA'
-        )
+        self.assertEqual(events[11].reply_token, 'nHuyWiB7yP5Zw52FIkcQobQuGDXCTA')
         self.assertEqual(events[11].type, 'beacon')
         self.assertEqual(events[11].timestamp, 1462629479859)
         self.assertIsInstance(events[11].source, SourceUser)
         self.assertEqual(events[11].source.type, 'user')
-        self.assertEqual(
-            events[11].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8'
-        )
-        self.assertEqual(
-            events[11].source.sender_id, 'U206d25c2ea6bd87c17655609a1c37cb8'
-        )
+        self.assertEqual(events[11].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
+        self.assertEqual(events[11].source.sender_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
         self.assertEqual(events[11].beacon.hwid, 'd41d8cd98f')
         self.assertEqual(events[11].beacon.type, 'enter')
 

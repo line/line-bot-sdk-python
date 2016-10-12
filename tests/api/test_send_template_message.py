@@ -1,4 +1,16 @@
 # -*- coding: utf-8 -*-
+#  Licensed under the Apache License, Version 2.0 (the "License"); you may
+#  not use this file except in compliance with the License. You may obtain
+#  a copy of the License at
+#
+#       http://www.apache.org/licenses/LICENSE-2.0
+#
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+#  WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+#  License for the specific language governing permissions and limitations
+#  under the License.
+
 from __future__ import unicode_literals, absolute_import
 
 import json
@@ -215,7 +227,7 @@ class TestLineBotApi(unittest.TestCase):
         responses.add(
             responses.POST,
             LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/message/push',
-            body='{}', status=200
+            json={}, status=200
         )
 
         self.tested.push_message('to', self.button_template_message)
@@ -239,7 +251,7 @@ class TestLineBotApi(unittest.TestCase):
         responses.add(
             responses.POST,
             LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/message/reply',
-            body='{}', status=200
+            json={}, status=200
         )
 
         self.tested.reply_message('replyToken', self.button_template_message)
@@ -263,7 +275,7 @@ class TestLineBotApi(unittest.TestCase):
         responses.add(
             responses.POST,
             LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/message/push',
-            body='{}', status=200
+            json={}, status=200
         )
 
         self.tested.push_message('to', self.confirm_template_message)
@@ -287,7 +299,7 @@ class TestLineBotApi(unittest.TestCase):
         responses.add(
             responses.POST,
             LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/message/reply',
-            body='{}', status=200
+            json={}, status=200
         )
 
         self.tested.reply_message('replyToken', self.confirm_template_message)
@@ -311,7 +323,7 @@ class TestLineBotApi(unittest.TestCase):
         responses.add(
             responses.POST,
             LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/message/push',
-            body='{}', status=200
+            json={}, status=200
         )
 
         self.tested.push_message('to', self.carousel_template_message)
@@ -335,7 +347,7 @@ class TestLineBotApi(unittest.TestCase):
         responses.add(
             responses.POST,
             LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/message/reply',
-            body='{}', status=200
+            json={}, status=200
         )
 
         self.tested.reply_message('replyToken', self.carousel_template_message)
@@ -353,3 +365,6 @@ class TestLineBotApi(unittest.TestCase):
                 "messages": self.carousel_message
             }
         )
+
+if __name__ == '__main__':
+    unittest.main()

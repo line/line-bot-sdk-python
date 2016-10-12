@@ -1,13 +1,23 @@
 # -*- coding: utf-8 -*-
+#  Licensed under the Apache License, Version 2.0 (the "License"); you may
+#  not use this file except in compliance with the License. You may obtain
+#  a copy of the License at
+#
+#       http://www.apache.org/licenses/LICENSE-2.0
+#
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+#  WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+#  License for the specific language governing permissions and limitations
+#  under the License.
+
 from __future__ import unicode_literals
 
 import json
 
 from .__about__ import __version__
 from .exceptions import LineBotApiError
-from .http_client import (
-    RequestsHttpClient, HttpClient
-)
+from .http_client import RequestsHttpClient
 from .models.error import Error
 from .models.profile import Profile
 
@@ -15,10 +25,8 @@ from .models.profile import Profile
 class LineBotApi(object):
     DEFAULT_API_ENDPOINT = 'https://api.line.me'
 
-    def __init__(
-            self, channel_access_token, endpoint=DEFAULT_API_ENDPOINT,
-            timeout=HttpClient.DEFAULT_TIMEOUT, http_client=RequestsHttpClient
-    ):
+    def __init__(self, channel_access_token, endpoint=DEFAULT_API_ENDPOINT,
+                 timeout=RequestsHttpClient.DEFAULT_TIMEOUT, http_client=RequestsHttpClient):
         """Constructor of LineBotApi Client
 
         Args:
@@ -114,9 +122,7 @@ class LineBotApi(object):
         )
         return Profile.new_from_json_dict(json.loads(body))
 
-    def get_content_stream(
-            self, message_id, chunk_size=1024, timeout=None
-    ):
+    def get_content_stream(self, message_id, chunk_size=1024, timeout=None):
         """Call get content API
 
         Retrieve image, video, and audio data sent by users.
@@ -181,9 +187,7 @@ class LineBotApi(object):
         self.__check_error(response)
         return response.body
 
-    def _get_stream(
-            self, path, chunk_size=1024, decode_unicode=False, timeout=None
-    ):
+    def _get_stream(self, path, chunk_size=1024, decode_unicode=False, timeout=None):
         url = self.endpoint + path
 
         response = self.http_client.get_stream(

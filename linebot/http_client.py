@@ -1,15 +1,27 @@
 # -*- coding: utf-8 -*-
+#  Licensed under the Apache License, Version 2.0 (the "License"); you may
+#  not use this file except in compliance with the License. You may obtain
+#  a copy of the License at
+#
+#       http://www.apache.org/licenses/LICENSE-2.0
+#
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+#  WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+#  License for the specific language governing permissions and limitations
+#  under the License.
+
 from __future__ import unicode_literals
 
+from abc import ABCMeta, abstractmethod
+from future.utils import with_metaclass
 import requests
 
 
-class HttpClient(object):
+class HttpClient(with_metaclass(ABCMeta)):
     DEFAULT_TIMEOUT = 5
 
-    def __init__(
-            self, timeout=DEFAULT_TIMEOUT
-    ):
+    def __init__(self, timeout=DEFAULT_TIMEOUT):
         """Constructor of HttpClient
 
         Args:
@@ -19,6 +31,7 @@ class HttpClient(object):
 
         self.timeout = timeout
 
+    @abstractmethod
     def get(self, url, headers=None, params=None, timeout=None):
         """GET request
 
@@ -32,6 +45,7 @@ class HttpClient(object):
         """
         raise NotImplementedError
 
+    @abstractmethod
     def get_stream(self, url, headers=None, params=None, timeout=None,
                    chunk_size=1024, decode_unicode=False):
         """GET request. response is chunk content.
@@ -47,6 +61,7 @@ class HttpClient(object):
         """
         raise NotImplementedError
 
+    @abstractmethod
     def post(self, url, headers=None, data=None, timeout=None):
         """POST request.
 
@@ -61,9 +76,7 @@ class HttpClient(object):
 
 
 class RequestsHttpClient(HttpClient):
-    def __init__(
-            self, timeout=HttpClient.DEFAULT_TIMEOUT
-    ):
+    def __init__(self, timeout=HttpClient.DEFAULT_TIMEOUT):
         """Constructor of RequestsHttpClient
 
         'requests' implementation.

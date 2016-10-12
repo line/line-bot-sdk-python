@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
+
 #  Licensed under the Apache License, Version 2.0 (the "License"); you may
 #  not use this file except in compliance with the License. You may obtain
 #  a copy of the License at
 #
-#       http://www.apache.org/licenses/LICENSE-2.0
+#       https://www.apache.org/licenses/LICENSE-2.0
 #
 #  Unless required by applicable law or agreed to in writing, software
 #  distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
@@ -11,28 +12,36 @@
 #  License for the specific language governing permissions and limitations
 #  under the License.
 
+"""linebot.models.imagemap module."""
+
 from __future__ import unicode_literals
+
+from abc import ABCMeta
+
+from future.utils import with_metaclass
 
 from .base import Base
 from .send_messages import SendMessage
 
 
 class ImagemapSendMessage(SendMessage):
+    """ImagemapSendMessage.
+
+    https://devdocs.line.me/en/#imagemap-message
+
+    Imagemaps are images with one or more links. You can assign one link for the entire image
+    or multiple links which correspond to different regions of the image.
+    """
+
     def __init__(self, base_url=None, alt_text=None, base_size=None, actions=None, **kwargs):
-        """ImagemapSendMessage
+        """__init__ method.
 
-        https://devdocs.line.me/en/#imagemap-message
-
-        Imagemaps are images with one or more links. You can assign one link for the entire image
-        or multiple links which correspond to different regions of the image.
-
-        Args:
-            base_url: Base URL of image
-                HTTPS
-            alt_text: Alternative text
-            base_size: Width and height of base image
-            actions: Action when tapped
-            **kwargs:
+        :param str base_url: Base URL of image.
+            HTTPS
+        :param str alt_text: Alternative text
+        :param BaseSize base_size: Width and height of base image
+        :param list[ImagemapAction] actions: Action when tapped
+        :param kwargs:
         """
         super(ImagemapSendMessage, self).__init__(**kwargs)
 
@@ -58,15 +67,20 @@ class ImagemapSendMessage(SendMessage):
 
 
 class BaseSize(Base):
+    """BaseSize.
+
+    https://devdocs.line.me/en/#imagemap-message
+    """
+
     def __init__(self, width=None, height=None, **kwargs):
-        """BaseSize
+        """__init__ method.
 
         https://devdocs.line.me/en/#imagemap-message
 
-        Args:
-            width: Width of base image (set to 1040px）
-            height: Height of base image（set to the height that corresponds to a width of 1040px
-            **kwargs:
+        :param int width: Width of base image (set to 1040px）
+        :param int height: Height of base image（set to the height
+            that corresponds to a width of 1040px
+        :param kwargs:
         """
         super(BaseSize, self).__init__(**kwargs)
 
@@ -74,14 +88,16 @@ class BaseSize(Base):
         self.height = height
 
 
-class ImagemapAction(Base):
+class ImagemapAction(with_metaclass(ABCMeta, Base)):
+    """ImagemapAction.
+
+    https://devdocs.line.me/en/#imagemap-message
+    """
+
     def __init__(self, **kwargs):
-        """ImagemapAction
+        """__init__ method.
 
-        https://devdocs.line.me/en/#imagemap-message
-
-        Args:
-            **kwargs:
+        :param kwargs:
         """
         super(ImagemapAction, self).__init__(**kwargs)
 
@@ -89,15 +105,17 @@ class ImagemapAction(Base):
 
 
 class URIImagemapAction(ImagemapAction):
+    """URIImagemapAction.
+
+    https://devdocs.line.me/en/#imagemap-message
+    """
+
     def __init__(self, link_uri=None, area=None, **kwargs):
-        """URIImagemapAction
+        """__init__ method.
 
-        https://devdocs.line.me/en/#imagemap-message
-
-        Args:
-            link_uri: Webpage URL
-            area: Defined tappable area
-            **kwargs:
+        :param str link_uri: Webpage URL
+        :param ImagemapArea area: Defined tappable area
+        :param kwargs:
         """
         super(URIImagemapAction, self).__init__(**kwargs)
 
@@ -107,15 +125,17 @@ class URIImagemapAction(ImagemapAction):
 
 
 class MessageImagemapAction(ImagemapAction):
+    """MessageImagemapAction.
+
+    https://devdocs.line.me/en/#imagemap-message
+    """
+
     def __init__(self, text=None, area=None, **kwargs):
-        """MessageImagemapAction
+        """__init__ method.
 
-        https://devdocs.line.me/en/#imagemap-message
-
-        Args:
-            text: Message to send
-            area: Defined tappable area
-            **kwargs:
+        :param str text: Message to send
+        :param ImagemapArea area: Defined tappable area
+        :param kwargs:
         """
         super(MessageImagemapAction, self).__init__(**kwargs)
 
@@ -125,20 +145,22 @@ class MessageImagemapAction(ImagemapAction):
 
 
 class ImagemapArea(Base):
+    """ImagemapArea.
+
+    https://devdocs.line.me/en/#imagemap-area-object
+
+    Defines the size of the full imagemap with the width as 1040px.
+    The top left is used as the origin of the area.
+    """
+
     def __init__(self, x=None, y=None, width=None, height=None, **kwargs):
-        """ImagemapArea
+        """__init__ method.
 
-        https://devdocs.line.me/en/#imagemap-area-object
-
-        Defines the size of the full imagemap with the width as 1040px.
-        The top left is used as the origin of the area.
-
-        Args:
-            x: Horizontal position of the tappable area
-            y: Vertical position of the tappable area
-            width: Width of the tappable area
-            height: Height of the tappable area
-            **kwargs:
+        :param int x: Horizontal position of the tappable area
+        :param int y: Vertical position of the tappable area
+        :param int width: Width of the tappable area
+        :param int height: Height of the tappable area
+        :param kwargs:
         """
         super(ImagemapArea, self).__init__(**kwargs)
 

@@ -1,15 +1,18 @@
 # -*- coding: utf-8 -*-
+
 #  Licensed under the Apache License, Version 2.0 (the "License"); you may
 #  not use this file except in compliance with the License. You may obtain
 #  a copy of the License at
 #
-#       http://www.apache.org/licenses/LICENSE-2.0
+#       https://www.apache.org/licenses/LICENSE-2.0
 #
 #  Unless required by applicable law or agreed to in writing, software
 #  distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
 #  WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
 #  License for the specific language governing permissions and limitations
 #  under the License.
+
+"""linebot.http_client webhook."""
 
 from __future__ import unicode_literals
 
@@ -33,13 +36,15 @@ from .utils import LOGGER, PY3
 
 
 class SignatureValidator(object):
+    """Signature validator.
+
+    https://devdocs.line.me/en/#webhook-authentication
+    """
+
     def __init__(self, channel_secret):
-        """Signature validator
+        """__init__ method.
 
-        https://devdocs.line.me/en/#webhook-authentication
-
-        Args:
-            channel_secret: Channel secret
+        :param str channel_secret: Channel secret (as text)
         """
         self.channel_secret = channel_secret.encode('utf-8')
 
@@ -48,12 +53,10 @@ class SignatureValidator(object):
 
         https://devdocs.line.me/en/#webhook-authentication
 
-        Args:
-            body: Request body (as text)
-            signature: X-Line-Signature value (as text)
-
-        Returns:
-
+        :param str body: Request body (as text)
+        :param str signature: X-Line-Signature value (as text)
+        :rtype: bool
+        :return:
         """
         gen_signature = hmac.new(
             self.channel_secret,
@@ -67,20 +70,23 @@ class SignatureValidator(object):
 
 
 class WebhookParser(object):
+    """Webhook Parser."""
+
     def __init__(self, channel_secret):
+        """__init__ method.
+
+        :param str channel_secret: Channel secret (as text)
+        """
         self.signature_validator = SignatureValidator(channel_secret)
 
     def parse(self, body, signature):
         """Parse webhook request body as text.
 
-        Args:
-            body: Webhook request body (as text)
-            signature: X-Line-Signature value (as text)
-
-        Returns: Event object list
-
+        :param str body: Webhook request body (as text)
+        :param str signature: X-Line-Signature value (as text)
+        :rtype: list[T <= linebot.models.Event]
+        :return:
         """
-
         if not self.signature_validator.validate(body, signature):
             raise InvalidSignatureError(
                 'Invalid signature. signature=' + signature)
@@ -110,22 +116,26 @@ class WebhookParser(object):
 
 
 class WebhookHandler(object):
+    """Webhook Handler."""
+
     def __init__(self, channel_secret):
+        """__init__ method.
+
+        :param str channel_secret: Channel secret (as text)
+        """
         self.parser = WebhookParser(channel_secret)
         self._handlers = {}
         self._default = None
 
     def add(self, event, message=None):
-        """[Decorator] Add handler method
+        """[Decorator] Add handler method.
 
-        Args:
-            event: Specify a kind of Event class
-            message: If event is MessageEvent, a kind of Message class
-
-        Returns: Decorator
-
+        :param T <= linebot.models.Event event: Specify a kind of Event which you want to handle
+        :param T <= linebot.models.Message message: (optional) If event is MessageEvent,
+            specify kind of Messages which you want to handle
+        :rtype: func
+        :return:
         """
-
         def decorator(func):
             if isinstance(message, (list, tuple)):
                 for it in message:
@@ -138,12 +148,11 @@ class WebhookHandler(object):
         return decorator
 
     def default(self):
-        """[Decorator] Default handler method
+        """[Decorator] Set default handler method.
 
-        Returns: Decorator
-
+        :rtype: func
+        :return:
         """
-
         def decorator(func):
             self._default = func
             return func
@@ -151,13 +160,11 @@ class WebhookHandler(object):
         return decorator
 
     def handle(self, body, signature):
-        """Handle webhook
+        """Handle webhook.
 
-        Args:
-            body: Webhook request body (as text)
-            signature: X-Line-Signature value (as text)
+        :param str body: Webhook request body (as text)
+        :param str signature: X-Line-Signature value (as text)
         """
-
         events = self.parser.parse(body, signature)
 
         for event in events:

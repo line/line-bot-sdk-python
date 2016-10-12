@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
+
 #  Licensed under the Apache License, Version 2.0 (the "License"); you may
 #  not use this file except in compliance with the License. You may obtain
 #  a copy of the License at
 #
-#       http://www.apache.org/licenses/LICENSE-2.0
+#       https://www.apache.org/licenses/LICENSE-2.0
 #
 #  Unless required by applicable law or agreed to in writing, software
 #  distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
@@ -11,53 +12,59 @@
 #  License for the specific language governing permissions and limitations
 #  under the License.
 
+"""linebot.http_client module."""
+
 from __future__ import unicode_literals
 
 from abc import ABCMeta, abstractmethod
-from future.utils import with_metaclass
+
 import requests
+from future.utils import with_metaclass
 
 
 class HttpClient(with_metaclass(ABCMeta)):
+    """Abstract Base Classes of HttpClient."""
+
     DEFAULT_TIMEOUT = 5
 
     def __init__(self, timeout=DEFAULT_TIMEOUT):
-        """Constructor of HttpClient
+        """__init__ method.
 
-        Args:
-            timeout: How long to wait for the server to send data before giving up,
-                as a float, or a :ref:`(connect timeout, read timeout) <timeouts>` tuple.
+        :param float|tuple(float, float) timeout: (optional), How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, readtimeout) float tuple.
+            Default is DEFAULT_TIMEOUT
         """
-
         self.timeout = timeout
 
     @abstractmethod
     def get(self, url, headers=None, params=None, timeout=None):
-        """GET request
+        """GET request.
 
-        Args:
-            url: Request url
-            headers: Request headers
-            params: Request query parameter
-            timeout: How long to wait for the server to send data before giving up,
-                as a float, or a :ref:`(connect timeout, read timeout) <timeouts>` tuple.
-                Default is self.timeout
+        :param str url: Request url
+        :param dict headers: (optional) Request headers
+        :param dict params: (optional) Request query parameter
+        :param float|tuple(float, float) timeout: (optional), How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, readtimeout) float tuple.
+            Default is DEFAULT_TIMEOUT
         """
         raise NotImplementedError
 
     @abstractmethod
     def get_stream(self, url, headers=None, params=None, timeout=None,
                    chunk_size=1024, decode_unicode=False):
-        """GET request. response is chunk content.
+        """GET request. Response is chunk content.
 
-        Args:
-            url: Request url
-            headers: Request headers
-            params: Request query parameter
-            timeout: How long to wait for the server to send data before giving up,
-                as a float, or a :ref:`(connect timeout, read timeout) <timeouts>` tuple. Default is self.timeout
-            chunk_size:
-            decode_unicode:
+        :param str url: Request url
+        :param dict headers: (optional) Request headers
+        :param dict params: (optional) Request query parameter
+        :param float|tuple(float, float) timeout: (optional), How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, readtimeout) float tuple.
+            Default is DEFAULT_TIMEOUT
+        :param int chunk_size: (optional) Chunk size
+        :param boole decode_unicode: (optional) Decode unicode
         """
         raise NotImplementedError
 
@@ -65,40 +72,42 @@ class HttpClient(with_metaclass(ABCMeta)):
     def post(self, url, headers=None, data=None, timeout=None):
         """POST request.
 
-        Args:
-            url: Request url
-            headers: Request headers
-            data: Dictionary, bytes, or file-like object to send in the body
-            timeout: How long to wait for the server to send data before giving up,
-                as a float, or a :ref:`(connect timeout, read timeout) <timeouts>` tuple. Default is self.timeout
+        :param str url: Request url
+        :param dict headers: (optional) Request headers
+        :param data: (optional) Dictionary, bytes, or file-like object to send in the body
+        :param float|tuple(float, float) timeout: (optional), How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, readtimeout) float tuple.
+            Default is DEFAULT_TIMEOUT
         """
         raise NotImplementedError
 
 
 class RequestsHttpClient(HttpClient):
+    """HttpClient implemented by requests."""
+
     def __init__(self, timeout=HttpClient.DEFAULT_TIMEOUT):
-        """Constructor of RequestsHttpClient
+        """__init__ method.
 
-        'requests' implementation.
-
-        Args:
-            timeout: How long to wait for the server to send data before giving up,
-                as a float, or a :ref:`(connect timeout, readtimeout) <timeouts>` tuple.
+        :param float|tuple(float, float) timeout: (optional), How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, readtimeout) float tuple.
+            Default is HttpClient.DEFAULT_TIMEOUT
         """
-
         super(RequestsHttpClient, self).__init__(timeout)
 
     def get(self, url, headers=None, params=None, timeout=None):
-        """GET request
+        """GET request.
 
-        Args:
-            url: Request url
-            headers: Request headers
-            params: Request query parameter
-            timeout: How long to wait for the server to send data before giving up,
-                as a float, or a :ref:`(connect timeout, read timeout) <timeouts>` tuple. Default is self.timeout
-
-        Returns: Response object
+        :param str url: Request url
+        :param dict headers: (optional) Request headers
+        :param dict params: (optional) Request query parameter
+        :param float|tuple(float, float) timeout: (optional), How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, readtimeout) float tuple.
+            Default is DEFAULT_TIMEOUT
+        :rtype: HttpResponse
+        :return:
         """
         if timeout is None:
             timeout = self.timeout
@@ -113,19 +122,19 @@ class RequestsHttpClient(HttpClient):
 
     def get_stream(self, url, headers=None, params=None, timeout=None,
                    chunk_size=1024, decode_unicode=False):
-        """GET request. response is chunk content.
+        """GET request. Response is chunk content.
 
-        Args:
-            url: Request url
-            headers: Request headers
-            params: Request query parameter
-            timeout: How long to wait for the server to send data before giving up,
-                as a float, or a :ref:`(connect timeout, read timeout) <timeouts>` tuple. Default is self.timeout
-            chunk_size:
-            decode_unicode: If decode_unicode is True, content will be decoded
-                using the best available encoding based on the response.
-
-        Returns: Response object
+        :param str url: Request url
+        :param dict headers: (optional) Request headers
+        :param dict params: (optional) Request query parameter
+        :param float|tuple(float, float) timeout: (optional), How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, readtimeout) float tuple.
+            Default is DEFAULT_TIMEOUT
+        :param int chunk_size: (optional) Chunk size
+        :param boole decode_unicode: (optional) Decode unicode
+        :rtype: HttpResponse
+        :return:
         """
         if timeout is None:
             timeout = self.timeout
@@ -150,14 +159,15 @@ class RequestsHttpClient(HttpClient):
     def post(self, url, headers=None, data=None, timeout=None):
         """POST request.
 
-        Args:
-            url: Request url
-            headers: Request headers
-            data: Dictionary, bytes, or file-like object to send in the body
-            timeout: How long to wait for the server to send data before giving up,
-                as a float, or a :ref:`(connect timeout, read timeout) <timeouts>` tuple. Default is self.timeout
-
-        Returns: Response object
+        :param str url: Request url
+        :param dict headers: (optional) Request headers
+        :param data: (optional) Dictionary, bytes, or file-like object to send in the body
+        :param float|tuple(float, float) timeout: (optional), How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, readtimeout) float tuple.
+            Default is DEFAULT_TIMEOUT
+        :rtype: HttpResponse
+        :return:
         """
         if timeout is None:
             timeout = self.timeout
@@ -172,7 +182,16 @@ class RequestsHttpClient(HttpClient):
 
 
 class HttpResponse(object):
+    """HttpResponse container."""
+
     def __init__(self, status_code=None, body=None, headers=None, body_stream=None):
+        """__init__ method.
+
+        :param str status_code: Status code
+        :param str body: Response body as text
+        :param dict headers: Response headers
+        :param iterator body_stream:
+        """
         self.status_code = status_code
         self.headers = headers
         self.body = body

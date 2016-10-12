@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
+
 #  Licensed under the Apache License, Version 2.0 (the "License"); you may
 #  not use this file except in compliance with the License. You may obtain
 #  a copy of the License at
 #
-#       http://www.apache.org/licenses/LICENSE-2.0
+#       https://www.apache.org/licenses/LICENSE-2.0
 #
 #  Unless required by applicable law or agreed to in writing, software
 #  distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
@@ -14,9 +15,9 @@
 from __future__ import unicode_literals, absolute_import
 
 import json
-import responses
 import unittest
 
+import responses
 from linebot import (
     LineBotApi
 )
@@ -53,8 +54,7 @@ class TestLineBotApi(unittest.TestCase):
         self.assertEqual(request.method, 'POST')
         self.assertEqual(
             request.url,
-            LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/message/push'
-        )
+            LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/message/push')
         self.assertEqual(
             json.loads(request.body),
             {
@@ -77,8 +77,7 @@ class TestLineBotApi(unittest.TestCase):
         self.assertEqual(request.method, 'POST')
         self.assertEqual(
             request.url,
-            LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/message/reply'
-        )
+            LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/message/reply')
         self.assertEqual(
             json.loads(request.body),
             {
@@ -86,6 +85,7 @@ class TestLineBotApi(unittest.TestCase):
                 "messages": self.message
             }
         )
+
 
 if __name__ == '__main__':
     unittest.main()

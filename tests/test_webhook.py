@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
+
 #  Licensed under the Apache License, Version 2.0 (the "License"); you may
 #  not use this file except in compliance with the License. You may obtain
 #  a copy of the License at
 #
-#       http://www.apache.org/licenses/LICENSE-2.0
+#       https://www.apache.org/licenses/LICENSE-2.0
 #
 #  Unless required by applicable law or agreed to in writing, software
 #  distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
@@ -17,7 +18,6 @@ import os
 import unittest
 
 from builtins import open
-
 from linebot import (
     SignatureValidator, WebhookParser, WebhookHandler
 )
@@ -36,15 +36,12 @@ class TestSignatureValidator(unittest.TestCase):
 
         self.assertEqual(
             signature_validator.validate(
-                'bodybodybodybody',
-                '/gg9a+LvFevTH1sd7XCQycD7tsWclCsInj7MhBHxN7k='
-            ),
+                'bodybodybodybody', '/gg9a+LvFevTH1sd7XCQycD7tsWclCsInj7MhBHxN7k='),
             True
         )
         self.assertEqual(
             signature_validator.validate(
-                'bodybodybodybody', 'invalid_signature'
-            ),
+                'bodybodybodybody', 'invalid_signature'),
             False
         )
 
@@ -70,9 +67,7 @@ class TestWebhookParser(unittest.TestCase):
         self.assertIsInstance(events[0].source, SourceUser)
         self.assertEqual(events[0].source.type, 'user')
         self.assertEqual(events[0].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
-        self.assertEqual(
-            events[0].source.sender_id, 'U206d25c2ea6bd87c17655609a1c37cb8'
-        )
+        self.assertEqual(events[0].source.sender_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
         self.assertIsInstance(events[0].message, TextMessage)
         self.assertEqual(events[0].message.id, '325708')
         self.assertEqual(events[0].message.type, 'text')
@@ -276,6 +271,7 @@ class TestWebhookHandler(unittest.TestCase):
         self.assertEqual(self.calls[9], 'default leave')
         self.assertEqual(self.calls[10], '6 postback')
         self.assertEqual(self.calls[11], '7 beacon')
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
+
 #  Licensed under the Apache License, Version 2.0 (the "License"); you may
 #  not use this file except in compliance with the License. You may obtain
 #  a copy of the License at
 #
-#       http://www.apache.org/licenses/LICENSE-2.0
+#       https://www.apache.org/licenses/LICENSE-2.0
 #
 #  Unless required by applicable law or agreed to in writing, software
 #  distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
@@ -16,7 +17,6 @@ from __future__ import unicode_literals, absolute_import
 import unittest
 
 import responses
-
 from linebot import (
     LineBotApi
 )
@@ -44,10 +44,7 @@ class TestLineBotApi(unittest.TestCase):
         )
 
         try:
-            self.tested.push_message(
-                'to',
-                TextSendMessage(text='hoge')
-            )
+            self.tested.push_message('to', TextSendMessage(text='hoge'))
         except LineBotApiError as e:
             self.assertEqual(e.status_code, 401)
             self.assertEqual(e.error.message, 'Invalid reply token')
@@ -82,15 +79,9 @@ class TestLineBotApi(unittest.TestCase):
             )
         except LineBotApiError as e:
             self.assertEqual(e.status_code, 400)
-            self.assertEqual(
-                e.error.message, 'The request body has 2 error(s)'
-            )
-            self.assertEqual(
-                e.error.details[0].message, 'May not be empty'
-            )
-            self.assertEqual(
-                e.error.details[0].property, 'messages[0].text'
-            )
+            self.assertEqual(e.error.message, 'The request body has 2 error(s)')
+            self.assertEqual(e.error.details[0].message, 'May not be empty')
+            self.assertEqual(e.error.details[0].property, 'messages[0].text')
             self.assertEqual(
                 e.error.details[1].message, "Must be one of the following "
                                             "values: [text"
@@ -98,9 +89,7 @@ class TestLineBotApi(unittest.TestCase):
                                             "location, sticker, "
                                             "richmessage, template, imagemap]"
             )
-            self.assertEqual(
-                e.error.details[1].property, 'messages[1].type'
-            )
+            self.assertEqual(e.error.details[1].property, 'messages[1].type')
 
     @responses.activate
     def test_error_handle_get_content(self):
@@ -118,6 +107,7 @@ class TestLineBotApi(unittest.TestCase):
         except LineBotApiError as e:
             self.assertEqual(e.status_code, 404)
             self.assertEqual(e.error.message, 'Invalid reply token')
+
 
 if __name__ == '__main__':
     unittest.main()

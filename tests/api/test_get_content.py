@@ -19,3 +19,6 @@ class TestLineBotApi(unittest.TestCase):
         #     for chunk in stream:
         #         f.write(chunk)
         #     f.close()
+
+if __name__ == '__main__':
+    unittest.main()

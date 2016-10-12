@@ -85,3 +85,6 @@ class TestBase(unittest.TestCase):
             Hoge.new_from_json_dict({"hogeBar": "hoge_bar"}),
             Hoge(hoge_bar='hoge_bar')
         )
+
+if __name__ == '__main__':
+    unittest.main()

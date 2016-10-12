@@ -80,3 +80,6 @@ class TestLineBotApi(unittest.TestCase):
                 "messages": self.message
             }
         )
+
+if __name__ == '__main__':
+    unittest.main()

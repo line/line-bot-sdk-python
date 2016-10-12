@@ -353,3 +353,6 @@ class TestLineBotApi(unittest.TestCase):
                 "messages": self.carousel_message
             }
         )
+
+if __name__ == '__main__':
+    unittest.main()

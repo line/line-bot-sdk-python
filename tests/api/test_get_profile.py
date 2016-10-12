@@ -40,3 +40,6 @@ class TestLineBotApi(unittest.TestCase):
         self.assertEqual(profile.user_id, 'Uxxxxxxxxxxxxxx...')
         self.assertEqual(profile.picture_url, 'http://obs.line-apps.com/...')
         self.assertEqual(profile.status_message, 'Hello, LINE!')
+
+if __name__ == '__main__':
+    unittest.main()

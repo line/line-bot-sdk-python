@@ -47,3 +47,6 @@ class TestLineBotApi(unittest.TestCase):
             request.url,
             LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/room/rid/leave'
         )
+
+if __name__ == '__main__':
+    unittest.main()

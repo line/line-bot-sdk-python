@@ -336,3 +336,6 @@ class TestWebhookHandler(unittest.TestCase):
         self.assertEqual(self.calls[9], 'default leave')
         self.assertEqual(self.calls[10], '6 postback')
         self.assertEqual(self.calls[11], '7 beacon')
+
+if __name__ == '__main__':
+    unittest.main()

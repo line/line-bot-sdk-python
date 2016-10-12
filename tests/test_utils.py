@@ -18,3 +18,6 @@ class TestUtils(unittest.TestCase):
             to_camel_case('hoge_bar'),
             'hogeBar'
         )
+
+if __name__ == '__main__':
+    unittest.main()

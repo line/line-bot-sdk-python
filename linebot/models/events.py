@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
+
 #  Licensed under the Apache License, Version 2.0 (the "License"); you may
 #  not use this file except in compliance with the License. You may obtain
 #  a copy of the License at
 #
-#       http://www.apache.org/licenses/LICENSE-2.0
+#       https://www.apache.org/licenses/LICENSE-2.0
 #
 #  Unless required by applicable law or agreed to in writing, software
 #  distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
@@ -11,7 +12,13 @@
 #  License for the specific language governing permissions and limitations
 #  under the License.
 
+"""linebot.models.events module."""
+
 from __future__ import unicode_literals
+
+from abc import ABCMeta
+
+from future.utils import with_metaclass
 
 from .base import Base
 from .messages import (
@@ -25,13 +32,19 @@ from .messages import (
 from .sources import SourceUser, SourceGroup, SourceRoom
 
 
-class Event(Base):
-    """Webhook Event
+class Event(with_metaclass(ABCMeta, Base)):
+    """Abstract Base Class of Webhook Event.
 
     https://devdocs.line.me/en/#webhook-event-object
     """
 
     def __init__(self, timestamp=None, source=None, **kwargs):
+        """__init__ method.
+
+        :param long timestamp: Time of the event in milliseconds
+        :param T <= linebot.models.Source source: Source object
+        :param kwargs:
+        """
         super(Event, self).__init__(**kwargs)
 
         self.type = None
@@ -46,24 +59,23 @@ class Event(Base):
 
 
 class MessageEvent(Event):
-    def __init__(
-            self, timestamp=None, source=None, reply_token=None,
-            message=None, **kwargs
-    ):
-        """MessageEvent
+    """Webhook MessageEvent.
 
-        https://devdocs.line.me/en/#message-event
+    https://devdocs.line.me/en/#message-event
 
-        Event object which contains the sent message.
-        The message field contains a message object which corresponds with the message type.
-        You can reply to message events.
+    Event object which contains the sent message.
+    The message field contains a message object which corresponds with the message type.
+    You can reply to message events.
+    """
 
-        Args:
-            timestamp: Time of the event in milliseconds
-            source: Source object which contains the source of the event
-            reply_token: Token for replying to this event
-            message: Contents of the message
-            **kwargs:
+    def __init__(self, timestamp=None, source=None, reply_token=None, message=None, **kwargs):
+        """__init__ method.
+
+        :param long timestamp: Time of the event in milliseconds
+        :param T <= linebot.models.Source source: Source object
+        :param str reply_token: Reply token
+        :param T <= linebot.models.Message message: Message object
+        :param kwargs:
         """
         super(MessageEvent, self).__init__(
             timestamp=timestamp, source=source, **kwargs
@@ -84,18 +96,21 @@ class MessageEvent(Event):
 
 
 class FollowEvent(Event):
+    """Webhook FollowEvent.
+
+    https://devdocs.line.me/en/#follow-event
+
+    Event object for when your account is added as a friend (or unblocked).
+    You can reply to follow events.
+    """
+
     def __init__(self, timestamp=None, source=None, reply_token=None, **kwargs):
-        """FollowEvent
+        """__init__ method.
 
-        https://devdocs.line.me/en/#follow-event
-
-        Event object for when your account is added as a friend (or unblocked). You can reply to follow events.
-
-        Args:
-            timestamp: Time of the event in milliseconds
-            source: Source object which contains the source of the event
-            reply_token: Token for replying to this event
-            **kwargs:
+        :param long timestamp: Time of the event in milliseconds
+        :param T <= linebot.models.Source source: Source object
+        :param str reply_token: Reply token
+        :param kwargs:
         """
         super(FollowEvent, self).__init__(
             timestamp=timestamp, source=source, **kwargs
@@ -106,17 +121,19 @@ class FollowEvent(Event):
 
 
 class UnfollowEvent(Event):
+    """Webhook UnfollowEvent.
+
+    https://devdocs.line.me/en/#unfollow-event
+
+    Event object for when your account is blocked.
+    """
+
     def __init__(self, timestamp=None, source=None, **kwargs):
-        """UnfollowEvent
+        """__init__ method.
 
-        https://devdocs.line.me/en/#unfollow-event
-
-        Event object for when your account is blocked.
-
-        Args:
-            timestamp: Time of the event in milliseconds
-            source: Source object which contains the source of the event
-            **kwargs:
+        :param long timestamp: Time of the event in milliseconds
+        :param T <= linebot.models.Source source: Source object
+        :param kwargs:
         """
         super(UnfollowEvent, self).__init__(
             timestamp=timestamp, source=source, **kwargs
@@ -126,18 +143,21 @@ class UnfollowEvent(Event):
 
 
 class JoinEvent(Event):
+    """Webhook JoinEvent.
+
+    https://devdocs.line.me/en/#join-event
+
+    Event object for when your account joins a group or talk room.
+    You can reply to join events.
+    """
+
     def __init__(self, timestamp=None, source=None, reply_token=None, **kwargs):
-        """JoinEvent
+        """__init__ method.
 
-        https://devdocs.line.me/en/#join-event
-
-        Event object for when your account joins a group or talk room. You can reply to join events.
-
-        Args:
-            timestamp: Time of the event in milliseconds
-            source: Source object which contains the source of the event
-            reply_token: Token for replying to this event
-            **kwargs:
+        :param long timestamp: Time of the event in milliseconds
+        :param T <= linebot.models.Source source: Source object
+        :param str reply_token: Reply token
+        :param kwargs:
         """
         super(JoinEvent, self).__init__(
             timestamp=timestamp, source=source, **kwargs
@@ -148,17 +168,19 @@ class JoinEvent(Event):
 
 
 class LeaveEvent(Event):
+    """Webhook LeaveEvent.
+
+    https://devdocs.line.me/en/#leave-event
+
+    Event object for when your account leaves a group.
+    """
+
     def __init__(self, timestamp=None, source=None, **kwargs):
-        """LeaveEvent
+        """__init__ method.
 
-        https://devdocs.line.me/en/#leave-event
-
-        Event object for when your account leaves a group.
-
-        Args:
-            timestamp: Time of the event in milliseconds
-            source: Source object which contains the source of the event
-            **kwargs:
+        :param long timestamp: Time of the event in milliseconds
+        :param T <= linebot.models.Source source: Source object
+        :param kwargs:
         """
         super(LeaveEvent, self).__init__(
             timestamp=timestamp, source=source, **kwargs
@@ -168,21 +190,23 @@ class LeaveEvent(Event):
 
 
 class PostbackEvent(Event):
-    def __init__(self, timestamp=None, source=None,
-                 reply_token=None, postback=None, **kwargs):
-        """PostbackEvent
+    """Webhook PostbackEvent.
 
-        https://devdocs.line.me/en/#postback-event
+    https://devdocs.line.me/en/#postback-event
 
-        Event object for when a user performs an action on a template message which initiates a postback.
-        You can reply to postback events.
+    Event object for when a user performs an action on
+    a template message which initiates a postback.
+    You can reply to postback events.
+    """
 
-        Args:
-            timestamp: Time of the event in milliseconds
-            source: Source object which contains the source of the event
-            reply_token: Token for replying to this event
-            postback: Postback data
-            **kwargs:
+    def __init__(self, timestamp=None, source=None, reply_token=None, postback=None, **kwargs):
+        """__init__ method.
+
+        :param long timestamp: Time of the event in milliseconds
+        :param T <= linebot.models.Source source: Source object
+        :param str reply_token: Reply token
+        :param Postback postback: Postback object
+        :param kwargs:
         """
         super(PostbackEvent, self).__init__(
             timestamp=timestamp, source=source, **kwargs
@@ -196,20 +220,22 @@ class PostbackEvent(Event):
 
 
 class BeaconEvent(Event):
+    """Webhook BeaconEvent.
+
+    https://devdocs.line.me/en/#beacon-event
+
+    Event object for when a user detects a LINE Beacon. You can reply to beacon events.
+    """
+
     def __init__(self, timestamp=None, source=None, reply_token=None,
                  beacon=None, **kwargs):
-        """BeaconEvent
+        """__init__ method.
 
-        https://devdocs.line.me/en/#beacon-event
-
-        Event object for when a user detects a LINE Beacon. You can reply to beacon events.
-
-        Args:
-            timestamp: Time of the event in milliseconds
-            source: Source object which contains the source of the event
-            reply_token: Token for replying to this event
-            beacon: Beacon object
-            **kwargs:
+        :param long timestamp: Time of the event in milliseconds
+        :param T <= linebot.models.Source source: Source object
+        :param str reply_token: Reply token
+        :param Beacon beacon: Beacon object
+        :param kwargs:
         """
         super(BeaconEvent, self).__init__(
             timestamp=timestamp, source=source, **kwargs
@@ -223,14 +249,16 @@ class BeaconEvent(Event):
 
 
 class Postback(Base):
+    """Postback.
+
+    https://devdocs.line.me/en/#postback-event
+    """
+
     def __init__(self, data=None, **kwargs):
-        """Postback
+        """__init__ method.
 
-        https://devdocs.line.me/en/#postback-event
-
-        Args:
-            data: Postback data
-            **kwargs:
+        :param str data:
+        :param kwargs:
         """
         super(Postback, self).__init__(**kwargs)
 
@@ -238,20 +266,17 @@ class Postback(Base):
 
 
 class Beacon(Base):
-    """Beacon
+    """Beacon.
 
     https://devdocs.line.me/en/#beacon-event
     """
 
     def __init__(self, type=None, hwid=None, **kwargs):
-        """Beacon
+        """__init__ method.
 
-        https://devdocs.line.me/en/#beacon-event
-
-        Args:
-            type: Type of beacon event
-            hwid: Hardware ID of the beacon that was detected
-            **kwargs:
+        :param str type: Type of beacon event
+        :param str hwid: Hardware ID of the beacon that was detected
+        :param kwargs:
         """
         super(Beacon, self).__init__(**kwargs)
 

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 #  Licensed under the Apache License, Version 2.0 (the "License"); you may
 #  not use this file except in compliance with the License. You may obtain
 #  a copy of the License at
@@ -187,7 +188,7 @@ def handle_sticker_message(event):
 
 # Other Message Type
 @handler.add(MessageEvent, message=(ImageMessage, VideoMessage, AudioMessage))
-def handle_sticker_message(event):
+def handle_content_message(event):
     if isinstance(event.message, ImageMessage):
         ext = '.jpg'
     elif isinstance(event.message, VideoMessage):
@@ -239,7 +240,7 @@ def handle_postback(event):
 
 
 @handler.add(BeaconEvent)
-def handle_leave(event):
+def handle_beacon(event):
     line_bot_api.reply_message(
         event.reply_token,
         TextSendMessage(text='Got beacon event. hwid=' + event.beacon.hwid))

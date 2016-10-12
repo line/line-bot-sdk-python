@@ -61,9 +61,7 @@ def callback():
 def handle_message(event):
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=event.message.text)
-    )
-
+        TextSendMessage(text=event.message.text))
 ```
 
 ## API
@@ -89,8 +87,7 @@ https://devdocs.line.me/en/#reply-message
 
 ```python
 line_bot_api.reply_message(
-    reply_token, TextSendMessage(text='Hello World!')
-)
+    reply_token, TextSendMessage(text='Hello World!'))
 ```
 
 #### push_message(self, to, messages, timeout=None)
@@ -101,8 +98,7 @@ https://devdocs.line.me/en/#push-message
 
 ```python
 line_bot_api.push_message(
-    to, TextSendMessage(text='Hello World!')
-)
+    to, TextSendMessage(text='Hello World!'))
 ```
 
 #### get_profile(self, user_id, timeout=None)
@@ -163,8 +159,7 @@ https://devdocs.line.me/en/#error-response
 try:
     line_bot_api.push_message(
         'to',
-        TextSendMessage(text='Hello World!')
-    )
+        TextSendMessage(text='Hello World!'))
 except linebot.LineBotApiError as e:
     print(e.error.message)
     print(e.error.details)
@@ -353,7 +348,6 @@ carousel_template_message = TemplateSendMessage(
         ]
     )
 )
-
 ```
 
 ## Webhook
@@ -410,9 +404,7 @@ You can add handler method by using `add` decorator.
 def handle_message(event):
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=event.message.text)
-    )
-
+        TextSendMessage(text=event.message.text))
 ```
 
 When event is instance of MessageEvent and event.message is instance of TextMessage, this handler method is called.
@@ -427,7 +419,6 @@ You can set default handler method by using `default` decorator.
 @handler.default()
 def default(event):
     print(event)
-
 ```
 
 There is no handler for event, this default handler method is called.

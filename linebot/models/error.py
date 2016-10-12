@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
+
 #  Licensed under the Apache License, Version 2.0 (the "License"); you may
 #  not use this file except in compliance with the License. You may obtain
 #  a copy of the License at
 #
-#       http://www.apache.org/licenses/LICENSE-2.0
+#       https://www.apache.org/licenses/LICENSE-2.0
 #
 #  Unless required by applicable law or agreed to in writing, software
 #  distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
@@ -11,21 +12,25 @@
 #  License for the specific language governing permissions and limitations
 #  under the License.
 
+"""linebot.models.error module."""
+
 from __future__ import unicode_literals
 
 from .base import Base
 
 
 class Error(Base):
+    """Error response of LINE messaging API.
+
+    https://devdocs.line.me/en/#error-response
+    """
+
     def __init__(self, message=None, details=None, **kwargs):
-        """Error
+        """__init__ method.
 
-        https://devdocs.line.me/en/#error-response
-
-        Args:
-            message: Summary of the error
-            details: ErrorDetail object
-            **kwargs:
+        :param str message: Summary of the error
+        :param list[ErrorDetail] details: ErrorDetail object list
+        :param kwargs:
         """
         super(Error, self).__init__(**kwargs)
 
@@ -41,15 +46,19 @@ class Error(Base):
 
 
 class ErrorDetail(Base):
+    """ErrorDetail response of LINE messaging API.
+
+    https://devdocs.line.me/en/#error-response
+    """
+
     def __init__(self, message=None, property=None, **kwargs):
-        """ErrorDetail
+        """__init__ method.
 
         https://devdocs.line.me/en/#error-response
 
-        Args:
-            message: Details of the error message
-            property: Related property
-            **kwargs:
+        :param str message: Details of the error message
+        :param str property: Related property
+        :param kwargs:
         """
         super(ErrorDetail, self).__init__(**kwargs)
 

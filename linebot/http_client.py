@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from abc import ABCMeta, abstractmethod
+from future.utils import with_metaclass
 import requests
 
 
-class HttpClient(object):
+class HttpClient(with_metaclass(ABCMeta)):
     DEFAULT_TIMEOUT = 5
 
     def __init__(self, timeout=DEFAULT_TIMEOUT):
@@ -17,6 +19,7 @@ class HttpClient(object):
 
         self.timeout = timeout
 
+    @abstractmethod
     def get(self, url, headers=None, params=None, timeout=None):
         """GET request
 
@@ -30,6 +33,7 @@ class HttpClient(object):
         """
         raise NotImplementedError
 
+    @abstractmethod
     def get_stream(self, url, headers=None, params=None, timeout=None,
                    chunk_size=1024, decode_unicode=False):
         """GET request. response is chunk content.
@@ -45,6 +49,7 @@ class HttpClient(object):
         """
         raise NotImplementedError
 
+    @abstractmethod
     def post(self, url, headers=None, data=None, timeout=None):
         """POST request.
 

@@ -2,16 +2,18 @@
 from __future__ import unicode_literals
 
 from .base import Base
+from abc import ABCMeta, abstractproperty
+from future.utils import with_metaclass
 
 
-class Source(Base):
+class Source(with_metaclass(ABCMeta, Base)):
     """Base Class of Source"""
 
     def __init__(self, **kwargs):
         super(Source, self).__init__(**kwargs)
         self.type = None
 
-    @property
+    @abstractproperty
     def sender_id(self):
         raise NotImplementedError
 

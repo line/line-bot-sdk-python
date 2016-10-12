@@ -86,8 +86,7 @@ You can get a reply_token by a Webhook Event Object.
 https://devdocs.line.me/en/#reply-message
 
 ```python
-line_bot_api.reply_message(
-    reply_token, TextSendMessage(text='Hello World!'))
+line_bot_api.reply_message(reply_token, TextSendMessage(text='Hello World!'))
 ```
 
 #### push_message(self, to, messages, timeout=None)
@@ -97,8 +96,7 @@ Send messages to users, groups, and rooms at any time.
 https://devdocs.line.me/en/#push-message
 
 ```python
-line_bot_api.push_message(
-    to, TextSendMessage(text='Hello World!'))
+line_bot_api.push_message(to, TextSendMessage(text='Hello World!'))
 ```
 
 #### get_profile(self, user_id, timeout=None)
@@ -109,6 +107,7 @@ https://devdocs.line.me/en/#bot-api-get-profile
 
 ```python
 profile = line_bot_api.get_profile(user_id)
+
 print(profile.display_name)
 print(profile.user_id)
 print(profile.picture_url)
@@ -157,10 +156,9 @@ https://devdocs.line.me/en/#error-response
 
 ```python
 try:
-    line_bot_api.push_message(
-        'to',
-        TextSendMessage(text='Hello World!'))
+    line_bot_api.push_message('to', TextSendMessage(text='Hello World!'))
 except linebot.LineBotApiError as e:
+    print(e.status_code)
     print(e.error.message)
     print(e.error.details)
 ```

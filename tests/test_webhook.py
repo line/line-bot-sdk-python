@@ -40,9 +40,9 @@ class TestSignatureValidator(unittest.TestCase):
 class TestWebhookParser(unittest.TestCase):
     def test_parse(self):
         file_dir = os.path.dirname(__file__)
-        body = open(
-            os.path.join(file_dir, 'text', 'webhook.json')
-        ).read()
+        webhook_sample_json_path = os.path.join(file_dir, 'text', 'webhook.json')
+        with open(webhook_sample_json_path) as fp:
+            body = fp.read()
 
         parser = WebhookParser('channel_secret')
         # mock
@@ -315,9 +315,9 @@ class TestWebhookHandler(unittest.TestCase):
 
     def test_hoge(self):
         file_dir = os.path.dirname(__file__)
-        body = open(
-            os.path.join(file_dir, 'text', 'webhook.json')
-        ).read()
+        webhook_sample_json_path = os.path.join(file_dir, 'text', 'webhook.json')
+        with open(webhook_sample_json_path) as fp:
+            body = fp.read()
 
         # mock
         self.handler.parser.signature_validator.validate = lambda a, b: True

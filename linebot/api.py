@@ -147,7 +147,7 @@ class LineBotApi(object):
 
         return Profile.new_from_json_dict(response.json)
 
-    def get_content(self, message_id, timeout=None):
+    def get_message_content(self, message_id, timeout=None):
         """Call get content API.
 
         https://devdocs.line.me/en/#get-content

@@ -114,7 +114,7 @@ print(profile.picture_url)
 print(profile.status_message)
 ```
 
-#### get_content(self, message_id, timeout=None)
+#### get_message_content(self, message_id, timeout=None)
 
 Retrieve image, video, and audio data sent by users.
 
@@ -531,8 +531,7 @@ Sample bot using [Flask](http://flask.pocoo.org/)
 ```
 $ cd docs
 $ make html
-$ cd _build/html
-$ open index.html
+$ open _build/html/index.html
 ```
 
 ## Requirements

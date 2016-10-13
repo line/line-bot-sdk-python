@@ -532,4 +532,38 @@ Sample bot using [Flask](http://flask.pocoo.org/)
 
 ## For SDK developers
 
-TBD
+First install for development.
+
+```
+$ pip install -r requirements-dev.txt
+```
+
+### Run tests
+
+We test by using tox.  
+We test the following versions.
+
+* 2.7
+* 3.3
+* 3.4
+* 3.5
+
+If you want to run all tests and run `flake8` against all versions:
+
+```
+tox
+```
+
+If you want to run all tests against 2.7 version:
+
+```
+$ tox -e py27
+```
+
+If you want to run a test against 2.7 version and against specific file:
+
+```
+$ tox -e py27 -- tests/test_webhook.py
+```
+
+And more... TBD

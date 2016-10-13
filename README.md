@@ -138,7 +138,7 @@ https://devdocs.line.me/en/#leave
 line_bot_api.leave_group(group_id)
 ```
 
-#### leave_room(self, group_id, timeout=None)
+#### leave_room(self, room_id, timeout=None)
 
 Leave a room.
 

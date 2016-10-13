@@ -92,7 +92,7 @@ class TestLineBotApi(unittest.TestCase):
             self.assertEqual(e.error.details[1].property, 'messages[1].type')
 
     @responses.activate
-    def test_error_handle_get_content(self):
+    def test_error_handle_get_message_content(self):
         responses.add(
             responses.GET,
             LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/message/1/content',
@@ -103,7 +103,7 @@ class TestLineBotApi(unittest.TestCase):
         )
 
         try:
-            self.tested.get_content(1)
+            self.tested.get_message_content(1)
         except LineBotApiError as e:
             self.assertEqual(e.status_code, 404)
             self.assertEqual(e.error.message, 'Invalid reply token')

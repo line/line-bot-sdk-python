@@ -65,6 +65,7 @@ setup(
     url="https://github.com/line/line-bot-sdk-python",
     description="LINE Messaging API SDK for Python",
     long_description=read_md('README.md'),
+    license='Apache License 2.0',
     packages=[
         "linebot", "linebot.models"
     ],

@@ -14,8 +14,11 @@
 
 
 import re
+import sys
 
+from pypandoc import convert
 from setuptools import setup
+from setuptools.command.test import test as TestCommand
 
 __version__ = ''
 with open('linebot/__about__.py', 'r') as fd:
@@ -28,12 +31,29 @@ with open('linebot/__about__.py', 'r') as fd:
 
 
 def _requirements():
-    return [name.strip() for name in open('requirements.txt').readlines()]
+    with open('requirements.txt') as fd:
+        return [name.strip() for name in fd.readlines()]
 
 
 def _requirements_test():
-    return [name.strip() for name in open('requirements-test.txt').readlines()]
+    with open('requirements-test.txt') as fd:
+        return [name.strip() for name in fd.readlines()]
 
+
+class PyTest(TestCommand):
+    def finalize_options(self):
+        TestCommand.finalize_options(self)
+        self.test_args = []
+        self.test_suite = True
+
+    def run_tests(self):
+        # import here, cause outside the eggs aren't loaded
+        import pytest
+        errno = pytest.main(self.test_args)
+        sys.exit(errno)
+
+
+read_md = lambda f: convert(f, 'rst')
 
 setup(
     name="line-bot-sdk",
@@ -44,12 +64,13 @@ setup(
     maintainer_email="hsb.1014@gmail.com",
     url="https://github.com/line/line-bot-sdk-python",
     description="LINE Messaging API SDK for Python",
-    long_description="LINE Messaging API SDK for Python",
+    long_description=read_md('README.md'),
     packages=[
         "linebot", "linebot.models"
     ],
     install_requires=_requirements(),
     tests_require=_requirements_test(),
+    cmdclass={'test': PyTest},
     classifiers=[
         "Development Status :: 1 - Planning",
         # "Development Status :: 5 - Production/Stable",

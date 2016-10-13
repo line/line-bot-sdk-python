@@ -2,3 +2,5 @@
 -r requirements-test.txt
 tox
 wheel
+sphinx_rtd_theme
+pypandoc

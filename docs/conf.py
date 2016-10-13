@@ -52,7 +52,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'linebot'
+project = u'lline-bot-sdk-python'
 copyright = u'2016, Author'
 author = u'Author'
 
@@ -123,7 +123,7 @@ todo_include_todos = True
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'alabaster'
+html_theme = 'sphinx_rtd_theme'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -237,7 +237,7 @@ html_static_path = ['_static']
 # html_search_scorer = 'scorer.js'
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'linebotdoc'
+htmlhelp_basename = 'line-bot-sdk-python-doc'
 
 # -- Options for LaTeX output ---------------------------------------------
 
@@ -263,7 +263,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'linebot.tex', u'linebot Documentation',
+    (master_doc, 'line-bot-sdk-python.tex', u'line-bot-sdk-python Documentation',
      u'Author', 'manual'),
 ]
 
@@ -305,7 +305,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'linebot', u'linebot Documentation',
+    (master_doc, 'line-bot-sdk-python', u'line-bot-sdk-python Documentation',
      [author], 1)
 ]
 
@@ -320,8 +320,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'linebot', u'linebot Documentation',
-     author, 'linebot', 'One line description of project.',
+    (master_doc, 'line-bot-sdk-python', u'line-bot-sdk-python Documentation',
+     author, 'line-bot-sdk-python', 'One line description of project.',
      'Miscellaneous'),
 ]
 

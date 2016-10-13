@@ -55,7 +55,8 @@ class TemplateSendMessage(SendMessage):
         """__init__ method.
 
         :param str alt_text: Alternative text for unsupported devices.
-        :param T <= Template template: Object with the contents of the template.
+        :param template: Object with the contents of the template.
+        :type template: T <= :py:class:`linebot.models.template.Template`
         :param kwargs:
         """
         super(TemplateSendMessage, self).__init__(**kwargs)
@@ -106,8 +107,9 @@ class ButtonsTemplate(Template):
             Aspect ratio: 1:1.51
             Max width: 1024px
             Max: 1 MB
-        :param list[T <= TemplateAction] actions: Action when tapped.
+        :param actions: Action when tapped.
             Max: 4
+        :type actions: list[T <= :py:class:`linebot.models.template.TemplateAction`]
         :param kwargs:
         """
         super(ButtonsTemplate, self).__init__(**kwargs)
@@ -132,8 +134,9 @@ class ConfirmTemplate(Template):
 
         :param str text: Message text.
             Max: 240 characters
-        :param list[T <= TemplateAction] actions: Action when tapped.
+        :param actions: Action when tapped.
             Max: 2
+        :type actions: list[T <= :py:class:`linebot.models.template.TemplateAction`]
         :param kwargs:
         """
         super(ConfirmTemplate, self).__init__(**kwargs)
@@ -154,8 +157,9 @@ class CarouselTemplate(Base):
     def __init__(self, columns=None, **kwargs):
         """__init__ method.
 
-        :param list[CarouselColumn] columns: Array of columns.
+        :param columns: Array of columns.
             Max: 5
+        :type columns: list[T <= :py:class:`linebot.models.template.CarouselColumn`]
         :param kwargs:
         """
         super(CarouselTemplate, self).__init__(**kwargs)
@@ -191,8 +195,9 @@ class CarouselColumn(Base):
             Aspect ratio: 1:1.51
             Max width: 1024px
             Max: 1 MB
-        :param list[T <= TemplateAction] actions: Action when tapped.
+        :param actions: Action when tapped.
             Max: 3
+        :type actions: list[T <= :py:class:`linebot.models.template.TemplateAction`]
         :param kwargs:
         """
         super(CarouselColumn, self).__init__(**kwargs)

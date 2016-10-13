@@ -42,7 +42,8 @@ class Event(with_metaclass(ABCMeta, Base)):
         """__init__ method.
 
         :param long timestamp: Time of the event in milliseconds
-        :param T <= linebot.models.Source source: Source object
+        :param source: Source object
+        :type source: T <= :py:class:`linebot.models.sources.Source`
         :param kwargs:
         """
         super(Event, self).__init__(**kwargs)
@@ -72,9 +73,11 @@ class MessageEvent(Event):
         """__init__ method.
 
         :param long timestamp: Time of the event in milliseconds
-        :param T <= linebot.models.Source source: Source object
+        :param source: Source object
+        :type source: T <= :py:class:`linebot.models.sources.Source`
         :param str reply_token: Reply token
-        :param T <= linebot.models.Message message: Message object
+        :param message: Message object
+        :type message: T <= :py:class:`linebot.models.messages.Message`
         :param kwargs:
         """
         super(MessageEvent, self).__init__(
@@ -108,7 +111,8 @@ class FollowEvent(Event):
         """__init__ method.
 
         :param long timestamp: Time of the event in milliseconds
-        :param T <= linebot.models.Source source: Source object
+        :param source: Source object
+        :type source: T <= :py:class:`linebot.models.sources.Source`
         :param str reply_token: Reply token
         :param kwargs:
         """
@@ -132,7 +136,8 @@ class UnfollowEvent(Event):
         """__init__ method.
 
         :param long timestamp: Time of the event in milliseconds
-        :param T <= linebot.models.Source source: Source object
+        :param source: Source object
+        :type source: T <= :py:class:`linebot.models.sources.Source`
         :param kwargs:
         """
         super(UnfollowEvent, self).__init__(
@@ -155,7 +160,8 @@ class JoinEvent(Event):
         """__init__ method.
 
         :param long timestamp: Time of the event in milliseconds
-        :param T <= linebot.models.Source source: Source object
+        :param source: Source object
+        :type source: T <= :py:class:`linebot.models.sources.Source`
         :param str reply_token: Reply token
         :param kwargs:
         """
@@ -179,7 +185,8 @@ class LeaveEvent(Event):
         """__init__ method.
 
         :param long timestamp: Time of the event in milliseconds
-        :param T <= linebot.models.Source source: Source object
+        :param source: Source object
+        :type source: T <= :py:class:`linebot.models.sources.Source`
         :param kwargs:
         """
         super(LeaveEvent, self).__init__(
@@ -203,9 +210,11 @@ class PostbackEvent(Event):
         """__init__ method.
 
         :param long timestamp: Time of the event in milliseconds
-        :param T <= linebot.models.Source source: Source object
+        :param source: Source object
+        :type source: T <= :py:class:`linebot.models.sources.Source`
         :param str reply_token: Reply token
-        :param Postback postback: Postback object
+        :param postback: Postback object
+        :type postback: :py:class:`linebot.models.events.Postback`
         :param kwargs:
         """
         super(PostbackEvent, self).__init__(
@@ -232,9 +241,11 @@ class BeaconEvent(Event):
         """__init__ method.
 
         :param long timestamp: Time of the event in milliseconds
-        :param T <= linebot.models.Source source: Source object
+        :param source: Source object
+        :type source: T <= :py:class:`linebot.models.sources.Source`
         :param str reply_token: Reply token
-        :param Beacon beacon: Beacon object
+        :param beacon: Beacon object
+        :type beacon: :py:class:`linebot.models.events.Beacon`
         :param kwargs:
         """
         super(BeaconEvent, self).__init__(

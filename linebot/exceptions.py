@@ -66,8 +66,8 @@ class LineBotApiError(BaseError):
         """__init__ method.
 
         :param int status_code: http status code
-        :param linebot.models.Error error: (optional) Error class object.
-            https://devdocs.line.me/en/#error-response
+        :param error: (optional) Error class object.
+        :type error: :py:class:`linebot.models.error.Error`
         """
         super(LineBotApiError, self).__init__(error.message)
 

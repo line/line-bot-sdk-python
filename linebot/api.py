@@ -36,11 +36,14 @@ class LineBotApi(object):
 
         :param str channel_access_token: Your channel access token
         :param str endpoint: (optional) Default is https://api.line.me
-        :param float|tuple(float, float) timeout: (optional) How long to wait for the server
+        :param timeout: (optional) How long to wait for the server
             to send data before giving up, as a float,
             or a (connect timeout, readtimeout) float tuple.
             Default is linebot.http_client.HttpClient.DEFAULT_TIMEOUT
-        :param T <= linebot.http_client.HttpClient: (optional) Default is RequestsHttpClient
+        :type timeout: float | tuple(float, float)
+        :param http_client: (optional) Default is
+            :py:class:`linebot.http_client.RequestsHttpClient`
+        :type http_client: T <= :py:class:`linebot.http_client.HttpClient`
         """
         self.endpoint = endpoint
         self.headers = {
@@ -69,12 +72,15 @@ class LineBotApi(object):
         Reply tokens can only be used once.
 
         :param str reply_token: replyToken received via webhook
-        :param T <= linebot.models.Message|list[T <= linebot.models.Message] messages: Messages.
+        :param messages: Messages.
             Max: 5
-        :param float|tuple(float, float) timeout: (optional) How long to wait for the server
+        :type messages: T <= :py:class:`linebot.models.messages.Message` |
+            list[T <= :py:class:`linebot.models.messages.Message`]
+        :param timeout: (optional) How long to wait for the server
             to send data before giving up, as a float,
             or a (connect timeout, readtimeout) float tuple.
             Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
         """
         if not isinstance(messages, (list, tuple)):
             messages = [messages]
@@ -96,12 +102,15 @@ class LineBotApi(object):
         Send messages to users, groups, and rooms at any time.
 
         :param str to: ID of the receiver
-        :param T <= linebot.models.Message|list[T <= linebot.models.Message] messages: Messages.
+        :param messages: Messages.
             Max: 5
-        :param float|tuple(float, float) timeout: (optional) How long to wait for the server
+        :type messages: T <= :py:class:`linebot.models.messages.Message` |
+            list[T <= :py:class:`linebot.models.messages.Message`]
+        :param timeout: (optional) How long to wait for the server
             to send data before giving up, as a float,
             or a (connect timeout, readtimeout) float tuple.
             Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
         """
         if not isinstance(messages, (list, tuple)):
             messages = [messages]
@@ -123,13 +132,13 @@ class LineBotApi(object):
         Get user profile information.
 
         :param str user_id: User ID
-        :param float|tuple(float, float) timeout: (optional) How long to wait for the server
+        :param timeout: (optional) How long to wait for the server
             to send data before giving up, as a float,
             or a (connect timeout, readtimeout) float tuple.
             Default is self.http_client.timeout
-        :rtype: linebot.models.Profile
-        :return:
-
+        :type timeout: float | tuple(float, float)
+        :rtype: :py:class:`linebot.models.responses.Profile`
+        :return: Profile instance
         """
         response = self._get(
             '/v2/bot/profile/{user_id}'.format(user_id=user_id),
@@ -145,14 +154,14 @@ class LineBotApi(object):
 
         Retrieve image, video, and audio data sent by users.
 
-        :param message_id: Message ID
-        :param float|tuple(float, float) timeout: (optional) How long to wait for the server
+        :param str message_id: Message ID
+        :param timeout: (optional) How long to wait for the server
             to send data before giving up, as a float,
             or a (connect timeout, readtimeout) float tuple.
             Default is self.http_client.timeout
-        :rtype: linebot.models.MessageContent
-        :return:
-
+        :type timeout: float | tuple(float, float)
+        :rtype: :py:class:`linebot.models.responses.MessageContent`
+        :return: MessageContent instance
         """
         response = self._get(
             '/v2/bot/message/{message_id}/content'.format(message_id=message_id),
@@ -169,10 +178,11 @@ class LineBotApi(object):
         Leave a group.
 
         :param str group_id: Group ID
-        :param float|tuple(float, float) timeout: (optional) How long to wait for the server
+        :param timeout: (optional) How long to wait for the server
             to send data before giving up, as a float,
             or a (connect timeout, readtimeout) float tuple.
             Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
         """
         self._post(
             '/v2/bot/group/{group_id}/leave'.format(group_id=group_id),
@@ -187,10 +197,11 @@ class LineBotApi(object):
         Leave a room.
 
         :param str room_id: Room ID
-        :param float|tuple(float, float) timeout: (optional) How long to wait for the server
+        :param timeout: (optional) How long to wait for the server
             to send data before giving up, as a float,
             or a (connect timeout, readtimeout) float tuple.
             Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
         """
         self._post(
             '/v2/bot/room/{room_id}/leave'.format(room_id=room_id),

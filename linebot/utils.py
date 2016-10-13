@@ -28,7 +28,7 @@ PY3 = sys.version_info[0] == 3
 def to_snake_case(text):
     """Convert to snake case.
 
-    :param text:
+    :param str text:
     :rtype: str
     :return:
     """
@@ -39,7 +39,7 @@ def to_snake_case(text):
 def to_camel_case(text):
     """Convert to camel case.
 
-    :param text:
+    :param str text:
     :rtype: str
     :return:
     """

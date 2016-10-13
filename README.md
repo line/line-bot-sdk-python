@@ -526,6 +526,15 @@ Sample echo-bot using [Flask](http://flask.pocoo.org/)
 
 Sample bot using [Flask](http://flask.pocoo.org/)
 
+## Sphinx (API document)
+
+```
+$ cd docs
+$ make html
+$ cd _build/html
+$ open index.html
+```
+
 ## Requirements
 
 * python >= 2.7 or >= 3.3

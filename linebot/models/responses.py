@@ -52,7 +52,8 @@ class MessageContent(object):
     def __init__(self, response):
         """__init__ method.
 
-        :param T <= linebot.http_client.HttpResponse response: HttpResponse object
+        :param response: HttpResponse object
+        :type response: T <= :py:class:`linebot.http_client.HttpResponse`
         :param kwargs:
         """
         self.response = response

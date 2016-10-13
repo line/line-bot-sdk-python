@@ -56,7 +56,7 @@ class SignatureValidator(object):
         :param str body: Request body (as text)
         :param str signature: X-Line-Signature value (as text)
         :rtype: bool
-        :return:
+        :return: result
         """
         gen_signature = hmac.new(
             self.channel_secret,
@@ -84,7 +84,7 @@ class WebhookParser(object):
 
         :param str body: Webhook request body (as text)
         :param str signature: X-Line-Signature value (as text)
-        :rtype: list[T <= linebot.models.Event]
+        :rtype: list[T <= :py:class:`linebot.models.events.Event`]
         :return:
         """
         if not self.signature_validator.validate(body, signature):
@@ -130,11 +130,13 @@ class WebhookHandler(object):
     def add(self, event, message=None):
         """[Decorator] Add handler method.
 
-        :param T <= linebot.models.Event event: Specify a kind of Event which you want to handle
-        :param T <= linebot.models.Message message: (optional) If event is MessageEvent,
+        :param event: Specify a kind of Event which you want to handle
+        :type event: T <= :py:class:`linebot.models.events.Event` class
+        :param message: (optional) If event is MessageEvent,
             specify kind of Messages which you want to handle
+        :type: message: T <= :py:class:`linebot.models.messages.Message` class
         :rtype: func
-        :return:
+        :return: decorator
         """
         def decorator(func):
             if isinstance(message, (list, tuple)):

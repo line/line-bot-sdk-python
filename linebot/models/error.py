@@ -29,7 +29,9 @@ class Error(Base):
         """__init__ method.
 
         :param str message: Summary of the error
-        :param list[ErrorDetail] details: ErrorDetail object list
+        :param details: ErrorDetail instance list
+        :type details: list[T <= :py:class:`linebot.models.error.ErrorDetail`]
+        :type
         :param kwargs:
         """
         super(Error, self).__init__(**kwargs)

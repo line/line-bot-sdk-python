@@ -39,8 +39,10 @@ class ImagemapSendMessage(SendMessage):
         :param str base_url: Base URL of image.
             HTTPS
         :param str alt_text: Alternative text
-        :param BaseSize base_size: Width and height of base image
-        :param list[ImagemapAction] actions: Action when tapped
+        :param base_size: Width and height of base image
+        :type base_size: :py:class:`linebot.models.imagemap.BaseSize`
+        :param actions: Action when tapped
+        :type actions: list[T <= :py:class:`linebot.models.imagemap.ImagemapAction`]
         :param kwargs:
         """
         super(ImagemapSendMessage, self).__init__(**kwargs)
@@ -114,7 +116,8 @@ class URIImagemapAction(ImagemapAction):
         """__init__ method.
 
         :param str link_uri: Webpage URL
-        :param ImagemapArea area: Defined tappable area
+        :param area: Defined tappable area
+        :type area: :py:class:`linebot.models.imagemap.ImagemapArea`
         :param kwargs:
         """
         super(URIImagemapAction, self).__init__(**kwargs)
@@ -134,7 +137,8 @@ class MessageImagemapAction(ImagemapAction):
         """__init__ method.
 
         :param str text: Message to send
-        :param ImagemapArea area: Defined tappable area
+        :param area: Defined tappable area
+        :type area: :py:class:`linebot.models.imagemap.ImagemapArea`
         :param kwargs:
         """
         super(MessageImagemapAction, self).__init__(**kwargs)

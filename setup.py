@@ -16,7 +16,6 @@
 import re
 import sys
 
-from pypandoc import convert
 from setuptools import setup
 from setuptools.command.test import test as TestCommand
 
@@ -31,12 +30,12 @@ with open('linebot/__about__.py', 'r') as fd:
 
 
 def _requirements():
-    with open('requirements.txt') as fd:
+    with open('requirements.txt', 'r') as fd:
         return [name.strip() for name in fd.readlines()]
 
 
 def _requirements_test():
-    with open('requirements-test.txt') as fd:
+    with open('requirements-test.txt', 'r') as fd:
         return [name.strip() for name in fd.readlines()]
 
 
@@ -53,7 +52,8 @@ class PyTest(TestCommand):
         sys.exit(errno)
 
 
-read_md = lambda f: convert(f, 'rst')
+with open('_README.rst', 'r') as fd:
+    long_description = fd.read()
 
 setup(
     name="line-bot-sdk",
@@ -64,7 +64,7 @@ setup(
     maintainer_email="hsb.1014@gmail.com",
     url="https://github.com/line/line-bot-sdk-python",
     description="LINE Messaging API SDK for Python",
-    long_description=read_md('README.md'),
+    long_description=long_description,
     license='Apache License 2.0',
     packages=[
         "linebot", "linebot.models"

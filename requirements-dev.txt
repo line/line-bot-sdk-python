@@ -4,3 +4,4 @@ tox
 wheel
 sphinx_rtd_theme
 pypandoc
+twine

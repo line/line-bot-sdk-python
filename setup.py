@@ -73,8 +73,7 @@ setup(
     tests_require=_requirements_test(),
     cmdclass={'test': PyTest},
     classifiers=[
-        "Development Status :: 1 - Planning",
-        # "Development Status :: 5 - Production/Stable",
+        "Development Status :: 5 - Production/Stable",
         "License :: OSI Approved :: Apache Software License",
         "Intended Audience :: Developers",
         "Programming Language :: Python",

@@ -1,20 +1,18 @@
 linebot package
 ===============
 
-Subpackages
------------
-
-.. toctree::
-
-    linebot.models
-
-Submodules
-----------
-
 linebot.api module
 ------------------
 
 .. automodule:: linebot.api
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+linebot.webhook module
+----------------------
+
+.. automodule:: linebot.webhook
     :members:
     :undoc-members:
     :show-inheritance:
@@ -43,19 +41,9 @@ linebot.utils module
     :undoc-members:
     :show-inheritance:
 
-linebot.webhook module
-----------------------
+Subpackages
+-----------
 
-.. automodule:: linebot.webhook
-    :members:
-    :undoc-members:
-    :show-inheritance:
+.. toctree::
 
-
-Module contents
----------------
-
-.. automodule:: linebot
-    :members:
-    :undoc-members:
-    :show-inheritance:
+    linebot.models

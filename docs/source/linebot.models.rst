@@ -1,9 +1,6 @@
 linebot.models package
 ======================
 
-Submodules
-----------
-
 linebot.models.base module
 --------------------------
 
@@ -72,15 +69,6 @@ linebot.models.template module
 ------------------------------
 
 .. automodule:: linebot.models.template
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-
-Module contents
----------------
-
-.. automodule:: linebot.models
     :members:
     :undoc-members:
     :show-inheritance:

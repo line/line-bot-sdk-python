@@ -1,5 +1,7 @@
 # line-bot-sdk-python
 
+[![Build Status](https://travis-ci.org/line/line-bot-sdk-python.svg?branch=master)](https://travis-ci.org/line/line-bot-sdk-python)
+
 SDK of the LINE Messaging API for Python.
 
 ## About LINE Messaging API

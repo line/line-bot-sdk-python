@@ -115,7 +115,7 @@ def handle_text_message(event):
         elif isinstance(event.source, SourceRoom):
             line_bot_api.reply_message(
                 event.reply_token, TextMessage(text='Leaving group'))
-            line_bot_api.leave_group(event.source.room_id)
+            line_bot_api.leave_room(event.source.room_id)
         else:
             line_bot_api.reply_message(
                 event.reply_token,

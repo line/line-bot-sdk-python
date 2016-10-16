@@ -1,6 +1,8 @@
 # line-bot-sdk-python
 
 [![Build Status](https://travis-ci.org/line/line-bot-sdk-python.svg?branch=master)](https://travis-ci.org/line/line-bot-sdk-python)
+[![PyPI version](https://badge.fury.io/py/line-bot-sdk.svg)](https://badge.fury.io/py/line-bot-sdk)
+[![Documentation Status](https://readthedocs.org/projects/line-bot-sdk-python/badge/?version=latest)](http://line-bot-sdk-python.readthedocs.io/en/latest/?badge=latest)
 
 SDK of the LINE Messaging API for Python.
 
@@ -82,7 +84,7 @@ You can override `timeout` value at each methods.
 
 #### reply_message(self, reply_token, messages, timeout=None)
 
-Respond to events from users, groups, and rooms.  
+Respond to events from users, groups, and rooms.
 You can get a reply_token by a Webhook Event Object.
 
 https://devdocs.line.me/en/#reply-message
@@ -364,7 +366,7 @@ parser = linebot.WebhookParser('YOUR_CHANNEL_SECRET')
 
 #### parse(self, body, signature)
 
-Parse webhook body and build Event Objects List.  
+Parse webhook body and build Event Objects List.
 If signature does NOT match, raise InvalidSignatureError.
 
 ```python
@@ -411,7 +413,7 @@ When event is instance of MessageEvent and event.message is instance of TextMess
 
 #### Set default handler method
 
-You can set default handler method by using `default` decorator.  
+You can set default handler method by using `default` decorator.
 
 `default(self)`
 
@@ -528,13 +530,15 @@ Sample echo-bot using [Flask](http://flask.pocoo.org/)
 
 Sample bot using [Flask](http://flask.pocoo.org/)
 
-## Sphinx (API document)
+## API document
 
 ```
 $ cd docs
 $ make html
-$ open _build/html/index.html
+$ open build/html/index.html
 ```
+
+OR [![Documentation Status](https://readthedocs.org/projects/line-bot-sdk-python/badge/?version=latest)](http://line-bot-sdk-python.readthedocs.io/en/latest/?badge=latest)
 
 ## Requirements
 
@@ -550,7 +554,7 @@ $ pip install -r requirements-dev.txt
 
 ### Run tests
 
-We test by using tox.  
+We test by using tox.
 We test the following versions.
 
 * 2.7

@@ -1,6 +1,8 @@
 line-bot-sdk-python
 ===================
 
+|Build Status| |PyPI version| |Documentation Status|
+
 SDK of the LINE Messaging API for Python.
 
 About LINE Messaging API
@@ -88,8 +90,8 @@ You can override ``timeout`` value at each methods.
 reply\_message(self, reply\_token, messages, timeout=None)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-| Respond to events from users, groups, and rooms.
-| You can get a reply\_token by a Webhook Event Object.
+Respond to events from users, groups, and rooms. You can get a
+reply\_token by a Webhook Event Object.
 
 https://devdocs.line.me/en/#reply-message
 
@@ -391,8 +393,8 @@ WebhookParser
 parse(self, body, signature)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-| Parse webhook body and build Event Objects List.
-| If signature does NOT match, raise InvalidSignatureError.
+Parse webhook body and build Event Objects List. If signature does NOT
+match, raise InvalidSignatureError.
 
 .. code:: python
 
@@ -573,14 +575,16 @@ Sample echo-bot using `Flask <http://flask.pocoo.org/>`__
 
 Sample bot using `Flask <http://flask.pocoo.org/>`__
 
-Sphinx (API document)
----------------------
+API document
+------------
 
 ::
 
     $ cd docs
     $ make html
-    $ open _build/html/index.html
+    $ open build/html/index.html
+
+OR |Documentation Status|
 
 Requirements
 ------------
@@ -599,8 +603,7 @@ First install for development.
 Run tests
 ~~~~~~~~~
 
-| We test by using tox.
-| We test the following versions.
+We test by using tox. We test the following versions.
 
 -  2.7
 -  3.3
@@ -626,3 +629,10 @@ If you want to run a test against 2.7 version and against specific file:
     $ tox -e py27 -- tests/test_webhook.py
 
 And more... TBD
+
+.. |Build Status| image:: https://travis-ci.org/line/line-bot-sdk-python.svg?branch=master
+   :target: https://travis-ci.org/line/line-bot-sdk-python
+.. |PyPI version| image:: https://badge.fury.io/py/line-bot-sdk.svg
+   :target: https://badge.fury.io/py/line-bot-sdk
+.. |Documentation Status| image:: https://readthedocs.org/projects/line-bot-sdk-python/badge/?version=latest
+   :target: http://line-bot-sdk-python.readthedocs.io/en/latest/?badge=latest

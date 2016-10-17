@@ -507,7 +507,7 @@ These following class in `linebot.models` package.
   * address
   * latitude
   * longitude
-* LocationMessage
+* StickerMessage
   * type
   * id
   * package_id

@@ -547,7 +547,7 @@ Message
 -  address
 -  latitude
 -  longitude
--  LocationMessage
+-  StickerMessage
 -  type
 -  id
 -  package\_id

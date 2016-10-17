@@ -52,7 +52,7 @@ class PyTest(TestCommand):
         sys.exit(errno)
 
 
-with open('_README.rst', 'r') as fd:
+with open('README.rst', 'r') as fd:
     long_description = fd.read()
 
 setup(

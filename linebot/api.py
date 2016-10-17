@@ -74,8 +74,8 @@ class LineBotApi(object):
         :param str reply_token: replyToken received via webhook
         :param messages: Messages.
             Max: 5
-        :type messages: T <= :py:class:`linebot.models.messages.Message` |
-            list[T <= :py:class:`linebot.models.messages.Message`]
+        :type messages: T <= :py:class:`linebot.models.send_messages.SendMessage` |
+            list[T <= :py:class:`linebot.models.send_messages.SendMessage`]
         :param timeout: (optional) How long to wait for the server
             to send data before giving up, as a float,
             or a (connect timeout, readtimeout) float tuple.
@@ -104,8 +104,8 @@ class LineBotApi(object):
         :param str to: ID of the receiver
         :param messages: Messages.
             Max: 5
-        :type messages: T <= :py:class:`linebot.models.messages.Message` |
-            list[T <= :py:class:`linebot.models.messages.Message`]
+        :type messages: T <= :py:class:`linebot.models.send_messages.SendMessage` |
+            list[T <= :py:class:`linebot.models.send_messages.SendMessage`]
         :param timeout: (optional) How long to wait for the server
             to send data before giving up, as a float,
             or a (connect timeout, readtimeout) float tuple.

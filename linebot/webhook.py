@@ -32,7 +32,33 @@ from .models.events import (
     PostbackEvent,
     BeaconEvent
 )
-from .utils import LOGGER, PY3
+from .utils import LOGGER, PY3, safe_compare_digest
+
+
+if hasattr(hmac, "compare_digest"):
+    def compare_digest(val1, val2):
+        """compare_digest method.
+
+        :param val1: string or bytes for compare
+        :type val1: str | bytes
+        :param val2: string or bytes for compare
+        :type val2: str | bytes
+        :rtype: bool
+        :return: result
+        """
+        return hmac.compare_digest(val1, val2)
+else:
+    def compare_digest(val1, val2):
+        """compare_digest method.
+
+        :param val1: string or bytes for compare
+        :type val1: str | bytes
+        :param val2: string or bytes for compare
+        :type val2: str | bytes
+        :rtype: bool
+        :return: result
+        """
+        return safe_compare_digest(val1, val2)
 
 
 class SignatureValidator(object):
@@ -64,8 +90,8 @@ class SignatureValidator(object):
             hashlib.sha256
         ).digest()
 
-        return hmac.compare_digest(
-            signature.encode('utf-8'), base64.b64encode(gen_signature)
+        return compare_digest(
+                signature.encode('utf-8'), base64.b64encode(gen_signature)
         )
 
 

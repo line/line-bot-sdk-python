@@ -16,7 +16,7 @@ from __future__ import unicode_literals, absolute_import
 
 import unittest
 
-from linebot.utils import to_camel_case, to_snake_case
+from linebot.utils import to_camel_case, to_snake_case, safe_compare_digest
 
 
 class TestUtils(unittest.TestCase):
@@ -25,6 +25,15 @@ class TestUtils(unittest.TestCase):
 
     def test_to_camel_case(self):
         self.assertEqual(to_camel_case('hoge_bar'), 'hogeBar')
+
+    def test_safe_compare_digest_true(self):
+        self.assertTrue(safe_compare_digest('/gg9a+LvFevTH1sd7', '/gg9a+LvFevTH1sd7'))
+
+    def test_safe_compare_digest_false_same_size(self):
+        self.assertFalse(safe_compare_digest('/gg9a+LvFevTH1sd7', '/gg9a+LvFevTH1sd8'))
+
+    def test_safe_compare_digest_false_different_size(self):
+        self.assertFalse(safe_compare_digest('/gg9a+LvFevTH1sd7', '/gg9a+LvFevTH1sd78'))
 
 
 if __name__ == '__main__':

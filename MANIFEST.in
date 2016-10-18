@@ -1,5 +1,5 @@
 include LICENSE
-include _README.rst
+include README.rst
 include tox.ini
 include requirements.txt
 include requirements-test.txt

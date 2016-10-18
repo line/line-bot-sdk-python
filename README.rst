@@ -468,90 +468,87 @@ These following class in ``linebot.models`` package.
 Event
 ^^^^^
 
--  MessageEvent
--  type
--  timestamp
--  source: `Source <#source>`__
--  reply\_token
--  message: `Message <#message>`__
--  FollowEvent
--  type
--  timestamp
--  source: `Source <#source>`__
--  reply\_token
--  UnfollowEvent
--  type
--  timestamp
--  source: `Source <#source>`__
--  JoinEvent
--  type
--  timestamp
--  source: `Source <#source>`__
--  reply\_token
--  LeaveEvent
--  type
--  timestamp
--  source: `Source <#source>`__
--  PostbackEvent
--  type
--  timestamp
--  source: `Source <#source>`__
--  reply\_token
--  postback: Postback
-
-   -  data
-
--  BeaconEvent
--  type
--  timestamp
--  source: `Source <#source>`__
--  reply\_token
--  beacon: Beacon
-
-   -  type
-   -  hwid
+- MessageEvent
+    - type
+    - timestamp
+    - source: `Source <#source>`__
+    - reply\_token
+    - message: `Message <#message>`__
+- FollowEvent
+    - type
+    - timestamp
+    - source: `Source <#source>`__
+    - reply\_token
+- UnfollowEvent
+    - type
+    - timestamp
+    - source: `Source <#source>`__
+- JoinEvent
+    - type
+    - timestamp
+    - source: `Source <#source>`__
+    - reply\_token
+- LeaveEvent
+    - type
+    - timestamp
+    - source: `Source <#source>`__
+- PostbackEvent
+    - type
+    - timestamp
+    - source: `Source <#source>`__
+    - reply\_token
+    - postback: Postback
+        - data
+- BeaconEvent
+    - type
+    - timestamp
+    - source: `Source <#source>`__
+    - reply\_token
+    - beacon: Beacon
+        - type
+        - hwid
 
 Source
 ^^^^^^
 
--  SourceUser
--  type
--  user\_id
--  SourceGroup
--  type
--  group\_id
--  SourceRoom
--  type
--  room\_id
+- SourceUser
+    - type
+    - user\_id
+- SourceGroup
+    - type
+    - group\_id
+- SourceRoom
+    - type
+    - room\_id
 
 Message
 ^^^^^^^
 
--  TextMessage
--  type
--  id
--  text
--  ImageMessage
--  type
--  id
--  VideoMessage
--  type
--  id
--  AudioMessage
--  type
--  id
--  LocationMessage
--  type
--  id
--  title
--  address
--  latitude
--  longitude
--  StickerMessage
--  type
--  id
--  package\_id
--  sticker\_id
+- TextMessage
+    - type
+    - id
+    - text
+- ImageMessage
+    - type
+    - id
+- VideoMessage
+    - type
+    - id
+- AudioMessage
+    - type
+    - id
+- LocationMessage
+    - type
+    - id
+    - title
+    - address
+    - latitude
+    - longitude
+- StickerMessage
+    - type
+    - id
+    - package\_id
+    - sticker\_id
 
 Hints
 -----

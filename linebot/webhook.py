@@ -37,7 +37,10 @@ from .utils import LOGGER, PY3, safe_compare_digest
 
 if hasattr(hmac, "compare_digest"):
     def compare_digest(val1, val2):
-        """compare_digest method.
+        """compare_digest function.
+
+        If hmac module has compare_digest function, use it.
+        Or not, use linebot.utils.safe_compare_digest.
 
         :param val1: string or bytes for compare
         :type val1: str | bytes
@@ -49,7 +52,10 @@ if hasattr(hmac, "compare_digest"):
         return hmac.compare_digest(val1, val2)
 else:
     def compare_digest(val1, val2):
-        """compare_digest method.
+        """compare_digest function.
+
+        If hmac module has compare_digest function, use it.
+        Or not, use linebot.utils.safe_compare_digest.
 
         :param val1: string or bytes for compare
         :type val1: str | bytes

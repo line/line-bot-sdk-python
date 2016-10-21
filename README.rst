@@ -332,7 +332,7 @@ TemplateSendMessage - CarouselTemplate
         template=CarouselTemplate(
             columns=[
                 CarouselColumn(
-                    thumbnail_image_url='https://example.com/item1.jpg'
+                    thumbnail_image_url='https://example.com/item1.jpg',
                     title='this is menu1',
                     text='description1',
                     actions=[
@@ -352,7 +352,7 @@ TemplateSendMessage - CarouselTemplate
                     ]
                 ),
                 CarouselColumn(
-                    thumbnail_image_url='https://example.com/item2.jpg'
+                    thumbnail_image_url='https://example.com/item2.jpg',
                     title='this is menu2',
                     text='description2',
                     actions=[

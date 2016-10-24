@@ -2,7 +2,7 @@
 
 Sample echo-bot using [Flask](http://flask.pocoo.org/)
 
-## Getting Start
+## Getting started
 
 ```
 $ export LINE_CHANNEL_SECRET=YOUR_LINE_CHANNEL_SECRET

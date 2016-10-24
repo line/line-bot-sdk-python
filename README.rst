@@ -5,14 +5,14 @@ line-bot-sdk-python
 
 SDK of the LINE Messaging API for Python.
 
-About LINE Messaging API
+About the LINE Messaging API
 ------------------------
 
-Please refer to the official API documents for details.
+See the official API documentation for more information.
 
-en: https://devdocs.line.me/en/
+English: https://devdocs.line.me/en/
 
-ja: https://devdocs.line.me/ja/
+Japanese: https://devdocs.line.me/ja/
 
 Install
 -------
@@ -24,7 +24,7 @@ Install
 Synopsis
 --------
 
-Usage is:
+Usage:
 
 .. code:: python
 
@@ -85,13 +85,13 @@ Create a new LineBotApi instance.
 
     line_bot_api = linebot.LineBotApi('YOUR_CHANNEL_ACCESS_TOKEN')
 
-You can override ``timeout`` value at each methods.
+You can override the ``timeout`` value for each method.
 
 reply\_message(self, reply\_token, messages, timeout=None)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Respond to events from users, groups, and rooms. You can get a
-reply\_token by a Webhook Event Object.
+reply\_token from a webhook event object.
 
 https://devdocs.line.me/en/#reply-message
 
@@ -163,10 +163,10 @@ https://devdocs.line.me/en/#leave
 
     line_bot_api.leave_room(room_id)
 
-※ Error handle
+※ Error handling
 ^^^^^^^^^^^^^^
 
-If LINE API server responses a error, LineBotApi raise LineBotApiError.
+If the LINE API server returns an error, LineBotApi raises LineBotApiError.
 
 https://devdocs.line.me/en/#error-response
 
@@ -184,7 +184,7 @@ Send message object
 
 https://devdocs.line.me/en/#send-message-object
 
-These following class in ``linebot.models`` package.
+These following classes are found in the ``linebot.models`` package.
 
 TextSendMessage
 ^^^^^^^^^^^^^^^
@@ -393,8 +393,8 @@ WebhookParser
 parse(self, body, signature)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Parse webhook body and build Event Objects List. If signature does NOT
-match, raise InvalidSignatureError.
+Parses the webhook body and builds an event object list. If the signature does NOT
+match, InvalidSignatureError is raised.
 
 .. code:: python
 
@@ -418,8 +418,8 @@ WebhookHandler
 handle(self, body, signature)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Handle webhook. If signature does NOT match, raise
-InvalidSignatureError.
+Handles webhooks. If the signature does NOT match,
+InvalidSignatureError is raised.
 
 .. code:: python
 
@@ -428,7 +428,7 @@ InvalidSignatureError.
 Add handler method
 ^^^^^^^^^^^^^^^^^^
 
-You can add handler method by using ``add`` decorator.
+You can add a handler method by using the ``add`` decorator.
 
 ``add(self, event, message=None)``
 
@@ -440,13 +440,13 @@ You can add handler method by using ``add`` decorator.
             event.reply_token,
             TextSendMessage(text=event.message.text))
 
-When event is instance of MessageEvent and event.message is instance of
+When the event is an instance of MessageEvent and event.message is an instance of
 TextMessage, this handler method is called.
 
 Set default handler method
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-You can set default handler method by using ``default`` decorator.
+You can set the default handler method by using the ``default`` decorator.
 
 ``default(self)``
 
@@ -456,14 +456,14 @@ You can set default handler method by using ``default`` decorator.
     def default(event):
         print(event)
 
-There is no handler for event, this default handler method is called.
+If there is no handler for an event, this default handler method is called.
 
 Webhook event object
 ~~~~~~~~~~~~~~~~~~~~
 
 https://devdocs.line.me/en/#webhooks
 
-These following class in ``linebot.models`` package.
+The following classes are found in the ``linebot.models`` package.
 
 Event
 ^^^^^
@@ -572,7 +572,7 @@ Sample echo-bot using `Flask <http://flask.pocoo.org/>`__
 
 Sample bot using `Flask <http://flask.pocoo.org/>`__
 
-API document
+API documentation
 ------------
 
 ::
@@ -586,7 +586,7 @@ OR |Documentation Status|
 Requirements
 ------------
 
--  python >= 2.7 or >= 3.3
+-  Python >= 2.7 or >= 3.3
 
 For SDK developers
 ------------------
@@ -600,26 +600,26 @@ First install for development.
 Run tests
 ~~~~~~~~~
 
-We test by using tox. We test the following versions.
+Test by using tox. We test against the following versions.
 
 -  2.7
 -  3.3
 -  3.4
 -  3.5
 
-If you want to run all tests and run ``flake8`` against all versions:
+To run all tests and to run ``flake8`` against all versions, use:
 
 ::
 
     tox
 
-If you want to run all tests against 2.7 version:
+To run all tests against version 2.7, use:
 
 ::
 
     $ tox -e py27
 
-If you want to run a test against 2.7 version and against specific file:
+To run a test against version 2.7 and against a specific file, use:
 
 ::
 

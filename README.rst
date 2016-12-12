@@ -178,7 +178,7 @@ https://devdocs.line.me/en/#error-response
 
     try:
         line_bot_api.push_message('to', TextSendMessage(text='Hello World!'))
-    except linebot.LineBotApiError as e:
+    except linebot.exceptions.LineBotApiError as e:
         print(e.status_code)
         print(e.error.message)
         print(e.error.details)

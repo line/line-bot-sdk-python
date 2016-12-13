@@ -139,7 +139,7 @@ https://devdocs.line.me/en/#get-content
 
 .. code:: python
 
-    message_content = line_bot_api.get_content(message_id)
+    message_content = line_bot_api.get_message_content(message_id)
 
     with open(file_path, 'wb') as fd:
         for chunk in message_content.iter_content():

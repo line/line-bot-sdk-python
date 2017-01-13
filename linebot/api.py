@@ -124,6 +124,38 @@ class LineBotApi(object):
             '/v2/bot/message/push', data=json.dumps(data), timeout=timeout
         )
 
+    def multicast(self, to, messages, timeout=None):
+        """Call multicast API.
+
+        https://devdocs.line.me/en/#multicast
+
+        Send messages to multiple users at any time.
+
+        :param to: IDs of the receivers
+            Max: 150 users
+        :type to: list[str]
+        :param messages: Messages.
+            Max: 5
+        :type messages: T <= :py:class:`linebot.models.send_messages.SendMessage` |
+            list[T <= :py:class:`linebot.models.send_messages.SendMessage`]
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, readtimeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        """
+        if not isinstance(messages, (list, tuple)):
+            messages = [messages]
+
+        data = {
+            'to': to,
+            'messages': [message.as_json_dict() for message in messages]
+        }
+
+        self._post(
+            '/v2/bot/message/multicast', data=json.dumps(data), timeout=timeout
+        )
+
     def get_profile(self, user_id, timeout=None):
         """Call get profile API.
 

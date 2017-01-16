@@ -6,7 +6,7 @@ line-bot-sdk-python
 SDK of the LINE Messaging API for Python.
 
 About the LINE Messaging API
-------------------------
+----------------------------
 
 See the official API documentation for more information.
 
@@ -115,7 +115,7 @@ https://devdocs.line.me/en/#push-message
     line_bot_api.push_message(to, TextSendMessage(text='Hello World!'))
 
 multicast(self, to, messages, timeout=None)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Send messages to multiple users at any time.
 
@@ -180,7 +180,7 @@ https://devdocs.line.me/en/#leave
     line_bot_api.leave_room(room_id)
 
 ※ Error handling
-^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^
 
 If the LINE API server returns an error, LineBotApi raises LineBotApiError.
 
@@ -589,7 +589,7 @@ Sample echo-bot using `Flask <http://flask.pocoo.org/>`__
 Sample bot using `Flask <http://flask.pocoo.org/>`__
 
 API documentation
-------------
+-----------------
 
 ::
 

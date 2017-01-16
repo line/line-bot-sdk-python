@@ -18,6 +18,7 @@ import json
 import unittest
 
 import responses
+
 from linebot import (
     LineBotApi
 )
@@ -87,6 +88,29 @@ class TestLineBotApi(unittest.TestCase):
             json.loads(request.body),
             {
                 "replyToken": "replyToken",
+                "messages": self.message
+            }
+        )
+
+    @responses.activate
+    def test_multicast_location_message(self):
+        responses.add(
+            responses.POST,
+            LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/message/multicast',
+            json={}, status=200
+        )
+
+        self.tested.multicast(['to1', 'to2'], self.location_message)
+
+        request = responses.calls[0].request
+        self.assertEqual(request.method, 'POST')
+        self.assertEqual(
+            request.url,
+            LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/message/multicast')
+        self.assertEqual(
+            json.loads(request.body),
+            {
+                "to": ['to1', 'to2'],
                 "messages": self.message
             }
         )

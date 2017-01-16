@@ -88,6 +88,29 @@ class TestLineBotApi(unittest.TestCase):
             }
         )
 
+    @responses.activate
+    def test_multicast_image_message(self):
+        responses.add(
+            responses.POST,
+            LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/message/multicast',
+            json={}, status=200
+        )
+
+        self.tested.multicast(['to1', 'to2'], self.image_message)
+
+        request = responses.calls[0].request
+        self.assertEqual(request.method, 'POST')
+        self.assertEqual(
+            request.url,
+            LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/message/multicast')
+        self.assertEqual(
+            json.loads(request.body),
+            {
+                "to": ['to1', 'to2'],
+                "messages": self.message
+            }
+        )
+
 
 if __name__ == '__main__':
     unittest.main()

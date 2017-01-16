@@ -114,6 +114,18 @@ https://devdocs.line.me/en/#push-message
 
     line_bot_api.push_message(to, TextSendMessage(text='Hello World!'))
 
+multicast(self, to, messages, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Send messages to multiple users at any time.
+
+https://devdocs.line.me/en/#multicast
+
+.. code:: python
+
+    line_bot_api.multicast(['to1', 'to2'], TextSendMessage(text='Hello World!'))
+
+
 get\_profile(self, user\_id, timeout=None)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

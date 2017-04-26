@@ -204,6 +204,20 @@ class TestWebhookParser(unittest.TestCase):
         self.assertEqual(events[11].source.sender_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
         self.assertEqual(events[11].beacon.hwid, 'd41d8cd98f')
         self.assertEqual(events[11].beacon.type, 'enter')
+        self.assertEqual(events[11].beacon.device_message, None)
+
+        # BeaconEvent, SourceUser (with device message)
+        self.assertIsInstance(events[12], BeaconEvent)
+        self.assertEqual(events[12].reply_token, 'nHuyWiB7yP5Zw52FIkcQobQuGDXCTA')
+        self.assertEqual(events[12].type, 'beacon')
+        self.assertEqual(events[12].timestamp, 1462629479859)
+        self.assertIsInstance(events[12].source, SourceUser)
+        self.assertEqual(events[12].source.type, 'user')
+        self.assertEqual(events[12].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
+        self.assertEqual(events[12].source.sender_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
+        self.assertEqual(events[12].beacon.hwid, 'd41d8cd98f')
+        self.assertEqual(events[12].beacon.type, 'enter')
+        self.assertEqual(events[12].beacon.device_message, bytearray(b'\x124Vx\x90\xab\xcd\xef'))
 
 
 class TestWebhookHandler(unittest.TestCase):
@@ -271,6 +285,7 @@ class TestWebhookHandler(unittest.TestCase):
         self.assertEqual(self.calls[9], 'default leave')
         self.assertEqual(self.calls[10], '6 postback')
         self.assertEqual(self.calls[11], '7 beacon')
+        self.assertEqual(self.calls[12], '7 beacon')
 
 
 if __name__ == '__main__':

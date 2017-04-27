@@ -523,6 +523,7 @@ Event
     - beacon: Beacon
         - type
         - hwid
+        - device_message
 
 Source
 ^^^^^^

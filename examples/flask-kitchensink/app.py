@@ -250,7 +250,8 @@ def handle_postback(event):
 def handle_beacon(event):
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text='Got beacon event. hwid=' + event.beacon.hwid))
+        TextSendMessage(text='Got beacon event. hwid={}, device_message={}'
+                             .format(event.beacon.hwid, event.beacon.device_message)))
 
 
 if __name__ == "__main__":

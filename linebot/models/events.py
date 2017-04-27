@@ -282,14 +282,16 @@ class Beacon(Base):
     https://devdocs.line.me/en/#beacon-event
     """
 
-    def __init__(self, type=None, hwid=None, **kwargs):
+    def __init__(self, type=None, hwid=None, dm=None, **kwargs):
         """__init__ method.
 
         :param str type: Type of beacon event
         :param str hwid: Hardware ID of the beacon that was detected
+        :param str dm: Optional. Device message of beacon that was detected in bytearray
         :param kwargs:
         """
         super(Beacon, self).__init__(**kwargs)
 
         self.type = type
         self.hwid = hwid
+        self.device_message = bytearray.fromhex(dm) if dm is not None else None

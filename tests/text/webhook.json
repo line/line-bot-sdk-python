@@ -131,5 +131,18 @@
       "hwid": "d41d8cd98f",
       "type": "enter"
     }
+  }, {
+    "replyToken": "nHuyWiB7yP5Zw52FIkcQobQuGDXCTA",
+    "type": "beacon",
+    "timestamp": 1462629479859,
+    "source": {
+      "type": "user",
+      "userId": "U206d25c2ea6bd87c17655609a1c37cb8"
+    },
+    "beacon": {
+      "hwid": "d41d8cd98f",
+      "type": "enter",
+      "dm": "1234567890abcdef"
+    }
   }]
 }

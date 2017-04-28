@@ -287,11 +287,20 @@ class Beacon(Base):
 
         :param str type: Type of beacon event
         :param str hwid: Hardware ID of the beacon that was detected
-        :param str dm: Optional. Device message of beacon that was detected in bytearray
+        :param str dm: Optional. Device message of beacon which is hex string
         :param kwargs:
         """
         super(Beacon, self).__init__(**kwargs)
 
         self.type = type
         self.hwid = hwid
-        self.device_message = bytearray.fromhex(dm) if dm is not None else None
+        self.dm = dm
+
+    @property
+    def device_message(self):
+        """Get dm(device_message) as bytearray.
+
+        :rtype: bytearray
+        :return:
+        """
+        return bytearray.fromhex(self.dm) if self.dm is not None else None

@@ -204,6 +204,7 @@ class TestWebhookParser(unittest.TestCase):
         self.assertEqual(events[11].source.sender_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
         self.assertEqual(events[11].beacon.hwid, 'd41d8cd98f')
         self.assertEqual(events[11].beacon.type, 'enter')
+        self.assertEqual(events[11].beacon.dm, None)
         self.assertEqual(events[11].beacon.device_message, None)
 
         # BeaconEvent, SourceUser (with device message)
@@ -217,6 +218,7 @@ class TestWebhookParser(unittest.TestCase):
         self.assertEqual(events[12].source.sender_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
         self.assertEqual(events[12].beacon.hwid, 'd41d8cd98f')
         self.assertEqual(events[12].beacon.type, 'enter')
+        self.assertEqual(events[12].beacon.dm, '1234567890abcdef')
         self.assertEqual(events[12].beacon.device_message, bytearray(b'\x124Vx\x90\xab\xcd\xef'))
 
 

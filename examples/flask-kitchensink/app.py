@@ -251,8 +251,8 @@ def handle_beacon(event):
     line_bot_api.reply_message(
         event.reply_token,
         TextSendMessage(
-            text='Got beacon event. hwid={}, device_message(hex string)={}'.format(event.beacon.hwid,
-                                                                                     event.beacon.dm)))
+            text='Got beacon event. hwid={}, device_message(hex string)={}'.format(
+                event.beacon.hwid, event.beacon.dm)))
 
 
 if __name__ == "__main__":

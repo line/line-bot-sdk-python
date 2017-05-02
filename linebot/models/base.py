@@ -111,7 +111,7 @@ class Base(object):
 
     @staticmethod
     def get_or_new_from_json_dict(data, cls):
-        """Helper function.
+        """Get `cls` object w/ deserialization from json if needed.
 
         If data is instance of cls, return data.
         Else if data is instance of dict, create instance from dict.
@@ -133,7 +133,7 @@ class Base(object):
     def get_or_new_from_json_dict_with_types(
             data, cls_map, type_key='type'
     ):
-        """Helper function.
+        """Get `cls` object w/ deserialization from json by using type key hint if needed.
 
         If data is instance of one of cls, return data.
         Else if data is instance of dict, create instance from dict.

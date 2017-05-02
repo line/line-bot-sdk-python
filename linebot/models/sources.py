@@ -36,7 +36,7 @@ class Source(with_metaclass(ABCMeta, Base)):
 
     @abstractproperty
     def sender_id(self):
-        """Helper method.
+        """Abstract property of id to send a message.
 
         If SourceUser, return user_id.
         If SourceGroup, return group_id.
@@ -69,9 +69,7 @@ class SourceUser(Source):
 
     @property
     def sender_id(self):
-        """Helper method.
-
-        Alias of user_id.
+        """Alias of user_id.
 
         :rtype: str
         :return:
@@ -100,9 +98,7 @@ class SourceGroup(Source):
 
     @property
     def sender_id(self):
-        """Helper method.
-
-        Alias of group_id.
+        """Alias of group_id.
 
         :rtype: str
         :return:
@@ -131,13 +127,7 @@ class SourceRoom(Source):
 
     @property
     def sender_id(self):
-        """Helper method.
-
-        Alias of room_id.
-
-        If SourceUser, return user_id.
-        If SourceGroup, return group_id.
-        If SourceRoom, return room_id.
+        """Alias of room_id.
 
         :rtype: str
         :return:

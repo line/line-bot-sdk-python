@@ -16,6 +16,7 @@
 
 from __future__ import unicode_literals
 
+import warnings
 from abc import ABCMeta, abstractproperty
 
 from future.utils import with_metaclass
@@ -74,6 +75,7 @@ class SourceUser(Source):
         :rtype: str
         :return:
         """
+        warnings.warn("'sender_id' is deprecated.", DeprecationWarning, stacklevel=2)
         return self.user_id
 
 
@@ -85,16 +87,18 @@ class SourceGroup(Source):
     JSON object which contains the source group of the event.
     """
 
-    def __init__(self, group_id=None, **kwargs):
+    def __init__(self, group_id=None, user_id=None, **kwargs):
         """__init__ method.
 
         :param str group_id: ID of the source group
+        :param str user_id: ID of the source user
         :param kwargs:
         """
         super(SourceGroup, self).__init__(**kwargs)
 
         self.type = 'group'
         self.group_id = group_id
+        self.user_id = user_id
 
     @property
     def sender_id(self):
@@ -103,6 +107,7 @@ class SourceGroup(Source):
         :rtype: str
         :return:
         """
+        warnings.warn("'sender_id' is deprecated.", DeprecationWarning, stacklevel=2)
         return self.group_id
 
 
@@ -114,16 +119,18 @@ class SourceRoom(Source):
     JSON object which contains the source room of the event.
     """
 
-    def __init__(self, room_id=None, **kwargs):
+    def __init__(self, room_id=None, user_id=None, **kwargs):
         """__init__ method.
 
         :param str room_id: ID of the source room
+        :param str user_id: ID of the source user
         :param kwargs:
         """
         super(SourceRoom, self).__init__(**kwargs)
 
         self.type = 'room'
         self.room_id = room_id
+        self.user_id = user_id
 
     @property
     def sender_id(self):
@@ -132,4 +139,5 @@ class SourceRoom(Source):
         :rtype: str
         :return:
         """
+        warnings.warn("'sender_id' is deprecated.", DeprecationWarning, stacklevel=2)
         return self.room_id

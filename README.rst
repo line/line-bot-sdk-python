@@ -534,9 +534,11 @@ Source
 - SourceGroup
     - type
     - group\_id
+    - user\_id
 - SourceRoom
     - type
     - room\_id
+    - user\_id
 
 Message
 ^^^^^^^

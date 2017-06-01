@@ -80,8 +80,9 @@ class TestWebhookParser(unittest.TestCase):
         self.assertEqual(events[1].timestamp, 1462629479859)
         self.assertIsInstance(events[1].source, SourceRoom)
         self.assertEqual(events[1].source.type, 'room')
-        self.assertEqual(events[1].source.room_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
-        self.assertEqual(events[1].source.sender_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
+        self.assertEqual(events[1].source.room_id, 'Ra8dbf4673c4c812cd491258042226c99')
+        self.assertEqual(events[1].source.user_id, None)
+        self.assertEqual(events[1].source.sender_id, 'Ra8dbf4673c4c812cd491258042226c99')
         self.assertIsInstance(events[1].message, ImageMessage)
         self.assertEqual(events[1].message.id, '325708')
         self.assertEqual(events[1].message.type, 'image')
@@ -170,8 +171,9 @@ class TestWebhookParser(unittest.TestCase):
         self.assertEqual(events[8].timestamp, 1462629479859)
         self.assertIsInstance(events[8].source, SourceGroup)
         self.assertEqual(events[8].source.type, 'group')
-        self.assertEqual(events[8].source.group_id, 'cxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
-        self.assertEqual(events[8].source.sender_id, 'cxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
+        self.assertEqual(events[8].source.group_id, 'Ca56f94637cc4347f90a25382909b24b9')
+        self.assertEqual(events[8].source.user_id, None)
+        self.assertEqual(events[8].source.sender_id, 'Ca56f94637cc4347f90a25382909b24b9')
 
         # LeaveEvent, SourceGroup
         self.assertIsInstance(events[9], LeaveEvent)
@@ -179,8 +181,9 @@ class TestWebhookParser(unittest.TestCase):
         self.assertEqual(events[9].timestamp, 1462629479859)
         self.assertIsInstance(events[9].source, SourceGroup)
         self.assertEqual(events[9].source.type, 'group')
-        self.assertEqual(events[9].source.group_id, 'cxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
-        self.assertEqual(events[9].source.sender_id, 'cxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
+        self.assertEqual(events[9].source.group_id, 'Ca56f94637cc4347f90a25382909b24b9')
+        self.assertEqual(events[9].source.user_id, None)
+        self.assertEqual(events[9].source.sender_id, 'Ca56f94637cc4347f90a25382909b24b9')
 
         # PostbackEvent, SourceUser
         self.assertIsInstance(events[10], PostbackEvent)
@@ -220,6 +223,36 @@ class TestWebhookParser(unittest.TestCase):
         self.assertEqual(events[12].beacon.type, 'enter')
         self.assertEqual(events[12].beacon.dm, '1234567890abcdef')
         self.assertEqual(events[12].beacon.device_message, bytearray(b'\x124Vx\x90\xab\xcd\xef'))
+
+        # MessageEvent, SourceGroup with userId, TextMessage
+        self.assertIsInstance(events[13], MessageEvent)
+        self.assertEqual(events[13].reply_token, 'nHuyWiB7yP5Zw52FIkcQobQuGDXCTA')
+        self.assertEqual(events[13].type, 'message')
+        self.assertEqual(events[13].timestamp, 1462629479859)
+        self.assertIsInstance(events[13].source, SourceGroup)
+        self.assertEqual(events[13].source.type, 'group')
+        self.assertEqual(events[13].source.group_id, 'Ca56f94637cc4347f90a25382909b24b9')
+        self.assertEqual(events[13].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
+        self.assertEqual(events[13].source.sender_id, 'Ca56f94637cc4347f90a25382909b24b9')
+        self.assertIsInstance(events[13].message, TextMessage)
+        self.assertEqual(events[13].message.id, '325708')
+        self.assertEqual(events[13].message.type, 'text')
+        self.assertEqual(events[13].message.text, 'Hello, world')
+
+        # MessageEvent, SourceRoom with userId, TextMessage
+        self.assertIsInstance(events[14], MessageEvent)
+        self.assertEqual(events[14].reply_token, 'nHuyWiB7yP5Zw52FIkcQobQuGDXCTA')
+        self.assertEqual(events[14].type, 'message')
+        self.assertEqual(events[14].timestamp, 1462629479859)
+        self.assertIsInstance(events[14].source, SourceRoom)
+        self.assertEqual(events[14].source.type, 'room')
+        self.assertEqual(events[14].source.room_id, 'Ra8dbf4673c4c812cd491258042226c99')
+        self.assertEqual(events[14].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
+        self.assertEqual(events[14].source.sender_id, 'Ra8dbf4673c4c812cd491258042226c99')
+        self.assertIsInstance(events[14].message, TextMessage)
+        self.assertEqual(events[14].message.id, '325708')
+        self.assertEqual(events[14].message.type, 'text')
+        self.assertEqual(events[14].message.text, 'Hello, world')
 
 
 class TestWebhookHandler(unittest.TestCase):

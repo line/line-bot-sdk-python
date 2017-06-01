@@ -43,9 +43,12 @@ class Source(with_metaclass(ABCMeta, Base)):
         If SourceGroup, return group_id.
         If SourceRoom, return room_id.
 
+        'sender_id' is deprecated.
+
         :rtype: str
         :return:
         """
+        warnings.warn("'sender_id' is deprecated.", DeprecationWarning, stacklevel=2)
         raise NotImplementedError
 
 
@@ -71,6 +74,8 @@ class SourceUser(Source):
     @property
     def sender_id(self):
         """Alias of user_id.
+
+        'sender_id' is deprecated. Use 'user_id' instead.
 
         :rtype: str
         :return:
@@ -104,6 +109,8 @@ class SourceGroup(Source):
     def sender_id(self):
         """Alias of group_id.
 
+        'sender_id' is deprecated. Use 'group_id' instead.
+
         :rtype: str
         :return:
         """
@@ -135,6 +142,8 @@ class SourceRoom(Source):
     @property
     def sender_id(self):
         """Alias of room_id.
+
+        'sender_id' is deprecated. Use 'room_id' instead.
 
         :rtype: str
         :return:

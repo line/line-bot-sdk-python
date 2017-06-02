@@ -32,7 +32,7 @@ from linebot.models import (
 
 class TestSignatureValidator(unittest.TestCase):
     def test_validate(self):
-        signature_validator = SignatureValidator('channel_secret')
+        signature_validator = SignatureValidator('a1b7349fed51378bae64e940012794db')
 
         self.assertEqual(
             signature_validator.validate(
@@ -53,15 +53,15 @@ class TestWebhookParser(unittest.TestCase):
         with open(webhook_sample_json_path) as fp:
             body = fp.read()
 
-        parser = WebhookParser('channel_secret')
+        parser = WebhookParser('a1b7349fed51378bae64e940012794db')
         # mock
         parser.signature_validator.validate = lambda a, b: True
 
-        events = parser.parse(body, 'channel_secret')
+        events = parser.parse(body, 'a1b7349fed51378bae64e940012794db')
 
         # MessageEvent, SourceUser, TextMessage
         self.assertIsInstance(events[0], MessageEvent)
-        self.assertEqual(events[0].reply_token, 'nHuyWiB7yP5Zw52FIkcQobQuGDXCTA')
+        self.assertEqual(events[0].reply_token, '7u6uSOrfTJAqfs6gOM+DJ4zV5Mo3lV0mVlJ8qocjnGkTfz4jsJsqvGqnUCNL9EjwaS2tDzhTFn5QaMiL6rQge8x48zKcK/ceO0dXdepuiV+Y3vuBZ4GWVtlD0gOXOoNTN/3rKWvAmo7iqDUNHZC9aAdB04t89/1O/w1cDnyilFU=')
         self.assertEqual(events[0].type, 'message')
         self.assertEqual(events[0].timestamp, 1462629479859)
         self.assertIsInstance(events[0].source, SourceUser)

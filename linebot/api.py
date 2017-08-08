@@ -199,8 +199,10 @@ class LineBotApi(object):
         :return: Profile instance
         """
         response = self._get(
-            '/v2/bot/group/{group_id}/member/{user_id}'.format(user_id=user_id,
-                group_id=group_id),
+            '/v2/bot/group/{group_id}/member/{user_id}'.format(
+                user_id=user_id,
+                group_id=group_id
+            ),
             timeout=timeout
         )
 
@@ -226,8 +228,10 @@ class LineBotApi(object):
         :return: Profile instance
         """
         response = self._get(
-            '/v2/bot/room/{room_id}/member/{user_id}'.format(user_id=user_id,
-                room_id=room_id),
+            '/v2/bot/room/{room_id}/member/{user_id}'.format(
+                user_id=user_id,
+                room_id=room_id
+            ),
             timeout=timeout
         )
 

@@ -30,7 +30,7 @@ class TestLineBotApi(unittest.TestCase):
     def test_get_profile(self):
         responses.add(
             responses.GET,
-            LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/group/group_id/' + \
+            LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/group/group_id/' +
             'member/user_id',
             json={
                 "displayName": "LINE taro",
@@ -46,7 +46,7 @@ class TestLineBotApi(unittest.TestCase):
         self.assertEqual(request.method, 'GET')
         self.assertEqual(
             request.url,
-            LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/group/group_id/' + \
+            LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/group/group_id/' +
             'member/user_id')
         self.assertEqual(profile.display_name, 'LINE taro')
         self.assertEqual(profile.user_id, 'Uxxxxxxxxxxxxxx...')

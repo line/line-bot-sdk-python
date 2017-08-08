@@ -125,7 +125,6 @@ https://devdocs.line.me/en/#multicast
 
     line_bot_api.multicast(['to1', 'to2'], TextSendMessage(text='Hello World!'))
 
-
 get\_profile(self, user\_id, timeout=None)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -141,6 +140,40 @@ https://devdocs.line.me/en/#bot-api-get-profile
     print(profile.user_id)
     print(profile.picture_url)
     print(profile.status_message)
+
+get\_group\_member\_profile(self, group\_id, user\_id, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Gets the user profile of a member of a group that
+    the bot is in. This can be the user ID of a user who has
+    not added the bot as a friend or has blocked the bot.
+
+https://devdocs.line.me/en/#get-group-room-member-profile
+
+.. code:: python
+
+    profile = line_bot_api.get_group_member_profile(group_id, user_id)
+
+    print(profile.display_name)
+    print(profile.user_id)
+    print(profile.picture_url)
+
+get\_room\_member\_profile(self, room\_id, user\_id, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Gets the user profile of a member of a room that
+    the bot is in. This can be the user ID of a user who has
+    not added the bot as a friend or has blocked the bot.
+
+https://devdocs.line.me/en/#get-group-room-member-profile
+
+.. code:: python
+
+    profile = line_bot_api.get_room_member_profile(room_id, user_id)
+
+    print(profile.display_name)
+    print(profile.user_id)
+    print(profile.picture_url)
 
 get\_message\_content(self, message\_id, timeout=None)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

@@ -32,7 +32,7 @@ from linebot.models import (
 
 class TestSignatureValidator(unittest.TestCase):
     def test_validate(self):
-        signature_validator = SignatureValidator('channel_secret')
+        signature_validator = SignatureValidator('channel_secret'):
 
         self.assertEqual(
             signature_validator.validate(

@@ -43,6 +43,28 @@ class Profile(Base):
         self.status_message = status_message
 
 
+class MemberIds(Base):
+    """MemberIds.
+
+    https://devdocs.line.me/en/#get-group-room-member-ids
+    """
+
+    def __init__(self, member_ids=None, next=None, **kwargs):
+        """__init__ method.
+
+        :param member_ids: List of user IDs of the members in the group or room.
+            Max: 100 user IDs
+        :type member_ids: list[str]
+        :param str next: continuationToken.
+            Only returned when there are more user IDs remaining in memberIds.
+        :param kwargs:
+        """
+        super(MemberIds, self).__init__(**kwargs)
+
+        self.member_ids = member_ids
+        self.next = next
+
+
 class MessageContent(object):
     """MessageContent.
 
@@ -54,7 +76,6 @@ class MessageContent(object):
 
         :param response: HttpResponse object
         :type response: T <= :py:class:`linebot.http_client.HttpResponse`
-        :param kwargs:
         """
         self.response = response
 

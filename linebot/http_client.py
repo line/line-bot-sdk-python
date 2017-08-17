@@ -32,7 +32,7 @@ class HttpClient(with_metaclass(ABCMeta)):
 
         :param timeout: (optional) How long to wait for the server
             to send data before giving up, as a float,
-            or a (connect timeout, readtimeout) float tuple.
+            or a (connect timeout, read timeout) float tuple.
             Default is :py:attr:`DEFAULT_TIMEOUT`
         :type timeout: float | tuple(float, float)
         :rtype: T <= :py:class:`HttpResponse`
@@ -50,7 +50,7 @@ class HttpClient(with_metaclass(ABCMeta)):
         :param bool stream: (optional) get content as stream
         :param timeout: (optional), How long to wait for the server
             to send data before giving up, as a float,
-            or a (connect timeout, readtimeout) float tuple.
+            or a (connect timeout, read timeout) float tuple.
             Default is :py:attr:`self.timeout`
         :type timeout: float | tuple(float, float)
         :rtype: T <= :py:class:`HttpResponse`
@@ -67,7 +67,7 @@ class HttpClient(with_metaclass(ABCMeta)):
         :param data: (optional) Dictionary, bytes, or file-like object to send in the body
         :param timeout: (optional), How long to wait for the server
             to send data before giving up, as a float,
-            or a (connect timeout, readtimeout) float tuple.
+            or a (connect timeout, read timeout) float tuple.
             Default is :py:attr:`self.timeout`
         :type timeout: float | tuple(float, float)
         :rtype: T <= :py:class:`HttpResponse`
@@ -84,7 +84,7 @@ class RequestsHttpClient(HttpClient):
 
         :param timeout: (optional) How long to wait for the server
             to send data before giving up, as a float,
-            or a (connect timeout, readtimeout) float tuple.
+            or a (connect timeout, read timeout) float tuple.
             Default is :py:attr:`DEFAULT_TIMEOUT`
         :type timeout: float | tuple(float, float)
         """
@@ -99,7 +99,7 @@ class RequestsHttpClient(HttpClient):
         :param bool stream: (optional) get content as stream
         :param timeout: (optional), How long to wait for the server
             to send data before giving up, as a float,
-            or a (connect timeout, readtimeout) float tuple.
+            or a (connect timeout, read timeout) float tuple.
             Default is :py:attr:`self.timeout`
         :type timeout: float | tuple(float, float)
         :rtype: :py:class:`RequestsHttpResponse`
@@ -122,7 +122,7 @@ class RequestsHttpClient(HttpClient):
         :param data: (optional) Dictionary, bytes, or file-like object to send in the body
         :param timeout: (optional), How long to wait for the server
             to send data before giving up, as a float,
-            or a (connect timeout, readtimeout) float tuple.
+            or a (connect timeout, read timeout) float tuple.
             Default is :py:attr:`self.timeout`
         :type timeout: float | tuple(float, float)
         :rtype: :py:class:`RequestsHttpResponse`

@@ -28,6 +28,30 @@ class TestLineBotApi(unittest.TestCase):
         self.tested = LineBotApi('channel_secret')
 
     @responses.activate
+    def test_get_group_member_profile(self):
+        responses.add(
+            responses.GET,
+            LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/group/group_id/member/user_id',
+            json={
+                "displayName": "LINE taro",
+                "userId": "Uxxxxxxxxxxxxxx...",
+                "pictureUrl": "http://obs.line-apps.com/..."
+            },
+            status=200
+        )
+
+        profile = self.tested.get_group_member_profile('group_id', 'user_id')
+
+        request = responses.calls[0].request
+        self.assertEqual(request.method, 'GET')
+        self.assertEqual(
+            request.url,
+            LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/group/group_id/member/user_id')
+        self.assertEqual(profile.display_name, 'LINE taro')
+        self.assertEqual(profile.user_id, 'Uxxxxxxxxxxxxxx...')
+        self.assertEqual(profile.picture_url, 'http://obs.line-apps.com/...')
+
+    @responses.activate
     def test_get_room_member_profile(self):
         responses.add(
             responses.GET,

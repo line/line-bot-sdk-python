@@ -17,6 +17,7 @@ from __future__ import unicode_literals, absolute_import
 import unittest
 
 import responses
+
 from linebot import (
     LineBotApi
 )

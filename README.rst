@@ -142,11 +142,11 @@ https://devdocs.line.me/en/#bot-api-get-profile
     print(profile.status_message)
 
 get\_group\_member\_profile(self, group\_id, user\_id, timeout=None)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Gets the user profile of a member of a group that
-    the bot is in. This can be the user ID of a user who has
-    not added the bot as a friend or has blocked the bot.
+Gets the user profile of a member of a group that the bot is in. This can be
+the user ID of a user who has not added the bot as a friend or has blocked 
+the bot.
 
 https://devdocs.line.me/en/#get-group-room-member-profile
 
@@ -159,11 +159,10 @@ https://devdocs.line.me/en/#get-group-room-member-profile
     print(profile.picture_url)
 
 get\_room\_member\_profile(self, room\_id, user\_id, timeout=None)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Gets the user profile of a member of a room that
-    the bot is in. This can be the user ID of a user who has
-    not added the bot as a friend or has blocked the bot.
+Gets the user profile of a member of a room that the bot is in. This can be the
+user ID of a user who has not added the bot as a friend or has blocked the bot.
 
 https://devdocs.line.me/en/#get-group-room-member-profile
 

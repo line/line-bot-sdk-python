@@ -146,7 +146,7 @@ class ConfirmTemplate(Template):
         self.actions = _get_actions(actions)
 
 
-class CarouselTemplate(Base):
+class CarouselTemplate(Template):
     """CarouselTemplate.
 
     https://devdocs.line.me/en/#carousel

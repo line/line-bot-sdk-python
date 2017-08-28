@@ -179,6 +179,64 @@ class LineBotApi(object):
 
         return Profile.new_from_json_dict(response.json)
 
+    def get_group_member_profile(self, group_id, user_id, timeout=None):
+        """Call get group member profile API.
+
+        https://devdocs.line.me/en/#get-group-room-member-profile
+
+        Gets the user profile of a member of a group that
+        the bot is in. This can be the user ID of a user who has
+        not added the bot as a friend or has blocked the bot.
+
+        :param str user_id: User ID
+        :param str group_id: Group ID
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, readtimeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        :rtype: :py:class:`linebot.models.responses.Profile`
+        :return: Profile instance
+        """
+        response = self._get(
+            '/v2/bot/group/{group_id}/member/{user_id}'.format(
+                user_id=user_id,
+                group_id=group_id
+            ),
+            timeout=timeout
+        )
+
+        return Profile.new_from_json_dict(response.json)
+
+    def get_room_member_profile(self, room_id, user_id, timeout=None):
+        """Call get room member profile API.
+
+        https://devdocs.line.me/en/#get-group-room-member-profile
+
+        Gets the user profile of a member of a room that
+        the bot is in. This can be the user ID of a user who has
+        not added the bot as a friend or has blocked the bot.
+
+        :param str user_id: User ID
+        :param str room_id: Room ID
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, readtimeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        :rtype: :py:class:`linebot.models.responses.Profile`
+        :return: Profile instance
+        """
+        response = self._get(
+            '/v2/bot/room/{room_id}/member/{user_id}'.format(
+                user_id=user_id,
+                room_id=room_id
+            ),
+            timeout=timeout
+        )
+
+        return Profile.new_from_json_dict(response.json)
+
     def get_message_content(self, message_id, timeout=None):
         """Call get content API.
 

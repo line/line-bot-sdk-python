@@ -38,7 +38,7 @@ class LineBotApi(object):
         :param str endpoint: (optional) Default is https://api.line.me
         :param timeout: (optional) How long to wait for the server
             to send data before giving up, as a float,
-            or a (connect timeout, readtimeout) float tuple.
+            or a (connect timeout, read timeout) float tuple.
             Default is linebot.http_client.HttpClient.DEFAULT_TIMEOUT
         :type timeout: float | tuple(float, float)
         :param http_client: (optional) Default is
@@ -78,7 +78,7 @@ class LineBotApi(object):
             list[T <= :py:class:`linebot.models.send_messages.SendMessage`]
         :param timeout: (optional) How long to wait for the server
             to send data before giving up, as a float,
-            or a (connect timeout, readtimeout) float tuple.
+            or a (connect timeout, read timeout) float tuple.
             Default is self.http_client.timeout
         :type timeout: float | tuple(float, float)
         """
@@ -108,7 +108,7 @@ class LineBotApi(object):
             list[T <= :py:class:`linebot.models.send_messages.SendMessage`]
         :param timeout: (optional) How long to wait for the server
             to send data before giving up, as a float,
-            or a (connect timeout, readtimeout) float tuple.
+            or a (connect timeout, read timeout) float tuple.
             Default is self.http_client.timeout
         :type timeout: float | tuple(float, float)
         """
@@ -140,7 +140,7 @@ class LineBotApi(object):
             list[T <= :py:class:`linebot.models.send_messages.SendMessage`]
         :param timeout: (optional) How long to wait for the server
             to send data before giving up, as a float,
-            or a (connect timeout, readtimeout) float tuple.
+            or a (connect timeout, read timeout) float tuple.
             Default is self.http_client.timeout
         :type timeout: float | tuple(float, float)
         """
@@ -166,7 +166,7 @@ class LineBotApi(object):
         :param str user_id: User ID
         :param timeout: (optional) How long to wait for the server
             to send data before giving up, as a float,
-            or a (connect timeout, readtimeout) float tuple.
+            or a (connect timeout, read timeout) float tuple.
             Default is self.http_client.timeout
         :type timeout: float | tuple(float, float)
         :rtype: :py:class:`linebot.models.responses.Profile`
@@ -188,21 +188,18 @@ class LineBotApi(object):
         the bot is in. This can be the user ID of a user who has
         not added the bot as a friend or has blocked the bot.
 
-        :param str user_id: User ID
         :param str group_id: Group ID
+        :param str user_id: User ID
         :param timeout: (optional) How long to wait for the server
             to send data before giving up, as a float,
-            or a (connect timeout, readtimeout) float tuple.
+            or a (connect timeout, read timeout) float tuple.
             Default is self.http_client.timeout
         :type timeout: float | tuple(float, float)
         :rtype: :py:class:`linebot.models.responses.Profile`
         :return: Profile instance
         """
         response = self._get(
-            '/v2/bot/group/{group_id}/member/{user_id}'.format(
-                user_id=user_id,
-                group_id=group_id
-            ),
+            '/v2/bot/group/{group_id}/member/{user_id}'.format(group_id=group_id, user_id=user_id),
             timeout=timeout
         )
 
@@ -217,21 +214,18 @@ class LineBotApi(object):
         the bot is in. This can be the user ID of a user who has
         not added the bot as a friend or has blocked the bot.
 
-        :param str user_id: User ID
         :param str room_id: Room ID
+        :param str user_id: User ID
         :param timeout: (optional) How long to wait for the server
             to send data before giving up, as a float,
-            or a (connect timeout, readtimeout) float tuple.
+            or a (connect timeout, read timeout) float tuple.
             Default is self.http_client.timeout
         :type timeout: float | tuple(float, float)
         :rtype: :py:class:`linebot.models.responses.Profile`
         :return: Profile instance
         """
         response = self._get(
-            '/v2/bot/room/{room_id}/member/{user_id}'.format(
-                user_id=user_id,
-                room_id=room_id
-            ),
+            '/v2/bot/room/{room_id}/member/{user_id}'.format(room_id=room_id, user_id=user_id),
             timeout=timeout
         )
 
@@ -247,7 +241,7 @@ class LineBotApi(object):
         :param str message_id: Message ID
         :param timeout: (optional) How long to wait for the server
             to send data before giving up, as a float,
-            or a (connect timeout, readtimeout) float tuple.
+            or a (connect timeout, read timeout) float tuple.
             Default is self.http_client.timeout
         :type timeout: float | tuple(float, float)
         :rtype: :py:class:`linebot.models.responses.MessageContent`
@@ -270,7 +264,7 @@ class LineBotApi(object):
         :param str group_id: Group ID
         :param timeout: (optional) How long to wait for the server
             to send data before giving up, as a float,
-            or a (connect timeout, readtimeout) float tuple.
+            or a (connect timeout, read timeout) float tuple.
             Default is self.http_client.timeout
         :type timeout: float | tuple(float, float)
         """
@@ -289,7 +283,7 @@ class LineBotApi(object):
         :param str room_id: Room ID
         :param timeout: (optional) How long to wait for the server
             to send data before giving up, as a float,
-            or a (connect timeout, readtimeout) float tuple.
+            or a (connect timeout, read timeout) float tuple.
             Default is self.http_client.timeout
         :type timeout: float | tuple(float, float)
         """

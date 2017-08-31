@@ -239,7 +239,7 @@ class CarouselColumn(Base):
 
 
 class ImageCarouselColumn(Base):
-    """ImageCarouselColumn
+    """ImageCarouselColumn.
 
     https://devdocs.line.me/en/#column-object-for-image-carousel
     """

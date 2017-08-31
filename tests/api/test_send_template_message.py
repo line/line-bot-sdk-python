@@ -25,7 +25,7 @@ from linebot import (
 from linebot.models import (
     TemplateSendMessage, ButtonsTemplate,
     PostbackTemplateAction, MessageTemplateAction, URITemplateAction,
-    ConfirmTemplate, CarouselTemplate, CarouselColumn
+    ConfirmTemplate, CarouselTemplate, CarouselColumn, ImageCarouselTemplate, ImageCarouselColumn
 )
 
 
@@ -223,6 +223,100 @@ class TestLineBotApi(unittest.TestCase):
             }
         }]
 
+        self.image_carousel_template_message = TemplateSendMessage(
+            alt_text='Image carousel template',
+            template=ImageCarouselTemplate(
+                columns=[
+                    ImageCarouselColumn(
+                        image_url='https://example.com/'
+                                  'item1.jpg',
+                        actions=[
+                            PostbackTemplateAction(
+                                label='postback1', text='postback text1',
+                                data='action=buy&itemid=1'
+                            ),
+                            MessageTemplateAction(
+                                label='message1', text='message text1'
+                            ),
+                            URITemplateAction(
+                                label='uri1',
+                                uri='http://example.com/1'
+                            )
+                        ]
+                    ),
+                    ImageCarouselColumn(
+                        image_url='https://example.com'
+                                  '/item2.jpg',
+                        actions=[
+                            PostbackTemplateAction(
+                                label='postback2', text='postback text2',
+                                data='action=buy&itemid=2'
+                            ),
+                            MessageTemplateAction(
+                                label='message2', text='message text2'
+                            ),
+                            URITemplateAction(
+                                label='uri2',
+                                uri='http://example.com/2'
+                            )
+                        ]
+                    )
+                ]
+            )
+        )
+
+        self.image_carousel_message = [{
+            "type": "template",
+            "altText": "Image carousel template",
+            "template": {
+                "type": "image_carousel",
+                "columns": [
+                    {
+                        "imageUrl": "https://example.com/item1.jpg",
+                        "action": [
+                            {
+                                "type": "postback",
+                                "label": "postback1",
+                                "data": "action=buy&itemid=1",
+                                "text": "postback text1"
+                            },
+                            {
+                                "type": "message",
+                                "label": "message1",
+                                "text": "message text1"
+                            },
+                            {
+                                "type": "uri",
+                                "label": "uri1",
+                                "uri": "http://example.com/1"
+                            }
+                        ]
+                    },
+                    {
+                        "imageUrl": "https://example.com/item2.jpg",
+                        "action": [
+                            {
+                                "type": "postback",
+                                "label": "postback2",
+                                "data": "action=buy&itemid=2",
+                                "text": "postback text2"
+                            },
+                            {
+                                "type": "message",
+                                "label": "message2",
+                                "text": "message text2"
+                            },
+                            {
+                                "type": "uri",
+                                "label": "uri2",
+                                "uri": "http://example.com/2"
+                            }
+                        ]
+                    }
+                ]
+            }
+        }]
+
     @responses.activate
     def test_push_buttons_template_message(self):
         responses.add(
@@ -382,6 +476,77 @@ class TestLineBotApi(unittest.TestCase):
             {
                 "to": ['to1', 'to2'],
                 "messages": self.carousel_message
+            }
+        )
+
+    @responses.activate
+    def test_push_image_carousel_template_message(self):
+        responses.add(
+            responses.POST,
+            LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/message/push',
+            json={}, status=200
+        )
+
+        self.tested.push_message('to', self.image_carousel_template_message)
+
+        request = responses.calls[0].request
+        self.assertEqual(request.method, 'POST')
+        self.assertEqual(
+            request.url,
+            LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/message/push')
+        print('000000000000000000000000000000000000000000000')
+        print(json.loads(request.body))
+        self.assertEqual(
+            json.loads(request.body),
+            {
+                "to": "to",
+                "messages": self.image_carousel_message
+            }
+        )
+
+    @responses.activate
+    def test_reply_image_carousel_template_message(self):
+        responses.add(
+            responses.POST,
+            LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/message/reply',
+            json={}, status=200
+        )
+
+        self.tested.reply_message('replyToken', self.image_carousel_template_message)
+
+        request = responses.calls[0].request
+        self.assertEqual(request.method, 'POST')
+        self.assertEqual(
+            request.url,
+            LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/message/reply')
+        self.assertEqual(
+            json.loads(request.body),
+            {
+                "replyToken": "replyToken",
+                "messages": self.image_carousel_message
+            }
+        )
+
+    @responses.activate
+    def test_multicast_image_carousel_template_message(self):
+        responses.add(
+            responses.POST,
+            LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/message/multicast',
+            json={}, status=200
+        )
+
+        self.tested.multicast(['to1', 'to2'], self.image_carousel_template_message)
+
+        request = responses.calls[0].request
+        self.assertEqual(request.method, 'POST')
+        self.assertEqual(
+            request.url,
+            LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/message/multicast')
+        self.assertEqual(
+            json.loads(request.body),
+            {
+                "to": ['to1', 'to2'],
+                "messages": self.image_carousel_message
             }
         )
 

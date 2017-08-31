@@ -67,7 +67,8 @@ class TemplateSendMessage(SendMessage):
             template, {
                 'buttons': ButtonsTemplate,
                 'confirm': ConfirmTemplate,
-                'carousel': CarouselTemplate
+                'carousel': CarouselTemplate,
+                'image_carousel': ImageCarouselTemplate
             }
         )
 
@@ -175,6 +176,35 @@ class CarouselTemplate(Template):
         self.columns = new_columns
 
 
+class ImageCarouselTemplate(Template):
+    """ImageCarouselTemplate.
+
+    https://devdocs.line.me/en/#image-carousel
+
+    Template message with multiple images columns which can be cycled like as carousel.
+    """
+
+    def __init__(self, columns=None, **kwargs):
+        """__init__ method.
+
+        :param columns: Array of columns.
+            Max: 5
+        :type columns: list[T <= :py:class:`linebot.models.template.ImageCarouselColumn`]
+        :param kwargs:
+        """
+        super(ImageCarouselTemplate, self).__init__(**kwargs)
+
+        self.type = 'image_carousel'
+
+        new_columns = []
+        if columns:
+            for column in columns:
+                new_columns.append(self.get_or_new_from_json_dict(
+                    column, ImageCarouselColumn
+                ))
+        self.columns = new_columns
+
+
 class CarouselColumn(Base):
     """CarouselColumn.
 
@@ -206,6 +236,32 @@ class CarouselColumn(Base):
         self.title = title
         self.thumbnail_image_url = thumbnail_image_url
         self.actions = _get_actions(actions)
+
+
+class ImageCarouselColumn(Base):
+    """ImageCarouselColumn
+
+    https://devdocs.line.me/en/#column-object-for-image-carousel
+    """
+
+    def __init__(self, image_url=None, actions=None, **kwargs):
+        """__init__ method.
+
+        :param str image_url: Image URL.
+            HTTPS
+            JPEG or PNG
+            Aspect ratio: 1:1
+            Max width: 1024px
+            Max: 1 MB
+        :param action: Action when image is tapped
+            Max: 5
+        :type action: list[T <= :py:class:`linebot.models.template.TemplateAction`]
+        :param kwargs:
+        """
+        super(ImageCarouselColumn, self).__init__(**kwargs)
+
+        self.image_url = image_url
+        self.action = _get_actions(actions)
 
 
 class TemplateAction(with_metaclass(ABCMeta, Base)):

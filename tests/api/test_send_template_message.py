@@ -494,8 +494,6 @@ class TestLineBotApi(unittest.TestCase):
         self.assertEqual(
             request.url,
             LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/message/push')
-        print('000000000000000000000000000000000000000000000')
-        print(json.loads(request.body))
         self.assertEqual(
             json.loads(request.body),
             {

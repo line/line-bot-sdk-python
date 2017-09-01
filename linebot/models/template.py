@@ -244,7 +244,7 @@ class ImageCarouselColumn(Base):
     https://devdocs.line.me/en/#column-object-for-image-carousel
     """
 
-    def __init__(self, image_url=None, actions=None, **kwargs):
+    def __init__(self, image_url=None, action=None, **kwargs):
         """__init__ method.
 
         :param str image_url: Image URL.
@@ -261,7 +261,7 @@ class ImageCarouselColumn(Base):
         super(ImageCarouselColumn, self).__init__(**kwargs)
 
         self.image_url = image_url
-        self.action = _get_actions(actions)
+        self.action = _get_actions(action)
 
 
 class TemplateAction(with_metaclass(ABCMeta, Base)):

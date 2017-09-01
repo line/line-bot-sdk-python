@@ -230,34 +230,29 @@ class TestLineBotApi(unittest.TestCase):
                     ImageCarouselColumn(
                         image_url='https://example.com/'
                                   'item1.jpg',
-                        actions=[
+                        action=[
                             PostbackTemplateAction(
                                 label='postback1', text='postback text1',
                                 data='action=buy&itemid=1'
-                            ),
-                            MessageTemplateAction(
-                                label='message1', text='message text1'
-                            ),
-                            URITemplateAction(
-                                label='uri1',
-                                uri='http://example.com/1'
                             )
                         ]
                     ),
                     ImageCarouselColumn(
                         image_url='https://example.com'
                                   '/item2.jpg',
-                        actions=[
-                            PostbackTemplateAction(
-                                label='postback2', text='postback text2',
-                                data='action=buy&itemid=2'
-                            ),
+                        action=[
                             MessageTemplateAction(
                                 label='message2', text='message text2'
-                            ),
+                            )
+                        ]
+                    ),
+                    ImageCarouselColumn(
+                        image_url='https://example.com/'
+                                  'item3.jpg',
+                        action=[
                             URITemplateAction(
-                                label='uri2',
-                                uri='http://example.com/2'
+                                label='uri1',
+                                uri='https://example.com/1'
                             )
                         ]
                     )
@@ -279,16 +274,6 @@ class TestLineBotApi(unittest.TestCase):
                                 "label": "postback1",
                                 "data": "action=buy&itemid=1",
                                 "text": "postback text1"
-                            },
-                            {
-                                "type": "message",
-                                "label": "message1",
-                                "text": "message text1"
-                            },
-                            {
-                                "type": "uri",
-                                "label": "uri1",
-                                "uri": "http://example.com/1"
                             }
                         ]
                     },
@@ -296,20 +281,19 @@ class TestLineBotApi(unittest.TestCase):
                         "imageUrl": "https://example.com/item2.jpg",
                         "action": [
                             {
-                                "type": "postback",
-                                "label": "postback2",
-                                "data": "action=buy&itemid=2",
-                                "text": "postback text2"
-                            },
-                            {
                                 "type": "message",
                                 "label": "message2",
                                 "text": "message text2"
-                            },
+                            }
+                        ]
+                    },
+                    {
+                        "imageUrl": "https://example.com/item3.jpg",
+                        "action": [
                             {
                                 "type": "uri",
-                                "label": "uri2",
-                                "uri": "http://example.com/2"
+                                "label": "uri1",
+                                "uri": "https://example.com/1"
                             }
                         ]
                     }

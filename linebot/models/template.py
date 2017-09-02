@@ -24,17 +24,22 @@ from .base import Base
 from .send_messages import SendMessage
 
 
+def _get_action(action):
+    action_obj = Base.get_or_new_from_json_dict_with_types(
+        action, {
+            'postback': PostbackTemplateAction,
+            'message': MessageTemplateAction,
+            'uri': URITemplateAction
+        }
+    )
+    return action_obj
+
+
 def _get_actions(actions):
     new_actions = []
     if actions:
         for action in actions:
-            action_obj = Base.get_or_new_from_json_dict_with_types(
-                action, {
-                    'postback': PostbackTemplateAction,
-                    'message': MessageTemplateAction,
-                    'uri': URITemplateAction
-                }
-            )
+            action_obj = _get_action(action)
             if action_obj:
                 new_actions.append(action_obj)
 
@@ -255,13 +260,13 @@ class ImageCarouselColumn(Base):
             Max: 1 MB
         :param action: Action when image is tapped
             Max: 5
-        :type action: list[T <= :py:class:`linebot.models.template.TemplateAction`]
+        :type action: T <= :py:class:`linebot.models.template.TemplateAction`
         :param kwargs:
         """
         super(ImageCarouselColumn, self).__init__(**kwargs)
 
         self.image_url = image_url
-        self.action = _get_actions(action)
+        self.action = _get_action(action)
 
 
 class TemplateAction(with_metaclass(ABCMeta, Base)):

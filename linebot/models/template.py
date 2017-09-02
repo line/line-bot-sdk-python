@@ -323,6 +323,7 @@ class ImagePostbackTemplateAction(TemplateAction):
     When this action is tapped, a postback event is returned
     via webhook with the specified string in the data field.
     """
+
     def __init__(self, label=None, data=None, **kwargs):
         """__init__ method.
 

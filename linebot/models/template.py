@@ -28,6 +28,7 @@ def _get_action(action):
     action_obj = Base.get_or_new_from_json_dict_with_types(
         action, {
             'postback': PostbackTemplateAction,
+            'image_postback': ImagePostbackTemplateAction,
             'message': MessageTemplateAction,
             'uri': URITemplateAction
         }
@@ -312,6 +313,31 @@ class PostbackTemplateAction(TemplateAction):
         self.label = label
         self.data = data
         self.text = text
+
+
+class ImagePostbackTemplateAction(TemplateAction):
+    """ImagePostbackTemplateAction.
+
+    https://devdocs.line.me/en/#template-messages
+
+    When this action is tapped, a postback event is returned
+    via webhook with the specified string in the data field.
+    """
+    def __init__(self, label=None, data=None, **kwargs):
+        """__init__ method.
+
+        :param str label: Label for the action.
+            Max: 20 characters
+        :param str data: String returned via webhook in the postback.data property
+            of the postback event.
+            Max: 300 characters
+        :param kwargs:
+        """
+        super(ImagePostbackTemplateAction, self).__init__(**kwargs)
+
+        self.type = 'postback'
+        self.label = label
+        self.data = data
 
 
 class MessageTemplateAction(TemplateAction):

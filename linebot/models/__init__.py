@@ -81,4 +81,5 @@ from .template import (  # noqa
     URITemplateAction,
     ImageCarouselTemplate,
     ImageCarouselColumn,
+    ImagePostbackTemplateAction,
 )

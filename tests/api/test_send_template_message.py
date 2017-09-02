@@ -230,31 +230,25 @@ class TestLineBotApi(unittest.TestCase):
                     ImageCarouselColumn(
                         image_url='https://example.com/'
                                   'item1.jpg',
-                        action=[
-                            PostbackTemplateAction(
-                                label='postback1', text='postback text1',
-                                data='action=buy&itemid=1'
-                            )
-                        ]
+                        action=PostbackTemplateAction(
+                            label='postback1', text='postback text1',
+                            data='action=buy&itemid=1'
+                        )
                     ),
                     ImageCarouselColumn(
                         image_url='https://example.com'
                                   '/item2.jpg',
-                        action=[
-                            MessageTemplateAction(
-                                label='message2', text='message text2'
-                            )
-                        ]
+                        action=MessageTemplateAction(
+                            label='message2', text='message text2'
+                        )
                     ),
                     ImageCarouselColumn(
                         image_url='https://example.com/'
                                   'item3.jpg',
-                        action=[
-                            URITemplateAction(
-                                label='uri1',
-                                uri='https://example.com/1'
-                            )
-                        ]
+                        action=URITemplateAction(
+                            label='uri1',
+                            uri='https://example.com/1'
+                        )
                     )
                 ]
             )
@@ -268,34 +262,28 @@ class TestLineBotApi(unittest.TestCase):
                 "columns": [
                     {
                         "imageUrl": "https://example.com/item1.jpg",
-                        "action": [
-                            {
-                                "type": "postback",
-                                "label": "postback1",
-                                "data": "action=buy&itemid=1",
-                                "text": "postback text1"
-                            }
-                        ]
+                        "action": {
+                            "type": "postback",
+                            "label": "postback1",
+                            "data": "action=buy&itemid=1",
+                            "text": "postback text1"
+                        }
                     },
                     {
                         "imageUrl": "https://example.com/item2.jpg",
-                        "action": [
-                            {
-                                "type": "message",
-                                "label": "message2",
-                                "text": "message text2"
-                            }
-                        ]
+                        "action": {
+                            "type": "message",
+                            "label": "message2",
+                            "text": "message text2"
+                        }
                     },
                     {
                         "imageUrl": "https://example.com/item3.jpg",
-                        "action": [
-                            {
-                                "type": "uri",
-                                "label": "uri1",
-                                "uri": "https://example.com/1"
-                            }
-                        ]
+                        "action": {
+                            "type": "uri",
+                            "label": "uri1",
+                            "uri": "https://example.com/1"
+                        }
                     }
                 ]
             }

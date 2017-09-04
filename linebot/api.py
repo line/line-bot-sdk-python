@@ -22,7 +22,7 @@ from .__about__ import __version__
 from .exceptions import LineBotApiError
 from .http_client import HttpClient, RequestsHttpClient
 from .models.error import Error
-from .models.responses import Profile, MessageContent
+from .models.responses import Profile, MemberIds, MessageContent
 
 
 class LineBotApi(object):
@@ -231,6 +231,64 @@ class LineBotApi(object):
 
         return Profile.new_from_json_dict(response.json)
 
+    def get_group_member_ids(self, group_id, start=None, timeout=None):
+        """Call get group member IDs API.
+
+        https://devdocs.line.me/en/#get-group-room-member-ids
+
+        Gets the user IDs of the members of a group that the bot is in.
+        This includes the user IDs of users who have not added the bot as a friend
+        or has blocked the bot.
+
+        :param str group_id: Group ID
+        :param str start: continuationToken
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        :rtype: :py:class:`linebot.models.responses.MemberIds`
+        :return: MemberIds instance
+        """
+        params = None if start is None else {'start': start}
+
+        response = self._get(
+            '/v2/bot/group/{group_id}/members/ids'.format(group_id=group_id),
+            params=params,
+            timeout=timeout
+        )
+
+        return MemberIds.new_from_json_dict(response.json)
+
+    def get_room_member_ids(self, room_id, start=None, timeout=None):
+        """Call get room member IDs API.
+
+        https://devdocs.line.me/en/#get-group-room-member-ids
+
+        Gets the user IDs of the members of a group that the bot is in.
+        This includes the user IDs of users who have not added the bot as a friend
+        or has blocked the bot.
+
+        :param str room_id: Room ID
+        :param str start: continuationToken
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        :rtype: :py:class:`linebot.models.responses.MemberIds`
+        :return: MemberIds instance
+        """
+        params = None if start is None else {'start': start}
+
+        response = self._get(
+            '/v2/bot/room/{room_id}/members/ids'.format(room_id=room_id),
+            params=params,
+            timeout=timeout
+        )
+
+        return MemberIds.new_from_json_dict(response.json)
+
     def get_message_content(self, message_id, timeout=None):
         """Call get content API.
 
@@ -292,11 +350,11 @@ class LineBotApi(object):
             timeout=timeout
         )
 
-    def _get(self, path, stream=False, timeout=None):
+    def _get(self, path, params=None, stream=False, timeout=None):
         url = self.endpoint + path
 
         response = self.http_client.get(
-            url, headers=self.headers, stream=stream, timeout=timeout
+            url, headers=self.headers, params=params, stream=stream, timeout=timeout
         )
 
         self.__check_error(response)

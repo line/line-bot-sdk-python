@@ -174,6 +174,36 @@ https://devdocs.line.me/en/#get-group-room-member-profile
     print(profile.user_id)
     print(profile.picture_url)
 
+get\_group\_member\_ids(self, group\_id, start=None, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Gets the user IDs of the members of a group that the bot is in.
+This includes the user IDs of users who have not added the bot as a friend or has blocked the bot.
+
+https://devdocs.line.me/en/#get-group-room-member-ids
+
+.. code:: python
+
+    member_ids_res = line_bot_api.get_group_member_ids(group_id)
+
+    print(member_ids_res.member_ids)
+    print(member_ids_res.next)
+
+get\_room\_member\_ids(self, room\_id, start=None, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Gets the user IDs of the members of a room that the bot is in.
+This includes the user IDs of users who have not added the bot as a friend or has blocked the bot.
+
+https://devdocs.line.me/en/#get-group-room-member-ids
+
+.. code:: python
+
+    member_ids_res = line_bot_api.get_room_member_ids(room_id)
+
+    print(member_ids_res.member_ids)
+    print(member_ids_res.next)
+
 get\_message\_content(self, message\_id, timeout=None)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

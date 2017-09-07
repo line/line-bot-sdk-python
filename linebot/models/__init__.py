@@ -79,4 +79,6 @@ from .template import (  # noqa
     PostbackTemplateAction,
     MessageTemplateAction,
     URITemplateAction,
+    ImageCarouselTemplate,
+    ImageCarouselColumn,
 )

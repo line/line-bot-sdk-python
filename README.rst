@@ -145,7 +145,7 @@ get\_group\_member\_profile(self, group\_id, user\_id, timeout=None)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Gets the user profile of a member of a group that the bot is in. This can be
-the user ID of a user who has not added the bot as a friend or has blocked 
+the user ID of a user who has not added the bot as a friend or has blocked
 the bot.
 
 https://devdocs.line.me/en/#get-group-room-member-profile
@@ -577,6 +577,10 @@ Event
     - reply\_token
     - postback: Postback
         - data
+        - params: Params
+          - date
+          - time
+          - datetime
 - BeaconEvent
     - type
     - timestamp

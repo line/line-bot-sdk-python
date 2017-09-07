@@ -31,6 +31,7 @@ from .events import (  # noqa
     PostbackEvent,
     BeaconEvent,
     Postback,
+    Params,
     Beacon,
 )
 from .imagemap import (  # noqa

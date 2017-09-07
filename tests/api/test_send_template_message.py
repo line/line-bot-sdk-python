@@ -26,7 +26,7 @@ from linebot.models import (
     TemplateSendMessage, ButtonsTemplate,
     PostbackTemplateAction, MessageTemplateAction, URITemplateAction,
     ConfirmTemplate, CarouselTemplate, CarouselColumn,
-    ImageCarouselTemplate, ImageCarouselColumn, ImagePostbackTemplateAction
+    ImageCarouselTemplate, ImageCarouselColumn
 )
 
 
@@ -231,7 +231,7 @@ class TestLineBotApi(unittest.TestCase):
                     ImageCarouselColumn(
                         image_url='https://example.com/'
                                   'item1.jpg',
-                        action=ImagePostbackTemplateAction(
+                        action=PostbackTemplateAction(
                             label='postback1',
                             data='action=buy&itemid=1'
                         )
@@ -267,7 +267,8 @@ class TestLineBotApi(unittest.TestCase):
                         "action": {
                             "type": "postback",
                             "label": "postback1",
-                            "data": "action=buy&itemid=1"
+                            "data": "action=buy&itemid=1",
+                            "text": None
                         }
                     },
                     {

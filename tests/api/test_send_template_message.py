@@ -24,7 +24,8 @@ from linebot import (
 )
 from linebot.models import (
     TemplateSendMessage, ButtonsTemplate,
-    PostbackTemplateAction, MessageTemplateAction, URITemplateAction,
+    PostbackTemplateAction, MessageTemplateAction,
+    URITemplateAction, DatetimePickerTemplateAction,
     ConfirmTemplate, CarouselTemplate, CarouselColumn,
     ImageCarouselTemplate, ImageCarouselColumn
 )
@@ -164,6 +165,37 @@ class TestLineBotApi(unittest.TestCase):
                                 uri='http://example.com/2'
                             )
                         ]
+                    ),
+                    CarouselColumn(
+                        thumbnail_image_url='https://example.com'
+                                            '/item3.jpg',
+                        title='this is menu3', text='description3',
+                        actions=[
+                            DatetimePickerTemplateAction(
+                                label="datetime picker date",
+                                data="action=sell&itemid=2&mode=date",
+                                mode="date",
+                                initial="2013-04-01",
+                                min="2011-06-23",
+                                max="2017-09-08"
+                            ),
+                            DatetimePickerTemplateAction(
+                                label="datetime picker time",
+                                data="action=sell&itemid=2&mode=time",
+                                mode="time",
+                                initial="10:00",
+                                min="00:00",
+                                max="23:59"
+                            ),
+                            DatetimePickerTemplateAction(
+                                label="datetime picker datetime",
+                                data="action=sell&itemid=2&mode=datetime",
+                                mode="datetime",
+                                initial="2013-04-01T10:00",
+                                min="2011-06-23T00:00",
+                                max="2017-09-08T23:59"
+                            )
+                        ]
                     )
                 ]
             )
@@ -220,6 +252,41 @@ class TestLineBotApi(unittest.TestCase):
                                 "type": "uri",
                                 "label": "uri2",
                                 "uri": "http://example.com/2"
+                            }
+                        ]
+                    },
+                    {
+                        "thumbnailImageUrl":
+                            "https://example.com/item3.jpg",
+                        "title": "this is menu3",
+                        "text": "description3",
+                        "actions": [
+                            {
+                                "type": "datetimepicker",
+                                "label": "datetime picker date",
+                                "data": "action=sell&itemid=2&mode=date",
+                                "mode": "date",
+                                "initial": "2013-04-01",
+                                "min": "2011-06-23",
+                                "max": "2017-09-08"
+                            },
+                            {
+                                "type": "datetimepicker",
+                                "label": "datetime picker time",
+                                "data": "action=sell&itemid=2&mode=time",
+                                "mode": "time",
+                                "initial": "10:00",
+                                "min": "00:00",
+                                "max": "23:59"
+                            },
+                            {
+                                "type": "datetimepicker",
+                                "label": "datetime picker datetime",
+                                "data": "action=sell&itemid=2&mode=datetime",
+                                "mode": "datetime",
+                                "initial": "2013-04-01T10:00",
+                                "min": "2011-06-23T00:00",
+                                "max": "2017-09-08T23:59"
                             }
                         ]
                     }

@@ -79,6 +79,7 @@ from .template import (  # noqa
     PostbackTemplateAction,
     MessageTemplateAction,
     URITemplateAction,
+    DatetimePickerTemplateAction,
     ImageCarouselTemplate,
     ImageCarouselColumn,
 )

@@ -29,7 +29,8 @@ def _get_action(action):
         action, {
             'postback': PostbackTemplateAction,
             'message': MessageTemplateAction,
-            'uri': URITemplateAction
+            'uri': URITemplateAction,
+            'datetimepicker': DatetimePickerTemplateAction,
         }
     )
     return action_obj
@@ -361,3 +362,43 @@ class URITemplateAction(TemplateAction):
         self.type = 'uri'
         self.label = label
         self.uri = uri
+
+
+class DatetimePickerTemplateAction(TemplateAction):
+    """DatetimePickerTemplateAction.
+
+    https://devdocs.line.me/en/#template-messages
+
+    When this action is tapped, a postback event is returned via webhook
+    with the date and time selected by the user from the date and time selection dialog.
+    """
+
+    def __init__(self, label=None, data=None, mode=None,
+                 initial=None, max=None, min=None, **kwargs):
+        """__init__ method.
+
+        :param str label: Label for the action
+            Max: 20 characters
+        :param str data: String returned via webhook
+            in the postback.data property of the postback event
+            Max: 300 characters
+        :param str mode: 	Action mode
+            date: Pick date
+            time: Pick time
+            datetime: Pick date and time
+        :param str initial: Initial value of date or time
+        :param str max: Largest date or time value that can be selected.
+            Must be greater than the min value.
+        :param str min: Smallest date or time value that can be selected.
+            Must be less than the max value.
+        :param kwargs:
+        """
+        super(DatetimePickerTemplateAction, self).__init__(**kwargs)
+
+        self.type = 'datetimepicker'
+        self.label = label
+        self.data = data
+        self.mode = mode
+        self.initial = initial
+        self.max = max
+        self.min = min

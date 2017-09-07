@@ -31,6 +31,9 @@ from linebot.models import (
 
 
 class TestLineBotApi(unittest.TestCase):
+
+    maxDiff = None
+
     def setUp(self):
         self.tested = LineBotApi('channel_secret')
 

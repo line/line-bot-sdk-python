@@ -577,10 +577,7 @@ Event
     - reply\_token
     - postback: Postback
         - data
-        - params: Params
-          - date
-          - time
-          - datetime
+        - params: dict
 - BeaconEvent
     - type
     - timestamp

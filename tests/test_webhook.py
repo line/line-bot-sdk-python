@@ -16,8 +16,8 @@ from __future__ import unicode_literals, absolute_import
 
 import os
 import unittest
-
 from builtins import open
+
 from linebot import (
     SignatureValidator, WebhookParser, WebhookHandler
 )
@@ -26,8 +26,7 @@ from linebot.models import (
     LeaveEvent, PostbackEvent, BeaconEvent,
     TextMessage, ImageMessage, VideoMessage, AudioMessage,
     LocationMessage, StickerMessage,
-    SourceUser, SourceRoom, SourceGroup,
-    Params,
+    SourceUser, SourceRoom, SourceGroup
 )
 
 
@@ -266,8 +265,7 @@ class TestWebhookParser(unittest.TestCase):
         self.assertEqual(events[15].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
         self.assertEqual(events[15].source.sender_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
         self.assertEqual(events[15].postback.data, 'action=buyItem&itemId=123123&color=red')
-        self.assertIsInstance(events[15].postback.params, Params)
-        self.assertEqual(events[15].postback.params.date, '2013-04-01')
+        self.assertEqual(events[15].postback.params['date'], '2013-04-01')
 
         # PostbackEvent, SourceUser, with date params
         self.assertIsInstance(events[16], PostbackEvent)
@@ -279,8 +277,7 @@ class TestWebhookParser(unittest.TestCase):
         self.assertEqual(events[16].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
         self.assertEqual(events[16].source.sender_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
         self.assertEqual(events[16].postback.data, 'action=buyItem&itemId=123123&color=red')
-        self.assertIsInstance(events[15].postback.params, Params)
-        self.assertEqual(events[16].postback.params.time, '10:00')
+        self.assertEqual(events[16].postback.params['time'], '10:00')
 
         # PostbackEvent, SourceUser, with date params
         self.assertIsInstance(events[17], PostbackEvent)
@@ -292,8 +289,7 @@ class TestWebhookParser(unittest.TestCase):
         self.assertEqual(events[17].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
         self.assertEqual(events[17].source.sender_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
         self.assertEqual(events[17].postback.data, 'action=buyItem&itemId=123123&color=red')
-        self.assertIsInstance(events[15].postback.params, Params)
-        self.assertEqual(events[17].postback.params.datetime, '2013-04-01T10:00')
+        self.assertEqual(events[17].postback.params['datetime'], '2013-04-01T10:00')
 
 
 class TestWebhookHandler(unittest.TestCase):

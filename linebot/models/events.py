@@ -265,15 +265,54 @@ class Postback(Base):
     https://devdocs.line.me/en/#postback-event
     """
 
-    def __init__(self, data=None, **kwargs):
+    def __init__(self, data=None, params=None, **kwargs):
         """__init__ method.
 
-        :param str data:
+        :param str data: Postback data
+        :param params: JSON object with the date and time
+            selected by a user through a datetime picker action.
+            Only returned for postback actions via the datetime picker.
+        :type params: T <= :py:class:`linebot.models.events.Params`
         :param kwargs:
         """
         super(Postback, self).__init__(**kwargs)
 
         self.data = data
+        self.params = self.get_or_new_from_json_dict(
+            params, Params
+        )
+
+
+class Params(Base):
+    """Params.
+
+    Object with the date and time selected by a user
+    through a datetime picker action.
+    The format for the full-date, time-hour, and time-minute
+    as shown below follow the RFC3339 protocol.
+
+    https://devdocs.line.me/en/#postback-params-object
+    """
+
+    def __init__(self, date=None, time=None, datetime=None, **kwargs):
+        """__init__ method.
+
+        :param str date: Date selected by user.
+            Only included in the date mode.
+            Format: full-date
+        :param str time: Time selected by the user.
+            Only included in the time mode.
+            Format: time-hour":"time-minute
+        :param str datetime: Date and time selected by the user.
+            Only included in the datetime mode.
+            Format: full-date"T"time-hour":"time-minute
+        :param kwargs:
+        """
+        super(Params, self).__init__(**kwargs)
+
+        self.date = date
+        self.time = time
+        self.datetime = datetime
 
 
 class Beacon(Base):

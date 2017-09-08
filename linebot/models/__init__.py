@@ -31,6 +31,7 @@ from .events import (  # noqa
     PostbackEvent,
     BeaconEvent,
     Postback,
+    Params,
     Beacon,
 )
 from .imagemap import (  # noqa
@@ -79,6 +80,7 @@ from .template import (  # noqa
     PostbackTemplateAction,
     MessageTemplateAction,
     URITemplateAction,
+    DatetimePickerTemplateAction,
     ImageCarouselTemplate,
     ImageCarouselColumn,
 )

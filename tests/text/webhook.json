@@ -187,6 +187,51 @@
         "type": "text",
         "text": "Hello, world"
       }
+    },
+    {
+      "replyToken": "nHuyWiB7yP5Zw52FIkcQobQuGDXCTA",
+      "type": "postback",
+      "timestamp": 1462629479859,
+      "source": {
+        "type": "user",
+        "userId": "U206d25c2ea6bd87c17655609a1c37cb8"
+      },
+      "postback": {
+        "data": "action=buyItem&itemId=123123&color=red",
+        "params": {
+          "date": "2013-04-01"
+        }
+      }
+    },
+    {
+      "replyToken": "nHuyWiB7yP5Zw52FIkcQobQuGDXCTA",
+      "type": "postback",
+      "timestamp": 1462629479859,
+      "source": {
+        "type": "user",
+        "userId": "U206d25c2ea6bd87c17655609a1c37cb8"
+      },
+      "postback": {
+        "data": "action=buyItem&itemId=123123&color=red",
+        "params": {
+          "time": "10:00"
+        }
+      }
+    },
+    {
+      "replyToken": "nHuyWiB7yP5Zw52FIkcQobQuGDXCTA",
+      "type": "postback",
+      "timestamp": 1462629479859,
+      "source": {
+        "type": "user",
+        "userId": "U206d25c2ea6bd87c17655609a1c37cb8"
+      },
+      "postback": {
+        "data": "action=buyItem&itemId=123123&color=red",
+        "params": {
+          "datetime": "2013-04-01T10:00"
+        }
+      }
     }
   ]
 }

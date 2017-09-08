@@ -27,6 +27,7 @@ from linebot.models import (
     TextMessage, ImageMessage, VideoMessage, AudioMessage,
     LocationMessage, StickerMessage,
     SourceUser, SourceRoom, SourceGroup,
+    Params,
 )
 
 
@@ -195,6 +196,7 @@ class TestWebhookParser(unittest.TestCase):
         self.assertEqual(events[10].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
         self.assertEqual(events[10].source.sender_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
         self.assertEqual(events[10].postback.data, 'action=buyItem&itemId=123123&color=red')
+        self.assertEqual(events[10].postback.params, None)
 
         # BeaconEvent, SourceUser
         self.assertIsInstance(events[11], BeaconEvent)
@@ -253,6 +255,45 @@ class TestWebhookParser(unittest.TestCase):
         self.assertEqual(events[14].message.id, '325708')
         self.assertEqual(events[14].message.type, 'text')
         self.assertEqual(events[14].message.text, 'Hello, world')
+
+        # PostbackEvent, SourceUser, with date params
+        self.assertIsInstance(events[15], PostbackEvent)
+        self.assertEqual(events[15].reply_token, 'nHuyWiB7yP5Zw52FIkcQobQuGDXCTA')
+        self.assertEqual(events[15].type, 'postback')
+        self.assertEqual(events[15].timestamp, 1462629479859)
+        self.assertIsInstance(events[15].source, SourceUser)
+        self.assertEqual(events[15].source.type, 'user')
+        self.assertEqual(events[15].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
+        self.assertEqual(events[15].source.sender_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
+        self.assertEqual(events[15].postback.data, 'action=buyItem&itemId=123123&color=red')
+        self.assertIsInstance(events[15].postback.params, Params)
+        self.assertEqual(events[15].postback.params.date, '2013-04-01')
+
+        # PostbackEvent, SourceUser, with date params
+        self.assertIsInstance(events[16], PostbackEvent)
+        self.assertEqual(events[16].reply_token, 'nHuyWiB7yP5Zw52FIkcQobQuGDXCTA')
+        self.assertEqual(events[16].type, 'postback')
+        self.assertEqual(events[16].timestamp, 1462629479859)
+        self.assertIsInstance(events[16].source, SourceUser)
+        self.assertEqual(events[16].source.type, 'user')
+        self.assertEqual(events[16].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
+        self.assertEqual(events[16].source.sender_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
+        self.assertEqual(events[16].postback.data, 'action=buyItem&itemId=123123&color=red')
+        self.assertIsInstance(events[15].postback.params, Params)
+        self.assertEqual(events[16].postback.params.time, '10:00')
+
+        # PostbackEvent, SourceUser, with date params
+        self.assertIsInstance(events[17], PostbackEvent)
+        self.assertEqual(events[17].reply_token, 'nHuyWiB7yP5Zw52FIkcQobQuGDXCTA')
+        self.assertEqual(events[17].type, 'postback')
+        self.assertEqual(events[17].timestamp, 1462629479859)
+        self.assertIsInstance(events[17].source, SourceUser)
+        self.assertEqual(events[17].source.type, 'user')
+        self.assertEqual(events[17].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
+        self.assertEqual(events[17].source.sender_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
+        self.assertEqual(events[17].postback.data, 'action=buyItem&itemId=123123&color=red')
+        self.assertIsInstance(events[15].postback.params, Params)
+        self.assertEqual(events[17].postback.params.datetime, '2013-04-01T10:00')
 
 
 class TestWebhookHandler(unittest.TestCase):
@@ -321,6 +362,11 @@ class TestWebhookHandler(unittest.TestCase):
         self.assertEqual(self.calls[10], '6 postback')
         self.assertEqual(self.calls[11], '7 beacon')
         self.assertEqual(self.calls[12], '7 beacon')
+        self.assertEqual(self.calls[13], '1 message_text')
+        self.assertEqual(self.calls[14], '1 message_text')
+        self.assertEqual(self.calls[15], '6 postback')
+        self.assertEqual(self.calls[16], '6 postback')
+        self.assertEqual(self.calls[17], '6 postback')
 
 
 if __name__ == '__main__':

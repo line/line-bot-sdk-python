@@ -32,7 +32,8 @@ from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage,
     SourceUser, SourceGroup, SourceRoom,
     TemplateSendMessage, ConfirmTemplate, MessageTemplateAction,
-    ButtonsTemplate, URITemplateAction, PostbackTemplateAction,
+    ButtonsTemplate, ImageCarouselTemplate, ImageCarouselColumn, URITemplateAction,
+    PostbackTemplateAction, DatetimePickerTemplateAction,
     CarouselTemplate, CarouselColumn, PostbackEvent,
     StickerMessage, StickerSendMessage, LocationMessage, LocationSendMessage,
     ImageMessage, VideoMessage, AudioMessage,
@@ -157,7 +158,21 @@ def handle_text_message(event):
             ]),
         ])
         template_message = TemplateSendMessage(
-            alt_text='Buttons alt text', template=carousel_template)
+            alt_text='Carousel alt text', template=carousel_template)
+        line_bot_api.reply_message(event.reply_token, template_message)
+    elif text == 'image_carousel':
+        image_carousel_template = ImageCarouselTemplate(columns=[
+            ImageCarouselColumn(image_url='https://via.placeholder.com/1024x1024',
+                                action=DatetimePickerTemplateAction(label='datetime',
+                                                                    data='datetime_postback',
+                                                                    mode='datetime')),
+            ImageCarouselColumn(image_url='https://via.placeholder.com/1024x1024',
+                                action=DatetimePickerTemplateAction(label='date',
+                                                                    data='date_postback',
+                                                                    mode='date'))
+        ])
+        template_message = TemplateSendMessage(
+            alt_text='ImageCarousel alt text', template=image_carousel_template)
         line_bot_api.reply_message(event.reply_token, template_message)
     elif text == 'imagemap':
         pass
@@ -244,6 +259,12 @@ def handle_postback(event):
     if event.postback.data == 'ping':
         line_bot_api.reply_message(
             event.reply_token, TextSendMessage(text='pong'))
+    elif event.postback.data == 'datetime_postback':
+        line_bot_api.reply_message(
+            event.reply_token, TextSendMessage(text=event.postback.params['datetime']))
+    elif event.postback.data == 'date_postback':
+        line_bot_api.reply_message(
+            event.reply_token, TextSendMessage(text=event.postback.params['date']))
 
 
 @handler.add(BeaconEvent)

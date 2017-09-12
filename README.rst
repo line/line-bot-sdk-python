@@ -660,7 +660,7 @@ Message
     - id
     - package\_id
     - sticker\_id
-_ FileMessage
+- FileMessage
     - type
     - id
     - file\_size

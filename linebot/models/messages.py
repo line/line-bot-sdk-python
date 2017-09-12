@@ -167,3 +167,26 @@ class StickerMessage(Message):
         self.type = 'sticker'
         self.package_id = package_id
         self.sticker_id = sticker_id
+
+class FileMessage(Message):
+    """ FileMessage.
+
+    https://devdocs.line.me/en/#file-message
+
+    Message object which contains the file content sent from the source.
+    The binary file data can be retrieved with the Content API.
+    """
+
+    def __init__(self, id=None, file_name=None, file_size=None, **kwargs):
+        """ __init__ method,
+
+        :param str id: Message ID
+        :param str file_name: File Name
+        :param int file_size: File Size
+        :param kwargs:
+        """
+        super(FileMessage, self).__init__(id=id, **kwargs)
+
+        self.type = 'file'
+        self.file_size = file_size
+        self.file_name = file_name

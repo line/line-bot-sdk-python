@@ -49,6 +49,7 @@ from .messages import (  # noqa
     AudioMessage,
     LocationMessage,
     StickerMessage,
+    FileMessage
 )
 from .responses import (  # noqa
     Profile,

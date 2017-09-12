@@ -660,6 +660,11 @@ Message
     - id
     - package\_id
     - sticker\_id
+_ FileMessage
+    - type
+    - id
+    - file\_size
+    - file\_name
 
 Hints
 -----

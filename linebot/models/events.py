@@ -27,7 +27,8 @@ from .messages import (
     VideoMessage,
     AudioMessage,
     LocationMessage,
-    StickerMessage
+    StickerMessage,
+    FileMessage
 )
 from .sources import SourceUser, SourceGroup, SourceRoom
 
@@ -93,7 +94,8 @@ class MessageEvent(Event):
                 'video': VideoMessage,
                 'audio': AudioMessage,
                 'location': LocationMessage,
-                'sticker': StickerMessage
+                'sticker': StickerMessage,
+                'file': FileMessage
             }
         )
 

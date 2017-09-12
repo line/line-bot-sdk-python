@@ -168,8 +168,9 @@ class StickerMessage(Message):
         self.package_id = package_id
         self.sticker_id = sticker_id
 
+
 class FileMessage(Message):
-    """ FileMessage.
+    """FileMessage.
 
     https://devdocs.line.me/en/#file-message
 
@@ -178,7 +179,7 @@ class FileMessage(Message):
     """
 
     def __init__(self, id=None, file_name=None, file_size=None, **kwargs):
-        """ __init__ method,
+        """__init__ method.
 
         :param str id: Message ID
         :param str file_name: File Name

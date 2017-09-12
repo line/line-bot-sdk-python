@@ -25,7 +25,7 @@ from linebot.models import (
     MessageEvent, FollowEvent, UnfollowEvent, JoinEvent,
     LeaveEvent, PostbackEvent, BeaconEvent,
     TextMessage, ImageMessage, VideoMessage, AudioMessage,
-    LocationMessage, StickerMessage,
+    LocationMessage, StickerMessage, FileMessage,
     SourceUser, SourceRoom, SourceGroup
 )
 
@@ -290,6 +290,21 @@ class TestWebhookParser(unittest.TestCase):
         self.assertEqual(events[17].source.sender_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
         self.assertEqual(events[17].postback.data, 'action=buyItem&itemId=123123&color=red')
         self.assertEqual(events[17].postback.params['datetime'], '2013-04-01T10:00')
+
+        # MessageEvent, SourceUser, FileMessage
+        self.assertIsInstance(events[18], MessageEvent)
+        self.assertEqual(events[18].reply_token, 'nHuyWiB7yP5Zw52FIkcQobQuGDXCTA')
+        self.assertEqual(events[18].type, 'message')
+        self.assertEqual(events[18].timestamp, 1462629479859)
+        self.assertIsInstance(events[18].source, SourceUser)
+        self.assertEqual(events[18].source.type, 'user')
+        self.assertEqual(events[18].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
+        self.assertEqual(events[18].source.sender_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
+        self.assertIsInstance(events[18].message, FileMessage)
+        self.assertEqual(events[18].message.id, '325708')
+        self.assertEqual(events[18].message.type, 'file')
+        self.assertEqual(events[18].message.file_name, "file.txt")
+        self.assertEqual(events[18].message.file_size, 2138)
 
 
 class TestWebhookHandler(unittest.TestCase):

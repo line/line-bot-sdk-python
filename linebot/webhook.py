@@ -170,16 +170,17 @@ class WebhookHandler(object):
         :rtype: func
         :return: decorator
         """
-        def decorator(func):
-            if isinstance(message, (list, tuple)):
-                for it in message:
-                    self.__add_handler(func, event, message=it)
-            else:
-                self.__add_handler(func, event, message=message)
+        if event.reply_token != '00000000000000000000000000000000':
+            def decorator(func):
+                if isinstance(message, (list, tuple)):
+                    for it in message:
+                        self.__add_handler(func, event, message=it)
+                else:
+                    self.__add_handler(func, event, message=message)
 
-            return func
+                return func
 
-        return decorator
+            return decorator
 
     def default(self):
         """[Decorator] Set default handler method.

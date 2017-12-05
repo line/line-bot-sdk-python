@@ -222,7 +222,7 @@ class WebhookHandler(object):
             if func is None:
                 LOGGER.info('No handler of ' + key + ' and no default handler')
             else:
-                try:    
+                try:
                     args_count = self.__get_args_count(func)
                     if args_count == 0:
                         func()

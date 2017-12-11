@@ -23,7 +23,8 @@ import inspect
 import json
 
 from .exceptions import (
-    InvalidSignatureError, LineBotApiError
+    InvalidSignatureError,
+    LineBotApiError
 )
 from .models.events import (
     MessageEvent,

@@ -10,9 +10,9 @@ About the LINE Messaging API
 
 See the official API documentation for more information.
 
-English: https://devdocs.line.me/en/
+English: https://developers.line.me/en/docs/messaging-api/reference/
 
-Japanese: https://devdocs.line.me/ja/
+Japanese: https://developers.line.me/ja/docs/messaging-api/reference/
 
 Install
 -------
@@ -97,7 +97,7 @@ reply\_message(self, reply\_token, messages, timeout=None)
 Respond to events from users, groups, and rooms. You can get a
 reply\_token from a webhook event object.
 
-https://devdocs.line.me/en/#reply-message
+https://developers.line.me/en/docs/messaging-api/reference/#send-reply-message
 
 .. code:: python
 
@@ -108,7 +108,7 @@ push\_message(self, to, messages, timeout=None)
 
 Send messages to users, groups, and rooms at any time.
 
-https://devdocs.line.me/en/#push-message
+https://developers.line.me/en/docs/messaging-api/reference/#send-push-message
 
 .. code:: python
 
@@ -119,7 +119,7 @@ multicast(self, to, messages, timeout=None)
 
 Send messages to multiple users at any time.
 
-https://devdocs.line.me/en/#multicast
+https://developers.line.me/en/docs/messaging-api/reference/#send-multicast-messages
 
 .. code:: python
 
@@ -130,7 +130,7 @@ get\_profile(self, user\_id, timeout=None)
 
 Get user profile information.
 
-https://devdocs.line.me/en/#bot-api-get-profile
+https://developers.line.me/en/docs/messaging-api/reference/#get-profile
 
 .. code:: python
 
@@ -148,7 +148,7 @@ Gets the user profile of a member of a group that the bot is in. This can be
 the user ID of a user who has not added the bot as a friend or has blocked
 the bot.
 
-https://devdocs.line.me/en/#get-group-room-member-profile
+https://developers.line.me/en/docs/messaging-api/reference/#get-group-member-profile
 
 .. code:: python
 
@@ -164,7 +164,7 @@ get\_room\_member\_profile(self, room\_id, user\_id, timeout=None)
 Gets the user profile of a member of a room that the bot is in. This can be the
 user ID of a user who has not added the bot as a friend or has blocked the bot.
 
-https://devdocs.line.me/en/#get-group-room-member-profile
+https://developers.line.me/en/docs/messaging-api/reference/#get-room-member-profile
 
 .. code:: python
 
@@ -180,7 +180,7 @@ get\_group\_member\_ids(self, group\_id, start=None, timeout=None)
 Gets the user IDs of the members of a group that the bot is in.
 This includes the user IDs of users who have not added the bot as a friend or has blocked the bot.
 
-https://devdocs.line.me/en/#get-group-room-member-ids
+https://developers.line.me/en/docs/messaging-api/reference/#get-group-member-user-ids
 
 .. code:: python
 
@@ -195,7 +195,7 @@ get\_room\_member\_ids(self, room\_id, start=None, timeout=None)
 Gets the user IDs of the members of a room that the bot is in.
 This includes the user IDs of users who have not added the bot as a friend or has blocked the bot.
 
-https://devdocs.line.me/en/#get-group-room-member-ids
+https://developers.line.me/en/docs/messaging-api/reference/#get-room-member-user-ids
 
 .. code:: python
 
@@ -209,7 +209,7 @@ get\_message\_content(self, message\_id, timeout=None)
 
 Retrieve image, video, and audio data sent by users.
 
-https://devdocs.line.me/en/#get-content
+https://developers.line.me/en/docs/messaging-api/reference/#get-content
 
 .. code:: python
 
@@ -224,7 +224,7 @@ leave\_group(self, group\_id, timeout=None)
 
 Leave a group.
 
-https://devdocs.line.me/en/#leave
+https://developers.line.me/en/docs/messaging-api/reference/#leave-group
 
 .. code:: python
 
@@ -235,7 +235,7 @@ leave\_room(self, room\_id, timeout=None)
 
 Leave a room.
 
-https://devdocs.line.me/en/#leave
+https://developers.line.me/en/docs/messaging-api/reference/#leave-room
 
 .. code:: python
 
@@ -246,7 +246,7 @@ https://devdocs.line.me/en/#leave
 
 If the LINE API server returns an error, LineBotApi raises LineBotApiError.
 
-https://devdocs.line.me/en/#error-response
+https://developers.line.me/en/docs/messaging-api/reference/#error-responses
 
 .. code:: python
 
@@ -257,12 +257,12 @@ https://devdocs.line.me/en/#error-response
         print(e.error.message)
         print(e.error.details)
 
-Send message object
+Message objects
 ~~~~~~~~~~~~~~~~~~~
 
-https://devdocs.line.me/en/#send-message-object
+https://developers.line.me/en/docs/messaging-api/reference/#message-objects
 
-These following classes are found in the ``linebot.models`` package.
+The following classes are found in the ``linebot.models`` package.
 
 TextSendMessage
 ^^^^^^^^^^^^^^^
@@ -568,7 +568,7 @@ If there is no handler for an event, this default handler method is called.
 Webhook event object
 ~~~~~~~~~~~~~~~~~~~~
 
-https://devdocs.line.me/en/#webhooks
+https://developers.line.me/en/docs/messaging-api/reference/#webhook-event-objects
 
 The following classes are found in the ``linebot.models`` package.
 

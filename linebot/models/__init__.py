@@ -83,4 +83,7 @@ from .template import (  # noqa
     DatetimePickerTemplateAction,
     ImageCarouselTemplate,
     ImageCarouselColumn,
+    RichMenuTemplate,
+    RichMenuBoundTemplate,
+    RichMenuAreaTemplate
 )

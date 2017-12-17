@@ -22,7 +22,7 @@ from .__about__ import __version__
 from .exceptions import LineBotApiError
 from .http_client import HttpClient, RequestsHttpClient
 from .models.error import Error
-from .models.responses import Profile, MemberIds, MessageContent
+from .models.responses import Profile, MemberIds, MessageContent, RichMenu
 
 
 class LineBotApi(object):
@@ -123,6 +123,221 @@ class LineBotApi(object):
         self._post(
             '/v2/bot/message/push', data=json.dumps(data), timeout=timeout
         )
+
+    def get_rich_menu(self, rich_menu_id, timeout=None):
+        """Call get rich menu API.
+
+        https://developers.line.me/en/docs/messaging-api/reference/#get-rich-menu
+
+        Get rich menu object through a given rich_menu_id
+
+        :param str rich_menu_id: ID of the rich menu
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        :return: RichMenu instance
+        :type RichMenu: T <= :py:class:`linebot.models.reponse.RichMenu`
+        """
+        response = self._get(
+            '/v2/bot/richmenu/{rich_menu_id}'.format(rich_menu_id=rich_menu_id),
+            timeout=timeout
+        )
+
+        return RichMenu.new_from_json_dict(response.json)
+
+    def delete_rich_menu(self, rich_menu_id, timeout=None):
+        """Call delete rich menu API.
+
+        https://developers.line.me/en/docs/messaging-api/reference/#delete-rich-menu
+
+        Delete rich menu object through a given rich_menu_id
+
+        :param str rich_menu_id: ID of the rich menu
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        :return: An empty RichMenu instance
+        :type RichMenu: T <= :py:class:`linebot.models.reponse.RichMenu`
+        """
+        response = self._delete(
+            '/v2/bot/richmenu/{rich_menu_id}'.format(rich_menu_id=rich_menu_id),
+            timeout=timeout
+        )
+
+        return RichMenu.new_from_json_dict(response.json)
+
+    def create_rich_menu(self, data, timeout=None):
+        """Call delete rich menu API.
+
+        https://developers.line.me/en/docs/messaging-api/reference/#create-rich-menu
+
+        Create a rich menu object through a group of given data
+
+        :param data: Inquired to create a rich menu.
+        :type data: T <= :py:class:`linebot.models.template.RichMenuTemplate`
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        :return: An RichMenu instance with a rich menu id
+        :type RichMenu: T <= :py:class:`linebot.models.reponse.RichMenu`
+        """
+        response = self._post(
+            '/v2/bot/richmenu', data=data.as_json_string(), timeout=timeout
+        )
+
+        return RichMenu.new_from_json_dict(response.json)
+
+    def link_rich_menu_to_user(self, user_id, rich_menu_id, timeout=None):
+        """Call link rich menu to user API.
+
+        https://developers.line.me/en/docs/messaging-api/reference/#link-rich-menu-to-user
+
+        Links a rich menu to a user. Only one rich menu can be linked to a user at one time.
+
+        :param str user_id: ID of an uploaded rich menu
+        :param str rich_menu_id: ID of the user
+        :type timeout: float | tuple(float, float)
+        :return: An empty RichMenu instance
+        :type RichMenu: T <= :py:class:`linebot.models.reponse.RichMenu`
+        """
+        response = self._post(
+            '/v2/bot/user/{user_id}/richmenu/{rich_menu_id}'.format(
+                user_id=user_id,
+                rich_menu_id=rich_menu_id
+            ),
+            timeout=timeout
+        )
+
+        return RichMenu.new_from_json_dict(response.json)
+
+    def get_rich_menu_list(self, timeout=None):
+        """Call get rich menu list API.
+
+        https://developers.line.me/en/docs/messaging-api/reference/#get-rich-menu-list
+
+        Gets a list of all uploaded rich menus.
+
+        :return: An list of RichMenu instances
+        :type RichMenu: T <= :py:class:`linebot.models.reponse.RichMenu`
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        """
+        response = self._get(
+            '/v2/bot/richmenu/list',
+            timeout=timeout
+        )
+
+        lst_result = []
+        for richmenu in response.json['richmenus']:
+            lst_result.append(RichMenu.new_from_json_dict(richmenu))
+
+        return lst_result
+
+    def upload_rich_menu_image(self, rich_menu_id, path_to_image, timeout=None):
+        """Call upload rich menu image API.
+
+        https://developers.line.me/en/docs/messaging-api/reference/#upload-rich-menu-image
+
+        Uploads and attaches an image to a rich menu.
+
+        :param str rich_menu_id: IDs of the rechmenu
+        :param str path_to_image: path to the image to upload,
+                                  only allow jpeg or png due to content type limitation
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        """
+        # check content type by file header, and add it into header dict
+        with open(path_to_image, 'rb') as image:
+            image_content = image.read()
+
+            if image_content[0:3] == b'\xff\xd8\xff':
+                self.headers['Content-Type'] = 'image/jpeg'
+            elif image_content[0:8] == b'\x89PNG\r\n\x1a\n':
+                self.headers['Content-Type'] = 'image/png'
+
+        # send request
+        self._post(
+            '/v2/bot/richmenu/{rich_menu_id}/content'.format(rich_menu_id=rich_menu_id),
+            data=open(path_to_image, 'rb').read(),
+            timeout=timeout
+        )
+
+        # remove added header to avoid side effect in other apis
+        del self.headers['Content-Type']
+
+    def get_rich_menu_id_of_user(self, user_id, timeout=None):
+        """Call get rich menu ID of user API.
+
+        https://developers.line.me/en/docs/messaging-api/reference/#get-rich-menu-id-of-user
+
+        Gets the ID of the rich menu linked to a user.
+
+        :param str user_id: IDs of the user
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        """
+        response = self._get(
+            '/v2/bot/user/{user_id}/richmenu'.format(user_id=user_id),
+            timeout=timeout
+        )
+
+        return RichMenu.new_from_json_dict(response.json)
+
+    def unlink_rich_menu_from_user(self, user_id, timeout=None):
+        """Call unlink rich menu from user API.
+
+        https://developers.line.me/en/docs/messaging-api/reference/#unlink-rich-menu-from-user
+
+        Unlinks a rich menu from a user.
+
+        :param str user_id: ID of the user
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        """
+        self._delete(
+            '/v2/bot/user/{user_id}/richmenu'.format(user_id=user_id),
+            timeout=timeout
+        )
+
+    def download_rich_menu_image(self, rich_menu_id, timeout=None):
+        """Call download rich menu image API.
+
+        https://developers.line.me/en/docs/messaging-api/reference/#download-rich-menu-image
+
+        Downloads an image associated with a rich menu.
+
+        :param str rich_menu_id: ID of the rich menu with the image to be downloaded
+        :param str path_to_image: path to stroe the image download from remote
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        """
+        response = self._get(
+            '/v2/bot/richmenu/{rich_menu_id}/content'.format(rich_menu_id=rich_menu_id),
+            timeout=timeout
+        )
+
+        return MessageContent(response)
 
     def multicast(self, to, messages, timeout=None):
         """Call multicast API.
@@ -366,6 +581,18 @@ class LineBotApi(object):
         headers.update(self.headers)
 
         response = self.http_client.post(
+            url, headers=headers, data=data, timeout=timeout
+        )
+
+        self.__check_error(response)
+        return response
+
+    def _delete(self, path, data=None, timeout=None):
+        url = self.endpoint + path
+        headers = {'Content-Type': 'application/json'}
+        headers.update(self.headers)
+
+        response = self.http_client.delete(
             url, headers=headers, data=data, timeout=timeout
         )
 

@@ -102,7 +102,7 @@ class ButtonsTemplate(Template):
 
     def __init__(self, text=None, title=None, thumbnail_image_url=None,
                  image_aspect_ratio="rectangle",
-                 image_size="cover",image_background_color="#FFFFFF",
+                 image_size="cover", image_background_color="#FFFFFF",
                  actions=None, **kwargs):
         """__init__ method.
 
@@ -185,7 +185,7 @@ class CarouselTemplate(Template):
         """__init__ method.
 
         :param columns: Array of columns.
-            Max: 5
+            Max: 10
         :type columns: list[T <= :py:class:`linebot.models.template.CarouselColumn`]
         :param str image_aspect_ratio: Aspect ratio of the image.
             Specify one of the following values:
@@ -227,7 +227,7 @@ class ImageCarouselTemplate(Template):
         """__init__ method.
 
         :param columns: Array of columns.
-            Max: 5
+            Max: 10
         :type columns: list[T <= :py:class:`linebot.models.template.ImageCarouselColumn`]
         :param kwargs:
         """

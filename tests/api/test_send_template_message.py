@@ -65,6 +65,9 @@ class TestLineBotApi(unittest.TestCase):
                 "type": "buttons",
                 "thumbnailImageUrl":
                     "https://example.com/image.jpg",
+                "imageAspectRatio": None,
+                "imageSize": None,
+                "imageBackgroundColor": None,
                 "title": "Menu",
                 "text": "Please select",
                 "actions": [
@@ -151,6 +154,7 @@ class TestLineBotApi(unittest.TestCase):
                     CarouselColumn(
                         thumbnail_image_url='https://example.com'
                                             '/item2.jpg',
+                        image_background_color='#000000',
                         title='this is menu2', text='description2',
                         actions=[
                             PostbackTemplateAction(
@@ -210,6 +214,7 @@ class TestLineBotApi(unittest.TestCase):
                     {
                         "thumbnailImageUrl":
                             "https://example.com/item1.jpg",
+                        "imageBackgroundColor": None,
                         "title": "this is menu1",
                         "text": "description1",
                         "actions": [
@@ -234,6 +239,7 @@ class TestLineBotApi(unittest.TestCase):
                     {
                         "thumbnailImageUrl":
                             "https://example.com/item2.jpg",
+                        "imageBackgroundColor": "#000000",
                         "title": "this is menu2",
                         "text": "description2",
                         "actions": [
@@ -258,6 +264,7 @@ class TestLineBotApi(unittest.TestCase):
                     {
                         "thumbnailImageUrl":
                             "https://example.com/item3.jpg",
+                        "imageBackgroundColor": None,
                         "title": "this is menu3",
                         "text": "description3",
                         "actions": [
@@ -290,7 +297,9 @@ class TestLineBotApi(unittest.TestCase):
                             }
                         ]
                     }
-                ]
+                ],
+                "imageAspectRatio": None,
+                "imageSize": None
             }
         }]
 

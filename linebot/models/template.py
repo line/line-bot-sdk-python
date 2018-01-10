@@ -101,8 +101,8 @@ class ButtonsTemplate(Template):
     """
 
     def __init__(self, text=None, title=None, thumbnail_image_url=None,
-                 image_aspect_ratio="rectangle",
-                 image_size="cover", image_background_color="#FFFFFF",
+                 image_aspect_ratio=None,
+                 image_size=None, image_background_color=None,
                  actions=None, **kwargs):
         """__init__ method.
 
@@ -180,8 +180,8 @@ class CarouselTemplate(Template):
     Template message with multiple columns which can be cycled like a carousel.
     """
 
-    def __init__(self, columns=None, image_aspect_ratio="rectangle",
-                 image_size="cover", **kwargs):
+    def __init__(self, columns=None, image_aspect_ratio=None,
+                 image_size=None, **kwargs):
         """__init__ method.
 
         :param columns: Array of columns.
@@ -251,7 +251,7 @@ class CarouselColumn(Base):
     """
 
     def __init__(self, text=None, title=None, thumbnail_image_url=None,
-                 image_background_color="#FFFFFF", actions=None, **kwargs):
+                 image_background_color=None, actions=None, **kwargs):
         """__init__ method.
 
         :param str text: Message text.

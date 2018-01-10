@@ -65,9 +65,9 @@ class TestLineBotApi(unittest.TestCase):
                 "type": "buttons",
                 "thumbnailImageUrl":
                     "https://example.com/image.jpg",
-                "imageAspectRatio": "rectangle",
-                "imageSize": "cover",
-                "imageBackgroundColor": "#FFFFFF",
+                "imageAspectRatio": None,
+                "imageSize": None,
+                "imageBackgroundColor": None,
                 "title": "Menu",
                 "text": "Please select",
                 "actions": [
@@ -214,7 +214,7 @@ class TestLineBotApi(unittest.TestCase):
                     {
                         "thumbnailImageUrl":
                             "https://example.com/item1.jpg",
-                        "imageBackgroundColor": "#FFFFFF",
+                        "imageBackgroundColor": None,
                         "title": "this is menu1",
                         "text": "description1",
                         "actions": [
@@ -264,7 +264,7 @@ class TestLineBotApi(unittest.TestCase):
                     {
                         "thumbnailImageUrl":
                             "https://example.com/item3.jpg",
-                        "imageBackgroundColor": "#FFFFFF",
+                        "imageBackgroundColor": None,
                         "title": "this is menu3",
                         "text": "description3",
                         "actions": [
@@ -298,8 +298,8 @@ class TestLineBotApi(unittest.TestCase):
                         ]
                     }
                 ],
-                "imageAspectRatio": "rectangle",
-                "imageSize": "cover"
+                "imageAspectRatio": None,
+                "imageSize": None
             }
         }]
 

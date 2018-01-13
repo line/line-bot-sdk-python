@@ -250,8 +250,8 @@ https://developers.line.me/en/docs/messaging-api/reference/#create-rich-menu
 
 .. code:: python
     
-    rich_menu_to_create = RichMenuTemplate(
-                                size=RichMenuBoundTemplate(
+    rich_menu_to_create = RichMenu(
+                                size=RichMenuBound(
                                     width=2500,
                                     height=1686
                                 ),
@@ -259,8 +259,8 @@ https://developers.line.me/en/docs/messaging-api/reference/#create-rich-menu
                                 name="nice richmenu",
                                 chatBarText="touch me",
                                 areas=[
-                                    RichMenuAreaTemplate(
-                                        RichMenuBoundTemplate(
+                                    RichMenuArea(
+                                        RichMenuBound(
                                             x=0,
                                             y=0,
                                             width=2500,
@@ -272,8 +272,8 @@ https://developers.line.me/en/docs/messaging-api/reference/#create-rich-menu
                                     )
                                 ]
                             )
-    rich_menu_object = line_bot_api.create_rich_menu(data=rich_menu_to_create)
-    print(rich_menu_object.rich_menu_id)
+    rich_menu_id = line_bot_api.create_rich_menu(data=rich_menu_to_create)
+    print(rich_menu_id)
 
 delete\_rich\_menu(self, rich\_menu\_id, timeout=None)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -286,8 +286,8 @@ https://developers.line.me/en/docs/messaging-api/reference/#delete-rich-menu
 
     line_bot_api.delete_rich_menu(rich_menu_id)
 
-upload\_rich\_menu\_image(self, rich\_menu\_id, path\_to\_image, timeout=None)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+set\_rich\_menu\_image(self, rich\_menu\_id, content\_type, content, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Uploads and attaches an image to a rich menu through id and image path.
 
@@ -295,7 +295,7 @@ https://developers.line.me/en/docs/messaging-api/reference/#upload-rich-menu-ima
 
 .. code:: python
 
-    line_bot_api.upload_rich_menu_image(rich_menu_id, path_to_image)        
+    line_bot_api.set_rich_menu_image(rich_menu_id, content_type, content)
 
 link\_rich\_menu\_to\_user(self, user\_id, rich\_menu\_id, timeout=None)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -342,8 +342,8 @@ https://developers.line.me/en/docs/messaging-api/reference/#get-rich-menu-id-of-
 
 .. code:: python
 
-    lrich_menu_object = ine_bot_api.get_rich_menu_id_of_user(user_id)
-    print(rich_menu_obj.rich_menu_id)
+    rich_menu_object = ine_bot_api.get_rich_menu_id_of_user(user_id)
+    print(rich_menu_object.rich_menu_id)
 
 unlink\_rich\_menu\_from\_user(self, user\_id, timeout=None)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -356,8 +356,8 @@ https://developers.line.me/en/docs/messaging-api/reference/#unlink-rich-menu-fro
 
     line_bot_api.unlink_rich_menu_from_user(user_id)
 
-download\_rich\_menu\_image(self, rich\_menu\_id, timeout=None)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+get_rich_menu_image(self, rich\_menu\_id, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Downloads an image associated with a rich menu.
 
@@ -365,7 +365,7 @@ https://developers.line.me/en/docs/messaging-api/reference/#download-rich-menu-i
 
 .. code:: python
 
-    message_content = line_bot_api.download_rich_menu_image(rich_menu_id)
+    message_content = line_bot_api.get_rich_menu_image(rich_menu_id)
     with open(file_path, 'wb') as fd:
         for chunk in message_content.iter_content():
             fd.write(chunk)

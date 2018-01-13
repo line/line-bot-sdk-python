@@ -19,8 +19,8 @@ from __future__ import unicode_literals
 from .base import Base
 
 
-class RichMenu(Base):
-    """RichMenu.
+class RichMenuResponse(Base):
+    """RichMenuResponse.
 
     https://developers.line.me/en/docs/messaging-api/reference/#rich-menu-response-object
     """
@@ -32,7 +32,7 @@ class RichMenu(Base):
         :param str id: Rich Menu ID
         :param size: size object which describe the rich menu displayed in the chat.
                       Rich menu images must be one of the following sizes: 2500x1686, 2500x843.
-        :type size: T <= :py:class:`linebot.models.template.RichMenuBoundTemplate`
+        :type size: T <= :py:class:`linebot.models.rich_menu.RichMenuBound`
         :param bool selected: true to display the rich menu by default. Otherwise, false.
         :param str name: Name of the rich menu.
                          Maximum of 300 characters.
@@ -40,10 +40,10 @@ class RichMenu(Base):
                                 Maximum of 14 characters.
         :param areas: Array of area objects which define coordinates and size of tappable areas.
                       Maximum of 20 area objects.
-        :type areas: T <= :py:class:`linebot.models.template.RichMenuAreaTemplate`
+        :type areas: T <= :py:class:`linebot.models.rich_menu.RichMenuArea`
         :param kwargs:
         """
-        super(RichMenu, self).__init__(**kwargs)
+        super(RichMenuResponse, self).__init__(**kwargs)
 
         self.rich_menu_id = rich_menu_id
         self.size = size

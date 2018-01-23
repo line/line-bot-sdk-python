@@ -258,7 +258,7 @@ https://developers.line.me/en/docs/messaging-api/reference/#error-responses
         print(e.error.details)
 
 Message objects
-~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~
 
 https://developers.line.me/en/docs/messaging-api/reference/#message-objects
 

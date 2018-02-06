@@ -78,21 +78,21 @@ class Base(object):
         :return: dict
         """
         data = {}
-        for key, sub_obj in self.__dict__.items():
+        for key, value in self.__dict__.items():
             camel_key = utils.to_camel_case(key)
-            if isinstance(sub_obj, (list, tuple, set)):
+            if isinstance(value, (list, tuple, set)):
                 data[camel_key] = list()
-                for obj in sub_obj:
-                    if hasattr(obj, 'as_json_dict'):
-                        data[camel_key].append(obj.as_json_dict())
+                for item in value:
+                    if hasattr(item, 'as_json_dict'):
+                        data[camel_key].append(item.as_json_dict())
                     else:
-                        data[camel_key].append(obj)
+                        data[camel_key].append(item)
 
-            elif hasattr(sub_obj, 'as_json_dict'):
-                data[camel_key] = sub_obj.as_json_dict()
+            elif hasattr(value, 'as_json_dict'):
+                data[camel_key] = value.as_json_dict()
 
             else:
-                data[camel_key] = sub_obj
+                data[camel_key] = value
 
         return data
 

@@ -24,15 +24,14 @@ from linebot import (
 )
 from linebot.models import (
     TemplateSendMessage, ButtonsTemplate,
-    PostbackTemplateAction, MessageTemplateAction,
-    URITemplateAction, DatetimePickerTemplateAction,
+    PostbackAction, MessageAction,
+    URIAction, DatetimePickerAction,
     ConfirmTemplate, CarouselTemplate, CarouselColumn,
     ImageCarouselTemplate, ImageCarouselColumn
 )
 
 
 class TestLineBotApi(unittest.TestCase):
-
     maxDiff = None
 
     def setUp(self):
@@ -44,14 +43,14 @@ class TestLineBotApi(unittest.TestCase):
                 thumbnail_image_url='https://example.com/image.jpg',
                 title='Menu', text='Please select',
                 actions=[
-                    PostbackTemplateAction(
+                    PostbackAction(
                         label='postback', text='postback text',
                         data='action=buy&itemid=1'
                     ),
-                    MessageTemplateAction(
+                    MessageAction(
                         label='message', text='message text'
                     ),
-                    URITemplateAction(
+                    URIAction(
                         label='uri', uri='http://example.com/'
                     )
                 ]
@@ -96,11 +95,11 @@ class TestLineBotApi(unittest.TestCase):
             template=ConfirmTemplate(
                 text='Are you sure?',
                 actions=[
-                    PostbackTemplateAction(
+                    PostbackAction(
                         label='postback', text='postback text',
                         data='action=buy&itemid=1'
                     ),
-                    MessageTemplateAction(
+                    MessageAction(
                         label='message', text='message text'
                     )
                 ]
@@ -138,14 +137,14 @@ class TestLineBotApi(unittest.TestCase):
                                             '/item1.jpg',
                         title='this is menu1', text='description1',
                         actions=[
-                            PostbackTemplateAction(
+                            PostbackAction(
                                 label='postback1', text='postback text1',
                                 data='action=buy&itemid=1'
                             ),
-                            MessageTemplateAction(
+                            MessageAction(
                                 label='message1', text='message text1'
                             ),
-                            URITemplateAction(
+                            URIAction(
                                 label='uri1',
                                 uri='http://example.com/1'
                             )
@@ -157,14 +156,14 @@ class TestLineBotApi(unittest.TestCase):
                         image_background_color='#000000',
                         title='this is menu2', text='description2',
                         actions=[
-                            PostbackTemplateAction(
+                            PostbackAction(
                                 label='postback2', text='postback text2',
                                 data='action=buy&itemid=2'
                             ),
-                            MessageTemplateAction(
+                            MessageAction(
                                 label='message2', text='message text2'
                             ),
-                            URITemplateAction(
+                            URIAction(
                                 label='uri2',
                                 uri='http://example.com/2'
                             )
@@ -175,7 +174,7 @@ class TestLineBotApi(unittest.TestCase):
                                             '/item3.jpg',
                         title='this is menu3', text='description3',
                         actions=[
-                            DatetimePickerTemplateAction(
+                            DatetimePickerAction(
                                 label="datetime picker date",
                                 data="action=sell&itemid=2&mode=date",
                                 mode="date",
@@ -183,7 +182,7 @@ class TestLineBotApi(unittest.TestCase):
                                 min="2011-06-23",
                                 max="2017-09-08"
                             ),
-                            DatetimePickerTemplateAction(
+                            DatetimePickerAction(
                                 label="datetime picker time",
                                 data="action=sell&itemid=2&mode=time",
                                 mode="time",
@@ -191,7 +190,7 @@ class TestLineBotApi(unittest.TestCase):
                                 min="00:00",
                                 max="23:59"
                             ),
-                            DatetimePickerTemplateAction(
+                            DatetimePickerAction(
                                 label="datetime picker datetime",
                                 data="action=sell&itemid=2&mode=datetime",
                                 mode="datetime",
@@ -310,7 +309,7 @@ class TestLineBotApi(unittest.TestCase):
                     ImageCarouselColumn(
                         image_url='https://example.com/'
                                   'item1.jpg',
-                        action=PostbackTemplateAction(
+                        action=PostbackAction(
                             label='postback1',
                             data='action=buy&itemid=1'
                         )
@@ -318,7 +317,7 @@ class TestLineBotApi(unittest.TestCase):
                     ImageCarouselColumn(
                         image_url='https://example.com'
                                   '/item2.jpg',
-                        action=MessageTemplateAction(
+                        action=MessageAction(
                             label='message2',
                             text='message text2'
                         )
@@ -326,7 +325,7 @@ class TestLineBotApi(unittest.TestCase):
                     ImageCarouselColumn(
                         image_url='https://example.com/'
                                   'item3.jpg',
-                        action=URITemplateAction(
+                        action=URIAction(
                             label='uri1',
                             uri='https://example.com/1'
                         )

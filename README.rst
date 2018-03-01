@@ -241,44 +241,44 @@ https://developers.line.me/en/docs/messaging-api/reference/#leave-room
 
     line_bot_api.leave_room(room_id)
 
-create\_rich\_menu(self, data, timeout=None)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Create a rich menu object through a group of given data and return rich menu id.
-The data is an rich menu object to create.
+get\_rich\_menu(self, rich\_menu\_id, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Gets a rich menu via a rich menu ID.
+
+https://developers.line.me/en/docs/messaging-api/reference/#get-rich-menu
+
+.. code:: python
+
+    rich_menu = line_bot_api.get_rich_menu(rich_menu_id)
+    print(rich_menu.rich_menu_id)
+
+create\_rich\_menu(self, rich_\menu, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Creates a rich menu.
+You must upload a rich menu image and link the rich menu to a user for the rich menu to be displayed. You can create up to 10 rich menus for one bot.
 
 https://developers.line.me/en/docs/messaging-api/reference/#create-rich-menu
 
 .. code:: python
-    
+
     rich_menu_to_create = RichMenu(
-                                size=RichMenuBound(
-                                    width=2500,
-                                    height=1686
-                                ),
-                                selected= False,
-                                name="nice richmenu",
-                                chatBarText="touch me",
-                                areas=[
-                                    RichMenuArea(
-                                        RichMenuBound(
-                                            x=0,
-                                            y=0,
-                                            width=2500,
-                                            height=1686 
-                                        ),
-                                        URITemplateAction(
-                                            uri='line://nv/location'
-                                        )                    
-                                    )
-                                ]
-                            )
-    rich_menu_id = line_bot_api.create_rich_menu(data=rich_menu_to_create)
+        size=RichMenuSize(width=2500, height=843),
+        selected=False,
+        name="Nice richmenu",
+        chat_bar_text="Tap here",
+        areas=[RichMenuArea(
+            bounds=RichMenuBounds(x=0, y=0, width=2500, height=843),
+            action=URIAction(label='Go to line.me', uri='https://line.me'))]
+    )
+    rich_menu_id = line_bot_api.create_rich_menu(rich_menu=rich_menu_to_create)
     print(rich_menu_id)
 
 delete\_rich\_menu(self, rich\_menu\_id, timeout=None)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Delete rich menu object through a given rich_menu_id.
+Deletes a rich menu.
 
 https://developers.line.me/en/docs/messaging-api/reference/#delete-rich-menu
         
@@ -286,16 +286,17 @@ https://developers.line.me/en/docs/messaging-api/reference/#delete-rich-menu
 
     line_bot_api.delete_rich_menu(rich_menu_id)
 
-set\_rich\_menu\_image(self, rich\_menu\_id, content\_type, content, timeout=None)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+get\_rich\_menu\_id\_of\_user(self, user\_id, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Uploads and attaches an image to a rich menu through id and image path.
+Gets the ID of the rich menu linked to a user.
 
-https://developers.line.me/en/docs/messaging-api/reference/#upload-rich-menu-image
+https://developers.line.me/en/docs/messaging-api/reference/#get-rich-menu-id-of-user
 
 .. code:: python
 
-    line_bot_api.set_rich_menu_image(rich_menu_id, content_type, content)
+    rich_menu_id = ine_bot_api.get_rich_menu_id_of_user(user_id)
+    print(rich_menu_id)
 
 link\_rich\_menu\_to\_user(self, user\_id, rich\_menu\_id, timeout=None)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -308,43 +309,6 @@ https://developers.line.me/en/docs/messaging-api/reference/#link-rich-menu-to-us
 
     line_bot_api.link_rich_menu_to_user(user_id, rich_menu_id)
 
-get\_rich\_menu\_list(self, timeout=None)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Gets a list of all uploaded rich menus.
-
-https://developers.line.me/en/docs/messaging-api/reference/#get-rich-menu-list
-
-.. code:: python
-
-    lst_rich_menu_obj = line_bot_api.get_rich_menu_list()
-    for rich_menu_obj in lst_rich_menu_obj:
-        print(rich_menu_obj.rich_menu_id)
-
-get\_rich\_menu(self, rich\_menu\_id, timeout=None)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Get rich menu object through a given Rich menu ID.
-
-https://developers.line.me/en/docs/messaging-api/reference/#get-rich-menu
-
-.. code:: python
-
-    rich_menu_object = line_bot_api.get_rich_menu(rich_menu_id)
-    print(rich_menu_obj.rich_menu_id)
-
-get\_rich\_menu\_id\_of\_user(self, user\_id, timeout=None)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Gets the ID of the rich menu linked to a user.
-
-https://developers.line.me/en/docs/messaging-api/reference/#get-rich-menu-id-of-user
-
-.. code:: python
-
-    rich_menu_object = ine_bot_api.get_rich_menu_id_of_user(user_id)
-    print(rich_menu_object.rich_menu_id)
-
 unlink\_rich\_menu\_from\_user(self, user\_id, timeout=None)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -356,8 +320,8 @@ https://developers.line.me/en/docs/messaging-api/reference/#unlink-rich-menu-fro
 
     line_bot_api.unlink_rich_menu_from_user(user_id)
 
-get_rich_menu_image(self, rich\_menu\_id, timeout=None)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+get\_rich\_menu\_image(self, rich\_menu\_id, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Downloads an image associated with a rich menu.
 
@@ -365,10 +329,35 @@ https://developers.line.me/en/docs/messaging-api/reference/#download-rich-menu-i
 
 .. code:: python
 
-    message_content = line_bot_api.get_rich_menu_image(rich_menu_id)
+    content = line_bot_api.get_rich_menu_image(rich_menu_id)
     with open(file_path, 'wb') as fd:
-        for chunk in message_content.iter_content():
+        for chunk in content.iter_content():
             fd.write(chunk)
+
+set\_rich\_menu\_image(self, rich\_menu\_id, content\_type, content, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Uploads and attaches an image to a rich menu.
+
+https://developers.line.me/en/docs/messaging-api/reference/#upload-rich-menu-image
+
+.. code:: python
+
+    with open(file_path, 'rb') as f:
+        line_bot_api.set_rich_menu_image(rich_menu_id, content_type, f)
+
+get\_rich\_menu\_list(self, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Gets a list of all uploaded rich menus.
+
+https://developers.line.me/en/docs/messaging-api/reference/#get-rich-menu-list
+
+.. code:: python
+
+    rich_menu_list = line_bot_api.get_rich_menu_list()
+    for rich_menu in rich_menu_list:
+        print(rich_menu.rich_menu_id)
 
 ※ Error handling
 ^^^^^^^^^^^^^^^^
@@ -489,16 +478,16 @@ TemplateSendMessage - ButtonsTemplate
             title='Menu',
             text='Please select',
             actions=[
-                PostbackTemplateAction(
+                PostbackAction(
                     label='postback',
                     text='postback text',
                     data='action=buy&itemid=1'
                 ),
-                MessageTemplateAction(
+                MessageAction(
                     label='message',
                     text='message text'
                 ),
-                URITemplateAction(
+                URIAction(
                     label='uri',
                     uri='http://example.com/'
                 )
@@ -516,12 +505,12 @@ TemplateSendMessage - ConfirmTemplate
         template=ConfirmTemplate(
             text='Are you sure?',
             actions=[
-                PostbackTemplateAction(
+                PostbackAction(
                     label='postback',
                     text='postback text',
                     data='action=buy&itemid=1'
                 ),
-                MessageTemplateAction(
+                MessageAction(
                     label='message',
                     text='message text'
                 )
@@ -543,16 +532,16 @@ TemplateSendMessage - CarouselTemplate
                     title='this is menu1',
                     text='description1',
                     actions=[
-                        PostbackTemplateAction(
+                        PostbackAction(
                             label='postback1',
                             text='postback text1',
                             data='action=buy&itemid=1'
                         ),
-                        MessageTemplateAction(
+                        MessageAction(
                             label='message1',
                             text='message text1'
                         ),
-                        URITemplateAction(
+                        URIAction(
                             label='uri1',
                             uri='http://example.com/1'
                         )
@@ -563,16 +552,16 @@ TemplateSendMessage - CarouselTemplate
                     title='this is menu2',
                     text='description2',
                     actions=[
-                        PostbackTemplateAction(
+                        PostbackAction(
                             label='postback2',
                             text='postback text2',
                             data='action=buy&itemid=2'
                         ),
-                        MessageTemplateAction(
+                        MessageAction(
                             label='message2',
                             text='message text2'
                         ),
-                        URITemplateAction(
+                        URIAction(
                             label='uri2',
                             uri='http://example.com/2'
                         )
@@ -593,7 +582,7 @@ TemplateSendMessage - ImageCarouselTemplate
             columns=[
                 ImageCarouselColumn(
                     image_url='https://example.com/item1.jpg',
-                    action=PostbackTemplateAction(
+                    action=PostbackAction(
                         label='postback1',
                         text='postback text1',
                         data='action=buy&itemid=1'
@@ -601,7 +590,7 @@ TemplateSendMessage - ImageCarouselTemplate
                 ),
                 ImageCarouselColumn(
                     image_url='https://example.com/item2.jpg',
-                    action=PostbackTemplateAction(
+                    action=PostbackAction(
                         label='postback2',
                         text='postback text2',
                         data='action=buy&itemid=2'

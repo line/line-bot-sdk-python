@@ -241,6 +241,135 @@ https://developers.line.me/en/docs/messaging-api/reference/#leave-room
 
     line_bot_api.leave_room(room_id)
 
+create\_rich\_menu(self, data, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Create a rich menu object through a group of given data and return rich menu id.
+The data is an rich menu object to create.
+
+https://developers.line.me/en/docs/messaging-api/reference/#create-rich-menu
+
+.. code:: python
+    
+    rich_menu_to_create = RichMenu(
+                                size=RichMenuBound(
+                                    width=2500,
+                                    height=1686
+                                ),
+                                selected= False,
+                                name="nice richmenu",
+                                chatBarText="touch me",
+                                areas=[
+                                    RichMenuArea(
+                                        RichMenuBound(
+                                            x=0,
+                                            y=0,
+                                            width=2500,
+                                            height=1686 
+                                        ),
+                                        URITemplateAction(
+                                            uri='line://nv/location'
+                                        )                    
+                                    )
+                                ]
+                            )
+    rich_menu_id = line_bot_api.create_rich_menu(data=rich_menu_to_create)
+    print(rich_menu_id)
+
+delete\_rich\_menu(self, rich\_menu\_id, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Delete rich menu object through a given rich_menu_id.
+
+https://developers.line.me/en/docs/messaging-api/reference/#delete-rich-menu
+        
+.. code:: python
+
+    line_bot_api.delete_rich_menu(rich_menu_id)
+
+set\_rich\_menu\_image(self, rich\_menu\_id, content\_type, content, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Uploads and attaches an image to a rich menu through id and image path.
+
+https://developers.line.me/en/docs/messaging-api/reference/#upload-rich-menu-image
+
+.. code:: python
+
+    line_bot_api.set_rich_menu_image(rich_menu_id, content_type, content)
+
+link\_rich\_menu\_to\_user(self, user\_id, rich\_menu\_id, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Links a rich menu to a user. Only one rich menu can be linked to a user at one time.
+
+https://developers.line.me/en/docs/messaging-api/reference/#link-rich-menu-to-user
+
+.. code:: python
+
+    line_bot_api.link_rich_menu_to_user(user_id, rich_menu_id)
+
+get\_rich\_menu\_list(self, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Gets a list of all uploaded rich menus.
+
+https://developers.line.me/en/docs/messaging-api/reference/#get-rich-menu-list
+
+.. code:: python
+
+    lst_rich_menu_obj = line_bot_api.get_rich_menu_list()
+    for rich_menu_obj in lst_rich_menu_obj:
+        print(rich_menu_obj.rich_menu_id)
+
+get\_rich\_menu(self, rich\_menu\_id, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get rich menu object through a given Rich menu ID.
+
+https://developers.line.me/en/docs/messaging-api/reference/#get-rich-menu
+
+.. code:: python
+
+    rich_menu_object = line_bot_api.get_rich_menu(rich_menu_id)
+    print(rich_menu_obj.rich_menu_id)
+
+get\_rich\_menu\_id\_of\_user(self, user\_id, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Gets the ID of the rich menu linked to a user.
+
+https://developers.line.me/en/docs/messaging-api/reference/#get-rich-menu-id-of-user
+
+.. code:: python
+
+    rich_menu_object = ine_bot_api.get_rich_menu_id_of_user(user_id)
+    print(rich_menu_object.rich_menu_id)
+
+unlink\_rich\_menu\_from\_user(self, user\_id, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Unlinks a rich menu from a user.
+
+https://developers.line.me/en/docs/messaging-api/reference/#unlink-rich-menu-from-user
+
+.. code:: python
+
+    line_bot_api.unlink_rich_menu_from_user(user_id)
+
+get_rich_menu_image(self, rich\_menu\_id, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Downloads an image associated with a rich menu.
+
+https://developers.line.me/en/docs/messaging-api/reference/#download-rich-menu-image
+
+.. code:: python
+
+    message_content = line_bot_api.get_rich_menu_image(rich_menu_id)
+    with open(file_path, 'wb') as fd:
+        for chunk in message_content.iter_content():
+            fd.write(chunk)
+
 ※ Error handling
 ^^^^^^^^^^^^^^^^
 

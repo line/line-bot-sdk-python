@@ -22,7 +22,10 @@ import hmac
 import inspect
 import json
 
-from .exceptions import InvalidSignatureError
+from .exceptions import (
+    InvalidSignatureError,
+    LineBotApiError
+)
 from .models.events import (
     MessageEvent,
     FollowEvent,
@@ -220,11 +223,14 @@ class WebhookHandler(object):
             if func is None:
                 LOGGER.info('No handler of ' + key + ' and no default handler')
             else:
-                args_count = self.__get_args_count(func)
-                if args_count == 0:
-                    func()
-                else:
-                    func(event)
+                try:
+                    args_count = self.__get_args_count(func)
+                    if args_count == 0:
+                        func()
+                    else:
+                        func(event)
+                except LineBotApiError as e:
+                    LOGGER.warn(e)
 
     def __add_handler(self, func, event, message=None):
         key = self.__get_handler_key(event, message=message)

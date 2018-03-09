@@ -84,3 +84,8 @@ from .template import (  # noqa
     ImageCarouselTemplate,
     ImageCarouselColumn,
 )
+from .rich_menu import ( # noqa
+    RichMenu,
+    RichMenuBound,
+    RichMenuArea,
+)

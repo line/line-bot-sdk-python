@@ -100,7 +100,10 @@ class ButtonsTemplate(Template):
     Template message with an image, title, text, and multiple action buttons.
     """
 
-    def __init__(self, text=None, title=None, thumbnail_image_url=None, actions=None, **kwargs):
+    def __init__(self, text=None, title=None, thumbnail_image_url=None,
+                 image_aspect_ratio=None,
+                 image_size=None, image_background_color=None,
+                 actions=None, **kwargs):
         """__init__ method.
 
         :param str text: Message text.
@@ -114,6 +117,19 @@ class ButtonsTemplate(Template):
             Aspect ratio: 1:1.51
             Max width: 1024px
             Max: 1 MB
+        :param str image_aspect_ratio: Aspect ratio of the image.
+            Specify one of the following values:
+            rectangle: 1.51:1
+            square: 1:1
+        :param str image_size: Size of the image.
+            Specify one of the following values:
+            cover: The image fills the entire image area.
+                Parts of the image that do not fit in the area are not displayed.
+            contain: The entire image is displayed in the image area.
+                A background is displayed in the unused areas to the left and right
+                of vertical images and in the areas above and below horizontal images.
+        :param str image_background_color: Background color of image.
+            Specify a RGB color value.
         :param actions: Action when tapped.
             Max: 4
         :type actions: list[T <= :py:class:`linebot.models.template.TemplateAction`]
@@ -125,6 +141,9 @@ class ButtonsTemplate(Template):
         self.text = text
         self.title = title
         self.thumbnail_image_url = thumbnail_image_url
+        self.image_aspect_ratio = image_aspect_ratio
+        self.image_size = image_size
+        self.image_background_color = image_background_color
         self.actions = _get_actions(actions)
 
 
@@ -161,12 +180,24 @@ class CarouselTemplate(Template):
     Template message with multiple columns which can be cycled like a carousel.
     """
 
-    def __init__(self, columns=None, **kwargs):
+    def __init__(self, columns=None, image_aspect_ratio=None,
+                 image_size=None, **kwargs):
         """__init__ method.
 
         :param columns: Array of columns.
-            Max: 5
+            Max: 10
         :type columns: list[T <= :py:class:`linebot.models.template.CarouselColumn`]
+        :param str image_aspect_ratio: Aspect ratio of the image.
+            Specify one of the following values:
+            rectangle: 1.51:1
+            square: 1:1
+        :param str image_size: Size of the image.
+            Specify one of the following values:
+            cover: The image fills the entire image area.
+                Parts of the image that do not fit in the area are not displayed.
+            contain: The entire image is displayed in the image area.
+                A background is displayed in the unused areas to the left and right
+                of vertical images and in the areas above and below horizontal images.
         :param kwargs:
         """
         super(CarouselTemplate, self).__init__(**kwargs)
@@ -180,6 +211,8 @@ class CarouselTemplate(Template):
                     column, CarouselColumn
                 ))
         self.columns = new_columns
+        self.image_aspect_ratio = image_aspect_ratio
+        self.image_size = image_size
 
 
 class ImageCarouselTemplate(Template):
@@ -194,7 +227,7 @@ class ImageCarouselTemplate(Template):
         """__init__ method.
 
         :param columns: Array of columns.
-            Max: 5
+            Max: 10
         :type columns: list[T <= :py:class:`linebot.models.template.ImageCarouselColumn`]
         :param kwargs:
         """
@@ -217,7 +250,8 @@ class CarouselColumn(Base):
     https://devdocs.line.me/en/#column-object
     """
 
-    def __init__(self, text=None, title=None, thumbnail_image_url=None, actions=None, **kwargs):
+    def __init__(self, text=None, title=None, thumbnail_image_url=None,
+                 image_background_color=None, actions=None, **kwargs):
         """__init__ method.
 
         :param str text: Message text.
@@ -231,6 +265,8 @@ class CarouselColumn(Base):
             Aspect ratio: 1:1.51
             Max width: 1024px
             Max: 1 MB
+        :param str image_background_color: Background color of image.
+            Specify a RGB color value.
         :param actions: Action when tapped.
             Max: 3
         :type actions: list[T <= :py:class:`linebot.models.template.TemplateAction`]
@@ -241,6 +277,7 @@ class CarouselColumn(Base):
         self.text = text
         self.title = title
         self.thumbnail_image_url = thumbnail_image_url
+        self.image_background_color = image_background_color
         self.actions = _get_actions(actions)
 
 

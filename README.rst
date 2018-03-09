@@ -10,9 +10,9 @@ About the LINE Messaging API
 
 See the official API documentation for more information.
 
-English: https://devdocs.line.me/en/
+English: https://developers.line.me/en/docs/messaging-api/reference/
 
-Japanese: https://devdocs.line.me/ja/
+Japanese: https://developers.line.me/ja/docs/messaging-api/reference/
 
 Install
 -------
@@ -97,7 +97,7 @@ reply\_message(self, reply\_token, messages, timeout=None)
 Respond to events from users, groups, and rooms. You can get a
 reply\_token from a webhook event object.
 
-https://devdocs.line.me/en/#reply-message
+https://developers.line.me/en/docs/messaging-api/reference/#send-reply-message
 
 .. code:: python
 
@@ -108,7 +108,7 @@ push\_message(self, to, messages, timeout=None)
 
 Send messages to users, groups, and rooms at any time.
 
-https://devdocs.line.me/en/#push-message
+https://developers.line.me/en/docs/messaging-api/reference/#send-push-message
 
 .. code:: python
 
@@ -119,7 +119,7 @@ multicast(self, to, messages, timeout=None)
 
 Send messages to multiple users at any time.
 
-https://devdocs.line.me/en/#multicast
+https://developers.line.me/en/docs/messaging-api/reference/#send-multicast-messages
 
 .. code:: python
 
@@ -130,7 +130,7 @@ get\_profile(self, user\_id, timeout=None)
 
 Get user profile information.
 
-https://devdocs.line.me/en/#bot-api-get-profile
+https://developers.line.me/en/docs/messaging-api/reference/#get-profile
 
 .. code:: python
 
@@ -148,7 +148,7 @@ Gets the user profile of a member of a group that the bot is in. This can be
 the user ID of a user who has not added the bot as a friend or has blocked
 the bot.
 
-https://devdocs.line.me/en/#get-group-room-member-profile
+https://developers.line.me/en/docs/messaging-api/reference/#get-group-member-profile
 
 .. code:: python
 
@@ -164,7 +164,7 @@ get\_room\_member\_profile(self, room\_id, user\_id, timeout=None)
 Gets the user profile of a member of a room that the bot is in. This can be the
 user ID of a user who has not added the bot as a friend or has blocked the bot.
 
-https://devdocs.line.me/en/#get-group-room-member-profile
+https://developers.line.me/en/docs/messaging-api/reference/#get-room-member-profile
 
 .. code:: python
 
@@ -180,7 +180,7 @@ get\_group\_member\_ids(self, group\_id, start=None, timeout=None)
 Gets the user IDs of the members of a group that the bot is in.
 This includes the user IDs of users who have not added the bot as a friend or has blocked the bot.
 
-https://devdocs.line.me/en/#get-group-room-member-ids
+https://developers.line.me/en/docs/messaging-api/reference/#get-group-member-user-ids
 
 .. code:: python
 
@@ -195,7 +195,7 @@ get\_room\_member\_ids(self, room\_id, start=None, timeout=None)
 Gets the user IDs of the members of a room that the bot is in.
 This includes the user IDs of users who have not added the bot as a friend or has blocked the bot.
 
-https://devdocs.line.me/en/#get-group-room-member-ids
+https://developers.line.me/en/docs/messaging-api/reference/#get-room-member-user-ids
 
 .. code:: python
 
@@ -209,7 +209,7 @@ get\_message\_content(self, message\_id, timeout=None)
 
 Retrieve image, video, and audio data sent by users.
 
-https://devdocs.line.me/en/#get-content
+https://developers.line.me/en/docs/messaging-api/reference/#get-content
 
 .. code:: python
 
@@ -224,7 +224,7 @@ leave\_group(self, group\_id, timeout=None)
 
 Leave a group.
 
-https://devdocs.line.me/en/#leave
+https://developers.line.me/en/docs/messaging-api/reference/#leave-group
 
 .. code:: python
 
@@ -235,18 +235,147 @@ leave\_room(self, room\_id, timeout=None)
 
 Leave a room.
 
-https://devdocs.line.me/en/#leave
+https://developers.line.me/en/docs/messaging-api/reference/#leave-room
 
 .. code:: python
 
     line_bot_api.leave_room(room_id)
+
+create\_rich\_menu(self, data, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Create a rich menu object through a group of given data and return rich menu id.
+The data is an rich menu object to create.
+
+https://developers.line.me/en/docs/messaging-api/reference/#create-rich-menu
+
+.. code:: python
+    
+    rich_menu_to_create = RichMenu(
+                                size=RichMenuBound(
+                                    width=2500,
+                                    height=1686
+                                ),
+                                selected= False,
+                                name="nice richmenu",
+                                chatBarText="touch me",
+                                areas=[
+                                    RichMenuArea(
+                                        RichMenuBound(
+                                            x=0,
+                                            y=0,
+                                            width=2500,
+                                            height=1686 
+                                        ),
+                                        URITemplateAction(
+                                            uri='line://nv/location'
+                                        )                    
+                                    )
+                                ]
+                            )
+    rich_menu_id = line_bot_api.create_rich_menu(data=rich_menu_to_create)
+    print(rich_menu_id)
+
+delete\_rich\_menu(self, rich\_menu\_id, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Delete rich menu object through a given rich_menu_id.
+
+https://developers.line.me/en/docs/messaging-api/reference/#delete-rich-menu
+        
+.. code:: python
+
+    line_bot_api.delete_rich_menu(rich_menu_id)
+
+set\_rich\_menu\_image(self, rich\_menu\_id, content\_type, content, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Uploads and attaches an image to a rich menu through id and image path.
+
+https://developers.line.me/en/docs/messaging-api/reference/#upload-rich-menu-image
+
+.. code:: python
+
+    line_bot_api.set_rich_menu_image(rich_menu_id, content_type, content)
+
+link\_rich\_menu\_to\_user(self, user\_id, rich\_menu\_id, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Links a rich menu to a user. Only one rich menu can be linked to a user at one time.
+
+https://developers.line.me/en/docs/messaging-api/reference/#link-rich-menu-to-user
+
+.. code:: python
+
+    line_bot_api.link_rich_menu_to_user(user_id, rich_menu_id)
+
+get\_rich\_menu\_list(self, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Gets a list of all uploaded rich menus.
+
+https://developers.line.me/en/docs/messaging-api/reference/#get-rich-menu-list
+
+.. code:: python
+
+    lst_rich_menu_obj = line_bot_api.get_rich_menu_list()
+    for rich_menu_obj in lst_rich_menu_obj:
+        print(rich_menu_obj.rich_menu_id)
+
+get\_rich\_menu(self, rich\_menu\_id, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get rich menu object through a given Rich menu ID.
+
+https://developers.line.me/en/docs/messaging-api/reference/#get-rich-menu
+
+.. code:: python
+
+    rich_menu_object = line_bot_api.get_rich_menu(rich_menu_id)
+    print(rich_menu_obj.rich_menu_id)
+
+get\_rich\_menu\_id\_of\_user(self, user\_id, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Gets the ID of the rich menu linked to a user.
+
+https://developers.line.me/en/docs/messaging-api/reference/#get-rich-menu-id-of-user
+
+.. code:: python
+
+    rich_menu_object = ine_bot_api.get_rich_menu_id_of_user(user_id)
+    print(rich_menu_object.rich_menu_id)
+
+unlink\_rich\_menu\_from\_user(self, user\_id, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Unlinks a rich menu from a user.
+
+https://developers.line.me/en/docs/messaging-api/reference/#unlink-rich-menu-from-user
+
+.. code:: python
+
+    line_bot_api.unlink_rich_menu_from_user(user_id)
+
+get_rich_menu_image(self, rich\_menu\_id, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Downloads an image associated with a rich menu.
+
+https://developers.line.me/en/docs/messaging-api/reference/#download-rich-menu-image
+
+.. code:: python
+
+    message_content = line_bot_api.get_rich_menu_image(rich_menu_id)
+    with open(file_path, 'wb') as fd:
+        for chunk in message_content.iter_content():
+            fd.write(chunk)
 
 ※ Error handling
 ^^^^^^^^^^^^^^^^
 
 If the LINE API server returns an error, LineBotApi raises LineBotApiError.
 
-https://devdocs.line.me/en/#error-response
+https://developers.line.me/en/docs/messaging-api/reference/#error-responses
 
 .. code:: python
 
@@ -257,12 +386,12 @@ https://devdocs.line.me/en/#error-response
         print(e.error.message)
         print(e.error.details)
 
-Send message object
-~~~~~~~~~~~~~~~~~~~
+Message objects
+~~~~~~~~~~~~~~~
 
-https://devdocs.line.me/en/#send-message-object
+https://developers.line.me/en/docs/messaging-api/reference/#message-objects
 
-These following classes are found in the ``linebot.models`` package.
+The following classes are found in the ``linebot.models`` package.
 
 TextSendMessage
 ^^^^^^^^^^^^^^^
@@ -568,7 +697,7 @@ If there is no handler for an event, this default handler method is called.
 Webhook event object
 ~~~~~~~~~~~~~~~~~~~~
 
-https://devdocs.line.me/en/#webhooks
+https://developers.line.me/en/docs/messaging-api/reference/#webhook-event-objects
 
 The following classes are found in the ``linebot.models`` package.
 
@@ -702,7 +831,7 @@ OR |Documentation Status|
 Requirements
 ------------
 
--  Python >= 2.7 or >= 3.3
+-  Python >= 2.7 or >= 3.4
 
 For SDK developers
 ------------------
@@ -719,7 +848,6 @@ Run tests
 Test by using tox. We test against the following versions.
 
 -  2.7
--  3.3
 -  3.4
 -  3.5
 -  3.6

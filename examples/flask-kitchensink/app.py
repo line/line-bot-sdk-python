@@ -31,9 +31,9 @@ from linebot.exceptions import (
 from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage,
     SourceUser, SourceGroup, SourceRoom,
-    TemplateSendMessage, ConfirmTemplate, MessageTemplateAction,
-    ButtonsTemplate, ImageCarouselTemplate, ImageCarouselColumn, URITemplateAction,
-    PostbackTemplateAction, DatetimePickerTemplateAction,
+    TemplateSendMessage, ConfirmTemplate, MessageAction,
+    ButtonsTemplate, ImageCarouselTemplate, ImageCarouselColumn, URIAction,
+    PostbackAction, DatetimePickerAction,
     CarouselTemplate, CarouselColumn, PostbackEvent,
     StickerMessage, StickerSendMessage, LocationMessage, LocationSendMessage,
     ImageMessage, VideoMessage, AudioMessage, FileMessage,
@@ -96,35 +96,31 @@ def handle_text_message(event):
             profile = line_bot_api.get_profile(event.source.user_id)
             line_bot_api.reply_message(
                 event.reply_token, [
-                    TextSendMessage(
-                        text='Display name: ' + profile.display_name
-                    ),
-                    TextSendMessage(
-                        text='Status message: ' + profile.status_message
-                    )
+                    TextSendMessage(text='Display name: ' + profile.display_name),
+                    TextSendMessage(text='Status message: ' + profile.status_message)
                 ]
             )
         else:
             line_bot_api.reply_message(
                 event.reply_token,
-                TextMessage(text="Bot can't use profile API without user ID"))
+                TextSendMessage(text="Bot can't use profile API without user ID"))
     elif text == 'bye':
         if isinstance(event.source, SourceGroup):
             line_bot_api.reply_message(
-                event.reply_token, TextMessage(text='Leaving group'))
+                event.reply_token, TextSendMessage(text='Leaving group'))
             line_bot_api.leave_group(event.source.group_id)
         elif isinstance(event.source, SourceRoom):
             line_bot_api.reply_message(
-                event.reply_token, TextMessage(text='Leaving group'))
+                event.reply_token, TextSendMessage(text='Leaving group'))
             line_bot_api.leave_room(event.source.room_id)
         else:
             line_bot_api.reply_message(
                 event.reply_token,
-                TextMessage(text="Bot can't leave from 1:1 chat"))
+                TextSendMessage(text="Bot can't leave from 1:1 chat"))
     elif text == 'confirm':
         confirm_template = ConfirmTemplate(text='Do it?', actions=[
-            MessageTemplateAction(label='Yes', text='Yes!'),
-            MessageTemplateAction(label='No', text='No!'),
+            MessageAction(label='Yes', text='Yes!'),
+            MessageAction(label='No', text='No!'),
         ])
         template_message = TemplateSendMessage(
             alt_text='Confirm alt text', template=confirm_template)
@@ -132,13 +128,10 @@ def handle_text_message(event):
     elif text == 'buttons':
         buttons_template = ButtonsTemplate(
             title='My buttons sample', text='Hello, my buttons', actions=[
-                URITemplateAction(
-                    label='Go to line.me', uri='https://line.me'),
-                PostbackTemplateAction(label='ping', data='ping'),
-                PostbackTemplateAction(
-                    label='ping with text', data='ping',
-                    text='ping'),
-                MessageTemplateAction(label='Translate Rice', text='米')
+                URIAction(label='Go to line.me', uri='https://line.me'),
+                PostbackAction(label='ping', data='ping'),
+                PostbackAction(label='ping with text', data='ping', text='ping'),
+                MessageAction(label='Translate Rice', text='米')
             ])
         template_message = TemplateSendMessage(
             alt_text='Buttons alt text', template=buttons_template)
@@ -146,15 +139,12 @@ def handle_text_message(event):
     elif text == 'carousel':
         carousel_template = CarouselTemplate(columns=[
             CarouselColumn(text='hoge1', title='fuga1', actions=[
-                URITemplateAction(
-                    label='Go to line.me', uri='https://line.me'),
-                PostbackTemplateAction(label='ping', data='ping')
+                URIAction(label='Go to line.me', uri='https://line.me'),
+                PostbackAction(label='ping', data='ping')
             ]),
             CarouselColumn(text='hoge2', title='fuga2', actions=[
-                PostbackTemplateAction(
-                    label='ping with text', data='ping',
-                    text='ping'),
-                MessageTemplateAction(label='Translate Rice', text='米')
+                PostbackAction(label='ping with text', data='ping', text='ping'),
+                MessageAction(label='Translate Rice', text='米')
             ]),
         ])
         template_message = TemplateSendMessage(
@@ -163,13 +153,13 @@ def handle_text_message(event):
     elif text == 'image_carousel':
         image_carousel_template = ImageCarouselTemplate(columns=[
             ImageCarouselColumn(image_url='https://via.placeholder.com/1024x1024',
-                                action=DatetimePickerTemplateAction(label='datetime',
-                                                                    data='datetime_postback',
-                                                                    mode='datetime')),
+                                action=DatetimePickerAction(label='datetime',
+                                                            data='datetime_postback',
+                                                            mode='datetime')),
             ImageCarouselColumn(image_url='https://via.placeholder.com/1024x1024',
-                                action=DatetimePickerTemplateAction(label='date',
-                                                                    data='date_postback',
-                                                                    mode='date'))
+                                action=DatetimePickerAction(label='date',
+                                                            data='date_postback',
+                                                            mode='date'))
         ])
         template_message = TemplateSendMessage(
             alt_text='ImageCarousel alt text', template=image_carousel_template)

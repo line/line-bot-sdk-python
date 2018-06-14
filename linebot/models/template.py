@@ -20,31 +20,9 @@ from abc import ABCMeta
 
 from future.utils import with_metaclass
 
+from .actions import get_action, get_actions
 from .base import Base
 from .send_messages import SendMessage
-
-
-def _get_action(action):
-    action_obj = Base.get_or_new_from_json_dict_with_types(
-        action, {
-            'postback': PostbackTemplateAction,
-            'message': MessageTemplateAction,
-            'uri': URITemplateAction,
-            'datetimepicker': DatetimePickerTemplateAction,
-        }
-    )
-    return action_obj
-
-
-def _get_actions(actions):
-    new_actions = []
-    if actions:
-        for action in actions:
-            action_obj = _get_action(action)
-            if action_obj:
-                new_actions.append(action_obj)
-
-    return new_actions
 
 
 class TemplateSendMessage(SendMessage):
@@ -132,7 +110,7 @@ class ButtonsTemplate(Template):
             Specify a RGB color value.
         :param actions: Action when tapped.
             Max: 4
-        :type actions: list[T <= :py:class:`linebot.models.template.TemplateAction`]
+        :type actions: list[T <= :py:class:`linebot.models.actions.Action`]
         :param kwargs:
         """
         super(ButtonsTemplate, self).__init__(**kwargs)
@@ -144,7 +122,7 @@ class ButtonsTemplate(Template):
         self.image_aspect_ratio = image_aspect_ratio
         self.image_size = image_size
         self.image_background_color = image_background_color
-        self.actions = _get_actions(actions)
+        self.actions = get_actions(actions)
 
 
 class ConfirmTemplate(Template):
@@ -162,14 +140,14 @@ class ConfirmTemplate(Template):
             Max: 240 characters
         :param actions: Action when tapped.
             Max: 2
-        :type actions: list[T <= :py:class:`linebot.models.template.TemplateAction`]
+        :type actions: list[T <= :py:class:`linebot.models.actions.Action`]
         :param kwargs:
         """
         super(ConfirmTemplate, self).__init__(**kwargs)
 
         self.type = 'confirm'
         self.text = text
-        self.actions = _get_actions(actions)
+        self.actions = get_actions(actions)
 
 
 class CarouselTemplate(Template):
@@ -269,7 +247,7 @@ class CarouselColumn(Base):
             Specify a RGB color value.
         :param actions: Action when tapped.
             Max: 3
-        :type actions: list[T <= :py:class:`linebot.models.template.TemplateAction`]
+        :type actions: list[T <= :py:class:`linebot.models.actions.Action`]
         :param kwargs:
         """
         super(CarouselColumn, self).__init__(**kwargs)
@@ -278,7 +256,7 @@ class CarouselColumn(Base):
         self.title = title
         self.thumbnail_image_url = thumbnail_image_url
         self.image_background_color = image_background_color
-        self.actions = _get_actions(actions)
+        self.actions = get_actions(actions)
 
 
 class ImageCarouselColumn(Base):
@@ -298,144 +276,10 @@ class ImageCarouselColumn(Base):
             Max: 1 MB
         :param action: Action when image is tapped
             Max: 5
-        :type action: T <= :py:class:`linebot.models.template.TemplateAction`
+        :type action: T <= :py:class:`linebot.models.actions.Action`
         :param kwargs:
         """
         super(ImageCarouselColumn, self).__init__(**kwargs)
 
         self.image_url = image_url
-        self.action = _get_action(action)
-
-
-class TemplateAction(with_metaclass(ABCMeta, Base)):
-    """Abstract Base Class of TemplateAction."""
-
-    def __init__(self, **kwargs):
-        """__init__ method.
-
-        :param kwargs:
-        """
-        super(TemplateAction, self).__init__(**kwargs)
-
-        self.type = None
-
-
-class PostbackTemplateAction(TemplateAction):
-    """PostbackTemplateAction.
-
-    https://devdocs.line.me/en/#template-messages
-
-    When this action is tapped, a postback event is returned
-    via webhook with the specified string in the data field.
-
-    If you have included the text field,
-    the string in the text field is sent as a message from the user.
-    """
-
-    def __init__(self, label=None, data=None, text=None, **kwargs):
-        """__init__ method.
-
-        :param str label: Label for the action.
-            Max: 20 characters
-        :param str data: String returned via webhook in the postback.data property
-            of the postback event.
-            Max: 300 characters
-        :param str text: Text sent when the action is performed.
-            Max: 300 characters
-        :param kwargs:
-        """
-        super(PostbackTemplateAction, self).__init__(**kwargs)
-
-        self.type = 'postback'
-        self.label = label
-        self.data = data
-        self.text = text
-
-
-class MessageTemplateAction(TemplateAction):
-    """MessageTemplateAction.
-
-    https://devdocs.line.me/en/#template-messages
-
-    When this action is tapped,
-    the string in the text field is sent as a message from the user.
-    """
-
-    def __init__(self, label=None, text=None, **kwargs):
-        """__init__ method.
-
-        :param str label: Label for the action.
-            Max: 20 characters
-        :param str text: Text sent when the action is performed.
-            Max: 300 characters
-        :param kwargs:
-        """
-        super(MessageTemplateAction, self).__init__(**kwargs)
-
-        self.type = 'message'
-        self.label = label
-        self.text = text
-
-
-class URITemplateAction(TemplateAction):
-    """URITemplateAction.
-
-    https://devdocs.line.me/en/#template-messages
-
-    When this action is tapped, the URI specified in the uri field is opened.
-    """
-
-    def __init__(self, label=None, uri=None, **kwargs):
-        """__init__ method.
-
-        :param str label: Label for the action
-            Max: 20 characters
-        :param str uri: URI opened when the action is performed.
-            http, https, tel
-        :param kwargs:
-        """
-        super(URITemplateAction, self).__init__(**kwargs)
-
-        self.type = 'uri'
-        self.label = label
-        self.uri = uri
-
-
-class DatetimePickerTemplateAction(TemplateAction):
-    """DatetimePickerTemplateAction.
-
-    https://devdocs.line.me/en/#template-messages
-
-    When this action is tapped, a postback event is returned via webhook
-    with the date and time selected by the user from the date and time selection dialog.
-    """
-
-    def __init__(self, label=None, data=None, mode=None,
-                 initial=None, max=None, min=None, **kwargs):
-        """__init__ method.
-
-        :param str label: Label for the action
-            Max: 20 characters
-        :param str data: String returned via webhook
-            in the postback.data property of the postback event
-            Max: 300 characters
-        :param str mode: 	Action mode
-            date: Pick date
-            time: Pick time
-            datetime: Pick date and time
-        :param str initial: Initial value of date or time
-        :param str max: Largest date or time value that can be selected.
-            Must be greater than the min value.
-        :param str min: Smallest date or time value that can be selected.
-            Must be less than the max value.
-        :param kwargs:
-        """
-        super(DatetimePickerTemplateAction, self).__init__(**kwargs)
-
-        self.type = 'datetimepicker'
-        self.label = label
-        self.data = data
-        self.mode = mode
-        self.initial = initial
-        self.max = max
-        self.min = min
+        self.action = get_action(action)

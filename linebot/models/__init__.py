@@ -14,6 +14,18 @@
 
 """linebot.models package."""
 
+from .actions import (  # noqa
+    Action,
+    PostbackAction,
+    MessageAction,
+    URIAction,
+    DatetimePickerAction,
+    Action as TemplateAction,  # backward compatibility
+    PostbackAction as PostbackTemplateAction,  # backward compatibility
+    MessageAction as MessageTemplateAction,  # backward compatibility
+    URIAction as URITemplateAction,  # backward compatibility
+    DatetimePickerAction as DatetimePickerTemplateAction,  # backward compatibility
+)
 from .base import (  # noqa
     Base,
 )
@@ -49,10 +61,20 @@ from .messages import (  # noqa
     AudioMessage,
     LocationMessage,
     StickerMessage,
-    FileMessage
+    FileMessage,
 )
 from .responses import (  # noqa
     Profile,
+    MemberIds,
+    Content,
+    RichMenuResponse,
+    Content as MessageContent,  # backward compatibility
+)
+from .rich_menu import (  # noqa
+    RichMenu,
+    RichMenuSize,
+    RichMenuArea,
+    RichMenuBounds,
 )
 from .send_messages import (  # noqa
     SendMessage,
@@ -76,16 +98,6 @@ from .template import (  # noqa
     ConfirmTemplate,
     CarouselTemplate,
     CarouselColumn,
-    TemplateAction,
-    PostbackTemplateAction,
-    MessageTemplateAction,
-    URITemplateAction,
-    DatetimePickerTemplateAction,
     ImageCarouselTemplate,
     ImageCarouselColumn,
-)
-from .rich_menu import ( # noqa
-    RichMenu,
-    RichMenuBound,
-    RichMenuArea,
 )

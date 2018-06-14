@@ -20,6 +20,7 @@ from abc import ABCMeta
 
 from future.utils import with_metaclass
 
+from .actions import get_action
 from .base import Base
 
 
@@ -27,49 +28,85 @@ class RichMenu(with_metaclass(ABCMeta, Base)):
     """RichMenu.
 
     https://developers.line.me/en/docs/messaging-api/reference/#rich-menu-object
-
-    This is the template to create a richmenu before posting to remote server,
-    or a template to receive rich menu query result from remote server.
     """
 
-    def __init__(self, size=None, selected=None, name=None, chatBarText=None,
+    def __init__(self, size=None, selected=None, name=None, chat_bar_text=None,
                  areas=None, **kwargs):
         """__init__ method.
 
         :param size: size object which describe the rich menu displayed in the chat.
-                      Rich menu images must be one of the following sizes: 2500x1686, 2500x843.
-        :type size: T <= :py:class:`linebot.models.rich_menu.RichMenuBound`
+            Rich menu images must be one of the following sizes: 2500x1686, 2500x843.
+        :type size: :py:class:`linebot.models.rich_menu.RichMenuSize`
         :param bool selected: true to display the rich menu by default. Otherwise, false.
         :param str name: Name of the rich menu.
-                         Maximum of 300 characters.
+            Maximum of 300 characters.
         :param str chatBarText: Text displayed in the chat bar.
                                 Maximum of 14 characters.
         :param areas: Array of area objects which define coordinates and size of tappable areas.
                       Maximum of 20 area objects.
-        :type areas: T <= :py:class:`linebot.models.rich_menu.RichMenuArea`
+        :type areas: list[T <= :py:class:`linebot.models.rich_menu.RichMenuArea`]
         :param kwargs:
         """
         super(RichMenu, self).__init__(**kwargs)
 
-        self.size = size  # RichMenuBound
+        self.size = self.get_or_new_from_json_dict(size, RichMenuSize)
         self.selected = selected
         self.name = name
-        self.chatBarText = chatBarText
-        self.areas = []
-        if not isinstance(areas, (list, tuple)):
-            areas = [areas]
+        self.chat_bar_text = chat_bar_text
 
-        self.areas = [area.as_json_dict() for area in areas]  # RichMenuArea
+        new_areas = []
+        if areas:
+            for area in areas:
+                new_areas.append(
+                    self.get_or_new_from_json_dict(area, RichMenuArea)
+                )
+        self.areas = new_areas
 
 
-class RichMenuBound(with_metaclass(ABCMeta, Base)):
-    """RichMenuBound.
+class RichMenuSize(with_metaclass(ABCMeta, Base)):
+    """RichMenuSize.
+
+    https://developers.line.me/en/docs/messaging-api/reference/#size-object
+    """
+
+    def __init__(self, width=None, height=None, **kwargs):
+        """__init__ method.
+
+        :param int width: Width of the rich menu. Must be 2500.
+        :param int height: Height of the rich menu. Possible values: 1686, 843.
+        :param kwargs:
+        """
+        super(RichMenuSize, self).__init__(**kwargs)
+
+        self.width = width
+        self.height = height
+
+
+class RichMenuArea(with_metaclass(ABCMeta, Base)):
+    """RichMenuArea.
+
+    https://developers.line.me/en/docs/messaging-api/reference/#area-object
+    """
+
+    def __init__(self, bounds=None, action=None, **kwargs):
+        """__init__ method.
+
+        :param bounds: Object describing the boundaries of the area in pixels. See bounds object.
+        :type bounds: :py:class:`linebot.models.rich_menu.RichMenuBound`
+        :param action: Action performed when the area is tapped. See action objects.
+        :type action: T <= :py:class:`linebot.models.actions.Action`
+        :param kwargs:
+        """
+        super(RichMenuArea, self).__init__(**kwargs)
+
+        self.bounds = self.get_or_new_from_json_dict(bounds, RichMenuBounds)
+        self.action = get_action(action)
+
+
+class RichMenuBounds(with_metaclass(ABCMeta, Base)):
+    """RichMenuBounds.
 
     https://developers.line.me/en/docs/messaging-api/reference/#bounds-object
-    https://developers.line.me/en/docs/messaging-api/reference/#size-object
-
-    This is the template to describe the boundaries of the area in pixels.
-    If x and y are equal to default value, the bound object is equal to size object.
     """
 
     def __init__(self, x=None, y=None, width=None, height=None, **kwargs):
@@ -81,35 +118,9 @@ class RichMenuBound(with_metaclass(ABCMeta, Base)):
         :param int height: Height of the area.
         :param kwargs:
         """
-        super(RichMenuBound, self).__init__(id=id, **kwargs)
+        super(RichMenuBounds, self).__init__(**kwargs)
 
         self.x = x
         self.y = y
         self.width = width
         self.height = height
-
-
-class RichMenuArea(with_metaclass(ABCMeta, Base)):
-    """RichMenuArea.
-
-    https://developers.line.me/en/docs/messaging-api/reference/#area-object
-
-    Array of area objects which define the coordinates and size of tappable areas.
-    """
-
-    def __init__(self, bounds=None, action=None, **kwargs):
-        """__init__ method.
-
-        :param bounds: Object describing the boundaries of the area in pixels.
-        :type areas: T <= :py:class:`linebot.models.template.RichMenuBound`
-        :param action: Action performed when the area is tapped.
-        :type action: T <= :py:class:`linebot.models.template.PostbackTemplateAction` |
-                      T <= :py:class:`linebot.models.template.MessageTemplateAction` |
-                      T <= :py:class:`linebot.models.template.URITemplateAction` |
-                      T <= :py:class:`linebot.models.template.DatetimePickerTemplateAction`
-        :param kwargs:
-        """
-        super(RichMenuArea, self).__init__(id=id, **kwargs)
-
-        self.action = action
-        self.bounds = bounds  # RichMenuBound

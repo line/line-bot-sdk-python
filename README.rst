@@ -253,7 +253,7 @@ https://developers.line.me/en/docs/messaging-api/reference/#get-rich-menu
     rich_menu = line_bot_api.get_rich_menu(rich_menu_id)
     print(rich_menu.rich_menu_id)
 
-create\_rich\_menu(self, rich_\menu, timeout=None)
+create\_rich\_menu(self, rich\_menu, timeout=None)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Creates a rich menu.
@@ -335,7 +335,7 @@ https://developers.line.me/en/docs/messaging-api/reference/#download-rich-menu-i
             fd.write(chunk)
 
 set\_rich\_menu\_image(self, rich\_menu\_id, content\_type, content, timeout=None)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Uploads and attaches an image to a rich menu.
 

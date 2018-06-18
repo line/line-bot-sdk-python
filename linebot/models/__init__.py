@@ -41,9 +41,11 @@ from .events import (  # noqa
     JoinEvent,
     LeaveEvent,
     PostbackEvent,
+    AccountLinkEvent,
     BeaconEvent,
     Postback,
     Beacon,
+    Link,
 )
 from .imagemap import (  # noqa
     ImagemapSendMessage,

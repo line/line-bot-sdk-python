@@ -355,7 +355,7 @@ class Link(Base):
     def __init__(self, result=None, nonce=None, **kwargs):
         """__init__ method.
 
-        :param str result: One of the following values to indicate whether the link was successful or not.
+        :param str result: Indicate whether the link was successful or not.
         :param str nonce: Specified nonce when verifying the user ID.
         """
         super(Link, self).__init__(**kwargs)

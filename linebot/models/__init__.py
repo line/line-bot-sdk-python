@@ -111,7 +111,7 @@ from .flex_message import (  # noqa
     FlexComponent,
     BoxComponent,
     ButtonComponent,
-    FilterComponent,
+    FillerComponent,
     IconComponent,
     ImageComponent,
     SeparatorComponent,

@@ -98,9 +98,9 @@ class ButtonComponent(FlexComponent):
         self.color = color
         self.gravity = gravity
 
-class FilterComponent(FlexComponent):
+class FillerComponent(FlexComponent):
     def __init__(self):
-        self.type = 'filter'
+        self.type = 'filler'
 
 class IconComponent(FlexComponent):
     def __init__(self, url=None, margin=None, size=None, aspect_ratio=None, **kwargs):

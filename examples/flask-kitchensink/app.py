@@ -19,7 +19,6 @@ import os
 import sys
 import tempfile
 from argparse import ArgumentParser
-
 from flask import Flask, request, abort
 
 from linebot import (
@@ -199,7 +198,8 @@ def handle_text_message(event):
                             IconComponent(size='sm', url='https://example.com/gold_star.png'),
                             IconComponent(size='sm', url='https://example.com/gold_star.png'),
                             IconComponent(size='sm', url='https://example.com/grey_star.png'),
-                            TextComponent(text='4.0', size='sm', color='#999999', margin='md', flex=0)
+                            TextComponent(text='4.0', size='sm', color='#999999', margin='md',
+                                          flex=0)
                         ]
                     ),
                     # info

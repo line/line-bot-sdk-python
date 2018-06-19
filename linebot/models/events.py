@@ -261,6 +261,40 @@ class BeaconEvent(Event):
         )
 
 
+class AccountLinkEvent(Event):
+    """Webhook AccountLinkEvent.
+
+    https://developers.line.me/en/docs/messaging-api/reference/#account-link-event
+
+    Event object for when a user has linked his/her LINE account with a provider's service account.
+    You can reply to account link events.
+    If the link token has expired or has already been used,
+    no webhook event will be sent and the user will be shown an error.
+    """
+
+    def __init__(self, timestamp=None, source=None, reply_token=None, link=None, **kwargs):
+        """__init__ method.
+
+        :param long timestamp: Time of the event in milliseconds
+        :param source: Source object
+        :type source: T <= :py:class:`linebot.models.sources.Source`
+        :param str reply_token: Reply token
+        :param link: Link object
+        :type link: :py:class:`linebot.models.events.Link`
+        :param kwargs:
+        """
+        super(AccountLinkEvent, self).__init__(
+            timestamp=timestamp, source=source, reply_token=reply_token, link=link
+        )
+
+        self.type = 'accountLink'
+        self.source = source
+        self.reply_token = reply_token
+        self.link = self.get_or_new_from_json_dict(
+            link, Link
+        )
+
+
 class Postback(Base):
     """Postback.
 
@@ -310,3 +344,21 @@ class Beacon(Base):
         :return:
         """
         return bytearray.fromhex(self.dm) if self.dm is not None else None
+
+
+class Link(Base):
+    """Link.
+
+    https://developers.line.me/en/docs/messaging-api/reference/#link-object
+    """
+
+    def __init__(self, result=None, nonce=None, **kwargs):
+        """__init__ method.
+
+        :param str result: Indicate whether the link was successful or not.
+        :param str nonce: Specified nonce when verifying the user ID.
+        """
+        super(Link, self).__init__(**kwargs)
+
+        self.result = result
+        self.nonce = nonce

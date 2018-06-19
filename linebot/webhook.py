@@ -30,7 +30,8 @@ from .models.events import (
     JoinEvent,
     LeaveEvent,
     PostbackEvent,
-    BeaconEvent
+    BeaconEvent,
+    AccountLinkEvent,
 )
 from .utils import LOGGER, PY3, safe_compare_digest
 
@@ -141,6 +142,8 @@ class WebhookParser(object):
                 events.append(PostbackEvent.new_from_json_dict(event))
             elif event_type == 'beacon':
                 events.append(BeaconEvent.new_from_json_dict(event))
+            elif event_type == 'accountLink':
+                events.append(AccountLinkEvent.new_from_json_dict(event))
             else:
                 LOGGER.warn('Unknown event type. type=' + event_type)
 

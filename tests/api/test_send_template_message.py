@@ -64,9 +64,6 @@ class TestLineBotApi(unittest.TestCase):
                 "type": "buttons",
                 "thumbnailImageUrl":
                     "https://example.com/image.jpg",
-                "imageAspectRatio": None,
-                "imageSize": None,
-                "imageBackgroundColor": None,
                 "title": "Menu",
                 "text": "Please select",
                 "actions": [
@@ -213,7 +210,6 @@ class TestLineBotApi(unittest.TestCase):
                     {
                         "thumbnailImageUrl":
                             "https://example.com/item1.jpg",
-                        "imageBackgroundColor": None,
                         "title": "this is menu1",
                         "text": "description1",
                         "actions": [
@@ -263,7 +259,6 @@ class TestLineBotApi(unittest.TestCase):
                     {
                         "thumbnailImageUrl":
                             "https://example.com/item3.jpg",
-                        "imageBackgroundColor": None,
                         "title": "this is menu3",
                         "text": "description3",
                         "actions": [
@@ -297,8 +292,6 @@ class TestLineBotApi(unittest.TestCase):
                         ]
                     }
                 ],
-                "imageAspectRatio": None,
-                "imageSize": None
             }
         }]
 
@@ -346,7 +339,6 @@ class TestLineBotApi(unittest.TestCase):
                             "type": "postback",
                             "label": "postback1",
                             "data": "action=buy&itemid=1",
-                            "text": None
                         }
                     },
                     {

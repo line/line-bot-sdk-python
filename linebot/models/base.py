@@ -90,8 +90,7 @@ class Base(object):
 
             elif hasattr(value, 'as_json_dict'):
                 data[camel_key] = value.as_json_dict()
-
-            else:
+            elif value is not None:
                 data[camel_key] = value
 
         return data

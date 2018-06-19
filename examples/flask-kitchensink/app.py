@@ -19,14 +19,13 @@ import os
 import sys
 import tempfile
 from argparse import ArgumentParser
-
 from flask import Flask, request, abort
 
 from linebot import (
     LineBotApi, WebhookHandler
 )
 from linebot.exceptions import (
-    InvalidSignatureError
+    LineBotApiError, InvalidSignatureError
 )
 from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage,
@@ -37,7 +36,10 @@ from linebot.models import (
     CarouselTemplate, CarouselColumn, PostbackEvent,
     StickerMessage, StickerSendMessage, LocationMessage, LocationSendMessage,
     ImageMessage, VideoMessage, AudioMessage, FileMessage,
-    UnfollowEvent, FollowEvent, JoinEvent, LeaveEvent, BeaconEvent
+    UnfollowEvent, FollowEvent, JoinEvent, LeaveEvent, BeaconEvent,
+    FlexSendMessage, BubbleContainer, ImageComponent, BoxComponent,
+    TextComponent, SpacerComponent, IconComponent, ButtonComponent,
+    SeparatorComponent,
 )
 
 app = Flask(__name__)
@@ -81,6 +83,11 @@ def callback():
     # handle webhook body
     try:
         handler.handle(body, signature)
+    except LineBotApiError as e:
+        print("Got exception from LINE Messaging API: %s\n" % e.message)
+        for m in e.error.details:
+            print("  %s: %s" % (m.property, m.message))
+        print("\n")
     except InvalidSignatureError:
         abort(400)
 
@@ -166,6 +173,111 @@ def handle_text_message(event):
         line_bot_api.reply_message(event.reply_token, template_message)
     elif text == 'imagemap':
         pass
+    elif text == 'flex':
+        bubble = BubbleContainer(
+            direction='ltr',
+            hero=ImageComponent(
+                url='https://example.com/cafe.jpg',
+                size='full',
+                aspect_ratio='20:13',
+                aspect_mode='cover',
+                action=URIAction(uri='http://example.com', label='label')
+            ),
+            body=BoxComponent(
+                layout='vertical',
+                contents=[
+                    # title
+                    TextComponent(text='Brown Cafe', weight='bold', size='xl'),
+                    # review
+                    BoxComponent(
+                        layout='baseline',
+                        margin='md',
+                        contents=[
+                            IconComponent(size='sm', url='https://example.com/gold_star.png'),
+                            IconComponent(size='sm', url='https://example.com/grey_star.png'),
+                            IconComponent(size='sm', url='https://example.com/gold_star.png'),
+                            IconComponent(size='sm', url='https://example.com/gold_star.png'),
+                            IconComponent(size='sm', url='https://example.com/grey_star.png'),
+                            TextComponent(text='4.0', size='sm', color='#999999', margin='md',
+                                          flex=0)
+                        ]
+                    ),
+                    # info
+                    BoxComponent(
+                        layout='vertical',
+                        margin='lg',
+                        spacing='sm',
+                        contents=[
+                            BoxComponent(
+                                layout='baseline',
+                                spacing='sm',
+                                contents=[
+                                    TextComponent(
+                                        text='Place',
+                                        color='#aaaaaa',
+                                        size='sm',
+                                        flex=1
+                                    ),
+                                    TextComponent(
+                                        text='Shinjuku, Tokyo',
+                                        wrap=True,
+                                        color='#666666',
+                                        size='sm',
+                                        flex=5
+                                    )
+                                ],
+                            ),
+                            BoxComponent(
+                                layout='baseline',
+                                spacing='sm',
+                                contents=[
+                                    TextComponent(
+                                        text='Time',
+                                        color='#aaaaaa',
+                                        size='sm',
+                                        flex=1
+                                    ),
+                                    TextComponent(
+                                        text="10:00 - 23:00",
+                                        wrap=True,
+                                        color='#666666',
+                                        size='sm',
+                                        flex=5,
+                                    ),
+                                ],
+                            ),
+                        ],
+                    )
+                ],
+            ),
+            footer=BoxComponent(
+                layout='vertical',
+                spacing='sm',
+                contents=[
+                    # callAction, separator, websiteAction
+                    SpacerComponent(size='sm'),
+                    # callAction
+                    ButtonComponent(
+                        style='link',
+                        height='sm',
+                        action=URIAction(label='CALL', uri='tel:000000'),
+                    ),
+                    # separator
+                    SeparatorComponent(),
+                    # websiteAction
+                    ButtonComponent(
+                        style='link',
+                        height='sm',
+                        action=URIAction(label='WEBSITE', uri="https://example.com")
+                    )
+                ]
+            ),
+        )
+        message = FlexSendMessage(alt_text="hello", contents=bubble)
+        line_bot_api.reply_message(
+            event.reply_token,
+            message
+        )
     else:
         line_bot_api.reply_message(
             event.reply_token, TextSendMessage(text=event.message.text))

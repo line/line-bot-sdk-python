@@ -101,3 +101,20 @@ from .template import (  # noqa
     ImageCarouselTemplate,
     ImageCarouselColumn,
 )
+from .flex_message import (  # noqa
+    FlexSendMessage,
+    FlexContainer,
+    BubbleContainer,
+    BubbleStyle,
+    BlockStyle,
+    CarouselContainer,
+    FlexComponent,
+    BoxComponent,
+    ButtonComponent,
+    FilterComponent,
+    IconComponent,
+    ImageComponent,
+    SeparatorComponent,
+    SpacerComponent,
+    TextComponent
+)

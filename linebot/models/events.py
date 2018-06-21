@@ -284,11 +284,10 @@ class AccountLinkEvent(Event):
         :param kwargs:
         """
         super(AccountLinkEvent, self).__init__(
-            timestamp=timestamp, source=source, reply_token=reply_token, link=link
+            timestamp=timestamp, source=source, **kwargs
         )
 
         self.type = 'accountLink'
-        self.source = source
         self.reply_token = reply_token
         self.link = self.get_or_new_from_json_dict(
             link, Link

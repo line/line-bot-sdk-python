@@ -23,7 +23,7 @@ from linebot import (
 )
 from linebot.models import (
     MessageEvent, FollowEvent, UnfollowEvent, JoinEvent,
-    LeaveEvent, PostbackEvent, BeaconEvent,
+    LeaveEvent, PostbackEvent, BeaconEvent, AccountLinkEvent,
     TextMessage, ImageMessage, VideoMessage, AudioMessage,
     LocationMessage, StickerMessage, FileMessage,
     SourceUser, SourceRoom, SourceGroup
@@ -225,47 +225,47 @@ class TestWebhookParser(unittest.TestCase):
         self.assertEqual(events[12].beacon.dm, '1234567890abcdef')
         self.assertEqual(events[12].beacon.device_message, bytearray(b'\x124Vx\x90\xab\xcd\xef'))
 
-        # MessageEvent, SourceGroup with userId, TextMessage
-        self.assertIsInstance(events[13], MessageEvent)
+        # AccountEvent, SourceUser
+        self.assertIsInstance(events[13], AccountLinkEvent)
         self.assertEqual(events[13].reply_token, 'nHuyWiB7yP5Zw52FIkcQobQuGDXCTA')
-        self.assertEqual(events[13].type, 'message')
+        self.assertEqual(events[13].type, 'accountLink')
         self.assertEqual(events[13].timestamp, 1462629479859)
-        self.assertIsInstance(events[13].source, SourceGroup)
-        self.assertEqual(events[13].source.type, 'group')
-        self.assertEqual(events[13].source.group_id, 'Ca56f94637cc4347f90a25382909b24b9')
+        self.assertIsInstance(events[13].source, SourceUser)
+        self.assertEqual(events[13].source.type, 'user')
         self.assertEqual(events[13].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
-        self.assertEqual(events[13].source.sender_id, 'Ca56f94637cc4347f90a25382909b24b9')
-        self.assertIsInstance(events[13].message, TextMessage)
-        self.assertEqual(events[13].message.id, '325708')
-        self.assertEqual(events[13].message.type, 'text')
-        self.assertEqual(events[13].message.text, 'Hello, world')
+        self.assertEqual(events[13].source.sender_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
+        self.assertEqual(events[13].link.result, 'ok')
+        self.assertEqual(events[13].link.nonce, 'UHNTbmY3WHlPdnE2WUgya0RXT1dYZw==')
 
-        # MessageEvent, SourceRoom with userId, TextMessage
+        # MessageEvent, SourceGroup with userId, TextMessage
         self.assertIsInstance(events[14], MessageEvent)
         self.assertEqual(events[14].reply_token, 'nHuyWiB7yP5Zw52FIkcQobQuGDXCTA')
         self.assertEqual(events[14].type, 'message')
         self.assertEqual(events[14].timestamp, 1462629479859)
-        self.assertIsInstance(events[14].source, SourceRoom)
-        self.assertEqual(events[14].source.type, 'room')
-        self.assertEqual(events[14].source.room_id, 'Ra8dbf4673c4c812cd491258042226c99')
+        self.assertIsInstance(events[14].source, SourceGroup)
+        self.assertEqual(events[14].source.type, 'group')
+        self.assertEqual(events[14].source.group_id, 'Ca56f94637cc4347f90a25382909b24b9')
         self.assertEqual(events[14].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
-        self.assertEqual(events[14].source.sender_id, 'Ra8dbf4673c4c812cd491258042226c99')
+        self.assertEqual(events[14].source.sender_id, 'Ca56f94637cc4347f90a25382909b24b9')
         self.assertIsInstance(events[14].message, TextMessage)
         self.assertEqual(events[14].message.id, '325708')
         self.assertEqual(events[14].message.type, 'text')
         self.assertEqual(events[14].message.text, 'Hello, world')
 
-        # PostbackEvent, SourceUser, with date params
-        self.assertIsInstance(events[15], PostbackEvent)
+        # MessageEvent, SourceRoom with userId, TextMessage
+        self.assertIsInstance(events[15], MessageEvent)
         self.assertEqual(events[15].reply_token, 'nHuyWiB7yP5Zw52FIkcQobQuGDXCTA')
-        self.assertEqual(events[15].type, 'postback')
+        self.assertEqual(events[15].type, 'message')
         self.assertEqual(events[15].timestamp, 1462629479859)
-        self.assertIsInstance(events[15].source, SourceUser)
-        self.assertEqual(events[15].source.type, 'user')
+        self.assertIsInstance(events[15].source, SourceRoom)
+        self.assertEqual(events[15].source.type, 'room')
+        self.assertEqual(events[15].source.room_id, 'Ra8dbf4673c4c812cd491258042226c99')
         self.assertEqual(events[15].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
-        self.assertEqual(events[15].source.sender_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
-        self.assertEqual(events[15].postback.data, 'action=buyItem&itemId=123123&color=red')
-        self.assertEqual(events[15].postback.params['date'], '2013-04-01')
+        self.assertEqual(events[15].source.sender_id, 'Ra8dbf4673c4c812cd491258042226c99')
+        self.assertIsInstance(events[15].message, TextMessage)
+        self.assertEqual(events[15].message.id, '325708')
+        self.assertEqual(events[15].message.type, 'text')
+        self.assertEqual(events[15].message.text, 'Hello, world')
 
         # PostbackEvent, SourceUser, with date params
         self.assertIsInstance(events[16], PostbackEvent)
@@ -277,7 +277,7 @@ class TestWebhookParser(unittest.TestCase):
         self.assertEqual(events[16].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
         self.assertEqual(events[16].source.sender_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
         self.assertEqual(events[16].postback.data, 'action=buyItem&itemId=123123&color=red')
-        self.assertEqual(events[16].postback.params['time'], '10:00')
+        self.assertEqual(events[16].postback.params['date'], '2013-04-01')
 
         # PostbackEvent, SourceUser, with date params
         self.assertIsInstance(events[17], PostbackEvent)
@@ -289,22 +289,34 @@ class TestWebhookParser(unittest.TestCase):
         self.assertEqual(events[17].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
         self.assertEqual(events[17].source.sender_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
         self.assertEqual(events[17].postback.data, 'action=buyItem&itemId=123123&color=red')
-        self.assertEqual(events[17].postback.params['datetime'], '2013-04-01T10:00')
+        self.assertEqual(events[17].postback.params['time'], '10:00')
 
-        # MessageEvent, SourceUser, FileMessage
-        self.assertIsInstance(events[18], MessageEvent)
+        # PostbackEvent, SourceUser, with date params
+        self.assertIsInstance(events[18], PostbackEvent)
         self.assertEqual(events[18].reply_token, 'nHuyWiB7yP5Zw52FIkcQobQuGDXCTA')
-        self.assertEqual(events[18].type, 'message')
+        self.assertEqual(events[18].type, 'postback')
         self.assertEqual(events[18].timestamp, 1462629479859)
         self.assertIsInstance(events[18].source, SourceUser)
         self.assertEqual(events[18].source.type, 'user')
         self.assertEqual(events[18].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
         self.assertEqual(events[18].source.sender_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
-        self.assertIsInstance(events[18].message, FileMessage)
-        self.assertEqual(events[18].message.id, '325708')
-        self.assertEqual(events[18].message.type, 'file')
-        self.assertEqual(events[18].message.file_name, "file.txt")
-        self.assertEqual(events[18].message.file_size, 2138)
+        self.assertEqual(events[18].postback.data, 'action=buyItem&itemId=123123&color=red')
+        self.assertEqual(events[18].postback.params['datetime'], '2013-04-01T10:00')
+
+        # MessageEvent, SourceUser, FileMessage
+        self.assertIsInstance(events[19], MessageEvent)
+        self.assertEqual(events[19].reply_token, 'nHuyWiB7yP5Zw52FIkcQobQuGDXCTA')
+        self.assertEqual(events[19].type, 'message')
+        self.assertEqual(events[19].timestamp, 1462629479859)
+        self.assertIsInstance(events[19].source, SourceUser)
+        self.assertEqual(events[19].source.type, 'user')
+        self.assertEqual(events[19].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
+        self.assertEqual(events[19].source.sender_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
+        self.assertIsInstance(events[19].message, FileMessage)
+        self.assertEqual(events[19].message.id, '325708')
+        self.assertEqual(events[19].message.type, 'file')
+        self.assertEqual(events[19].message.file_name, "file.txt")
+        self.assertEqual(events[19].message.file_size, 2138)
 
 
 class TestWebhookHandler(unittest.TestCase):
@@ -345,6 +357,10 @@ class TestWebhookHandler(unittest.TestCase):
         def beacon(event):
             self.calls.append('7 ' + event.type)
 
+        @self.handler.add(AccountLinkEvent)
+        def account_link(event):
+            self.calls.append('8 ' + event.type)
+
         @self.handler.default()
         def default(event):
             self.calls.append('default ' + event.type)
@@ -373,11 +389,12 @@ class TestWebhookHandler(unittest.TestCase):
         self.assertEqual(self.calls[10], '6 postback')
         self.assertEqual(self.calls[11], '7 beacon')
         self.assertEqual(self.calls[12], '7 beacon')
-        self.assertEqual(self.calls[13], '1 message_text')
+        self.assertEqual(self.calls[13], '8 accountLink')
         self.assertEqual(self.calls[14], '1 message_text')
-        self.assertEqual(self.calls[15], '6 postback')
+        self.assertEqual(self.calls[15], '1 message_text')
         self.assertEqual(self.calls[16], '6 postback')
         self.assertEqual(self.calls[17], '6 postback')
+        self.assertEqual(self.calls[18], '6 postback')
 
 
 if __name__ == '__main__':

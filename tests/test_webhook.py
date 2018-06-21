@@ -235,7 +235,7 @@ class TestWebhookParser(unittest.TestCase):
         self.assertEqual(events[13].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
         self.assertEqual(events[13].source.sender_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
         self.assertEqual(events[13].link.result, 'ok')
-        self.assertEqual(events[13].link.nonce, 'UHNTbmY3WHlPdnE2WUgya0RXT1dYZw==')
+        self.assertEqual(events[13].link.nonce, 'Vb771wDYtXuammLszK6h9A')
 
         # MessageEvent, SourceGroup with userId, TextMessage
         self.assertIsInstance(events[14], MessageEvent)

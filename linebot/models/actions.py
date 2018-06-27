@@ -70,13 +70,15 @@ class PostbackAction(Action):
     a postback event is returned via webhook with the specified string in the data property.
     """
 
-    def __init__(self, label=None, data=None, text=None, **kwargs):
+    def __init__(self, label=None, data=None, display_text=None, text=None, **kwargs):
         """__init__ method.
 
         :param str label: Label for the action.
         :param str data: String returned via webhook
             in the postback.data property of the postback event.
-        :param str text: Text displayed in the chat as a message sent by
+        :param str display_text: Text displayed in the chat as a message sent by
+            the user when the action is performed.
+        :param str text: Deprecated. Text displayed in the chat as a message sent by
             the user when the action is performed. Returned from the server through a webhook.
         :param kwargs:
         """
@@ -85,6 +87,7 @@ class PostbackAction(Action):
         self.type = 'postback'
         self.label = label
         self.data = data
+        self.display_text = display_text
         self.text = text
 
 

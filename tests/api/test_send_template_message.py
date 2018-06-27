@@ -44,7 +44,7 @@ class TestLineBotApi(unittest.TestCase):
                 title='Menu', text='Please select',
                 actions=[
                     PostbackAction(
-                        label='postback', text='postback text',
+                        label='postback', display_text='postback text',
                         data='action=buy&itemid=1'
                     ),
                     MessageAction(
@@ -70,7 +70,7 @@ class TestLineBotApi(unittest.TestCase):
                     {
                         "type": "postback",
                         "label": "postback",
-                        "text": "postback text",
+                        "displayText": "postback text",
                         "data": "action=buy&itemid=1"
                     },
                     {
@@ -93,7 +93,7 @@ class TestLineBotApi(unittest.TestCase):
                 text='Are you sure?',
                 actions=[
                     PostbackAction(
-                        label='postback', text='postback text',
+                        label='postback', display_text='postback text',
                         data='action=buy&itemid=1'
                     ),
                     MessageAction(
@@ -113,7 +113,7 @@ class TestLineBotApi(unittest.TestCase):
                     {
                         "type": "postback",
                         "label": "postback",
-                        "text": "postback text",
+                        "displayText": "postback text",
                         "data": "action=buy&itemid=1"
                     },
                     {
@@ -135,7 +135,7 @@ class TestLineBotApi(unittest.TestCase):
                         title='this is menu1', text='description1',
                         actions=[
                             PostbackAction(
-                                label='postback1', text='postback text1',
+                                label='postback1', display_text='postback text1',
                                 data='action=buy&itemid=1'
                             ),
                             MessageAction(
@@ -154,7 +154,7 @@ class TestLineBotApi(unittest.TestCase):
                         title='this is menu2', text='description2',
                         actions=[
                             PostbackAction(
-                                label='postback2', text='postback text2',
+                                label='postback2', display_text='postback text2',
                                 data='action=buy&itemid=2'
                             ),
                             MessageAction(
@@ -216,7 +216,7 @@ class TestLineBotApi(unittest.TestCase):
                             {
                                 "type": "postback",
                                 "label": "postback1",
-                                "text": "postback text1",
+                                "displayText": "postback text1",
                                 "data": "action=buy&itemid=1"
                             },
                             {
@@ -241,7 +241,7 @@ class TestLineBotApi(unittest.TestCase):
                             {
                                 "type": "postback",
                                 "label": "postback2",
-                                "text": "postback text2",
+                                "displayText": "postback text2",
                                 "data": "action=buy&itemid=2"
                             },
                             {

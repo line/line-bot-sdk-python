@@ -132,7 +132,6 @@ class BubbleStyle(with_metaclass(ABCMeta, Base)):
         """
         super(BubbleStyle, self).__init__(**kwargs)
 
-        self.type = 'carousel'
         self.header = self.get_or_new_from_json_dict(header, BlockStyle)
         self.hero = self.get_or_new_from_json_dict(hero, BlockStyle)
         self.body = self.get_or_new_from_json_dict(body, BlockStyle)

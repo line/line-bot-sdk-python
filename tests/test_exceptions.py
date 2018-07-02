@@ -28,7 +28,7 @@ class TestUtils(unittest.TestCase):
                         details=[ErrorDetail(message='May not be empty',
                                              property='messages[0].text')]))
         self.assertEqual(line_bot_api_error.__str__(),
-                         'LineBotApiError: error_response={"details": '
+                         'LineBotApiError: status_code=400, error_response={"details": '
                          '[{"message": "May not be empty", "property": "messages[0].text"}], '
                          '"message": "The request body has 1 error(s)"}')
 

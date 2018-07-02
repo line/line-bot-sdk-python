@@ -5,6 +5,7 @@ python:
   - "3.4"
   - "3.5"
   - "3.6"
+  - "3.7-dev" # TODO: Use "3.7" if travis supports
 
 install: pip install tox-travis
 

@@ -73,3 +73,12 @@ class LineBotApiError(BaseError):
 
         self.status_code = status_code
         self.error = error
+
+    def __str__(self):
+        """str.
+
+        :rtype: str
+        :return:
+        """
+        return '{0}: error_response={1}'.format(
+            self.__class__.__name__, self.error)

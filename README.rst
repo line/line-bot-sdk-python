@@ -600,6 +600,16 @@ TemplateSendMessage - ImageCarouselTemplate
         )
     )
 
+With QuickReply
+^^^^^^^^^^^^^^^
+
+.. code:: python
+
+    text_message = TextSendMessage(text='Hello, world',
+                                   quick_reply=QuickReply(items=[
+                                       QuickReplyButton(action=MessageAction(label="label", text="text"))
+                                   ]))
+
 Webhook
 -------
 
@@ -862,8 +872,8 @@ To run a test against version 2.7 and against a specific file, use:
 And more... TBD
 
 .. |Build Status| image:: https://travis-ci.org/line/line-bot-sdk-python.svg?branch=master
-   :target: https://travis-ci.org/line/line-bot-sdk-python
+:target: https://travis-ci.org/line/line-bot-sdk-python
 .. |PyPI version| image:: https://badge.fury.io/py/line-bot-sdk.svg
-   :target: https://badge.fury.io/py/line-bot-sdk
+:target: https://badge.fury.io/py/line-bot-sdk
 .. |Documentation Status| image:: https://readthedocs.org/projects/line-bot-sdk-python/badge/?version=latest
-   :target: http://line-bot-sdk-python.readthedocs.io/en/latest/?badge=latest
+:target: http://line-bot-sdk-python.readthedocs.io/en/latest/?badge=latest

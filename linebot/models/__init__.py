@@ -20,6 +20,9 @@ from .actions import (  # noqa
     MessageAction,
     URIAction,
     DatetimePickerAction,
+    CameraAction,
+    CameraRollAction,
+    LocationAction,
     Action as TemplateAction,  # backward compatibility
     PostbackAction as PostbackTemplateAction,  # backward compatibility
     MessageAction as MessageTemplateAction,  # backward compatibility
@@ -46,6 +49,23 @@ from .events import (  # noqa
     Postback,
     Beacon,
     Link,
+)
+from .flex_message import (  # noqa
+    FlexSendMessage,
+    FlexContainer,
+    BubbleContainer,
+    BubbleStyle,
+    BlockStyle,
+    CarouselContainer,
+    FlexComponent,
+    BoxComponent,
+    ButtonComponent,
+    FillerComponent,
+    IconComponent,
+    ImageComponent,
+    SeparatorComponent,
+    SpacerComponent,
+    TextComponent
 )
 from .imagemap import (  # noqa
     ImagemapSendMessage,
@@ -86,6 +106,8 @@ from .send_messages import (  # noqa
     AudioSendMessage,
     LocationSendMessage,
     StickerSendMessage,
+    QuickReply,
+    QuickReplyButton,
 )
 from .sources import (  # noqa
     Source,
@@ -102,21 +124,4 @@ from .template import (  # noqa
     CarouselColumn,
     ImageCarouselTemplate,
     ImageCarouselColumn,
-)
-from .flex_message import (  # noqa
-    FlexSendMessage,
-    FlexContainer,
-    BubbleContainer,
-    BubbleStyle,
-    BlockStyle,
-    CarouselContainer,
-    FlexComponent,
-    BoxComponent,
-    ButtonComponent,
-    FillerComponent,
-    IconComponent,
-    ImageComponent,
-    SeparatorComponent,
-    SpacerComponent,
-    TextComponent
 )

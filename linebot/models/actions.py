@@ -30,7 +30,10 @@ def get_action(action):
             'postback': PostbackAction,
             'message': MessageAction,
             'uri': URIAction,
-            'datetimepicker': DatetimePickerAction
+            'datetimepicker': DatetimePickerAction,
+            'camera': CameraAction,
+            'cameraRoll': CameraRollAction,
+            'location': LocationAction,
         }
     )
     return action_obj
@@ -176,3 +179,69 @@ class DatetimePickerAction(Action):
         self.initial = initial
         self.max = max
         self.min = min
+
+
+class CameraAction(Action):
+    """CameraAction.
+
+    https://developers.line.me/en/reference/messaging-api/#camera-action
+
+    This action can be configured only with quick reply buttons.
+    When a button associated with this action is tapped,
+    the camera screen in the LINE app is opened.
+    """
+
+    def __init__(self, label=None, **kwargs):
+        """__init__ method.
+
+        :param str label: Label for the action
+        :param kwargs:
+        """
+        super(CameraAction, self).__init__(**kwargs)
+
+        self.type = 'camera'
+        self.label = label
+
+
+class CameraRollAction(Action):
+    """CameraRollAction.
+
+    https://developers.line.me/en/reference/messaging-api/#camera-roll-action
+
+    This action can be configured only with quick reply buttons.
+    When a button associated with this action is tapped,
+    the camera roll screen in the LINE app is opened.
+    """
+
+    def __init__(self, label=None, **kwargs):
+        """__init__ method.
+
+        :param str label: Label for the action
+        :param kwargs:
+        """
+        super(CameraRollAction, self).__init__(**kwargs)
+
+        self.type = 'cameraRoll'
+        self.label = label
+
+
+class LocationAction(Action):
+    """LocationRollAction.
+
+    https://developers.line.me/en/reference/messaging-api/#location-action
+
+    This action can be configured only with quick reply buttons.
+    When a button associated with this action is tapped,
+    the location screen in the LINE app is opened.
+    """
+
+    def __init__(self, label=None, **kwargs):
+        """__init__ method.
+
+        :param str label: Label for the action
+        :param kwargs:
+        """
+        super(LocationAction, self).__init__(**kwargs)
+
+        self.type = 'location'
+        self.label = label

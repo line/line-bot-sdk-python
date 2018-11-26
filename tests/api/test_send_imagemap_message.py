@@ -24,7 +24,8 @@ from linebot import (
 )
 from linebot.models import (
     ImagemapSendMessage, BaseSize, URIImagemapAction,
-    ImagemapArea, MessageImagemapAction
+    ImagemapArea, MessageImagemapAction,
+    Video, ExternalLink
 )
 
 
@@ -36,6 +37,17 @@ class TestLineBotApi(unittest.TestCase):
             base_url='https://example.com/base',
             alt_text='this is an imagemap',
             base_size=BaseSize(height=1040, width=1040),
+            video=Video(
+                original_content_url='https://example.com/video.mp4',
+                preview_image_url='https://example.com/video_preview.jpg',
+                area=ImagemapArea(
+                    x=0, y=0, width=1040, height=585
+                ),
+                external_link=ExternalLink(
+                    link_uri='https://example.com/see_more.html',
+                    label='See More',
+                ),
+            ),
             actions=[
                 URIImagemapAction(
                     link_uri='https://example.com/',
@@ -59,6 +71,20 @@ class TestLineBotApi(unittest.TestCase):
             "baseSize": {
                 "height": 1040,
                 "width": 1040
+            },
+            "video": {
+                "originalContentUrl": "https://example.com/video.mp4",
+                "previewImageUrl": "https://example.com/video_preview.jpg",
+                "area": {
+                    "x": 0,
+                    "y": 0,
+                    "width": 1040,
+                    "height": 585
+                },
+                "externalLink": {
+                    "linkUri": "https://example.com/see_more.html",
+                    "label": "See More"
+                }
             },
             "actions": [
                 {

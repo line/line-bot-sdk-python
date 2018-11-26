@@ -74,6 +74,8 @@ from .imagemap import (  # noqa
     URIImagemapAction,
     MessageImagemapAction,
     ImagemapArea,
+    Video,
+    ExternalLink,
 )
 from .messages import (  # noqa
     Message,

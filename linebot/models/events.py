@@ -261,6 +261,68 @@ class BeaconEvent(Event):
         )
 
 
+class MemberJoinedEvent(Event):
+    """Webhook MemberJoinedEvent.
+
+    https://developers.line.biz/en/reference/messaging-api/#member-joined-event
+
+    Event object for when a user joins a group or room that the bot is in.
+
+    """
+
+    def __init__(self, timestamp=None, source=None, reply_token=None,
+                 joined=None, **kwargs):
+        """__init__ method.
+
+        :param long timestamp: Time of the event in milliseconds
+        :param source: Source object
+        :type source: T <= :py:class:`linebot.models.sources.Source`
+        :param str reply_token: Reply token
+        :param joined: Joined object
+        :type joined: :py:class:`linebot.models.events.Joined`
+        :param kwargs:
+        """
+        super(MemberJoinedEvent, self).__init__(
+            timestamp=timestamp, source=source, **kwargs
+        )
+
+        self.type = 'memberJoined'
+        self.reply_token = reply_token
+        self.joined = self.get_or_new_from_json_dict(
+            joined, Joined
+        )
+
+
+class MemberLeftEvent(Event):
+    """Webhook MemberLeftEvent.
+
+    https://developers.line.biz/en/reference/messaging-api/#member-left-event
+
+    Event object for when a user leaves a group or room that the bot is in.
+
+    """
+
+    def __init__(self, timestamp=None, source=None,
+                 left=None, **kwargs):
+        """__init__ method.
+
+        :param long timestamp: Time of the event in milliseconds
+        :param source: Source object
+        :type source: T <= :py:class:`linebot.models.sources.Source`
+        :param left: Left object
+        :type left: :py:class:`linebot.models.events.Left`
+        :param kwargs:
+        """
+        super(MemberLeftEvent, self).__init__(
+            timestamp=timestamp, source=source, **kwargs
+        )
+
+        self.type = 'memberLeft'
+        self.left = self.get_or_new_from_json_dict(
+            left, Left
+        )
+
+
 class AccountLinkEvent(Event):
     """Webhook AccountLinkEvent.
 
@@ -343,6 +405,50 @@ class Beacon(Base):
         :return:
         """
         return bytearray.fromhex(self.dm) if self.dm is not None else None
+
+
+class Joined(Base):
+    """Joined.
+
+    https://developers.line.biz/en/reference/messaging-api/#member-joined-event
+    """
+
+    def __init__(self, members=None, **kwargs):
+        """__init__ method.
+
+        :param str members: Member of users who joined
+        :param kwargs:
+        """
+        super(Joined, self).__init__(**kwargs)
+
+        self._members = members
+
+    @property
+    def members(self):
+        """Get members as list of SourceUser."""
+        return [SourceUser(user_id=x['userId']) for x in self._members]
+
+
+class Left(Base):
+    """Left.
+
+    https://developers.line.biz/en/reference/messaging-api/#member-left-event
+    """
+
+    def __init__(self, members=None, **kwargs):
+        """__init__ method.
+
+        :param str members: Member of users who joined
+        :param kwargs:
+        """
+        super(Left, self).__init__(**kwargs)
+
+        self._members = members
+
+    @property
+    def members(self):
+        """Get members as list of SourceUser."""
+        return [SourceUser(user_id=x['userId']) for x in self._members]
 
 
 class Link(Base):

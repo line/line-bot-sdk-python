@@ -20,7 +20,8 @@ import sys
 import tempfile
 from argparse import ArgumentParser
 
-from flask import Flask, request, abort
+from flask import Flask, request, abort, send_from_directory
+from werkzeug.middleware.proxy_fix import ProxyFix
 
 from linebot import (
     LineBotApi, WebhookHandler
@@ -41,10 +42,11 @@ from linebot.models import (
     UnfollowEvent, FollowEvent, JoinEvent, LeaveEvent, BeaconEvent,
     FlexSendMessage, BubbleContainer, ImageComponent, BoxComponent,
     TextComponent, SpacerComponent, IconComponent, ButtonComponent,
-    SeparatorComponent, QuickReply, QuickReplyButton
-)
+    SeparatorComponent, QuickReply, QuickReplyButton,
+    ImageSendMessage)
 
 app = Flask(__name__)
+app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_host=1, x_proto=1)
 
 # get channel_secret and channel_access_token from your environment variable
 channel_secret = os.getenv('LINE_CHANNEL_SECRET', None)
@@ -126,6 +128,13 @@ def handle_text_message(event):
             line_bot_api.reply_message(
                 event.reply_token,
                 TextSendMessage(text="Bot can't leave from 1:1 chat"))
+    elif text == 'image':
+        url = request.url_root + '/static/logo.png'
+        app.logger.info("url=" + url)
+        line_bot_api.reply_message(
+            event.reply_token,
+            ImageSendMessage(url, url)
+        )
     elif text == 'confirm':
         confirm_template = ConfirmTemplate(text='Do it?', actions=[
             MessageAction(label='Yes', text='Yes!'),
@@ -425,6 +434,11 @@ def handle_beacon(event):
         TextSendMessage(
             text='Got beacon event. hwid={}, device_message(hex string)={}'.format(
                 event.beacon.hwid, event.beacon.dm)))
+
+
+@app.route('/static/<path:path>')
+def send_static_content(path):
+    return send_from_directory('static', path)
 
 
 if __name__ == "__main__":

@@ -51,11 +51,8 @@ app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_host=1, x_proto=1)
 # get channel_secret and channel_access_token from your environment variable
 channel_secret = os.getenv('LINE_CHANNEL_SECRET', None)
 channel_access_token = os.getenv('LINE_CHANNEL_ACCESS_TOKEN', None)
-if channel_secret is None:
-    print('Specify LINE_CHANNEL_SECRET as environment variable.')
-    sys.exit(1)
-if channel_access_token is None:
-    print('Specify LINE_CHANNEL_ACCESS_TOKEN as environment variable.')
+if channel_secret is None or channel_access_token is None:
+    print('Specify LINE_CHANNEL_SECRET and LINE_CHANNEL_ACCESS_TOKEN as environment variables.')
     sys.exit(1)
 
 line_bot_api = LineBotApi(channel_access_token)
@@ -327,7 +324,7 @@ def handle_location_message(event):
     line_bot_api.reply_message(
         event.reply_token,
         LocationSendMessage(
-            title=event.message.title, address=event.message.address,
+            title='Location', address=event.message.address,
             latitude=event.message.latitude, longitude=event.message.longitude
         )
     )
@@ -393,13 +390,14 @@ def handle_file_message(event):
 
 @handler.add(FollowEvent)
 def handle_follow(event):
+    app.logger.info("Got Follow event:" + event.source.user_id)
     line_bot_api.reply_message(
         event.reply_token, TextSendMessage(text='Got follow event'))
 
 
 @handler.add(UnfollowEvent)
-def handle_unfollow():
-    app.logger.info("Got Unfollow event")
+def handle_unfollow(event):
+    app.logger.info("Got Unfollow event:" + event.source.user_id)
 
 
 @handler.add(JoinEvent)

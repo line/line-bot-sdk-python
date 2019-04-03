@@ -248,17 +248,15 @@
     },
     {
       "replyToken": "nHuyWiB7yP5Zw52FIkcQobQuGDXCTA",
-      "type": "message",
+      "type": "things",
       "timestamp": 1462629479859,
       "source": {
         "type": "user",
         "userId": "U206d25c2ea6bd87c17655609a1c37cb8"
       },
-      "message": {
-        "id": "325708",
-        "type": "file",
-        "fileName": "file.txt",
-        "fileSize": 2138
+      "things": {
+        "deviceId": "t2c449c9d1",
+        "type": "link"
       }
     },
     {
@@ -300,6 +298,34 @@
             "userId": "U91eeaf62d9..."
           }
         ]
+      }
+    },
+    {
+      "replyToken": "nHuyWiB7yP5Zw52FIkcQobQuGDXCTA",
+      "type": "things",
+      "timestamp": 1462629479859,
+      "source": {
+        "type": "user",
+        "userId": "U206d25c2ea6bd87c17655609a1c37cb8"
+      },
+      "things": {
+        "deviceId": "t2c449c9d1",
+        "type": "unlink"
+      }
+    },
+    {
+      "replyToken": "nHuyWiB7yP5Zw52FIkcQobQuGDXCTA",
+      "type": "message",
+      "timestamp": 1462629479859,
+      "source": {
+        "type": "user",
+        "userId": "U206d25c2ea6bd87c17655609a1c37cb8"
+      },
+      "message": {
+        "id": "325708",
+        "type": "file",
+        "fileName": "file.txt",
+        "fileSize": 2138
       }
     }
   ]

@@ -356,6 +356,37 @@ class AccountLinkEvent(Event):
         )
 
 
+class ThingsEvent(Event):
+    """Webhook ThingsEvent.
+
+    https://developers.line.biz/en/reference/messaging-api/#device-link-event
+
+    Indicates that a LINE Things-compatible device has been linked with LINE by
+    a user operation.
+    """
+
+    def __init__(self, timestamp=None, source=None, reply_token=None, things=None, **kwargs):
+        """__init__ method.
+
+        :param long timestamp: Time of the event in milliseconds
+        :param source: Source object
+        :type source: T <= :py:class:`linebot.models.sources.Source`
+        :param str reply_token: Reply token
+        :param things: Things object
+        :type things: :py:class:`linebot.models.events.Things`
+        :param kwargs:
+        """
+        super(ThingsEvent, self).__init__(
+            timestamp=timestamp, source=source, **kwargs
+        )
+
+        self.type = 'things'
+        self.reply_token = reply_token
+        self.things = self.get_or_new_from_json_dict(
+            things, Things
+        )
+
+
 class Postback(Base):
     """Postback.
 
@@ -467,3 +498,21 @@ class Link(Base):
 
         self.result = result
         self.nonce = nonce
+
+
+class Things(Base):
+    """Things.
+
+    https://developers.line.biz/en/docs/line-things/develop-bot/#link-event
+    """
+
+    def __init__(self, device_id=None, type=None, **kwargs):
+        """__init__ method.
+
+        :param str device_id: Device ID of the device that was linked with LINE.
+        :param str type: link or unlink
+        """
+        super(Things, self).__init__(**kwargs)
+
+        self.device_id = device_id
+        self.type = type

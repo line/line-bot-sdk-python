@@ -416,7 +416,7 @@ class Joined(Base):
     def __init__(self, members=None, **kwargs):
         """__init__ method.
 
-        :param str members: Member of users who joined
+        :param dict members: Member of users who joined
         :param kwargs:
         """
         super(Joined, self).__init__(**kwargs)
@@ -438,7 +438,7 @@ class Left(Base):
     def __init__(self, members=None, **kwargs):
         """__init__ method.
 
-        :param str members: Member of users who joined
+        :param dict members: Member of users who joined
         :param kwargs:
         """
         super(Left, self).__init__(**kwargs)

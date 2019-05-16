@@ -1,21 +1,31 @@
-line-bot-sdk-python
+LINE Messaging API SDK for Python
 ===================
 
 |Build Status| |PyPI version| |Documentation Status|
 
 SDK of the LINE Messaging API for Python.
 
-About the LINE Messaging API
-----------------------------
+Introduction
+------------
+The LINE Messaging API SDK for Python makes it easy to develop bots using LINE Messaging API, and you can create a sample bot within minutes.
 
-See the official API documentation for more information.
 
-English: https://developers.line.me/en/docs/messaging-api/reference/
+Documentation
+-------------
 
-Japanese: https://developers.line.me/ja/docs/messaging-api/reference/
+See the official API documentation for more information
 
-Install
--------
+English: https://developers.line.biz/en/docs/messaging-api/overview/
+
+Japanese: https://developers.line.biz/ja/docs/messaging-api/overview/
+
+Requirements
+------------
+
+-  Python >= 2.7 or >= 3.4
+
+Installation
+------------
 
 ::
 
@@ -828,10 +838,25 @@ API documentation
 
 OR |Documentation Status|
 
-Requirements
-------------
+Help and media
+--------------
+FAQ: https://developers.line.biz/en/faq/
 
--  Python >= 2.7 or >= 3.4
+Community Q&A: https://www.line-community.me/questions
+
+News: https://developers.line.biz/en/news/
+
+Twitter: @LINE_DEV 
+
+Versioning
+----------
+This project respects semantic versioning
+
+See http://semver.org/
+
+Contributing
+------------
+Please check `CONTRIBUTING <contributing.md>`__ before making a contribution.
 
 For SDK developers
 ------------------
@@ -878,3 +903,23 @@ And more... TBD
    :target: https://badge.fury.io/py/line-bot-sdk
 .. |Documentation Status| image:: https://readthedocs.org/projects/line-bot-sdk-python/badge/?version=latest
    :target: http://line-bot-sdk-python.readthedocs.io/en/latest/?badge=latest
+   
+
+License
+--------
+
+::
+
+    Copyright (C) 2016 LINE Corp.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.

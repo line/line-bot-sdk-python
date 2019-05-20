@@ -27,13 +27,14 @@ from .send_messages import SendMessage
 class ImagemapSendMessage(SendMessage):
     """ImagemapSendMessage.
 
-    https://devdocs.line.me/en/#imagemap-message
+    https://developers.line.biz/en/reference/messaging-api/#imagemap-message
 
     Imagemaps are images with one or more links. You can assign one link for the entire image
     or multiple links which correspond to different regions of the image.
     """
 
-    def __init__(self, base_url=None, alt_text=None, base_size=None, actions=None, **kwargs):
+    def __init__(self, base_url=None, alt_text=None, base_size=None,
+                 video=None, actions=None, **kwargs):
         """__init__ method.
 
         :param str base_url: Base URL of image.
@@ -41,6 +42,8 @@ class ImagemapSendMessage(SendMessage):
         :param str alt_text: Alternative text
         :param base_size: Width and height of base image
         :type base_size: :py:class:`linebot.models.imagemap.BaseSize`
+        :param video: Video in imagemap message
+        :type video: :py:class:`linebot.models.imagemap.Video`
         :param actions: Action when tapped
         :type actions: list[T <= :py:class:`linebot.models.imagemap.ImagemapAction`]
         :param kwargs:
@@ -52,6 +55,9 @@ class ImagemapSendMessage(SendMessage):
         self.alt_text = alt_text
         self.base_size = self.get_or_new_from_json_dict(
             base_size, BaseSize
+        )
+        self.video = self.get_or_new_from_json_dict(
+            video, Video
         )
 
         new_actions = []
@@ -172,3 +178,52 @@ class ImagemapArea(Base):
         self.y = y
         self.width = width
         self.height = height
+
+
+class Video(Base):
+    """Video.
+
+    https://developers.line.biz/en/reference/messaging-api/#imagemap-message
+
+    Defines the properties of the video object in imagemap.
+    """
+
+    def __init__(self, original_content_url=None, preview_image_url=None,
+                 area=None, external_link=None, **kwargs):
+        """__init__ method.
+
+        :param str original_content_url: URL of the video file
+        :param str preview_image_url: URL of the preview image
+        :param area: Defined video area
+        :type area: :py:class:`linebot.models.imagemap.ImagemapArea`
+        :param external_link: Defined video external link
+        :type external_link: :py:class:`linebot.models.imagemap.ExternalLink`
+        :param kwargs:
+        """
+        super(Video, self).__init__(**kwargs)
+
+        self.original_content_url = original_content_url
+        self.preview_image_url = preview_image_url
+        self.area = self.get_or_new_from_json_dict(area, ImagemapArea)
+        self.external_link = self.get_or_new_from_json_dict(external_link, ExternalLink)
+
+
+class ExternalLink(Base):
+    """ExternalLink.
+
+    https://developers.line.biz/en/reference/messaging-api/#imagemap-message
+
+    Defines URL and label of external link in video.
+    """
+
+    def __init__(self, link_uri=None, label=None, **kwargs):
+        """__init__ method.
+
+        :param str link_uri: Webpage URL
+        :param str label: Label
+        :param kwargs:
+        """
+        super(ExternalLink, self).__init__(**kwargs)
+
+        self.link_uri = link_uri
+        self.label = label

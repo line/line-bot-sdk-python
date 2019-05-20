@@ -22,7 +22,8 @@ from .__about__ import __version__
 from .exceptions import LineBotApiError
 from .http_client import HttpClient, RequestsHttpClient
 from .models import (
-    Error, Profile, MemberIds, Content, RichMenuResponse
+    Error, Profile, MemberIds, Content, RichMenuResponse, MessageQuotaResponse,
+    MessageQuotaConsumptionResponse, MessageDeliveryBroadcastResponse
 )
 
 
@@ -156,6 +157,55 @@ class LineBotApi(object):
         self._post(
             '/v2/bot/message/multicast', data=json.dumps(data), timeout=timeout
         )
+
+    def broadcast(self, messages, timeout=None):
+        """Call broadcast API.
+
+        https://developers.line.biz/en/reference/messaging-api/#send-broadcast-message
+
+        Send messages to multiple users at any time.
+
+        :param messages: Messages.
+            Max: 5
+        :type messages: T <= :py:class:`linebot.models.send_messages.SendMessage` |
+            list[T <= :py:class:`linebot.models.send_messages.SendMessage`]
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        """
+        if not isinstance(messages, (list, tuple)):
+            messages = [messages]
+
+        data = {
+            'messages': [message.as_json_dict() for message in messages]
+        }
+
+        self._post(
+            '/v2/bot/message/broadcast', data=json.dumps(data), timeout=timeout
+        )
+
+    def get_message_delivery_broadcast(self, date, timeout=None):
+        """Get number of sent broadcast messages.
+
+        https://developers.line.biz/en/reference/messaging-api/#get-number-of-broadcast-messages
+
+        Gets the number of messages sent with the /bot/message/broadcast endpoint.
+
+        :param str date: Date the messages were sent. The format is `yyyyMMdd`(Timezone is UTC+9).
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        """
+        response = self._get(
+            '/v2/bot/message/delivery/broadcast?date={date}'.format(date=date),
+            timeout=timeout
+        )
+
+        return MessageDeliveryBroadcastResponse.new_from_json_dict(response.json)
 
     def get_profile(self, user_id, timeout=None):
         """Call get profile API.
@@ -519,7 +569,7 @@ class LineBotApi(object):
             or a (connect timeout, read timeout) float tuple.
             Default is self.http_client.timeout
         :type timeout: float | tuple(float, float)
-        :rtype: list(T <= :py:class:`linebot.models.reponse.RichMenuResponse`)
+        :rtype: list(T <= :py:class:`linebot.models.responses.RichMenuResponse`)
         :return: list[RichMenuResponse] instance
         """
         response = self._get(
@@ -532,6 +582,46 @@ class LineBotApi(object):
             result.append(RichMenuResponse.new_from_json_dict(richmenu))
 
         return result
+
+    def get_message_quota(self, timeout=None):
+        """Call Get the target limit for additional messages.
+
+        https://developers.line.biz/en/reference/messaging-api/#get-quota
+
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        :rtype: :py:class:`linebot.models.responses.MessageQuotaResponse`
+        :return: MessageQuotaResponse instance
+        """
+        response = self._get(
+            '/v2/bot/message/quota',
+            timeout=timeout
+        )
+
+        return MessageQuotaResponse.new_from_json_dict(response.json)
+
+    def get_message_quota_consumption(self, timeout=None):
+        """Get number of messages sent this month.
+
+        https://developers.line.biz/en/reference/messaging-api/#get-consumption
+
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        :rtype: :py:class:`linebot.models.responses.MessageQuotaConsumptionResponse`
+        :return: MessageQuotaConsumptionResponse instance
+        """
+        response = self._get(
+            '/v2/bot/message/quota/consumption',
+            timeout=timeout
+        )
+
+        return MessageQuotaConsumptionResponse.new_from_json_dict(response.json)
 
     def _get(self, path, params=None, headers=None, stream=False, timeout=None):
         url = self.endpoint + path

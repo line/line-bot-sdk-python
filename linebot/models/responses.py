@@ -150,3 +150,60 @@ class RichMenuResponse(Base):
                     self.get_or_new_from_json_dict(area, RichMenuArea)
                 )
         self.areas = new_areas
+
+
+class MessageQuotaResponse(Base):
+    """MessageQuotaResponse.
+
+    https://developers.line.biz/en/reference/messaging-api/#get-quota
+    """
+
+    def __init__(self, type=None, value=None, **kwargs):
+        """__init__ method.
+
+        :param str type: Quota limitation type
+        :param int value: The target limit for additional messages in the current month.
+            This property is returned when the type property has a value of limited.
+        :param kwargs:
+        """
+        super(MessageQuotaResponse, self).__init__(**kwargs)
+
+        self.type = type
+        self.value = value
+
+
+class MessageQuotaConsumptionResponse(Base):
+    """MessageQuotaConsumptionResponse.
+
+    https://developers.line.biz/en/reference/messaging-api/#get-consumption
+    """
+
+    def __init__(self, total_usage=None, **kwargs):
+        """__init__ method.
+
+        :param str total_usage: The number of sent messages in the current month
+        :param kwargs:
+        """
+        super(MessageQuotaConsumptionResponse, self).__init__(**kwargs)
+
+        self.total_usage = total_usage
+
+
+class MessageDeliveryBroadcastResponse(Base):
+    """MessageDeliveryBroadcastResponse.
+
+    https://developers.line.biz/en/reference/messaging-api/#get-number-of-broadcast-messages
+    """
+
+    def __init__(self, status=None, success=None, **kwargs):
+        """__init__ method.
+
+        :param str status: Status of the counting process.
+        :param int success: The number of messages sent with the Messaging API on the
+            date specified in date.
+        :param kwargs:
+        """
+        super(MessageDeliveryBroadcastResponse, self).__init__(**kwargs)
+
+        self.status = status
+        self.success = success

@@ -162,7 +162,7 @@ class MessageQuotaResponse(Base):
         """__init__ method.
 
         :param str type: Quota limitation type
-        :param number value: The target limit for additional messages in the current month.
+        :param int value: The target limit for additional messages in the current month.
             This property is returned when the type property has a value of limited.
         :param kwargs:
         """
@@ -199,7 +199,7 @@ class MessageDeliveryBroadcastResponse(Base):
         """__init__ method.
 
         :param str status: Status of the counting process.
-        :param str success: The number of messages sent with the Messaging API on the
+        :param int success: The number of messages sent with the Messaging API on the
             date specified in date.
         :param kwargs:
         """

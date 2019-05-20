@@ -569,7 +569,7 @@ class LineBotApi(object):
             or a (connect timeout, read timeout) float tuple.
             Default is self.http_client.timeout
         :type timeout: float | tuple(float, float)
-        :rtype: list(T <= :py:class:`linebot.models.reponse.RichMenuResponse`)
+        :rtype: list(T <= :py:class:`linebot.models.responses.RichMenuResponse`)
         :return: list[RichMenuResponse] instance
         """
         response = self._get(
@@ -593,7 +593,7 @@ class LineBotApi(object):
             or a (connect timeout, read timeout) float tuple.
             Default is self.http_client.timeout
         :type timeout: float | tuple(float, float)
-        :rtype: :py:class:`linebot.models.reponse.MessageQuotaResponse`
+        :rtype: :py:class:`linebot.models.responses.MessageQuotaResponse`
         :return: MessageQuotaResponse instance
         """
         response = self._get(
@@ -613,7 +613,7 @@ class LineBotApi(object):
             or a (connect timeout, read timeout) float tuple.
             Default is self.http_client.timeout
         :type timeout: float | tuple(float, float)
-        :rtype: :py:class:`linebot.models.reponse.MessageQuotaConsumptionResponse`
+        :rtype: :py:class:`linebot.models.responses.MessageQuotaConsumptionResponse`
         :return: MessageQuotaConsumptionResponse instance
         """
         response = self._get(

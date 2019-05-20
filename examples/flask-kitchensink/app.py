@@ -116,6 +116,50 @@ def handle_text_message(event):
             line_bot_api.reply_message(
                 event.reply_token,
                 TextSendMessage(text="Bot can't use profile API without user ID"))
+    elif text == 'quota':
+        quota = line_bot_api.get_message_quota()
+        line_bot_api.reply_message(
+            event.reply_token, [
+                TextSendMessage(text='type: ' + quota.type),
+                TextSendMessage(text='value: ' + str(quota.value))
+            ]
+        )
+    elif text == 'quota_consumption':
+        quota_consumption = line_bot_api.get_message_quota_consumption()
+        line_bot_api.reply_message(
+            event.reply_token, [
+                TextSendMessage(text='total usage: ' + str(quota_consumption.total_usage)),
+            ]
+        )
+    elif text == 'push':
+        line_bot_api.push_message(
+            event.source.sender_id, [
+                TextSendMessage(text='PUSH!'),
+            ]
+        )
+    elif text == 'multicast':
+        line_bot_api.multicast(
+            [event.source.sender_id], [
+                TextSendMessage(text='THIS IS A MULTICAST MESSAGE'),
+            ]
+        )
+    elif text == 'broadcast':
+        line_bot_api.broadcast(
+            [
+                TextSendMessage(text='THIS IS A BROADCAST MESSAGE'),
+            ]
+        )
+    elif text.startswith('broadcast '):  # broadcast 20190505
+        date = text.split(' ')[1]
+        print("Getting broadcast result: " + date)
+        result = line_bot_api.get_message_delivery_broadcast(date)
+        line_bot_api.reply_message(
+            event.reply_token, [
+                TextSendMessage(text='Number of sent broadcast messages: ' + date),
+                TextSendMessage(text='status: ' + str(result.status)),
+                TextSendMessage(text='success: ' + str(result.success)),
+            ]
+        )
     elif text == 'bye':
         if isinstance(event.source, SourceGroup):
             line_bot_api.reply_message(

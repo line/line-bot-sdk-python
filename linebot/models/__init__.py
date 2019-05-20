@@ -45,6 +45,8 @@ from .events import (  # noqa
     LeaveEvent,
     PostbackEvent,
     AccountLinkEvent,
+    MemberJoinedEvent,
+    MemberLeftEvent,
     BeaconEvent,
     Postback,
     Beacon,

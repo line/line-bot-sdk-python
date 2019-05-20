@@ -24,6 +24,7 @@ from linebot import (
 from linebot.models import (
     MessageEvent, FollowEvent, UnfollowEvent, JoinEvent,
     LeaveEvent, PostbackEvent, BeaconEvent, AccountLinkEvent,
+    MemberJoinedEvent, MemberLeftEvent,
     TextMessage, ImageMessage, VideoMessage, AudioMessage,
     LocationMessage, StickerMessage, FileMessage,
     SourceUser, SourceRoom, SourceGroup
@@ -317,6 +318,31 @@ class TestWebhookParser(unittest.TestCase):
         self.assertEqual(events[19].message.type, 'file')
         self.assertEqual(events[19].message.file_name, "file.txt")
         self.assertEqual(events[19].message.file_size, 2138)
+
+        # MemberJoinedEvent
+        self.assertIsInstance(events[20], MemberJoinedEvent)
+        self.assertEqual(events[20].reply_token, '0f3779fba3b349968c5d07db31eabf65')
+        self.assertEqual(events[20].type, 'memberJoined')
+        self.assertEqual(events[20].timestamp, 1462629479859)
+        self.assertIsInstance(events[20].source, SourceGroup)
+        self.assertEqual(events[20].source.type, 'group')
+        self.assertEqual(events[20].source.group_id, 'C4af4980629...')
+        self.assertEqual(len(events[20].joined.members), 2)
+        self.assertIsInstance(events[20].joined.members[0], SourceUser)
+        self.assertEqual(events[20].joined.members[0].user_id, 'U4af4980629...')
+        self.assertEqual(events[20].joined.members[1].user_id, 'U91eeaf62d9...')
+
+        # MemberLeftEvent
+        self.assertIsInstance(events[21], MemberLeftEvent)
+        self.assertEqual(events[21].type, 'memberLeft')
+        self.assertEqual(events[21].timestamp, 1462629479960)
+        self.assertIsInstance(events[21].source, SourceGroup)
+        self.assertEqual(events[21].source.type, 'group')
+        self.assertEqual(events[21].source.group_id, 'C4af4980629...')
+        self.assertEqual(len(events[21].left.members), 2)
+        self.assertIsInstance(events[21].left.members[0], SourceUser)
+        self.assertEqual(events[21].left.members[0].user_id, 'U4af4980629...')
+        self.assertEqual(events[21].left.members[1].user_id, 'U91eeaf62d9...')
 
 
 class TestWebhookHandler(unittest.TestCase):

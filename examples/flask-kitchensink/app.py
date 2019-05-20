@@ -40,6 +40,7 @@ from linebot.models import (
     StickerMessage, StickerSendMessage, LocationMessage, LocationSendMessage,
     ImageMessage, VideoMessage, AudioMessage, FileMessage,
     UnfollowEvent, FollowEvent, JoinEvent, LeaveEvent, BeaconEvent,
+    MemberJoinedEvent, MemberLeftEvent,
     FlexSendMessage, BubbleContainer, ImageComponent, BoxComponent,
     TextComponent, SpacerComponent, IconComponent, ButtonComponent,
     SeparatorComponent, QuickReply, QuickReplyButton,
@@ -434,6 +435,20 @@ def handle_beacon(event):
         TextSendMessage(
             text='Got beacon event. hwid={}, device_message(hex string)={}'.format(
                 event.beacon.hwid, event.beacon.dm)))
+
+
+@handler.add(MemberJoinedEvent)
+def handle_member_joined(event):
+    line_bot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(
+            text='Got memberJoined event. event={}'.format(
+                event)))
+
+
+@handler.add(MemberLeftEvent)
+def handle_member_left(event):
+    app.logger.info("Got memberLeft event")
 
 
 @app.route('/static/<path:path>')

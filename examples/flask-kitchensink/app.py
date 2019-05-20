@@ -133,13 +133,13 @@ def handle_text_message(event):
         )
     elif text == 'push':
         line_bot_api.push_message(
-            event.source.sender_id, [
+            event.source.user_id, [
                 TextSendMessage(text='PUSH!'),
             ]
         )
     elif text == 'multicast':
         line_bot_api.multicast(
-            [event.source.sender_id], [
+            [event.source.user_id], [
                 TextSendMessage(text='THIS IS A MULTICAST MESSAGE'),
             ]
         )

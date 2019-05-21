@@ -54,6 +54,7 @@ class TestSendTestMessage(unittest.TestCase):
             json.loads(request.body),
             {
                 "to": "to",
+                'notificationDisabled': False,
                 "messages": self.message
             }
         )
@@ -77,6 +78,7 @@ class TestSendTestMessage(unittest.TestCase):
             json.loads(request.body),
             {
                 "replyToken": "replyToken",
+                'notificationDisabled': False,
                 "messages": self.message
             }
         )
@@ -100,6 +102,46 @@ class TestSendTestMessage(unittest.TestCase):
             json.loads(request.body),
             {
                 "to": ['to1', 'to2'],
+                'notificationDisabled': False,
+                "messages": self.message
+            }
+        )
+
+    @responses.activate
+    def test_broadcast_text_message(self):
+        responses.add(
+            responses.POST,
+            LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/message/broadcast',
+            json={}, status=200
+        )
+
+        self.tested.broadcast(self.text_message)
+
+        request = responses.calls[0].request
+        self.assertEqual(
+            request.url,
+            LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/message/broadcast')
+        self.assertEqual(request.method, 'POST')
+        self.assertEqual(
+            json.loads(request.body),
+            {
+                'notificationDisabled': False,
+                "messages": self.message
+            }
+        )
+
+        # call with notification_disable=True
+        self.tested.broadcast(self.text_message, notification_disabled=True)
+
+        request = responses.calls[1].request
+        self.assertEqual(
+            request.url,
+            LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/message/broadcast')
+        self.assertEqual(request.method, 'POST')
+        self.assertEqual(
+            json.loads(request.body),
+            {
+                'notificationDisabled': True,
                 "messages": self.message
             }
         )

@@ -58,7 +58,7 @@ class LineBotApi(object):
         else:
             self.http_client = RequestsHttpClient(timeout=timeout)
 
-    def reply_message(self, reply_token, messages, timeout=None):
+    def reply_message(self, reply_token, messages, notification_disabled=False, timeout=None):
         """Call reply message API.
 
         https://devdocs.line.me/en/#reply-message
@@ -78,6 +78,8 @@ class LineBotApi(object):
             Max: 5
         :type messages: T <= :py:class:`linebot.models.send_messages.SendMessage` |
             list[T <= :py:class:`linebot.models.send_messages.SendMessage`]
+        :param bool notification_disabled: (optional) True to disable push notification
+            when the message is sent. The default value is False.
         :param timeout: (optional) How long to wait for the server
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
@@ -89,14 +91,15 @@ class LineBotApi(object):
 
         data = {
             'replyToken': reply_token,
-            'messages': [message.as_json_dict() for message in messages]
+            'messages': [message.as_json_dict() for message in messages],
+            'notificationDisabled': notification_disabled,
         }
 
         self._post(
             '/v2/bot/message/reply', data=json.dumps(data), timeout=timeout
         )
 
-    def push_message(self, to, messages, timeout=None):
+    def push_message(self, to, messages, notification_disabled=False, timeout=None):
         """Call push message API.
 
         https://devdocs.line.me/en/#push-message
@@ -108,6 +111,8 @@ class LineBotApi(object):
             Max: 5
         :type messages: T <= :py:class:`linebot.models.send_messages.SendMessage` |
             list[T <= :py:class:`linebot.models.send_messages.SendMessage`]
+        :param bool notification_disabled: (optional) True to disable push notification
+            when the message is sent. The default value is False.
         :param timeout: (optional) How long to wait for the server
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
@@ -119,14 +124,15 @@ class LineBotApi(object):
 
         data = {
             'to': to,
-            'messages': [message.as_json_dict() for message in messages]
+            'messages': [message.as_json_dict() for message in messages],
+            'notificationDisabled': notification_disabled,
         }
 
         self._post(
             '/v2/bot/message/push', data=json.dumps(data), timeout=timeout
         )
 
-    def multicast(self, to, messages, timeout=None):
+    def multicast(self, to, messages, notification_disabled=False, timeout=None):
         """Call multicast API.
 
         https://devdocs.line.me/en/#multicast
@@ -140,6 +146,8 @@ class LineBotApi(object):
             Max: 5
         :type messages: T <= :py:class:`linebot.models.send_messages.SendMessage` |
             list[T <= :py:class:`linebot.models.send_messages.SendMessage`]
+        :param bool notification_disabled: (optional) True to disable push notification
+            when the message is sent. The default value is False.
         :param timeout: (optional) How long to wait for the server
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
@@ -151,14 +159,15 @@ class LineBotApi(object):
 
         data = {
             'to': to,
-            'messages': [message.as_json_dict() for message in messages]
+            'messages': [message.as_json_dict() for message in messages],
+            'notificationDisabled': notification_disabled,
         }
 
         self._post(
             '/v2/bot/message/multicast', data=json.dumps(data), timeout=timeout
         )
 
-    def broadcast(self, messages, timeout=None):
+    def broadcast(self, messages, notification_disabled=False, timeout=None):
         """Call broadcast API.
 
         https://developers.line.biz/en/reference/messaging-api/#send-broadcast-message
@@ -169,6 +178,8 @@ class LineBotApi(object):
             Max: 5
         :type messages: T <= :py:class:`linebot.models.send_messages.SendMessage` |
             list[T <= :py:class:`linebot.models.send_messages.SendMessage`]
+        :param bool notification_disabled: (optional) True to disable push notification
+            when the message is sent. The default value is False.
         :param timeout: (optional) How long to wait for the server
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
@@ -179,7 +190,8 @@ class LineBotApi(object):
             messages = [messages]
 
         data = {
-            'messages': [message.as_json_dict() for message in messages]
+            'messages': [message.as_json_dict() for message in messages],
+            'notificationDisabled': notification_disabled,
         }
 
         self._post(

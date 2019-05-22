@@ -81,6 +81,7 @@ class TestLineBotApi(unittest.TestCase):
             json.loads(request.body),
             {
                 "to": "to",
+                'notificationDisabled': False,
                 "messages": [
                     {
                         "type": "text",

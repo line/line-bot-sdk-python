@@ -1,5 +1,5 @@
 LINE Messaging API SDK for Python
-===================
+=================================
 
 |Build Status| |PyPI version| |Documentation Status|
 

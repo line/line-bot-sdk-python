@@ -16,7 +16,7 @@
 
 from __future__ import unicode_literals
 
-__version__ = '1.8.0'
+__version__ = '1.9.0'
 __author__ = 'LINE Corporation'
 __copyright__ = 'Copyright 2016, LINE Corporation'
 __license__ = 'Apache 2.0'

@@ -25,7 +25,7 @@ from linebot import (
 from linebot.models import (
     TemplateSendMessage, ButtonsTemplate,
     PostbackAction, MessageAction,
-    URIAction, DatetimePickerAction,
+    URIAction, AltUri, DatetimePickerAction,
     ConfirmTemplate, CarouselTemplate, CarouselColumn,
     ImageCarouselTemplate, ImageCarouselColumn
 )
@@ -51,7 +51,8 @@ class TestLineBotApi(unittest.TestCase):
                         label='message', text='message text'
                     ),
                     URIAction(
-                        label='uri', uri='http://example.com/'
+                        label='uri', uri='http://example.com/',
+                        alt_uri=AltUri(desktop="http://example.com/desktop")
                     )
                 ]
             )
@@ -81,7 +82,10 @@ class TestLineBotApi(unittest.TestCase):
                     {
                         "type": "uri",
                         "label": "uri",
-                        "uri": "http://example.com/"
+                        "uri": "http://example.com/",
+                        "altUri": {
+                            "desktop": "http://example.com/desktop"
+                        }
                     }
                 ]
             }

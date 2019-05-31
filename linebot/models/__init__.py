@@ -28,6 +28,7 @@ from .actions import (  # noqa
     MessageAction as MessageTemplateAction,  # backward compatibility
     URIAction as URITemplateAction,  # backward compatibility
     DatetimePickerAction as DatetimePickerTemplateAction,  # backward compatibility
+    AltUri,
 )
 from .base import (  # noqa
     Base,

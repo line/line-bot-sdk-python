@@ -61,6 +61,7 @@ class TestLineBotApi(unittest.TestCase):
             json.loads(request.body),
             {
                 "to": "to",
+                'notificationDisabled': False,
                 "messages": self.message
             }
         )
@@ -84,7 +85,8 @@ class TestLineBotApi(unittest.TestCase):
             json.loads(request.body),
             {
                 "replyToken": "replyToken",
-                "messages": self.message
+                "messages": self.message,
+                'notificationDisabled': False,
             }
         )
 
@@ -107,7 +109,8 @@ class TestLineBotApi(unittest.TestCase):
             json.loads(request.body),
             {
                 "to": ['to1', 'to2'],
-                "messages": self.message
+                "messages": self.message,
+                "notificationDisabled": False,
             }
         )
 

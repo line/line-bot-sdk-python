@@ -34,6 +34,7 @@ from .models.events import (
     AccountLinkEvent,
     MemberJoinedEvent,
     MemberLeftEvent,
+    ThingsEvent,
 )
 from .utils import LOGGER, PY3, safe_compare_digest
 
@@ -150,6 +151,8 @@ class WebhookParser(object):
                 events.append(MemberJoinedEvent.new_from_json_dict(event))
             elif event_type == 'memberLeft':
                 events.append(MemberLeftEvent.new_from_json_dict(event))
+            elif event_type == 'things':
+                events.append(ThingsEvent.new_from_json_dict(event))
             else:
                 LOGGER.warn('Unknown event type. type=' + event_type)
 

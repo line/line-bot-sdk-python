@@ -25,7 +25,7 @@ from linebot import (
 from linebot.models import (
     TemplateSendMessage, ButtonsTemplate,
     PostbackAction, MessageAction,
-    URIAction, DatetimePickerAction,
+    URIAction, AltUri, DatetimePickerAction,
     ConfirmTemplate, CarouselTemplate, CarouselColumn,
     ImageCarouselTemplate, ImageCarouselColumn
 )
@@ -51,7 +51,8 @@ class TestLineBotApi(unittest.TestCase):
                         label='message', text='message text'
                     ),
                     URIAction(
-                        label='uri', uri='http://example.com/'
+                        label='uri', uri='http://example.com/',
+                        alt_uri=AltUri(desktop="http://example.com/desktop")
                     )
                 ]
             )
@@ -81,7 +82,10 @@ class TestLineBotApi(unittest.TestCase):
                     {
                         "type": "uri",
                         "label": "uri",
-                        "uri": "http://example.com/"
+                        "uri": "http://example.com/",
+                        "altUri": {
+                            "desktop": "http://example.com/desktop"
+                        }
                     }
                 ]
             }
@@ -380,6 +384,7 @@ class TestLineBotApi(unittest.TestCase):
             json.loads(request.body),
             {
                 "to": "to",
+                'notificationDisabled': False,
                 "messages": self.button_message
             }
         )
@@ -403,6 +408,7 @@ class TestLineBotApi(unittest.TestCase):
             json.loads(request.body),
             {
                 "replyToken": "replyToken",
+                'notificationDisabled': False,
                 "messages": self.button_message
             }
         )
@@ -426,6 +432,7 @@ class TestLineBotApi(unittest.TestCase):
             json.loads(request.body),
             {
                 "to": "to",
+                'notificationDisabled': False,
                 "messages": self.confirm_message
             }
         )
@@ -450,6 +457,7 @@ class TestLineBotApi(unittest.TestCase):
             json.loads(request.body),
             {
                 "replyToken": "replyToken",
+                'notificationDisabled': False,
                 "messages": self.confirm_message
             }
         )
@@ -473,6 +481,7 @@ class TestLineBotApi(unittest.TestCase):
             json.loads(request.body),
             {
                 "to": "to",
+                'notificationDisabled': False,
                 "messages": self.carousel_message
             }
         )
@@ -496,6 +505,7 @@ class TestLineBotApi(unittest.TestCase):
             json.loads(request.body),
             {
                 "replyToken": "replyToken",
+                'notificationDisabled': False,
                 "messages": self.carousel_message
             }
         )
@@ -519,6 +529,7 @@ class TestLineBotApi(unittest.TestCase):
             json.loads(request.body),
             {
                 "to": ['to1', 'to2'],
+                'notificationDisabled': False,
                 "messages": self.carousel_message
             }
         )
@@ -542,6 +553,7 @@ class TestLineBotApi(unittest.TestCase):
             json.loads(request.body),
             {
                 "to": "to",
+                'notificationDisabled': False,
                 "messages": self.image_carousel_message
             }
         )
@@ -565,6 +577,7 @@ class TestLineBotApi(unittest.TestCase):
             json.loads(request.body),
             {
                 "replyToken": "replyToken",
+                'notificationDisabled': False,
                 "messages": self.image_carousel_message
             }
         )
@@ -588,6 +601,7 @@ class TestLineBotApi(unittest.TestCase):
             json.loads(request.body),
             {
                 "to": ['to1', 'to2'],
+                'notificationDisabled': False,
                 "messages": self.image_carousel_message
             }
         )

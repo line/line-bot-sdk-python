@@ -24,7 +24,7 @@ from linebot import (
 from linebot.models import (
     MessageEvent, FollowEvent, UnfollowEvent, JoinEvent,
     LeaveEvent, PostbackEvent, BeaconEvent, AccountLinkEvent,
-    MemberJoinedEvent, MemberLeftEvent,
+    MemberJoinedEvent, MemberLeftEvent, ThingsEvent,
     TextMessage, ImageMessage, VideoMessage, AudioMessage,
     LocationMessage, StickerMessage, FileMessage,
     SourceUser, SourceRoom, SourceGroup
@@ -285,19 +285,16 @@ class TestWebhookParser(unittest.TestCase):
         self.assertEqual(events[18].postback.data, 'action=buyItem&itemId=123123&color=red')
         self.assertEqual(events[18].postback.params['datetime'], '2013-04-01T10:00')
 
-        # MessageEvent, SourceUser, FileMessage
-        self.assertIsInstance(events[19], MessageEvent)
+        # ThingsEvent, SourceUser, link
+        self.assertIsInstance(events[19], ThingsEvent)
         self.assertEqual(events[19].reply_token, 'nHuyWiB7yP5Zw52FIkcQobQuGDXCTA')
-        self.assertEqual(events[19].type, 'message')
+        self.assertEqual(events[19].type, 'things')
         self.assertEqual(events[19].timestamp, 1462629479859)
         self.assertIsInstance(events[19].source, SourceUser)
         self.assertEqual(events[19].source.type, 'user')
         self.assertEqual(events[19].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
-        self.assertIsInstance(events[19].message, FileMessage)
-        self.assertEqual(events[19].message.id, '325708')
-        self.assertEqual(events[19].message.type, 'file')
-        self.assertEqual(events[19].message.file_name, "file.txt")
-        self.assertEqual(events[19].message.file_size, 2138)
+        self.assertEqual(events[19].things.device_id, 't2c449c9d1')
+        self.assertEqual(events[19].things.type, 'link')
 
         # MemberJoinedEvent
         self.assertIsInstance(events[20], MemberJoinedEvent)
@@ -323,6 +320,32 @@ class TestWebhookParser(unittest.TestCase):
         self.assertIsInstance(events[21].left.members[0], SourceUser)
         self.assertEqual(events[21].left.members[0].user_id, 'U4af4980629...')
         self.assertEqual(events[21].left.members[1].user_id, 'U91eeaf62d9...')
+
+        # ThingsEvent, SourceUser, unlink
+        self.assertIsInstance(events[22], ThingsEvent)
+        self.assertEqual(events[22].reply_token, 'nHuyWiB7yP5Zw52FIkcQobQuGDXCTA')
+        self.assertEqual(events[22].type, 'things')
+        self.assertEqual(events[22].timestamp, 1462629479859)
+        self.assertIsInstance(events[22].source, SourceUser)
+        self.assertEqual(events[22].source.type, 'user')
+        self.assertEqual(events[22].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
+        self.assertEqual(events[22].things.device_id, 't2c449c9d1')
+        self.assertEqual(events[22].things.type, 'unlink')
+
+        # MessageEvent, SourceUser, FileMessage
+        self.assertIsInstance(events[23], MessageEvent)
+        self.assertEqual(events[23].reply_token, 'nHuyWiB7yP5Zw52FIkcQobQuGDXCTA')
+        self.assertEqual(events[23].type, 'message')
+        self.assertEqual(events[23].timestamp, 1462629479859)
+        self.assertIsInstance(events[23].source, SourceUser)
+        self.assertEqual(events[23].source.type, 'user')
+        self.assertEqual(events[23].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
+        self.assertEqual(events[23].source.sender_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
+        self.assertIsInstance(events[23].message, FileMessage)
+        self.assertEqual(events[23].message.id, '325708')
+        self.assertEqual(events[23].message.type, 'file')
+        self.assertEqual(events[23].message.file_name, "file.txt")
+        self.assertEqual(events[23].message.file_size, 2138)
 
 
 class TestWebhookHandler(unittest.TestCase):

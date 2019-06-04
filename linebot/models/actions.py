@@ -126,12 +126,14 @@ class URIAction(Action):
     the URI specified in the uri property is opened.
     """
 
-    def __init__(self, label=None, uri=None, **kwargs):
+    def __init__(self, label=None, uri=None, alt_uri=None, **kwargs):
         """__init__ method.
 
         :param str label: Label for the action
             Max: 20 characters
         :param str uri: URI opened when the action is performed.
+        :param alt_uri: URI opened when the desktop app.
+        :type alt_uri: T <= :py:class:`linebot.models.actions.AltUri`
         :param kwargs:
         """
         super(URIAction, self).__init__(**kwargs)
@@ -139,6 +141,29 @@ class URIAction(Action):
         self.type = 'uri'
         self.label = label
         self.uri = uri
+        self.alt_uri = self.get_or_new_from_json_dict(alt_uri, AltUri)
+
+
+class AltUri(with_metaclass(ABCMeta, Base)):
+    """AltUri.
+
+    https://github.com/line/line-bot-sdk-python/issues/155
+
+    URI opened when the desktop app.
+    """
+
+    def __init__(self, desktop=None, **kwargs):
+        """__init__ method.
+
+        :param str desktop: URI opened on LINE for macOS and Windows
+            when the action is performed.
+            If the altUri.desktop property is set,
+            the uri property is ignored on LINE for macOS and Windows.
+        :param kwargs:
+        """
+        super(AltUri, self).__init__(**kwargs)
+
+        self.desktop = desktop
 
 
 class DatetimePickerAction(Action):

@@ -371,7 +371,7 @@ https://developers.line.me/en/docs/messaging-api/reference/#get-rich-menu-list
         print(rich_menu.rich_menu_id)
 
 issue\_link\_token(self, user\_id, timeout=None)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Issues a link token used for the account link feature.
 

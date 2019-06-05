@@ -498,8 +498,12 @@ class LineBotApi(object):
 
         https://developers.line.me/en/docs/messaging-api/reference/#link-rich-menu-to-user
 
-        :param str user_id: ID of an uploaded rich menu
-        :param str rich_menu_id: ID of the user
+        :param str user_id: ID of the user
+        :param str rich_menu_id: ID of an uploaded rich menu
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
         :type timeout: float | tuple(float, float)
         """
         self._post(
@@ -507,6 +511,30 @@ class LineBotApi(object):
                 user_id=user_id,
                 rich_menu_id=rich_menu_id
             ),
+            timeout=timeout
+        )
+
+    def link_rich_menu_to_users(self, user_ids, rich_menu_id, timeout=None):
+        """Links a rich menu to multiple users.
+
+        https://developers.line.biz/en/reference/messaging-api/#link-rich-menu-to-users
+
+        :param user_ids: user IDs
+            Max: 150 users
+        :type user_ids: list[str]
+        :param str rich_menu_id: ID of an uploaded rich menu
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        """
+        self._post(
+            '/v2/bot/richmenu/bulk/link',
+            data=json.dumps({
+                'userIds': user_ids,
+                'richMenuId': rich_menu_id,
+            }),
             timeout=timeout
         )
 
@@ -524,6 +552,28 @@ class LineBotApi(object):
         """
         self._delete(
             '/v2/bot/user/{user_id}/richmenu'.format(user_id=user_id),
+            timeout=timeout
+        )
+
+    def unlink_rich_menu_from_users(self, user_ids, timeout=None):
+        """Unlinks rich menus from multiple users.
+
+        https://developers.line.biz/en/reference/messaging-api/#unlink-rich-menu-from-users
+
+        :param user_ids: user IDs
+            Max: 150 users
+        :type user_ids: list[str]
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        """
+        self._post(
+            '/v2/bot/richmenu/bulk/unlink',
+            data=json.dumps({
+                'userIds': user_ids,
+            }),
             timeout=timeout
         )
 
@@ -594,6 +644,59 @@ class LineBotApi(object):
             result.append(RichMenuResponse.new_from_json_dict(richmenu))
 
         return result
+
+    def set_default_rich_menu(self, rich_menu_id, timeout=None):
+        """Sets the default rich menu.
+
+        https://developers.line.biz/en/reference/messaging-api/#set-default-rich-menu
+
+        :param str rich_menu_id: ID of an uploaded rich menu
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        """
+        self._post(
+            '/v2/bot/user/all/richmenu/{rich_menu_id}'.format(
+                rich_menu_id=rich_menu_id,
+            ),
+            timeout=timeout
+        )
+
+    def get_default_rich_menu(self, timeout=None):
+        """Gets the ID of the default rich menu set with the Messaging API.
+
+        https://developers.line.biz/en/reference/messaging-api/#get-default-rich-menu-id
+
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        """
+        response = self._get(
+            '/v2/bot/user/all/richmenu',
+            timeout=timeout
+        )
+
+        return response.json.get('richMenuId')
+
+    def cancel_default_rich_menu(self, timeout=None):
+        """Cancels the default rich menu set with the Messaging API.
+
+        https://developers.line.biz/en/reference/messaging-api/#cancel-default-rich-menu
+
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        """
+        self._delete(
+            '/v2/bot/user/all/richmenu',
+            timeout=timeout
+        )
 
     def get_message_quota(self, timeout=None):
         """Call Get the target limit for additional messages.

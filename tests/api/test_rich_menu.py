@@ -14,6 +14,7 @@
 
 from __future__ import unicode_literals, absolute_import
 
+import json
 import unittest
 
 import responses
@@ -282,6 +283,110 @@ class TestLineBotApi(unittest.TestCase):
         self.assertEqual(rich_menus[0].areas[0].bounds.height, 1686)
         self.assertEqual(rich_menus[0].areas[0].action.type, 'postback')
         self.assertEqual(rich_menus[0].areas[0].action.data, 'action=buy&itemid=123')
+
+    @responses.activate
+    def test_link_rich_menu_to_users(self):
+        responses.add(
+            responses.POST,
+            LineBotApi.DEFAULT_API_ENDPOINT +
+            '/v2/bot/richmenu/bulk/link',
+            json={}, status=202
+        )
+
+        self.tested.link_rich_menu_to_users(['user_id1', 'user_id2'], 'rich_menu_id')
+
+        request = responses.calls[0].request
+        self.assertEqual(request.method, 'POST')
+        self.assertEqual(
+            request.url,
+            LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/richmenu/bulk/link'
+        )
+        self.assertEqual(
+            json.loads(request.body),
+            {
+                "richMenuId": "rich_menu_id",
+                "userIds": ["user_id1", "user_id2"],
+            }
+        )
+
+    @responses.activate
+    def test_unlink_rich_menu_to_users(self):
+        responses.add(
+            responses.POST,
+            LineBotApi.DEFAULT_API_ENDPOINT +
+            '/v2/bot/richmenu/bulk/unlink',
+            json={}, status=202
+        )
+
+        self.tested.unlink_rich_menu_from_users(['user_id1', 'user_id2'], 'rich_menu_id')
+
+        request = responses.calls[0].request
+        self.assertEqual(request.method, 'POST')
+        self.assertEqual(
+            request.url,
+            LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/richmenu/bulk/unlink'
+        )
+        self.assertEqual(
+            json.loads(request.body),
+            {
+                "userIds": ["user_id1", "user_id2"],
+            }
+        )
+
+    @responses.activate
+    def test_set_default_rich_menu(self):
+        responses.add(
+            responses.POST,
+            LineBotApi.DEFAULT_API_ENDPOINT +
+            '/v2/bot/user/all/richmenu/rich_menu_id',
+            json={}, status=200
+        )
+
+        self.tested.set_default_rich_menu('rich_menu_id')
+
+        request = responses.calls[0].request
+        self.assertEqual(request.method, 'POST')
+        self.assertEqual(
+            request.url,
+            LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/user/all/richmenu/rich_menu_id'
+        )
+
+    @responses.activate
+    def test_get_default_rich_menu(self):
+        responses.add(
+            responses.GET,
+            LineBotApi.DEFAULT_API_ENDPOINT +
+            '/v2/bot/user/all/richmenu',
+            json={"richMenuId": "richMenuId"}, status=200
+        )
+
+        result = self.tested.get_default_rich_menu()
+
+        request = responses.calls[0].request
+        self.assertEqual(request.method, 'GET')
+        self.assertEqual(
+            request.url,
+            LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/user/all/richmenu'
+        )
+        self.assertEqual(result, "richMenuId")
+
+    @responses.activate
+    def test_cancel_default_rich_menu(self):
+        responses.add(
+            responses.DELETE,
+            LineBotApi.DEFAULT_API_ENDPOINT +
+            '/v2/bot/user/all/richmenu',
+            json={}, status=200
+        )
+
+        self.tested.cancel_default_rich_menu()
+
+        request = responses.calls[0].request
+        self.assertEqual(request.method, 'DELETE')
+        self.assertEqual(
+            request.url,
+            LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/user/all/richmenu'
+        )
 
 
 if __name__ == '__main__':

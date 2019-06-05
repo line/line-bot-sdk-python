@@ -646,7 +646,7 @@ class LineBotApi(object):
         return result
 
     def set_default_rich_menu(self, rich_menu_id, timeout=None):
-        """Sets the default rich menu.
+        """Set the default rich menu.
 
         https://developers.line.biz/en/reference/messaging-api/#set-default-rich-menu
 
@@ -665,7 +665,7 @@ class LineBotApi(object):
         )
 
     def get_default_rich_menu(self, timeout=None):
-        """Gets the ID of the default rich menu set with the Messaging API.
+        """Get the ID of the default rich menu set with the Messaging API.
 
         https://developers.line.biz/en/reference/messaging-api/#get-default-rich-menu-id
 
@@ -683,7 +683,7 @@ class LineBotApi(object):
         return response.json.get('richMenuId')
 
     def cancel_default_rich_menu(self, timeout=None):
-        """Cancels the default rich menu set with the Messaging API.
+        """Cancel the default rich menu set with the Messaging API.
 
         https://developers.line.biz/en/reference/messaging-api/#cancel-default-rich-menu
 

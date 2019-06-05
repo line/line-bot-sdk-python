@@ -207,3 +207,20 @@ class MessageDeliveryBroadcastResponse(Base):
 
         self.status = status
         self.success = success
+
+
+class IssueLinkTokenResponse(Base):
+    """IssueLinkTokenResponse.
+
+    https://developers.line.biz/en/reference/messaging-api/#issue-link-token
+    """
+
+    def __init__(self, link_token=None, **kwargs):
+        """__init__ method.
+
+        :param str link_token: Link token.
+        :param kwargs:
+        """
+        super(IssueLinkTokenResponse, self).__init__(**kwargs)
+
+        self.link_token = link_token

@@ -362,6 +362,13 @@ def handle_text_message(event):
                             action=LocationAction(label="label6")
                         ),
                     ])))
+    elif text == 'link_token' and isinstance(event.source, SourceUser):
+        link_token_response = line_bot_api.issue_link_token(event.source.user_id)
+        line_bot_api.reply_message(
+            event.reply_token, [
+                TextSendMessage(text='link_token: ' + link_token_response.link_token)
+            ]
+        )
     else:
         line_bot_api.reply_message(
             event.reply_token, TextSendMessage(text=event.message.text))

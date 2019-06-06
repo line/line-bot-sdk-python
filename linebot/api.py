@@ -23,7 +23,7 @@ from .exceptions import LineBotApiError
 from .http_client import HttpClient, RequestsHttpClient
 from .models import (
     Error, Profile, MemberIds, Content, RichMenuResponse, MessageQuotaResponse,
-    MessageQuotaConsumptionResponse, MessageDeliveryBroadcastResponse
+    MessageQuotaConsumptionResponse, MessageDeliveryBroadcastResponse, IssueLinkTokenResponse
 )
 
 
@@ -737,6 +737,23 @@ class LineBotApi(object):
         )
 
         return MessageQuotaConsumptionResponse.new_from_json_dict(response.json)
+
+    def issue_link_token(self, user_id, timeout=None):
+        """Issues a link token used for the account link feature.
+
+        https://developers.line.biz/en/reference/messaging-api/#issue-link-token
+
+        :param str user_id: User ID for the LINE account to be linked
+        :type timeout: float | tuple(float, float)
+        """
+        response = self._post(
+            '/v2/bot/user/{user_id}/linkToken'.format(
+                user_id=user_id
+            ),
+            timeout=timeout
+        )
+
+        return IssueLinkTokenResponse.new_from_json_dict(response.json)
 
     def _get(self, path, params=None, headers=None, stream=False, timeout=None):
         url = self.endpoint + path

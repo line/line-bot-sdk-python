@@ -425,6 +425,18 @@ https://developers.line.biz/en/reference/messaging-api/#cancel-default-rich-menu
 
     line_bot_api.cancel_default_rich_menu()
 
+issue\_link\_token(self, user\_id, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Issues a link token used for the account link feature.
+
+https://developers.line.biz/en/reference/messaging-api/#issue-link-token
+
+.. code:: python
+
+    link_token_response = line_bot_api.issue_link_token(<user_id>)
+    print(link_token_response)
+
 ※ Error handling
 ^^^^^^^^^^^^^^^^
 
@@ -969,7 +981,6 @@ And more... TBD
    :target: https://badge.fury.io/py/line-bot-sdk
 .. |Documentation Status| image:: https://readthedocs.org/projects/line-bot-sdk-python/badge/?version=latest
    :target: http://line-bot-sdk-python.readthedocs.io/en/latest/?badge=latest
-   
 
 License
 --------

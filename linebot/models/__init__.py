@@ -99,7 +99,8 @@ from .responses import (  # noqa
     MessageQuotaResponse,
     MessageQuotaConsumptionResponse,
     MessageDeliveryBroadcastResponse,
-    Content as MessageContent,  # backward compatibility
+    Content as MessageContent,  # backward compatibility,
+    IssueLinkTokenResponse,
 )
 from .rich_menu import (  # noqa
     RichMenu,

@@ -320,6 +320,17 @@ https://developers.line.me/en/docs/messaging-api/reference/#link-rich-menu-to-us
 
     line_bot_api.link_rich_menu_to_user(user_id, rich_menu_id)
 
+link\_rich\_menu\_to\_users(self, user\_ids, rich\_menu\_id, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Links a rich menu to multiple users.
+
+https://developers.line.biz/en/reference/messaging-api/#link-rich-menu-to-users
+
+.. code:: python
+
+    line_bot_api.link_rich_menu_to_users(<user_ids>, <rich_menu_id>)
+
 unlink\_rich\_menu\_from\_user(self, user\_id, timeout=None)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -330,6 +341,17 @@ https://developers.line.me/en/docs/messaging-api/reference/#unlink-rich-menu-fro
 .. code:: python
 
     line_bot_api.unlink_rich_menu_from_user(user_id)
+
+unlink\_rich\_menu\_from\_users(self, user\_ids, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Unlinks rich menus from multiple users.
+
+https://developers.line.biz/en/reference/messaging-api/#unlink-rich-menu-from-users
+
+.. code:: python
+
+    line_bot_api.unlink_rich_menu_from_users(<user_ids>)
 
 get\_rich\_menu\_image(self, rich\_menu\_id, timeout=None)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -369,6 +391,39 @@ https://developers.line.me/en/docs/messaging-api/reference/#get-rich-menu-list
     rich_menu_list = line_bot_api.get_rich_menu_list()
     for rich_menu in rich_menu_list:
         print(rich_menu.rich_menu_id)
+
+set\_default\_rich\_menu(self, rich\_menu\_id, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Sets the default rich menu.
+
+https://developers.line.biz/en/reference/messaging-api/#set-default-rich-menu
+
+.. code:: python
+
+    line_bot_api.set_default_rich_menu(<rich_menu_id>)
+
+get\_default\_rich\_menu(self, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Gets the ID of the default rich menu set with the Messaging API.
+
+https://developers.line.biz/en/reference/messaging-api/#get-default-rich-menu-id
+
+.. code:: python
+
+    line_bot_api.get_default_rich_menu()
+
+cancel\_default\_rich\_menu(self, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Cancels the default rich menu set with the Messaging API.
+
+https://developers.line.biz/en/reference/messaging-api/#cancel-default-rich-menu
+
+.. code:: python
+
+    line_bot_api.cancel_default_rich_menu()
 
 ※ Error handling
 ^^^^^^^^^^^^^^^^

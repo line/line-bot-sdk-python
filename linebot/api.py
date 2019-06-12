@@ -23,7 +23,8 @@ from .exceptions import LineBotApiError
 from .http_client import HttpClient, RequestsHttpClient
 from .models import (
     Error, Profile, MemberIds, Content, RichMenuResponse, MessageQuotaResponse,
-    MessageQuotaConsumptionResponse, MessageDeliveryBroadcastResponse, IssueLinkTokenResponse
+    MessageQuotaConsumptionResponse, MessageDeliveryBroadcastResponse, IssueLinkTokenResponse,
+    IssueAccessTokenResponse,
 )
 
 
@@ -754,6 +755,46 @@ class LineBotApi(object):
         )
 
         return IssueLinkTokenResponse.new_from_json_dict(response.json)
+
+    def issue_access_token(self, grant_type, client_id, client_secret, timeout=None):
+        """Issues a short-lived channel access token.
+
+        https://developers.line.biz/en/reference/messaging-api/#issue-channel-access-token
+
+        :param str grant_type: `client_credentials`
+        :param str client_id: Channel ID.
+        :param str client_secret: Channel secret.
+        :type timeout: float | tuple(float, float)
+        """
+        response = self._post(
+            '/v2/bot/oauth/accessToken',
+            data=json.dumps({
+                'grantType': grant_type,
+                'clientId': client_id,
+                'clientSecret': client_secret,
+            }),
+            headers={'Content-Type': 'application/x-www-form-urlencoded'},
+            timeout=timeout
+        )
+
+        return IssueAccessTokenResponse.new_from_json_dict(response.json)
+
+    def revoke_access_token(self, access_token, timeout=None):
+        """Revokes a channel access token.
+
+        https://developers.line.biz/en/reference/messaging-api/#revoke-channel-access-token
+
+        :param str access_token: Channel access token.
+        :type timeout: float | tuple(float, float)
+        """
+        self._post(
+            '/v2/bot/oauth/revoke',
+            data=json.dumps({
+                'accessToken': access_token,
+            }),
+            headers={'Content-Type': 'application/x-www-form-urlencoded'},
+            timeout=timeout
+        )
 
     def _get(self, path, params=None, headers=None, stream=False, timeout=None):
         url = self.endpoint + path

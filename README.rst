@@ -437,6 +437,29 @@ https://developers.line.biz/en/reference/messaging-api/#issue-link-token
     link_token_response = line_bot_api.issue_link_token(<user_id>)
     print(link_token_response)
 
+issue\_access\_token(self, grant_type, client_id, client_secret, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Issues a short-lived channel access token.
+
+https://developers.line.biz/en/reference/messaging-api/#issue-channel-access-token
+
+.. code:: python
+
+    access_token_response = line_bot_api.issue_link_token(<user_id>)
+    print(access_token_response)
+
+revoke\_access\_token(self, access_token, timeout=None):
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Revokes a channel access token.
+
+https://developers.line.biz/en/reference/messaging-api/#revoke-channel-access-token
+
+.. code:: python
+
+    line_bot_api.revoke_access_token(<access_token>)
+
 ※ Error handling
 ^^^^^^^^^^^^^^^^
 

@@ -224,3 +224,25 @@ class IssueLinkTokenResponse(Base):
         super(IssueLinkTokenResponse, self).__init__(**kwargs)
 
         self.link_token = link_token
+
+
+class IssueAccessTokenResponse(Base):
+    """IssueAccessTokenResponse.
+
+    https://developers.line.biz/en/reference/messaging-api/#issue-channel-access-token
+    """
+
+    def __init__(self, access_token=None, expires_in=None, token_type=None, **kwargs):
+        """__init__ method.
+
+        :param str access_token: Short-lived channel access token.
+        :param int expires_in: Time until channel access token expires in seconds
+            from time the token is issued.
+        :param str token_type: Bearer.
+        :param kwargs:
+        """
+        super(IssueAccessTokenResponse, self).__init__(**kwargs)
+
+        self.access_token = access_token
+        self.expires_in = expires_in
+        self.token_type = token_type

@@ -446,7 +446,7 @@ https://developers.line.biz/en/reference/messaging-api/#issue-channel-access-tok
 
 .. code:: python
 
-    access_token_response = line_bot_api.issue_link_token(<client_id>, <client_secret>)
+    access_token_response = line_bot_api.issue_access_token(<client_id>, <client_secret>)
     print(access_token_response)
 
 revoke\_access\_token(self, access_token, timeout=None):

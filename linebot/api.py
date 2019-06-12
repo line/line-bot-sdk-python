@@ -756,12 +756,11 @@ class LineBotApi(object):
 
         return IssueLinkTokenResponse.new_from_json_dict(response.json)
 
-    def issue_access_token(self, grant_type, client_id, client_secret, timeout=None):
+    def issue_access_token(self, client_id, client_secret, timeout=None):
         """Issues a short-lived channel access token.
 
         https://developers.line.biz/en/reference/messaging-api/#issue-channel-access-token
 
-        :param str grant_type: `client_credentials`
         :param str client_id: Channel ID.
         :param str client_secret: Channel secret.
         :type timeout: float | tuple(float, float)
@@ -769,7 +768,7 @@ class LineBotApi(object):
         response = self._post(
             '/v2/bot/oauth/accessToken',
             data=json.dumps({
-                'grantType': grant_type,
+                'grantType': 'client_credentials',
                 'clientId': client_id,
                 'clientSecret': client_secret,
             }),

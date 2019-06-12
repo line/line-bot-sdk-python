@@ -45,7 +45,6 @@ class TestLineBotApi(unittest.TestCase):
         )
 
         issue_access_token_response = self.tested.issue_access_token(
-            'client_credentials',
             'client_id',
             'client_secret'
         )

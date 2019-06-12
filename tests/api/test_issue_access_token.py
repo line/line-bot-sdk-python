@@ -26,7 +26,7 @@ from linebot import (
 class TestLineBotApi(unittest.TestCase):
     def setUp(self):
         self.tested = LineBotApi('channel_secret')
-        self.endpoint = LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/oauth/accessToken'
+        self.endpoint = LineBotApi.DEFAULT_API_ENDPOINT + '/v2/oauth/accessToken'
         self.access_token = "W1TeHCgfH2Liwa....."
         self.expires_in = 2592000
         self.token_type = "Bearer"

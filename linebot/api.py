@@ -766,12 +766,12 @@ class LineBotApi(object):
         :type timeout: float | tuple(float, float)
         """
         response = self._post(
-            '/v2/bot/oauth/accessToken',
-            data=json.dumps({
-                'grantType': 'client_credentials',
-                'clientId': client_id,
-                'clientSecret': client_secret,
-            }),
+            '/v2/oauth/accessToken',
+            data={
+                'grant_type': 'client_credentials',
+                'client_id': client_id,
+                'client_secret': client_secret,
+            },
             headers={'Content-Type': 'application/x-www-form-urlencoded'},
             timeout=timeout
         )
@@ -787,10 +787,8 @@ class LineBotApi(object):
         :type timeout: float | tuple(float, float)
         """
         self._post(
-            '/v2/bot/oauth/revoke',
-            data=json.dumps({
-                'accessToken': access_token,
-            }),
+            '/v2/oauth/revoke',
+            data={'access_token': access_token},
             headers={'Content-Type': 'application/x-www-form-urlencoded'},
             timeout=timeout
         )

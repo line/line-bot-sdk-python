@@ -26,7 +26,7 @@ from linebot import (
 class TestLineBotApi(unittest.TestCase):
     def setUp(self):
         self.tested = LineBotApi('channel_secret')
-        self.endpoint = LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/oauth/revoke'
+        self.endpoint = LineBotApi.DEFAULT_API_ENDPOINT + '/v2/oauth/revoke'
         self.access_token = "W1TeHCgfH2Liwa....."
 
     @responses.activate

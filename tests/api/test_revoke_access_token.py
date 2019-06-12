@@ -40,9 +40,10 @@ class TestLineBotApi(unittest.TestCase):
         self.tested.revoke_access_token(self.access_token)
 
         request = responses.calls[0].request
-        self.assertEqual(request.method, 'POST')
-        self.assertEqual(request.url, self.endpoint)
-        self.assertEqual(request.headers['content-type'], 'application/x-www-form-urlencoded')
+        self.assertEqual('POST', request.method)
+        self.assertEqual(self.endpoint, request.url)
+        self.assertEqual('application/x-www-form-urlencoded', request.headers['content-type'])
+        self.assertEqual('access_token={}'.format(self.access_token), request.body)
 
 
 if __name__ == '__main__':

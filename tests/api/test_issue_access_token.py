@@ -14,6 +14,7 @@
 
 from __future__ import unicode_literals, absolute_import
 
+import sys
 import unittest
 
 import responses
@@ -21,6 +22,12 @@ import responses
 from linebot import (
     LineBotApi
 )
+
+PY3 = sys.version_info[0] == 3
+if PY3:
+    from urllib import parse
+else:
+    import urlparse as parse
 
 
 class TestLineBotApi(unittest.TestCase):
@@ -30,6 +37,8 @@ class TestLineBotApi(unittest.TestCase):
         self.access_token = "W1TeHCgfH2Liwa....."
         self.expires_in = 2592000
         self.token_type = "Bearer"
+        self.client_id = 'client_id'
+        self.client_secret = 'client_secret'
 
     @responses.activate
     def test_issue_line_token(self):
@@ -45,17 +54,22 @@ class TestLineBotApi(unittest.TestCase):
         )
 
         issue_access_token_response = self.tested.issue_access_token(
-            'client_id',
-            'client_secret'
+            self.client_id,
+            self.client_secret
         )
 
         request = responses.calls[0].request
-        self.assertEqual(request.method, 'POST')
-        self.assertEqual(request.url, self.endpoint)
-        self.assertEqual(request.headers['content-type'], 'application/x-www-form-urlencoded')
-        self.assertEqual(issue_access_token_response.access_token, self.access_token)
-        self.assertEqual(issue_access_token_response.expires_in, self.expires_in)
-        self.assertEqual(issue_access_token_response.token_type, self.token_type)
+        self.assertEqual('POST', request.method)
+        self.assertEqual(self.endpoint, request.url)
+        self.assertEqual('application/x-www-form-urlencoded', request.headers['content-type'])
+        self.assertEqual(self.access_token, issue_access_token_response.access_token)
+        self.assertEqual(self.expires_in, issue_access_token_response.expires_in)
+        self.assertEqual(self.token_type, issue_access_token_response.token_type)
+
+        encoded_body = parse.parse_qs(request.body)
+        self.assertEqual('client_credentials', encoded_body['grant_type'][0])
+        self.assertEqual(self.client_id, encoded_body['client_id'][0])
+        self.assertEqual(self.client_secret, encoded_body['client_secret'][0])
 
 
 if __name__ == '__main__':

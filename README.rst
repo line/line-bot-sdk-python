@@ -934,7 +934,7 @@ See http://semver.org/
 
 Contributing
 ------------
-Please check `CONTRIBUTING <contributing.md>`__ before making a contribution.
+Please check `CONTRIBUTING <CONTRIBUTING.md>`__ before making a contribution.
 
 For SDK developers
 ------------------

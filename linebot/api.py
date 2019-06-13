@@ -756,7 +756,8 @@ class LineBotApi(object):
 
         return IssueLinkTokenResponse.new_from_json_dict(response.json)
 
-    def issue_access_token(self, client_id, client_secret, grant_type='client_credentials', timeout=None):
+    def issue_access_token(self, client_id, client_secret,
+                           grant_type='client_credentials', timeout=None):
         """Issues a short-lived channel access token.
 
         https://developers.line.biz/en/reference/messaging-api/#issue-channel-access-token

@@ -437,8 +437,8 @@ https://developers.line.biz/en/reference/messaging-api/#issue-link-token
     link_token_response = line_bot_api.issue_link_token(<user_id>)
     print(link_token_response)
 
-issue\_access\_token(self, client_id, client_secret, timeout=None)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+issue\_access\_token(self, client_id, client_secret, grant_type='client_credentials', timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Issues a short-lived channel access token.
 
@@ -449,7 +449,7 @@ https://developers.line.biz/en/reference/messaging-api/#issue-channel-access-tok
     access_token_response = line_bot_api.issue_access_token(<client_id>, <client_secret>)
     print(access_token_response)
 
-revoke\_access\_token(self, access_token, timeout=None):
+revoke\_access\_token(self, access_token, timeout=None)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Revokes a channel access token.

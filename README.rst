@@ -437,7 +437,7 @@ https://developers.line.biz/en/reference/messaging-api/#issue-link-token
     link_token_response = line_bot_api.issue_link_token(<user_id>)
     print(link_token_response)
 
-issue\_access\_token(self, client_id, client_secret, grant_type='client_credentials', timeout=None)
+issue\_channel\_token(self, client_id, client_secret, grant_type='client_credentials', timeout=None)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Issues a short-lived channel access token.
@@ -446,10 +446,10 @@ https://developers.line.biz/en/reference/messaging-api/#issue-channel-access-tok
 
 .. code:: python
 
-    access_token_response = line_bot_api.issue_access_token(<client_id>, <client_secret>)
+    channel_token_response = line_bot_api.issue_channel_token(<client_id>, <client_secret>)
     print(access_token_response)
 
-revoke\_access\_token(self, access_token, timeout=None)
+revoke\_channel\_token(self, access_token, timeout=None)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Revokes a channel access token.
@@ -458,7 +458,7 @@ https://developers.line.biz/en/reference/messaging-api/#revoke-channel-access-to
 
 .. code:: python
 
-    line_bot_api.revoke_access_token(<access_token>)
+    line_bot_api.revoke_channel_token(<access_token>)
 
 ※ Error handling
 ^^^^^^^^^^^^^^^^

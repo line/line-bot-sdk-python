@@ -24,7 +24,7 @@ from .http_client import HttpClient, RequestsHttpClient
 from .models import (
     Error, Profile, MemberIds, Content, RichMenuResponse, MessageQuotaResponse,
     MessageQuotaConsumptionResponse, MessageDeliveryBroadcastResponse, IssueLinkTokenResponse,
-    IssueAccessTokenResponse,
+    IssueChannelTokenResponse,
 )
 
 
@@ -756,8 +756,8 @@ class LineBotApi(object):
 
         return IssueLinkTokenResponse.new_from_json_dict(response.json)
 
-    def issue_access_token(self, client_id, client_secret,
-                           grant_type='client_credentials', timeout=None):
+    def issue_channel_token(self, client_id, client_secret,
+                            grant_type='client_credentials', timeout=None):
         """Issues a short-lived channel access token.
 
         https://developers.line.biz/en/reference/messaging-api/#issue-channel-access-token
@@ -778,9 +778,9 @@ class LineBotApi(object):
             timeout=timeout
         )
 
-        return IssueAccessTokenResponse.new_from_json_dict(response.json)
+        return IssueChannelTokenResponse.new_from_json_dict(response.json)
 
-    def revoke_access_token(self, access_token, timeout=None):
+    def revoke_channel_token(self, access_token, timeout=None):
         """Revokes a channel access token.
 
         https://developers.line.biz/en/reference/messaging-api/#revoke-channel-access-token

@@ -226,7 +226,7 @@ class IssueLinkTokenResponse(Base):
         self.link_token = link_token
 
 
-class IssueAccessTokenResponse(Base):
+class IssueChannelTokenResponse(Base):
     """IssueAccessTokenResponse.
 
     https://developers.line.biz/en/reference/messaging-api/#issue-channel-access-token
@@ -241,7 +241,7 @@ class IssueAccessTokenResponse(Base):
         :param str token_type: Bearer.
         :param kwargs:
         """
-        super(IssueAccessTokenResponse, self).__init__(**kwargs)
+        super(IssueChannelTokenResponse, self).__init__(**kwargs)
 
         self.access_token = access_token
         self.expires_in = expires_in

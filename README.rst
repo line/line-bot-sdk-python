@@ -569,7 +569,7 @@ TemplateSendMessage - ButtonsTemplate
             actions=[
                 PostbackAction(
                     label='postback',
-                    text='postback text',
+                    display_text='postback text',
                     data='action=buy&itemid=1'
                 ),
                 MessageAction(
@@ -596,7 +596,7 @@ TemplateSendMessage - ConfirmTemplate
             actions=[
                 PostbackAction(
                     label='postback',
-                    text='postback text',
+                    display_text='postback text',
                     data='action=buy&itemid=1'
                 ),
                 MessageAction(
@@ -623,7 +623,7 @@ TemplateSendMessage - CarouselTemplate
                     actions=[
                         PostbackAction(
                             label='postback1',
-                            text='postback text1',
+                            display_text='postback text1',
                             data='action=buy&itemid=1'
                         ),
                         MessageAction(
@@ -643,7 +643,7 @@ TemplateSendMessage - CarouselTemplate
                     actions=[
                         PostbackAction(
                             label='postback2',
-                            text='postback text2',
+                            display_text='postback text2',
                             data='action=buy&itemid=2'
                         ),
                         MessageAction(
@@ -673,7 +673,7 @@ TemplateSendMessage - ImageCarouselTemplate
                     image_url='https://example.com/item1.jpg',
                     action=PostbackAction(
                         label='postback1',
-                        text='postback text1',
+                        display_text='postback text1',
                         data='action=buy&itemid=1'
                     )
                 ),
@@ -681,7 +681,7 @@ TemplateSendMessage - ImageCarouselTemplate
                     image_url='https://example.com/item2.jpg',
                     action=PostbackAction(
                         label='postback2',
-                        text='postback text2',
+                        display_text='postback text2',
                         data='action=buy&itemid=2'
                     )
                 )

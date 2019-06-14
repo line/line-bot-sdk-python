@@ -23,7 +23,8 @@ from .exceptions import LineBotApiError
 from .http_client import HttpClient, RequestsHttpClient
 from .models import (
     Error, Profile, MemberIds, Content, RichMenuResponse, MessageQuotaResponse,
-    MessageQuotaConsumptionResponse, MessageDeliveryBroadcastResponse, IssueLinkTokenResponse
+    MessageQuotaConsumptionResponse, MessageDeliveryBroadcastResponse, IssueLinkTokenResponse,
+    IssueChannelTokenResponse,
 )
 
 
@@ -744,7 +745,13 @@ class LineBotApi(object):
         https://developers.line.biz/en/reference/messaging-api/#issue-link-token
 
         :param str user_id: User ID for the LINE account to be linked
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
         :type timeout: float | tuple(float, float)
+        :rtype: :py:class:`linebot.models.responses.IssueLinkTokenResponse`
+        :return: IssueLinkTokenResponse instance
         """
         response = self._post(
             '/v2/bot/user/{user_id}/linkToken'.format(
@@ -754,6 +761,55 @@ class LineBotApi(object):
         )
 
         return IssueLinkTokenResponse.new_from_json_dict(response.json)
+
+    def issue_channel_token(self, client_id, client_secret,
+                            grant_type='client_credentials', timeout=None):
+        """Issues a short-lived channel access token.
+
+        https://developers.line.biz/en/reference/messaging-api/#issue-channel-access-token
+
+        :param str client_id: Channel ID.
+        :param str client_secret: Channel secret.
+        :param str grant_type: `client_credentials`
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        :rtype: :py:class:`linebot.models.responses.IssueChannelTokenResponse`
+        :return: IssueChannelTokenResponse instance
+        """
+        response = self._post(
+            '/v2/oauth/accessToken',
+            data={
+                'client_id': client_id,
+                'client_secret': client_secret,
+                'grant_type': grant_type,
+            },
+            headers={'Content-Type': 'application/x-www-form-urlencoded'},
+            timeout=timeout
+        )
+
+        return IssueChannelTokenResponse.new_from_json_dict(response.json)
+
+    def revoke_channel_token(self, access_token, timeout=None):
+        """Revokes a channel access token.
+
+        https://developers.line.biz/en/reference/messaging-api/#revoke-channel-access-token
+
+        :param str access_token: Channel access token.
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        """
+        self._post(
+            '/v2/oauth/revoke',
+            data={'access_token': access_token},
+            headers={'Content-Type': 'application/x-www-form-urlencoded'},
+            timeout=timeout
+        )
 
     def _get(self, path, params=None, headers=None, stream=False, timeout=None):
         url = self.endpoint + path

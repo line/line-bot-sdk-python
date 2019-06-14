@@ -101,6 +101,7 @@ from .responses import (  # noqa
     MessageDeliveryBroadcastResponse,
     Content as MessageContent,  # backward compatibility,
     IssueLinkTokenResponse,
+    IssueChannelTokenResponse,
 )
 from .rich_menu import (  # noqa
     RichMenu,

@@ -41,7 +41,7 @@ class Message(with_metaclass(ABCMeta, Base)):
 class TextMessage(Message):
     """TextMessage.
 
-    https://devdocs.line.me/en/#text-message
+    https://developers.line.biz/en/reference/messaging-api/#wh-text
 
     Message object which contains the text sent from the source.
     """
@@ -62,67 +62,86 @@ class TextMessage(Message):
 class ImageMessage(Message):
     """ImageMessage.
 
-    https://devdocs.line.me/en/#image-message
+    https://developers.line.biz/en/reference/messaging-api/#wh-image
 
     Message object which contains the image content sent from the source.
     The binary image data can be retrieved with the Content API.
     """
 
-    def __init__(self, id=None, **kwargs):
+    def __init__(self, id=None, content_provider=None, **kwargs):
         """__init__ method.
 
         :param str id: Message ID
+        :param content_provider: ContentProvider object
+        :type content_provider: :py:class:`linebot.models.messages.ContentProvider`
         :param kwargs:
         """
         super(ImageMessage, self).__init__(id=id, **kwargs)
 
         self.type = 'image'
+        self.content_provider = self.get_or_new_from_json_dict(
+            content_provider, ContentProvider
+        )
 
 
 class VideoMessage(Message):
     """VideoMessage.
 
-    https://devdocs.line.me/en/#video-message
+    https://developers.line.biz/en/reference/messaging-api/#wh-video
 
     Message object which contains the video content sent from the source.
     The binary video data can be retrieved with the Content API.
     """
 
-    def __init__(self, id=None, **kwargs):
+    def __init__(self, id=None, duration=None, content_provider=None, **kwargs):
         """__init__ method.
 
         :param str id: Message ID
+        :param long duration: Length of video file (milliseconds)
+        :param content_provider: ContentProvider object
+        :type content_provider: :py:class:`linebot.models.messages.ContentProvider`
         :param kwargs:
         """
         super(VideoMessage, self).__init__(id=id, **kwargs)
 
         self.type = 'video'
+        self.duration = duration
+        self.content_provider = self.get_or_new_from_json_dict(
+            content_provider, ContentProvider
+        )
 
 
 class AudioMessage(Message):
     """AudioMessage.
 
-    https://devdocs.line.me/en/#audio-message
+    https://developers.line.biz/en/reference/messaging-api/#wh-audio
 
     Message object which contains the audio content sent from the source.
     The binary audio data can be retrieved with the Content API.
     """
 
-    def __init__(self, id=None, **kwargs):
+    def __init__(self, id=None, duration=None, content_provider=None, **kwargs):
         """__init__ method.
 
         :param str id: Message ID
+        :param long duration: Length of audio file (milliseconds)
+        :param content_provider: ContentProvider object
+        :type content_provider: :py:class:`linebot.models.messages.ContentProvider`
         :param kwargs:
         """
         super(AudioMessage, self).__init__(id=id, **kwargs)
 
         self.type = 'audio'
+        self.duration = duration
+        self.content_provider = self.get_or_new_from_json_dict(
+            content_provider, ContentProvider
+        )
 
 
 class LocationMessage(Message):
     """LocationMessage.
 
-    https://devdocs.line.me/en/#location-message
+    https://developers.line.biz/en/reference/messaging-api/#wh-location
     """
 
     def __init__(self, id=None, title=None, address=None, latitude=None, longitude=None,
@@ -148,7 +167,7 @@ class LocationMessage(Message):
 class StickerMessage(Message):
     """StickerMessage.
 
-    https://devdocs.line.me/en/#sticker-message
+    https://developers.line.biz/en/reference/messaging-api/#wh-sticker
 
     Message object which contains the sticker data sent from the source.
     For a list of basic LINE stickers and sticker IDs, see sticker list.
@@ -172,7 +191,7 @@ class StickerMessage(Message):
 class FileMessage(Message):
     """FileMessage.
 
-    https://devdocs.line.me/en/#file-message
+    https://developers.line.biz/en/reference/messaging-api/#wh-file
 
     Message object which contains the file content sent from the source.
     The binary file data can be retrieved with the Content API.
@@ -191,3 +210,21 @@ class FileMessage(Message):
         self.type = 'file'
         self.file_size = file_size
         self.file_name = file_name
+
+
+class ContentProvider(Base):
+    """Content provider."""
+
+    def __init__(self, type=None, original_content_url=None, preview_image_url=None, **kwargs):
+        """__init__ method.
+
+        :param str type: Provider of the content. `line` or `external`.
+        :param str original_content_url: URL of the content.
+        :param str preview_image_url: URL of the preview image.
+        :param kwargs:
+        """
+        super(ContentProvider, self).__init__(**kwargs)
+
+        self.type = type
+        self.original_content_url = original_content_url
+        self.preview_image_url = preview_image_url

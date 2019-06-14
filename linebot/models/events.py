@@ -31,6 +31,11 @@ from .messages import (
     FileMessage
 )
 from .sources import SourceUser, SourceGroup, SourceRoom
+from .things import (
+    DeviceUnlink,
+    DeviceLink,
+    ScenarioResult
+)
 
 
 class Event(with_metaclass(ABCMeta, Base)):
@@ -360,20 +365,20 @@ class ThingsEvent(Event):
     """Webhook ThingsEvent.
 
     https://developers.line.biz/en/reference/messaging-api/#device-link-event
+    https://developers.line.biz/en/reference/messaging-api/#device-unlink-event
+    https://developers.line.biz/en/reference/messaging-api/#scenario-result-event
 
-    Indicates that a LINE Things-compatible device has been linked with LINE by
-    a user operation.
+    Event sent from LINE Things Webhook service.
     """
 
     def __init__(self, timestamp=None, source=None, reply_token=None, things=None, **kwargs):
         """__init__ method.
 
-        :param long timestamp: Time of the event in milliseconds
         :param source: Source object
         :type source: T <= :py:class:`linebot.models.sources.Source`
         :param str reply_token: Reply token
         :param things: Things object
-        :type things: :py:class:`linebot.models.events.Things`
+        :type things: T <= :py:class:`linebot.models.things.Things`
         :param kwargs:
         """
         super(ThingsEvent, self).__init__(
@@ -382,8 +387,12 @@ class ThingsEvent(Event):
 
         self.type = 'things'
         self.reply_token = reply_token
-        self.things = self.get_or_new_from_json_dict(
-            things, Things
+        self.things = self.get_or_new_from_json_dict_with_types(
+            things, {
+                'link': DeviceLink,
+                'unlink': DeviceUnlink,
+                'scenarioResult': ScenarioResult,
+            }
         )
 
 
@@ -498,21 +507,3 @@ class Link(Base):
 
         self.result = result
         self.nonce = nonce
-
-
-class Things(Base):
-    """Things.
-
-    https://developers.line.biz/en/docs/line-things/develop-bot/#link-event
-    """
-
-    def __init__(self, device_id=None, type=None, **kwargs):
-        """__init__ method.
-
-        :param str device_id: Device ID of the device that was linked with LINE.
-        :param str type: link or unlink
-        """
-        super(Things, self).__init__(**kwargs)
-
-        self.device_id = device_id
-        self.type = type

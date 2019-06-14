@@ -136,3 +136,9 @@ from .template import (  # noqa
     ImageCarouselTemplate,
     ImageCarouselColumn,
 )
+from .things import (  # noqa
+    DeviceLink,
+    DeviceUnlink,
+    ScenarioResult,
+    ActionResult,
+)

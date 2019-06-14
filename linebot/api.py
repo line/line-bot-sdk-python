@@ -745,7 +745,13 @@ class LineBotApi(object):
         https://developers.line.biz/en/reference/messaging-api/#issue-link-token
 
         :param str user_id: User ID for the LINE account to be linked
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
         :type timeout: float | tuple(float, float)
+        :rtype: :py:class:`linebot.models.responses.IssueLinkTokenResponse`
+        :return: IssueLinkTokenResponse instance
         """
         response = self._post(
             '/v2/bot/user/{user_id}/linkToken'.format(
@@ -765,7 +771,13 @@ class LineBotApi(object):
         :param str client_id: Channel ID.
         :param str client_secret: Channel secret.
         :param str grant_type: `client_credentials`
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
         :type timeout: float | tuple(float, float)
+        :rtype: :py:class:`linebot.models.responses.IssueChannelTokenResponse`
+        :return: IssueChannelTokenResponse instance
         """
         response = self._post(
             '/v2/oauth/accessToken',
@@ -786,6 +798,10 @@ class LineBotApi(object):
         https://developers.line.biz/en/reference/messaging-api/#revoke-channel-access-token
 
         :param str access_token: Channel access token.
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
         :type timeout: float | tuple(float, float)
         """
         self._post(

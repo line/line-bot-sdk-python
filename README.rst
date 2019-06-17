@@ -737,11 +737,12 @@ WebhookParser
 
     parser = linebot.WebhookParser('YOUR_CHANNEL_SECRET')
 
-parse(self, body, signature)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+parse(self, body, signature, as_payload=False)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Parses the webhook body and builds an event object list. If the signature does NOT
-match, InvalidSignatureError is raised.
+Parses the webhook body, and returns a list of Event objects
+or a WebhookPayload object (depending on as_payload).
+If the signature does NOT match, InvalidSignatureError is raised.
 
 .. code:: python
 
@@ -977,6 +978,7 @@ Test by using tox. We test against the following versions.
 -  3.4
 -  3.5
 -  3.6
+-  3.7
 
 To run all tests and to run ``flake8`` against all versions, use:
 

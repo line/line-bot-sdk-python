@@ -113,7 +113,7 @@ class ScenarioResultPayload(Base):
             was completed (milliseconds).
         :param str result_code: Scenario execution completion status.
         :param action_results: Array of actions specified in a scenario.
-        :type action_results: list[T <= :py:class:`linebot.models.thingsActionResult`]
+        :type action_results: list[T <= :py:class:`linebot.models.things.ActionResult`]
         :param str ble_notification_payload: Data contained in notification.
         :param str error_reason: Error response.
         :param kwargs:

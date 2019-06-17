@@ -1,6 +1,14 @@
 linebot.models package
 ======================
 
+linebot.models.actions module
+--------------------------
+
+.. automodule:: linebot.models.actions
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 linebot.models.base module
 --------------------------
 
@@ -49,6 +57,14 @@ linebot.models.responses module
     :undoc-members:
     :show-inheritance:
 
+linebot.models.rich_menu module
+-------------------------------
+
+.. automodule:: linebot.models.rich_menu
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 linebot.models.send_messages module
 -----------------------------------
 
@@ -69,6 +85,14 @@ linebot.models.template module
 ------------------------------
 
 .. automodule:: linebot.models.template
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+linebot.models.things module
+------------------------------
+
+.. automodule:: linebot.models.things
     :members:
     :undoc-members:
     :show-inheritance:

@@ -20,8 +20,8 @@ from abc import ABCMeta
 
 from future.utils import with_metaclass
 
-from .base import Base
-from .messages import (
+from linebot.models.base import Base
+from linebot.models.messages import (
     TextMessage,
     ImageMessage,
     VideoMessage,
@@ -30,12 +30,13 @@ from .messages import (
     StickerMessage,
     FileMessage
 )
-from .sources import SourceUser, SourceGroup, SourceRoom
-from .things import (
+from linebot.models.sources import SourceUser, SourceGroup, SourceRoom
+from linebot.models.things import (
     DeviceUnlink,
     DeviceLink,
-    ScenarioResult
+    ScenarioResult,
 )
+from linebot.models.things import Things  # noqa
 
 
 class Event(with_metaclass(ABCMeta, Base)):

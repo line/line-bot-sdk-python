@@ -82,12 +82,29 @@ class ScenarioResult(Things):
     Indicates that an automatic communication scenario has been executed.
     """
 
-    def __init__(self, device_id=None, scenario_id=None, revision=None, start_time=None,
+    def __init__(self, device_id=None, result=None, **kwargs):
+        """__init__ method.
+
+        :param str device_id: Device ID of the device that executed the scenario.
+        :param str result: ScenarioResultPayload object.
+        :param kwargs:
+        """
+        super(ScenarioResult, self).__init__(device_id=device_id, **kwargs)
+
+        self.type = 'scenarioResult'
+        self.result = self.get_or_new_from_json_dict(
+            result, ScenarioResultPayload
+        )
+
+
+class ScenarioResultPayload(Base):
+    """ScenarioResultPayload."""
+
+    def __init__(self, scenario_id=None, revision=None, start_time=None,
                  result_code=None, end_time=None, action_results=None,
                  ble_notification_payload=None, error_reason=None, **kwargs):
         """__init__ method.
 
-        :param str device_id: Device ID of the device that executed the scenario.
         :param str scenario_id: Scenario ID executed.
         :param long revision: Revision number.
         :param long start_time: Timestamp for when execution of scenario
@@ -95,15 +112,14 @@ class ScenarioResult(Things):
         :param long end_time: Timestamp for when execution of scenario
             was completed (milliseconds).
         :param str result_code: Scenario execution completion status.
-        :param  action_results: Array of actions specified in a scenario.
+        :param action_results: Array of actions specified in a scenario.
         :type action_results: list[T <= :py:class:`linebot.models.thingsActionResult`]
         :param str ble_notification_payload: Data contained in notification.
         :param str error_reason: Error response.
         :param kwargs:
         """
-        super(ScenarioResult, self).__init__(device_id=device_id, **kwargs)
+        super(ScenarioResultPayload, self).__init__(**kwargs)
 
-        self.type = 'scenarioResult'
         self.scenario_id = scenario_id
         self.revision = revision
         self.start_time = start_time

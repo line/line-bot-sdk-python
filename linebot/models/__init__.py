@@ -141,4 +141,5 @@ from .things import (  # noqa
     DeviceUnlink,
     ScenarioResult,
     ActionResult,
+    Things,
 )

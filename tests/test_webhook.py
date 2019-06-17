@@ -87,6 +87,11 @@ class TestWebhookParser(unittest.TestCase):
         self.assertIsInstance(events[1].message, ImageMessage)
         self.assertEqual(events[1].message.id, '325708')
         self.assertEqual(events[1].message.type, 'image')
+        self.assertEqual(events[1].message.content_provider.type, 'external')
+        self.assertEqual(events[1].message.content_provider.original_content_url,
+                         "https://example.com")
+        self.assertEqual(events[1].message.content_provider.preview_image_url,
+                         "https://example.com")
 
         # MessageEvent, SourceUser, VideoMessage
         self.assertIsInstance(events[2], MessageEvent)
@@ -100,6 +105,12 @@ class TestWebhookParser(unittest.TestCase):
         self.assertIsInstance(events[2].message, VideoMessage)
         self.assertEqual(events[2].message.id, '325708')
         self.assertEqual(events[2].message.type, 'video')
+        self.assertEqual(events[2].message.duration, 60000)
+        self.assertEqual(events[2].message.content_provider.type, 'external')
+        self.assertEqual(events[2].message.content_provider.original_content_url,
+                         "https://example.com")
+        self.assertEqual(events[2].message.content_provider.preview_image_url,
+                         "https://example.com")
 
         # MessageEvent, SourceUser, AudioMessage
         self.assertIsInstance(events[3], MessageEvent)
@@ -113,6 +124,10 @@ class TestWebhookParser(unittest.TestCase):
         self.assertIsInstance(events[3].message, AudioMessage)
         self.assertEqual(events[3].message.id, '325708')
         self.assertEqual(events[3].message.type, 'audio')
+        self.assertEqual(events[3].message.duration, 60000)
+        self.assertEqual(events[3].message.content_provider.type, 'external')
+        self.assertEqual(events[3].message.content_provider.original_content_url,
+                         "https://example.com")
 
         # MessageEvent, SourceUser, LocationMessage
         self.assertIsInstance(events[4], MessageEvent)

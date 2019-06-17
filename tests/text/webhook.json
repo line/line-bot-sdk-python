@@ -24,7 +24,12 @@
       },
       "message": {
         "id": "325708",
-        "type": "image"
+        "type": "image",
+        "contentProvider": {
+          "type": "external",
+          "originalContentUrl": "https://example.com",
+          "previewImageUrl": "https://example.com"
+        }
       }
     },
     {
@@ -37,7 +42,13 @@
       },
       "message": {
         "id": "325708",
-        "type": "video"
+        "type": "video",
+        "duration": 60000,
+        "contentProvider": {
+          "type": "external",
+          "originalContentUrl": "https://example.com",
+          "previewImageUrl": "https://example.com"
+        }
       }
     },
     {
@@ -50,7 +61,12 @@
       },
       "message": {
         "id": "325708",
-        "type": "audio"
+        "type": "audio",
+        "duration": 60000,
+        "contentProvider": {
+          "type": "external",
+          "originalContentUrl": "https://example.com"
+        }
       }
     },
     {

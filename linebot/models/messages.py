@@ -73,7 +73,8 @@ class ImageMessage(Message):
 
         :param str id: Message ID
         :param content_provider: ContentProvider object
-        :type content_provider: :py:class:`linebot.models.messages.ContentProvider`
+        :type content_provider:
+            Union[:py:class:`linebot.models.messages.ContentProvider`, Dict[str, str]]
         :param kwargs:
         """
         super(ImageMessage, self).__init__(id=id, **kwargs)
@@ -99,7 +100,8 @@ class VideoMessage(Message):
         :param str id: Message ID
         :param long duration: Length of video file (milliseconds)
         :param content_provider: ContentProvider object
-        :type content_provider: :py:class:`linebot.models.messages.ContentProvider`
+        :type content_provider:
+            Union[:py:class:`linebot.models.messages.ContentProvider`, Dict[str, str]]
         :param kwargs:
         """
         super(VideoMessage, self).__init__(id=id, **kwargs)
@@ -126,7 +128,8 @@ class AudioMessage(Message):
         :param str id: Message ID
         :param long duration: Length of audio file (milliseconds)
         :param content_provider: ContentProvider object
-        :type content_provider: :py:class:`linebot.models.messages.ContentProvider`
+        :type content_provider:
+            Union[:py:class:`linebot.models.messages.ContentProvider`, Dict[str, str]]
         :param kwargs:
         """
         super(AudioMessage, self).__init__(id=id, **kwargs)

@@ -105,7 +105,10 @@ class SignatureValidator(object):
 
 
 class WebhookPayload(object):
-    """Webhook Payload."""
+    """Webhook Payload.
+
+    https://developers.line.biz/en/reference/messaging-api/#request-body
+    """
 
     def __init__(self, events=None, destination=None):
         """__init__ method.
@@ -178,7 +181,10 @@ class WebhookParser(object):
 
 
 class WebhookHandler(object):
-    """Webhook Handler."""
+    """Webhook Handler.
+
+    Please read https://github.com/line/line-bot-sdk-python#webhookhandler
+    """
 
     def __init__(self, channel_secret):
         """__init__ method.

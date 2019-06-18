@@ -16,9 +16,9 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
-# import os
-# import sys
-# sys.path.insert(0, os.path.abspath('.'))
+import os
+import sys
+sys.path.insert(0, os.path.abspath('../../'))
 
 # -- General configuration ------------------------------------------------
 
@@ -341,6 +341,11 @@ texinfo_documents = [
 # texinfo_no_detailmenu = False
 
 # enable __init__ method
-autoclass_content = 'both'
-
+autoclass_content = 'class'
+autodoc_default_options = {
+    'special-members': '__init__',
+    'members': True,
+    'undoc-members': True,
+    'show-inheritance': True
+}
 autodoc_member_order = 'bysource'

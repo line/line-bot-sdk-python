@@ -737,18 +737,25 @@ WebhookParser
 
     parser = linebot.WebhookParser('YOUR_CHANNEL_SECRET')
 
-parse(self, body, signature)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+parse(self, body, signature, as_payload=False)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Parses the webhook body and builds an event object list. If the signature does NOT
-match, InvalidSignatureError is raised.
+Parses the webhook body, and returns a list of Event objects or a WebhookPayload object (depending on as_payload).
+If the signature does NOT match, ``InvalidSignatureError`` is raised.
 
 .. code:: python
 
     events = parser.parse(body, signature)
 
     for event in events:
-        # Do something
+        do_something(event)
+
+.. code:: python
+
+    payload = parser.parse(body, signature, as_payload=True)
+
+    for event in payload.events:
+        do_something(payload.event, payload.destination)
 
 WebhookHandler
 ~~~~~~~~~~~~~~
@@ -765,19 +772,18 @@ WebhookHandler
 handle(self, body, signature)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Handles webhooks. If the signature does NOT match,
-InvalidSignatureError is raised.
+Handles webhooks with **handlers** added
+by the decorators `add <#add-self-event-message-none>`__ and `default <#default-self>`__.
+If the signature does NOT match, ``InvalidSignatureError`` is raised.
 
 .. code:: python
 
     handler.handle(body, signature)
 
-Add handler method
-^^^^^^^^^^^^^^^^^^
+add(self, event, message=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-You can add a handler method by using the ``add`` decorator.
-
-``add(self, event, message=None)``
+Add a **handler** method by using this decorator.
 
 .. code:: python
 
@@ -787,15 +793,30 @@ You can add a handler method by using the ``add`` decorator.
             event.reply_token,
             TextSendMessage(text=event.message.text))
 
-When the event is an instance of MessageEvent and event.message is an instance of
-TextMessage, this handler method is called.
+When the event is an instance of MessageEvent and event.message is an instance of TextMessage,
+this handler method is called.
 
-Set default handler method
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. code:: python
 
-You can set the default handler method by using the ``default`` decorator.
+    @handler.add(MessageEvent)
+    def handle_message(event, destination):
+        # do something
 
-``default(self)``
+If the arity of the handler method is more than one,
+a destination property in a webhook request is passed to it as the second argument.
+
+.. code:: python
+
+    @handler.add(FollowEvent)
+    def handle_follow():
+        # do something
+
+If the arity of the handler method is zero, the handler method is called with no arguments.
+
+default(self)
+^^^^^^^^^^^^^
+
+Set the default **handler** method by using this decorator.
 
 .. code:: python
 
@@ -804,6 +825,15 @@ You can set the default handler method by using the ``default`` decorator.
         print(event)
 
 If there is no handler for an event, this default handler method is called.
+
+WebhookPayload
+~~~~~~~~~~~~~~~
+
+https://developers.line.biz/en/reference/messaging-api/#request-body
+
+- WebhookPayload
+    - destination
+    - events: list[`Event <#event>`__]
 
 Webhook event object
 ~~~~~~~~~~~~~~~~~~~~
@@ -977,6 +1007,7 @@ Test by using tox. We test against the following versions.
 -  3.4
 -  3.5
 -  3.6
+-  3.7
 
 To run all tests and to run ``flake8`` against all versions, use:
 

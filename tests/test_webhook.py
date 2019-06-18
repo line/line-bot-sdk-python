@@ -391,48 +391,62 @@ class TestWebhookParser(unittest.TestCase):
 class TestWebhookHandler(unittest.TestCase):
     def setUp(self):
         self.handler = WebhookHandler('channel_secret')
-        self.calls = []
 
         @self.handler.add(MessageEvent, message=TextMessage)
-        def message_text(event):
-            self.calls.append('1 ' + event.type + '_' + event.message.type)
+        def message_text(event, destination):
+            self.assertEqual('message', event.type)
+            self.assertEqual('text', event.message.type)
+            self.assertEqual('U123', destination)
 
-        @self.handler.add(
-            MessageEvent, message=(ImageMessage, VideoMessage, AudioMessage))
+        @self.handler.add(MessageEvent,
+                          message=(ImageMessage, VideoMessage, AudioMessage))
         def message_content(event):
-            self.calls.append('2 ' + event.type + '_' + event.message.type)
+            self.assertEqual('message', event.type)
+            self.assertIn(
+                event.message.type,
+                ['image', 'video', 'audio']
+            )
 
         @self.handler.add(MessageEvent, message=StickerMessage)
         def message_sticker(event):
-            self.calls.append('3 ' + event.type + '_' + event.message.type)
+            self.assertEqual('message', event.type)
+            self.assertEqual('sticker', event.message.type)
 
         @self.handler.add(MessageEvent)
         def message(event):
-            self.calls.append(event.type + '_' + event.message.type)
+            self.assertEqual('message', event.type)
+            self.assertNotIn(
+                event.message.type,
+                ['text', 'image', 'video', 'audio', 'sticker']
+            )
 
         @self.handler.add(FollowEvent)
-        def follow(event):
-            self.calls.append('4 ' + event.type)
+        def follow(event, destination):
+            self.assertEqual('follow', event.type)
+            self.assertEqual('U123', destination)
 
         @self.handler.add(JoinEvent)
         def join(event):
-            self.calls.append('5 ' + event.type)
+            self.assertEqual('join', event.type)
 
         @self.handler.add(PostbackEvent)
         def postback(event):
-            self.calls.append('6 ' + event.type)
+            self.assertEqual('postback', event.type)
 
         @self.handler.add(BeaconEvent)
         def beacon(event):
-            self.calls.append('7 ' + event.type)
+            self.assertEqual('beacon', event.type)
 
         @self.handler.add(AccountLinkEvent)
         def account_link(event):
-            self.calls.append('8 ' + event.type)
+            self.assertEqual('accountLink', event.type)
 
         @self.handler.default()
         def default(event):
-            self.calls.append('default ' + event.type)
+            self.assertNotIn(
+                event.type,
+                ['message', 'follow', 'join', 'postback', 'beacon', 'accountLink']
+            )
 
     def test_handler(self):
         file_dir = os.path.dirname(__file__)
@@ -444,26 +458,6 @@ class TestWebhookHandler(unittest.TestCase):
         self.handler.parser.signature_validator.validate = lambda a, b: True
 
         self.handler.handle(body, 'signature')
-
-        self.assertEqual(self.calls[0], '1 message_text')
-        self.assertEqual(self.calls[1], '2 message_image')
-        self.assertEqual(self.calls[2], '2 message_video')
-        self.assertEqual(self.calls[3], '2 message_audio')
-        self.assertEqual(self.calls[4], 'message_location')
-        self.assertEqual(self.calls[5], '3 message_sticker')
-        self.assertEqual(self.calls[6], '4 follow')
-        self.assertEqual(self.calls[7], 'default unfollow')
-        self.assertEqual(self.calls[8], '5 join')
-        self.assertEqual(self.calls[9], 'default leave')
-        self.assertEqual(self.calls[10], '6 postback')
-        self.assertEqual(self.calls[11], '7 beacon')
-        self.assertEqual(self.calls[12], '7 beacon')
-        self.assertEqual(self.calls[13], '8 accountLink')
-        self.assertEqual(self.calls[14], '1 message_text')
-        self.assertEqual(self.calls[15], '1 message_text')
-        self.assertEqual(self.calls[16], '6 postback')
-        self.assertEqual(self.calls[17], '6 postback')
-        self.assertEqual(self.calls[18], '6 postback')
 
 
 if __name__ == '__main__':

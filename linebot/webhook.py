@@ -38,7 +38,6 @@ from .models.events import (
 )
 from .utils import LOGGER, PY3, safe_compare_digest
 
-
 if hasattr(hmac, "compare_digest"):
     def compare_digest(val1, val2):
         """compare_digest function.
@@ -101,8 +100,25 @@ class SignatureValidator(object):
         ).digest()
 
         return compare_digest(
-                signature.encode('utf-8'), base64.b64encode(gen_signature)
+            signature.encode('utf-8'), base64.b64encode(gen_signature)
         )
+
+
+class WebhookPayload(object):
+    """Webhook Payload.
+
+    https://developers.line.biz/en/reference/messaging-api/#request-body
+    """
+
+    def __init__(self, events=None, destination=None):
+        """__init__ method.
+
+        :param events: Information about the events.
+        :type events: list[T <= :py:class:`linebot.models.events.Event`]
+        :param str destination: User ID of a bot that should receive webhook events.
+        """
+        self.events = events
+        self.destination = destination
 
 
 class WebhookParser(object):
@@ -115,13 +131,15 @@ class WebhookParser(object):
         """
         self.signature_validator = SignatureValidator(channel_secret)
 
-    def parse(self, body, signature):
+    def parse(self, body, signature, as_payload=False):
         """Parse webhook request body as text.
 
         :param str body: Webhook request body (as text)
         :param str signature: X-Line-Signature value (as text)
+        :param bool as_payload: (optional) True to return WebhookPayload object.
         :rtype: list[T <= :py:class:`linebot.models.events.Event`]
-        :return:
+            | :py:class:`linebot.webhook.WebhookPayload`
+        :return: Events list, or WebhookPayload instance
         """
         if not self.signature_validator.validate(body, signature):
             raise InvalidSignatureError(
@@ -156,11 +174,17 @@ class WebhookParser(object):
             else:
                 LOGGER.warn('Unknown event type. type=' + event_type)
 
-        return events
+        if as_payload:
+            return WebhookPayload(events=events, destination=body_json['destination'])
+        else:
+            return events
 
 
 class WebhookHandler(object):
-    """Webhook Handler."""
+    """Webhook Handler.
+
+    Please read https://github.com/line/line-bot-sdk-python#webhookhandler
+    """
 
     def __init__(self, channel_secret):
         """__init__ method.
@@ -197,7 +221,7 @@ class WebhookHandler(object):
         """[Decorator] Set default handler method.
 
         :rtype: func
-        :return:
+        :return: decorator
         """
         def decorator(func):
             self._default = func
@@ -211,9 +235,9 @@ class WebhookHandler(object):
         :param str body: Webhook request body (as text)
         :param str signature: X-Line-Signature value (as text)
         """
-        events = self.parser.parse(body, signature)
+        payload = self.parser.parse(body, signature, as_payload=True)
 
-        for event in events:
+        for event in payload.events:
             func = None
             key = None
 
@@ -235,8 +259,10 @@ class WebhookHandler(object):
                 args_count = self.__get_args_count(func)
                 if args_count == 0:
                     func()
-                else:
+                elif args_count == 1:
                     func(event)
+                else:
+                    func(event, payload.destination)
 
     def __add_handler(self, func, event, message=None):
         key = self.__get_handler_key(event, message=message)

@@ -443,7 +443,6 @@ class Beacon(Base):
         """Get dm(device_message) as bytearray.
 
         :rtype: bytearray
-        :return:
         """
         return bytearray.fromhex(self.dm) if self.dm is not None else None
 

@@ -46,7 +46,6 @@ class Source(with_metaclass(ABCMeta, Base)):
         'sender_id' is deprecated.
 
         :rtype: str
-        :return:
         """
         warnings.warn("'sender_id' is deprecated.", DeprecationWarning, stacklevel=2)
         raise NotImplementedError
@@ -78,7 +77,6 @@ class SourceUser(Source):
         'sender_id' is deprecated. Use 'user_id' instead.
 
         :rtype: str
-        :return:
         """
         warnings.warn("'sender_id' is deprecated.", DeprecationWarning, stacklevel=2)
         return self.user_id
@@ -112,7 +110,6 @@ class SourceGroup(Source):
         'sender_id' is deprecated. Use 'group_id' instead.
 
         :rtype: str
-        :return:
         """
         warnings.warn("'sender_id' is deprecated.", DeprecationWarning, stacklevel=2)
         return self.group_id
@@ -146,7 +143,6 @@ class SourceRoom(Source):
         'sender_id' is deprecated. Use 'room_id' instead.
 
         :rtype: str
-        :return:
         """
         warnings.warn("'sender_id' is deprecated.", DeprecationWarning, stacklevel=2)
         return self.room_id

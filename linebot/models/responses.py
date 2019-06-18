@@ -106,7 +106,6 @@ class Content(object):
 
         :param chunk_size: Chunk size
         :rtype: iterator
-        :return:
         """
         return self.response.iter_content(chunk_size=chunk_size)
 

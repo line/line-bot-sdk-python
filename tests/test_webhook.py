@@ -27,8 +27,8 @@ from linebot.models import (
     MemberJoinedEvent, MemberLeftEvent, ThingsEvent,
     TextMessage, ImageMessage, VideoMessage, AudioMessage,
     LocationMessage, StickerMessage, FileMessage,
-    SourceUser, SourceRoom, SourceGroup
-)
+    SourceUser, SourceRoom, SourceGroup,
+    DeviceLink, DeviceUnlink, ScenarioResult, ActionResult)
 
 
 class TestSignatureValidator(unittest.TestCase):
@@ -308,8 +308,9 @@ class TestWebhookParser(unittest.TestCase):
         self.assertIsInstance(events[19].source, SourceUser)
         self.assertEqual(events[19].source.type, 'user')
         self.assertEqual(events[19].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
-        self.assertEqual(events[19].things.device_id, 't2c449c9d1')
+        self.assertIsInstance(events[19].things, DeviceLink)
         self.assertEqual(events[19].things.type, 'link')
+        self.assertEqual(events[19].things.device_id, 't2c449c9d1')
 
         # MemberJoinedEvent
         self.assertIsInstance(events[20], MemberJoinedEvent)
@@ -344,8 +345,9 @@ class TestWebhookParser(unittest.TestCase):
         self.assertIsInstance(events[22].source, SourceUser)
         self.assertEqual(events[22].source.type, 'user')
         self.assertEqual(events[22].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
-        self.assertEqual(events[22].things.device_id, 't2c449c9d1')
+        self.assertIsInstance(events[22].things, DeviceUnlink)
         self.assertEqual(events[22].things.type, 'unlink')
+        self.assertEqual(events[22].things.device_id, 't2c449c9d1')
 
         # MessageEvent, SourceUser, FileMessage
         self.assertIsInstance(events[23], MessageEvent)
@@ -361,6 +363,29 @@ class TestWebhookParser(unittest.TestCase):
         self.assertEqual(events[23].message.type, 'file')
         self.assertEqual(events[23].message.file_name, "file.txt")
         self.assertEqual(events[23].message.file_size, 2138)
+
+        # ThingsEvent, SourceUser, scenarioResult
+        self.assertIsInstance(events[24], ThingsEvent)
+        self.assertEqual(events[24].reply_token, 'nHuyWiB7yP5Zw52FIkcQobQuGDXCTA')
+        self.assertEqual(events[24].type, 'things')
+        self.assertEqual(events[24].timestamp, 1547817848122)
+        self.assertIsInstance(events[24].source, SourceUser)
+        self.assertEqual(events[24].source.type, 'user')
+        self.assertEqual(events[24].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
+        self.assertIsInstance(events[24].things, ScenarioResult)
+        self.assertEqual(events[24].things.type, 'scenarioResult')
+        self.assertEqual(events[24].things.device_id, 't2c449c9d1')
+        self.assertEqual(events[24].things.result.scenario_id, 'XXX')
+        self.assertEqual(events[24].things.result.revision, 2)
+        self.assertEqual(events[24].things.result.start_time, 1547817845950)
+        self.assertEqual(events[24].things.result.end_time, 1547817845952)
+        self.assertEqual(events[24].things.result.result_code, 'success')
+        self.assertEqual(events[24].things.result.ble_notification_payload, 'AQ==')
+        self.assertIsInstance(events[24].things.result.action_results[0], ActionResult)
+        self.assertEqual(events[24].things.result.action_results[0].type, 'binary')
+        self.assertEqual(events[24].things.result.action_results[0].data, '/w==')
+        self.assertIsInstance(events[24].things.result.action_results[1], ActionResult)
+        self.assertEqual(events[24].things.result.action_results[1].type, 'void')
 
 
 class TestWebhookHandler(unittest.TestCase):

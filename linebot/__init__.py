@@ -31,4 +31,5 @@ from .webhook import (  # noqa
     SignatureValidator,
     WebhookParser,
     WebhookHandler,
+    WebhookPayload,
 )

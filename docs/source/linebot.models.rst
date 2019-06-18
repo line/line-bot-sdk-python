@@ -1,6 +1,11 @@
 linebot.models package
 ======================
 
+linebot.models.actions module
+--------------------------
+
+.. automodule:: linebot.models.actions
+
 linebot.models.base module
 --------------------------
 
@@ -31,6 +36,11 @@ linebot.models.responses module
 
 .. automodule:: linebot.models.responses
 
+linebot.models.rich_menu module
+-------------------------------
+
+.. automodule:: linebot.models.rich_menu
+
 linebot.models.send_messages module
 -----------------------------------
 
@@ -45,3 +55,8 @@ linebot.models.template module
 ------------------------------
 
 .. automodule:: linebot.models.template
+
+linebot.models.things module
+------------------------------
+
+.. automodule:: linebot.models.things

@@ -10,6 +10,7 @@ linebot.webhook module
 ----------------------
 
 .. automodule:: linebot.webhook
+    :exclude-members: compare_digest
 
 linebot.exceptions module
 -------------------------
@@ -20,11 +21,6 @@ linebot.http_client module
 --------------------------
 
 .. automodule:: linebot.http_client
-
-linebot.utils module
---------------------
-
-.. automodule:: linebot.utils
 
 Subpackages
 -----------

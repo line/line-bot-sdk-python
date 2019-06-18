@@ -206,7 +206,7 @@ class LineBotApi(object):
 
         Gets the number of messages sent with the /bot/message/broadcast endpoint.
 
-        :param str date: Date the messages were sent. The format is `yyyyMMdd`(Timezone is UTC+9).
+        :param str date: Date the messages were sent. The format is `yyyyMMdd` (Timezone is UTC+9).
         :param timeout: (optional) How long to wait for the server
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.

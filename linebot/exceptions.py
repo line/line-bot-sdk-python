@@ -33,8 +33,6 @@ class BaseError(with_metaclass(ABCMeta, Exception)):
 
     def __repr__(self):
         """repr.
-
-        :return:
         """
         return str(self)
 
@@ -42,7 +40,6 @@ class BaseError(with_metaclass(ABCMeta, Exception)):
         """str.
 
         :rtype: str
-        :return:
         """
         return '<{0} [{1}]>'.format(
             self.__class__.__name__, self.message)
@@ -78,7 +75,6 @@ class LineBotApiError(BaseError):
         """str.
 
         :rtype: str
-        :return:
         """
         return '{0}: status_code={1}, error_response={2}'.format(
             self.__class__.__name__, self.status_code, self.error)

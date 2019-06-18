@@ -36,15 +36,11 @@ class Base(object):
 
     def __str__(self):
         """__str__ method.
-
-        :return:
         """
         return self.as_json_string()
 
     def __repr__(self):
         """__repr__ method.
-
-        :return:
         """
         return str(self)
 
@@ -52,7 +48,6 @@ class Base(object):
         """__eq__ method.
 
         :param other:
-        :return:
         """
         return other and self.as_json_dict() == other.as_json_dict()
 
@@ -60,7 +55,6 @@ class Base(object):
         """__ne__ method.
 
         :param other:
-        :return:
         """
         return not self.__eq__(other)
 
@@ -68,7 +62,6 @@ class Base(object):
         """Return JSON string from this object.
 
         :rtype: str
-        :return:
         """
         return json.dumps(self.as_json_dict(), sort_keys=True)
 
@@ -100,8 +93,6 @@ class Base(object):
         """Create a new instance from a dict.
 
         :param data: JSON dict
-        :rtype:
-        :return:
         """
         new_data = {utils.to_snake_case(key): value
                     for key, value in data.items()}
@@ -119,7 +110,6 @@ class Base(object):
         :param data:
         :param cls:
         :rtype: object
-        :return:
         """
         if isinstance(data, cls):
             return data
@@ -142,7 +132,6 @@ class Base(object):
         :param cls_map:
         :param type_key:
         :rtype: object
-        :return:
         """
         if isinstance(data, tuple(cls_map.values())):
             return data

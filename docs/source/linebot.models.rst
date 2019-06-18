@@ -2,9 +2,10 @@ linebot.models package
 ======================
 
 linebot.models.actions module
---------------------------
+------------------------------
 
 .. automodule:: linebot.models.actions
+    :exclude-members: get_action, get_actions
 
 linebot.models.base module
 --------------------------

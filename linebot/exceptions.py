@@ -32,8 +32,7 @@ class BaseError(with_metaclass(ABCMeta, Exception)):
         self.message = message
 
     def __repr__(self):
-        """repr.
-        """
+        """repr."""
         return str(self)
 
     def __str__(self):

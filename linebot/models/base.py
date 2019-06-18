@@ -35,13 +35,11 @@ class Base(object):
         pass
 
     def __str__(self):
-        """__str__ method.
-        """
+        """__str__ method."""
         return self.as_json_string()
 
     def __repr__(self):
-        """__repr__ method.
-        """
+        """__repr__ method."""
         return str(self)
 
     def __eq__(self, other):

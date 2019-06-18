@@ -341,6 +341,11 @@ texinfo_documents = [
 # texinfo_no_detailmenu = False
 
 # enable __init__ method
-autoclass_content = 'both'
-
+autoclass_content = 'class'
+autodoc_default_options = {
+    'special-members': '__init__',
+    'members': True,
+    'undoc-members': True,
+    'show-inheritance': True
+}
 autodoc_member_order = 'bysource'

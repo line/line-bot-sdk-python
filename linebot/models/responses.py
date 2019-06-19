@@ -23,7 +23,7 @@ from .rich_menu import RichMenuSize, RichMenuArea
 class Profile(Base):
     """Profile.
 
-    https://devdocs.line.me/en/#bot-api-get-profile
+    https://developers.line.biz/en/reference/messaging-api/#get-profile
     """
 
     def __init__(self, display_name=None, user_id=None, picture_url=None,
@@ -47,7 +47,8 @@ class Profile(Base):
 class MemberIds(Base):
     """MemberIds.
 
-    https://devdocs.line.me/en/#get-group-room-member-ids
+    https://developers.line.biz/en/reference/messaging-api/#get-group-member-user-ids
+    https://developers.line.biz/en/reference/messaging-api/#get-room-member-user-ids
     """
 
     def __init__(self, member_ids=None, next=None, **kwargs):
@@ -69,7 +70,7 @@ class MemberIds(Base):
 class Content(object):
     """MessageContent.
 
-    https://devdocs.line.me/ja/#get-content
+    https://developers.line.biz/en/reference/messaging-api/#get-content
     """
 
     def __init__(self, response):

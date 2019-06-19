@@ -42,7 +42,7 @@ from linebot.models.things import Things  # noqa
 class Event(with_metaclass(ABCMeta, Base)):
     """Abstract Base Class of Webhook Event.
 
-    https://devdocs.line.me/en/#webhook-event-object
+    https://developers.line.biz/en/reference/messaging-api/#webhook-event-objects
     """
 
     def __init__(self, timestamp=None, source=None, **kwargs):
@@ -69,7 +69,7 @@ class Event(with_metaclass(ABCMeta, Base)):
 class MessageEvent(Event):
     """Webhook MessageEvent.
 
-    https://devdocs.line.me/en/#message-event
+    https://developers.line.biz/en/reference/messaging-api/#message-event
 
     Event object which contains the sent message.
     The message field contains a message object which corresponds with the message type.
@@ -109,7 +109,7 @@ class MessageEvent(Event):
 class FollowEvent(Event):
     """Webhook FollowEvent.
 
-    https://devdocs.line.me/en/#follow-event
+    https://developers.line.biz/en/reference/messaging-api/#follow-event
 
     Event object for when your account is added as a friend (or unblocked).
     You can reply to follow events.
@@ -135,7 +135,7 @@ class FollowEvent(Event):
 class UnfollowEvent(Event):
     """Webhook UnfollowEvent.
 
-    https://devdocs.line.me/en/#unfollow-event
+    https://developers.line.biz/en/reference/messaging-api/#unfollow-event
 
     Event object for when your account is blocked.
     """
@@ -158,7 +158,7 @@ class UnfollowEvent(Event):
 class JoinEvent(Event):
     """Webhook JoinEvent.
 
-    https://devdocs.line.me/en/#join-event
+    https://developers.line.biz/en/reference/messaging-api/#join-event
 
     Event object for when your account joins a group or talk room.
     You can reply to join events.
@@ -184,7 +184,7 @@ class JoinEvent(Event):
 class LeaveEvent(Event):
     """Webhook LeaveEvent.
 
-    https://devdocs.line.me/en/#leave-event
+    https://developers.line.biz/en/reference/messaging-api/#leave-event
 
     Event object for when your account leaves a group.
     """
@@ -207,7 +207,7 @@ class LeaveEvent(Event):
 class PostbackEvent(Event):
     """Webhook PostbackEvent.
 
-    https://devdocs.line.me/en/#postback-event
+    https://developers.line.biz/en/reference/messaging-api/#postback-event
 
     Event object for when a user performs an action on
     a template message which initiates a postback.
@@ -239,7 +239,7 @@ class PostbackEvent(Event):
 class BeaconEvent(Event):
     """Webhook BeaconEvent.
 
-    https://devdocs.line.me/en/#beacon-event
+    https://developers.line.biz/en/reference/messaging-api/#beacon-event
 
     Event object for when a user detects a LINE Beacon. You can reply to beacon events.
     """
@@ -400,7 +400,7 @@ class ThingsEvent(Event):
 class Postback(Base):
     """Postback.
 
-    https://devdocs.line.me/en/#postback-event
+    https://developers.line.biz/en/reference/messaging-api/#postback-event
     """
 
     def __init__(self, data=None, params=None, **kwargs):
@@ -421,7 +421,7 @@ class Postback(Base):
 class Beacon(Base):
     """Beacon.
 
-    https://devdocs.line.me/en/#beacon-event
+    https://developers.line.biz/en/reference/messaging-api/#beacon-event
     """
 
     def __init__(self, type=None, hwid=None, dm=None, **kwargs):

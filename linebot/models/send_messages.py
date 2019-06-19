@@ -43,7 +43,7 @@ class SendMessage(with_metaclass(ABCMeta, Base)):
 class TextSendMessage(SendMessage):
     """TextSendMessage.
 
-    https://devdocs.line.me/en/#text
+    https://developers.line.biz/en/reference/messaging-api/#text-message
     """
 
     def __init__(self, text=None, quick_reply=None, **kwargs):
@@ -63,7 +63,7 @@ class TextSendMessage(SendMessage):
 class ImageSendMessage(SendMessage):
     """ImageSendMessage.
 
-    https://devdocs.line.me/en/#image
+    https://developers.line.biz/en/reference/messaging-api/#image-message
     """
 
     def __init__(self, original_content_url=None, preview_image_url=None,
@@ -94,7 +94,7 @@ class ImageSendMessage(SendMessage):
 class VideoSendMessage(SendMessage):
     """VideoSendMessage.
 
-    https://devdocs.line.me/en/#video
+    https://developers.line.biz/en/reference/messaging-api/#video-message
     """
 
     def __init__(self, original_content_url=None, preview_image_url=None,
@@ -102,15 +102,9 @@ class VideoSendMessage(SendMessage):
         """__init__ method.
 
         :param str original_content_url: URL of video file.
-            HTTPS
-            mp4
-            Less than 1 minute
-            Max: 10 MB
+            HTTPS. mp4. Less than 1 minute. Max: 10 MB.
         :param str preview_image_url: URL of preview image.
-            HTTPS
-            JPEG
-            Max: 240 x 240
-            Max: 1 MB
+            HTTPS. JPEG. Max: 240 x 240. Max: 1 MB.
         :param quick_reply: QuickReply object
         :type quick_reply: T <= :py:class:`linebot.models.send_messages.QuickReply`
         :param kwargs:
@@ -125,17 +119,14 @@ class VideoSendMessage(SendMessage):
 class AudioSendMessage(SendMessage):
     """AudioSendMessage.
 
-    https://devdocs.line.me/en/#audio
+    https://developers.line.biz/en/reference/messaging-api/#audio-message
     """
 
     def __init__(self, original_content_url=None, duration=None, quick_reply=None, **kwargs):
         """__init__ method.
 
-        :param str original_content_url: URL of audio file.
-            HTTPS
-            m4a
-            Less than 1 minute
-            Max 10 MB
+        :param str original_content_url: URL of audio file. HTTPS.
+            m4a. Less than 1 minute. Max 10 MB.
         :param long duration: Length of audio file (milliseconds).
         :param quick_reply: QuickReply object
         :type quick_reply: T <= :py:class:`linebot.models.send_messages.QuickReply`
@@ -151,7 +142,7 @@ class AudioSendMessage(SendMessage):
 class LocationSendMessage(SendMessage):
     """LocationSendMessage.
 
-    https://devdocs.line.me/en/#location
+    https://developers.line.biz/en/reference/messaging-api/#location-message
     """
 
     def __init__(self, title=None, address=None, latitude=None, longitude=None,
@@ -178,7 +169,7 @@ class LocationSendMessage(SendMessage):
 class StickerSendMessage(SendMessage):
     """StickerSendMessage.
 
-    https://devdocs.line.me/en/#sticker
+    https://developers.line.biz/en/reference/messaging-api/#sticker-message
     """
 
     def __init__(self, package_id=None, sticker_id=None, quick_reply=None, **kwargs):
@@ -200,7 +191,7 @@ class StickerSendMessage(SendMessage):
 class QuickReply(with_metaclass(ABCMeta, Base)):
     """QuickReply.
 
-    https://developers.line.me/en/docs/messaging-api/using-quick-reply/
+    https://developers.line.me/en/docs/messaging-api/#quick-reply
     """
 
     def __init__(self, items=None, **kwargs):
@@ -224,7 +215,7 @@ class QuickReply(with_metaclass(ABCMeta, Base)):
 class QuickReplyButton(with_metaclass(ABCMeta, Base)):
     """QuickReplyButton.
 
-    https://developers.line.me/en/reference/messaging-api/#items-object
+    https://developers.line.me/en/reference/messaging-api/#quick-reply-button-object
     """
 
     def __init__(self, image_url=None, action=None, **kwargs):

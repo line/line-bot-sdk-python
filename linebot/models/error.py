@@ -22,7 +22,7 @@ from .base import Base
 class Error(Base):
     """Error response of LINE messaging API.
 
-    https://devdocs.line.me/en/#error-response
+    https://developers.line.biz/en/reference/messaging-api/#error-response
     """
 
     def __init__(self, message=None, details=None, **kwargs):
@@ -47,15 +47,10 @@ class Error(Base):
 
 
 class ErrorDetail(Base):
-    """ErrorDetail response of LINE messaging API.
-
-    https://devdocs.line.me/en/#error-response
-    """
+    """ErrorDetail response of LINE messaging API."""
 
     def __init__(self, message=None, property=None, **kwargs):
         """__init__ method.
-
-        https://devdocs.line.me/en/#error-response
 
         :param str message: Details of the error message
         :param str property: Related property

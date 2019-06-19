@@ -73,7 +73,7 @@ else:
 class SignatureValidator(object):
     """Signature validator.
 
-    https://devdocs.line.me/en/#webhook-authentication
+    https://developers.line.biz/en/reference/messaging-api/#signature-validation
     """
 
     def __init__(self, channel_secret):
@@ -86,12 +86,9 @@ class SignatureValidator(object):
     def validate(self, body, signature):
         """Check signature.
 
-        https://devdocs.line.me/en/#webhook-authentication
-
         :param str body: Request body (as text)
         :param str signature: X-Line-Signature value (as text)
         :rtype: bool
-        :return: result
         """
         gen_signature = hmac.new(
             self.channel_secret,

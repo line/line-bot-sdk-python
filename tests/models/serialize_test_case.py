@@ -41,5 +41,5 @@ class SerializeTestCase(unittest.TestCase):
             if PY3:
                 self.assertIsInstance(obj, (str, bool, Number))
             else:
-                self.assertIsInstance(obj, (basestring, bool, Number))
+                self.assertIsInstance(obj, (basestring, bool, Number))  # noqa
             return obj

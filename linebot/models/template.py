@@ -81,7 +81,7 @@ class ButtonsTemplate(Template):
     def __init__(self, text=None, title=None, thumbnail_image_url=None,
                  image_aspect_ratio=None,
                  image_size=None, image_background_color=None,
-                 actions=None, **kwargs):
+                 actions=None, default_action=None, **kwargs):
         """__init__ method.
 
         :param str text: Message text.
@@ -111,6 +111,9 @@ class ButtonsTemplate(Template):
         :param actions: Action when tapped.
             Max: 4
         :type actions: list[T <= :py:class:`linebot.models.actions.Action`]
+        :param default_action: Action when image is tapped;
+            set for the entire image, title, and text area
+        :type default_action: T <= :py:class:`linebot.models.actions.Action`
         :param kwargs:
         """
         super(ButtonsTemplate, self).__init__(**kwargs)
@@ -123,6 +126,7 @@ class ButtonsTemplate(Template):
         self.image_size = image_size
         self.image_background_color = image_background_color
         self.actions = get_actions(actions)
+        self.default_action = get_action(default_action)
 
 
 class ConfirmTemplate(Template):
@@ -228,8 +232,9 @@ class CarouselColumn(Base):
     https://devdocs.line.me/en/#column-object
     """
 
-    def __init__(self, text=None, title=None, thumbnail_image_url=None,
-                 image_background_color=None, actions=None, **kwargs):
+    def __init__(self, text=None, title=None,
+                 thumbnail_image_url=None, image_background_color=None,
+                 actions=None, default_action=None, **kwargs):
         """__init__ method.
 
         :param str text: Message text.
@@ -248,6 +253,9 @@ class CarouselColumn(Base):
         :param actions: Action when tapped.
             Max: 3
         :type actions: list[T <= :py:class:`linebot.models.actions.Action`]
+        :param default_action: Action when image is tapped;
+            set for the entire image, title, and text area
+        :type default_action: T <= :py:class:`linebot.models.actions.Action`
         :param kwargs:
         """
         super(CarouselColumn, self).__init__(**kwargs)
@@ -257,6 +265,7 @@ class CarouselColumn(Base):
         self.thumbnail_image_url = thumbnail_image_url
         self.image_background_color = image_background_color
         self.actions = get_actions(actions)
+        self.default_action = get_action(default_action)
 
 
 class ImageCarouselColumn(Base):

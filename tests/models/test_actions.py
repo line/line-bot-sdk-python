@@ -19,58 +19,62 @@ import unittest
 from linebot.models import (
     PostbackAction,
     MessageAction,
+    CameraRollAction,
+    CameraAction,
     URIAction,
+    LocationAction,
     DatetimePickerAction,
-    CameraRollAction, CameraAction, LocationAction, AltUri)
-from linebot.utils import to_camel_case
+    AltUri,
+)
+from tests.models.serialize_test_case import SerializeTestCase
 
 
-class TestActions(unittest.TestCase):
+class TestActions(SerializeTestCase):
     def test_postback(self):
-        postback_arg = {
+        arg = {
             'type': 'postback',
             'label': 'Buy',
             'data': 'action=buy&id=1',
             'display_text': 'buy'
         }
         self.assertEqual(
-            {to_camel_case(k): v for k, v in postback_arg.items()},
-            PostbackAction(**postback_arg).as_json_dict()
+            self.serialize_as_dict(arg),
+            PostbackAction(**arg).as_json_dict()
         )
 
     def test_message(self):
-        message_arg = {
+        arg = {
             'type': 'message',
             'label': 'Yes',
             'text': 'yes'
         }
         self.assertEqual(
-            message_arg,
-            MessageAction(**message_arg).as_json_dict()
+            arg,
+            MessageAction(**arg).as_json_dict()
         )
 
     def test_camera(self):
-        camera_arg = {
+        arg = {
             'type': 'camera',
             'label': 'camera'
         }
         self.assertEqual(
-            camera_arg,
-            CameraAction(**camera_arg).as_json_dict()
+            arg,
+            CameraAction(**arg).as_json_dict()
         )
 
     def test_camera_roll(self):
-        camera_roll_arg = {
+        arg = {
             'type': 'cameraRoll',
             'label': 'camera roll'
         }
         self.assertEqual(
-            camera_roll_arg,
-            CameraRollAction(**camera_roll_arg).as_json_dict()
+            arg,
+            CameraRollAction(**arg).as_json_dict()
         )
 
     def test_datetime_picker(self):
-        datetime_picker_arg = {
+        arg = {
             'type': 'datetimepicker',
             'label': 'Select date',
             'data': 'storeId=12345',
@@ -80,37 +84,30 @@ class TestActions(unittest.TestCase):
             'min': '2017-12-25t00:00'
         }
         self.assertEqual(
-            datetime_picker_arg,
-            DatetimePickerAction(**datetime_picker_arg).as_json_dict()
+            arg,
+            DatetimePickerAction(**arg).as_json_dict()
         )
 
     def test_uri(self):
-        uri_arg = {
+        arg = {
             'type': 'uri',
             'label': 'View detail',
             'uri': 'https://example.com',
-            'alt_uri': {'desktop': 'https://example.com'}
+            'alt_uri': AltUri(desktop='https://example.com')
         }
-        expected = {to_camel_case(k): v for k, v in uri_arg.items()}
         self.assertEqual(
-            expected,
-            URIAction(**uri_arg).as_json_dict()
-        )
-
-        uri_arg['alt_uri'] = AltUri(desktop='https://example.com')
-        self.assertEqual(
-            expected,
-            URIAction(**uri_arg).as_json_dict()
+            self.serialize_as_dict(arg),
+            URIAction(**arg).as_json_dict()
         )
 
     def test_location(self):
-        location_arg = {
+        arg = {
             'type': 'location',
             'label': 'Location'
         }
         self.assertEqual(
-            location_arg,
-            LocationAction(**location_arg).as_json_dict()
+            arg,
+            LocationAction(**arg).as_json_dict()
         )
 
 

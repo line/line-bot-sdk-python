@@ -17,241 +17,210 @@ from __future__ import unicode_literals, absolute_import
 import unittest
 
 from linebot.models import (
-    FlexSendMessage, BubbleContainer, BubbleStyle, BlockStyle,
-    CarouselContainer, BoxComponent, ButtonComponent,
-    FillerComponent, IconComponent, ImageComponent,
-    SeparatorComponent, SpacerComponent, TextComponent
+    FlexSendMessage,
+    BlockStyle,
+    BubbleStyle,
+    BubbleContainer,
+    CarouselContainer,
+    BoxComponent,
+    TextComponent,
+    SeparatorComponent,
+    ImageComponent,
+    ButtonComponent,
+    FillerComponent,
+    IconComponent,
+    SpacerComponent,
+    URIAction,
 )
-from linebot.utils import to_camel_case
+from tests.models.serialize_test_case import SerializeTestCase
 
 
-class TestFlexMessage(unittest.TestCase):
+class TestFlexMessage(SerializeTestCase):
     def test_flex_message(self):
-        flex_message_arg = {
+        arg = {
             'type': 'flex',
             'alt_text': 'this is a flex message',
-            'contents': {
-                'type': 'bubble',
-                'body': {
-                    'type': 'box',
-                    'layout': 'vertical',
-                    'contents': [
-                        {'type': 'text', 'text': 'hello'},
-                        {'type': 'text', 'text': 'world'}
-                    ]
-                }
-            }
+            'contents':
+                BubbleContainer(
+                    body=BoxComponent(
+                        layout='vertical',
+                        contents=[
+                            TextComponent(text='hello'),
+                            TextComponent(text='world')
+                        ]
+                    )
+                )
         }
-        BubbleContainer(
-            body=BoxComponent(
-                layout='vertical',
-                contents=[TextComponent(text='hello'), TextComponent(text='world')]
-            )
-        )
         self.assertEqual(
-            {to_camel_case(k): v for k, v in flex_message_arg.items()},
-            FlexSendMessage(**flex_message_arg).as_json_dict()
+            self.serialize_as_dict(arg),
+            FlexSendMessage(**arg).as_json_dict()
         )
 
     def test_bubble_container(self):
-        bubble_container_arg = {
+        arg = {
             'type': 'bubble',
-            'header': {
-                'type': 'box',
-                'layout': 'vertical',
-                'contents': [
-                    {'type': 'text', 'text': 'Header text'}
-                ]
-            },
-            'hero': {
-                'type': 'image',
-                'url': 'https://example.com/flex/images/image.jpg'
-            },
-            'body': {
-                'type': 'box',
-                'layout': 'vertical',
-                'contents': [
-                    {'type': 'text', 'text': 'Body text'}
-                ]
-            },
-            'footer': {
-                'type': 'box',
-                'layout': 'vertical',
-                'contents': [
-                    {'type': 'text', 'text': 'Footer text'}
-                ]
-            },
-            'styles': {
-                'header': {
-                    'backgroundColor': '#00ffff'
-                },
-                'hero': {
-                    'separator': True,
-                    'separatorColor': '#000000'
-                },
-                'footer': {
-                    'backgroundColor': '#00ffff',
-                    'separator': True,
-                    'separatorColor': '#000000'
-                }
-            }
+            'header':
+                BoxComponent(layout='vertical',
+                             contents=[TextComponent(text='Header text')]),
+            'hero':
+                ImageComponent(uri='https://example.com/flex/images/image.jpg'),
+            'body':
+                BoxComponent(layout='vertical',
+                             contents=[TextComponent(text='Body text')]),
+            'footer':
+                BoxComponent(layout='vertical',
+                             contents=[TextComponent(text='Footer text')]),
+            'styles':
+                BubbleStyle(
+                    header=BlockStyle(background_color='#00ffff'),
+                    hero=BlockStyle(background_color='#00ffff',
+                                    separator=True),
+                    footer=BlockStyle(background_color='#00ffff',
+                                      separator=True,
+                                      separator_color='#00ffff')
+                )
         }
         self.assertEqual(
-            bubble_container_arg,
-            BubbleContainer(**bubble_container_arg).as_json_dict()
+            self.serialize_as_dict(arg),
+            BubbleContainer(**arg).as_json_dict()
         )
 
     def test_bubble_style(self):
-        bubble_style_arg = {
-            'header': {
-                'backgroundColor': '#00ffff'
-            },
-            'hero': {
-                'separator': True,
-                'separatorColor': '#000000'
-            },
-            'footer': {
-                'backgroundColor': '#00ffff',
-                'separator': True,
-                'separatorColor': '#000000'
-            }
+        arg = {
+            'header':
+                BlockStyle(background_color='#00ffff'),
+            'hero':
+                BlockStyle(background_color='#00ffff',
+                           separator=True),
+            'footer':
+                BlockStyle(background_color='#00ffff',
+                           separator=True,
+                           separator_color='#00ffff')
         }
         self.assertEqual(
-            bubble_style_arg,
-            BubbleStyle(**bubble_style_arg).as_json_dict()
+            self.serialize_as_dict(arg),
+            BubbleStyle(**arg).as_json_dict()
         )
 
     def test_block_style(self):
-        block_style_arg = {
+        arg = {
             'background_color': '#00ffff',
             'separator': True,
             'separator_color': '#000000'
         }
         self.assertEqual(
-            {to_camel_case(k): v for k, v in block_style_arg.items()},
-            BlockStyle(**block_style_arg).as_json_dict()
+            self.serialize_as_dict(arg),
+            BlockStyle(**arg).as_json_dict()
         )
 
     def test_carousel_container(self):
-        carousel_container_arg = {
+        arg = {
             'type': 'carousel',
             'contents': [
-                {
-                    'type': 'bubble',
-                    'body': {
-                        'type': 'box',
-                        'layout': 'vertical',
-                        'contents': [
-                            {'type': 'text', 'text': 'First bubble'}
-                        ]
-                    }
-                },
-                {
-                    'type': 'bubble',
-                    'body': {
-                        'type': 'box',
-                        'layout': 'vertical',
-                        'contents': [
-                            {'type': 'text', 'text': 'Second bubble'}
-                        ]
-                    }
-                }
+                BubbleContainer(
+                    body=BoxComponent(
+                        layout='vertical',
+                        contents=[TextComponent(text='Hey')]
+                    )
+                ),
+                BubbleContainer(
+                    body=BoxComponent(
+                        layout='vertical',
+                        contents=[TextComponent(text='Foo')]
+                    )
+                ),
             ]
         }
         self.assertEqual(
-            carousel_container_arg,
-            CarouselContainer(**carousel_container_arg).as_json_dict()
+            self.serialize_as_dict(arg),
+            CarouselContainer(**arg).as_json_dict()
         )
 
     def test_box_component(self):
-        box_component_arg = {
+        arg = {
             'type': 'box',
             'layout': 'vertical',
             'contents': [
-                {
-                    'type': 'image',
-                    'url': 'https://example.com/flex/images/image.jpg'
-                },
-                {'type': 'separator'},
-                {'type': 'text', 'text': 'Text in the box'}
+                ImageComponent(url='https://example.com/flex/images/image.jpg'),
+                SeparatorComponent(),
+                TextComponent(text='Text in the box'),
             ]
         }
+
         self.assertEqual(
-            box_component_arg,
-            BoxComponent(**box_component_arg).as_json_dict()
+            self.serialize_as_dict(arg),
+            BoxComponent(**arg).as_json_dict()
         )
 
     def test_button_component(self):
-        button_component_arg = {
+        arg = {
             'type': 'button',
-            'action': {
-                'type': 'uri',
-                'label': 'Tap me',
-                'uri': 'https://example.com'
-            },
+            'action':
+                URIAction(label='Tap me',
+                          uri='https://example.com'),
             'style': 'primary',
             'color': '#0000ff'
         }
         self.assertEqual(
-            button_component_arg,
-            ButtonComponent(**button_component_arg).as_json_dict()
+            self.serialize_as_dict(arg),
+            ButtonComponent(**arg).as_json_dict()
         )
 
     def test_filler_component(self):
-        filler_component_arg = {
+        arg = {
             'type': 'filler'
         }
         self.assertEqual(
-            filler_component_arg,
-            FillerComponent(**filler_component_arg).as_json_dict()
+            arg,
+            FillerComponent(**arg).as_json_dict()
         )
 
     def test_icon_component(self):
-        icon_component_arg = {
+        arg = {
             'type': 'icon',
             'url': 'https://example.com/icon/png/caution.png',
             'size': 'lg',
             'aspect_ratio': '1.91:1'
         }
         self.assertEqual(
-            {to_camel_case(k): v for k, v in icon_component_arg.items()},
-            IconComponent(**icon_component_arg).as_json_dict()
+            self.serialize_as_dict(arg),
+            IconComponent(**arg).as_json_dict()
         )
 
     def test_image_component(self):
-        image_component_arg = {
+        arg = {
             'type': 'image',
             'url': 'https://example.com/flex/images/image.jpg',
             'size': 'full',
             'aspect_ratio': '1.91:1'
         }
         self.assertEqual(
-            {to_camel_case(k): v for k, v in image_component_arg.items()},
-            ImageComponent(**image_component_arg).as_json_dict()
+            self.serialize_as_dict(arg),
+            ImageComponent(**arg).as_json_dict()
         )
 
     def test_separator_component(self):
-        separator_component_arg = {
+        arg = {
             'type': 'separator',
             'color': '#000000'
         }
         self.assertEqual(
-            separator_component_arg,
-            SeparatorComponent(**separator_component_arg).as_json_dict()
+            arg,
+            SeparatorComponent(**arg).as_json_dict()
         )
 
     def test_spacer_component(self):
-        spacer_component_arg = {
+        arg = {
             'type': 'spacer',
             'size': 'md'
         }
         self.assertEqual(
-            spacer_component_arg,
-            SpacerComponent(**spacer_component_arg).as_json_dict()
+            arg,
+            SpacerComponent(**arg).as_json_dict()
         )
 
     def test_text_component(self):
-        text_component_arg = {
+        arg = {
             'type': 'text',
             'text': 'Hello, World!',
             'size': 'xl',
@@ -259,8 +228,8 @@ class TestFlexMessage(unittest.TestCase):
             'color': '#0000ff'
         }
         self.assertEqual(
-            text_component_arg,
-            TextComponent(**text_component_arg).as_json_dict()
+            arg,
+            TextComponent(**arg).as_json_dict()
         )
 
 

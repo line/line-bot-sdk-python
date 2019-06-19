@@ -18,73 +18,76 @@ import unittest
 
 from linebot.models import (
     TextSendMessage,
-    ImageSendMessage,
+    StickerSendMessage,
     VideoSendMessage,
     AudioSendMessage,
     LocationSendMessage,
-    StickerSendMessage,
-    QuickReply
+    ImageSendMessage,
+    QuickReplyButton,
+    QuickReply,
+    CameraRollAction,
+    CameraAction
 )
-from linebot.utils import to_camel_case
+from tests.models.serialize_test_case import SerializeTestCase
 
 
-class TestSendMessages(unittest.TestCase):
+class TestSendMessages(SerializeTestCase):
     def test_text_message(self):
-        text_message_arg = {
+        arg = {
             'type': 'text',
             'text': 'Hello, world'
         }
         self.assertEqual(
-            {to_camel_case(k): v for k, v in text_message_arg.items()},
-            TextSendMessage(**text_message_arg).as_json_dict()
+            self.serialize_as_dict(arg),
+            TextSendMessage(**arg).as_json_dict()
         )
 
     def test_sticker_message(self):
-        sticker_message_arg = {
+        arg = {
             'type': 'sticker',
             'package_id': '1',
             'sticker_id': '1'
         }
         self.assertEqual(
-            {to_camel_case(k): v for k, v in sticker_message_arg.items()},
-            StickerSendMessage(**sticker_message_arg).as_json_dict()
+            self.serialize_as_dict(arg),
+            StickerSendMessage(**arg).as_json_dict()
         )
 
     def test_image_message(self):
-        image_message_arg = {
+        arg = {
             'type': 'image',
             'original_content_url': 'https://example.com/original.jpg',
             'preview_image_url': 'https://example.com/preview.jpg'
         }
         self.assertEqual(
-            {to_camel_case(k): v for k, v in image_message_arg.items()},
-            ImageSendMessage(**image_message_arg).as_json_dict()
+            self.serialize_as_dict(arg),
+            ImageSendMessage(**arg).as_json_dict()
         )
 
     def test_video_message(self):
-        video_message_arg = {
+        arg = {
             'type': 'video',
             'original_content_url': 'https://example.com/original.mp4',
             'preview_image_url': 'https://example.com/preview.jpg'
         }
         self.assertEqual(
-            {to_camel_case(k): v for k, v in video_message_arg.items()},
-            VideoSendMessage(**video_message_arg).as_json_dict()
+            self.serialize_as_dict(arg),
+            VideoSendMessage(**arg).as_json_dict()
         )
 
     def test_audio_message(self):
-        audio_message_arg = {
+        arg = {
             'type': 'audio',
             'original_content_url': 'https://example.com/original.m4a',
             'duration': 60000
         }
         self.assertEqual(
-            {to_camel_case(k): v for k, v in audio_message_arg.items()},
-            AudioSendMessage(**audio_message_arg).as_json_dict()
+            self.serialize_as_dict(arg),
+            AudioSendMessage(**arg).as_json_dict()
         )
 
     def test_location_message(self):
-        location_message_arg = {
+        arg = {
             'type': 'location',
             'title': 'my location',
             'address': '〒150-0002 東京都渋谷区渋谷２丁目２１−１',
@@ -92,26 +95,30 @@ class TestSendMessages(unittest.TestCase):
             'longitude': 139.70372892916203
         }
         self.assertEqual(
-            {to_camel_case(k): v for k, v in location_message_arg.items()},
-            LocationSendMessage(**location_message_arg).as_json_dict()
+            self.serialize_as_dict(arg),
+            LocationSendMessage(**arg).as_json_dict()
+        )
+
+    def test_quick_reply_button(self):
+        arg = {
+            'type': 'action',
+            'action': CameraRollAction(label='Send photo')
+        }
+        self.assertEqual(
+            self.serialize_as_dict(arg),
+            QuickReplyButton(**arg).as_json_dict()
         )
 
     def test_quick_reply(self):
-        quick_reply_arg = {
+        arg = {
             'items': [
-                {
-                    'type': 'action',
-                    'action': {'type': 'cameraRoll', 'label': 'Send photo'}
-                },
-                {
-                    'type': 'action',
-                    'action': {'type': 'camera', 'label': 'Open camera'}
-                }
+                QuickReplyButton(action=CameraRollAction(label='Send photo')),
+                QuickReplyButton(action=CameraAction(label='Open camera')),
             ]
         }
         self.assertEqual(
-            {to_camel_case(k): v for k, v in quick_reply_arg.items()},
-            QuickReply(**quick_reply_arg).as_json_dict()
+            self.serialize_as_dict(arg),
+            QuickReply(**arg).as_json_dict()
         )
 
 

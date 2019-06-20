@@ -29,7 +29,6 @@ from tests.models.serialize_test_case import SerializeTestCase
 class TestImageMap(SerializeTestCase):
     def test_image_map(self):
         arg = {
-            'type': 'imagemap',
             'base_url': 'https://example.com/bot/images/rm001',
             'alt_text': 'This is an imagemap',
             'base_size': BaseSize(width=1040, height=1040),
@@ -53,7 +52,7 @@ class TestImageMap(SerializeTestCase):
             ]
         }
         self.assertEqual(
-            self.serialize_as_dict(arg),
+            self.serialize_as_dict(arg, type=self.IMAGEMAP),
             ImagemapSendMessage(**arg).as_json_dict()
         )
 
@@ -70,30 +69,25 @@ class TestImageMap(SerializeTestCase):
             Video(**arg).as_json_dict()
         )
 
-    def test_actions(self):
-        args = [
-            {
-                'type': 'uri',
-                'link_uri': 'https://example.com/',
-                'area': ImagemapArea(x=0, y=585, width=520, height=454)
-            },
-            {
-                'type': 'message',
-                'text': 'Hey',
-                'area': ImagemapArea(x=0, y=58, width=52, height=40)
-            }
-        ]
-        cls_map = {
-            'uri': URIImagemapAction,
-            'message': MessageImagemapAction
+    def test_message_actions(self):
+        arg = {
+            'text': 'Hey',
+            'area': ImagemapArea(x=0, y=58, width=52, height=40)
         }
+        self.assertEqual(
+            self.serialize_as_dict(arg, type=self.MESSAGE),
+            MessageImagemapAction(**arg).as_json_dict()
+        )
 
-        for arg in args:
-            cls = cls_map[arg['type']]
-            self.assertEqual(
-                self.serialize_as_dict(arg),
-                cls(**arg).as_json_dict()
-            )
+    def test_uri_actions(self):
+        arg = {
+            'link_uri': 'https://example.com/',
+            'area': ImagemapArea(x=0, y=585, width=520, height=454)
+        }
+        self.assertEqual(
+            self.serialize_as_dict(arg, self.URI),
+            URIImagemapAction(**arg).as_json_dict()
+        )
 
     def test_base_size(self):
         arg = {

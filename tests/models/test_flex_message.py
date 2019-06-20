@@ -38,7 +38,6 @@ from tests.models.serialize_test_case import SerializeTestCase
 class TestFlexMessage(SerializeTestCase):
     def test_flex_message(self):
         arg = {
-            'type': 'flex',
             'alt_text': 'this is a flex message',
             'contents':
                 BubbleContainer(
@@ -52,13 +51,12 @@ class TestFlexMessage(SerializeTestCase):
                 )
         }
         self.assertEqual(
-            self.serialize_as_dict(arg),
+            self.serialize_as_dict(arg, type=self.FLEX),
             FlexSendMessage(**arg).as_json_dict()
         )
 
     def test_bubble_container(self):
         arg = {
-            'type': 'bubble',
             'header':
                 BoxComponent(layout='vertical',
                              contents=[TextComponent(text='Header text')]),
@@ -81,7 +79,7 @@ class TestFlexMessage(SerializeTestCase):
                 )
         }
         self.assertEqual(
-            self.serialize_as_dict(arg),
+            self.serialize_as_dict(arg, type=self.BUBBLE),
             BubbleContainer(**arg).as_json_dict()
         )
 
@@ -115,7 +113,6 @@ class TestFlexMessage(SerializeTestCase):
 
     def test_carousel_container(self):
         arg = {
-            'type': 'carousel',
             'contents': [
                 BubbleContainer(
                     body=BoxComponent(
@@ -132,13 +129,12 @@ class TestFlexMessage(SerializeTestCase):
             ]
         }
         self.assertEqual(
-            self.serialize_as_dict(arg),
+            self.serialize_as_dict(arg, type=self.CAROUSEL),
             CarouselContainer(**arg).as_json_dict()
         )
 
     def test_box_component(self):
         arg = {
-            'type': 'box',
             'layout': 'vertical',
             'contents': [
                 ImageComponent(url='https://example.com/flex/images/image.jpg'),
@@ -148,13 +144,12 @@ class TestFlexMessage(SerializeTestCase):
         }
 
         self.assertEqual(
-            self.serialize_as_dict(arg),
+            self.serialize_as_dict(arg, type=self.BOX),
             BoxComponent(**arg).as_json_dict()
         )
 
     def test_button_component(self):
         arg = {
-            'type': 'button',
             'action':
                 URIAction(label='Tap me',
                           uri='https://example.com'),
@@ -162,73 +157,66 @@ class TestFlexMessage(SerializeTestCase):
             'color': '#0000ff'
         }
         self.assertEqual(
-            self.serialize_as_dict(arg),
+            self.serialize_as_dict(arg, type=self.BUTTON),
             ButtonComponent(**arg).as_json_dict()
         )
 
     def test_filler_component(self):
-        arg = {
-            'type': 'filler'
-        }
+        arg = {}
         self.assertEqual(
-            arg,
+            self.serialize_as_dict(arg, type=self.FILLER),
             FillerComponent(**arg).as_json_dict()
         )
 
     def test_icon_component(self):
         arg = {
-            'type': 'icon',
             'url': 'https://example.com/icon/png/caution.png',
             'size': 'lg',
             'aspect_ratio': '1.91:1'
         }
         self.assertEqual(
-            self.serialize_as_dict(arg),
+            self.serialize_as_dict(arg, type=self.ICON),
             IconComponent(**arg).as_json_dict()
         )
 
     def test_image_component(self):
         arg = {
-            'type': 'image',
             'url': 'https://example.com/flex/images/image.jpg',
             'size': 'full',
             'aspect_ratio': '1.91:1'
         }
         self.assertEqual(
-            self.serialize_as_dict(arg),
+            self.serialize_as_dict(arg, type=self.IMAGE),
             ImageComponent(**arg).as_json_dict()
         )
 
     def test_separator_component(self):
         arg = {
-            'type': 'separator',
             'color': '#000000'
         }
         self.assertEqual(
-            arg,
+            self.serialize_as_dict(arg, type=self.SEPARATOR),
             SeparatorComponent(**arg).as_json_dict()
         )
 
     def test_spacer_component(self):
         arg = {
-            'type': 'spacer',
             'size': 'md'
         }
         self.assertEqual(
-            arg,
+            self.serialize_as_dict(arg, type=self.SPACER),
             SpacerComponent(**arg).as_json_dict()
         )
 
     def test_text_component(self):
         arg = {
-            'type': 'text',
             'text': 'Hello, World!',
             'size': 'xl',
             'weight': 'bold',
             'color': '#0000ff'
         }
         self.assertEqual(
-            arg,
+            self.serialize_as_dict(arg, type=self.TEXT),
             TextComponent(**arg).as_json_dict()
         )
 

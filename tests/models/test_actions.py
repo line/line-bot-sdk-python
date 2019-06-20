@@ -32,50 +32,45 @@ from tests.models.serialize_test_case import SerializeTestCase
 class TestActions(SerializeTestCase):
     def test_postback(self):
         arg = {
-            'type': 'postback',
             'label': 'Buy',
             'data': 'action=buy&id=1',
             'display_text': 'buy'
         }
         self.assertEqual(
-            self.serialize_as_dict(arg),
+            self.serialize_as_dict(arg, type=self.POSTBACK),
             PostbackAction(**arg).as_json_dict()
         )
 
     def test_message(self):
         arg = {
-            'type': 'message',
             'label': 'Yes',
             'text': 'yes'
         }
         self.assertEqual(
-            arg,
+            self.serialize_as_dict(arg, type=self.MESSAGE),
             MessageAction(**arg).as_json_dict()
         )
 
     def test_camera(self):
         arg = {
-            'type': 'camera',
             'label': 'camera'
         }
         self.assertEqual(
-            arg,
+            self.serialize_as_dict(arg, type=self.CAMERA),
             CameraAction(**arg).as_json_dict()
         )
 
     def test_camera_roll(self):
         arg = {
-            'type': 'cameraRoll',
             'label': 'camera roll'
         }
         self.assertEqual(
-            arg,
+            self.serialize_as_dict(arg, type=self.CAMERA_ROLL),
             CameraRollAction(**arg).as_json_dict()
         )
 
     def test_datetime_picker(self):
         arg = {
-            'type': 'datetimepicker',
             'label': 'Select date',
             'data': 'storeId=12345',
             'mode': 'datetime',
@@ -84,29 +79,27 @@ class TestActions(SerializeTestCase):
             'min': '2017-12-25t00:00'
         }
         self.assertEqual(
-            arg,
+            self.serialize_as_dict(arg, type=self.DATETIMEPICKER),
             DatetimePickerAction(**arg).as_json_dict()
         )
 
     def test_uri(self):
         arg = {
-            'type': 'uri',
             'label': 'View detail',
             'uri': 'https://example.com',
             'alt_uri': AltUri(desktop='https://example.com')
         }
         self.assertEqual(
-            self.serialize_as_dict(arg),
+            self.serialize_as_dict(arg, type=self.URI),
             URIAction(**arg).as_json_dict()
         )
 
     def test_location(self):
         arg = {
-            'type': 'location',
             'label': 'Location'
         }
         self.assertEqual(
-            arg,
+            self.serialize_as_dict(arg, type=self.LOCATION),
             LocationAction(**arg).as_json_dict()
         )
 

@@ -27,14 +27,43 @@ PY3 = sys.version_info[0] == 3
 
 
 class SerializeTestCase(unittest.TestCase):
-    def serialize_as_dict(self, obj):
+    MESSAGE = 'message'
+    STICKER = 'sticker'
+    POSTBACK = 'postback'
+    CAMERA = 'camera'
+    CAMERA_ROLL = 'cameraRoll'
+    DATETIMEPICKER = 'datetimepicker'
+    URI = 'uri'
+    LOCATION = 'location'
+    FLEX = 'flex'
+    SPACER = 'spacer'
+    BUBBLE = 'bubble'
+    CAROUSEL = 'carousel'
+    BOX = 'box'
+    BUTTON = 'button'
+    FILLER = 'filler'
+    ICON = 'icon'
+    TEXT = 'text'
+    IMAGE = 'image'
+    VIDEO = 'video'
+    AUDIO = 'audio'
+    SEPARATOR = 'separator'
+    IMAGEMAP = 'imagemap'
+    ACTION = 'action'
+    TEMPLATE = 'template'
+    BUTTONS = 'buttons'
+    CONFIRM = 'confirm'
+    CAROUSEL = 'carousel'
+    IMAGE_CAROUSEL = 'image_carousel'
+
+    def serialize_as_dict(self, obj, type=None):
         if isinstance(obj, Base):
             return obj.as_json_dict()
         elif isinstance(obj, dict):
-            return {
-                to_camel_case(k): self.serialize_as_dict(v)
-                for k, v in obj.items()
-            }
+            ret = {to_camel_case(k): self.serialize_as_dict(v) for k, v in obj.items()}
+            if type is not None:
+                ret['type'] = type
+            return ret
         elif isinstance(obj, list):
             return [self.serialize_as_dict(elem) for elem in obj]
         else:
@@ -43,3 +72,11 @@ class SerializeTestCase(unittest.TestCase):
             else:
                 self.assertIsInstance(obj, (basestring, bool, Number))  # noqa
             return obj
+
+    class ConstError(TypeError):
+        pass
+
+    def __setattr__(self, name, value):
+        if name in SerializeTestCase.__dict__:
+            raise self.ConstError("Can't rebind const (%s)" % name)
+        self.__dict__[name] = value

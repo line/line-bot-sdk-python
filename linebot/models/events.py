@@ -36,7 +36,7 @@ from linebot.models.things import (
     DeviceLink,
     ScenarioResult,
 )
-from linebot.models.things import Things  # noqa
+from linebot.models.things import Things  # noqa, backward compatibility
 
 
 class Event(with_metaclass(ABCMeta, Base)):

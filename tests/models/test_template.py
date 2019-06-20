@@ -53,7 +53,7 @@ class TestTemplate(SerializeTestCase):
                 )
         }
         self.assertEqual(
-            self.serialize_as_dict(arg),
+            self.serialize_as_dict(arg, type=self.TEMPLATE),
             TemplateSendMessage(**arg).as_json_dict()
         )
 
@@ -74,7 +74,7 @@ class TestTemplate(SerializeTestCase):
             ]
         }
         self.assertEqual(
-            self.serialize_as_dict(arg),
+            self.serialize_as_dict(arg, type=self.BUTTONS),
             ButtonsTemplate(**arg).as_json_dict()
         )
 
@@ -88,13 +88,12 @@ class TestTemplate(SerializeTestCase):
             ]
         }
         self.assertEqual(
-            self.serialize_as_dict(arg),
+            self.serialize_as_dict(arg, type=self.CONFIRM),
             ConfirmTemplate(**arg).as_json_dict()
         )
 
     def test_carousel_template(self):
         arg = {
-            'type': 'carousel',
             'image_aspect_ratio': 'rectangle',
             'image_size': 'cover',
             'columns': [
@@ -125,7 +124,7 @@ class TestTemplate(SerializeTestCase):
             ]
         }
         self.assertEqual(
-            self.serialize_as_dict(arg),
+            self.serialize_as_dict(arg, type=self.CAROUSEL),
             CarouselTemplate(**arg).as_json_dict()
         )
 
@@ -149,7 +148,6 @@ class TestTemplate(SerializeTestCase):
 
     def test_image_carousel_template(self):
         arg = {
-            'type': 'image_carousel',
             'columns': [
                 ImageCarouselColumn(
                     image_url='https://example.com/bot/images/item1.jpg',
@@ -162,7 +160,7 @@ class TestTemplate(SerializeTestCase):
             ]
         }
         self.assertEqual(
-            self.serialize_as_dict(arg),
+            self.serialize_as_dict(arg, type=self.IMAGE_CAROUSEL),
             ImageCarouselTemplate(**arg).as_json_dict()
         )
 

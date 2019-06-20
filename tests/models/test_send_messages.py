@@ -34,33 +34,30 @@ from tests.models.serialize_test_case import SerializeTestCase
 class TestSendMessages(SerializeTestCase):
     def test_text_message(self):
         arg = {
-            'type': 'text',
             'text': 'Hello, world'
         }
         self.assertEqual(
-            self.serialize_as_dict(arg),
+            self.serialize_as_dict(arg, type=self.TEXT),
             TextSendMessage(**arg).as_json_dict()
         )
 
     def test_sticker_message(self):
         arg = {
-            'type': 'sticker',
             'package_id': '1',
             'sticker_id': '1'
         }
         self.assertEqual(
-            self.serialize_as_dict(arg),
+            self.serialize_as_dict(arg, type=self.STICKER),
             StickerSendMessage(**arg).as_json_dict()
         )
 
     def test_image_message(self):
         arg = {
-            'type': 'image',
             'original_content_url': 'https://example.com/original.jpg',
             'preview_image_url': 'https://example.com/preview.jpg'
         }
         self.assertEqual(
-            self.serialize_as_dict(arg),
+            self.serialize_as_dict(arg, type=self.IMAGE),
             ImageSendMessage(**arg).as_json_dict()
         )
 
@@ -71,41 +68,38 @@ class TestSendMessages(SerializeTestCase):
             'preview_image_url': 'https://example.com/preview.jpg'
         }
         self.assertEqual(
-            self.serialize_as_dict(arg),
+            self.serialize_as_dict(arg, type=self.VIDEO),
             VideoSendMessage(**arg).as_json_dict()
         )
 
     def test_audio_message(self):
         arg = {
-            'type': 'audio',
             'original_content_url': 'https://example.com/original.m4a',
             'duration': 60000
         }
         self.assertEqual(
-            self.serialize_as_dict(arg),
+            self.serialize_as_dict(arg, type=self.AUDIO),
             AudioSendMessage(**arg).as_json_dict()
         )
 
     def test_location_message(self):
         arg = {
-            'type': 'location',
             'title': 'my location',
             'address': '〒150-0002 東京都渋谷区渋谷２丁目２１−１',
             'latitude': 35.65910807942215,
             'longitude': 139.70372892916203
         }
         self.assertEqual(
-            self.serialize_as_dict(arg),
+            self.serialize_as_dict(arg, type=self.LOCATION),
             LocationSendMessage(**arg).as_json_dict()
         )
 
     def test_quick_reply_button(self):
         arg = {
-            'type': 'action',
             'action': CameraRollAction(label='Send photo')
         }
         self.assertEqual(
-            self.serialize_as_dict(arg),
+            self.serialize_as_dict(arg, type=self.ACTION),
             QuickReplyButton(**arg).as_json_dict()
         )
 

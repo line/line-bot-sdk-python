@@ -23,8 +23,9 @@ from .exceptions import LineBotApiError
 from .http_client import HttpClient, RequestsHttpClient
 from .models import (
     Error, Profile, MemberIds, Content, RichMenuResponse, MessageQuotaResponse,
-    MessageQuotaConsumptionResponse, MessageDeliveryBroadcastResponse, IssueLinkTokenResponse,
-    IssueChannelTokenResponse,
+    MessageQuotaConsumptionResponse, IssueLinkTokenResponse, IssueChannelTokenResponse,
+    MessageDeliveryBroadcastResponse, MessageDeliveryMulticastResponse,
+    MessageDeliveryPushResponse, MessageDeliveryReplyResponse,
 )
 
 
@@ -219,6 +220,69 @@ class LineBotApi(object):
         )
 
         return MessageDeliveryBroadcastResponse.new_from_json_dict(response.json)
+
+    def get_message_delivery_reply(self, date, timeout=None):
+        """Get number of sent reply messages.
+
+        https://developers.line.biz/en/reference/messaging-api/#get-number-of-reply-messages
+
+        Gets the number of messages sent with the /bot/message/reply endpoint.
+
+        :param str date: Date the messages were sent. The format is `yyyyMMdd` (Timezone is UTC+9).
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        """
+        response = self._get(
+            '/v2/bot/message/delivery/reply?date={date}'.format(date=date),
+            timeout=timeout
+        )
+
+        return MessageDeliveryReplyResponse.new_from_json_dict(response.json)
+
+    def get_message_delivery_push(self, date, timeout=None):
+        """Get number of sent push messages.
+
+        https://developers.line.biz/en/reference/messaging-api/#get-number-of-push-messages
+
+        Gets the number of messages sent with the /bot/message/push endpoint.
+
+        :param str date: Date the messages were sent. The format is `yyyyMMdd` (Timezone is UTC+9).
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        """
+        response = self._get(
+            '/v2/bot/message/delivery/push?date={date}'.format(date=date),
+            timeout=timeout
+        )
+
+        return MessageDeliveryPushResponse.new_from_json_dict(response.json)
+
+    def get_message_delivery_multicast(self, date, timeout=None):
+        """Get number of sent multicast messages.
+
+        https://developers.line.biz/en/reference/messaging-api/#get-number-of-multicast-messages
+
+        Gets the number of messages sent with the /bot/message/multicast endpoint.
+
+        :param str date: Date the messages were sent. The format is `yyyyMMdd` (Timezone is UTC+9).
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        """
+        response = self._get(
+            '/v2/bot/message/delivery/multicast?date={date}'.format(date=date),
+            timeout=timeout
+        )
+
+        return MessageDeliveryMulticastResponse.new_from_json_dict(response.json)
 
     def get_profile(self, user_id, timeout=None):
         """Call get profile API.

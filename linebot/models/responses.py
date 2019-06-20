@@ -190,10 +190,7 @@ class MessageQuotaConsumptionResponse(Base):
 
 
 class MessageDeliveryBroadcastResponse(Base):
-    """MessageDeliveryBroadcastResponse.
-
-    https://developers.line.biz/en/reference/messaging-api/#get-number-of-broadcast-messages
-    """
+    """MessageDeliveryBroadcastResponse."""
 
     def __init__(self, status=None, success=None, **kwargs):
         """__init__ method.
@@ -204,6 +201,57 @@ class MessageDeliveryBroadcastResponse(Base):
         :param kwargs:
         """
         super(MessageDeliveryBroadcastResponse, self).__init__(**kwargs)
+
+        self.status = status
+        self.success = success
+
+
+class MessageDeliveryReplyResponse(Base):
+    """MessageDeliveryReplyResponse."""
+
+    def __init__(self, status=None, success=None, **kwargs):
+        """__init__ method.
+
+        :param str status: Status of the counting process.
+        :param int success: The number of messages sent with the Messaging API on the
+            date specified in date.
+        :param kwargs:
+        """
+        super(MessageDeliveryReplyResponse, self).__init__(**kwargs)
+
+        self.status = status
+        self.success = success
+
+
+class MessageDeliveryPushResponse(Base):
+    """MessageDeliveryPushResponse."""
+
+    def __init__(self, status=None, success=None, **kwargs):
+        """__init__ method.
+
+        :param str status: Status of the counting process.
+        :param int success: The number of messages sent with the Messaging API on the
+            date specified in date.
+        :param kwargs:
+        """
+        super(MessageDeliveryPushResponse, self).__init__(**kwargs)
+
+        self.status = status
+        self.success = success
+
+
+class MessageDeliveryMulticastResponse(Base):
+    """MessageDeliveryMulticastResponse."""
+
+    def __init__(self, status=None, success=None, **kwargs):
+        """__init__ method.
+
+        :param str status: Status of the counting process.
+        :param int success: The number of messages sent with the Messaging API on the
+            date specified in date.
+        :param kwargs:
+        """
+        super(MessageDeliveryMulticastResponse, self).__init__(**kwargs)
 
         self.status = status
         self.success = success

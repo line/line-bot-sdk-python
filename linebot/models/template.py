@@ -28,7 +28,7 @@ from .send_messages import SendMessage
 class TemplateSendMessage(SendMessage):
     """TemplateSendMessage.
 
-    https://devdocs.line.me/en/#template-messages
+    https://developers.line.biz/en/reference/messaging-api/#template-messages
 
     Template messages are messages with predefined layouts which you can customize.
     There are three types of templates available
@@ -73,7 +73,7 @@ class Template(with_metaclass(ABCMeta, Base)):
 class ButtonsTemplate(Template):
     """ButtonsTemplate.
 
-    https://devdocs.line.me/en/#buttons
+    https://developers.line.biz/en/reference/messaging-api/#buttons
 
     Template message with an image, title, text, and multiple action buttons.
     """
@@ -99,13 +99,7 @@ class ButtonsTemplate(Template):
             Specify one of the following values:
             rectangle: 1.51:1
             square: 1:1
-        :param str image_size: Size of the image.
-            Specify one of the following values:
-            cover: The image fills the entire image area.
-                Parts of the image that do not fit in the area are not displayed.
-            contain: The entire image is displayed in the image area.
-                A background is displayed in the unused areas to the left and right
-                of vertical images and in the areas above and below horizontal images.
+        :param str image_size: Size of the image. Specify ``cover`` or ``contain``.
         :param str image_background_color: Background color of image.
             Specify a RGB color value.
         :param actions: Action when tapped.
@@ -128,7 +122,7 @@ class ButtonsTemplate(Template):
 class ConfirmTemplate(Template):
     """ConfirmTemplate.
 
-    https://devdocs.line.me/en/#confirm
+    https://developers.line.biz/en/reference/messaging-api/#confirm
 
     Template message with two action buttons.
     """
@@ -153,7 +147,7 @@ class ConfirmTemplate(Template):
 class CarouselTemplate(Template):
     """CarouselTemplate.
 
-    https://devdocs.line.me/en/#carousel
+    https://developers.line.biz/en/reference/messaging-api/#carousel
 
     Template message with multiple columns which can be cycled like a carousel.
     """
@@ -166,16 +160,8 @@ class CarouselTemplate(Template):
             Max: 10
         :type columns: list[T <= :py:class:`linebot.models.template.CarouselColumn`]
         :param str image_aspect_ratio: Aspect ratio of the image.
-            Specify one of the following values:
-            rectangle: 1.51:1
-            square: 1:1
-        :param str image_size: Size of the image.
-            Specify one of the following values:
-            cover: The image fills the entire image area.
-                Parts of the image that do not fit in the area are not displayed.
-            contain: The entire image is displayed in the image area.
-                A background is displayed in the unused areas to the left and right
-                of vertical images and in the areas above and below horizontal images.
+            Specify ``rectangle`` or ``square``.
+        :param str image_size: Size of the image. Specify ``cover`` or ``contain``.
         :param kwargs:
         """
         super(CarouselTemplate, self).__init__(**kwargs)
@@ -196,7 +182,7 @@ class CarouselTemplate(Template):
 class ImageCarouselTemplate(Template):
     """ImageCarouselTemplate.
 
-    https://devdocs.line.me/en/#image-carousel
+    https://developers.line.biz/en/reference/messaging-api/#image-carousel
 
     Template message with multiple images columns which can be cycled like as carousel.
     """
@@ -225,7 +211,7 @@ class ImageCarouselTemplate(Template):
 class CarouselColumn(Base):
     """CarouselColumn.
 
-    https://devdocs.line.me/en/#column-object
+    https://developers.line.biz/en/reference/messaging-api/#column-object
     """
 
     def __init__(self, text=None, title=None, thumbnail_image_url=None,
@@ -237,12 +223,8 @@ class CarouselColumn(Base):
             Max: 60 characters (message with an image or title)
         :param str title: Title.
             Max: 40 characters
-        :param str thumbnail_image_url: Image URL.
-            HTTPS
-            JPEG or PNG
-            Aspect ratio: 1:1.51
-            Max width: 1024px
-            Max: 1 MB
+        :param str thumbnail_image_url: Image URL (HTTPS). JPEG or PNG. Aspect ration is 1:1.51.
+            Max width: 1024px, Max: 1 MB.
         :param str image_background_color: Background color of image.
             Specify a RGB color value.
         :param actions: Action when tapped.
@@ -262,20 +244,15 @@ class CarouselColumn(Base):
 class ImageCarouselColumn(Base):
     """ImageCarouselColumn.
 
-    https://devdocs.line.me/en/#column-object-for-image-carousel
+    https://developers.line.biz/en/reference/messaging-api/#column-object-for-image-carousel
     """
 
     def __init__(self, image_url=None, action=None, **kwargs):
         """__init__ method.
 
-        :param str image_url: Image URL.
-            HTTPS
-            JPEG or PNG
-            Aspect ratio: 1:1
-            Max width: 1024px
-            Max: 1 MB
-        :param action: Action when image is tapped
-            Max: 5
+        :param str image_url: Image URL (HTTPS). JPEG or PNG. Aspect ration is 1:1.
+            Max width: 1024px, Max: 1 MB.
+        :param action: Action when image is tapped. Max: 5.
         :type action: T <= :py:class:`linebot.models.actions.Action`
         :param kwargs:
         """

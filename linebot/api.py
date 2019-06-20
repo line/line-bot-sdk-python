@@ -62,7 +62,7 @@ class LineBotApi(object):
     def reply_message(self, reply_token, messages, notification_disabled=False, timeout=None):
         """Call reply message API.
 
-        https://devdocs.line.me/en/#reply-message
+        https://developers.line.biz/en/reference/messaging-api/#send-reply-message
 
         Respond to events from users, groups, and rooms.
 
@@ -103,7 +103,7 @@ class LineBotApi(object):
     def push_message(self, to, messages, notification_disabled=False, timeout=None):
         """Call push message API.
 
-        https://devdocs.line.me/en/#push-message
+        https://developers.line.biz/en/reference/messaging-api/#send-push-message
 
         Send messages to users, groups, and rooms at any time.
 
@@ -136,7 +136,7 @@ class LineBotApi(object):
     def multicast(self, to, messages, notification_disabled=False, timeout=None):
         """Call multicast API.
 
-        https://devdocs.line.me/en/#multicast
+        https://developers.line.biz/en/reference/messaging-api/#send-multicast-message
 
         Send messages to multiple users at any time.
 
@@ -223,7 +223,7 @@ class LineBotApi(object):
     def get_profile(self, user_id, timeout=None):
         """Call get profile API.
 
-        https://devdocs.line.me/en/#bot-api-get-profile
+        https://developers.line.biz/en/reference/messaging-api/#get-profile
 
         Get user profile information.
 
@@ -246,7 +246,7 @@ class LineBotApi(object):
     def get_group_member_profile(self, group_id, user_id, timeout=None):
         """Call get group member profile API.
 
-        https://devdocs.line.me/en/#get-group-room-member-profile
+        https://developers.line.biz/en/reference/messaging-api/#get-group-member-profile
 
         Gets the user profile of a member of a group that
         the bot is in. This can be the user ID of a user who has
@@ -272,7 +272,7 @@ class LineBotApi(object):
     def get_room_member_profile(self, room_id, user_id, timeout=None):
         """Call get room member profile API.
 
-        https://devdocs.line.me/en/#get-group-room-member-profile
+        https://developers.line.biz/en/reference/messaging-api/#get-room-member-profile
 
         Gets the user profile of a member of a room that
         the bot is in. This can be the user ID of a user who has
@@ -298,7 +298,7 @@ class LineBotApi(object):
     def get_group_member_ids(self, group_id, start=None, timeout=None):
         """Call get group member IDs API.
 
-        https://devdocs.line.me/en/#get-group-room-member-ids
+        https://developers.line.biz/en/reference/messaging-api/#get-group-member-ids
 
         Gets the user IDs of the members of a group that the bot is in.
         This includes the user IDs of users who have not added the bot as a friend
@@ -327,7 +327,7 @@ class LineBotApi(object):
     def get_room_member_ids(self, room_id, start=None, timeout=None):
         """Call get room member IDs API.
 
-        https://devdocs.line.me/en/#get-group-room-member-ids
+        https://developers.line.biz/en/reference/messaging-api/#get-room-member-ids
 
         Gets the user IDs of the members of a group that the bot is in.
         This includes the user IDs of users who have not added the bot as a friend
@@ -356,7 +356,7 @@ class LineBotApi(object):
     def get_message_content(self, message_id, timeout=None):
         """Call get content API.
 
-        https://devdocs.line.me/en/#get-content
+        https://developers.line.biz/en/reference/messaging-api/#get-content
 
         Retrieve image, video, and audio data sent by users.
 
@@ -379,7 +379,7 @@ class LineBotApi(object):
     def leave_group(self, group_id, timeout=None):
         """Call leave group API.
 
-        https://devdocs.line.me/en/#leave
+        https://developers.line.biz/en/reference/messaging-api/#leave-group
 
         Leave a group.
 
@@ -398,7 +398,7 @@ class LineBotApi(object):
     def leave_room(self, room_id, timeout=None):
         """Call leave room API.
 
-        https://devdocs.line.me/en/#leave
+        https://developers.line.biz/en/reference/messaging-api/#leave-room
 
         Leave a room.
 

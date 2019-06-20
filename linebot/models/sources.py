@@ -54,7 +54,7 @@ class Source(with_metaclass(ABCMeta, Base)):
 class SourceUser(Source):
     """SourceUser.
 
-    https://devdocs.line.me/en/#source-user
+    https://developers.line.biz/en/reference/messaging-api/#source-user
 
     JSON object which contains the source user of the event.
     """
@@ -85,7 +85,7 @@ class SourceUser(Source):
 class SourceGroup(Source):
     """SourceGroup.
 
-    https://devdocs.line.me/en/#source-group
+    https://developers.line.biz/en/reference/messaging-api/#source-group
 
     JSON object which contains the source group of the event.
     """
@@ -118,7 +118,7 @@ class SourceGroup(Source):
 class SourceRoom(Source):
     """SourceRoom.
 
-    https://devdocs.line.me/en/#source-room
+    https://developers.line.biz/en/reference/messaging-api/#source-room
 
     JSON object which contains the source room of the event.
     """

@@ -77,13 +77,11 @@ class ImagemapSendMessage(SendMessage):
 class BaseSize(Base):
     """BaseSize.
 
-    https://devdocs.line.me/en/#imagemap-message
+    https://developers.line.biz/en/reference/messaging-api/#imagemap-message
     """
 
     def __init__(self, width=None, height=None, **kwargs):
         """__init__ method.
-
-        https://devdocs.line.me/en/#imagemap-message
 
         :param int width: Width of base image (set to 1040px）
         :param int height: Height of base image（set to the height
@@ -99,7 +97,7 @@ class BaseSize(Base):
 class ImagemapAction(with_metaclass(ABCMeta, Base)):
     """ImagemapAction.
 
-    https://devdocs.line.me/en/#imagemap-message
+    https://developers.line.biz/en/reference/messaging-api/#imagemap-message
     """
 
     def __init__(self, **kwargs):
@@ -115,7 +113,7 @@ class ImagemapAction(with_metaclass(ABCMeta, Base)):
 class URIImagemapAction(ImagemapAction):
     """URIImagemapAction.
 
-    https://devdocs.line.me/en/#imagemap-message
+    https://developers.line.biz/en/reference/messaging-api/#imagemap-message
     """
 
     def __init__(self, link_uri=None, area=None, **kwargs):
@@ -136,7 +134,7 @@ class URIImagemapAction(ImagemapAction):
 class MessageImagemapAction(ImagemapAction):
     """MessageImagemapAction.
 
-    https://devdocs.line.me/en/#imagemap-message
+    https://developers.line.biz/en/reference/messaging-api/#imagemap-message
     """
 
     def __init__(self, text=None, area=None, **kwargs):
@@ -157,7 +155,7 @@ class MessageImagemapAction(ImagemapAction):
 class ImagemapArea(Base):
     """ImagemapArea.
 
-    https://devdocs.line.me/en/#imagemap-area-object
+    https://developers.line.biz/en/reference/messaging-api/#imagemap-area-object
 
     Defines the size of the full imagemap with the width as 1040px.
     The top left is used as the origin of the area.

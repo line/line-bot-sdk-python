@@ -53,7 +53,6 @@ class SerializeTestCase(unittest.TestCase):
     TEMPLATE = 'template'
     BUTTONS = 'buttons'
     CONFIRM = 'confirm'
-    CAROUSEL = 'carousel'
     IMAGE_CAROUSEL = 'image_carousel'
 
     def serialize_as_dict(self, obj, type=None):

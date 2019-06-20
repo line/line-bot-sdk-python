@@ -18,14 +18,57 @@ import unittest
 
 import responses
 
+from linebot import (
+    LineBotApi
+)
+
 
 class TestLineBotApi(unittest.TestCase):
     def setUp(self):
-        pass
+        self.tested = LineBotApi('channel_secret')
 
     @responses.activate
-    def test_create_rich_menu(self):
-        pass
+    def test_get_message_quota(self):
+        responses.add(
+            responses.GET,
+            LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/message/quota',
+            json={
+                'type': 'limited',
+                'value': 1000
+            },
+            status=200
+        )
+        res = self.tested.get_message_quota()
+        request = responses.calls[0].request
+        self.assertEqual('GET', request.method)
+        self.assertEqual('limited', res.type)
+        self.assertEqual(1000, res.value)
+
+    @responses.activate
+    def test_get_message_quota_2(self):
+        responses.add(
+            responses.GET,
+            LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/message/quota',
+            json={'type': 'none'},
+            status=200
+        )
+        res = self.tested.get_message_quota()
+        request = responses.calls[0].request
+        self.assertEqual('GET', request.method)
+        self.assertEqual('none', res.type)
+
+    @responses.activate
+    def test_get_message_quota_consumption(self):
+        responses.add(
+            responses.GET,
+            LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/message/quota/consumption',
+            json={'totalUsage': 500},
+            status=200
+        )
+        res = self.tested.get_message_quota_consumption()
+        request = responses.calls[0].request
+        self.assertEqual('GET', request.method)
+        self.assertEqual(500, res.total_usage)
 
 
 if __name__ == '__main__':

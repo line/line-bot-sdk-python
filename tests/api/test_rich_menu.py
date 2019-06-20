@@ -388,6 +388,56 @@ class TestLineBotApi(unittest.TestCase):
             LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/user/all/richmenu'
         )
 
+    @responses.activate
+    def test_get_rich_menu_image(self):
+        rich_menu_id = '1234'
+        body = b'hogieoidksk'
+        responses.add(
+            responses.GET,
+            LineBotApi.DEFAULT_API_ENDPOINT +
+            '/v2/bot/richmenu/{rich_menu_id}/content'.format(rich_menu_id=rich_menu_id),
+            body=body, status=200
+        )
+
+        res = self.tested.get_rich_menu_image(rich_menu_id)
+
+        request = responses.calls[0].request
+        self.assertEqual(request.method, 'GET')
+        self.assertEqual(
+            request.url,
+            LineBotApi.DEFAULT_API_ENDPOINT +
+            '/v2/bot/richmenu/{rich_menu_id}/content'.format(rich_menu_id=rich_menu_id),
+        )
+        self.assertEqual(
+            body,
+            res.content
+        )
+
+    @responses.activate
+    def test_set_rich_menu_image(self):
+        rich_menu_id = '1234'
+        body = b'hogieoidksk'
+        responses.add(
+            responses.POST,
+            LineBotApi.DEFAULT_API_ENDPOINT +
+            '/v2/bot/richmenu/{rich_menu_id}/content'.format(rich_menu_id=rich_menu_id),
+            json={}, status=200
+        )
+
+        self.tested.set_rich_menu_image(
+            rich_menu_id=rich_menu_id,
+            content_type='image/jpeg',
+            content=body
+        )
+
+        request = responses.calls[0].request
+        self.assertEqual('POST', request.method)
+        self.assertEqual(
+            LineBotApi.DEFAULT_API_ENDPOINT +
+            '/v2/bot/richmenu/{rich_menu_id}/content'.format(rich_menu_id=rich_menu_id),
+            request.url
+        )
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -172,7 +172,8 @@ class WebhookParser(object):
                 LOGGER.warn('Unknown event type. type=' + event_type)
 
         if as_payload:
-            return WebhookPayload(events=events, destination=body_json['destination'])
+            dest = body_json['destination'] if 'destination' in body_json else None
+            return WebhookPayload(events=events, destination=dest)
         else:
             return events
 

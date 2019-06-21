@@ -48,17 +48,19 @@ class TestSignatureValidator(unittest.TestCase):
 
 
 class TestWebhookParser(unittest.TestCase):
+    def setUp(self):
+        parser = WebhookParser('channel_secret')
+        # mock
+        parser.signature_validator.validate = lambda a, b: True
+        self.parser = parser
+
     def test_parse(self):
         file_dir = os.path.dirname(__file__)
         webhook_sample_json_path = os.path.join(file_dir, 'text', 'webhook.json')
         with open(webhook_sample_json_path) as fp:
             body = fp.read()
 
-        parser = WebhookParser('channel_secret')
-        # mock
-        parser.signature_validator.validate = lambda a, b: True
-
-        events = parser.parse(body, 'channel_secret')
+        events = self.parser.parse(body, 'channel_secret')
 
         # MessageEvent, SourceUser, TextMessage
         self.assertIsInstance(events[0], MessageEvent)
@@ -386,6 +388,45 @@ class TestWebhookParser(unittest.TestCase):
         self.assertEqual(events[24].things.result.action_results[0].data, '/w==')
         self.assertIsInstance(events[24].things.result.action_results[1], ActionResult)
         self.assertEqual(events[24].things.result.action_results[1].type, 'void')
+
+    def test_parse_webhook_req_without_destination(self):
+        body = """
+        {
+            "events": [
+                {
+                    "replyToken": "00000000000000000000000000000000",
+                    "type": "message",
+                    "timestamp": 1561099010135,
+                    "source": {
+                        "type": "user",
+                        "userId": "Udeadbeefdeadbeefdeadbeefdeadbeef"
+                    },
+                    "message": {
+                        "id": "100001",
+                        "type": "text",
+                        "text": "Hello, world"
+                    }
+                },
+                {
+                    "replyToken": "ffffffffffffffffffffffffffffffff",
+                    "type": "message",
+                    "timestamp": 1561099010135,
+                    "source": {
+                        "type": "user",
+                        "userId": "Udeadbeefdeadbeefdeadbeefdeadbeef"
+                    },
+                    "message": {
+                        "id": "100002",
+                        "type": "sticker",
+                        "packageId": "1",
+                        "stickerId": "1"
+                    }
+                }
+            ]
+        }
+        """
+        payload = self.parser.parse(body=body, signature='channel_secret', as_payload=True)
+        self.assertEqual(None, payload.destination)
 
 
 class TestWebhookHandler(unittest.TestCase):

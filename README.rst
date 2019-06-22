@@ -886,6 +886,30 @@ Event
         - type
         - hwid
         - device_message
+- MemberJoinedEvent
+    - type
+    - timestamp
+    - source: `Source <#source>`__
+    - reply\_token
+    - joined: Joined
+- MemberLeftEvent
+    - type
+    - timestamp
+    - source: `Source <#source>`__
+    - reply\_token
+    - left: Left
+- AccountLinkEvent
+    - type
+    - timestamp
+    - source: `Source <#source>`__
+    - reply\_token
+    - link: Link
+- ThingsEvent
+    - type
+    - timestamp
+    - source: `Source <#source>`__
+    - reply\_token
+    - things: DeviceLink | DeviceUnlink | ScenarioResult
 
 Source
 ^^^^^^
@@ -912,12 +936,17 @@ Message
 - ImageMessage
     - type
     - id
+    - content_provider
 - VideoMessage
     - type
     - id
+    - duration
+    - content_provider
 - AudioMessage
     - type
     - id
+    - duration
+    - content_provider
 - LocationMessage
     - type
     - id

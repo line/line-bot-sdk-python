@@ -842,8 +842,8 @@ https://developers.line.me/en/docs/messaging-api/reference/#webhook-event-object
 
 The following classes are found in the ``linebot.models`` package.
 
-Event
-^^^^^
+`Event <https://line-bot-sdk-python.readthedocs.io/en/stable/linebot.models.html#module-linebot.models.events>`__
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - MessageEvent
     - type

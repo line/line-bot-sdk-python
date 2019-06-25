@@ -1,7 +1,7 @@
 ---
 name: Questions
 about: Ask questions related to the LINE Bot SDK.
-labels: ''
+labels: question
 
 ---
 

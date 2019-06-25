@@ -13,8 +13,8 @@ labels: bug
 ## When creating an issue
 <!-- Delete this section before the submit -->
 
+- Make sure your issue is **related to** the LINE Bot SDK. For general questions about LINE bots, please ask in https://www.linebiz.com/contact/
 - Provide detailed information about the issue you had with the SDK as below
-- Make sure your issue is **related to** the LINE Bot SDK. For general questions or issues about LINE bots, TBD...
 
 ## System Informations
 

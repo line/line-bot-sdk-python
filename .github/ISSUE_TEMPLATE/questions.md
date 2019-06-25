@@ -13,4 +13,4 @@ labels: ''
 ## When creating an issue
 <!-- Delete this section before the submit -->
 
-- For general questions or issues about LINE bots, TBD...
+- Make sure your issue is **related to** the LINE Bot SDK. For general questions about LINE bots, please ask in https://www.linebiz.com/contact/

@@ -44,7 +44,7 @@ class TestFlexMessage(SerializeTestCase):
                     body=BoxComponent(
                         layout='vertical',
                         contents=[
-                            TextComponent(text='hello'),
+                            TextComponent(text='hello', wrap=True, maxLines=1),
                             TextComponent(text='world')
                         ]
                     )

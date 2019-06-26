@@ -429,7 +429,7 @@ class TextComponent(FlexComponent):
     """
 
     def __init__(self, text=None, flex=None, margin=None, size=None, align=None, gravity=None,
-                 wrap=None, weight=None,
+                 wrap=None, maxLines=None, weight=None,
                  color=None, action=None, **kwargs):
         r"""__init__ method.
 
@@ -457,6 +457,7 @@ class TextComponent(FlexComponent):
         self.align = align
         self.gravity = gravity
         self.wrap = wrap
+        self.maxLines = maxLines
         self.weight = weight
         self.color = color
         self.action = get_action(action)

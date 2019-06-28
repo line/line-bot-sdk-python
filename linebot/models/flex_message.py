@@ -442,6 +442,7 @@ class TextComponent(FlexComponent):
         :param str gravity: Vertical alignment style
         :param bool wrap: rue to wrap text. The default value is False.
             If set to True, you can use a new line character (\n) to begin on a new line.
+        :param int maxLines: Max number of lines
         :param str weight: Font weight
         :param str color: Font color
         :param action: Action performed when this image is tapped

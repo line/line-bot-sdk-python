@@ -22,6 +22,11 @@ linebot.models.events module
 
 .. automodule:: linebot.models.events
 
+linebot.models.flex_message module
+-----------------------------------
+
+.. automodule:: linebot.models.flex_message
+
 linebot.models.imagemap module
 ------------------------------
 

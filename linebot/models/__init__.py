@@ -81,6 +81,14 @@ from .imagemap import (  # noqa
     Video,
     ExternalLink,
 )
+from .insight import (  # noqa
+    DemographicInsight,
+    AgeInsight,
+    AreaInsight,
+    AppTypeInsight,
+    GenderInsight,
+    SubscriptionPeriodInsight,
+)
 from .messages import (  # noqa
     Message,
     TextMessage,
@@ -105,6 +113,9 @@ from .responses import (  # noqa
     Content as MessageContent,  # backward compatibility,
     IssueLinkTokenResponse,
     IssueChannelTokenResponse,
+    InsightMessageDeliveryResponse,
+    InsightFollowersResponse,
+    InsightDemographicResponse,
 )
 from .rich_menu import (  # noqa
     RichMenu,

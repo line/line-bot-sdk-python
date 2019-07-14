@@ -460,6 +460,42 @@ https://developers.line.biz/en/reference/messaging-api/#revoke-channel-access-to
 
     line_bot_api.revoke_channel_token(<access_token>)
 
+get\_insight\_message\_delivery(self, date, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the number of messages sent on a specified day.
+
+https://developers.line.biz/en/reference/messaging-api/#get-number-of-delivery-messages
+
+.. code:: python
+
+    insight = line_bot_api.get_insight_message_delivery('20191231')
+    print(insight.api_broadcast)
+
+get\_insight\_followers(self, date, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get the number of users who have added the bot on or before a specified date.
+
+https://developers.line.biz/en/reference/messaging-api/#get-number-of-followers
+
+.. code:: python
+
+    insight = line_bot_api.get_insight_followers('20191231')
+    print(insight.followers)
+
+get\_insight\_demographic(self, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Retrieve the demographic attributes for a bot's friends.
+
+https://developers.line.biz/en/reference/messaging-api/#get-demographic
+
+.. code:: python
+
+    insight = line_bot_api.get_insight_demographic()
+    print(insight.genders)
+
 ※ Error handling
 ^^^^^^^^^^^^^^^^
 

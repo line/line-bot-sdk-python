@@ -32,6 +32,11 @@ linebot.models.imagemap module
 
 .. automodule:: linebot.models.imagemap
 
+linebot.models.insight module
+------------------------------
+
+.. automodule:: linebot.models.insight
+
 linebot.models.messages module
 ------------------------------
 

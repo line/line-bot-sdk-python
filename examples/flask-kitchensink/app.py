@@ -14,6 +14,7 @@
 
 from __future__ import unicode_literals
 
+import datetime
 import errno
 import os
 import sys
@@ -366,6 +367,37 @@ def handle_text_message(event):
                 TextSendMessage(text='link_token: ' + link_token_response.link_token)
             ]
         )
+    elif text == 'insight_message_delivery':
+        today = datetime.date.today().strftime("%Y%m%d")
+        response = line_bot_api.get_insight_message_delivery(today)
+        if response.status == 'ready':
+            messages = [
+                TextSendMessage(text='broadcast: ' + str(response.broadcast)),
+                TextSendMessage(text='targeting: ' + str(response.targeting)),
+            ]
+        else:
+            messages = [TextSendMessage(text='status: ' + response.status)]
+        line_bot_api.reply_message(event.reply_token, messages)
+    elif text == 'insight_followers':
+        today = datetime.date.today().strftime("%Y%m%d")
+        response = line_bot_api.get_insight_followers(today)
+        if response.status == 'ready':
+            messages = [
+                TextSendMessage(text='followers: ' + str(response.followers)),
+                TextSendMessage(text='targetedReaches: ' + str(response.targeted_reaches)),
+                TextSendMessage(text='blocks: ' + str(response.blocks)),
+            ]
+        else:
+            messages = [TextSendMessage(text='status: ' + response.status)]
+        line_bot_api.reply_message(event.reply_token, messages)
+    elif text == 'insight_demographic':
+        response = line_bot_api.get_insight_demographic()
+        if response.available:
+            messages = ["{gender}: {percentage}".format(gender=it.gender, percentage=it.percentage)
+                        for it in response.genders]
+        else:
+            messages = [TextSendMessage(text='available: false')]
+        line_bot_api.reply_message(event.reply_token, messages)
     else:
         line_bot_api.reply_message(
             event.reply_token, TextSendMessage(text=event.message.text))

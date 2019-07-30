@@ -17,6 +17,10 @@
 from __future__ import unicode_literals
 
 from .base import Base
+from .insight import (
+    SubscriptionPeriodInsight, AppTypeInsight,
+    AgeInsight, GenderInsight, AreaInsight
+)
 from .rich_menu import RichMenuSize, RichMenuArea
 
 
@@ -294,3 +298,97 @@ class IssueChannelTokenResponse(Base):
         self.access_token = access_token
         self.expires_in = expires_in
         self.token_type = token_type
+
+
+class InsightMessageDeliveryResponse(Base):
+    """InsightMessageDeliveryResponse."""
+
+    def __init__(self, status=None, broadcast=None, targeting=None, auto_response=None,
+                 welcome_response=None, chat=None, api_broadcast=None, api_push=None,
+                 api_multicast=None, api_reply=None, **kwargs):
+        """__init__ method.
+
+        :param str status: Calculation status. One of `ready`, `unready`, or `out_of_service`.
+        :param int broadcast: Number of broadcast messages sent.
+        :param int targeting: Number of targeted/segmented messages sent.
+        :param int auto_response: Number of auto-response messages sent.
+        :param int welcome_response: Number of greeting messages sent.
+        :param int chat: Number of messages sent from LINE Official Account Manager Chat screen.
+        :param int api_broadcast: Number of broadcast messages sent with
+            the Send broadcast message Messaging API operation.
+        :param int api_push: Number of push messages sent
+            with the Send push message Messaging API operation.
+        :param int api_multicast: Number of multicast messages sent with
+            the Send multicast message Messaging API operation.
+        :param int api_reply: Number of replies sent
+            with the Send reply message Messaging API operation.
+        :param int success: The number of messages sent with the Messaging API
+            on the date specified in date.
+        :param kwargs:
+        """
+        super(InsightMessageDeliveryResponse, self).__init__(**kwargs)
+
+        self.status = status
+        self.broadcast = broadcast
+        self.targeting = targeting
+        self.auto_response = auto_response
+        self.welcome_response = welcome_response
+        self.chat = chat
+        self.api_broadcast = api_broadcast
+        self.api_push = api_push
+        self.api_multicast = api_multicast
+        self.api_reply = api_reply
+
+
+class InsightFollowersResponse(Base):
+    """InsightFollowersResponse."""
+
+    def __init__(self, status=None, followers=None, targeted_reaches=None, blocks=None, **kwargs):
+        """__init__ method.
+
+        :param str status: Calculation status. One of `ready`, `unready`, or `out_of_service`.
+        :param int followers: The number of times, as of the specified date,
+            that a user added this LINE official account as a friend for the first time.
+        :param int targeted_reaches: The number of users, as of the specified date,
+            that the official account can reach through targeted messages based
+            on gender, age, and/or region.
+        :param int blocks: The number of users blocking the account as of the specified date.
+        :param kwargs:
+        """
+        super(InsightFollowersResponse, self).__init__(**kwargs)
+
+        self.status = status
+        self.followers = followers
+        self.targeted_reaches = targeted_reaches
+        self.blocks = blocks
+
+
+class InsightDemographicResponse(Base):
+    """InsightDemographicResponse."""
+
+    def __init__(self, available=None, genders=None, ages=None,
+                 areas=None, app_types=None, subscription_periods=None, **kwargs):
+        """__init__ method.
+
+        :param bool available: `true` if friend demographic information is available.
+        :param genders: Percentage per gender.
+        :type genders: list[T <= :py:class:`linebot.models.GenderInsight`]
+        :param ages: Percentage per age group.
+        :type ages: list[T <= :py:class:`linebot.models.AgeInsight`]
+        :param areas: Percentage per area.
+        :type areas: list[T <= :py:class:`linebot.models.AreaInsight`]
+        :param app_types: Percentage by OS.
+        :type app_types: list[T <= :py:class:`linebot.models.AppTypeInsight`]
+        :param subscription_periods: Percentage per friendship duration.
+        :type subscription_periods: list[T <= :py:class:`linebot.models.SubscriptionPeriodInsight`]
+        :param kwargs:
+        """
+        super(InsightDemographicResponse, self).__init__(**kwargs)
+
+        self.available = available
+        self.genders = [self.get_or_new_from_json_dict(it, GenderInsight) for it in genders]
+        self.ages = [self.get_or_new_from_json_dict(it, AgeInsight) for it in ages]
+        self.areas = [self.get_or_new_from_json_dict(it, AreaInsight) for it in areas]
+        self.app_types = [self.get_or_new_from_json_dict(it, AppTypeInsight) for it in app_types]
+        self.subscription_periods = [self.get_or_new_from_json_dict(it, SubscriptionPeriodInsight)
+                                     for it in subscription_periods]

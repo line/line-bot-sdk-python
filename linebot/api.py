@@ -26,6 +26,7 @@ from .models import (
     MessageQuotaConsumptionResponse, IssueLinkTokenResponse, IssueChannelTokenResponse,
     MessageDeliveryBroadcastResponse, MessageDeliveryMulticastResponse,
     MessageDeliveryPushResponse, MessageDeliveryReplyResponse,
+    InsightMessageDeliveryResponse, InsightFollowersResponse, InsightDemographicResponse,
 )
 
 
@@ -874,6 +875,63 @@ class LineBotApi(object):
             headers={'Content-Type': 'application/x-www-form-urlencoded'},
             timeout=timeout
         )
+
+    def get_insight_message_delivery(self, date, timeout=None):
+        """Get the number of messages sent on a specified day.
+
+        https://developers.line.biz/en/reference/messaging-api/#get-number-of-delivery-messages
+
+        :param str date: Date for which to retrieve number of sent messages.
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        """
+        response = self._get(
+            '/v2/bot/insight/message/delivery?date={date}'.format(date=date),
+            timeout=timeout
+        )
+
+        return InsightMessageDeliveryResponse.new_from_json_dict(response.json)
+
+    def get_insight_followers(self, date, timeout=None):
+        """Get the number of users who have added the bot on or before a specified date.
+
+        https://developers.line.biz/en/reference/messaging-api/#get-number-of-followers
+
+        :param str date: Date for which to retrieve the number of followers.
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        """
+        response = self._get(
+            '/v2/bot/insight/followers?date={date}'.format(date=date),
+            timeout=timeout
+        )
+
+        return InsightFollowersResponse.new_from_json_dict(response.json)
+
+    def get_insight_demographic(self, timeout=None):
+        """Retrieve the demographic attributes for a bot's friends.
+
+        https://developers.line.biz/en/reference/messaging-api/#get-demographic
+
+        :param str date: Date for which to retrieve the number of followers.
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        """
+        response = self._get(
+            '/v2/bot/insight/demographic',
+            timeout=timeout
+        )
+
+        return InsightDemographicResponse.new_from_json_dict(response.json)
 
     def _get(self, path, params=None, headers=None, stream=False, timeout=None):
         url = self.endpoint + path

@@ -8,7 +8,7 @@ labels: bug
 ## Do this before creating an issue
 <!-- Delete this section before the submit -->
 
-- Check our [developer documentation](https://developers.line.me/en/docs/) and [FAQ](https://developers.line.me/en/faq/messaging-api/) page for more information on LINE bots and the Messaging API
+- Check our [developers documentation](https://developers.line.biz/en/docs/messaging-api/), [FAQ](https://developers.line.biz/en/faq/), and [developers community](https://www.line-community.me/questions) for more information on LINE bots and the Messaging API
 
 ## When creating an issue
 <!-- Delete this section before the submit -->

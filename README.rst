@@ -461,7 +461,7 @@ https://developers.line.biz/en/reference/messaging-api/#revoke-channel-access-to
     line_bot_api.revoke_channel_token(<access_token>)
 
 get\_insight\_message\_delivery(self, date, timeout=None)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Get the number of messages sent on a specified day.
 

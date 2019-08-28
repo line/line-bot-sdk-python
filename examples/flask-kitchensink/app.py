@@ -16,6 +16,7 @@ from __future__ import unicode_literals
 
 import datetime
 import errno
+import json
 import os
 import sys
 import tempfile
@@ -328,6 +329,137 @@ def handle_text_message(event):
             ),
         )
         message = FlexSendMessage(alt_text="hello", contents=bubble)
+        line_bot_api.reply_message(
+            event.reply_token,
+            message
+        )
+    elif text == 'flex_update_1':
+        bubble_string = """
+        {
+          "type": "bubble",
+          "body": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "image",
+                "url": "https://line-objects-dev.com/flex/bg/eiji-k-1360395-unsplash.jpg",
+                "position": "relative",
+                "size": "full",
+                "aspectMode": "cover",
+                "aspectRatio": "1:1",
+                "gravity": "center"
+              },
+              {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                  {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                      {
+                        "type": "text",
+                        "text": "Brown Hotel",
+                        "weight": "bold",
+                        "size": "xl",
+                        "color": "#ffffff"
+                      },
+                      {
+                        "type": "box",
+                        "layout": "baseline",
+                        "margin": "md",
+                        "contents": [
+                          {
+                            "type": "icon",
+                            "size": "sm",
+                            "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png"
+                          },
+                          {
+                            "type": "icon",
+                            "size": "sm",
+                            "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png"
+                          },
+                          {
+                            "type": "icon",
+                            "size": "sm",
+                            "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png"
+                          },
+                          {
+                            "type": "icon",
+                            "size": "sm",
+                            "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png"
+                          },
+                          {
+                            "type": "icon",
+                            "size": "sm",
+                            "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png"
+                          },
+                          {
+                            "type": "text",
+                            "text": "4.0",
+                            "size": "sm",
+                            "color": "#d6d6d6",
+                            "margin": "md",
+                            "flex": 0
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                      {
+                        "type": "text",
+                        "text": "¥62,000",
+                        "color": "#a9a9a9",
+                        "decoration": "line-through",
+                        "align": "end"
+                      },
+                      {
+                        "type": "text",
+                        "text": "¥42,000",
+                        "color": "#ebebeb",
+                        "size": "xl",
+                        "align": "end"
+                      }
+                    ]
+                  }
+                ],
+                "position": "absolute",
+                "offsetBottom": "0px",
+                "offsetStart": "0px",
+                "offsetEnd": "0px",
+                "backgroundColor": "#00000099",
+                "paddingAll": "20px"
+              },
+              {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "SALE",
+                    "color": "#ffffff"
+                  }
+                ],
+                "position": "absolute",
+                "backgroundColor": "#ff2600",
+                "cornerRadius": "20px",
+                "paddingAll": "5px",
+                "offsetTop": "10px",
+                "offsetEnd": "10px",
+                "paddingStart": "10px",
+                "paddingEnd": "10px"
+              }
+            ],
+            "paddingAll": "0px"
+          }
+        }
+        """
+        message = FlexSendMessage(alt_text="hello", contents=json.loads(bubble_string))
         line_bot_api.reply_message(
             event.reply_token,
             message

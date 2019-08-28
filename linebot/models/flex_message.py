@@ -82,33 +82,39 @@ class BubbleContainer(FlexContainer):
     It can contain four blocks: header, hero, body, and footer.
     """
 
-    def __init__(self, direction=None, header=None, hero=None, body=None, footer=None, styles=None,
-                 **kwargs):
+    def __init__(self, size=None, direction=None, header=None, hero=None,
+                 body=None, footer=None, styles=None, action=None, **kwargs):
         """__init__ method.
 
+        :param str size: The size of the bubble. `nano`, `micro`, `kilo`, `mega`, or `giga`.
         :param str direction: Text directionality and the order of components
             in horizontal boxes in the container
         :param header: Header block
         :type header: :py:class:`linebot.models.flex_message.BoxComponent`
         :param hero: Hero block
         :type hero: :py:class:`linebot.models.flex_message.ImageComponent`
+            | :py:class:`linebot.models.flex_message.BoxComponent`
         :param body: Body block
         :type body: :py:class:`linebot.models.flex_message.BoxComponent`
         :param footer: Footer block
         :type footer: :py:class:`linebot.models.flex_message.BoxComponent`
         :param styles: Style of each block
         :type styles: :py:class:`linebot.models.flex_message.BubbleStyle`
+        :param action: Action performed when this button is tapped
+        :type action: list[T <= :py:class:`linebot.models.actions.Action`]
         :param kwargs:
         """
         super(BubbleContainer, self).__init__(**kwargs)
 
         self.type = 'bubble'
+        self.size = size
         self.direction = direction
         self.header = self.get_or_new_from_json_dict(header, BoxComponent)
         self.hero = self.get_or_new_from_json_dict(hero, ImageComponent)
         self.body = self.get_or_new_from_json_dict(body, BoxComponent)
         self.footer = self.get_or_new_from_json_dict(footer, BoxComponent)
         self.styles = self.get_or_new_from_json_dict(styles, BubbleStyle)
+        self.action = get_action(action)
 
 
 class BubbleStyle(with_metaclass(ABCMeta, Base)):
@@ -217,23 +223,84 @@ class BoxComponent(FlexComponent):
     You can also include a box in a box.
     """
 
-    def __init__(self, layout=None, contents=None, flex=None, spacing=None, margin=None, **kwargs):
+    def __init__(self,
+                 layout=None,
+                 contents=None,
+                 background_color=None,
+                 border_color=None,
+                 border_width=None,
+                 corner_radius=None,
+                 width=None,
+                 height=None,
+                 padding_all=None,
+                 padding_top=None,
+                 padding_bottom=None,
+                 padding_start=None,
+                 padding_end=None,
+                 position=None,
+                 offset_top=None,
+                 offset_bottom=None,
+                 offset_start=None,
+                 offset_end=None,
+                 action=None,
+                 flex=None,
+                 spacing=None,
+                 margin=None,
+                 **kwargs):
         """__init__ method.
 
         :param str layout: The placement style of components in this box
         :param contents: Components in this box
+        :type contents: list[T <= :py:class:`linebot.models.flex_message.FlexComponent`]
+        :param str background_color: Background color of the block
+        :param str border_color: Color of box border
+        :param str border_width: Width of box border
+        :param str corner_radius: Radius at the time of rounding the corners of the border
+        :param str width: Width of the box
+        :param str height: Height of the box
         :param float flex: The ratio of the width or height of this box within the parent box
         :param str spacing: Minimum space between components in this box
         :param str margin: Minimum space between this box
             and the previous component in the parent box
+        :param str padding_all: Free space between the borders of this box and the child element
+        :param str padding_top: Free space between the border at the upper end of this box
+            and the upper end of the child element
+        :param str padding_bottom: Free space between the border at the lower end of this box
+            and the lower end of the child element
+        :param str padding_start: Free space between the border at the left end of this box
+            and the left end of the child element
+        :param str padding_end: Free space between the border at the right end of this box
+            and the right end of the child element
+        :param str position: Reference position for placing this box
+        :param str offset_top: The top offset
+        :param str offset_bottom: The bottom offset
+        :param str offset_start: The left offset
+        :param str offset_end: The right offset
         :param kwargs:
         """
         super(BoxComponent, self).__init__(**kwargs)
         self.type = 'box'
         self.layout = layout
+        self.background_color = background_color
+        self.border_color = border_color
+        self.border_width = border_width
+        self.corner_radius = corner_radius
+        self.width = width
+        self.height = height
         self.flex = flex
         self.spacing = spacing
         self.margin = margin
+        self.padding_all = padding_all
+        self.padding_top = padding_top
+        self.padding_bottom = padding_bottom
+        self.padding_start = padding_start
+        self.padding_end = padding_end
+        self.position = position
+        self.offset_top = offset_top
+        self.offset_bottom = offset_bottom
+        self.offset_start = offset_start
+        self.offset_end = offset_end
+        self.action = get_action(action)
 
         new_contents = []
         if contents:
@@ -245,6 +312,7 @@ class BoxComponent(FlexComponent):
                         'filler': FillerComponent,
                         'icon': IconComponent,
                         'image': ImageComponent,
+                        'span': SpanComponent,
                         'separator': SeparatorComponent,
                         'spacer': SpacerComponent,
                         'text': TextComponent
@@ -262,8 +330,20 @@ class ButtonComponent(FlexComponent):
     When the user taps a button, a specified action is performed.
     """
 
-    def __init__(self, action=None, flex=None, margin=None, height=None, style=None, color=None,
-                 gravity=None, **kwargs):
+    def __init__(self,
+                 action=None,
+                 flex=None,
+                 margin=None,
+                 position=None,
+                 offset_top=None,
+                 offset_bottom=None,
+                 offset_start=None,
+                 offset_end=None,
+                 height=None,
+                 style=None,
+                 color=None,
+                 gravity=None,
+                 **kwargs):
         """__init__ method.
 
         :param action: Action performed when this button is tapped
@@ -276,6 +356,11 @@ class ButtonComponent(FlexComponent):
         :param str color: Character color when the style property is link.
             Background color when the style property is primary or secondary.
             Use a hexadecimal color code
+        :param str position: Reference position for placing this box
+        :param str offset_top: The top offset
+        :param str offset_bottom: The bottom offset
+        :param str offset_start: The left offset
+        :param str offset_end: The right offset
         :param str gravity: Vertical alignment style
         :param kwargs:
         """
@@ -284,6 +369,11 @@ class ButtonComponent(FlexComponent):
         self.action = get_action(action)
         self.flex = flex
         self.margin = margin
+        self.position = position
+        self.offset_top = offset_top
+        self.offset_bottom = offset_bottom
+        self.offset_start = offset_start
+        self.offset_end = offset_end
         self.height = height
         self.style = style
         self.color = color
@@ -298,13 +388,14 @@ class FillerComponent(FlexComponent):
     This is an invisible component to fill extra space between components.
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self, flex=None, **kwargs):
         """__init__ method.
 
         :param kwargs:
         """
         super(FillerComponent, self).__init__(**kwargs)
         self.type = 'filler'
+        self.flex = flex
 
 
 class IconComponent(FlexComponent):
@@ -315,7 +406,17 @@ class IconComponent(FlexComponent):
     This component draws an icon.
     """
 
-    def __init__(self, url=None, margin=None, size=None, aspect_ratio=None, **kwargs):
+    def __init__(self,
+                 url=None,
+                 margin=None,
+                 position=None,
+                 offset_top=None,
+                 offset_bottom=None,
+                 offset_start=None,
+                 offset_end=None,
+                 size=None,
+                 aspect_ratio=None,
+                 **kwargs):
         """__init__ method.
 
         :param str url: Image URL
@@ -325,12 +426,22 @@ class IconComponent(FlexComponent):
             and the previous component in the parent box
         :param str size: Maximum size of the icon width
         :param str aspect_ratio: Aspect ratio of the icon
+        :param str position: Reference position for placing this box
+        :param str offset_top: The top offset
+        :param str offset_bottom: The bottom offset
+        :param str offset_start: The left offset
+        :param str offset_end: The right offset
         :param kwargs:
         """
         super(IconComponent, self).__init__(**kwargs)
         self.type = 'icon'
         self.url = url
         self.margin = margin
+        self.position = position
+        self.offset_top = offset_top
+        self.offset_bottom = offset_bottom
+        self.offset_start = offset_start
+        self.offset_end = offset_end
         self.size = size
         self.aspect_ratio = aspect_ratio
 
@@ -343,8 +454,22 @@ class ImageComponent(FlexComponent):
     This component draws an image.
     """
 
-    def __init__(self, url=None, flex=None, margin=None, align=None, gravity=None, size=None,
-                 aspect_ratio=None, aspect_mode=None, background_color=None, action=None,
+    def __init__(self,
+                 url=None,
+                 flex=None,
+                 margin=None,
+                 position=None,
+                 offset_top=None,
+                 offset_bottom=None,
+                 offset_start=None,
+                 offset_end=None,
+                 align=None,
+                 gravity=None,
+                 size=None,
+                 aspect_ratio=None,
+                 aspect_mode=None,
+                 background_color=None,
+                 action=None,
                  **kwargs):
         """__init__ method.
 
@@ -362,6 +487,11 @@ class ImageComponent(FlexComponent):
         :param str background_color: Background color of the image. Use a hexadecimal color code.
         :param action: Action performed when this image is tapped
         :type action: list[T <= :py:class:`linebot.models.actions.Action`]
+        :param str position: Reference position for placing this box
+        :param str offset_top: The top offset
+        :param str offset_bottom: The bottom offset
+        :param str offset_start: The left offset
+        :param str offset_end: The right offset
         :param kwargs:
         """
         super(ImageComponent, self).__init__(**kwargs)
@@ -369,6 +499,11 @@ class ImageComponent(FlexComponent):
         self.url = url
         self.flex = flex
         self.margin = margin
+        self.position = position
+        self.offset_top = offset_top
+        self.offset_bottom = offset_bottom
+        self.offset_start = offset_start
+        self.offset_end = offset_end
         self.align = align
         self.gravity = gravity
         self.size = size
@@ -420,6 +555,42 @@ class SpacerComponent(FlexComponent):
         self.size = size
 
 
+class SpanComponent(FlexComponent):
+    """SpanComponent.
+
+    https://developers.line.me/en/docs/messaging-api/reference/#span-component
+
+    This component renders multiple text strings with different designs in one row.
+    """
+
+    def __init__(self,
+                 text=None,
+                 color=None,
+                 size=None,
+                 weight=None,
+                 style=None,
+                 decoration=None,
+                 **kwargs):
+        r"""__init__ method.
+
+        :param str text: Text
+        :param str size: Font size
+        :param str weight: Font weight
+        :param str color: Font color
+        :param str style: Style of the text
+        :param str decoration: Decoration of the text
+        :param kwargs:
+        """
+        super(SpanComponent, self).__init__(**kwargs)
+        self.type = 'text'
+        self.text = text
+        self.size = size
+        self.weight = weight
+        self.color = color
+        self.style = style
+        self.decoration = decoration
+
+
 class TextComponent(FlexComponent):
     """TextComponent.
 
@@ -428,25 +599,52 @@ class TextComponent(FlexComponent):
     This component draws text. You can format the text.
     """
 
-    def __init__(self, text=None, flex=None, margin=None, size=None, align=None, gravity=None,
-                 wrap=None, maxLines=None, weight=None,
-                 color=None, action=None, **kwargs):
+    def __init__(self,
+                 text=None,
+                 contents=None,
+                 flex=None,
+                 margin=None,
+                 position=None,
+                 offset_top=None,
+                 offset_bottom=None,
+                 offset_start=None,
+                 offset_end=None,
+                 size=None,
+                 align=None,
+                 gravity=None,
+                 wrap=None,
+                 max_lines=None,
+                 weight=None,
+                 color=None,
+                 action=None,
+                 style=None,
+                 decoration=None,
+                 **kwargs):
         r"""__init__ method.
 
         :param str text: Text
         :param float flex: The ratio of the width or height of this component within the parent box
         :param str margin: Minimum space between this component
             and the previous component in the parent box
+        :param str position: Reference position for placing this box
+        :param str offset_top: The top offset
+        :param str offset_bottom: The bottom offset
+        :param str offset_start: The left offset
+        :param str offset_end: The right offset
         :param str size: Font size
         :param str align: Horizontal alignment style
         :param str gravity: Vertical alignment style
         :param bool wrap: rue to wrap text. The default value is False.
             If set to True, you can use a new line character (\n) to begin on a new line.
-        :param int maxLines: Max number of lines
+        :param int max_lines: Max number of lines
         :param str weight: Font weight
         :param str color: Font color
         :param action: Action performed when this image is tapped
         :type action: list[T <= :py:class:`linebot.models.actions.Action`]
+        :param str style: Style of the text
+        :param str decoration: Decoration of the text
+        :param contents: Array of spans
+        :type contents: list[T <= :py:class:`linebot.models.flex_message.SpanComponent`]
         :param kwargs:
         """
         super(TextComponent, self).__init__(**kwargs)
@@ -454,11 +652,23 @@ class TextComponent(FlexComponent):
         self.text = text
         self.flex = flex
         self.margin = margin
+        self.position = position
+        self.offset_top = offset_top
+        self.offset_bottom = offset_bottom
+        self.offset_start = offset_start
+        self.offset_end = offset_end
         self.size = size
         self.align = align
         self.gravity = gravity
         self.wrap = wrap
-        self.maxLines = maxLines
+        self.max_lines = max_lines
         self.weight = weight
         self.color = color
         self.action = get_action(action)
+        self.style = style
+        self.decoration = decoration
+
+        if contents:
+            self.contents = [self.get_or_new_from_json_dict(it, SpanComponent) for it in contents]
+        else:
+            self.contents = None

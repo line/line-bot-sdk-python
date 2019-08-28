@@ -37,6 +37,7 @@ class SerializeTestCase(unittest.TestCase):
     LOCATION = 'location'
     FLEX = 'flex'
     SPACER = 'spacer'
+    SPAN = 'span'
     BUBBLE = 'bubble'
     CAROUSEL = 'carousel'
     BOX = 'box'

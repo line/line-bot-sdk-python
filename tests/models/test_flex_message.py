@@ -30,6 +30,7 @@ from linebot.models import (
     FillerComponent,
     IconComponent,
     SpacerComponent,
+    SpanComponent,
     URIAction,
 )
 from tests.models.serialize_test_case import SerializeTestCase
@@ -44,7 +45,7 @@ class TestFlexMessage(SerializeTestCase):
                     body=BoxComponent(
                         layout='vertical',
                         contents=[
-                            TextComponent(text='hello', wrap=True, maxLines=1),
+                            TextComponent(text='hello', wrap=True, max_lines=1),
                             TextComponent(text='world')
                         ]
                     )
@@ -140,7 +141,11 @@ class TestFlexMessage(SerializeTestCase):
                 ImageComponent(url='https://example.com/flex/images/image.jpg'),
                 SeparatorComponent(),
                 TextComponent(text='Text in the box'),
-            ]
+            ],
+            'background_color': '#00000000',
+            'border_width': 'light',
+            'corner_radius': 'xs',
+            'flex': 2
         }
 
         self.assertEqual(
@@ -162,7 +167,9 @@ class TestFlexMessage(SerializeTestCase):
         )
 
     def test_filler_component(self):
-        arg = {}
+        arg = {
+            'flex': 2
+        }
         self.assertEqual(
             self.serialize_as_dict(arg, type=self.FILLER),
             FillerComponent(**arg).as_json_dict()
@@ -192,7 +199,8 @@ class TestFlexMessage(SerializeTestCase):
 
     def test_separator_component(self):
         arg = {
-            'color': '#000000'
+            'color': '#000000',
+            'margin': 'xxl'
         }
         self.assertEqual(
             self.serialize_as_dict(arg, type=self.SEPARATOR),
@@ -208,12 +216,31 @@ class TestFlexMessage(SerializeTestCase):
             SpacerComponent(**arg).as_json_dict()
         )
 
+    def test_span_component(self):
+        arg = {
+            'type': 'span',
+            'text': '蛙',
+            'size': 'xxl',
+            'weight': 'bold',
+            'style': 'italic',
+            'color': '#4f8f00',
+            'decoration': 'underline'
+        }
+        self.assertEqual(
+            self.serialize_as_dict(arg, type=self.SPAN),
+            SpanComponent(**arg).as_json_dict()
+        )
+
     def test_text_component(self):
         arg = {
             'text': 'Hello, World!',
             'size': 'xl',
             'weight': 'bold',
-            'color': '#0000ff'
+            'color': '#0000ff',
+            'position': 'relative',
+            'offset_top': '10px',
+            'decoration': 'underline',
+            'max_lines': 2
         }
         self.assertEqual(
             self.serialize_as_dict(arg, type=self.TEXT),

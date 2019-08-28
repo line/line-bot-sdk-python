@@ -582,7 +582,7 @@ class SpanComponent(FlexComponent):
         :param kwargs:
         """
         super(SpanComponent, self).__init__(**kwargs)
-        self.type = 'text'
+        self.type = 'span'
         self.text = text
         self.size = size
         self.weight = weight

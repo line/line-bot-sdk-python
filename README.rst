@@ -748,6 +748,24 @@ TemplateSendMessage - ImageCarouselTemplate
         )
     )
 
+FlexSendMessage
+^^^^^^^^^^^^^^^^
+
+.. code:: python
+    flex_message = FlexSendMessage(
+        alt_text="hello",
+        contents=BubbleContainer(
+            direction='ltr',
+            hero=ImageComponent(
+                url='https://example.com/cafe.jpg',
+                size='full',
+                aspect_ratio='20:13',
+                aspect_mode='cover',
+                action=URIAction(uri='http://example.com', label='label')
+            )
+        )
+    )
+
 With QuickReply
 ^^^^^^^^^^^^^^^
 

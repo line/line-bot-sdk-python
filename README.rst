@@ -782,7 +782,7 @@ Webhook
 WebhookParser
 ~~~~~~~~~~~~~
 
-※ You can use WebhookParser or WebhookHandler
+※ You can use WebhookParser
 
 \_\_init\_\_(self, channel\_secret)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -814,7 +814,7 @@ If the signature does NOT match, ``InvalidSignatureError`` is raised.
 WebhookHandler
 ~~~~~~~~~~~~~~
 
-※ You can use WebhookParser or WebhookHandler
+※ You can use WebhookHandler
 
 \_\_init\_\_(self, channel\_secret)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

@@ -752,8 +752,9 @@ FlexSendMessage
 ^^^^^^^^^^^^^^^^
 
 .. code:: python
+
     flex_message = FlexSendMessage(
-        alt_text="hello",
+        alt_text='hello',
         contents=BubbleContainer(
             direction='ltr',
             hero=ImageComponent(
@@ -765,6 +766,28 @@ FlexSendMessage
             )
         )
     )
+
+※ You can pass a **dict** to FlexSendMessage#contents as follows:
+
+.. code:: python
+
+    flex_message = FlexSendMessage(
+        alt_text='hello',
+        contents={
+            type: 'bubble',
+            direction: 'ltr',
+            hero: {
+                type: 'image',
+                url: 'https://example.com/cafe.jpg',
+                size: 'full',
+                aspectRatio: '20:13',
+                aspectMode: 'cover',
+                action: { type: 'uri', uri: 'http://example.com', label: 'label' }
+            }
+        }
+    )
+
+Thus, You can send a JSON designed with `Flex Message Simulator <https://developers.line.biz/console/fx/>`__.
 
 With QuickReply
 ^^^^^^^^^^^^^^^

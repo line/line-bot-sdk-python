@@ -130,7 +130,7 @@ multicast(self, to, messages, timeout=None)
 
 Send messages to multiple users at any time.
 
-https://developers.line.biz/en/reference/messaging-api/#send-multicast-messages
+https://developers.line.biz/en/reference/messaging-api/#send-multicast-message
 
 .. code:: python
 

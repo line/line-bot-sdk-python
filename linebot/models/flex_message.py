@@ -83,7 +83,7 @@ class BubbleContainer(FlexContainer):
     """
 
     def __init__(self, direction=None, header=None, hero=None, body=None, footer=None, styles=None,
-                 **kwargs):
+                 size=None, **kwargs):
         """__init__ method.
 
         :param str direction: Text directionality and the order of components
@@ -98,6 +98,7 @@ class BubbleContainer(FlexContainer):
         :type footer: :py:class:`linebot.models.flex_message.BoxComponent`
         :param styles: Style of each block
         :type styles: :py:class:`linebot.models.flex_message.BubbleStyle`
+        :param str size: Size of the bubble
         :param kwargs:
         """
         super(BubbleContainer, self).__init__(**kwargs)
@@ -109,6 +110,7 @@ class BubbleContainer(FlexContainer):
         self.body = self.get_or_new_from_json_dict(body, BoxComponent)
         self.footer = self.get_or_new_from_json_dict(footer, BoxComponent)
         self.styles = self.get_or_new_from_json_dict(styles, BubbleStyle)
+        self.size = size
 
 
 class BubbleStyle(with_metaclass(ABCMeta, Base)):

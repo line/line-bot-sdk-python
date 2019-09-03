@@ -108,7 +108,7 @@ reply\_message(self, reply\_token, messages, timeout=None)
 Respond to events from users, groups, and rooms. You can get a
 reply\_token from a webhook event object.
 
-https://developers.line.me/en/docs/messaging-api/reference/#send-reply-message
+https://developers.line.biz/en/reference/messaging-api/#send-reply-message
 
 .. code:: python
 
@@ -119,7 +119,7 @@ push\_message(self, to, messages, timeout=None)
 
 Send messages to users, groups, and rooms at any time.
 
-https://developers.line.me/en/docs/messaging-api/reference/#send-push-message
+https://developers.line.biz/en/reference/messaging-api/#send-push-message
 
 .. code:: python
 
@@ -130,7 +130,7 @@ multicast(self, to, messages, timeout=None)
 
 Send messages to multiple users at any time.
 
-https://developers.line.me/en/docs/messaging-api/reference/#send-multicast-messages
+https://developers.line.biz/en/reference/messaging-api/#send-multicast-message
 
 .. code:: python
 
@@ -141,7 +141,7 @@ get\_profile(self, user\_id, timeout=None)
 
 Get user profile information.
 
-https://developers.line.me/en/docs/messaging-api/reference/#get-profile
+https://developers.line.biz/en/reference/messaging-api/#get-profile
 
 .. code:: python
 
@@ -159,7 +159,7 @@ Gets the user profile of a member of a group that the bot is in. This can be
 the user ID of a user who has not added the bot as a friend or has blocked
 the bot.
 
-https://developers.line.me/en/docs/messaging-api/reference/#get-group-member-profile
+https://developers.line.biz/en/reference/messaging-api/#get-group-member-profile
 
 .. code:: python
 
@@ -175,7 +175,7 @@ get\_room\_member\_profile(self, room\_id, user\_id, timeout=None)
 Gets the user profile of a member of a room that the bot is in. This can be the
 user ID of a user who has not added the bot as a friend or has blocked the bot.
 
-https://developers.line.me/en/docs/messaging-api/reference/#get-room-member-profile
+https://developers.line.biz/en/reference/messaging-api/#get-room-member-profile
 
 .. code:: python
 
@@ -191,7 +191,7 @@ get\_group\_member\_ids(self, group\_id, start=None, timeout=None)
 Gets the user IDs of the members of a group that the bot is in.
 This includes the user IDs of users who have not added the bot as a friend or has blocked the bot.
 
-https://developers.line.me/en/docs/messaging-api/reference/#get-group-member-user-ids
+https://developers.line.biz/en/reference/messaging-api/#get-group-member-user-ids
 
 .. code:: python
 
@@ -206,7 +206,7 @@ get\_room\_member\_ids(self, room\_id, start=None, timeout=None)
 Gets the user IDs of the members of a room that the bot is in.
 This includes the user IDs of users who have not added the bot as a friend or has blocked the bot.
 
-https://developers.line.me/en/docs/messaging-api/reference/#get-room-member-user-ids
+https://developers.line.biz/en/reference/messaging-api/#get-room-member-user-ids
 
 .. code:: python
 
@@ -220,7 +220,7 @@ get\_message\_content(self, message\_id, timeout=None)
 
 Retrieve image, video, and audio data sent by users.
 
-https://developers.line.me/en/docs/messaging-api/reference/#get-content
+https://developers.line.biz/en/reference/messaging-api/#get-content
 
 .. code:: python
 
@@ -235,7 +235,7 @@ leave\_group(self, group\_id, timeout=None)
 
 Leave a group.
 
-https://developers.line.me/en/docs/messaging-api/reference/#leave-group
+https://developers.line.biz/en/reference/messaging-api/#leave-group
 
 .. code:: python
 
@@ -246,7 +246,7 @@ leave\_room(self, room\_id, timeout=None)
 
 Leave a room.
 
-https://developers.line.me/en/docs/messaging-api/reference/#leave-room
+https://developers.line.biz/en/reference/messaging-api/#leave-room
 
 .. code:: python
 
@@ -257,7 +257,7 @@ get\_rich\_menu(self, rich\_menu\_id, timeout=None)
 
 Gets a rich menu via a rich menu ID.
 
-https://developers.line.me/en/docs/messaging-api/reference/#get-rich-menu
+https://developers.line.biz/en/reference/messaging-api/#get-rich-menu
 
 .. code:: python
 
@@ -270,7 +270,7 @@ create\_rich\_menu(self, rich\_menu, timeout=None)
 Creates a rich menu.
 You must upload a rich menu image and link the rich menu to a user for the rich menu to be displayed. You can create up to 10 rich menus for one bot.
 
-https://developers.line.me/en/docs/messaging-api/reference/#create-rich-menu
+https://developers.line.biz/en/reference/messaging-api/#create-rich-menu
 
 .. code:: python
 
@@ -291,7 +291,7 @@ delete\_rich\_menu(self, rich\_menu\_id, timeout=None)
 
 Deletes a rich menu.
 
-https://developers.line.me/en/docs/messaging-api/reference/#delete-rich-menu
+https://developers.line.biz/en/reference/messaging-api/#delete-rich-menu
         
 .. code:: python
 
@@ -302,7 +302,7 @@ get\_rich\_menu\_id\_of\_user(self, user\_id, timeout=None)
 
 Gets the ID of the rich menu linked to a user.
 
-https://developers.line.me/en/docs/messaging-api/reference/#get-rich-menu-id-of-user
+https://developers.line.biz/en/reference/messaging-api/#get-rich-menu-id-of-user
 
 .. code:: python
 
@@ -314,7 +314,7 @@ link\_rich\_menu\_to\_user(self, user\_id, rich\_menu\_id, timeout=None)
 
 Links a rich menu to a user. Only one rich menu can be linked to a user at one time.
 
-https://developers.line.me/en/docs/messaging-api/reference/#link-rich-menu-to-user
+https://developers.line.biz/en/reference/messaging-api/#link-rich-menu-to-user
 
 .. code:: python
 
@@ -336,7 +336,7 @@ unlink\_rich\_menu\_from\_user(self, user\_id, timeout=None)
 
 Unlinks a rich menu from a user.
 
-https://developers.line.me/en/docs/messaging-api/reference/#unlink-rich-menu-from-user
+https://developers.line.biz/en/reference/messaging-api/#unlink-rich-menu-from-user
 
 .. code:: python
 
@@ -358,7 +358,7 @@ get\_rich\_menu\_image(self, rich\_menu\_id, timeout=None)
 
 Downloads an image associated with a rich menu.
 
-https://developers.line.me/en/docs/messaging-api/reference/#download-rich-menu-image
+https://developers.line.biz/en/reference/messaging-api/#download-rich-menu-image
 
 .. code:: python
 
@@ -372,7 +372,7 @@ set\_rich\_menu\_image(self, rich\_menu\_id, content\_type, content, timeout=Non
 
 Uploads and attaches an image to a rich menu.
 
-https://developers.line.me/en/docs/messaging-api/reference/#upload-rich-menu-image
+https://developers.line.biz/en/reference/messaging-api/#upload-rich-menu-image
 
 .. code:: python
 
@@ -384,7 +384,7 @@ get\_rich\_menu\_list(self, timeout=None)
 
 Gets a list of all uploaded rich menus.
 
-https://developers.line.me/en/docs/messaging-api/reference/#get-rich-menu-list
+https://developers.line.biz/en/reference/messaging-api/#get-rich-menu-list
 
 .. code:: python
 
@@ -501,7 +501,7 @@ https://developers.line.biz/en/reference/messaging-api/#get-demographic
 
 If the LINE API server returns an error, LineBotApi raises LineBotApiError.
 
-https://developers.line.me/en/docs/messaging-api/reference/#error-responses
+https://developers.line.biz/en/reference/messaging-api/#error-responses
 
 .. code:: python
 
@@ -515,7 +515,7 @@ https://developers.line.me/en/docs/messaging-api/reference/#error-responses
 Message objects
 ~~~~~~~~~~~~~~~
 
-https://developers.line.me/en/docs/messaging-api/reference/#message-objects
+https://developers.line.biz/en/reference/messaging-api/#message-objects
 
 The following classes are found in the ``linebot.models`` package.
 
@@ -748,6 +748,47 @@ TemplateSendMessage - ImageCarouselTemplate
         )
     )
 
+FlexSendMessage
+^^^^^^^^^^^^^^^^
+
+.. code:: python
+
+    flex_message = FlexSendMessage(
+        alt_text='hello',
+        contents=BubbleContainer(
+            direction='ltr',
+            hero=ImageComponent(
+                url='https://example.com/cafe.jpg',
+                size='full',
+                aspect_ratio='20:13',
+                aspect_mode='cover',
+                action=URIAction(uri='http://example.com', label='label')
+            )
+        )
+    )
+
+※ You can pass a **dict** to FlexSendMessage#contents as follows:
+
+.. code:: python
+
+    flex_message = FlexSendMessage(
+        alt_text='hello',
+        contents={
+            type: 'bubble',
+            direction: 'ltr',
+            hero: {
+                type: 'image',
+                url: 'https://example.com/cafe.jpg',
+                size: 'full',
+                aspectRatio: '20:13',
+                aspectMode: 'cover',
+                action: { type: 'uri', uri: 'http://example.com', label: 'label' }
+            }
+        }
+    )
+
+Thus, You can send a JSON designed with `Flex Message Simulator <https://developers.line.biz/console/fx/>`__.
+
 With QuickReply
 ^^^^^^^^^^^^^^^
 
@@ -764,7 +805,7 @@ Webhook
 WebhookParser
 ~~~~~~~~~~~~~
 
-※ You can use WebhookParser or WebhookHandler
+※ You can use WebhookParser
 
 \_\_init\_\_(self, channel\_secret)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -796,7 +837,7 @@ If the signature does NOT match, ``InvalidSignatureError`` is raised.
 WebhookHandler
 ~~~~~~~~~~~~~~
 
-※ You can use WebhookParser or WebhookHandler
+※ You can use WebhookHandler
 
 \_\_init\_\_(self, channel\_secret)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -874,7 +915,7 @@ https://developers.line.biz/en/reference/messaging-api/#request-body
 Webhook event object
 ~~~~~~~~~~~~~~~~~~~~
 
-https://developers.line.me/en/docs/messaging-api/reference/#webhook-event-objects
+https://developers.line.biz/en/reference/messaging-api/#webhook-event-objects
 
 The following classes are found in the ``linebot.models`` package.
 

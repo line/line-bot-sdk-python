@@ -232,6 +232,9 @@ class BoxComponent(FlexComponent):
                  corner_radius=None,
                  width=None,
                  height=None,
+                 flex=None,
+                 spacing=None,
+                 margin=None,
                  padding_all=None,
                  padding_top=None,
                  padding_bottom=None,
@@ -243,9 +246,6 @@ class BoxComponent(FlexComponent):
                  offset_start=None,
                  offset_end=None,
                  action=None,
-                 flex=None,
-                 spacing=None,
-                 margin=None,
                  **kwargs):
         """__init__ method.
 
@@ -259,9 +259,9 @@ class BoxComponent(FlexComponent):
         :param str width: Width of the box
         :param str height: Height of the box
         :param float flex: The ratio of the width or height of this box within the parent box
+            and the previous component in the parent box
         :param str spacing: Minimum space between components in this box
         :param str margin: Minimum space between this box
-            and the previous component in the parent box
         :param str padding_all: Free space between the borders of this box and the child element
         :param str padding_top: Free space between the border at the upper end of this box
             and the upper end of the child element
@@ -276,6 +276,8 @@ class BoxComponent(FlexComponent):
         :param str offset_bottom: The bottom offset
         :param str offset_start: The left offset
         :param str offset_end: The right offset
+        :param action: Action performed when this button is tapped
+        :type action: list[T <= :py:class:`linebot.models.actions.Action`]
         :param kwargs:
         """
         super(BoxComponent, self).__init__(**kwargs)
@@ -351,16 +353,16 @@ class ButtonComponent(FlexComponent):
         :param float flex: The ratio of the width or height of this component within the parent box
         :param str margin: Minimum space between this component
             and the previous component in the parent box
-        :param str height: Height of the button
-        :param str style: Style of the button
-        :param str color: Character color when the style property is link.
-            Background color when the style property is primary or secondary.
-            Use a hexadecimal color code
         :param str position: Reference position for placing this box
         :param str offset_top: The top offset
         :param str offset_bottom: The bottom offset
         :param str offset_start: The left offset
         :param str offset_end: The right offset
+        :param str height: Height of the button
+        :param str style: Style of the button
+        :param str color: Character color when the style property is link.
+            Background color when the style property is primary or secondary.
+            Use a hexadecimal color code
         :param str gravity: Vertical alignment style
         :param kwargs:
         """
@@ -424,13 +426,13 @@ class IconComponent(FlexComponent):
             Image format: JPEG or PNG
         :param str margin: Minimum space between this component
             and the previous component in the parent box
-        :param str size: Maximum size of the icon width
-        :param str aspect_ratio: Aspect ratio of the icon
         :param str position: Reference position for placing this box
         :param str offset_top: The top offset
         :param str offset_bottom: The bottom offset
         :param str offset_start: The left offset
         :param str offset_end: The right offset
+        :param str size: Maximum size of the icon width
+        :param str aspect_ratio: Aspect ratio of the icon
         :param kwargs:
         """
         super(IconComponent, self).__init__(**kwargs)
@@ -479,6 +481,11 @@ class ImageComponent(FlexComponent):
         :param float flex: The ratio of the width or height of this component within the parent box
         :param str margin: Minimum space between this component
             and the previous component in the parent box
+        :param str position: Reference position for placing this box
+        :param str offset_top: The top offset
+        :param str offset_bottom: The bottom offset
+        :param str offset_start: The left offset
+        :param str offset_end: The right offset
         :param str align: Horizontal alignment style
         :param str gravity: Vertical alignment style
         :param str size: Maximum size of the image width
@@ -487,11 +494,6 @@ class ImageComponent(FlexComponent):
         :param str background_color: Background color of the image. Use a hexadecimal color code.
         :param action: Action performed when this image is tapped
         :type action: list[T <= :py:class:`linebot.models.actions.Action`]
-        :param str position: Reference position for placing this box
-        :param str offset_top: The top offset
-        :param str offset_bottom: The bottom offset
-        :param str offset_start: The left offset
-        :param str offset_end: The right offset
         :param kwargs:
         """
         super(ImageComponent, self).__init__(**kwargs)
@@ -574,9 +576,9 @@ class SpanComponent(FlexComponent):
         r"""__init__ method.
 
         :param str text: Text
+        :param str color: Font color
         :param str size: Font size
         :param str weight: Font weight
-        :param str color: Font color
         :param str style: Style of the text
         :param str decoration: Decoration of the text
         :param kwargs:
@@ -623,6 +625,8 @@ class TextComponent(FlexComponent):
         r"""__init__ method.
 
         :param str text: Text
+        :param contents: Array of spans
+        :type contents: list[T <= :py:class:`linebot.models.flex_message.SpanComponent`]
         :param float flex: The ratio of the width or height of this component within the parent box
         :param str margin: Minimum space between this component
             and the previous component in the parent box
@@ -643,8 +647,6 @@ class TextComponent(FlexComponent):
         :type action: list[T <= :py:class:`linebot.models.actions.Action`]
         :param str style: Style of the text
         :param str decoration: Decoration of the text
-        :param contents: Array of spans
-        :type contents: list[T <= :py:class:`linebot.models.flex_message.SpanComponent`]
         :param kwargs:
         """
         super(TextComponent, self).__init__(**kwargs)

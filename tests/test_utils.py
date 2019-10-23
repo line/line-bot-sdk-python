@@ -22,6 +22,7 @@ from linebot.utils import to_camel_case, to_snake_case, safe_compare_digest
 class TestUtils(unittest.TestCase):
     def test_to_snake_case(self):
         self.assertEqual(to_snake_case('hogeBar'), 'hoge_bar')
+        self.assertEqual(to_snake_case('uniqueMediaPlayed100Percent'), 'unique_media_played_100_percent')
 
     def test_to_camel_case(self):
         self.assertEqual(to_camel_case('hoge_bar'), 'hogeBar')

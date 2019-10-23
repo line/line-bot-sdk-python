@@ -31,8 +31,8 @@ def to_snake_case(text):
     :param str text:
     :rtype: str
     """
-    s1 = re.sub('(.)([A-Z][a-z]+)', r'\1_\2', text)
-    return re.sub('([a-z0-9])([A-Z])', r'\1_\2', s1).lower()
+    s1 = re.sub('(.)([A-Z0-9][a-z]+)', r'\1_\2', text)
+    return re.sub('([a-z])([A-Z0-9])', r'\1_\2', s1).lower()
 
 
 def to_camel_case(text):

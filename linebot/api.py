@@ -27,6 +27,7 @@ from .models import (
     MessageDeliveryBroadcastResponse, MessageDeliveryMulticastResponse,
     MessageDeliveryPushResponse, MessageDeliveryReplyResponse,
     InsightMessageDeliveryResponse, InsightFollowersResponse, InsightDemographicResponse,
+    InsightMessageEventResponse,
 )
 
 
@@ -932,6 +933,25 @@ class LineBotApi(object):
         )
 
         return InsightDemographicResponse.new_from_json_dict(response.json)
+
+    def get_insight_message_event(self, request_id, timeout=None):
+        """Return statistics about how users interact with broadcast messages.
+
+        https://developers.line.biz/en/reference/messaging-api/#get-message-event
+
+        :param str request_id: Request ID of broadcast message.
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        """
+        response = self._get(
+            '/v2/bot/insight/message/event?requestId={request_id}'.format(request_id=request_id),
+            timeout=timeout
+        )
+
+        return InsightMessageEventResponse.new_from_json_dict(response.json)
 
     def _get(self, path, params=None, headers=None, stream=False, timeout=None):
         url = self.endpoint + path

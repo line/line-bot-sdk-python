@@ -19,7 +19,8 @@ from __future__ import unicode_literals
 from .base import Base
 from .insight import (
     SubscriptionPeriodInsight, AppTypeInsight,
-    AgeInsight, GenderInsight, AreaInsight
+    AgeInsight, GenderInsight, AreaInsight,
+    MessageInfo, ClickInfo, StatisticsOverview,
 )
 from .rich_menu import RichMenuSize, RichMenuArea
 
@@ -392,3 +393,24 @@ class InsightDemographicResponse(Base):
         self.app_types = [self.get_or_new_from_json_dict(it, AppTypeInsight) for it in app_types]
         self.subscription_periods = [self.get_or_new_from_json_dict(it, SubscriptionPeriodInsight)
                                      for it in subscription_periods]
+
+
+class InsightMessageEventResponse(Base):
+    """InsightMessageEventResponse."""
+
+    def __init__(self, overview=None, messages=None, clicks=None, **kwargs):
+        """__init__ method.
+
+        :param overview: Percentage per gender.
+        :type overview: T <= :py:class:`linebot.models.StatisticsOverview`
+        :param messages: Percentage per age group.
+        :type messages: list[T <= :py:class:`linebot.models.MessageInfo`]
+        :param clicks: Percentage per area.
+        :type clicks: list[T <= :py:class:`linebot.models.ClickInfo`]
+        :param kwargs:
+        """
+        super(InsightMessageEventResponse, self).__init__(**kwargs)
+
+        self.overview = self.get_or_new_from_json_dict(overview, StatisticsOverview)
+        self.messages = [self.get_or_new_from_json_dict(it, MessageInfo) for it in messages]
+        self.clicks = [self.get_or_new_from_json_dict(it, ClickInfo) for it in clicks]

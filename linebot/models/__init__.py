@@ -89,6 +89,9 @@ from .insight import (  # noqa
     AppTypeInsight,
     GenderInsight,
     SubscriptionPeriodInsight,
+    StatisticsOverview,
+    MessageInfo,
+    ClickInfo,
 )
 from .messages import (  # noqa
     Message,
@@ -117,6 +120,7 @@ from .responses import (  # noqa
     InsightMessageDeliveryResponse,
     InsightFollowersResponse,
     InsightDemographicResponse,
+    InsightMessageEventResponse,
 )
 from .rich_menu import (  # noqa
     RichMenu,

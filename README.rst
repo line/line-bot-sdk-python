@@ -496,6 +496,18 @@ https://developers.line.biz/en/reference/messaging-api/#get-demographic
     insight = line_bot_api.get_insight_demographic()
     print(insight.genders)
 
+get\_insight\_message\_event(self, request_id, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Return statistics about how users interact with broadcast messages.
+
+https://developers.line.biz/en/reference/messaging-api/#get-message-event
+
+.. code:: python
+
+    insight = line_bot_api.get_insight_message_event()
+    print(insight.overview)
+
 ※ Error handling
 ^^^^^^^^^^^^^^^^
 

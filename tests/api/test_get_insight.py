@@ -250,7 +250,6 @@ class TestLineBotApi(unittest.TestCase):
             '/v2/bot/insight/message/event?requestId={request_id}'.format(request_id=self.request_id)
         )
 
-        print(res.overview)
         self.assertEqual(res.overview.timestamp, json['overview']['timestamp'])
         self.assertEqual(res.overview.unique_media_played_100_percent, json['overview']['uniqueMediaPlayed100Percent'])
         self.assertEqual(res.messages[0].seq, json['messages'][0]['seq'])

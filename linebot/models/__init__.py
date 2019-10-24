@@ -89,9 +89,9 @@ from .insight import (  # noqa
     AppTypeInsight,
     GenderInsight,
     SubscriptionPeriodInsight,
-    StatisticsOverview,
-    MessageInfo,
-    ClickInfo,
+    MessageStatistics,
+    MessageInsight,
+    ClickInsight,
 )
 from .messages import (  # noqa
     Message,

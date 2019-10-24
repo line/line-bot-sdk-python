@@ -111,8 +111,8 @@ class SubscriptionPeriodInsight(DemographicInsight):
         self.subscription_period = subscription_period
 
 
-class StatisticsOverview(Base):
-    """StatisticsOverview."""
+class MessageStatistics(Base):
+    """MessageStatistics."""
 
     def __init__(self, request_id=None, timestamp=None, delivered=None,
                  unique_impression=None, unique_click=None, unique_media_played=None,
@@ -131,7 +131,7 @@ class StatisticsOverview(Base):
         :param int unique_media_played_100_percent: Number of people who played the entirety of
         any video or audio in the message.
         """
-        super(StatisticsOverview, self).__init__(**kwargs)
+        super(MessageStatistics, self).__init__(**kwargs)
 
         self.request_id = request_id
         self.timestamp = timestamp
@@ -142,8 +142,8 @@ class StatisticsOverview(Base):
         self.unique_media_played_100_percent = unique_media_played_100_percent
 
 
-class MessageInfo(Base):
-    """MessageInfo."""
+class MessageInsight(Base):
+    """MessageInsight."""
 
     def __init__(self, seq=None, impression=None, media_played=None,
                  media_played_25_percent=None, media_played_50_percent=None,
@@ -175,7 +175,7 @@ class MessageInfo(Base):
         :param int unique_media_played_100_percent: Number of people that played
         audio or video in the bubble in its entirety.
         """
-        super(MessageInfo, self).__init__(**kwargs)
+        super(MessageInsight, self).__init__(**kwargs)
 
         self.seq = seq
         self.impression = impression
@@ -191,8 +191,8 @@ class MessageInfo(Base):
         self.unique_media_played_100_percent = unique_media_played_100_percent
 
 
-class ClickInfo(Base):
-    """ClickInfo."""
+class ClickInsight(Base):
+    """ClickInsight."""
 
     def __init__(self, seq=None, url=None, click=None, unique_click=None,
                  unique_click_of_request=None, **kwargs):
@@ -205,7 +205,8 @@ class ClickInfo(Base):
         :param int unique_click_of_request: Number of people who opened this url
         through any link in the message.
         """
-        super(ClickInfo, self).__init__(**kwargs)
+        super(ClickInsight, self).__init__(**kwargs)
+
         self.seq = seq
         self.url = url
         self.click = click

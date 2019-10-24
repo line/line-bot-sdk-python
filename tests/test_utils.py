@@ -21,11 +21,14 @@ from linebot.utils import to_camel_case, to_snake_case, safe_compare_digest
 
 class TestUtils(unittest.TestCase):
     def test_to_snake_case(self):
-        self.assertEqual(to_snake_case('hogeBar'), 'hoge_bar')
+        self.assertEqual(to_snake_case('hogeBarFuga'), 'hoge_bar_fuga')
         self.assertEqual(to_snake_case('uniqueMediaPlayed100Percent'), 'unique_media_played_100_percent')
+        self.assertEqual(to_snake_case('festival20Days'), 'festival_20_days')
+        self.assertEqual(to_snake_case('festival20days'), 'festival_20_days')
 
     def test_to_camel_case(self):
         self.assertEqual(to_camel_case('hoge_bar'), 'hogeBar')
+        self.assertEqual(to_camel_case('unique_media_played_100_percent'), 'uniqueMediaPlayed100Percent')
 
     def test_safe_compare_digest_true(self):
         self.assertTrue(safe_compare_digest('/gg9a+LvFevTH1sd7', '/gg9a+LvFevTH1sd7'))

@@ -12,12 +12,13 @@
 #  License for the specific language governing permissions and limitations
 #  under the License.
 
-"""linebot.http_client module."""
+"""linebot.utils module."""
 
 from __future__ import unicode_literals
 
 import logging
 import re
+
 import sys
 
 LOGGER = logging.getLogger('linebot')
@@ -31,8 +32,10 @@ def to_snake_case(text):
     :param str text:
     :rtype: str
     """
-    s1 = re.sub('(.)([A-Z][a-z]+)', r'\1_\2', text)
-    return re.sub('([a-z0-9])([A-Z])', r'\1_\2', s1).lower()
+    s1 = re.sub('(.)([A-Z])', r'\1_\2', text)
+    s2 = re.sub('(.)([0-9]+)', r'\1_\2', s1)
+    s3 = re.sub('([0-9])([a-z])', r'\1_\2', s2)
+    return s3.lower()
 
 
 def to_camel_case(text):

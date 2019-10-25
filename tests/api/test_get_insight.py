@@ -30,6 +30,7 @@ class TestLineBotApi(unittest.TestCase):
     def setUp(self):
         self.tested = LineBotApi('channel_secret')
         self.date = '20190101'
+        self.request_id = 'f70dd685-499a-4231-a441-f24b8d4fba21'
 
     @responses.activate
     def test_get_insight_message_delivery(self):
@@ -186,6 +187,75 @@ class TestLineBotApi(unittest.TestCase):
             SubscriptionPeriodInsight(subscription_period='over365days', percentage=96.4),
             res.subscription_periods
         )
+
+    @responses.activate
+    def test_get_insight_message_event(self):
+        json = {
+            'overview': {
+                'requestId': 'f70dd685-499a-4231-a441-f24b8d4fba21',
+                'timestamp': 1568214000,
+                'delivered': 32,
+                'uniqueImpression': 4,
+                'uniqueClick': None,
+                'uniqueMediaPlayed': 2,
+                'uniqueMediaPlayed100Percent': -1
+            },
+            'messages': [
+                {
+                    'seq': 1,
+                    'impression': 18,
+                    'mediaPlayed': 11,
+                    'mediaPlayed25Percent': -1,
+                    'mediaPlayed50Percent': -1,
+                    'mediaPlayed75Percent': -1,
+                    'mediaPlayed100Percent': -1,
+                    'uniqueMediaPlayed': 2,
+                    'uniqueMediaPlayed25Percent': -1,
+                    'uniqueMediaPlayed50Percent': -1,
+                    'uniqueMediaPlayed75Percent': -1,
+                    'uniqueMediaPlayed100Percent': -1
+                }
+            ],
+            'clicks': [
+                {
+                    'seq': 1,
+                    'url': 'https://www.yahoo.co.jp/',
+                    'click': -1,
+                    'uniqueClick': -1,
+                    'uniqueClickOfRequest': -1
+                },
+                {
+                    'seq': 1,
+                    'url': 'https://www.google.com/?hl=ja',
+                    'click': -1,
+                    'uniqueClick': -1,
+                    'uniqueClickOfRequest': -1
+                }
+            ]
+        }
+        responses.add(
+            responses.GET,
+            LineBotApi.DEFAULT_API_ENDPOINT +
+            '/v2/bot/insight/message/event?requestId={request_id}'.format(request_id=self.request_id),
+            status=200,
+            json=json,
+        )
+
+        res = self.tested.get_insight_message_event(self.request_id)
+        request = responses.calls[0].request
+        self.assertEqual('GET', request.method)
+        self.assertEqual(
+            request.url,
+            LineBotApi.DEFAULT_API_ENDPOINT +
+            '/v2/bot/insight/message/event?requestId={request_id}'.format(request_id=self.request_id)
+        )
+
+        self.assertEqual(res.overview.timestamp, json['overview']['timestamp'])
+        self.assertEqual(res.overview.unique_media_played_100_percent, json['overview']['uniqueMediaPlayed100Percent'])
+        self.assertEqual(res.messages[0].seq, json['messages'][0]['seq'])
+        self.assertEqual(res.messages[0].media_played_50_percent, json['messages'][0]['mediaPlayed50Percent'])
+        self.assertEqual(res.clicks[0].url, json['clicks'][0]['url'])
+        self.assertEqual(res.clicks[0].unique_click_of_request, json['clicks'][0]['uniqueClickOfRequest'])
 
 
 if __name__ == '__main__':

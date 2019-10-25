@@ -12,7 +12,7 @@
 #  License for the specific language governing permissions and limitations
 #  under the License.
 
-"""linebot.http_client webhook."""
+"""linebot.webhook module."""
 
 from __future__ import unicode_literals
 

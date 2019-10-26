@@ -215,6 +215,7 @@ class LineBotApi(object):
             or a (connect timeout, read timeout) float tuple.
             Default is self.http_client.timeout
         :type timeout: float | tuple(float, float)
+        :rtype: :py:class:`linebot.models.responses.MessageDeliveryBroadcastResponse`
         """
         response = self._get(
             '/v2/bot/message/delivery/broadcast?date={date}'.format(date=date),
@@ -236,6 +237,7 @@ class LineBotApi(object):
             or a (connect timeout, read timeout) float tuple.
             Default is self.http_client.timeout
         :type timeout: float | tuple(float, float)
+        :rtype: :py:class:`linebot.models.responses.MessageDeliveryReplyResponse`
         """
         response = self._get(
             '/v2/bot/message/delivery/reply?date={date}'.format(date=date),
@@ -257,6 +259,7 @@ class LineBotApi(object):
             or a (connect timeout, read timeout) float tuple.
             Default is self.http_client.timeout
         :type timeout: float | tuple(float, float)
+        :rtype: :py:class:`linebot.models.responses.MessageDeliveryPushResponse`
         """
         response = self._get(
             '/v2/bot/message/delivery/push?date={date}'.format(date=date),
@@ -278,6 +281,7 @@ class LineBotApi(object):
             or a (connect timeout, read timeout) float tuple.
             Default is self.http_client.timeout
         :type timeout: float | tuple(float, float)
+        :rtype: :py:class:`linebot.models.responses.MessageDeliveryMulticastResponse`
         """
         response = self._get(
             '/v2/bot/message/delivery/multicast?date={date}'.format(date=date),
@@ -888,6 +892,7 @@ class LineBotApi(object):
             or a (connect timeout, read timeout) float tuple.
             Default is self.http_client.timeout
         :type timeout: float | tuple(float, float)
+        :rtype: :py:class:`linebot.models.responses.InsightMessageDeliveryResponse`
         """
         response = self._get(
             '/v2/bot/insight/message/delivery?date={date}'.format(date=date),
@@ -907,6 +912,7 @@ class LineBotApi(object):
             or a (connect timeout, read timeout) float tuple.
             Default is self.http_client.timeout
         :type timeout: float | tuple(float, float)
+        :rtype: :py:class:`linebot.models.responses.InsightFollowersResponse`
         """
         response = self._get(
             '/v2/bot/insight/followers?date={date}'.format(date=date),
@@ -926,6 +932,7 @@ class LineBotApi(object):
             or a (connect timeout, read timeout) float tuple.
             Default is self.http_client.timeout
         :type timeout: float | tuple(float, float)
+        :rtype: :py:class:`linebot.models.responses.InsightDemographicResponse`
         """
         response = self._get(
             '/v2/bot/insight/demographic',
@@ -945,6 +952,7 @@ class LineBotApi(object):
             or a (connect timeout, read timeout) float tuple.
             Default is self.http_client.timeout
         :type timeout: float | tuple(float, float)
+        :rtype: :py:class:`linebot.models.responses.InsightMessageEventResponse`
         """
         response = self._get(
             '/v2/bot/insight/message/event?requestId={request_id}'.format(request_id=request_id),

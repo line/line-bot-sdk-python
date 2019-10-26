@@ -233,7 +233,10 @@ class RequestsHttpResponse(HttpResponse):
 
     @property
     def headers(self):
-        """Get headers."""
+        """Get headers.
+
+        :rtype :py:class:`requests.models.CaseInsensitiveDict`
+        """
         return self.response.headers
 
     @property

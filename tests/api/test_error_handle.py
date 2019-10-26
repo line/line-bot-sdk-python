@@ -17,6 +17,7 @@ from __future__ import unicode_literals, absolute_import
 import unittest
 
 import responses
+
 from linebot import (
     LineBotApi
 )
@@ -40,6 +41,7 @@ class TestLineBotApi(unittest.TestCase):
             json={
                 "message": "Invalid reply token"
             },
+            headers={'X-Line-Request-Id': 'f70dd685-499a-4231-a441-f24b8d4fba21'},
             status=401
         )
 
@@ -48,6 +50,7 @@ class TestLineBotApi(unittest.TestCase):
         except LineBotApiError as e:
             self.assertEqual(e.status_code, 401)
             self.assertEqual(e.error.message, 'Invalid reply token')
+            self.assertEqual(e.request_id, 'f70dd685-499a-4231-a441-f24b8d4fba21')
 
     @responses.activate
     def test_error_with_detail_handle(self):
@@ -69,6 +72,7 @@ class TestLineBotApi(unittest.TestCase):
                     }
                 ]
             },
+            headers={'X-Line-Request-Id': 'f70dd685-499a-4231-a441-f24b8d4fba21'},
             status=400
         )
 
@@ -90,6 +94,7 @@ class TestLineBotApi(unittest.TestCase):
                                             "richmessage, template, imagemap]"
             )
             self.assertEqual(e.error.details[1].property, 'messages[1].type')
+            self.assertEqual(e.request_id, 'f70dd685-499a-4231-a441-f24b8d4fba21')
 
     @responses.activate
     def test_error_handle_get_message_content(self):
@@ -99,6 +104,7 @@ class TestLineBotApi(unittest.TestCase):
             json={
                 "message": "Invalid reply token"
             },
+            headers={'X-Line-Request-Id': 'f70dd685-499a-4231-a441-f24b8d4fba21'},
             status=404
         )
 
@@ -107,6 +113,7 @@ class TestLineBotApi(unittest.TestCase):
         except LineBotApiError as e:
             self.assertEqual(e.status_code, 404)
             self.assertEqual(e.error.message, 'Invalid reply token')
+            self.assertEqual(e.request_id, 'f70dd685-499a-4231-a441-f24b8d4fba21')
 
 
 if __name__ == '__main__':

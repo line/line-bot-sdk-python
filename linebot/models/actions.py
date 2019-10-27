@@ -12,7 +12,7 @@
 #  License for the specific language governing permissions and limitations
 #  under the License.
 
-"""linebot.models.template module."""
+"""linebot.models.actions module."""
 
 from __future__ import unicode_literals
 

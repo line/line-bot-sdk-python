@@ -193,22 +193,22 @@ class HttpResponse(with_metaclass(ABCMeta)):
 
     @abstractproperty
     def text(self):
-        """Get request body as text-decoded."""
+        """Get response body as text-decoded."""
         raise NotImplementedError
 
     @abstractproperty
     def content(self):
-        """Get request body as binary."""
+        """Get response body as binary."""
         raise NotImplementedError
 
     @abstractproperty
     def json(self):
-        """Get request body as json-decoded."""
+        """Get response body as json-decoded."""
         raise NotImplementedError
 
     @abstractmethod
     def iter_content(self, chunk_size=1024, decode_unicode=False):
-        """Get request body as iterator content (stream).
+        """Get response body as iterator content (stream).
 
         :param int chunk_size:
         :param bool decode_unicode:
@@ -238,21 +238,21 @@ class RequestsHttpResponse(HttpResponse):
 
     @property
     def text(self):
-        """Get request body as text-decoded."""
+        """Get response body as text-decoded."""
         return self.response.text
 
     @property
     def content(self):
-        """Get request body as binary."""
+        """Get response body as binary."""
         return self.response.content
 
     @property
     def json(self):
-        """Get request body as json-decoded."""
+        """Get response body as json-decoded."""
         return self.response.json()
 
     def iter_content(self, chunk_size=1024, decode_unicode=False):
-        """Get request body as iterator content (stream).
+        """Get response body as iterator content (stream).
 
         :param int chunk_size:
         :param bool decode_unicode:

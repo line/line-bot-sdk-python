@@ -21,17 +21,24 @@ from linebot.models import Error, ErrorDetail
 
 
 class TestUtils(unittest.TestCase):
+    maxDiff = None
+
     def test_str(self):
+        headers = {'X-Line-Request-Id': 'f70dd685-499a-4231-a441-f24b8d4fba21'}
         line_bot_api_error = LineBotApiError(
-            400,
+            status_code=400,
             request_id='f70dd685-499a-4231-a441-f24b8d4fba21',
+            headers=headers,
             error=Error(message='The request body has 1 error(s)',
                         details=[ErrorDetail(message='May not be empty',
                                              property='messages[0].text')]))
-        self.assertEqual(line_bot_api_error.__str__(),
-                         'LineBotApiError: status_code=400, request_id=f70dd685-499a-4231-a441-f24b8d4fba21, '
-                         'error_response={"details": [{"message": "May not be empty", '
-                         '"property": "messages[0].text"}], "message": "The request body has 1 error(s)"}')
+        self.assertEqual(
+            line_bot_api_error.__str__(),
+            'LineBotApiError: status_code=400, request_id=f70dd685-499a-4231-a441-f24b8d4fba21, '
+            'error_response={"details": [{"message": "May not be empty", '
+            '"property": "messages[0].text"}], "message": "The request body has 1 error(s)"}, '
+            + 'headers={}'.format(headers)
+        )
 
 
 if __name__ == '__main__':

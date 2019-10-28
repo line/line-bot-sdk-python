@@ -79,5 +79,5 @@ class LineBotApiError(BaseError):
 
         :rtype: str
         """
-        return '{0}: status_code={1}, request_id={2}, error_response={3}'.format(
-            self.__class__.__name__, self.status_code, self.request_id, self.error)
+        return '{0}: status_code={1}, request_id={2}, error_response={3}, headers={4}'.format(
+            self.__class__.__name__, self.status_code, self.request_id, self.error, self.headers)

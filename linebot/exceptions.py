@@ -58,10 +58,11 @@ class InvalidSignatureError(BaseError):
 class LineBotApiError(BaseError):
     """When LINE Messaging API response error, this error will be raised."""
 
-    def __init__(self, status_code, request_id=None, error=None):
+    def __init__(self, status_code, headers, request_id=None, error=None):
         """__init__ method.
 
-        :param int status_code: http status code
+        :param int status_code: HTTP status code
+        :param headers: Response headers
         :param str request_id: (optional) Request ID. A unique ID is generated for each request
         :param error: (optional) Error class object.
         :type error: :py:class:`linebot.models.error.Error`
@@ -69,6 +70,7 @@ class LineBotApiError(BaseError):
         super(LineBotApiError, self).__init__(error.message)
 
         self.status_code = status_code
+        self.headers = headers
         self.request_id = request_id
         self.error = error
 

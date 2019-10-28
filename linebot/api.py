@@ -1000,6 +1000,9 @@ class LineBotApi(object):
         if 200 <= response.status_code < 300:
             pass
         else:
-            error = Error.new_from_json_dict(response.json)
-            request_id = response.headers.get('X-Line-Request-Id')
-            raise LineBotApiError(status_code=response.status_code, request_id=request_id, error=error)
+            raise LineBotApiError(
+                status_code=response.status_code,
+                headers=response.headers,
+                request_id=response.headers.get('X-Line-Request-Id'),
+                error=Error.new_from_json_dict(response.json)
+            )

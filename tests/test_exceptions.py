@@ -20,7 +20,7 @@ from linebot.exceptions import LineBotApiError
 from linebot.models import Error, ErrorDetail
 
 
-class TestUtils(unittest.TestCase):
+class TestExceptions(unittest.TestCase):
     maxDiff = None
 
     def test_str(self):

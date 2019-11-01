@@ -52,8 +52,6 @@ class TestLineBotApi(unittest.TestCase):
         except LineBotApiError as e:
             self.assertEqual(e.status_code, 401)
             self.assertEqual(e.error.message, 'Invalid reply token')
-            print(self.headers)
-            print(self.request_id)
             self.assertEqual(e.request_id, self.request_id)
             self.assertEqual(e.headers['HOGE'], 'FUGA')
 

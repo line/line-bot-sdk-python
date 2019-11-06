@@ -1002,7 +1002,7 @@ class LineBotApi(object):
         else:
             raise LineBotApiError(
                 status_code=response.status_code,
-                headers=response.headers,
+                headers=dict(response.headers.items()),
                 request_id=response.headers.get('X-Line-Request-Id'),
                 error=Error.new_from_json_dict(response.json)
             )

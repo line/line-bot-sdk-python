@@ -521,6 +521,7 @@ https://developers.line.biz/en/reference/messaging-api/#error-responses
         line_bot_api.push_message('to', TextSendMessage(text='Hello World!'))
     except linebot.exceptions.LineBotApiError as e:
         print(e.status_code)
+        print(e.request_id)
         print(e.error.message)
         print(e.error.details)
 

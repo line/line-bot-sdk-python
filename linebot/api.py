@@ -35,13 +35,16 @@ class LineBotApi(object):
     """LineBotApi provides interface for LINE messaging API."""
 
     DEFAULT_API_ENDPOINT = 'https://api.line.me'
+    DEFAULT_API_DATA_ENDPOINT = 'https://api-data.line.me'
 
-    def __init__(self, channel_access_token, endpoint=DEFAULT_API_ENDPOINT,
+    def __init__(self, channel_access_token,
+                 endpoint=DEFAULT_API_ENDPOINT, data_endpoint=DEFAULT_API_DATA_ENDPOINT,
                  timeout=HttpClient.DEFAULT_TIMEOUT, http_client=RequestsHttpClient):
         """__init__ method.
 
         :param str channel_access_token: Your channel access token
         :param str endpoint: (optional) Default is https://api.line.me
+        :param str data_endpoint: (optional) Default is https://api-data.line.me
         :param timeout: (optional) How long to wait for the server
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
@@ -441,7 +444,7 @@ class LineBotApi(object):
         """
         response = self._get(
             '/v2/bot/message/{message_id}/content'.format(message_id=message_id),
-            stream=True, timeout=timeout
+            endpoint=self.DEFAULT_API_DATA_ENDPOINT, stream=True, timeout=timeout
         )
 
         return Content(response)
@@ -664,7 +667,7 @@ class LineBotApi(object):
         """
         response = self._get(
             '/v2/bot/richmenu/{rich_menu_id}/content'.format(rich_menu_id=rich_menu_id),
-            timeout=timeout
+            endpoint=self.DEFAULT_API_DATA_ENDPOINT, timeout=timeout
         )
 
         return Content(response)
@@ -687,6 +690,7 @@ class LineBotApi(object):
         """
         self._post(
             '/v2/bot/richmenu/{rich_menu_id}/content'.format(rich_menu_id=rich_menu_id),
+            endpoint=self.DEFAULT_API_DATA_ENDPOINT,
             data=content,
             headers={'Content-Type': content_type},
             timeout=timeout
@@ -961,8 +965,11 @@ class LineBotApi(object):
 
         return InsightMessageEventResponse.new_from_json_dict(response.json)
 
-    def _get(self, path, params=None, headers=None, stream=False, timeout=None):
-        url = self.endpoint + path
+    def _get(self, path, endpoint=None, params=None, headers=None, stream=False, timeout=None):
+        if endpoint:
+            url = endpoint + path
+        else:
+            url = self.endpoint + path
 
         if headers is None:
             headers = {}
@@ -975,8 +982,11 @@ class LineBotApi(object):
         self.__check_error(response)
         return response
 
-    def _post(self, path, data=None, headers=None, timeout=None):
-        url = self.endpoint + path
+    def _post(self, path, endpoint=None, data=None, headers=None, timeout=None):
+        if endpoint:
+            url = endpoint + path
+        else:
+            url = self.endpoint + path
 
         if headers is None:
             headers = {'Content-Type': 'application/json'}
@@ -989,8 +999,11 @@ class LineBotApi(object):
         self.__check_error(response)
         return response
 
-    def _delete(self, path, data=None, headers=None, timeout=None):
-        url = self.endpoint + path
+    def _delete(self, path, endpoint=None, data=None, headers=None, timeout=None):
+        if endpoint:
+            url = endpoint + path
+        else:
+            url = self.endpoint + path
 
         if headers is None:
             headers = {}

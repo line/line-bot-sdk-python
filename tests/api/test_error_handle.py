@@ -104,7 +104,7 @@ class TestLineBotApi(unittest.TestCase):
     def test_error_handle_get_message_content(self):
         responses.add(
             responses.GET,
-            LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/message/1/content',
+            LineBotApi.DEFAULT_API_DATA_ENDPOINT + '/v2/bot/message/1/content',
             json={
                 "message": "Invalid reply token"
             },

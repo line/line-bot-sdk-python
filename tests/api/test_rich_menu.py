@@ -394,7 +394,7 @@ class TestLineBotApi(unittest.TestCase):
         body = b'hogieoidksk'
         responses.add(
             responses.GET,
-            LineBotApi.DEFAULT_API_ENDPOINT +
+            LineBotApi.DEFAULT_API_DATA_ENDPOINT +
             '/v2/bot/richmenu/{rich_menu_id}/content'.format(rich_menu_id=rich_menu_id),
             body=body, status=200
         )
@@ -405,7 +405,7 @@ class TestLineBotApi(unittest.TestCase):
         self.assertEqual(request.method, 'GET')
         self.assertEqual(
             request.url,
-            LineBotApi.DEFAULT_API_ENDPOINT +
+            LineBotApi.DEFAULT_API_DATA_ENDPOINT +
             '/v2/bot/richmenu/{rich_menu_id}/content'.format(rich_menu_id=rich_menu_id),
         )
         self.assertEqual(
@@ -419,7 +419,7 @@ class TestLineBotApi(unittest.TestCase):
         body = b'hogieoidksk'
         responses.add(
             responses.POST,
-            LineBotApi.DEFAULT_API_ENDPOINT +
+            LineBotApi.DEFAULT_API_DATA_ENDPOINT +
             '/v2/bot/richmenu/{rich_menu_id}/content'.format(rich_menu_id=rich_menu_id),
             json={}, status=200
         )
@@ -433,7 +433,7 @@ class TestLineBotApi(unittest.TestCase):
         request = responses.calls[0].request
         self.assertEqual('POST', request.method)
         self.assertEqual(
-            LineBotApi.DEFAULT_API_ENDPOINT +
+            LineBotApi.DEFAULT_API_DATA_ENDPOINT +
             '/v2/bot/richmenu/{rich_menu_id}/content'.format(rich_menu_id=rich_menu_id),
             request.url
         )

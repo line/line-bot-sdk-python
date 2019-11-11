@@ -967,10 +967,7 @@ class LineBotApi(object):
         return InsightMessageEventResponse.new_from_json_dict(response.json)
 
     def _get(self, path, endpoint=None, params=None, headers=None, stream=False, timeout=None):
-        if endpoint:
-            url = endpoint + path
-        else:
-            url = self.endpoint + path
+        url = (endpoint or self.endpoint) + path
 
         if headers is None:
             headers = {}
@@ -984,10 +981,7 @@ class LineBotApi(object):
         return response
 
     def _post(self, path, endpoint=None, data=None, headers=None, timeout=None):
-        if endpoint:
-            url = endpoint + path
-        else:
-            url = self.endpoint + path
+        url = (endpoint or self.endpoint) + path
 
         if headers is None:
             headers = {'Content-Type': 'application/json'}
@@ -1001,10 +995,7 @@ class LineBotApi(object):
         return response
 
     def _delete(self, path, endpoint=None, data=None, headers=None, timeout=None):
-        if endpoint:
-            url = endpoint + path
-        else:
-            url = self.endpoint + path
+        url = (endpoint or self.endpoint) + path
 
         if headers is None:
             headers = {}

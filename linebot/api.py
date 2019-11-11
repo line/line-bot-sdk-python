@@ -54,6 +54,7 @@ class LineBotApi(object):
             :py:class:`linebot.http_client.RequestsHttpClient`
         :type http_client: T <= :py:class:`linebot.http_client.HttpClient`
         """
+        self.data_endpoint = data_endpoint
         self.endpoint = endpoint
         self.headers = {
             'Authorization': 'Bearer ' + channel_access_token,
@@ -444,7 +445,7 @@ class LineBotApi(object):
         """
         response = self._get(
             '/v2/bot/message/{message_id}/content'.format(message_id=message_id),
-            endpoint=self.DEFAULT_API_DATA_ENDPOINT, stream=True, timeout=timeout
+            endpoint=self.data_endpoint, stream=True, timeout=timeout
         )
 
         return Content(response)
@@ -667,7 +668,7 @@ class LineBotApi(object):
         """
         response = self._get(
             '/v2/bot/richmenu/{rich_menu_id}/content'.format(rich_menu_id=rich_menu_id),
-            endpoint=self.DEFAULT_API_DATA_ENDPOINT, timeout=timeout
+            endpoint=self.data_endpoint, timeout=timeout
         )
 
         return Content(response)
@@ -690,7 +691,7 @@ class LineBotApi(object):
         """
         self._post(
             '/v2/bot/richmenu/{rich_menu_id}/content'.format(rich_menu_id=rich_menu_id),
-            endpoint=self.DEFAULT_API_DATA_ENDPOINT,
+            endpoint=self.data_endpoint,
             data=content,
             headers={'Content-Type': content_type},
             timeout=timeout

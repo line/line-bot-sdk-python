@@ -27,7 +27,8 @@ from .models import (
     MessageDeliveryBroadcastResponse, MessageDeliveryMulticastResponse,
     MessageDeliveryPushResponse, MessageDeliveryReplyResponse,
     InsightMessageDeliveryResponse, InsightFollowersResponse, InsightDemographicResponse,
-    InsightMessageEventResponse,
+    InsightMessageEventResponse, ReplyMessageResponse, PushMessageResponse,
+    MultiCastResponse, BroadCastResponse,
 )
 
 
@@ -103,9 +104,11 @@ class LineBotApi(object):
             'notificationDisabled': notification_disabled,
         }
 
-        self._post(
+        response = self._post(
             '/v2/bot/message/reply', data=json.dumps(data), timeout=timeout
         )
+
+        return ReplyMessageResponse(response=response)
 
     def push_message(self, to, messages, notification_disabled=False, timeout=None):
         """Call push message API.
@@ -136,9 +139,11 @@ class LineBotApi(object):
             'notificationDisabled': notification_disabled,
         }
 
-        self._post(
+        response = self._post(
             '/v2/bot/message/push', data=json.dumps(data), timeout=timeout
         )
+
+        return PushMessageResponse(response=response)
 
     def multicast(self, to, messages, notification_disabled=False, timeout=None):
         """Call multicast API.
@@ -171,9 +176,11 @@ class LineBotApi(object):
             'notificationDisabled': notification_disabled,
         }
 
-        self._post(
+        response = self._post(
             '/v2/bot/message/multicast', data=json.dumps(data), timeout=timeout
         )
+
+        return MultiCastResponse(response=response)
 
     def broadcast(self, messages, notification_disabled=False, timeout=None):
         """Call broadcast API.
@@ -202,9 +209,11 @@ class LineBotApi(object):
             'notificationDisabled': notification_disabled,
         }
 
-        self._post(
+        response = self._post(
             '/v2/bot/message/broadcast', data=json.dumps(data), timeout=timeout
         )
+
+        return BroadCastResponse(response=response)
 
     def get_message_delivery_broadcast(self, date, timeout=None):
         """Get number of sent broadcast messages.

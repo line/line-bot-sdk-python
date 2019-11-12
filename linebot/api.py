@@ -145,7 +145,7 @@ class LineBotApi(object):
 
         https://developers.line.biz/en/reference/messaging-api/#send-multicast-message
 
-        Send messages to multiple users at any time.
+        Sends push messages to multiple users at any time. Messages cannot be sent to groups or rooms.
 
         :param to: IDs of the receivers
             Max: 150 users
@@ -180,7 +180,7 @@ class LineBotApi(object):
 
         https://developers.line.biz/en/reference/messaging-api/#send-broadcast-message
 
-        Send messages to multiple users at any time.
+        Sends push messages to multiple users at any time.
 
         :param messages: Messages.
             Max: 5

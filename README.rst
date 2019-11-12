@@ -102,8 +102,8 @@ Create a new LineBotApi instance.
 
 You can override the ``timeout`` value for each method.
 
-reply\_message(self, reply\_token, messages, timeout=None)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+reply\_message(self, reply\_token, messages, notification_disabled=False, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Respond to events from users, groups, and rooms. You can get a
 reply\_token from a webhook event object.
@@ -114,8 +114,8 @@ https://developers.line.biz/en/reference/messaging-api/#send-reply-message
 
     line_bot_api.reply_message(reply_token, TextSendMessage(text='Hello World!'))
 
-push\_message(self, to, messages, timeout=None)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+push\_message(self, to, messages, notification_disabled=False, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Send messages to users, groups, and rooms at any time.
 
@@ -125,16 +125,27 @@ https://developers.line.biz/en/reference/messaging-api/#send-push-message
 
     line_bot_api.push_message(to, TextSendMessage(text='Hello World!'))
 
-multicast(self, to, messages, timeout=None)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+multicast(self, to, messages, notification_disabled=False, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Send messages to multiple users at any time.
+Sends push messages to multiple users at any time. Messages cannot be sent to groups or rooms.
 
 https://developers.line.biz/en/reference/messaging-api/#send-multicast-message
 
 .. code:: python
 
     line_bot_api.multicast(['to1', 'to2'], TextSendMessage(text='Hello World!'))
+
+broadcast(self, messages, notification_disabled=False, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Sends push messages to multiple users at any time.
+
+https://developers.line.biz/en/reference/messaging-api/#send-broadcast-message
+
+.. code:: python
+
+    line_bot_api.broadcast(TextSendMessage(text='Hello World!'))
 
 get\_profile(self, user\_id, timeout=None)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -505,7 +516,8 @@ https://developers.line.biz/en/reference/messaging-api/#get-message-event
 
 .. code:: python
 
-    insight = line_bot_api.get_insight_message_event()
+    broadcast_response = line_bot_api.broadcast(TextSendMessage(text='Hello World!'))
+    insight = line_bot_api.get_insight_message_event(broadcast_response.request_id)
     print(insight.overview)
 
 ※ Error handling

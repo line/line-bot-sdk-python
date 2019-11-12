@@ -27,8 +27,7 @@ from .models import (
     MessageDeliveryBroadcastResponse, MessageDeliveryMulticastResponse,
     MessageDeliveryPushResponse, MessageDeliveryReplyResponse,
     InsightMessageDeliveryResponse, InsightFollowersResponse, InsightDemographicResponse,
-    InsightMessageEventResponse, ReplyMessageResponse, PushMessageResponse,
-    MultiCastResponse, BroadCastResponse,
+    InsightMessageEventResponse, BroadCastResponse,
 )
 
 
@@ -104,11 +103,9 @@ class LineBotApi(object):
             'notificationDisabled': notification_disabled,
         }
 
-        response = self._post(
+        self._post(
             '/v2/bot/message/reply', data=json.dumps(data), timeout=timeout
         )
-
-        return ReplyMessageResponse(response=response)
 
     def push_message(self, to, messages, notification_disabled=False, timeout=None):
         """Call push message API.
@@ -139,11 +136,9 @@ class LineBotApi(object):
             'notificationDisabled': notification_disabled,
         }
 
-        response = self._post(
+        self._post(
             '/v2/bot/message/push', data=json.dumps(data), timeout=timeout
         )
-
-        return PushMessageResponse(response=response)
 
     def multicast(self, to, messages, notification_disabled=False, timeout=None):
         """Call multicast API.
@@ -176,11 +171,9 @@ class LineBotApi(object):
             'notificationDisabled': notification_disabled,
         }
 
-        response = self._post(
+        self._post(
             '/v2/bot/message/multicast', data=json.dumps(data), timeout=timeout
         )
-
-        return MultiCastResponse(response=response)
 
     def broadcast(self, messages, notification_disabled=False, timeout=None):
         """Call broadcast API.
@@ -213,7 +206,7 @@ class LineBotApi(object):
             '/v2/bot/message/broadcast', data=json.dumps(data), timeout=timeout
         )
 
-        return BroadCastResponse(response=response)
+        return BroadCastResponse(request_id=response.headers.get('X-Line-Request-Id'))
 
     def get_message_delivery_broadcast(self, date, timeout=None):
         """Get number of sent broadcast messages.
@@ -940,7 +933,6 @@ class LineBotApi(object):
 
         https://developers.line.biz/en/reference/messaging-api/#get-demographic
 
-        :param str date: Date for which to retrieve the number of followers.
         :param timeout: (optional) How long to wait for the server
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.

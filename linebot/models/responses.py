@@ -25,64 +25,18 @@ from .insight import (
 from .rich_menu import RichMenuSize, RichMenuArea
 
 
-class ReplyMessageResponse(object):
-    """ReplyMessageResponse.
-
-    https://developers.line.biz/en/reference/messaging-api/#send-reply-message
-    """
-
-    def __init__(self, response):
-        """__init__ method.
-
-        :param response: HttpResponse object
-        :type response: T <= :py:class:`linebot.http_client.HttpResponse`
-        """
-        self.response = response
-
-
-class PushMessageResponse(object):
-    """PushMessageResponse.
-
-    https://developers.line.biz/en/reference/messaging-api/#send-push-message
-    """
-
-    def __init__(self, response):
-        """__init__ method.
-
-        :param response: HttpResponse object
-        :type response: T <= :py:class:`linebot.http_client.HttpResponse`
-        """
-        self.response = response
-
-
-class MultiCastResponse(object):
-    """MultiCastResponse.
-
-    https://developers.line.biz/en/reference/messaging-api/#send-multicast-message
-    """
-
-    def __init__(self, response):
-        """__init__ method.
-
-        :param response: HttpResponse object
-        :type response: T <= :py:class:`linebot.http_client.HttpResponse`
-        """
-        self.response = response
-
-
 class BroadCastResponse(object):
     """BroadCastResponse.
 
     https://developers.line.biz/en/reference/messaging-api/#send-broadcast-message
     """
 
-    def __init__(self, response):
+    def __init__(self, request_id=None):
         """__init__ method.
 
-        :param response: HttpResponse object
-        :type response: T <= :py:class:`linebot.http_client.HttpResponse`
+        :param str request_id: Request ID. A unique ID is generated for each request
         """
-        self.response = response
+        self.request_id = request_id
 
 
 class Profile(Base):

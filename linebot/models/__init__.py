@@ -121,7 +121,7 @@ from .responses import (  # noqa
     InsightFollowersResponse,
     InsightDemographicResponse,
     InsightMessageEventResponse,
-    BroadCastResponse,
+    BroadcastResponse,
 )
 from .rich_menu import (  # noqa
     RichMenu,

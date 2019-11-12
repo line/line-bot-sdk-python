@@ -25,8 +25,8 @@ from .insight import (
 from .rich_menu import RichMenuSize, RichMenuArea
 
 
-class BroadCastResponse(object):
-    """BroadCastResponse.
+class BroadcastResponse(object):
+    """BroadcastResponse.
 
     https://developers.line.biz/en/reference/messaging-api/#send-broadcast-message
     """

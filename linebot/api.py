@@ -27,7 +27,7 @@ from .models import (
     MessageDeliveryBroadcastResponse, MessageDeliveryMulticastResponse,
     MessageDeliveryPushResponse, MessageDeliveryReplyResponse,
     InsightMessageDeliveryResponse, InsightFollowersResponse, InsightDemographicResponse,
-    InsightMessageEventResponse, BroadCastResponse,
+    InsightMessageEventResponse, BroadcastResponse,
 )
 
 
@@ -207,7 +207,7 @@ class LineBotApi(object):
             '/v2/bot/message/broadcast', data=json.dumps(data), timeout=timeout
         )
 
-        return BroadCastResponse(request_id=response.headers.get('X-Line-Request-Id'))
+        return BroadcastResponse(request_id=response.headers.get('X-Line-Request-Id'))
 
     def get_message_delivery_broadcast(self, date, timeout=None):
         """Get number of sent broadcast messages.

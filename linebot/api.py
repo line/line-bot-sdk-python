@@ -194,6 +194,7 @@ class LineBotApi(object):
             or a (connect timeout, read timeout) float tuple.
             Default is self.http_client.timeout
         :type timeout: float | tuple(float, float)
+        :rtype: :py:class:`linebot.models.responses.BroadcastResponse`
         """
         if not isinstance(messages, (list, tuple)):
             messages = [messages]

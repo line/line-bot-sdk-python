@@ -115,7 +115,7 @@ class TestSendTestMessage(unittest.TestCase):
             json={}, status=200, headers={'X-Line-Request-Id': 'request_id_test'}
         )
 
-        self.tested.broadcast(self.text_message)
+        response = self.tested.broadcast(self.text_message)
 
         request = responses.calls[0].request
         self.assertEqual(

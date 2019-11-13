@@ -25,6 +25,20 @@ from .insight import (
 from .rich_menu import RichMenuSize, RichMenuArea
 
 
+class BroadcastResponse(object):
+    """BroadcastResponse.
+
+    https://developers.line.biz/en/reference/messaging-api/#send-broadcast-message
+    """
+
+    def __init__(self, request_id=None):
+        """__init__ method.
+
+        :param str request_id: Request ID. A unique ID is generated for each request
+        """
+        self.request_id = request_id
+
+
 class Profile(Base):
     """Profile.
 

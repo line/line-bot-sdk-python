@@ -27,7 +27,7 @@ from .models import (
     MessageDeliveryBroadcastResponse, MessageDeliveryMulticastResponse,
     MessageDeliveryPushResponse, MessageDeliveryReplyResponse,
     InsightMessageDeliveryResponse, InsightFollowersResponse, InsightDemographicResponse,
-    InsightMessageEventResponse,
+    InsightMessageEventResponse, BroadcastResponse,
 )
 
 
@@ -145,7 +145,8 @@ class LineBotApi(object):
 
         https://developers.line.biz/en/reference/messaging-api/#send-multicast-message
 
-        Send messages to multiple users at any time.
+        Sends push messages to multiple users at any time.
+        Messages cannot be sent to groups or rooms.
 
         :param to: IDs of the receivers
             Max: 150 users
@@ -180,7 +181,7 @@ class LineBotApi(object):
 
         https://developers.line.biz/en/reference/messaging-api/#send-broadcast-message
 
-        Send messages to multiple users at any time.
+        Sends push messages to multiple users at any time.
 
         :param messages: Messages.
             Max: 5
@@ -202,9 +203,11 @@ class LineBotApi(object):
             'notificationDisabled': notification_disabled,
         }
 
-        self._post(
+        response = self._post(
             '/v2/bot/message/broadcast', data=json.dumps(data), timeout=timeout
         )
+
+        return BroadcastResponse(request_id=response.headers.get('X-Line-Request-Id'))
 
     def get_message_delivery_broadcast(self, date, timeout=None):
         """Get number of sent broadcast messages.
@@ -931,7 +934,6 @@ class LineBotApi(object):
 
         https://developers.line.biz/en/reference/messaging-api/#get-demographic
 
-        :param str date: Date for which to retrieve the number of followers.
         :param timeout: (optional) How long to wait for the server
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.

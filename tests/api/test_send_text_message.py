@@ -112,10 +112,10 @@ class TestSendTestMessage(unittest.TestCase):
         responses.add(
             responses.POST,
             LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/message/broadcast',
-            json={}, status=200
+            json={}, status=200, headers={'X-Line-Request-Id': 'request_id_test'}
         )
 
-        self.tested.broadcast(self.text_message)
+        response = self.tested.broadcast(self.text_message)
 
         request = responses.calls[0].request
         self.assertEqual(
@@ -129,9 +129,10 @@ class TestSendTestMessage(unittest.TestCase):
                 "messages": self.message
             }
         )
+        self.assertEqual('request_id_test', response.request_id)
 
         # call with notification_disable=True
-        self.tested.broadcast(self.text_message, notification_disabled=True)
+        response = self.tested.broadcast(self.text_message, notification_disabled=True)
 
         request = responses.calls[1].request
         self.assertEqual(
@@ -145,6 +146,7 @@ class TestSendTestMessage(unittest.TestCase):
                 "messages": self.message
             }
         )
+        self.assertEqual('request_id_test', response.request_id)
 
 
 if __name__ == '__main__':

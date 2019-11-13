@@ -129,6 +129,7 @@ class TestSendTestMessage(unittest.TestCase):
                 "messages": self.message
             }
         )
+        self.assertEqual('request_id_test', response.request_id)
 
         # call with notification_disable=True
         response = self.tested.broadcast(self.text_message, notification_disabled=True)

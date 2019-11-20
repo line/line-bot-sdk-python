@@ -799,15 +799,15 @@ FlexSendMessage
     flex_message = FlexSendMessage(
         alt_text='hello',
         contents={
-            type: 'bubble',
-            direction: 'ltr',
-            hero: {
-                type: 'image',
-                url: 'https://example.com/cafe.jpg',
-                size: 'full',
-                aspectRatio: '20:13',
-                aspectMode: 'cover',
-                action: { type: 'uri', uri: 'http://example.com', label: 'label' }
+            'type': 'bubble',
+            'direction': 'ltr',
+            'hero': {
+                'type': 'image',
+                'url': 'https://example.com/cafe.jpg',
+                'size': 'full',
+                'aspectRatio': '20:13',
+                'aspectMode': 'cover',
+                'action': { type: 'uri', uri: 'http://example.com', label: 'label' }
             }
         }
     )

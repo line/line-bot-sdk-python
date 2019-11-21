@@ -807,7 +807,7 @@ FlexSendMessage
                 'size': 'full',
                 'aspectRatio': '20:13',
                 'aspectMode': 'cover',
-                'action': { type: 'uri', uri: 'http://example.com', label: 'label' }
+                'action': { 'type': 'uri', 'uri': 'http://example.com', 'label': 'label' }
             }
         }
     )

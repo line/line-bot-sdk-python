@@ -156,6 +156,7 @@ class TestWebhookParser(unittest.TestCase):
         self.assertEqual(events[5].message.type, 'sticker')
         self.assertEqual(events[5].message.package_id, '1')
         self.assertEqual(events[5].message.sticker_id, '1')
+        self.assertEqual(events[5].message.sticker_resource_type, 'STATIC')
 
         # FollowEvent, SourceUser
         self.assertIsInstance(events[6], FollowEvent)
@@ -452,6 +453,11 @@ class TestWebhookHandler(unittest.TestCase):
         def message_sticker(event):
             self.assertEqual('message', event.type)
             self.assertEqual('sticker', event.message.type)
+            self.assertIn(
+                event.message.sticker_resource_type,
+                ['STATIC', 'ANIMATION', 'SOUND', 'ANIMATION_SOUND',
+                 'POPUP', 'POPUP_SOUND', 'NAME_TEXT']
+            )
 
         @self.handler.add(MessageEvent)
         def message(event):

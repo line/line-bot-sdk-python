@@ -193,7 +193,7 @@ class WebhookHandler(object):
         self._default = None
 
     def add(self, event, message=None):
-        """[Decorator] Add handler method.
+        """Add handler method.
 
         :param event: Specify a kind of Event which you want to handle
         :type event: T <= :py:class:`linebot.models.events.Event` class
@@ -215,7 +215,7 @@ class WebhookHandler(object):
         return decorator
 
     def default(self):
-        """[Decorator] Set default handler method.
+        """Set default handler method.
 
         :rtype: func
         :return: decorator

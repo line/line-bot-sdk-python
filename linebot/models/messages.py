@@ -176,12 +176,14 @@ class StickerMessage(Message):
     For a list of basic LINE stickers and sticker IDs, see sticker list.
     """
 
-    def __init__(self, id=None, package_id=None, sticker_id=None, **kwargs):
+    def __init__(self, id=None, package_id=None, sticker_id=None,
+                 sticker_resource_type=None, **kwargs):
         """__init__ method.
 
         :param str id: Message ID
         :param str package_id: Package ID
         :param str sticker_id: Sticker ID
+        :param str sticker_resource_type: Sticker resource type
         :param kwargs:
         """
         super(StickerMessage, self).__init__(id=id, **kwargs)
@@ -189,6 +191,7 @@ class StickerMessage(Message):
         self.type = 'sticker'
         self.package_id = package_id
         self.sticker_id = sticker_id
+        self.sticker_resource_type = sticker_resource_type
 
 
 class FileMessage(Message):

@@ -156,6 +156,7 @@ class TestWebhookParser(unittest.TestCase):
         self.assertEqual(events[5].message.type, 'sticker')
         self.assertEqual(events[5].message.package_id, '1')
         self.assertEqual(events[5].message.sticker_id, '1')
+        self.assertEqual(events[5].message.sticker_resource_type, 'STATIC')
 
         # FollowEvent, SourceUser
         self.assertIsInstance(events[6], FollowEvent)

@@ -1061,6 +1061,7 @@ Message
     - id
     - package\_id
     - sticker\_id
+    - sticker\_resource\_type
 - FileMessage
     - type
     - id

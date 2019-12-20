@@ -78,7 +78,8 @@ class MessageEvent(Event):
     You can reply to message events.
     """
 
-    def __init__(self, mode=None, timestamp=None, source=None, reply_token=None, message=None, **kwargs):
+    def __init__(self, mode=None, timestamp=None, source=None, reply_token=None, message=None,
+                 **kwargs):
         """__init__ method.
 
         :param str mode: Channel state
@@ -221,7 +222,8 @@ class PostbackEvent(Event):
     You can reply to postback events.
     """
 
-    def __init__(self, mode=None, timestamp=None, source=None, reply_token=None, postback=None, **kwargs):
+    def __init__(self, mode=None, timestamp=None, source=None, reply_token=None, postback=None,
+                 **kwargs):
         """__init__ method.
 
         :param str mode: Channel state
@@ -252,7 +254,8 @@ class BeaconEvent(Event):
     Event object for when a user detects a LINE Beacon. You can reply to beacon events.
     """
 
-    def __init__(self, mode=None, timestamp=None, source=None, reply_token=None, beacon=None, **kwargs):
+    def __init__(self, mode=None, timestamp=None, source=None, reply_token=None, beacon=None,
+                 **kwargs):
         """__init__ method.
 
         :param str mode: Channel state
@@ -284,7 +287,8 @@ class MemberJoinedEvent(Event):
 
     """
 
-    def __init__(self, mode=None, timestamp=None, source=None, reply_token=None, joined=None, **kwargs):
+    def __init__(self, mode=None, timestamp=None, source=None, reply_token=None, joined=None,
+                 **kwargs):
         """__init__ method.
 
         :param str mode: Channel state
@@ -348,7 +352,8 @@ class AccountLinkEvent(Event):
     no webhook event will be sent and the user will be shown an error.
     """
 
-    def __init__(self, mode=None, timestamp=None, source=None, reply_token=None, link=None, **kwargs):
+    def __init__(self, mode=None, timestamp=None, source=None, reply_token=None, link=None,
+                 **kwargs):
         """__init__ method.
 
         :param str mode: Channel state
@@ -381,7 +386,8 @@ class ThingsEvent(Event):
     Event sent from LINE Things Webhook service.
     """
 
-    def __init__(self, mode=None, timestamp=None, source=None, reply_token=None, things=None, **kwargs):
+    def __init__(self, mode=None, timestamp=None, source=None, reply_token=None, things=None,
+                 **kwargs):
         """__init__ method.
 
         :param str mode: Channel state

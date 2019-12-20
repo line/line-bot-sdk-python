@@ -303,7 +303,7 @@ delete\_rich\_menu(self, rich\_menu\_id, timeout=None)
 Deletes a rich menu.
 
 https://developers.line.biz/en/reference/messaging-api/#delete-rich-menu
-        
+
 .. code:: python
 
     line_bot_api.delete_rich_menu(rich_menu_id)
@@ -949,30 +949,36 @@ The following classes are found in the ``linebot.models`` package.
 
 - MessageEvent
     - type
+    - mode
     - timestamp
     - source: `Source <#source>`__
     - reply\_token
     - message: `Message <#message>`__
 - FollowEvent
     - type
+    - mode
     - timestamp
     - source: `Source <#source>`__
     - reply\_token
 - UnfollowEvent
     - type
+    - mode
     - timestamp
     - source: `Source <#source>`__
 - JoinEvent
     - type
+    - mode
     - timestamp
     - source: `Source <#source>`__
     - reply\_token
 - LeaveEvent
     - type
+    - mode
     - timestamp
     - source: `Source <#source>`__
 - PostbackEvent
     - type
+    - mode
     - timestamp
     - source: `Source <#source>`__
     - reply\_token
@@ -981,6 +987,7 @@ The following classes are found in the ``linebot.models`` package.
         - params: dict
 - BeaconEvent
     - type
+    - mode
     - timestamp
     - source: `Source <#source>`__
     - reply\_token
@@ -990,24 +997,28 @@ The following classes are found in the ``linebot.models`` package.
         - device_message
 - MemberJoinedEvent
     - type
+    - mode
     - timestamp
     - source: `Source <#source>`__
     - reply\_token
     - joined: Joined
 - MemberLeftEvent
     - type
+    - mode
     - timestamp
     - source: `Source <#source>`__
     - reply\_token
     - left: Left
 - AccountLinkEvent
     - type
+    - mode
     - timestamp
     - source: `Source <#source>`__
     - reply\_token
     - link: Link
 - ThingsEvent
     - type
+    - mode
     - timestamp
     - source: `Source <#source>`__
     - reply\_token
@@ -1109,7 +1120,7 @@ Community Q&A: https://www.line-community.me/questions
 
 News: https://developers.line.biz/en/news/
 
-Twitter: @LINE_DEV 
+Twitter: @LINE_DEV
 
 Versioning
 ----------

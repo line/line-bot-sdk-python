@@ -4,6 +4,7 @@
     {
       "replyToken": "nHuyWiB7yP5Zw52FIkcQobQuGDXCTA",
       "type": "message",
+      "mode": "active",
       "timestamp": 1462629479859,
       "source": {
         "type": "user",
@@ -18,6 +19,7 @@
     {
       "replyToken": "nHuyWiB7yP5Zw52FIkcQobQuGDXCTA",
       "type": "message",
+      "mode": "active",
       "timestamp": 1462629479859,
       "source": {
         "type": "room",
@@ -36,6 +38,7 @@
     {
       "replyToken": "nHuyWiB7yP5Zw52FIkcQobQuGDXCTA",
       "type": "message",
+      "mode": "active",
       "timestamp": 1462629479859,
       "source": {
         "type": "user",
@@ -55,6 +58,7 @@
     {
       "replyToken": "nHuyWiB7yP5Zw52FIkcQobQuGDXCTA",
       "type": "message",
+      "mode": "active",
       "timestamp": 1462629479859,
       "source": {
         "type": "user",
@@ -73,6 +77,7 @@
     {
       "replyToken": "nHuyWiB7yP5Zw52FIkcQobQuGDXCTA",
       "type": "message",
+      "mode": "active",
       "timestamp": 1462629479859,
       "source": {
         "type": "user",
@@ -90,6 +95,7 @@
     {
       "replyToken": "nHuyWiB7yP5Zw52FIkcQobQuGDXCTA",
       "type": "message",
+      "mode": "active",
       "timestamp": 1462629479859,
       "source": {
         "type": "user",
@@ -106,6 +112,7 @@
     {
       "replyToken": "nHuyWiB7yP5Zw52FIkcQobQuGDXCTA",
       "type": "follow",
+      "mode": "active",
       "timestamp": 1462629479859,
       "source": {
         "type": "user",
@@ -114,6 +121,7 @@
     },
     {
       "type": "unfollow",
+      "mode": "active",
       "timestamp": 1462629479859,
       "source": {
         "type": "user",
@@ -123,6 +131,7 @@
     {
       "replyToken": "nHuyWiB7yP5Zw52FIkcQobQuGDXCTA",
       "type": "join",
+      "mode": "active",
       "timestamp": 1462629479859,
       "source": {
         "type": "group",
@@ -131,6 +140,7 @@
     },
     {
       "type": "leave",
+      "mode": "active",
       "timestamp": 1462629479859,
       "source": {
         "type": "group",
@@ -140,6 +150,7 @@
     {
       "replyToken": "nHuyWiB7yP5Zw52FIkcQobQuGDXCTA",
       "type": "postback",
+      "mode": "active",
       "timestamp": 1462629479859,
       "source": {
         "type": "user",
@@ -152,6 +163,7 @@
     {
       "replyToken": "nHuyWiB7yP5Zw52FIkcQobQuGDXCTA",
       "type": "beacon",
+      "mode": "active",
       "timestamp": 1462629479859,
       "source": {
         "type": "user",
@@ -165,6 +177,7 @@
     {
       "replyToken": "nHuyWiB7yP5Zw52FIkcQobQuGDXCTA",
       "type": "beacon",
+      "mode": "active",
       "timestamp": 1462629479859,
       "source": {
         "type": "user",
@@ -179,6 +192,7 @@
     {
       "replyToken": "nHuyWiB7yP5Zw52FIkcQobQuGDXCTA",
       "type": "accountLink",
+      "mode": "active",
       "timestamp": 1462629479859,
       "source": {
         "type": "user",
@@ -192,6 +206,7 @@
     {
       "replyToken": "nHuyWiB7yP5Zw52FIkcQobQuGDXCTA",
       "type": "message",
+      "mode": "active",
       "timestamp": 1462629479859,
       "source": {
         "type": "group",
@@ -207,6 +222,7 @@
     {
       "replyToken": "nHuyWiB7yP5Zw52FIkcQobQuGDXCTA",
       "type": "message",
+      "mode": "active",
       "timestamp": 1462629479859,
       "source": {
         "type": "room",
@@ -222,6 +238,7 @@
     {
       "replyToken": "nHuyWiB7yP5Zw52FIkcQobQuGDXCTA",
       "type": "postback",
+      "mode": "active",
       "timestamp": 1462629479859,
       "source": {
         "type": "user",
@@ -237,6 +254,7 @@
     {
       "replyToken": "nHuyWiB7yP5Zw52FIkcQobQuGDXCTA",
       "type": "postback",
+      "mode": "active",
       "timestamp": 1462629479859,
       "source": {
         "type": "user",
@@ -252,6 +270,7 @@
     {
       "replyToken": "nHuyWiB7yP5Zw52FIkcQobQuGDXCTA",
       "type": "postback",
+      "mode": "active",
       "timestamp": 1462629479859,
       "source": {
         "type": "user",
@@ -267,6 +286,7 @@
     {
       "replyToken": "nHuyWiB7yP5Zw52FIkcQobQuGDXCTA",
       "type": "things",
+      "mode": "active",
       "timestamp": 1462629479859,
       "source": {
         "type": "user",
@@ -280,6 +300,7 @@
     {
       "replyToken": "0f3779fba3b349968c5d07db31eabf65",
       "type": "memberJoined",
+      "mode": "active",
       "timestamp": 1462629479859,
       "source": {
         "type": "group",
@@ -300,6 +321,7 @@
     },
     {
       "type": "memberLeft",
+      "mode": "active",
       "timestamp": 1462629479960,
       "source": {
         "type": "group",
@@ -321,6 +343,7 @@
     {
       "replyToken": "nHuyWiB7yP5Zw52FIkcQobQuGDXCTA",
       "type": "things",
+      "mode": "active",
       "timestamp": 1462629479859,
       "source": {
         "type": "user",
@@ -334,6 +357,7 @@
     {
       "replyToken": "nHuyWiB7yP5Zw52FIkcQobQuGDXCTA",
       "type": "message",
+      "mode": "active",
       "timestamp": 1462629479859,
       "source": {
         "type": "user",
@@ -349,6 +373,7 @@
     {
       "replyToken": "nHuyWiB7yP5Zw52FIkcQobQuGDXCTA",
       "type": "things",
+      "mode": "active",
       "source": {
         "type": "user",
         "userId": "U206d25c2ea6bd87c17655609a1c37cb8"

@@ -45,9 +45,10 @@ class Event(with_metaclass(ABCMeta, Base)):
     https://developers.line.biz/en/reference/messaging-api/#webhook-event-objects
     """
 
-    def __init__(self, timestamp=None, source=None, **kwargs):
+    def __init__(self, mode=None, timestamp=None, source=None, **kwargs):
         """__init__ method.
 
+        :param str mode: Channel state
         :param long timestamp: Time of the event in milliseconds
         :param source: Source object
         :type source: T <= :py:class:`linebot.models.sources.Source`
@@ -56,6 +57,7 @@ class Event(with_metaclass(ABCMeta, Base)):
         super(Event, self).__init__(**kwargs)
 
         self.type = None
+        self.mode = mode
         self.timestamp = timestamp
         self.source = self.get_or_new_from_json_dict_with_types(
             source, {
@@ -76,9 +78,11 @@ class MessageEvent(Event):
     You can reply to message events.
     """
 
-    def __init__(self, timestamp=None, source=None, reply_token=None, message=None, **kwargs):
+    def __init__(self, mode=None, timestamp=None, source=None, reply_token=None, message=None,
+                 **kwargs):
         """__init__ method.
 
+        :param str mode: Channel state
         :param long timestamp: Time of the event in milliseconds
         :param source: Source object
         :type source: T <= :py:class:`linebot.models.sources.Source`
@@ -88,7 +92,7 @@ class MessageEvent(Event):
         :param kwargs:
         """
         super(MessageEvent, self).__init__(
-            timestamp=timestamp, source=source, **kwargs
+            mode=mode, timestamp=timestamp, source=source, **kwargs
         )
 
         self.type = 'message'
@@ -115,9 +119,10 @@ class FollowEvent(Event):
     You can reply to follow events.
     """
 
-    def __init__(self, timestamp=None, source=None, reply_token=None, **kwargs):
+    def __init__(self, mode=None, timestamp=None, source=None, reply_token=None, **kwargs):
         """__init__ method.
 
+        :param str mode: Channel state
         :param long timestamp: Time of the event in milliseconds
         :param source: Source object
         :type source: T <= :py:class:`linebot.models.sources.Source`
@@ -125,7 +130,7 @@ class FollowEvent(Event):
         :param kwargs:
         """
         super(FollowEvent, self).__init__(
-            timestamp=timestamp, source=source, **kwargs
+            mode=mode, timestamp=timestamp, source=source, **kwargs
         )
 
         self.type = 'follow'
@@ -140,16 +145,17 @@ class UnfollowEvent(Event):
     Event object for when your account is blocked.
     """
 
-    def __init__(self, timestamp=None, source=None, **kwargs):
+    def __init__(self, mode=None, timestamp=None, source=None, **kwargs):
         """__init__ method.
 
+        :param str mode: Channel state
         :param long timestamp: Time of the event in milliseconds
         :param source: Source object
         :type source: T <= :py:class:`linebot.models.sources.Source`
         :param kwargs:
         """
         super(UnfollowEvent, self).__init__(
-            timestamp=timestamp, source=source, **kwargs
+            mode=mode, timestamp=timestamp, source=source, **kwargs
         )
 
         self.type = 'unfollow'
@@ -164,9 +170,10 @@ class JoinEvent(Event):
     You can reply to join events.
     """
 
-    def __init__(self, timestamp=None, source=None, reply_token=None, **kwargs):
+    def __init__(self, mode=None, timestamp=None, source=None, reply_token=None, **kwargs):
         """__init__ method.
 
+        :param str mode: Channel state
         :param long timestamp: Time of the event in milliseconds
         :param source: Source object
         :type source: T <= :py:class:`linebot.models.sources.Source`
@@ -174,7 +181,7 @@ class JoinEvent(Event):
         :param kwargs:
         """
         super(JoinEvent, self).__init__(
-            timestamp=timestamp, source=source, **kwargs
+            mode=mode, timestamp=timestamp, source=source, **kwargs
         )
 
         self.type = 'join'
@@ -189,16 +196,17 @@ class LeaveEvent(Event):
     Event object for when your account leaves a group.
     """
 
-    def __init__(self, timestamp=None, source=None, **kwargs):
+    def __init__(self, mode=None, timestamp=None, source=None, **kwargs):
         """__init__ method.
 
+        :param str mode: Channel state
         :param long timestamp: Time of the event in milliseconds
         :param source: Source object
         :type source: T <= :py:class:`linebot.models.sources.Source`
         :param kwargs:
         """
         super(LeaveEvent, self).__init__(
-            timestamp=timestamp, source=source, **kwargs
+            mode=mode, timestamp=timestamp, source=source, **kwargs
         )
 
         self.type = 'leave'
@@ -214,9 +222,11 @@ class PostbackEvent(Event):
     You can reply to postback events.
     """
 
-    def __init__(self, timestamp=None, source=None, reply_token=None, postback=None, **kwargs):
+    def __init__(self, mode=None, timestamp=None, source=None, reply_token=None, postback=None,
+                 **kwargs):
         """__init__ method.
 
+        :param str mode: Channel state
         :param long timestamp: Time of the event in milliseconds
         :param source: Source object
         :type source: T <= :py:class:`linebot.models.sources.Source`
@@ -226,7 +236,7 @@ class PostbackEvent(Event):
         :param kwargs:
         """
         super(PostbackEvent, self).__init__(
-            timestamp=timestamp, source=source, **kwargs
+            mode=mode, timestamp=timestamp, source=source, **kwargs
         )
 
         self.type = 'postback'
@@ -244,10 +254,11 @@ class BeaconEvent(Event):
     Event object for when a user detects a LINE Beacon. You can reply to beacon events.
     """
 
-    def __init__(self, timestamp=None, source=None, reply_token=None,
-                 beacon=None, **kwargs):
+    def __init__(self, mode=None, timestamp=None, source=None, reply_token=None, beacon=None,
+                 **kwargs):
         """__init__ method.
 
+        :param str mode: Channel state
         :param long timestamp: Time of the event in milliseconds
         :param source: Source object
         :type source: T <= :py:class:`linebot.models.sources.Source`
@@ -257,7 +268,7 @@ class BeaconEvent(Event):
         :param kwargs:
         """
         super(BeaconEvent, self).__init__(
-            timestamp=timestamp, source=source, **kwargs
+            mode=mode, timestamp=timestamp, source=source, **kwargs
         )
 
         self.type = 'beacon'
@@ -276,10 +287,11 @@ class MemberJoinedEvent(Event):
 
     """
 
-    def __init__(self, timestamp=None, source=None, reply_token=None,
-                 joined=None, **kwargs):
+    def __init__(self, mode=None, timestamp=None, source=None, reply_token=None, joined=None,
+                 **kwargs):
         """__init__ method.
 
+        :param str mode: Channel state
         :param long timestamp: Time of the event in milliseconds
         :param source: Source object
         :type source: T <= :py:class:`linebot.models.sources.Source`
@@ -289,7 +301,7 @@ class MemberJoinedEvent(Event):
         :param kwargs:
         """
         super(MemberJoinedEvent, self).__init__(
-            timestamp=timestamp, source=source, **kwargs
+            mode=mode, timestamp=timestamp, source=source, **kwargs
         )
 
         self.type = 'memberJoined'
@@ -308,10 +320,10 @@ class MemberLeftEvent(Event):
 
     """
 
-    def __init__(self, timestamp=None, source=None,
-                 left=None, **kwargs):
+    def __init__(self, mode=None, timestamp=None, source=None, left=None, **kwargs):
         """__init__ method.
 
+        :param str mode: Channel state
         :param long timestamp: Time of the event in milliseconds
         :param source: Source object
         :type source: T <= :py:class:`linebot.models.sources.Source`
@@ -320,7 +332,7 @@ class MemberLeftEvent(Event):
         :param kwargs:
         """
         super(MemberLeftEvent, self).__init__(
-            timestamp=timestamp, source=source, **kwargs
+            mode=mode, timestamp=timestamp, source=source, **kwargs
         )
 
         self.type = 'memberLeft'
@@ -340,9 +352,11 @@ class AccountLinkEvent(Event):
     no webhook event will be sent and the user will be shown an error.
     """
 
-    def __init__(self, timestamp=None, source=None, reply_token=None, link=None, **kwargs):
+    def __init__(self, mode=None, timestamp=None, source=None, reply_token=None, link=None,
+                 **kwargs):
         """__init__ method.
 
+        :param str mode: Channel state
         :param long timestamp: Time of the event in milliseconds
         :param source: Source object
         :type source: T <= :py:class:`linebot.models.sources.Source`
@@ -352,7 +366,7 @@ class AccountLinkEvent(Event):
         :param kwargs:
         """
         super(AccountLinkEvent, self).__init__(
-            timestamp=timestamp, source=source, **kwargs
+            mode=mode, timestamp=timestamp, source=source, **kwargs
         )
 
         self.type = 'accountLink'
@@ -372,9 +386,12 @@ class ThingsEvent(Event):
     Event sent from LINE Things Webhook service.
     """
 
-    def __init__(self, timestamp=None, source=None, reply_token=None, things=None, **kwargs):
+    def __init__(self, mode=None, timestamp=None, source=None, reply_token=None, things=None,
+                 **kwargs):
         """__init__ method.
 
+        :param str mode: Channel state
+        :param long timestamp: Time of the event in milliseconds
         :param source: Source object
         :type source: T <= :py:class:`linebot.models.sources.Source`
         :param str reply_token: Reply token
@@ -383,7 +400,7 @@ class ThingsEvent(Event):
         :param kwargs:
         """
         super(ThingsEvent, self).__init__(
-            timestamp=timestamp, source=source, **kwargs
+            mode=mode, timestamp=timestamp, source=source, **kwargs
         )
 
         self.type = 'things'

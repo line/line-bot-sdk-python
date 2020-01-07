@@ -46,7 +46,6 @@ class FlexSendMessage(SendMessage):
 
         self.type = 'flex'
         self.alt_text = alt_text
-        self.contents = contents
         self.contents = self.get_or_new_from_json_dict_with_types(
             contents, {
                 'bubble': BubbleContainer,

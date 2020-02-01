@@ -455,7 +455,7 @@ class LineBotApi(object):
         return Content(response)
 
     def narrowcast(self, messages, recipient=None, filter=None, limit=None, timeout=None):
-        """Narrowcast messages to users
+        """Narrowcast messages to users.
 
         https://developers.line.biz/en/reference/messaging-api/#send-narrowcast-message
 
@@ -469,7 +469,6 @@ class LineBotApi(object):
             Default is self.http_client.timeout
         :type timeout: float | tuple(float, float)
         """
-
         self._post(
             '/v2/bot/message/narrowcast',
             data=json.dumps({

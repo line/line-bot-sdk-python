@@ -454,6 +454,33 @@ class LineBotApi(object):
 
         return Content(response)
 
+    def narrowcast(self, messages, recipient=None, filter=None, limit=None, timeout=None):
+        """Narrowcast messages to users
+
+        https://developers.line.biz/en/reference/messaging-api/#send-narrowcast-message
+
+        :param messages: List
+        :param recipient: (optional): Object
+        :param filter: (optional): Object
+        :param limit: (optional): Number
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        """
+
+        self._post(
+            '/v2/bot/message/narrowcast',
+            data=json.dumps({
+                'messages': messages,
+                'recipient': recipient,
+                'filter': filter,
+                'limit': limit,
+            }),
+            timeout=timeout
+        )
+
     def leave_group(self, group_id, timeout=None):
         """Call leave group API.
 

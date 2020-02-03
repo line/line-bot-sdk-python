@@ -343,7 +343,7 @@ def handle_text_message(event):
             "contents": [
               {
                 "type": "image",
-                "url": "https://line-objects-dev.com/flex/bg/eiji-k-1360395-unsplash.jpg",
+                "url": "https://scdn.line-apps.com/n/channel_devcenter/img/flexsnapshot/clip/clip3.jpg",
                 "position": "relative",
                 "size": "full",
                 "aspectMode": "cover",

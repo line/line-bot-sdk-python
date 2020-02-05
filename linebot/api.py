@@ -470,13 +470,13 @@ class LineBotApi(object):
             Default is self.http_client.timeout
         :type timeout: float | tuple(float, float)
         """
-        asd = NarrowCastModel.new_from_json_dict({
+        narrowcast = NarrowCastModel.new_from_json_dict({
             'messages': messages,
             'recipient': recipient,
             'filter': filter,
             'limit': limit
         })
-        output = json.dumps(asd.as_json_dict())
+        output = json.dumps(narrowcast.as_json_dict())
         if '"AND": ' in output:
             output = re.sub('\"AND\":', '\"and\":', output)
         if '"OR": ' in output:

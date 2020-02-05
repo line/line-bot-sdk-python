@@ -164,6 +164,6 @@ from .things import (  # noqa
     Things,
 )
 
-from .narrowcast import (
+from .narrowcast import (  # noqa
     NarrowCastModel
 )

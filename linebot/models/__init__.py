@@ -163,3 +163,7 @@ from .things import (  # noqa
     ActionResult,
     Things,
 )
+
+from .narrowcast import (
+    NarrowCastModel
+)

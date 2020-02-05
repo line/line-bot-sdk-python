@@ -38,20 +38,6 @@ def _requirements_test():
     with open('requirements-test.txt', 'r') as fd:
         return [name.strip() for name in fd.readlines()]
 
-
-class PyTest(TestCommand):
-    def finalize_options(self):
-        TestCommand.finalize_options(self)
-        self.test_args = []
-        self.test_suite = True
-
-    def run_tests(self):
-        # import here, cause outside the eggs aren't loaded
-        import pytest
-        errno = pytest.main(self.test_args)
-        sys.exit(errno)
-
-
 with open('README.rst', 'r') as fd:
     long_description = fd.read()
 
@@ -71,7 +57,9 @@ setup(
     ],
     install_requires=_requirements(),
     tests_require=_requirements_test(),
-    cmdclass={'test': PyTest},
+    cmdclass={'test': PyTest}
+    
+
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "License :: OSI Approved :: Apache Software License",

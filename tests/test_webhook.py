@@ -12,23 +12,20 @@
 #  License for the specific language governing permissions and limitations
 #  under the License.
 
-from __future__ import unicode_literals, absolute_import
+from __future__ import absolute_import, unicode_literals
 
 import os
 import unittest
 from builtins import open
 
-from linebot import (
-    SignatureValidator, WebhookParser, WebhookHandler
-)
+from linebot import SignatureValidator, WebhookHandler, WebhookParser
 from linebot.models import (
-    MessageEvent, FollowEvent, UnfollowEvent, JoinEvent,
-    LeaveEvent, PostbackEvent, BeaconEvent, AccountLinkEvent,
-    MemberJoinedEvent, MemberLeftEvent, ThingsEvent,
-    TextMessage, ImageMessage, VideoMessage, AudioMessage,
-    LocationMessage, StickerMessage, FileMessage,
-    SourceUser, SourceRoom, SourceGroup,
-    DeviceLink, DeviceUnlink, ScenarioResult, ActionResult)
+    AccountLinkEvent, ActionResult, AudioMessage, BeaconEvent, DeviceLink,
+    DeviceUnlink, FileMessage, FollowEvent, ImageMessage, JoinEvent,
+    LeaveEvent, LocationMessage, MemberJoinedEvent, MemberLeftEvent,
+    MessageEvent, PostbackEvent, ScenarioResult, SourceGroup, SourceRoom,
+    SourceUser, StickerMessage, TextMessage, ThingsEvent, UnfollowEvent,
+    VideoMessage)
 
 
 class TestSignatureValidator(unittest.TestCase):

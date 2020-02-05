@@ -25,8 +25,8 @@ class TestLineBotApi(unittest.TestCase):
         self.tested = LineBotApi('channel_secret')
         self.endpoint = LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/message/narrowcast'
         self.messages = [{
-            'type': 'text',
-            'text': 'Hello, world'
+            "type": "text",
+            "text": "Hello, world"
         }]
         self.recipient = None
         self.filter = None
@@ -53,23 +53,23 @@ class TestLineBotApi(unittest.TestCase):
     @responses.activate
     def test_narrowcast_text_message(self):
         self.recipient = {
-            'type': "audience",
-            'audienceGroupId': 5614991017776
+            "type": "audience",
+            "audienceGroupId": 5614991017776
         }
         self.filter = {
-            'demographic': {
-                'type': "area",
-                'oneOf': [
+            "demographic": {
+                "type": "area",
+                "oneOf": [
                     "android"
                 ]
             }
         }
-        self.limit = {'max': 100}
+        self.limit = {"max": 100}
         expected = {
-            'messages': self.messages,
-            'recipient': self.recipient,
-            'filter': self.filter,
-            'limit': self.limit,
+            "messages": self.messages,
+            "recipient": self.recipient,
+            "filter": self.filter,
+            "limit": self.limit,
         }
 
         responses.add(
@@ -89,7 +89,7 @@ class TestLineBotApi(unittest.TestCase):
 
         self.assertEqual(request.method, 'POST')
         self.assertEqual(request.url, self.endpoint)
-        self.assertEqual(request.body, json.dumps(expected))
+        self.assertEqual(json.loads(request.body), expected)
 
     @responses.activate
     def test_narrowcast_official_data(self):
@@ -175,10 +175,10 @@ class TestLineBotApi(unittest.TestCase):
             "max": 100
         }
         expected = {
-            'messages': self.messages,
-            'recipient': self.recipient,
-            'filter': self.filter,
-            'limit': self.limit
+            "messages": self.messages,
+            "recipient": self.recipient,
+            "filter": self.filter,
+            "limit": self.limit
         }
 
         responses.add(
@@ -197,7 +197,7 @@ class TestLineBotApi(unittest.TestCase):
 
         self.assertEqual(request.method, 'POST')
         self.assertEqual(request.url, self.endpoint)
-        self.assertEqual(request.body, json.dumps(expected))
+        self.assertEqual(json.loads(request.body), expected)
 
 
 if __name__ == '__main__':

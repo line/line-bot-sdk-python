@@ -17,6 +17,7 @@
 from __future__ import unicode_literals
 
 import json
+import re
 
 from .__about__ import __version__
 from .exceptions import LineBotApiError
@@ -27,7 +28,7 @@ from .models import (
     MessageDeliveryBroadcastResponse, MessageDeliveryMulticastResponse,
     MessageDeliveryPushResponse, MessageDeliveryReplyResponse,
     InsightMessageDeliveryResponse, InsightFollowersResponse, InsightDemographicResponse,
-    InsightMessageEventResponse, BroadcastResponse,
+    InsightMessageEventResponse, BroadcastResponse, NarrowCastModel
 )
 
 
@@ -469,14 +470,23 @@ class LineBotApi(object):
             Default is self.http_client.timeout
         :type timeout: float | tuple(float, float)
         """
+        asd = NarrowCastModel.new_from_json_dict({
+            'messages': messages,
+            'recipient': recipient,
+            'filter': filter,
+            'limit': limit
+        })
+        output = json.dumps(asd.as_json_dict())
+        if '"AND": ' in output:
+            output = re.sub('\"AND\":', '\"and\":', output)
+        if '"OR": ' in output:
+            output = re.sub('\"OR\":', '\"or\":', output)
+        if '"NOT": ' in output:
+            output = re.sub('\"NOT\":', '\"not\":', output)
+
         self._post(
             '/v2/bot/message/narrowcast',
-            data=json.dumps({
-                'messages': messages,
-                'recipient': recipient,
-                'filter': filter,
-                'limit': limit,
-            }),
+            data=output,
             timeout=timeout
         )
 

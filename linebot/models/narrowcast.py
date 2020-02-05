@@ -12,16 +12,27 @@
 #  License for the specific language governing permissions and limitations
 #  under the License.
 
+"""linebot.models.narrowcast module."""
 
 from __future__ import unicode_literals
 
 from functools import wraps
 
-from .base import Base
+from .send_messages import SendMessage
 
 
-class NarrowCastModel(Base):
+class NarrowCastModel(SendMessage):
+    """Model."""
+
     def __init__(self, messages, recipient=None, filter=None, limit=None, **kwargs):
+        """__init__ method.
+
+        :param messages: List of messages to send.
+        :param: recipient: filter condition
+        :param: filter: filter condition
+        :param: limit: Limit of send messages count.
+        :param kwargs:
+        """
         super(NarrowCastModel, self).__init__(**kwargs)
         self.messages = messages
         self.recipient = self.get_or_new_from_json_dict_with_types(
@@ -39,8 +50,15 @@ class NarrowCastModel(Base):
         self.limit = self.get_or_new_from_json_dict(limit, NarrowCastLimit)
 
 
-class NarrowCastDemographic(Base):
+class NarrowCastDemographic(SendMessage):
+    """Demographic."""
+
     def __init__(self, demographic=None, **kwargs):
+        """__init__ method.
+
+        :param demographic: dict
+        :param kwargs:
+        """
         super(NarrowCastDemographic, self).__init__(**kwargs)
         self.demographic = self.get_or_new_from_json_dict_with_types(
             demographic, {
@@ -55,7 +73,7 @@ class NarrowCastDemographic(Base):
         )
 
 
-class NarrowCastLimit(Base):
+class NarrowCastLimit(SendMessage):
     """Limit."""
 
     def __init__(self, max=None, **kwargs):
@@ -67,25 +85,9 @@ class NarrowCastLimit(Base):
         self.max = max
 
 
-class NarrowCast(Base):
-    """NarrowCast.
-
-    https://developers.line.biz/en/reference/messaging-api/#container
-
-    A container is the top-level structure of a Flex Message.
-    """
-
-    def __init__(self, **kwargs):
-        """__init__ method.
-
-        :param kwargs:
-        """
-        super(NarrowCast, self).__init__(**kwargs)
-
-        self.type = None
-
-
 def operator_initialize(func):
+    """Give a function to judge and UPPER operator."""
+
     @wraps(func)
     def wrapper(*args, **kwargs):
         if kwargs.get('and'):
@@ -99,11 +101,18 @@ def operator_initialize(func):
     return wrapper
 
 
-class Operator(NarrowCast):
+class Operator(SendMessage):
     """Operator."""
 
     @operator_initialize
     def __init__(self, AND=None, OR=None, NOT=None, **kwargs):
+        """__init__ method.
+
+        :param AND: Upper of operator 'and'
+        :param OR: Upper of operator 'or'
+        :param NOT: Upper of operator 'not'
+        :param kwargs:
+        """
         super(Operator, self).__init__(**kwargs)
         self.type = 'operator'
         new_and = []
@@ -149,57 +158,89 @@ class Operator(NarrowCast):
         )
 
 
-class Audience(NarrowCast):
+class Audience(SendMessage):
     """Audience."""
 
-    def __init__(self, audience_group_id=None, request_id=None, **kwargs):
+    def __init__(self, audience_group_id=None, **kwargs):
+        """__init__ method.
+
+        :param audience_group_id: group_id
+        :param kwargs:
+        """
         super(Audience, self).__init__(**kwargs)
 
         self.type = 'audience'
         self.audience_group_id = audience_group_id
 
 
-class Age(NarrowCast):
+class Age(SendMessage):
     """Age."""
 
     def __init__(self, gte=None, lt=None, **kwargs):
+        """__init__ method.
+
+        :param gte: Above designated age
+        :param lt: Under designated age
+        :param kwargs:
+        """
         super(Age, self).__init__(**kwargs)
         self.type = 'age'
         self.gte = gte
         self.lt = lt
 
 
-class Gender(NarrowCast):
+class Gender(SendMessage):
     """Gender."""
 
     def __init__(self, one_of=None, **kwargs):
+        """__init__ method.
+
+        :param one_of: Gender list
+        :param kwargs:
+        """
         super(Gender, self).__init__(**kwargs)
         self.type = 'gender'
         self.one_of = one_of
 
 
-class App(NarrowCast):
+class App(SendMessage):
     """App."""
 
     def __init__(self, one_of=None, **kwargs):
+        """__init__ method.
+
+        :param one_of: List of mobile OS
+        :param kwargs:
+        """
         super(App, self).__init__(**kwargs)
         self.type = 'appType'
         self.one_of = one_of
 
 
-class Area(NarrowCast):
+class Area(SendMessage):
     """Area."""
 
     def __init__(self, one_of=None, **kwargs):
+        """__init__ method.
+
+        :param one_of: List of area
+        :param kwargs:
+        """
         super(Area, self).__init__(**kwargs)
         self.type = 'area'
         self.one_of = one_of
 
 
-class SubscriptionPeriod(NarrowCast):
+class SubscriptionPeriod(SendMessage):
     """SubscriptionPeriod."""
 
     def __init__(self, gte=None, lt=None, **kwargs):
+        """__init__ method.
+
+        :param gte:
+        :param lt:
+        :param kwargs:
+        """
         super(SubscriptionPeriod, self).__init__(**kwargs)
         self.type = 'subscriptionPeriod'
         self.gte = gte

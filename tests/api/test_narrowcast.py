@@ -34,12 +34,7 @@ class TestLineBotApi(unittest.TestCase):
 
     @responses.activate
     def test_narrowcast_text_message_without_condition(self):
-        expected = {
-            'messages': self.messages,
-            'recipient': self.recipient,
-            'filter': self.filter,
-            'limit': self.limit,
-        }
+        expected = {'messages': self.messages}
         responses.add(
             responses.POST,
             self.endpoint,
@@ -90,6 +85,114 @@ class TestLineBotApi(unittest.TestCase):
             filter=self.filter,
             limit=self.limit)
 
+        request = responses.calls[0].request
+
+        self.assertEqual(request.method, 'POST')
+        self.assertEqual(request.url, self.endpoint)
+        self.assertEqual(request.body, json.dumps(expected))
+
+    @responses.activate
+    def test_narrowcast_official_data(self):
+        self.recipient = {
+            "type": "operator",
+            "and": [
+                {
+                    "type": "audience",
+                    "audienceGroupId": 5614991017776
+                },
+                {
+                    "type": "operator",
+                    "not": {
+                        "type": "audience",
+                        "audienceGroupId": "4389303728991"
+                    }
+                }
+            ]
+        }
+        self.filter = {
+            "demographic": {
+                "type": "operator",
+                "or": [
+                    {
+                        "type": "operator",
+                        "and": [
+                            {
+                                "type": "gender",
+                                "oneOf": [
+                                    "male",
+                                    "female"
+                                ]
+                            },
+                            {
+                                "type": "age",
+                                "gte": "age_20",
+                                "lt": "age_25"
+                            },
+                            {
+                                "type": "appType",
+                                "oneOf": [
+                                    "android",
+                                    "ios"
+                                ]
+                            },
+                            {
+                                "type": "area",
+                                "oneOf": [
+                                    "jp_23",
+                                    "jp_05"
+                                ]
+                            },
+                            {
+                                "type": "subscriptionPeriod",
+                                "gte": "day_7",
+                                "lt": "day_30"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "operator",
+                        "and": [
+                            {
+                                "type": "age",
+                                "gte": "age_35",
+                                "lt": "age_40"
+                            },
+                            {
+                                "type": "operator",
+                                "not": {
+                                    "type": "gender",
+                                    "oneOf": [
+                                        "male"
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+        self.limit = {
+            "max": 100
+        }
+        expected = {
+            'messages': self.messages,
+            'recipient': self.recipient,
+            'filter': self.filter,
+            'limit': self.limit
+        }
+
+        responses.add(
+            responses.POST,
+            self.endpoint,
+            json=expected,
+            status=202
+        )
+
+        self.tested.narrowcast(
+            messages=self.messages,
+            recipient=self.recipient,
+            filter=self.filter,
+            limit=self.limit)
         request = responses.calls[0].request
 
         self.assertEqual(request.method, 'POST')

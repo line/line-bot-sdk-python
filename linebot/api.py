@@ -210,6 +210,46 @@ class LineBotApi(object):
 
         return BroadcastResponse(request_id=response.headers.get('X-Line-Request-Id'))
 
+    def narrowcast(self, messages, recipient=None, filter=None, limit=None, timeout=None):
+        """Call multicast API.
+
+        https://developers.line.biz/en/reference/messaging-api/#send-narrowcast-message
+
+        Sends push messages to multiple users at any time.
+        Messages cannot be sent to groups or rooms.
+
+        :param messages: Messages.
+            Max: 5
+        :type messages: T <= :py:class:`linebot.models.send_messages.SendMessage` |
+            list[T <= :py:class:`linebot.models.send_messages.SendMessage`]
+        :param recipient: audience object of recipient
+        :type recipient: T <= :py:class:`linebot.models.recipient.AudienceRecipient`
+        :param filter: demographic filter of recipient
+        :type filter: T <= :py:class:`linebot.models.filter.DemographicFilter`
+        :param limit: limit on this narrowcast
+        :type limit: T <= :py:class:`linebot.models.limit.Limit`
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        """
+        if not isinstance(messages, (list, tuple)):
+            messages = [messages]
+
+        data = {
+            'messages': [message.as_json_dict() for message in messages],
+            'recipient': recipient.as_json_dict(),
+            'filter': filter.as_json_dict(),
+            'limit': limit.as_json_dict(),
+        }
+
+        response = self._post(
+            '/v2/bot/message/narrowcast', data=json.dumps(data), timeout=timeout
+        )
+
+        return BroadcastResponse(request_id=response.headers.get('X-Line-Request-Id'))
+
     def get_message_delivery_broadcast(self, date, timeout=None):
         """Get number of sent broadcast messages.
 

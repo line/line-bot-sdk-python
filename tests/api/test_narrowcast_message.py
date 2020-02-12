@@ -57,14 +57,26 @@ class TestNarrowcastMessage(unittest.TestCase):
 
         self.tested.narrowcast(
             self.text_message,
-            recipient=AudienceRecipient(group_id='1234'),
+            recipient=OpAND(
+                AudienceRecipient(group_id=5614991017776),
+                OpNOT(AudienceRecipient(group_id=4389303728991))
+            ),
             filter=DemographicFilter(
-                OpAND(
-                    AgeFilter(gte="age_35", lt="age_40"),
-                    OpNOT(GenderFilter(one_of=["male"]))
+                OpOR(
+                    OpAND(
+                        GenderFilter(one_of=["male", "female"]),
+                        AgeFilter(gte="age_20", lt="age_25"),
+                        AppTypeFilter(one_of=["android", "ios"]),
+                        AreaFilter(one_of=["jp_23", "jp_05"]),
+                        SubscriptionPeriodFilter(gte="day_7", lt="day_30")
+                    ),
+                    OpAND(
+                        AgeFilter(gte="age_35", lt="age_40"),
+                        OpNOT(GenderFilter(one_of=["male"]))
+                    )
                 )
             ),
-            limit=Limit(max=10),
+            limit=Limit(max=100),
         )
 
         request = responses.calls[0].request
@@ -77,32 +89,85 @@ class TestNarrowcastMessage(unittest.TestCase):
             {
                 "messages": self.message,
                 "recipient": {
-                    'audienceGroupId': '1234',
-                    'type': 'audience'
+                    "type": "operator",
+                    "and": [
+                        {
+                            'audienceGroupId': 5614991017776,
+                            'type': 'audience'
+                        },
+                        {
+                            "type": "operator",
+                            "not": {
+                                "type": "audience",
+                                "audienceGroupId": 4389303728991
+                            }
+                        }
+                    ]
                 },
                 "filter": {
                     "demographic": {
                         "type": "operator",
-                        "and": [
+                        "or": [
                             {
-                                "type": "age",
-                                "gte": "age_35",
-                                "lt": "age_40"
+                                "type": "operator",
+                                "and": [
+                                    {
+                                        "type": "gender",
+                                        "oneOf": [
+                                            "male",
+                                            "female"
+                                        ]
+                                    },
+                                    {
+                                        "type": "age",
+                                        "gte": "age_20",
+                                        "lt": "age_25"
+                                    },
+                                    {
+                                        "type": "appType",
+                                        "oneOf": [
+                                            "android",
+                                            "ios"
+                                        ]
+                                    },
+                                    {
+                                        "type": "area",
+                                        "oneOf": [
+                                            "jp_23",
+                                            "jp_05"
+                                        ]
+                                    },
+                                    {
+                                        "type": "subscriptionPeriod",
+                                        "gte": "day_7",
+                                        "lt": "day_30"
+                                    }
+                                ]
                             },
                             {
                                 "type": "operator",
-                                "not": {
-                                    "type": "gender",
-                                    "oneOf": [
-                                        "male"
-                                    ]
-                                }
+                                "and": [
+                                    {
+                                        "type": "age",
+                                        "gte": "age_35",
+                                        "lt": "age_40"
+                                    },
+                                    {
+                                        "type": "operator",
+                                        "not": {
+                                            "type": "gender",
+                                            "oneOf": [
+                                                "male"
+                                            ]
+                                        }
+                                    }
+                                ]
                             }
                         ]
                     }
                 },
                 "limit": {
-                    "max": 10
+                    "max": 100
                 }
             }
         )

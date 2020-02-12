@@ -17,7 +17,6 @@ from __future__ import unicode_literals, absolute_import
 import unittest
 
 from linebot.models import (
-    DemographicFilter,
     GenderFilter,
     AppTypeFilter,
     AreaFilter,
@@ -74,3 +73,7 @@ class TestFilter(SerializeTestCase):
             self.serialize_as_dict(arg, type=self.SUBSCRIPTION_PERIOD),
             SubscriptionPeriodFilter(**arg).as_json_dict()
         )
+
+
+if __name__ == '__main__':
+    unittest.main()

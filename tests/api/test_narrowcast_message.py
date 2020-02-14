@@ -34,7 +34,9 @@ from linebot.models import (
     AreaFilter,
     AgeFilter,
     AudienceRecipient,
-    SubscriptionPeriodFilter
+    SubscriptionPeriodFilter,
+    NarrowcastResponse,
+    MessageProgressNarrowcastResponse,
 )
 
 
@@ -52,10 +54,11 @@ class TestNarrowcastMessage(unittest.TestCase):
         responses.add(
             responses.POST,
             LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/message/narrowcast',
-            json={}, status=200
+            json={}, status=200,
+            headers={'X-Line-Request-Id': 'request_id_test'},
         )
 
-        self.tested.narrowcast(
+        response = self.tested.narrowcast(
             self.text_message,
             recipient=OpAND(
                 AudienceRecipient(group_id=5614991017776),
@@ -171,6 +174,7 @@ class TestNarrowcastMessage(unittest.TestCase):
                 }
             }
         )
+        self.assertEqual('request_id_test', response.request_id)
 
 
 if __name__ == '__main__':

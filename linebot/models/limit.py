@@ -37,5 +37,4 @@ class Limit(with_metaclass(ABCMeta, Base)):
         """
         super(Limit, self).__init__(**kwargs)
 
-        self.type = None
         self.max = max

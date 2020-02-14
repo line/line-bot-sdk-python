@@ -276,6 +276,34 @@ class MessageDeliveryMulticastResponse(Base):
         self.success = success
 
 
+class MessageProgressNarrowcastResponse(Base):
+    """MessageProgressNarrowcastResponse."""
+
+    def __init__(self, phase=None, success_count=None, failure_count=None,
+                 target_count=None, failed_description=None, error_code=None, **kwargs):
+        """__init__ method.
+
+        :param str phase: Progress status. One of `waiting`, `sending`,
+            `succeeded`, or `failed`.
+        :param int success_count: Number of narrowcast messages sent successful.
+        :param int failure_count: Number of narrowcast messages sent failed.
+        :param int target_count: Number of targeted messages sent.
+        :param str failed_description: Reaseon why narrowcast failed, useful when
+            phase is `failed`.
+        :param int error_code: Summary of the error. One of `1` or `2`. `1`
+            means internal error, whereas `2` indicates too few targets.
+        :param kwargs:
+        """
+        super(MessageProgressNarrowcastResponse, self).__init__(**kwargs)
+
+        self.phase = phase
+        self.success_count = success_count
+        self.failure_count = failure_count
+        self.target_count = target_count
+        self.failed_description = failed_description
+        self.error_code = error_code
+
+
 class IssueLinkTokenResponse(Base):
     """IssueLinkTokenResponse.
 
@@ -428,3 +456,20 @@ class InsightMessageEventResponse(Base):
         self.overview = self.get_or_new_from_json_dict(overview, MessageStatistics)
         self.messages = [self.get_or_new_from_json_dict(it, MessageInsight) for it in messages]
         self.clicks = [self.get_or_new_from_json_dict(it, ClickInsight) for it in clicks]
+
+
+class NarrowcastResponse(Base):
+    """NarrowcastResponse.
+
+    https://developers.line.biz/en/reference/messaging-api/#send-narrowcast-message
+    """
+
+    def __init__(self, request_id=None, **kwargs):
+        """__init__ method.
+
+        :param str request_id: Request ID. A unique ID is generated for each request
+        :param kwargs:
+        """
+        super(NarrowcastResponse, self).__init__(**kwargs)
+
+        self.request_id = request_id

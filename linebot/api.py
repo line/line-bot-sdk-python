@@ -27,7 +27,7 @@ from .models import (
     MessageDeliveryBroadcastResponse, MessageDeliveryMulticastResponse,
     MessageDeliveryPushResponse, MessageDeliveryReplyResponse,
     InsightMessageDeliveryResponse, InsightFollowersResponse, InsightDemographicResponse,
-    InsightMessageEventResponse, BroadcastResponse,
+    InsightMessageEventResponse, BroadcastResponse, NarrowcastResponse,
 )
 
 
@@ -233,6 +233,7 @@ class LineBotApi(object):
             or a (connect timeout, read timeout) float tuple.
             Default is self.http_client.timeout
         :type timeout: float | tuple(float, float)
+        :rtype: :py:class:`linebot.models.responses.NarrowcastResponse`
         """
         if not isinstance(messages, (list, tuple)):
             messages = [messages]
@@ -248,7 +249,29 @@ class LineBotApi(object):
             '/v2/bot/message/narrowcast', data=json.dumps(data), timeout=timeout
         )
 
-        return BroadcastResponse(request_id=response.headers.get('X-Line-Request-Id'))
+        return NarrowcastResponse(request_id=response.headers.get('X-Line-Request-Id'))
+
+    def get_progress_status_narrowcast(self, request_id, timeout=None):
+        """Get progress status of narrowcast messages sent.
+
+        https://developers.line.biz/en/reference/messaging-api/#get-narrowcast-progress-status
+
+        Gets the number of messages sent with the /bot/message/progress/narrowcast endpoint.
+
+        :param str request_id: request ID of narrowcast.
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        :rtype: :py:class:`linebot.models.responses.MessageDeliveryBroadcastResponse`
+        """
+        response = self._get(
+            '/v2/bot/message/progress/narrowcast?requestId={request_id}'.format(request_id=request_id),
+            timeout=timeout
+        )
+
+        return MessageProgressNarrowcastResponse.new_from_json_dict(response.json)
 
     def get_message_delivery_broadcast(self, date, timeout=None):
         """Get number of sent broadcast messages.

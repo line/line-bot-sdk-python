@@ -147,6 +147,8 @@ from .responses import (  # noqa
     InsightDemographicResponse,
     InsightMessageEventResponse,
     BroadcastResponse,
+    NarrowcastResponse,
+    MessageProgressNarrowcastResponse,
 )
 from .rich_menu import (  # noqa
     RichMenu,

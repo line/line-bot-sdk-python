@@ -28,6 +28,7 @@ from .models import (
     MessageDeliveryPushResponse, MessageDeliveryReplyResponse,
     InsightMessageDeliveryResponse, InsightFollowersResponse, InsightDemographicResponse,
     InsightMessageEventResponse, BroadcastResponse, NarrowcastResponse,
+    MessageProgressNarrowcastResponse,
 )
 
 
@@ -267,7 +268,8 @@ class LineBotApi(object):
         :rtype: :py:class:`linebot.models.responses.MessageDeliveryBroadcastResponse`
         """
         response = self._get(
-            '/v2/bot/message/progress/narrowcast?requestId={request_id}'.format(request_id=request_id),
+            '/v2/bot/message/progress/narrowcast?requestId={request_id}'.format(
+                request_id=request_id),
             timeout=timeout
         )
 

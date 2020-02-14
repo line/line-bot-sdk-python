@@ -40,30 +40,6 @@ class Operator(with_metaclass(ABCMeta, Base)):
 
         self.type = "operator"
 
-    def as_json_dict(self):
-        """Return dictionary from this object.
-
-        This converts 'AND', 'OR' and 'NOT' to lowercases.
-        :return: dict
-        """
-        data = {}
-        for key, value in self.__dict__.items():
-            lower_key = key.lower()
-            if isinstance(value, (list, tuple, set)):
-                data[lower_key] = list()
-                for item in value:
-                    if hasattr(item, 'as_json_dict'):
-                        data[lower_key].append(item.as_json_dict())
-                    else:
-                        data[lower_key].append(item)
-
-            elif hasattr(value, 'as_json_dict'):
-                data[lower_key] = value.as_json_dict()
-            elif value is not None:
-                data[lower_key] = value
-
-        return data
-
 
 class OpAND(Operator):
     """OpAND
@@ -77,7 +53,7 @@ class OpAND(Operator):
         """
         super(OpAND, self).__init__(**kwargs)
 
-        self.AND = args
+        setattr(self, 'and', args)
 
 
 class OpOR(Operator):
@@ -92,7 +68,7 @@ class OpOR(Operator):
         """
         super(OpOR, self).__init__(**kwargs)
 
-        self.OR = args
+        setattr(self, 'or', args)
 
 
 class OpNOT(Operator):
@@ -107,4 +83,4 @@ class OpNOT(Operator):
         """
         super(OpNOT, self).__init__(**kwargs)
 
-        self.NOT = arg
+        setattr(self, 'not', arg)

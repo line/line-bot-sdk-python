@@ -35,8 +35,6 @@ from linebot.models import (
     AgeFilter,
     AudienceRecipient,
     SubscriptionPeriodFilter,
-    NarrowcastResponse,
-    MessageProgressNarrowcastResponse,
 )
 
 

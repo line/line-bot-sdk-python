@@ -41,8 +41,8 @@ class Operator(with_metaclass(ABCMeta, Base)):
         self.type = "operator"
 
 
-class OpAND(Operator):
-    """OpAND
+class AND(Operator):
+    """AND
     """
 
     def __init__(self, *args, **kwargs):
@@ -51,13 +51,13 @@ class OpAND(Operator):
         :param args:
         :param kwargs:
         """
-        super(OpAND, self).__init__(**kwargs)
+        super(AND, self).__init__(**kwargs)
 
         setattr(self, 'and', args)
 
 
-class OpOR(Operator):
-    """OpOR
+class OR(Operator):
+    """OR
     """
 
     def __init__(self, *args, **kwargs):
@@ -66,13 +66,13 @@ class OpOR(Operator):
         :param args:
         :param kwargs:
         """
-        super(OpOR, self).__init__(**kwargs)
+        super(OR, self).__init__(**kwargs)
 
         setattr(self, 'or', args)
 
 
-class OpNOT(Operator):
-    """OpNOT
+class NOT(Operator):
+    """NOT
     """
 
     def __init__(self, arg, **kwargs):
@@ -81,6 +81,6 @@ class OpNOT(Operator):
         :param arg:
         :param kwargs:
         """
-        super(OpNOT, self).__init__(**kwargs)
+        super(NOT, self).__init__(**kwargs)
 
         setattr(self, 'not', arg)

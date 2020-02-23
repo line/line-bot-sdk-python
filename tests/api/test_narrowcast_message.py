@@ -25,9 +25,9 @@ from linebot import (
 from linebot.models import (
     TextSendMessage,
     Limit,
-    OpAND,
-    OpOR,
-    OpNOT,
+    AND,
+    OR,
+    NOT,
     GenderFilter,
     DemographicFilter,
     AppTypeFilter,
@@ -60,22 +60,22 @@ class TestNarrowcastMessage(unittest.TestCase):
 
         response = self.tested.narrowcast(
             self.text_message,
-            recipient=OpAND(
+            recipient=AND(
                 AudienceRecipient(group_id=5614991017776),
-                OpNOT(AudienceRecipient(group_id=4389303728991))
+                NOT(AudienceRecipient(group_id=4389303728991))
             ),
             filter=DemographicFilter(
-                OpOR(
-                    OpAND(
+                OR(
+                    AND(
                         GenderFilter(one_of=["male", "female"]),
                         AgeFilter(gte="age_20", lt="age_25"),
                         AppTypeFilter(one_of=["android", "ios"]),
                         AreaFilter(one_of=["jp_23", "jp_05"]),
                         SubscriptionPeriodFilter(gte="day_7", lt="day_30")
                     ),
-                    OpAND(
+                    AND(
                         AgeFilter(gte="age_35", lt="age_40"),
-                        OpNOT(GenderFilter(one_of=["male"]))
+                        NOT(GenderFilter(one_of=["male"]))
                     )
                 )
             ),

@@ -119,9 +119,9 @@ from .messages import (  # noqa
 )
 
 from .operator import (  # noqa
-    OpAND,
-    OpOR,
-    OpNOT
+    AND,
+    OR,
+    NOT
 )
 
 from .recipient import (  # noqa

@@ -43,8 +43,8 @@ class Operator(with_metaclass(ABCMeta, Base)):
         self.type = "operator"
 
 
-class AND(Operator):
-    """AND.
+class And(Operator):
+    """And.
 
     Create a new recipient object or demographic filter object by taking the
     logical conjunction (AND) of the specified array of objects.
@@ -56,13 +56,13 @@ class AND(Operator):
         :param args:
         :param kwargs:
         """
-        super(AND, self).__init__(**kwargs)
+        super(And, self).__init__(**kwargs)
 
         setattr(self, 'and', args)
 
 
-class OR(Operator):
-    """OR.
+class Or(Operator):
+    """Or.
 
     Create a new recipient object or demographic filter object by taking the
     logical disjunction (OR) of the specified array of objects.
@@ -74,13 +74,13 @@ class OR(Operator):
         :param args:
         :param kwargs:
         """
-        super(OR, self).__init__(**kwargs)
+        super(Or, self).__init__(**kwargs)
 
         setattr(self, 'or', args)
 
 
-class NOT(Operator):
-    """NOT.
+class Not(Operator):
+    """Not.
 
     Create a new recipient object or demographic filter object that excludes
     in the specified object.
@@ -92,6 +92,6 @@ class NOT(Operator):
         :param arg:
         :param kwargs:
         """
-        super(NOT, self).__init__(**kwargs)
+        super(Not, self).__init__(**kwargs)
 
         setattr(self, 'not', arg)

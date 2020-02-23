@@ -25,9 +25,9 @@ from linebot import (
 from linebot.models import (
     TextSendMessage,
     Limit,
-    AND,
-    OR,
-    NOT,
+    And,
+    Or,
+    Not,
     GenderFilter,
     DemographicFilter,
     AppTypeFilter,
@@ -43,6 +43,7 @@ from linebot.models import (
 class TestNarrowcastMessage(unittest.TestCase):
     def setUp(self):
         self.tested = LineBotApi('channel_secret')
+        self.maxDiff = None
         self.request_id = 'f70dd685-499a-4231-a441-f24b8d4fba21'
 
         # test data
@@ -60,22 +61,22 @@ class TestNarrowcastMessage(unittest.TestCase):
 
         response = self.tested.narrowcast(
             self.text_message,
-            recipient=AND(
+            recipient=And(
                 AudienceRecipient(group_id=5614991017776),
-                NOT(AudienceRecipient(group_id=4389303728991))
+                Not(AudienceRecipient(group_id=4389303728991))
             ),
             filter=DemographicFilter(
-                OR(
-                    AND(
+                Or(
+                    And(
                         GenderFilter(one_of=["male", "female"]),
                         AgeFilter(gte="age_20", lt="age_25"),
                         AppTypeFilter(one_of=["android", "ios"]),
                         AreaFilter(one_of=["jp_23", "jp_05"]),
                         SubscriptionPeriodFilter(gte="day_7", lt="day_30")
                     ),
-                    AND(
+                    And(
                         AgeFilter(gte="age_35", lt="age_40"),
-                        NOT(GenderFilter(one_of=["male"]))
+                        Not(GenderFilter(one_of=["male"]))
                     )
                 )
             ),

@@ -28,6 +28,8 @@ class Recipient(with_metaclass(ABCMeta, Base)):
 
     https://developers.line.biz/en/reference/messaging-api/#narrowcast-recipient
 
+    Recipient objects represent audiences. You can specify recipients based on
+    a combination of criteria using logical operator objects.
     """
 
     def __init__(self, **kwargs):
@@ -41,12 +43,14 @@ class Recipient(with_metaclass(ABCMeta, Base)):
 
 
 class AudienceRecipient(Recipient):
-    """AudienceRecipient
-    """
+    """AudienceRecipient."""
 
     def __init__(self, group_id=None, **kwargs):
         """__init__ method.
 
+        :param int group_id: The audience ID. Create audiences with the
+            Manage Audience API.
+        :param kwargs:
         """
         super(AudienceRecipient, self).__init__(**kwargs)
 

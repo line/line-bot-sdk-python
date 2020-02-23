@@ -42,32 +42,40 @@ class Filter(with_metaclass(ABCMeta, Base)):
 
 
 class DemographicFilter(Filter):
-    """Demographic.
+    """DemographicFilter.
 
     https://developers.line.biz/en/reference/messaging-api/#narrowcast-demographic-filter
 
-    A demogrphic filter is the top-level structure of a demographic element.
+    Demographic filter objects represent criteria (e.g. age, gender, OS, region,
+    and friendship duration) on which to filter the list of recipients.
+    You can filter recipients based on a combination of different criteria using
+    logical operator objects.
     """
 
-    def __init__(self, condition=None, **kwargs):
+    def __init__(self, criteria=None, **kwargs):
         """__init__ method.
 
+        :param criteria: Combination of different criteria using logical
+            operator objects.
+        :type criteria: :py:class:`linebot.model.DemographicFilter` |
+            :py:class:`linebot.model.Operator`
         :param kwargs:
         """
         super(DemographicFilter, self).__init__(**kwargs)
 
-        self.demographic = condition
+        self.demographic = criteria
 
 
 class GenderFilter(Filter):
-    """GenderFilter
-    """
+    """GenderFilter."""
 
     def __init__(self, one_of=[], **kwargs):
         """__init__ method.
 
-        :param header: Style of the header block
-        :type header: :py:class:`linebot.models.flex_message.BlockStyle`
+        :param one_of: Send messages to users of a given gender. One of:
+            male: Users who identify as male
+            female: Users who identify as female
+        :type one_of: list[str]
         """
         super(GenderFilter, self).__init__(**kwargs)
 
@@ -76,12 +84,15 @@ class GenderFilter(Filter):
 
 
 class AppTypeFilter(Filter):
-    """AppTypeFilter
-    """
+    """AppTypeFilter."""
 
     def __init__(self, one_of=[], **kwargs):
         """__init__ method.
 
+        :param one_of: Send messages to users of the specified OS. One of:
+            ios: Users who using iOS.
+            android: Users who using Android.
+        :type one_of: list[str]
         """
         super(AppTypeFilter, self).__init__(**kwargs)
 
@@ -90,12 +101,13 @@ class AppTypeFilter(Filter):
 
 
 class AreaFilter(Filter):
-    """AreaFilter
-    """
+    """AreaFilter."""
 
     def __init__(self, one_of=[], **kwargs):
         """__init__ method.
 
+        :param one_of: Send messages to users in the specified region.
+        :type one_of: list[str]
         """
         super(AreaFilter, self).__init__(**kwargs)
 
@@ -104,12 +116,21 @@ class AreaFilter(Filter):
 
 
 class AgeFilter(Filter):
-    """AgeFilter
+    """AgeFilter.
+
+    This lets you filter recipients with a given age range.
     """
 
     def __init__(self, gte=None, lt=None, **kwargs):
         """__init__ method.
 
+        Be sure to specify either gte, lt, or both.
+
+        :param gte: Send messages to users at least as old as the specified age.
+        :type gte: str
+        :param lt: Send messages to users younger than the specified age.
+            You can specify the same values as for the gte property.
+        :type lt: str
         """
         super(AgeFilter, self).__init__(**kwargs)
 
@@ -119,12 +140,23 @@ class AgeFilter(Filter):
 
 
 class SubscriptionPeriodFilter(Filter):
-    """SubscriptionPeriodFilter
+    """SubscriptionPeriodFilter.
+
+    This lets you filter recipients with a given range of friendship durations.
     """
 
     def __init__(self, gte=None, lt=None, **kwargs):
         """__init__ method.
 
+        Be sure to specify either gte, lt, or both.
+
+        :param gte: Send messages to users who have been friends of yours for
+            at least the specified number of days
+        :type gte: str
+        :param lt: Send messages to users who have been friends of yours for
+            less than the specified number of days.
+            You can specify the same values as for the gte property.
+        :type lt: str
         """
         super(SubscriptionPeriodFilter, self).__init__(**kwargs)
 

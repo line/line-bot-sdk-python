@@ -28,7 +28,9 @@ class Operator(with_metaclass(ABCMeta, Base)):
 
     https://developers.line.biz/en/reference/messaging-api/#narrowcast-demographic-filter
 
-    A operator is the top-level structure of a demographic element.
+    Use logical AND, OR, and NOT operators to combine multiple recipient objects or
+    demographic filter objects together.
+    You can specify up to 10 recipient objects or demographic filter objects per request.
     """
 
     def __init__(self, **kwargs):
@@ -42,7 +44,10 @@ class Operator(with_metaclass(ABCMeta, Base)):
 
 
 class AND(Operator):
-    """AND
+    """AND.
+
+    Create a new recipient object or demographic filter object by taking the
+    logical conjunction (AND) of the specified array of objects.
     """
 
     def __init__(self, *args, **kwargs):
@@ -57,7 +62,10 @@ class AND(Operator):
 
 
 class OR(Operator):
-    """OR
+    """OR.
+
+    Create a new recipient object or demographic filter object by taking the
+    logical disjunction (OR) of the specified array of objects.
     """
 
     def __init__(self, *args, **kwargs):
@@ -72,7 +80,10 @@ class OR(Operator):
 
 
 class NOT(Operator):
-    """NOT
+    """NOT.
+
+    Create a new recipient object or demographic filter object that excludes
+    in the specified object.
     """
 
     def __init__(self, arg, **kwargs):

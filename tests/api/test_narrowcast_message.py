@@ -43,7 +43,7 @@ from linebot.models import (
 class TestNarrowcastMessage(unittest.TestCase):
     def setUp(self):
         self.tested = LineBotApi('channel_secret')
-        self.maxDiff = None
+        self.request_id = 'f70dd685-499a-4231-a441-f24b8d4fba21'
 
         # test data
         self.text_message = TextSendMessage(text='Hello, world')
@@ -175,6 +175,55 @@ class TestNarrowcastMessage(unittest.TestCase):
             }
         )
         self.assertEqual('request_id_test', response.request_id)
+
+    @responses.activate
+    def test_get_progress_status_narrowcast(self):
+        responses.add(
+            responses.GET,
+            LineBotApi.DEFAULT_API_ENDPOINT +
+            '/v2/bot/message/progress/narrowcast?requestId={request_id}'.format(
+                request_id=self.request_id),
+            json={'phase': 'waiting'}, status=200,
+        )
+        responses.add(
+            responses.GET,
+            LineBotApi.DEFAULT_API_ENDPOINT +
+            '/v2/bot/message/progress/narrowcast?requestId={request_id}'.format(
+                request_id=self.request_id),
+            json={
+                'phase': 'succeeded',
+                'successCount': 10,
+                'failureCount': 0,
+                'targetCount': 10,
+            }, status=200,
+        )
+
+        res = self.tested.get_progress_status_narrowcast(self.request_id)
+        request = responses.calls[0].request
+        self.assertEqual('GET', request.method)
+        self.assertEqual(
+            request.url,
+            LineBotApi.DEFAULT_API_ENDPOINT +
+            '/v2/bot/message/progress/narrowcast?requestId={request_id}'.format(
+                request_id=self.request_id)
+        )
+
+        self.assertEqual(res.phase, 'waiting')
+
+        res = self.tested.get_progress_status_narrowcast(self.request_id)
+        request = responses.calls[1].request
+        self.assertEqual('GET', request.method)
+        self.assertEqual(
+            request.url,
+            LineBotApi.DEFAULT_API_ENDPOINT +
+            '/v2/bot/message/progress/narrowcast?requestId={request_id}'.format(
+                request_id=self.request_id)
+        )
+
+        self.assertEqual(res.phase, 'succeeded')
+        self.assertEqual(res.success_count, 10)
+        self.assertEqual(res.failure_count, 0)
+        self.assertEqual(res.target_count, 10)
 
 
 if __name__ == '__main__':

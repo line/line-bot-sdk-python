@@ -28,8 +28,8 @@ from linebot.models import (
     And,
     Or,
     Not,
+    Filter,
     GenderFilter,
-    DemographicFilter,
     AppTypeFilter,
     AreaFilter,
     AgeFilter,
@@ -49,6 +49,48 @@ class TestNarrowcastMessage(unittest.TestCase):
         self.message = [{"type": "text", "text": "Hello, world"}]
 
     @responses.activate
+    def test_narrowcast_simple_text_message(self):
+        responses.add(
+            responses.POST,
+            LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/message/narrowcast',
+            json={}, status=200,
+            headers={'X-Line-Request-Id': 'request_id_test'},
+        )
+
+        response = self.tested.narrowcast(
+            self.text_message,
+            recipient=AudienceRecipient(group_id=5614991017776),
+            filter=Filter(demographic=AgeFilter(gte="age_35", lt="age_40")),
+            limit=Limit(max=10),
+        )
+
+        request = responses.calls[0].request
+        self.assertEqual(
+            request.url,
+            LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/message/narrowcast')
+        self.assertEqual(request.method, 'POST')
+        self.assertEqual(
+            json.loads(request.body),
+            {
+                "messages": self.message,
+                "recipient": {
+                    'audienceGroupId': 5614991017776,
+                    'type': 'audience'
+                },
+                "filter": {
+                    "demographic": {
+                        "type": "age",
+                        "gte": "age_35",
+                        "lt": "age_40"
+                    }
+                },
+                "limit": {
+                    "max": 10
+                }
+            }
+        )
+
+    @responses.activate
     def test_narrowcast_text_message(self):
         responses.add(
             responses.POST,
@@ -63,7 +105,7 @@ class TestNarrowcastMessage(unittest.TestCase):
                 AudienceRecipient(group_id=5614991017776),
                 Not(AudienceRecipient(group_id=4389303728991))
             ),
-            filter=DemographicFilter(
+            filter=Filter(demographic=
                 Or(
                     And(
                         GenderFilter(one_of=["male", "female"]),

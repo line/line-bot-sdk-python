@@ -55,6 +55,7 @@ from .events import (  # noqa
     Link,
 )
 from .filter import(  # noqa
+    Filter,
     DemographicFilter,
     GenderFilter,
     AppTypeFilter,

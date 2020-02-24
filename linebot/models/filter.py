@@ -31,14 +31,18 @@ class Filter(with_metaclass(ABCMeta, Base)):
     A filter is the top-level structure of a demographic element.
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self, demographic=None, **kwargs):
         """__init__ method.
 
+        :param demographic: Combination of different criteria using logical
+            operator objects.
+        :type demographic: :py:class:`linebot.model.DemographicFilter` |
+            :py:class:`linebot.model.Operator`
         :param kwargs:
         """
         super(Filter, self).__init__(**kwargs)
 
-        self.type = None
+        self.demographic = demographic
 
 
 class DemographicFilter(Filter):
@@ -52,21 +56,17 @@ class DemographicFilter(Filter):
     logical operator objects.
     """
 
-    def __init__(self, criteria=None, **kwargs):
+    def __init__(self, **kwargs):
         """__init__ method.
 
-        :param criteria: Combination of different criteria using logical
-            operator objects.
-        :type criteria: :py:class:`linebot.model.DemographicFilter` |
-            :py:class:`linebot.model.Operator`
         :param kwargs:
         """
         super(DemographicFilter, self).__init__(**kwargs)
 
-        self.demographic = criteria
+        self.type = None
 
 
-class GenderFilter(Filter):
+class GenderFilter(DemographicFilter):
     """GenderFilter."""
 
     def __init__(self, one_of=[], **kwargs):
@@ -83,7 +83,7 @@ class GenderFilter(Filter):
         self.one_of = one_of
 
 
-class AppTypeFilter(Filter):
+class AppTypeFilter(DemographicFilter):
     """AppTypeFilter."""
 
     def __init__(self, one_of=[], **kwargs):
@@ -100,7 +100,7 @@ class AppTypeFilter(Filter):
         self.one_of = one_of
 
 
-class AreaFilter(Filter):
+class AreaFilter(DemographicFilter):
     """AreaFilter."""
 
     def __init__(self, one_of=[], **kwargs):
@@ -115,7 +115,7 @@ class AreaFilter(Filter):
         self.one_of = one_of
 
 
-class AgeFilter(Filter):
+class AgeFilter(DemographicFilter):
     """AgeFilter.
 
     This lets you filter recipients with a given age range.
@@ -139,7 +139,7 @@ class AgeFilter(Filter):
         self.lt = lt
 
 
-class SubscriptionPeriodFilter(Filter):
+class SubscriptionPeriodFilter(DemographicFilter):
     """SubscriptionPeriodFilter.
 
     This lets you filter recipients with a given range of friendship durations.

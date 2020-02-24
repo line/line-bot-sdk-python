@@ -57,7 +57,7 @@ class TestNarrowcastMessage(unittest.TestCase):
             headers={'X-Line-Request-Id': 'request_id_test'},
         )
 
-        response = self.tested.narrowcast(
+        self.tested.narrowcast(
             self.text_message,
             recipient=AudienceRecipient(group_id=5614991017776),
             filter=Filter(demographic=AgeFilter(gte="age_35", lt="age_40")),
@@ -105,8 +105,8 @@ class TestNarrowcastMessage(unittest.TestCase):
                 AudienceRecipient(group_id=5614991017776),
                 Not(AudienceRecipient(group_id=4389303728991))
             ),
-            filter=Filter(demographic=
-                Or(
+            filter=Filter(
+                demographic=Or(
                     And(
                         GenderFilter(one_of=["male", "female"]),
                         AgeFilter(gte="age_20", lt="age_25"),

@@ -212,7 +212,7 @@ class LineBotApi(object):
         return BroadcastResponse(request_id=response.headers.get('X-Line-Request-Id'))
 
     def narrowcast(self, messages, recipient=None, filter=None, limit=None, timeout=None):
-        """Call multicast API.
+        """Call narrowcast API.
 
         https://developers.line.biz/en/reference/messaging-api/#send-narrowcast-message
 

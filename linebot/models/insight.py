@@ -122,14 +122,14 @@ class MessageStatistics(Base):
         :param str request_id: Request ID.
         :param int timestamp: UNIX timestamp for message delivery time.
         :param int delivered: Number of messages delivered. This property shows values
-        of less than 20.
+            of less than 20.
         :param int unique_impression: Number of people who opened the message,
-        meaning they displayed at least 1 bubble.
+            meaning they displayed at least 1 bubble.
         :param int unique_click: Number of people who opened any URL in the message.
         :param int unique_media_played: Number of people who started playing any video
-        or audio in the message.
+            or audio in the message.
         :param int unique_media_played_100_percent: Number of people who played the entirety of
-        any video or audio in the message.
+            any video or audio in the message.
         """
         super(MessageStatistics, self).__init__(**kwargs)
 
@@ -157,23 +157,23 @@ class MessageInsight(Base):
         :param int impression: Number of times the bubble was displayed.
         :param int media_played: Number of times audio or video in the bubble started playing.
         :param int media_played_25_percent: Number of times audio or video
-        in the bubble was played from start to 25%.
+            in the bubble was played from start to 25%.
         :param int media_played_50_percent: Number of times audio or video
-        in the bubble was played from start to 50%.
+            in the bubble was played from start to 50%.
         :param int media_played_75_percent: Number of times audio or video
-        in the bubble was played from start to 75%.
+            in the bubble was played from start to 75%.
         :param int media_played_100_percent: Number of times audio or video
-        in the bubble was played in its entirety.
+            in the bubble was played in its entirety.
         :param int unique_media_played: Number of people that started playing
-        audio or video in the bubble.
+            audio or video in the bubble.
         :param int unique_media_played_25_percent: Number of people that played
-        audio or video in the bubble from start to 25%.
+            audio or video in the bubble from start to 25%.
         :param int unique_media_played_50_percent: Number of people that played
-        audio or video in the bubble from start to 50%.
+            audio or video in the bubble from start to 50%.
         :param int unique_media_played_75_percent: Number of people that played
-        audio or video in the bubble from start to 75%.
+            audio or video in the bubble from start to 75%.
         :param int unique_media_played_100_percent: Number of people that played
-        audio or video in the bubble in its entirety.
+            audio or video in the bubble in its entirety.
         """
         super(MessageInsight, self).__init__(**kwargs)
 
@@ -203,7 +203,7 @@ class ClickInsight(Base):
         :param int click: Number of times the URL was opened.
         :param int unique_click: Number of people that opened the URL.
         :param int unique_click_of_request: Number of people who opened this url
-        through any link in the message.
+            through any link in the message.
         """
         super(ClickInsight, self).__init__(**kwargs)
 

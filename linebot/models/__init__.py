@@ -54,6 +54,16 @@ from .events import (  # noqa
     Beacon,
     Link,
 )
+from .filter import(  # noqa
+    Filter,
+    DemographicFilter,
+    GenderFilter,
+    AppTypeFilter,
+    AreaFilter,
+    AgeFilter,
+    SubscriptionPeriodFilter,
+)
+
 from .flex_message import (  # noqa
     FlexSendMessage,
     FlexContainer,
@@ -93,6 +103,11 @@ from .insight import (  # noqa
     MessageInsight,
     ClickInsight,
 )
+
+from .limit import (  # noqa
+    Limit,
+)
+
 from .messages import (  # noqa
     Message,
     TextMessage,
@@ -103,6 +118,17 @@ from .messages import (  # noqa
     StickerMessage,
     FileMessage,
 )
+
+from .operator import (  # noqa
+    And,
+    Or,
+    Not
+)
+
+from .recipient import (  # noqa
+    AudienceRecipient
+)
+
 from .responses import (  # noqa
     Profile,
     MemberIds,
@@ -122,6 +148,8 @@ from .responses import (  # noqa
     InsightDemographicResponse,
     InsightMessageEventResponse,
     BroadcastResponse,
+    NarrowcastResponse,
+    MessageProgressNarrowcastResponse,
 )
 from .rich_menu import (  # noqa
     RichMenu,

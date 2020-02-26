@@ -36,6 +36,11 @@ class SerializeTestCase(unittest.TestCase):
     URI = 'uri'
     LOCATION = 'location'
     FLEX = 'flex'
+    GENDER = "gender"
+    APP_TYPE = "appType"
+    AGE = "age"
+    AREA = "area"
+    SUBSCRIPTION_PERIOD = "subscriptionPeriod"
     SPACER = 'spacer'
     SPAN = 'span'
     BUBBLE = 'bubble'

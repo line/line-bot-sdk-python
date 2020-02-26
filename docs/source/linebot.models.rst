@@ -22,6 +22,11 @@ linebot.models.events module
 
 .. automodule:: linebot.models.events
 
+linebot.models.filter module
+-----------------------------------
+
+.. automodule:: linebot.models.filter
+
 linebot.models.flex_message module
 -----------------------------------
 
@@ -37,10 +42,25 @@ linebot.models.insight module
 
 .. automodule:: linebot.models.insight
 
+linebot.models.limit module
+------------------------------
+
+.. automodule:: linebot.models.limit
+
 linebot.models.messages module
 ------------------------------
 
 .. automodule:: linebot.models.messages
+
+linebot.models.operator module
+-------------------------------
+
+.. automodule:: linebot.models.operator
+
+linebot.models.recipient module
+-------------------------------
+
+.. automodule:: linebot.models.recipient
 
 linebot.models.responses module
 -------------------------------

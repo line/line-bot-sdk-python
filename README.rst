@@ -147,6 +147,39 @@ https://developers.line.biz/en/reference/messaging-api/#send-broadcast-message
 
     line_bot_api.broadcast(TextSendMessage(text='Hello World!'))
 
+narrowcast(self, messages, recipient=None, filter=None, limit=None, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Sends a push message to multiple users specified by attributes (such as age, gender, OS, and region)
+or retargeting (audiences).
+
+https://developers.line.biz/en/reference/messaging-api/#send-narrowcast-message
+
+.. code:: python
+
+    line_bot_api.narrowcast(
+        messages=TextSendMessage(text='Hello World!'),
+        recipient=AudienceRecipient(group_id=5614991017776),
+        filter=Filter(demographic=AgeFilter(gte="age_35", lt="age_40")),
+        limit=Limit(max=10)
+    )
+
+get_progress_status_narrowcast(self, request_id, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get progress status of narrowcast messages sent.
+
+https://developers.line.biz/en/reference/messaging-api/#get-narrowcast-progress-status
+
+.. code:: python
+
+    narrowcast_progress = line_bot_api.get_progress_status_narrowcast(request_id)
+    assert narrowcast_progress.phase == 'succeeded'
+    print(narrowcast.success_count)
+    print(narrowcast.failure_count)
+    print(narrowcast.target_count)
+
+
 get\_profile(self, user\_id, timeout=None)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

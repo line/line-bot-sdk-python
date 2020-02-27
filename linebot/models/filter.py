@@ -36,8 +36,8 @@ class Filter(with_metaclass(ABCMeta, Base)):
 
         :param demographic: Combination of different criteria using logical
             operator objects.
-        :type demographic: :py:class:`linebot.model.DemographicFilter` |
-            :py:class:`linebot.model.Operator`
+        :type demographic: :py:class:`linebot.model.filter.DemographicFilter` |
+            :py:class:`linebot.model.operator.Operator`
         :param kwargs:
         """
         super(Filter, self).__init__(**kwargs)

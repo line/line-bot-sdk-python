@@ -167,6 +167,7 @@ from .send_messages import (  # noqa
     StickerSendMessage,
     QuickReply,
     QuickReplyButton,
+    Sender,
 )
 from .sources import (  # noqa
     Source,

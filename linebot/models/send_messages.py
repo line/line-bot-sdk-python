@@ -27,7 +27,7 @@ from .base import Base
 class SendMessage(with_metaclass(ABCMeta, Base)):
     """Abstract Base Class of SendMessage."""
 
-    def __init__(self, quick_reply=None, **kwargs):
+    def __init__(self, quick_reply=None, sender=None, **kwargs):
         """__init__ method.
 
         :param quick_reply: QuickReply object
@@ -38,6 +38,7 @@ class SendMessage(with_metaclass(ABCMeta, Base)):
 
         self.type = None
         self.quick_reply = self.get_or_new_from_json_dict(quick_reply, QuickReply)
+        self.sender = self.get_or_new_from_json_dict(sender, Sender)
 
 
 class TextSendMessage(SendMessage):
@@ -232,3 +233,13 @@ class QuickReplyButton(with_metaclass(ABCMeta, Base)):
         self.type = 'action'
         self.image_url = image_url
         self.action = get_action(action)
+
+
+class Sender(with_metaclass(ABCMeta, Base)):
+
+    def __init__(self, name=None, icon_url=None, **kwargs):
+
+        super(Sender, self).__init__(**kwargs)
+
+        self.name = name
+        self.icon_url = icon_url

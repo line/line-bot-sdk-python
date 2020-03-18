@@ -32,6 +32,8 @@ class SendMessage(with_metaclass(ABCMeta, Base)):
 
         :param quick_reply: QuickReply object
         :type quick_reply: T <= :py:class:`linebot.models.send_messages.QuickReply`
+        :param sender: Sender object
+        :type sender: T <= :py:class:`linebot.models.send_messages.Sender`
         :param kwargs:
         """
         super(SendMessage, self).__init__(**kwargs)
@@ -236,9 +238,17 @@ class QuickReplyButton(with_metaclass(ABCMeta, Base)):
 
 
 class Sender(with_metaclass(ABCMeta, Base)):
+    """Sender.
+
+    https://developers.line.biz/en/reference/messaging-api/#icon-nickname-switch
+    """
 
     def __init__(self, name=None, icon_url=None, **kwargs):
+        """__init__ method.
 
+        :param str name: Display name
+        :param str icon_url: Icon image URL
+        """
         super(Sender, self).__init__(**kwargs)
 
         self.name = name

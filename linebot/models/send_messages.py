@@ -27,17 +27,20 @@ from .base import Base
 class SendMessage(with_metaclass(ABCMeta, Base)):
     """Abstract Base Class of SendMessage."""
 
-    def __init__(self, quick_reply=None, **kwargs):
+    def __init__(self, quick_reply=None, sender=None, **kwargs):
         """__init__ method.
 
         :param quick_reply: QuickReply object
         :type quick_reply: T <= :py:class:`linebot.models.send_messages.QuickReply`
+        :param sender: Sender object
+        :type sender: T <= :py:class:`linebot.models.send_messages.Sender`
         :param kwargs:
         """
         super(SendMessage, self).__init__(**kwargs)
 
         self.type = None
         self.quick_reply = self.get_or_new_from_json_dict(quick_reply, QuickReply)
+        self.sender = self.get_or_new_from_json_dict(sender, Sender)
 
 
 class TextSendMessage(SendMessage):
@@ -232,3 +235,21 @@ class QuickReplyButton(with_metaclass(ABCMeta, Base)):
         self.type = 'action'
         self.image_url = image_url
         self.action = get_action(action)
+
+
+class Sender(with_metaclass(ABCMeta, Base)):
+    """Sender.
+
+    https://developers.line.biz/en/reference/messaging-api/#icon-nickname-switch
+    """
+
+    def __init__(self, name=None, icon_url=None, **kwargs):
+        """__init__ method.
+
+        :param str name: Display name
+        :param str icon_url: Icon image URL
+        """
+        super(Sender, self).__init__(**kwargs)
+
+        self.name = name
+        self.icon_url = icon_url

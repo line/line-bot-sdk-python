@@ -53,7 +53,7 @@ class TestLineBotApi(unittest.TestCase):
                         height=843
                     ),
                     URITemplateAction(
-                        uri='line://nv/location'
+                        uri='https://line.me/R/nv/location/'
                     )
                 )
             ]
@@ -139,7 +139,7 @@ class TestLineBotApi(unittest.TestCase):
                         height=843
                     ),
                     URITemplateAction(
-                        uri='line://nv/location'
+                        uri='https://line.me/R/nv/location/'
                     )
                 )
             ]

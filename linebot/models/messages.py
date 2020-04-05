@@ -26,16 +26,27 @@ from .base import Base
 class Message(with_metaclass(ABCMeta, Base)):
     """Abstract Base Class of Message."""
 
-    def __init__(self, id=None, **kwargs):
+    def __init__(self, id=None, use_raw_message=False, **kwargs):
         """__init__ method.
 
         :param str id: Message ID
+        :param bool use_raw_message: Using original Message key as attribute
         :param kwargs:
         """
         super(Message, self).__init__(**kwargs)
 
+        if use_raw_message:
+            self.__dict__.update(kwargs)
+
         self.type = None
         self.id = id
+
+    def __getitem__(self, key):
+        """__getitem__ method.
+
+        :param str key: Message key
+        """
+        return self.__dict__.get(key, None)
 
 
 class TextMessage(Message):

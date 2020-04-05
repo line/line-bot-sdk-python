@@ -87,11 +87,15 @@ class Base(object):
         return data
 
     @classmethod
-    def new_from_json_dict(cls, data):
+    def new_from_json_dict(cls, data, use_raw_message=False):
         """Create a new instance from a dict.
 
         :param data: JSON dict
+        :param bool use_raw_message: Using original Message key as attribute
         """
+        if use_raw_message:
+            return cls(use_raw_message=use_raw_message, **data)
+
         new_data = {utils.to_snake_case(key): value
                     for key, value in data.items()}
 
@@ -118,7 +122,7 @@ class Base(object):
 
     @staticmethod
     def get_or_new_from_json_dict_with_types(
-            data, cls_map, type_key='type'
+            data, cls_map, type_key='type', use_raw_message=False
     ):
         """Get `cls` object w/ deserialization from json by using type key hint if needed.
 
@@ -130,12 +134,13 @@ class Base(object):
         :param cls_map:
         :param type_key:
         :rtype: object
+        :param bool use_raw_message: Using original Message key as attribute
         """
         if isinstance(data, tuple(cls_map.values())):
             return data
         elif isinstance(data, dict):
             type_val = data[type_key]
             if type_val in cls_map:
-                return cls_map[type_val].new_from_json_dict(data)
+                return cls_map[type_val].new_from_json_dict(data, use_raw_message=use_raw_message)
 
         return None

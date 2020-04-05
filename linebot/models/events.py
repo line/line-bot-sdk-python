@@ -79,7 +79,7 @@ class MessageEvent(Event):
     """
 
     def __init__(self, mode=None, timestamp=None, source=None, reply_token=None, message=None,
-                 **kwargs):
+                 use_raw_message=False, **kwargs):
         """__init__ method.
 
         :param str mode: Channel state
@@ -89,6 +89,7 @@ class MessageEvent(Event):
         :param str reply_token: Reply token
         :param message: Message object
         :type message: T <= :py:class:`linebot.models.messages.Message`
+        :param bool use_raw_message: Using original Message key as attribute
         :param kwargs:
         """
         super(MessageEvent, self).__init__(
@@ -106,7 +107,7 @@ class MessageEvent(Event):
                 'location': LocationMessage,
                 'sticker': StickerMessage,
                 'file': FileMessage
-            }
+            }, use_raw_message=use_raw_message
         )
 
 

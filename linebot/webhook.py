@@ -128,7 +128,7 @@ class WebhookParser(object):
         """
         self.signature_validator = SignatureValidator(channel_secret)
 
-    def parse(self, body, signature, as_payload=False):
+    def parse(self, body, signature, as_payload=False, use_raw_message=False):
         """Parse webhook request body as text.
 
         :param str body: Webhook request body (as text)
@@ -136,6 +136,7 @@ class WebhookParser(object):
         :param bool as_payload: (optional) True to return WebhookPayload object.
         :rtype: list[T <= :py:class:`linebot.models.events.Event`]
             | :py:class:`linebot.webhook.WebhookPayload`
+        :param bool use_raw_message: Using original Message key as attribute
         :return: Events list, or WebhookPayload instance
         """
         if not self.signature_validator.validate(body, signature):
@@ -147,7 +148,8 @@ class WebhookParser(object):
         for event in body_json['events']:
             event_type = event['type']
             if event_type == 'message':
-                events.append(MessageEvent.new_from_json_dict(event))
+                events.append(MessageEvent.new_from_json_dict(event,
+                              use_raw_message=use_raw_message))
             elif event_type == 'follow':
                 events.append(FollowEvent.new_from_json_dict(event))
             elif event_type == 'unfollow':
@@ -226,13 +228,15 @@ class WebhookHandler(object):
 
         return decorator
 
-    def handle(self, body, signature):
+    def handle(self, body, signature, use_raw_message=False):
         """Handle webhook.
 
         :param str body: Webhook request body (as text)
         :param str signature: X-Line-Signature value (as text)
+        :param bool use_raw_message: Using original Message key as attribute
         """
-        payload = self.parser.parse(body, signature, as_payload=True)
+        payload = self.parser.parse(body, signature, as_payload=True,
+                                    use_raw_message=use_raw_message)
 
         for event in payload.events:
             func = None

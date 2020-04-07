@@ -57,7 +57,6 @@ class TestLineBotApi(unittest.TestCase):
         )
 
         request = responses.calls[0].request
-        print(request.body)
         self.assertEqual('POST', request.method)
         self.assertEqual(self.endpoint, request.url)
         self.assertEqual('application/x-www-form-urlencoded', request.headers['content-type'])

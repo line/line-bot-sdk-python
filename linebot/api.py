@@ -1037,7 +1037,7 @@ class LineBotApi(object):
     def issue_channel_token_v2_1(self, client_assertion, grant_type='client_credentials',
                                  client_assertion_type='urn:ietf:params:oauth:client-assertion-type:jwt-bearer',
                                  timeout=None):
-        """Issues a short-lived channel access token.
+        """Issues a short-lived channel access token v2.1.
 
         https://developers.line.biz/ja/reference/messaging-api/#issue-channel-access-token-v2-1
 

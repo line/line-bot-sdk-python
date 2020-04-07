@@ -1085,6 +1085,26 @@ class LineBotApi(object):
             timeout=timeout
         )
 
+    def get_issued_channel_tokens_v2_1(self, client_assertion, client_assertion_type='urn:ietf:params:oauth:client-assertion-type:jwt-bearer', timeout=None):
+        """get issued channel access token v2.1.
+
+        https://developers.line.biz/ja/reference/messaging-api/#get-issued-channel-access-tokens-v2-1
+
+        :param str client_assertion: Clint assertion.
+        :param str client_assertion_type: Clint assertion type.
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        """
+        response = self._get(
+            '/oauth2/v2.1/tokens',
+            params={'client_assertion': client_assertion, 'client_assertion_type': client_assertion_type},
+            timeout=timeout
+        )
+        return response.json.get('access_tokens')
+
     def _get(self, path, endpoint=None, params=None, headers=None, stream=False, timeout=None):
         url = (endpoint or self.endpoint) + path
 

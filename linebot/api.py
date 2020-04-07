@@ -1065,6 +1065,26 @@ class LineBotApi(object):
 
         return IssueChannelTokenResponse.new_from_json_dict(response.json)
 
+    def revoke_channel_token_v2_1(self, client_id, client_secret, access_token, timeout=None):
+        """Revokes a channel access token v2.1.
+
+        https://developers.line.biz/ja/reference/messaging-api/#revoke-channel-access-token-v2-1
+
+        :param str client_id: Client id.
+        :param str client_secret: Channel secret.
+        :param str access_token: Channel access token.
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        """
+        self._post(
+            '/oauth2/v2.1/revoke',
+            data={'client_id': client_id, 'client_secret': client_secret, 'access_token': access_token},
+            timeout=timeout
+        )
+
     def _get(self, path, endpoint=None, params=None, headers=None, stream=False, timeout=None):
         url = (endpoint or self.endpoint) + path
 

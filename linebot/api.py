@@ -1034,6 +1034,37 @@ class LineBotApi(object):
 
         return InsightMessageEventResponse.new_from_json_dict(response.json)
 
+    def issue_channel_token_v2_1(self, client_assertion, grant_type='client_credentials',
+                                 client_assertion_type='urn:ietf:params:oauth:client-assertion-type:jwt-bearer',
+                                 timeout=None):
+        """Issues a short-lived channel access token.
+
+        https://developers.line.biz/ja/reference/messaging-api/#issue-channel-access-token-v2-1
+
+        :param str client_assertion: Clint assertion.
+        :param str grant_type: `client_credentials`
+        :param str client_assertion_type: Clint assertion type.
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        :rtype: :py:class:`linebot.models.responses.IssueChannelTokenResponse`
+        :return: IssueChannelTokenResponse instance
+        """
+        response = self._post(
+            '/oauth2/v2.1/token',
+            data={
+                'grant_type': grant_type,
+                'client_assertion_type': client_assertion_type,
+                'client_assertion': client_assertion,
+            },
+            headers={'Content-Type': 'application/x-www-form-urlencoded'},
+            timeout=timeout
+        )
+
+        return IssueChannelTokenResponse.new_from_json_dict(response.json)
+
     def _get(self, path, endpoint=None, params=None, headers=None, stream=False, timeout=None):
         url = (endpoint or self.endpoint) + path
 

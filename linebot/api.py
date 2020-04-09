@@ -1085,7 +1085,7 @@ class LineBotApi(object):
             timeout=timeout
         )
 
-    def get_issued_channel_access_tokens_v2_1(self, client_assertion, client_assertion_type='urn:ietf:params:oauth:client-assertion-type:jwt-bearer', timeout=None):
+    def get_channel_access_tokens_v2_1(self, client_assertion, client_assertion_type='urn:ietf:params:oauth:client-assertion-type:jwt-bearer', timeout=None):
         """get issued channel access token v2.1.
 
         https://developers.line.biz/ja/reference/messaging-api/#get-issued-channel-access-tokens-v2-1

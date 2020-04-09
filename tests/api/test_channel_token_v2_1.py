@@ -42,7 +42,7 @@ class TestLineBotApi(unittest.TestCase):
         self.access_token = 'W1TeHCgfH2Liwa.....'
 
     @responses.activate
-    def test_issue_channel_token_v2_1(self):
+    def test_issue_channel_access_token_v2_1(self):
         endpoint = LineBotApi.DEFAULT_API_ENDPOINT + '/oauth2/v2.1/token'
         responses.add(
             responses.POST,
@@ -55,7 +55,7 @@ class TestLineBotApi(unittest.TestCase):
             status=200
         )
 
-        issue_access_token_response = self.tested.issue_channel_token_v2_1(
+        issue_access_token_response = self.tested.issue_channel_access_token_v2_1(
             self.client_assertion
         )
 
@@ -73,7 +73,7 @@ class TestLineBotApi(unittest.TestCase):
         self.assertEqual(self.client_assertion, encoded_body['client_assertion'][0])
 
     @responses.activate
-    def test_revoke_channel_token_v2_1(self):
+    def test_revoke_channel_access_token_v2_1(self):
         endpoint = LineBotApi.DEFAULT_API_ENDPOINT + '/oauth2/v2.1/revoke'
 
         responses.add(
@@ -82,7 +82,7 @@ class TestLineBotApi(unittest.TestCase):
             status=200
         )
 
-        self.tested.revoke_channel_token_v2_1(self.client_id, self.client_secret, self.access_token)
+        self.tested.revoke_channel_access_token_v2_1(self.client_id, self.client_secret, self.access_token)
 
         request = responses.calls[0].request
         self.assertEqual('POST', request.method)

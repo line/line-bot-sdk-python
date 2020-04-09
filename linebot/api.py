@@ -1034,9 +1034,9 @@ class LineBotApi(object):
 
         return InsightMessageEventResponse.new_from_json_dict(response.json)
 
-    def issue_channel_token_v2_1(self, client_assertion, grant_type='client_credentials',
-                                 client_assertion_type='urn:ietf:params:oauth:client-assertion-type:jwt-bearer',
-                                 timeout=None):
+    def issue_channel_access_token_v2_1(self, client_assertion, grant_type='client_credentials',
+                                        client_assertion_type='urn:ietf:params:oauth:client-assertion-type:jwt-bearer',
+                                        timeout=None):
         """Issues a short-lived channel access token v2.1.
 
         https://developers.line.biz/ja/reference/messaging-api/#issue-channel-access-token-v2-1
@@ -1065,7 +1065,7 @@ class LineBotApi(object):
 
         return IssueChannelTokenResponse.new_from_json_dict(response.json)
 
-    def revoke_channel_token_v2_1(self, client_id, client_secret, access_token, timeout=None):
+    def revoke_channel_access_token_v2_1(self, client_id, client_secret, access_token, timeout=None):
         """Revokes a channel access token v2.1.
 
         https://developers.line.biz/ja/reference/messaging-api/#revoke-channel-access-token-v2-1
@@ -1085,7 +1085,7 @@ class LineBotApi(object):
             timeout=timeout
         )
 
-    def get_issued_channel_tokens_v2_1(self, client_assertion, client_assertion_type='urn:ietf:params:oauth:client-assertion-type:jwt-bearer', timeout=None):
+    def get_issued_channel_access_tokens_v2_1(self, client_assertion, client_assertion_type='urn:ietf:params:oauth:client-assertion-type:jwt-bearer', timeout=None):
         """get issued channel access token v2.1.
 
         https://developers.line.biz/ja/reference/messaging-api/#get-issued-channel-access-tokens-v2-1

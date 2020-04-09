@@ -33,17 +33,20 @@ else:
 class TestLineBotApi(unittest.TestCase):
     def setUp(self):
         self.tested = LineBotApi('channel_secret')
-        self.endpoint = LineBotApi.DEFAULT_API_ENDPOINT + '/oauth2/v2.1/token'
         self.access_token = "W1TeHCgfH2Liwa....."
         self.expires_in = 2592000
         self.token_type = "Bearer"
         self.client_assertion = 'eyJhbGciOiJSUzI.....'
+        self.client_id = 'client_id'
+        self.client_secret = 'client_secret'
+        self.access_token = 'W1TeHCgfH2Liwa.....'
 
     @responses.activate
-    def test_issue_line_token_v2_1(self):
+    def test_issue_channel_token_v2_1(self):
+        endpoint = LineBotApi.DEFAULT_API_ENDPOINT + '/oauth2/v2.1/token'
         responses.add(
             responses.POST,
-            self.endpoint,
+            endpoint,
             json={
                 "access_token": self.access_token,
                 "expires_in": self.expires_in,
@@ -58,7 +61,7 @@ class TestLineBotApi(unittest.TestCase):
 
         request = responses.calls[0].request
         self.assertEqual('POST', request.method)
-        self.assertEqual(self.endpoint, request.url)
+        self.assertEqual(endpoint, request.url)
         self.assertEqual('application/x-www-form-urlencoded', request.headers['content-type'])
         self.assertEqual(self.access_token, issue_access_token_response.access_token)
         self.assertEqual(self.expires_in, issue_access_token_response.expires_in)
@@ -68,6 +71,27 @@ class TestLineBotApi(unittest.TestCase):
         self.assertEqual('client_credentials', encoded_body['grant_type'][0])
         self.assertEqual('urn:ietf:params:oauth:client-assertion-type:jwt-bearer', encoded_body['client_assertion_type'][0])
         self.assertEqual(self.client_assertion, encoded_body['client_assertion'][0])
+
+    @responses.activate
+    def test_revoke_channel_token_v2_1(self):
+        endpoint = LineBotApi.DEFAULT_API_ENDPOINT + '/oauth2/v2.1/revoke'
+
+        responses.add(
+            responses.POST,
+            endpoint,
+            status=200
+        )
+
+        self.tested.revoke_channel_token_v2_1(self.client_id, self.client_secret, self.access_token)
+
+        request = responses.calls[0].request
+        self.assertEqual('POST', request.method)
+        self.assertEqual(endpoint, request.url)
+
+        encoded_body = parse.parse_qs(request.body)
+        self.assertEqual(self.client_id, encoded_body['client_id'][0])
+        self.assertEqual(self.client_secret, encoded_body['client_secret'][0])
+        self.assertEqual(self.access_token, encoded_body['access_token'][0])
 
 
 if __name__ == '__main__':

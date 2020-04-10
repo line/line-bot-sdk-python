@@ -28,7 +28,7 @@ from .models import (
     MessageDeliveryPushResponse, MessageDeliveryReplyResponse,
     InsightMessageDeliveryResponse, InsightFollowersResponse, InsightDemographicResponse,
     InsightMessageEventResponse, BroadcastResponse, NarrowcastResponse,
-    MessageProgressNarrowcastResponse,
+    MessageProgressNarrowcastResponse, ChannelAccessTokens,
 )
 
 
@@ -1103,7 +1103,7 @@ class LineBotApi(object):
             params={'client_assertion': client_assertion, 'client_assertion_type': client_assertion_type},
             timeout=timeout
         )
-        return response.json.get('access_tokens')
+        return ChannelAccessTokens.new_from_json_dict(response.json)
 
     def _get(self, path, endpoint=None, params=None, headers=None, stream=False, timeout=None):
         url = (endpoint or self.endpoint) + path

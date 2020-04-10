@@ -473,3 +473,21 @@ class NarrowcastResponse(Base):
         super(NarrowcastResponse, self).__init__(**kwargs)
 
         self.request_id = request_id
+
+
+class ChannelAccessTokens(Base):
+    """ChannelAccessTokens.
+
+    https://developers.line.biz/ja/reference/messaging-api/#get-issued-channel-access-tokens-v2-1
+    """
+
+    def __init__(self, access_tokens=None, ** kwargs):
+        """__init__ method.
+
+        :param access_tokens: List of channel access token
+        :type access_tokens: list[str]
+        :param kwargs:
+        """
+        super(ChannelAccessTokens, self).__init__(**kwargs)
+
+        self.access_tokens = access_tokens

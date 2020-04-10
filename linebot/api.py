@@ -1037,13 +1037,13 @@ class LineBotApi(object):
     def issue_channel_access_token_v2_1(self, client_assertion, grant_type='client_credentials',
                                         client_assertion_type='urn:ietf:params:oauth:client-assertion-type:jwt-bearer',
                                         timeout=None):
-        """Issues a short-lived channel access token v2.1.
+        """Issues a channel access token v2.1.
 
-        https://developers.line.biz/ja/reference/messaging-api/#issue-channel-access-token-v2-1
+        https://developers.line.biz/en/reference/messaging-api/#issue-channel-access-token-v2-1
 
         :param str client_assertion: Clint assertion.
         :param str grant_type: `client_credentials`
-        :param str client_assertion_type: Clint assertion type.
+        :param str client_assertion_type: `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`.
         :param timeout: (optional) How long to wait for the server
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
@@ -1068,7 +1068,7 @@ class LineBotApi(object):
     def revoke_channel_access_token_v2_1(self, client_id, client_secret, access_token, timeout=None):
         """Revokes a channel access token v2.1.
 
-        https://developers.line.biz/ja/reference/messaging-api/#revoke-channel-access-token-v2-1
+        https://developers.line.biz/en/reference/messaging-api/#revoke-channel-access-token-v2-1
 
         :param str client_id: Client id.
         :param str client_secret: Channel secret.
@@ -1086,17 +1086,19 @@ class LineBotApi(object):
         )
 
     def get_channel_access_tokens_v2_1(self, client_assertion, client_assertion_type='urn:ietf:params:oauth:client-assertion-type:jwt-bearer', timeout=None):
-        """get issued channel access token v2.1.
+        """Get issued channel access tokens v2.1.
 
-        https://developers.line.biz/ja/reference/messaging-api/#get-issued-channel-access-tokens-v2-1
+        https://developers.line.biz/en/reference/messaging-api/#get-issued-channel-access-tokens-v2-1
 
         :param str client_assertion: Clint assertion.
-        :param str client_assertion_type: Clint assertion type.
+        :param str client_assertion_type: `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`.
         :param timeout: (optional) How long to wait for the server
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.http_client.timeout
         :type timeout: float | tuple(float, float)
+        :rtype: :py:class:`linebot.models.responses.ChannelAccessTokens`
+        :return: ChannelAccessTokens instance
         """
         response = self._get(
             '/oauth2/v2.1/tokens',

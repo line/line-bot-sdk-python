@@ -39,6 +39,7 @@ class TestLineBotApi(unittest.TestCase):
         self.client_assertion = 'eyJhbGciOiJSUzI.....'
         self.client_id = 'client_id'
         self.client_secret = 'client_secret'
+        self.client_assertion_type = 'urn:ietf:params:oauth:client-assertion-type:jwt-bearer'
 
     @responses.activate
     def test_issue_channel_access_token_v2_1(self):
@@ -68,7 +69,7 @@ class TestLineBotApi(unittest.TestCase):
 
         encoded_body = parse.parse_qs(request.body)
         self.assertEqual('client_credentials', encoded_body['grant_type'][0])
-        self.assertEqual('urn:ietf:params:oauth:client-assertion-type:jwt-bearer', encoded_body['client_assertion_type'][0])
+        self.assertEqual(self.client_assertion_type, encoded_body['client_assertion_type'][0])
         self.assertEqual(self.client_assertion, encoded_body['client_assertion'][0])
 
     @responses.activate
@@ -94,7 +95,7 @@ class TestLineBotApi(unittest.TestCase):
         self.assertEqual(
             parse.unquote(request.url),
             '{endpoint}?client_assertion={client_assertion}&client_assertion_type={client_assertion_type}'.format(
-                endpoint=endpoint, client_assertion=self.client_assertion, client_assertion_type='urn:ietf:params:oauth:client-assertion-type:jwt-bearer')
+                endpoint=endpoint, client_assertion=self.client_assertion, client_assertion_type=self.client_assertion_type)
         )
         self.assertEqual(channel_access_tokens_response.access_tokens, [
             'fgIkeLcl3.....',

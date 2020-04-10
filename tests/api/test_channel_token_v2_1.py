@@ -33,13 +33,12 @@ else:
 class TestLineBotApi(unittest.TestCase):
     def setUp(self):
         self.tested = LineBotApi('channel_secret')
-        self.access_token = "W1TeHCgfH2Liwa....."
+        self.access_token = 'W1TeHCgfH2Liwa.....'
         self.expires_in = 2592000
-        self.token_type = "Bearer"
+        self.token_type = 'Bearer'
         self.client_assertion = 'eyJhbGciOiJSUzI.....'
         self.client_id = 'client_id'
         self.client_secret = 'client_secret'
-        self.access_token = 'W1TeHCgfH2Liwa.....'
 
     @responses.activate
     def test_issue_channel_access_token_v2_1(self):
@@ -48,9 +47,9 @@ class TestLineBotApi(unittest.TestCase):
             responses.POST,
             endpoint,
             json={
-                "access_token": self.access_token,
-                "expires_in": self.expires_in,
-                "token_type": self.token_type
+                'access_token': self.access_token,
+                'expires_in': self.expires_in,
+                'token_type': self.token_type
             },
             status=200
         )

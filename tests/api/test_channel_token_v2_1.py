@@ -73,6 +73,37 @@ class TestLineBotApi(unittest.TestCase):
         self.assertEqual(self.client_assertion, encoded_body['client_assertion'][0])
 
     @responses.activate
+    def test_get_channel_access_token_v2_1(self):
+
+        endpoint = LineBotApi.DEFAULT_API_ENDPOINT + '/oauth2/v2.1/tokens'
+        responses.add(
+            responses.GET,
+            endpoint,
+            json={
+                'access_tokens': [
+                    'fgIkeLcl3.....',
+                    'eyJhbGciO.....',
+                    'oeLklsSi7.....'
+                ]
+            },
+            status=200
+        )
+        channel_access_tokens_response = self.tested.get_channel_access_tokens_v2_1(self.client_assertion)
+
+        request = responses.calls[0].request
+        self.assertEqual(request.method, 'GET')
+        self.assertEqual(
+            parse.unquote(request.url),
+            '{endpoint}?client_assertion={client_assertion}&client_assertion_type={client_assertion_type}'.format(
+                endpoint=endpoint, client_assertion=self.client_assertion, client_assertion_type='urn:ietf:params:oauth:client-assertion-type:jwt-bearer')
+        )
+        self.assertEqual(channel_access_tokens_response.access_tokens, [
+            'fgIkeLcl3.....',
+            'eyJhbGciO.....',
+            'oeLklsSi7.....'
+        ])
+
+    @responses.activate
     def test_revoke_channel_access_token_v2_1(self):
         endpoint = LineBotApi.DEFAULT_API_ENDPOINT + '/oauth2/v2.1/revoke'
 

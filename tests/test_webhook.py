@@ -17,6 +17,7 @@ from __future__ import unicode_literals, absolute_import
 import os
 import unittest
 from builtins import open
+import inspect
 
 from linebot import (
     SignatureValidator, WebhookParser, WebhookHandler
@@ -29,6 +30,7 @@ from linebot.models import (
     LocationMessage, StickerMessage, FileMessage,
     SourceUser, SourceRoom, SourceGroup,
     DeviceLink, DeviceUnlink, ScenarioResult, ActionResult)
+from linebot.utils import PY3
 
 
 class TestSignatureValidator(unittest.TestCase):
@@ -516,6 +518,97 @@ class TestWebhookHandler(unittest.TestCase):
             )
 
     def test_handler(self):
+        file_dir = os.path.dirname(__file__)
+        webhook_sample_json_path = os.path.join(file_dir, 'text', 'webhook.json')
+        with open(webhook_sample_json_path) as fp:
+            body = fp.read()
+
+        # mock
+        self.handler.parser.signature_validator.validate = lambda a, b: True
+
+        self.handler.handle(body, 'signature')
+
+
+def wrap(func):
+    def wrapper(*args):
+        if PY3:
+            arg_spec = inspect.getfullargspec(func)
+        else:
+            arg_spec = inspect.getargspec(func)
+        return func(*args[0:len(arg_spec.args)])
+    return wrapper
+
+
+class TestWebhookHandlerWithWrappedFunction(unittest.TestCase):
+    def setUp(self):
+        self.handler = WebhookHandler('channel_secret')
+
+        @self.handler.add(MessageEvent, message=TextMessage)
+        @wrap
+        def message_text(event, destination):
+            self.assertEqual('message', event.type)
+            self.assertEqual('text', event.message.type)
+            self.assertEqual('U123', destination)
+
+        @self.handler.add(MessageEvent,
+                          message=(ImageMessage, VideoMessage, AudioMessage))
+        @wrap
+        def message_content(event):
+            self.assertEqual('message', event.type)
+            self.assertIn(
+                event.message.type,
+                ['image', 'video', 'audio']
+            )
+
+        @self.handler.add(MessageEvent, message=StickerMessage)
+        @wrap
+        def message_sticker(event):
+            self.assertEqual('message', event.type)
+            self.assertEqual('sticker', event.message.type)
+
+        @self.handler.add(MessageEvent)
+        @wrap
+        def message(event):
+            self.assertEqual('message', event.type)
+            self.assertNotIn(
+                event.message.type,
+                ['text', 'image', 'video', 'audio', 'sticker']
+            )
+
+        @self.handler.add(FollowEvent)
+        @wrap
+        def follow(event, destination):
+            self.assertEqual('follow', event.type)
+            self.assertEqual('U123', destination)
+
+        @self.handler.add(JoinEvent)
+        @wrap
+        def join(event):
+            self.assertEqual('join', event.type)
+
+        @self.handler.add(PostbackEvent)
+        @wrap
+        def postback(event):
+            self.assertEqual('postback', event.type)
+
+        @self.handler.add(BeaconEvent)
+        @wrap
+        def beacon(event):
+            self.assertEqual('beacon', event.type)
+
+        @self.handler.add(AccountLinkEvent)
+        @wrap
+        def account_link(event):
+            self.assertEqual('accountLink', event.type)
+
+        @self.handler.default()
+        def default(event):
+            self.assertNotIn(
+                event.type,
+                ['message', 'follow', 'join', 'postback', 'beacon', 'accountLink']
+            )
+
+    def test_handler_with_wrapped_function(self):
         file_dir = os.path.dirname(__file__)
         webhook_sample_json_path = os.path.join(file_dir, 'text', 'webhook.json')
         with open(webhook_sample_json_path) as fp:

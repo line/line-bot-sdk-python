@@ -267,11 +267,16 @@ class WebhookHandler(object):
 
     @staticmethod
     def __get_args_count(func):
+        HANDLER_ARGSIZE_MAXIMAM = 2
         if PY3:
             arg_spec = inspect.getfullargspec(func)
+            if arg_spec.varargs is not None:
+                return HANDLER_ARGSIZE_MAXIMAM
             return len(arg_spec.args)
         else:
             arg_spec = inspect.getargspec(func)
+            if arg_spec.varargs is not None:
+                return HANDLER_ARGSIZE_MAXIMAM
             return len(arg_spec.args)
 
     @staticmethod

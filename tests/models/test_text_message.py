@@ -16,109 +16,42 @@ from __future__ import unicode_literals, absolute_import
 
 import unittest
 
-from linebot.models import (
-    ImagemapArea,
-    ImagemapSendMessage,
-    URIImagemapAction,
-    MessageImagemapAction,
-    Video, BaseSize, ExternalLink,
-)
+from linebot.models import TextMessage
+from linebot.models.sticon import Sticon
 from tests.models.serialize_test_case import SerializeTestCase
 
 
-class TestImageMap(SerializeTestCase):
-    def test_image_map(self):
+class TestTextMessage(SerializeTestCase):
+    def test_sticon(self):
         arg = {
-            'base_url': 'https://example.com/bot/images/rm001',
-            'alt_text': 'This is an imagemap',
-            'base_size': BaseSize(width=1040, height=1040),
-            'video':
-                Video(
-                    original_content_url='https://example.com/video.mp4',
-                    preview_image_url='https://example.com/video_preview.jpg',
-                    area=ImagemapArea(x=0, y=0, width=1040, height=585),
-                    external_link=ExternalLink(label='See more',
-                                               link_uri='https://example.com/see_more.html')
+            "type": "text",
+            "text": "$ LINE emoji $",
+            'sticon': [
+                Sticon(
+                    index=0,
+                    product_id='5ac1bfd5040ab15980c9b435',
+                    sticon_id='001'
                 ),
-            'actions': [
-                URIImagemapAction(
-                    link_uri='https://example.com/',
-                    area=ImagemapArea(x=0, y=585, width=520, height=454)
+                Sticon(
+                    index=13,
+                    product_id='5ac1bfd5040ab15980c9b435',
+                    sticon_id='002'
                 ),
-                MessageImagemapAction(
-                    text='Hey',
-                    area=ImagemapArea(x=0, y=58, width=52, height=40)
-                )
             ]
         }
         self.assertEqual(
-            self.serialize_as_dict(arg, type=self.IMAGEMAP),
-            ImagemapSendMessage(**arg).as_json_dict()
+            self.serialize_as_dict(arg, type=self.TEXT),
+            TextMessage(**arg).as_json_dict()
         )
 
-    def test_video(self):
+    def test_null_sticon(self):
         arg = {
-            'original_content_url': 'https://example.com/video.mp4',
-            'preview_image_url': 'https://example.com/video_preview.jpg',
-            'area': ImagemapArea(x=0, y=0, width=1040, height=585),
-            'external_link': ExternalLink(label='See more',
-                                          link_uri='https://example.com/see_more.html')
+            "type": "text",
+            "text": "\uDBC0\uDC84 LINE original emoji"
         }
         self.assertEqual(
-            self.serialize_as_dict(arg),
-            Video(**arg).as_json_dict()
-        )
-
-    def test_message_actions(self):
-        arg = {
-            'text': 'Hey',
-            'area': ImagemapArea(x=0, y=58, width=52, height=40)
-        }
-        self.assertEqual(
-            self.serialize_as_dict(arg, type=self.MESSAGE),
-            MessageImagemapAction(**arg).as_json_dict()
-        )
-
-    def test_uri_actions(self):
-        arg = {
-            'link_uri': 'https://example.com/',
-            'area': ImagemapArea(x=0, y=585, width=520, height=454)
-        }
-        self.assertEqual(
-            self.serialize_as_dict(arg, self.URI),
-            URIImagemapAction(**arg).as_json_dict()
-        )
-
-    def test_base_size(self):
-        arg = {
-            'width': 1040,
-            'height': 1040
-        }
-        self.assertEqual(
-            self.serialize_as_dict(arg),
-            BaseSize(**arg).as_json_dict()
-        )
-
-    def test_external_link(self):
-        arg = {
-            'label': 'Hey link',
-            'link_uri': 'https://example.com/see_more.html'
-        }
-        self.assertEqual(
-            self.serialize_as_dict(arg),
-            ExternalLink(**arg).as_json_dict()
-        )
-
-    def test_imagemap_area(self):
-        arg = {
-            'x': 111,
-            'y': 33,
-            'width': 1040,
-            'height': 1040
-        }
-        self.assertEqual(
-            self.serialize_as_dict(arg),
-            ImagemapArea(**arg).as_json_dict()
+            self.serialize_as_dict(arg, type=self.TEXT),
+            TextMessage(**arg).as_json_dict()
         )
 
 

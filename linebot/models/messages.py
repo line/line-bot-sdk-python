@@ -59,15 +59,16 @@ class TextMessage(Message):
 
         self.type = 'text'
         self.text = text
-        new_sticons = []
         if sticon:
+            new_sticons = []
             for action in sticon:
                 sticon_obj = self.get_or_new_from_json_dict(
                     action, Sticon
                 )
                 if sticon_obj:
                     new_sticons.append(sticon_obj)
-        self.sticon = new_sticons
+            self.sticon = new_sticons
+        self.sticon = sticon
 
 
 class ImageMessage(Message):

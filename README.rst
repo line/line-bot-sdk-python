@@ -312,7 +312,7 @@ create\_rich\_menu(self, rich\_menu, timeout=None)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Creates a rich menu.
-You must upload a rich menu image and link the rich menu to a user for the rich menu to be displayed. You can create up to 10 rich menus for one bot.
+You must upload a rich menu image and link the rich menu to a user for the rich menu to be displayed. You can create up to 1000 rich menus for one LINE Official Account with the Messaging API.
 
 https://developers.line.biz/en/reference/messaging-api/#create-rich-menu
 

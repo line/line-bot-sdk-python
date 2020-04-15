@@ -46,13 +46,14 @@ class Profile(Base):
     """
 
     def __init__(self, display_name=None, user_id=None, picture_url=None,
-                 status_message=None, **kwargs):
+                 status_message=None, language=None, **kwargs):
         """__init__ method.
 
         :param str display_name: Display name
         :param str user_id: User ID
         :param str picture_url: Image URL
         :param str status_message: Status message
+        :param str language: Get user's language
         :param kwargs:
         """
         super(Profile, self).__init__(**kwargs)
@@ -61,6 +62,7 @@ class Profile(Base):
         self.user_id = user_id
         self.picture_url = picture_url
         self.status_message = status_message
+        self.language = language
 
 
 class MemberIds(Base):

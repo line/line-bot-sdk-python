@@ -17,25 +17,25 @@ from __future__ import unicode_literals, absolute_import
 import unittest
 
 from linebot.models import TextMessage
-from linebot.models.sticon import Sticon
+from linebot.models.emojis import Emojis
 from tests.models.serialize_test_case import SerializeTestCase
 
 
 class TestTextMessage(SerializeTestCase):
-    def test_sticon(self):
+    def test_emojis(self):
         arg = {
             "type": "text",
             "text": "$ LINE emoji $",
-            'sticon': [
-                Sticon(
+            'emojis': [
+                Emojis(
                     index=0,
                     product_id='5ac1bfd5040ab15980c9b435',
-                    sticon_id='001'
+                    emoji_id='001'
                 ),
-                Sticon(
+                Emojis(
                     index=13,
                     product_id='5ac1bfd5040ab15980c9b435',
-                    sticon_id='002'
+                    emoji_id='002'
                 ),
             ]
         }
@@ -44,7 +44,7 @@ class TestTextMessage(SerializeTestCase):
             TextMessage(**arg).as_json_dict()
         )
 
-    def test_null_sticon(self):
+    def test_null_emojis(self):
         arg = {
             "type": "text",
             "text": "\uDBC0\uDC84 LINE original emoji"

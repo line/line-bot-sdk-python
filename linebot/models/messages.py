@@ -20,7 +20,7 @@ from abc import ABCMeta
 
 from future.utils import with_metaclass
 
-from linebot.models.sticon import Sticon
+from linebot.models.emojis import Emojis
 from .base import Base
 
 
@@ -47,7 +47,7 @@ class TextMessage(Message):
     Message object which contains the text sent from the source.
     """
 
-    def __init__(self, id=None, text=None, sticon=None, **kwargs):
+    def __init__(self, id=None, text=None, emojis=None, **kwargs):
         """__init__ method.
 
         :param str id: Message ID
@@ -59,16 +59,16 @@ class TextMessage(Message):
 
         self.type = 'text'
         self.text = text
-        if sticon:
-            new_sticons = []
-            for action in sticon:
-                sticon_obj = self.get_or_new_from_json_dict(
-                    action, Sticon
+        if emojis:
+            new_emojis = []
+            for emoji in emojis:
+                emoji_object = self.get_or_new_from_json_dict(
+                    emoji, Emojis
                 )
-                if sticon_obj:
-                    new_sticons.append(sticon_obj)
-            self.sticon = new_sticons
-        self.sticon = sticon
+                if emoji_object:
+                    new_emojis.append(emoji_object)
+            self.emojis = new_emojis
+        self.emojis = emojis
 
 
 class ImageMessage(Message):

@@ -12,7 +12,7 @@
 #  License for the specific language governing permissions and limitations
 #  under the License.
 
-"""linebot.models.sticon module."""
+"""linebot.models.emojis module."""
 
 from __future__ import unicode_literals
 
@@ -23,20 +23,20 @@ from future.utils import with_metaclass
 from .base import Base
 
 
-class Sticon(with_metaclass(ABCMeta, Base)):
-    """Sticon.
+class Emojis(with_metaclass(ABCMeta, Base)):
+    """Emojis.
 
     https://developers.line.biz/en/reference/messaging-api/#text-message
 
     """
 
-    def __init__(self, index=None, product_id=None, sticon_id=None, **kwargs):
+    def __init__(self, index=None, product_id=None, emoji_id=None, **kwargs):
         """__init__ method.
 
         :param kwargs:
         """
-        super(Sticon, self).__init__(**kwargs)
+        super(Emojis, self).__init__(**kwargs)
 
         self.index = index
         self.product_id = product_id
-        self.sticon_id = sticon_id
+        self.emoji_id = emoji_id

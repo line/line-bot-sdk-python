@@ -350,7 +350,7 @@ https://developers.line.biz/en/reference/messaging-api/#get-rich-menu-id-of-user
 
 .. code:: python
 
-    rich_menu_id = ine_bot_api.get_rich_menu_id_of_user(user_id)
+    rich_menu_id = line_bot_api.get_rich_menu_id_of_user(user_id)
     print(rich_menu_id)
 
 link\_rich\_menu\_to\_user(self, user\_id, rich\_menu\_id, timeout=None)

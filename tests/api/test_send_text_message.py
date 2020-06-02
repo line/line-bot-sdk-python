@@ -30,7 +30,7 @@ from linebot.models import (
 class TestSendTestMessage(unittest.TestCase):
     def setUp(self):
         self.tested = LineBotApi('channel_secret')
-
+        self.tested_retry_key = LineBotApi('channel_secret', '123e4567-e89b-12d3-a456-426614174000')
         # test data
         self.text_message = TextSendMessage(text='Hello, world')
         self.message = [{"type": "text", "text": "Hello, world"}]
@@ -50,6 +50,31 @@ class TestSendTestMessage(unittest.TestCase):
         self.assertEqual(
             request.url,
             LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/message/push')
+        self.assertEqual(
+            json.loads(request.body),
+            {
+                "to": "to",
+                'notificationDisabled': False,
+                "messages": self.message
+            }
+        )
+
+    @responses.activate
+    def test_push_text_message_with_retry_key(self):
+        responses.add(
+            responses.POST,
+            LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/message/push',
+            json={}, status=200
+        )
+
+        self.tested_retry_key.push_message('to', self.text_message)
+
+        request = responses.calls[0].request
+        self.assertEqual(request.method, 'POST')
+        self.assertEqual(
+            request.url,
+            LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/message/push')
+        self.assertEqual(request.headers['X-Line-Retry-Key'], '123e4567-e89b-12d3-a456-426614174000')
         self.assertEqual(
             json.loads(request.body),
             {

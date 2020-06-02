@@ -38,7 +38,7 @@ class LineBotApi(object):
     DEFAULT_API_ENDPOINT = 'https://api.line.me'
     DEFAULT_API_DATA_ENDPOINT = 'https://api-data.line.me'
 
-    def __init__(self, channel_access_token,
+    def __init__(self, channel_access_token, retry_key=None,
                  endpoint=DEFAULT_API_ENDPOINT, data_endpoint=DEFAULT_API_DATA_ENDPOINT,
                  timeout=HttpClient.DEFAULT_TIMEOUT, http_client=RequestsHttpClient):
         """__init__ method.
@@ -61,6 +61,8 @@ class LineBotApi(object):
             'Authorization': 'Bearer ' + channel_access_token,
             'User-Agent': 'line-bot-sdk-python/' + __version__
         }
+        if retry_key:
+            self.headers['X-Line-Retry-Key'] = retry_key
 
         if http_client:
             self.http_client = http_client(timeout=timeout)
@@ -1085,5 +1087,6 @@ class LineBotApi(object):
                 status_code=response.status_code,
                 headers=dict(response.headers.items()),
                 request_id=response.headers.get('X-Line-Request-Id'),
+                accepted_request_id=response.headers.get('X-Line-Accepted-Request-Id'),
                 error=Error.new_from_json_dict(response.json)
             )

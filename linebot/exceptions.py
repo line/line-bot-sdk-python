@@ -58,15 +58,21 @@ class InvalidSignatureError(BaseError):
 class LineBotApiError(BaseError):
     """When LINE Messaging API response error, this error will be raised."""
 
-    def __init__(self, status_code, headers, request_id=None, accepted_request_id=None, error=None):
+    def __init__(
+            self,
+            status_code,
+            headers,
+            request_id=None,
+            accepted_request_id=None,
+            error=None
+    ):
         """__init__ method.
 
         :param int status_code: HTTP status code
         :param headers: Response headers
         :type headers: dict[str, str]
         :param str request_id: (optional) Request ID. A unique ID is generated for each request
-        :param str accepted_request_id: (optional) If the request has already been accepted using the same retry key,
-                                                    the x-line-request-id of the accepted request is shown.
+        :param str accepted_request_id: (optional)
         :param error: (optional) Error class object.
         :type error: :py:class:`linebot.models.error.Error`
         """
@@ -82,11 +88,11 @@ class LineBotApiError(BaseError):
         """str.
 
         :rtype: str
-
         https://developers.line.biz/en/reference/messaging-api/#response-headers
         """
         if self.accepted_request_id:
-            return "{0}: status_code={1}, request_id={2}, accepted_request_id={3}, error_response={4}, headers={5}" \
+            return "{0}: status_code={1}, request_id={2}, " \
+                   "accepted_request_id={3}, error_response={4}, headers={5}" \
                 .format(self.__class__.__name__,
                         self.status_code,
                         self.request_id,

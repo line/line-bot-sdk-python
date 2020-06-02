@@ -30,7 +30,9 @@ from linebot.models import (
 class TestSendTestMessage(unittest.TestCase):
     def setUp(self):
         self.tested = LineBotApi('channel_secret')
-        self.tested_retry_key = LineBotApi('channel_secret', '123e4567-e89b-12d3-a456-426614174000')
+        self.tested_retry_key = LineBotApi(
+            'channel_secret', '123e4567-e89b-12d3-a456-426614174000'
+        )
         # test data
         self.text_message = TextSendMessage(text='Hello, world')
         self.message = [{"type": "text", "text": "Hello, world"}]
@@ -74,7 +76,10 @@ class TestSendTestMessage(unittest.TestCase):
         self.assertEqual(
             request.url,
             LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/message/push')
-        self.assertEqual(request.headers['X-Line-Retry-Key'], '123e4567-e89b-12d3-a456-426614174000')
+        self.assertEqual(
+            request.headers['X-Line-Retry-Key'],
+            '123e4567-e89b-12d3-a456-426614174000'
+        )
         self.assertEqual(
             json.loads(request.body),
             {

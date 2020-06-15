@@ -65,6 +65,44 @@ class Profile(Base):
         self.language = language
 
 
+class Group(Base):
+    """Group.
+
+    https://developers.line.biz/en/reference/messaging-api/#get-group-id-response
+    """
+
+    def __init__(self, group_id=None, group_name=None, picture_url=None, **kwargs):
+        """__init__ method.
+
+        :param str group_id
+        :param str group_name
+        :param str picture_url
+        :param kwargs:
+        """
+        super(Group, self).__init__(**kwargs)
+
+        self.group_id = group_id
+        self.group_name = group_name
+        self.picture_url = picture_url
+
+
+class Count(Base):
+    """Count.
+
+    https://developers.line.biz/en/reference/messaging-api/#get-count-members-in-group-response
+    """
+
+    def __init__(self, count=None, **kwargs):
+        """__init__ method.
+
+        :param integer count
+        :param kwargs:
+        """
+        super(Count, self).__init__(**kwargs)
+
+        self.count = count
+
+
 class MemberIds(Base):
     """MemberIds.
 

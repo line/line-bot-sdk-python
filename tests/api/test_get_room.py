@@ -43,7 +43,7 @@ class TestLineBotApi(unittest.TestCase):
         self.assertEqual(
             request.url,
             LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/room/room_id/members/count')
-        self.assertEqual(count.count, 3)
+        self.assertEqual(count, 3)
 
 
 if __name__ == '__main__':

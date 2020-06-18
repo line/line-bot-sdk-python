@@ -109,7 +109,12 @@ class BubbleContainer(FlexContainer):
         self.size = size
         self.direction = direction
         self.header = self.get_or_new_from_json_dict(header, BoxComponent)
-        self.hero = self.get_or_new_from_json_dict(hero, ImageComponent)
+        self.hero = self.get_or_new_from_json_dict_with_types(
+            hero, {
+                'image': ImageComponent,
+                'box': BoxComponent
+            }
+        )
         self.body = self.get_or_new_from_json_dict(body, BoxComponent)
         self.footer = self.get_or_new_from_json_dict(footer, BoxComponent)
         self.styles = self.get_or_new_from_json_dict(styles, BubbleStyle)

@@ -28,7 +28,7 @@ class TestLineBotApi(unittest.TestCase):
         self.tested = LineBotApi('channel_secret')
 
     @responses.activate
-    def test_get_room_count(self):
+    def test_get_room_members_count(self):
         responses.add(
             responses.GET,
             LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/room/room_id/members/count',

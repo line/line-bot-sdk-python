@@ -52,7 +52,7 @@ class TestLineBotApi(unittest.TestCase):
         self.assertEqual(group.picture_url, 'https://example.com/abcdefghijklmn')
 
     @responses.activate
-    def test_get_group_count(self):
+    def test_get_group_members_count(self):
         responses.add(
             responses.GET,
             LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/group/group_id/members/count',

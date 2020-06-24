@@ -88,7 +88,6 @@ class LineBotApiError(BaseError):
         """str.
 
         :rtype: str
-        https://developers.line.biz/en/reference/messaging-api/#response-headers
         """
         if self.accepted_request_id:
             return "{0}: status_code={1}, request_id={2}, " \

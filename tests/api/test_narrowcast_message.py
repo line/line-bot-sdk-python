@@ -218,6 +218,90 @@ class TestNarrowcastMessage(unittest.TestCase):
         self.assertEqual('request_id_test', response.request_id)
 
     @responses.activate
+    def test_narrowcast_text_message_with_retry_key(self):
+        responses.add(
+            responses.POST,
+            LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/message/narrowcast',
+            json={}, status=200,
+            headers={
+                'X-Line-Request-Id': 'request_id_test',
+                'X-Line-Retry-Key': '123e4567-e89b-12d3-a456-426614174000'
+            },
+        )
+
+        response = self.tested.narrowcast(
+            self.text_message,
+            recipient=And(
+                AudienceRecipient(group_id=5614991017776),
+                Not(AudienceRecipient(group_id=4389303728991))
+            ),
+            filter=Filter(
+                demographic=Or(
+                    And(
+                        GenderFilter(one_of=["male", "female"])
+                    )
+                )
+            ),
+            limit=Limit(max=100),
+            retry_key='123e4567-e89b-12d3-a456-426614174000',
+        )
+
+        request = responses.calls[0].request
+        self.assertEqual(
+            request.url,
+            LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/message/narrowcast')
+        self.assertEqual(request.method, 'POST')
+        self.assertEqual(
+            request.headers['X-Line-Retry-Key'],
+            '123e4567-e89b-12d3-a456-426614174000'
+        )
+        self.assertEqual(
+            json.loads(request.body),
+            {
+                "messages": self.message,
+                "recipient": {
+                    "type": "operator",
+                    "and": [
+                        {
+                            'audienceGroupId': 5614991017776,
+                            'type': 'audience'
+                        },
+                        {
+                            "type": "operator",
+                            "not": {
+                                "type": "audience",
+                                "audienceGroupId": 4389303728991
+                            }
+                        }
+                    ]
+                },
+                "filter": {
+                    "demographic": {
+                        "type": "operator",
+                        "or": [
+                            {
+                                "type": "operator",
+                                "and": [
+                                    {
+                                        "type": "gender",
+                                        "oneOf": [
+                                            "male",
+                                            "female"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                },
+                "limit": {
+                    "max": 100
+                }
+            }
+        )
+        self.assertEqual('request_id_test', response.request_id)
+
+    @responses.activate
     def test_get_progress_status_narrowcast(self):
         responses.add(
             responses.GET,

@@ -45,10 +45,11 @@ class Profile(Base):
     https://developers.line.biz/en/reference/messaging-api/#get-profile
     """
 
-    def __init__(self, display_name=None, user_id=None, picture_url=None,
+    def __init__(self, language=None, display_name=None, user_id=None, picture_url=None,
                  status_message=None, language=None, **kwargs):
         """__init__ method.
 
+        :param str language: a BCP 47 language tag
         :param str display_name: Display name
         :param str user_id: User ID
         :param str picture_url: Image URL
@@ -58,6 +59,7 @@ class Profile(Base):
         """
         super(Profile, self).__init__(**kwargs)
 
+        self.language = language
         self.display_name = display_name
         self.user_id = user_id
         self.picture_url = picture_url

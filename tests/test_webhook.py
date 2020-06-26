@@ -527,5 +527,48 @@ class TestWebhookHandler(unittest.TestCase):
         self.handler.handle(body, 'signature')
 
 
+class TestInvokeWebhookHandler(unittest.TestCase):
+    def setUp(self):
+        def func_with_0_args():
+            assert True
+
+        def func_with_1_arg(arg):
+            assert arg
+
+        def func_with_2_args(arg1, arg2):
+            assert arg1 and arg2
+
+        def func_with_1_arg_with_default(arg=False):
+            assert arg
+
+        def func_with_2_args_with_default(arg1=False, arg2=False):
+            assert arg1 and arg2
+
+        def func_with_1_arg_and_1_arg_with_default(arg1, arg2=False):
+            assert arg1 and arg2
+
+        self.functions = [
+            func_with_0_args,
+            func_with_1_arg,
+            func_with_2_args,
+            func_with_1_arg_with_default,
+            func_with_2_args_with_default,
+            func_with_1_arg_and_1_arg_with_default,
+        ]
+
+    def test_invoke_func(self):
+        class PayloadMock(object):
+            def __init__(self):
+                self.destination = True
+
+        event = True
+        payload = PayloadMock()
+
+        for func in self.functions:
+            WebhookHandler._WebhookHandler__invoke_func(
+                func, event, payload
+            )
+
+
 if __name__ == '__main__':
     unittest.main()

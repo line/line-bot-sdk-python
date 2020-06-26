@@ -196,6 +196,20 @@ https://developers.line.biz/en/reference/messaging-api/#get-profile
     print(profile.picture_url)
     print(profile.status_message)
 
+get\_group\_summary(self, group\_id, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Gets the group ID, group name, and group icon URL of a group
+where the LINE Official Account is a member.
+
+https://developers.line.biz/en/reference/messaging-api/#get-group-summary
+
+.. code:: python
+
+    summary = line_bot_api.get_group_summary(group_id)
+    print(summary.group_id)
+    print(summary.group_name)
+    print(summary.picture_url)
+
 get\_group\_member\_profile(self, group\_id, user\_id, timeout=None)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -258,6 +272,30 @@ https://developers.line.biz/en/reference/messaging-api/#get-room-member-user-ids
 
     print(member_ids_res.member_ids)
     print(member_ids_res.next)
+
+get\_group\_members\_count(self, group\_id, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Gets the count of members in a group.
+
+https://developers.line.biz/en/reference/messaging-api/#get-members-group-count
+
+.. code:: python
+
+    group_count = line_bot_api.get_group_members_count(group_id)
+    print(group_count)
+
+get\_room\_members\_count(self, room\_id, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Gets the count of members in a room.
+
+https://developers.line.biz/en/reference/messaging-api/#get-members-room-count
+
+.. code:: python
+
+    room_count = line_bot_api.get_room_members_count(room_id)
+    print(room_count)
 
 get\_message\_content(self, message\_id, timeout=None)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

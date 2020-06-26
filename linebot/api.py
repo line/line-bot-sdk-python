@@ -30,6 +30,7 @@ from .models import (
     InsightMessageEventResponse, BroadcastResponse, NarrowcastResponse,
     MessageProgressNarrowcastResponse,
 )
+from .models.responses import Group
 
 
 class LineBotApi(object):
@@ -385,6 +386,76 @@ class LineBotApi(object):
         )
 
         return Profile.new_from_json_dict(response.json)
+
+    def get_group_summary(self, group_id, timeout=None):
+        """Call get group summary API.
+
+        https://developers.line.biz/en/reference/messaging-api/#get-group-summary
+
+        Gets the group ID, group name, and group icon URL of a group
+        where the LINE Official Account is a member.
+
+        :param str group_id: Group ID
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        :rtype: :py:class:`linebot.models.responses.Group`
+        :return: Profile instance
+        """
+        response = self._get(
+            '/v2/bot/group/{group_id}/summary'.format(group_id=group_id),
+            timeout=timeout
+        )
+
+        return Group.new_from_json_dict(response.json)
+
+    def get_group_members_count(self, group_id, timeout=None):
+        """Call get members in group count API.
+
+        https://developers.line.biz/en/reference/messaging-api/#get-members-group-count
+
+        Gets the count of members in a group.
+
+        :param str group_id: Group ID
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        :rtype: :py:class:`linebot.models.responses.Group`
+        :return: Profile instance
+        """
+        response = self._get(
+            '/v2/bot/group/{group_id}/members/count'.format(group_id=group_id),
+            timeout=timeout
+        )
+
+        return response.json.get('count')
+
+    def get_room_members_count(self, room_id, timeout=None):
+        """Call get members in room count API.
+
+        https://developers.line.biz/en/reference/messaging-api/#get-members-room-count
+
+        Gets the count of members in a room.
+
+        :param str room_id: Room ID
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        :rtype: :py:class:`linebot.models.responses.Group`
+        :return: Profile instance
+        """
+        response = self._get(
+            '/v2/bot/room/{room_id}/members/count'.format(room_id=room_id),
+            timeout=timeout
+        )
+
+        return response.json.get('count')
 
     def get_group_member_profile(self, group_id, user_id, timeout=None):
         """Call get group member profile API.

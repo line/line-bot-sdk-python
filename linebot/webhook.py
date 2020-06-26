@@ -261,22 +261,22 @@ class WebhookHandler(object):
 
     @classmethod
     def __invoke_func(cls, func, event, payload):
-        args_count = cls.__get_args_count(func)
-        if args_count == 0:
-            func()
+        (has_varargs, args_count) = cls.__get_args_count(func)
+        if has_varargs or args_count == 2:
+            func(event, payload.destination)
         elif args_count == 1:
             func(event)
         else:
-            func(event, payload.destination)
+            func()
 
     @staticmethod
     def __get_args_count(func):
         if PY3:
             arg_spec = inspect.getfullargspec(func)
-            return len(arg_spec.args)
+            return (arg_spec.varargs is not None, len(arg_spec.args))
         else:
             arg_spec = inspect.getargspec(func)
-            return len(arg_spec.args)
+            return (arg_spec.varargs is not None, len(arg_spec.args))
 
     @staticmethod
     def __get_handler_key(event, message=None):

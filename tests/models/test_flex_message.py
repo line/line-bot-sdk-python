@@ -61,8 +61,6 @@ class TestFlexMessage(SerializeTestCase):
             'header':
                 BoxComponent(layout='vertical',
                              contents=[TextComponent(text='Header text')]),
-            'hero':
-                ImageComponent(uri='https://example.com/flex/images/image.jpg'),
             'body':
                 BoxComponent(layout='vertical',
                              contents=[TextComponent(text='Body text')]),
@@ -79,10 +77,17 @@ class TestFlexMessage(SerializeTestCase):
                                       separator_color='#00ffff')
                 )
         }
-        self.assertEqual(
-            self.serialize_as_dict(arg, type=self.BUBBLE),
-            BubbleContainer(**arg).as_json_dict()
-        )
+        heros = [
+            ImageComponent(uri='https://example.com/flex/images/image.jpg'),
+            BoxComponent(layout='vertical',
+                         contents=[TextComponent(text='Body text')]),
+        ]
+        for hero in heros:
+            arg['hero'] = hero
+            self.assertEqual(
+                self.serialize_as_dict(arg, type=self.BUBBLE),
+                BubbleContainer(**arg).as_json_dict()
+            )
 
     def test_bubble_style(self):
         arg = {

@@ -88,14 +88,19 @@ class TestLineBotApi(unittest.TestCase):
             },
             status=200
         )
-        channel_access_tokens_response = self.tested.get_channel_access_tokens_v2_1(self.client_assertion)
+        channel_access_tokens_response = self.tested.get_channel_access_tokens_v2_1(
+            self.client_assertion
+        )
 
         request = responses.calls[0].request
         self.assertEqual(request.method, 'GET')
         self.assertEqual(
             parse.unquote(request.url),
-            '{endpoint}?client_assertion={client_assertion}&client_assertion_type={client_assertion_type}'.format(
-                endpoint=endpoint, client_assertion=self.client_assertion, client_assertion_type=self.client_assertion_type)
+            '{endpoint}?client_assertion={client_assertion}&'
+            'client_assertion_type={client_assertion_type}'.format(
+                endpoint=endpoint, client_assertion=self.client_assertion,
+                client_assertion_type=self.client_assertion_type
+            )
         )
         self.assertEqual(channel_access_tokens_response.access_tokens, [
             'fgIkeLcl3.....',
@@ -113,7 +118,9 @@ class TestLineBotApi(unittest.TestCase):
             status=200
         )
 
-        self.tested.revoke_channel_access_token_v2_1(self.client_id, self.client_secret, self.access_token)
+        self.tested.revoke_channel_access_token_v2_1(
+            self.client_id, self.client_secret, self.access_token
+        )
 
         request = responses.calls[0].request
         self.assertEqual('POST', request.method)

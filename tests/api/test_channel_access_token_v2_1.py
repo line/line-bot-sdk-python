@@ -96,11 +96,9 @@ class TestLineBotApi(unittest.TestCase):
         self.assertEqual(request.method, 'GET')
         self.assertEqual(
             parse.unquote(request.url),
-            '{endpoint}?client_assertion={client_assertion}&'
-            'client_assertion_type={client_assertion_type}'.format(
-                endpoint=endpoint, client_assertion=self.client_assertion,
-                client_assertion_type=self.client_assertion_type
-            )
+            parse.unquote('{}?client_assertion={}&client_assertion_type={}'.format(
+                endpoint, self.client_assertion, self.client_assertion_type
+            ))
         )
         self.assertEqual(channel_access_tokens_response.access_tokens, [
             'fgIkeLcl3.....',

@@ -1034,9 +1034,10 @@ class LineBotApi(object):
 
         return InsightMessageEventResponse.new_from_json_dict(response.json)
 
-    def issue_channel_access_token_v2_1(self, client_assertion, grant_type='client_credentials',
-                                        client_assertion_type='urn:ietf:params:oauth:client-assertion-type:jwt-bearer',
-                                        timeout=None):
+    def issue_channel_access_token_v2_1(
+            self, client_assertion, grant_type='client_credentials',
+            client_assertion_type='urn:ietf:params:oauth:client-assertion-type:jwt-bearer',
+            timeout=None):
         """Issues a channel access token v2.1.
 
         https://developers.line.biz/en/reference/messaging-api/#issue-channel-access-token-v2-1
@@ -1065,7 +1066,9 @@ class LineBotApi(object):
 
         return IssueChannelTokenResponse.new_from_json_dict(response.json)
 
-    def revoke_channel_access_token_v2_1(self, client_id, client_secret, access_token, timeout=None):
+    def revoke_channel_access_token_v2_1(self, client_id,
+                                         client_secret, access_token,
+                                         timeout=None):
         """Revokes a channel access token v2.1.
 
         https://developers.line.biz/en/reference/messaging-api/#revoke-channel-access-token-v2-1
@@ -1081,11 +1084,16 @@ class LineBotApi(object):
         """
         self._post(
             '/oauth2/v2.1/revoke',
-            data={'client_id': client_id, 'client_secret': client_secret, 'access_token': access_token},
+            data={'client_id': client_id,
+                  'client_secret': client_secret,
+                  'access_token': access_token},
             timeout=timeout
         )
 
-    def get_channel_access_tokens_v2_1(self, client_assertion, client_assertion_type='urn:ietf:params:oauth:client-assertion-type:jwt-bearer', timeout=None):
+    def get_channel_access_tokens_v2_1(
+            self, client_assertion,
+            client_assertion_type='urn:ietf:params:oauth:client-assertion-type:jwt-bearer',
+            timeout=None):
         """Get issued channel access tokens v2.1.
 
         https://developers.line.biz/en/reference/messaging-api/#get-issued-channel-access-tokens-v2-1
@@ -1102,7 +1110,8 @@ class LineBotApi(object):
         """
         response = self._get(
             '/oauth2/v2.1/tokens',
-            params={'client_assertion': client_assertion, 'client_assertion_type': client_assertion_type},
+            params={'client_assertion': client_assertion,
+                    'client_assertion_type': client_assertion_type},
             timeout=timeout
         )
         return ChannelAccessTokens.new_from_json_dict(response.json)

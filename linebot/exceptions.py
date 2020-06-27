@@ -72,7 +72,7 @@ class LineBotApiError(BaseError):
         :param headers: Response headers
         :type headers: dict[str, str]
         :param str request_id: (optional) Request ID. A unique ID is generated for each request
-        :param str accepted_request_id: (optional)
+        :param str accepted_request_id: (optional) The same request has already been accepted
         :param error: (optional) Error class object.
         :type error: :py:class:`linebot.models.error.Error`
         """

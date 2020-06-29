@@ -29,11 +29,13 @@ class TestTextMessage(SerializeTestCase):
             'emojis': [
                 Emojis(
                     index=0,
+                    length=6,
                     product_id='5ac1bfd5040ab15980c9b435',
                     emoji_id='001'
                 ),
                 Emojis(
                     index=13,
+                    length=6,
                     product_id='5ac1bfd5040ab15980c9b435',
                     emoji_id='002'
                 ),

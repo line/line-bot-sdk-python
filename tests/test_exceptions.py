@@ -40,6 +40,26 @@ class TestExceptions(unittest.TestCase):
             + 'headers={}'.format(headers)
         )
 
+    def test_accepted_str(self):
+        headers = {
+            'X-Line-Request-Id': '123e4567-e89b-12d3-a456-426655440002',
+            'X-Line-Accepted-Request-Id': '123e4567-e89b-12d3-a456-426655440001'
+        }
+        line_bot_api_error = LineBotApiError(
+            status_code=409,
+            request_id='123e4567-e89b-12d3-a456-426655440002',
+            accepted_request_id='123e4567-e89b-12d3-a456-426655440001',
+            headers=headers,
+            error=Error(message='The retry key is already accepted')
+        )
+        self.assertEqual(
+            line_bot_api_error.__str__(),
+            'LineBotApiError: status_code=409, request_id=123e4567-e89b-12d3-a456-426655440002, '
+            'accepted_request_id=123e4567-e89b-12d3-a456-426655440001, '
+            'error_response={"details": [], "message": "The retry key is already accepted"}, '
+            + 'headers={}'.format(headers)
+        )
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -109,7 +109,9 @@ class LineBotApi(object):
             '/v2/bot/message/reply', data=json.dumps(data), timeout=timeout
         )
 
-    def push_message(self, to, messages, notification_disabled=False, timeout=None):
+    def push_message(
+            self, to, messages,
+            retry_key=None, notification_disabled=False, timeout=None):
         """Call push message API.
 
         https://developers.line.biz/en/reference/messaging-api/#send-push-message
@@ -121,6 +123,7 @@ class LineBotApi(object):
             Max: 5
         :type messages: T <= :py:class:`linebot.models.send_messages.SendMessage` |
             list[T <= :py:class:`linebot.models.send_messages.SendMessage`]
+        :param retry_key: (optional) Arbitrarily generated UUID in hexadecimal notation.
         :param bool notification_disabled: (optional) True to disable push notification
             when the message is sent. The default value is False.
         :param timeout: (optional) How long to wait for the server
@@ -132,6 +135,9 @@ class LineBotApi(object):
         if not isinstance(messages, (list, tuple)):
             messages = [messages]
 
+        if retry_key:
+            self.headers['X-Line-Retry-Key'] = retry_key
+
         data = {
             'to': to,
             'messages': [message.as_json_dict() for message in messages],
@@ -142,7 +148,7 @@ class LineBotApi(object):
             '/v2/bot/message/push', data=json.dumps(data), timeout=timeout
         )
 
-    def multicast(self, to, messages, notification_disabled=False, timeout=None):
+    def multicast(self, to, messages, retry_key=None, notification_disabled=False, timeout=None):
         """Call multicast API.
 
         https://developers.line.biz/en/reference/messaging-api/#send-multicast-message
@@ -157,6 +163,7 @@ class LineBotApi(object):
             Max: 5
         :type messages: T <= :py:class:`linebot.models.send_messages.SendMessage` |
             list[T <= :py:class:`linebot.models.send_messages.SendMessage`]
+        :param retry_key: (optional) Arbitrarily generated UUID in hexadecimal notation.
         :param bool notification_disabled: (optional) True to disable push notification
             when the message is sent. The default value is False.
         :param timeout: (optional) How long to wait for the server
@@ -168,6 +175,9 @@ class LineBotApi(object):
         if not isinstance(messages, (list, tuple)):
             messages = [messages]
 
+        if retry_key:
+            self.headers['X-Line-Retry-Key'] = retry_key
+
         data = {
             'to': to,
             'messages': [message.as_json_dict() for message in messages],
@@ -178,7 +188,7 @@ class LineBotApi(object):
             '/v2/bot/message/multicast', data=json.dumps(data), timeout=timeout
         )
 
-    def broadcast(self, messages, notification_disabled=False, timeout=None):
+    def broadcast(self, messages, retry_key=None, notification_disabled=False, timeout=None):
         """Call broadcast API.
 
         https://developers.line.biz/en/reference/messaging-api/#send-broadcast-message
@@ -189,6 +199,7 @@ class LineBotApi(object):
             Max: 5
         :type messages: T <= :py:class:`linebot.models.send_messages.SendMessage` |
             list[T <= :py:class:`linebot.models.send_messages.SendMessage`]
+        :param retry_key: (optional) Arbitrarily generated UUID in hexadecimal notation.
         :param bool notification_disabled: (optional) True to disable push notification
             when the message is sent. The default value is False.
         :param timeout: (optional) How long to wait for the server
@@ -201,6 +212,9 @@ class LineBotApi(object):
         if not isinstance(messages, (list, tuple)):
             messages = [messages]
 
+        if retry_key:
+            self.headers['X-Line-Retry-Key'] = retry_key
+
         data = {
             'messages': [message.as_json_dict() for message in messages],
             'notificationDisabled': notification_disabled,
@@ -212,7 +226,9 @@ class LineBotApi(object):
 
         return BroadcastResponse(request_id=response.headers.get('X-Line-Request-Id'))
 
-    def narrowcast(self, messages, recipient=None, filter=None, limit=None, timeout=None):
+    def narrowcast(
+            self, messages,
+            retry_key=None, recipient=None, filter=None, limit=None, timeout=None):
         """Call narrowcast API.
 
         https://developers.line.biz/en/reference/messaging-api/#send-narrowcast-message
@@ -224,6 +240,7 @@ class LineBotApi(object):
             Max: 5
         :type messages: T <= :py:class:`linebot.models.send_messages.SendMessage` |
             list[T <= :py:class:`linebot.models.send_messages.SendMessage`]
+        :param retry_key: (optional) Arbitrarily generated UUID in hexadecimal notation.
         :param recipient: audience object of recipient
         :type recipient: T <= :py:class:`linebot.models.recipient.AudienceRecipient`
         :param filter: demographic filter of recipient
@@ -239,6 +256,9 @@ class LineBotApi(object):
         """
         if not isinstance(messages, (list, tuple)):
             messages = [messages]
+
+        if retry_key:
+            self.headers['X-Line-Retry-Key'] = retry_key
 
         data = {
             'messages': [message.as_json_dict() for message in messages],
@@ -1156,5 +1176,6 @@ class LineBotApi(object):
                 status_code=response.status_code,
                 headers=dict(response.headers.items()),
                 request_id=response.headers.get('X-Line-Request-Id'),
+                accepted_request_id=response.headers.get('X-Line-Accepted-Request-Id'),
                 error=Error.new_from_json_dict(response.json)
             )

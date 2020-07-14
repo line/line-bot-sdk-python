@@ -253,26 +253,30 @@ class WebhookHandler(object):
             if func is None:
                 LOGGER.info('No handler of ' + key + ' and no default handler')
             else:
-                args_count = self.__get_args_count(func)
-                if args_count == 0:
-                    func()
-                elif args_count == 1:
-                    func(event)
-                else:
-                    func(event, payload.destination)
+                self.__invoke_func(func, event, payload)
 
     def __add_handler(self, func, event, message=None):
         key = self.__get_handler_key(event, message=message)
         self._handlers[key] = func
 
+    @classmethod
+    def __invoke_func(cls, func, event, payload):
+        (has_varargs, args_count) = cls.__get_args_count(func)
+        if has_varargs or args_count == 2:
+            func(event, payload.destination)
+        elif args_count == 1:
+            func(event)
+        else:
+            func()
+
     @staticmethod
     def __get_args_count(func):
         if PY3:
             arg_spec = inspect.getfullargspec(func)
-            return len(arg_spec.args)
+            return (arg_spec.varargs is not None, len(arg_spec.args))
         else:
             arg_spec = inspect.getargspec(func)
-            return len(arg_spec.args)
+            return (arg_spec.varargs is not None, len(arg_spec.args))
 
     @staticmethod
     def __get_handler_key(event, message=None):

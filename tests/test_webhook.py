@@ -17,6 +17,7 @@ from __future__ import unicode_literals, absolute_import
 import os
 import unittest
 from builtins import open
+import inspect
 
 from linebot import (
     SignatureValidator, WebhookParser, WebhookHandler
@@ -29,6 +30,7 @@ from linebot.models import (
     LocationMessage, StickerMessage, FileMessage,
     SourceUser, SourceRoom, SourceGroup,
     DeviceLink, DeviceUnlink, ScenarioResult, ActionResult)
+from linebot.utils import PY3
 
 
 class TestSignatureValidator(unittest.TestCase):
@@ -525,6 +527,89 @@ class TestWebhookHandler(unittest.TestCase):
         self.handler.parser.signature_validator.validate = lambda a, b: True
 
         self.handler.handle(body, 'signature')
+
+
+class TestInvokeWebhookHandler(unittest.TestCase):
+    def setUp(self):
+        def wrap(func):
+            def wrapper(*args):
+                if PY3:
+                    arg_spec = inspect.getfullargspec(func)
+                else:
+                    arg_spec = inspect.getargspec(func)
+                return func(*args[0:len(arg_spec.args)])
+            return wrapper
+
+        def func_with_0_args():
+            assert True
+
+        def func_with_1_arg(arg):
+            assert arg
+
+        def func_with_2_args(arg1, arg2):
+            assert arg1 and arg2
+
+        def func_with_1_arg_with_default(arg=False):
+            assert arg
+
+        def func_with_2_args_with_default(arg1=False, arg2=False):
+            assert arg1 and arg2
+
+        def func_with_1_arg_and_1_arg_with_default(arg1, arg2=False):
+            assert arg1 and arg2
+
+        @wrap
+        def wrapped_func_with_0_args():
+            assert True
+
+        @wrap
+        def wrapped_func_with_1_arg(arg):
+            assert arg
+
+        @wrap
+        def wrapped_func_with_2_args(arg1, arg2):
+            assert arg1 and arg2
+
+        @wrap
+        def wrapped_func_with_1_arg_with_default(arg=False):
+            assert arg
+
+        @wrap
+        def wrapped_func_with_2_args_with_default(arg1=False, arg2=False):
+            assert arg1 and arg2
+
+        @wrap
+        def wrapped_func_with_1_arg_and_1_arg_with_default(
+                arg1, arg2=False):
+            assert arg1 and arg2
+
+        self.functions = [
+            func_with_0_args,
+            func_with_1_arg,
+            func_with_2_args,
+            func_with_1_arg_with_default,
+            func_with_2_args_with_default,
+            func_with_1_arg_and_1_arg_with_default,
+            wrapped_func_with_0_args,
+            wrapped_func_with_1_arg,
+            wrapped_func_with_2_args,
+            wrapped_func_with_1_arg_with_default,
+            wrapped_func_with_2_args_with_default,
+            wrapped_func_with_1_arg_and_1_arg_with_default,
+        ]
+
+    def test_invoke_func(self):
+        class PayloadMock(object):
+            def __init__(self):
+                self.destination = True
+
+        event = True
+        payload = PayloadMock()
+
+        for func in self.functions:
+            WebhookHandler._WebhookHandler__invoke_func(
+                func, event, payload
+            )
 
 
 if __name__ == '__main__':

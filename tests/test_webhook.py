@@ -30,6 +30,8 @@ from linebot.models import (
     LocationMessage, StickerMessage, FileMessage,
     SourceUser, SourceRoom, SourceGroup,
     DeviceLink, DeviceUnlink, ScenarioResult, ActionResult)
+from linebot.models.events import UnsendEvent
+from linebot.models.unsend import Unsend
 from linebot.utils import PY3
 
 
@@ -386,7 +388,6 @@ class TestWebhookParser(unittest.TestCase):
         self.assertIsInstance(events[23].source, SourceUser)
         self.assertEqual(events[23].source.type, 'user')
         self.assertEqual(events[23].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
-        self.assertEqual(events[23].source.sender_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
         self.assertIsInstance(events[23].message, FileMessage)
         self.assertEqual(events[23].message.id, '325708')
         self.assertEqual(events[23].message.type, 'file')
@@ -416,6 +417,17 @@ class TestWebhookParser(unittest.TestCase):
         self.assertEqual(events[24].things.result.action_results[0].data, '/w==')
         self.assertIsInstance(events[24].things.result.action_results[1], ActionResult)
         self.assertEqual(events[24].things.result.action_results[1].type, 'void')
+
+        # UnsendEvent
+        self.assertIsInstance(events[25], UnsendEvent)
+        self.assertEqual(events[25].type, 'unsend')
+        self.assertEqual(events[25].mode, 'active')
+        self.assertEqual(events[25].timestamp, 1547817848122)
+        self.assertIsInstance(events[25].source, SourceGroup)
+        self.assertEqual(events[25].source.type, 'group')
+        self.assertEqual(events[25].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
+        self.assertIsInstance(events[25].unsend, Unsend)
+        self.assertEqual(events[25].unsend.message_id, '325708')
 
     def test_parse_webhook_req_without_destination(self):
         body = """

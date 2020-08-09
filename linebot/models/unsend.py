@@ -27,7 +27,7 @@ from .base import Base
 class Unsend(with_metaclass(ABCMeta, Base)):
     """Abstract Base Class of Unsend."""
 
-    def __init__(self, message_id, **kwargs):
+    def __init__(self, message_id=None, **kwargs):
         """__init__ method.
 
         :param kwargs:

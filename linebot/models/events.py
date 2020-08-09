@@ -38,6 +38,7 @@ from linebot.models.things import (
 )
 from linebot.models.things import Things  # noqa, backward compatibility
 from linebot.models.unsend import Unsend
+from linebot.models.video_play_complete import VideoPlayComplete
 
 
 class Event(with_metaclass(ABCMeta, Base)):
@@ -430,7 +431,6 @@ class UnsendEvent(Event):
         :param long timestamp: Time of the event in milliseconds
         :param source: Source object
         :type source: T <= :py:class:`linebot.models.sources.Source`
-        :param str reply_token: Reply token
         :param unsend: Unsend object
         :type unsend: T <= :py:class:`linebot.models.unsend.`
         :param kwargs:
@@ -442,6 +442,38 @@ class UnsendEvent(Event):
         self.type = 'unsend'
         self.unsend = self.get_or_new_from_json_dict(
             unsend, Unsend
+        )
+
+
+class VideoPlayCompleteEvent(Event):
+    """Webhook VideoCompleteEvent.
+
+    https://developers.line.biz/en/reference/messaging-api/#video-viewing-complete
+
+    Event object Event for when a user finishes viewing a video at least once.
+    """
+
+    def __init__(self, mode=None, timestamp=None, source=None, reply_token=None,
+                 video_play_complete=None, **kwargs):
+        """__init__ method.
+
+        :param str mode: Channel state
+        :param long timestamp: Time of the event in milliseconds
+        :param source: Source object
+        :type source: T <= :py:class:`linebot.models.sources.Source`
+        :param str reply_token: Reply token
+        :param video_play_complete: VideoPlayComplete object
+        :type video_play_complete: T <= :py:class:`linebot.models.video_play_complete.`
+        :param kwargs:
+        """
+        super(VideoPlayCompleteEvent, self).__init__(
+            mode=mode, timestamp=timestamp, source=source, **kwargs
+        )
+
+        self.type = 'videoPlayComplete'
+        self.reply_token = reply_token
+        self.video_play_complete = self.get_or_new_from_json_dict(
+            video_play_complete, VideoPlayComplete
         )
 
 

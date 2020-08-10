@@ -16,8 +16,7 @@
 
 from __future__ import unicode_literals
 
-import warnings
-from abc import ABCMeta, abstractproperty
+from abc import ABCMeta
 
 from future.utils import with_metaclass
 

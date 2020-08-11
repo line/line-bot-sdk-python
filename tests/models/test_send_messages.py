@@ -72,6 +72,18 @@ class TestSendMessages(SerializeTestCase):
             VideoSendMessage(**arg).as_json_dict()
         )
 
+    def test_video_message_wtih_track(self):
+        arg = {
+            'type': 'video',
+            'original_content_url': 'https://example.com/original.mp4',
+            'preview_image_url': 'https://example.com/preview.jpg',
+            "tracking_id": "track_id"
+        }
+        self.assertEqual(
+            self.serialize_as_dict(arg, type=self.VIDEO),
+            VideoSendMessage(**arg).as_json_dict()
+        )
+
     def test_audio_message(self):
         arg = {
             'original_content_url': 'https://example.com/original.m4a',

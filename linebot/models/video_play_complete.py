@@ -29,6 +29,9 @@ class VideoPlayComplete(with_metaclass(ABCMeta, Base)):
     def __init__(self, tracking_id=None, **kwargs):
         """__init__ method.
 
+        :param str tracking_id: the video viewing complete event occurs
+            when the user finishes watching the video.
+            Max character limit: 100.
         :param kwargs:
         """
         super(VideoPlayComplete, self).__init__(**kwargs)

@@ -29,6 +29,7 @@ class Unsend(with_metaclass(ABCMeta, Base)):
     def __init__(self, message_id=None, **kwargs):
         """__init__ method.
 
+        :param str message_id: The message ID of the unsent message.
         :param kwargs:
         """
         super(Unsend, self).__init__(**kwargs)

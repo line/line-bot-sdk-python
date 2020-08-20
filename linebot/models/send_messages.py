@@ -108,8 +108,9 @@ class VideoSendMessage(SendMessage):
             HTTPS. mp4. Less than 1 minute. Max: 10 MB.
         :param str preview_image_url: URL of preview image.
             HTTPS. JPEG. Max: 240 x 240. Max: 1 MB.
-        :param str preview_image_url: URL of preview image.
-            HTTPS. JPEG. Max: 240 x 240. Max: 1 MB.
+        :param str tracking_id: the video viewing complete event occurs
+            when the user finishes watching the video.
+            Max character limit: 100.
         :param quick_reply: QuickReply object
         :type quick_reply: T <= :py:class:`linebot.models.send_messages.QuickReply`
         :param kwargs:

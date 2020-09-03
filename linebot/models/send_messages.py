@@ -101,13 +101,16 @@ class VideoSendMessage(SendMessage):
     """
 
     def __init__(self, original_content_url=None, preview_image_url=None,
-                 quick_reply=None, **kwargs):
+                 tracking_id=None, quick_reply=None, **kwargs):
         """__init__ method.
 
         :param str original_content_url: URL of video file.
             HTTPS. mp4. Less than 1 minute. Max: 10 MB.
         :param str preview_image_url: URL of preview image.
             HTTPS. JPEG. Max: 240 x 240. Max: 1 MB.
+        :param str tracking_id: the video viewing complete event occurs
+            when the user finishes watching the video.
+            Max character limit: 100.
         :param quick_reply: QuickReply object
         :type quick_reply: T <= :py:class:`linebot.models.send_messages.QuickReply`
         :param kwargs:
@@ -117,6 +120,7 @@ class VideoSendMessage(SendMessage):
         self.type = 'video'
         self.original_content_url = original_content_url
         self.preview_image_url = preview_image_url
+        self.tracking_id = tracking_id
 
 
 class AudioSendMessage(SendMessage):

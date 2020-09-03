@@ -33,13 +33,15 @@ class TestLineBotApi(unittest.TestCase):
 
         self.video_message = VideoSendMessage(
             original_content_url='https://example.com/original.mp4',
-            preview_image_url='https://example.com/preview.jpg'
+            preview_image_url='https://example.com/preview.jpg',
+            tracking_id='TrackId'
         )
 
         self.message = [{
             "type": "video",
             "originalContentUrl": "https://example.com/original.mp4",
             "previewImageUrl": "https://example.com/preview.jpg",
+            "trackingId": "TrackId"
         }]
 
     @responses.activate

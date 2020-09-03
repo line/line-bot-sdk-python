@@ -85,8 +85,10 @@ class TestNarrowcastMessage(unittest.TestCase):
                     }
                 },
                 "limit": {
-                    "max": 10
-                }
+                    "max": 10,
+                    "upToRemainingQuota": False,
+                },
+                "notificationDisabled": False,
             }
         )
 
@@ -120,7 +122,7 @@ class TestNarrowcastMessage(unittest.TestCase):
                     )
                 )
             ),
-            limit=Limit(max=100),
+            limit=Limit(max=100, up_to_remaining_quota=True),
         )
 
         request = responses.calls[0].request
@@ -211,8 +213,10 @@ class TestNarrowcastMessage(unittest.TestCase):
                     }
                 },
                 "limit": {
-                    "max": 100
-                }
+                    "max": 100,
+                    "upToRemainingQuota": True,
+                },
+                "notificationDisabled": False,
             }
         )
         self.assertEqual('request_id_test', response.request_id)
@@ -242,7 +246,7 @@ class TestNarrowcastMessage(unittest.TestCase):
                     )
                 )
             ),
-            limit=Limit(max=100),
+            limit=Limit(max=100, up_to_remaining_quota=True),
             retry_key='123e4567-e89b-12d3-a456-426614174000',
         )
 
@@ -295,8 +299,10 @@ class TestNarrowcastMessage(unittest.TestCase):
                     }
                 },
                 "limit": {
-                    "max": 100
-                }
+                    "max": 100,
+                    "upToRemainingQuota": True,
+                },
+                "notificationDisabled": False,
             }
         )
         self.assertEqual('request_id_test', response.request_id)

@@ -30,7 +30,7 @@ class Limit(with_metaclass(ABCMeta, Base)):
 
     """
 
-    def __init__(self, max=None, **kwargs):
+    def __init__(self, max=None, up_to_remaining_quota=False, **kwargs):
         """__init__ method.
 
         :param kwargs:
@@ -38,3 +38,4 @@ class Limit(with_metaclass(ABCMeta, Base)):
         super(Limit, self).__init__(**kwargs)
 
         self.max = max
+        self.up_to_remaining_quota = up_to_remaining_quota

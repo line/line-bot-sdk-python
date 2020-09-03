@@ -228,7 +228,8 @@ class LineBotApi(object):
 
     def narrowcast(
             self, messages,
-            retry_key=None, recipient=None, filter=None, limit=None, timeout=None):
+            retry_key=None, recipient=None, filter=None, limit=None,
+            notification_disabled=False, timeout=None):
         """Call narrowcast API.
 
         https://developers.line.biz/en/reference/messaging-api/#send-narrowcast-message
@@ -247,6 +248,8 @@ class LineBotApi(object):
         :type filter: T <= :py:class:`linebot.models.filter.DemographicFilter`
         :param limit: limit on this narrowcast
         :type limit: T <= :py:class:`linebot.models.limit.Limit`
+        :param bool notification_disabled: (optional) True to disable push notification
+            when the message is sent. The default value is False.
         :param timeout: (optional) How long to wait for the server
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
@@ -265,6 +268,7 @@ class LineBotApi(object):
             'recipient': recipient.as_json_dict(),
             'filter': filter.as_json_dict(),
             'limit': limit.as_json_dict(),
+            'notificationDisabled': notification_disabled,
         }
 
         response = self._post(

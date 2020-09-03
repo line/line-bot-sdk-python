@@ -463,7 +463,8 @@ class VideoPlayCompleteEvent(Event):
         :type source: T <= :py:class:`linebot.models.sources.Source`
         :param str reply_token: Reply token
         :param video_play_complete: VideoPlayComplete object
-        :type video_play_complete: T <= :py:class:`linebot.models.video_play_complete.VideoPlayComplete`
+        :type video_play_complete:
+            T <= :py:class:`linebot.models.video_play_complete.VideoPlayComplete`
         :param kwargs:
         """
         super(VideoPlayCompleteEvent, self).__init__(

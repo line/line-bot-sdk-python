@@ -99,7 +99,7 @@ class TestNarrowcastMessage(unittest.TestCase):
             responses.POST,
             LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/message/narrowcast',
             json={}, status=200,
-            headers={'X-Line-Request-Id': '5b59509c-c57b-11e9-aa8c-2a2ae2dbcce4'},
+            headers={'X-Line-Request-Id': 'request_id_test'},
         )
 
         self.tested.narrowcast(
@@ -107,7 +107,7 @@ class TestNarrowcastMessage(unittest.TestCase):
             recipient=And(
                 AudienceRecipient(group_id=5614991017776),
                 Not(
-                    RedeliveryRecipient(request_id='5b59509c-c57b-11e9-aa8c-2a2ae2dbcce4')
+                    RedeliveryRecipient(request_id='request_id_test')
                 )
             ),
             filter=Filter(demographic=AgeFilter(gte="age_35", lt="age_40")),
@@ -134,7 +134,7 @@ class TestNarrowcastMessage(unittest.TestCase):
                             "type": "operator",
                             "not": {
                                 "type": "redelivery",
-                                "requestId": "5b59509c-c57b-11e9-aa8c-2a2ae2dbcce4"
+                                "requestId": "request_id_test"
                             }
                         }
                     ]

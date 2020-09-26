@@ -94,12 +94,11 @@ class TestNarrowcastMessage(unittest.TestCase):
         )
 
     @responses.activate
-    def test_narrowcast_recipient_simple_text_message(self):
+    def test_narrowcast_redelivery_recipient_text_message(self):
         responses.add(
             responses.POST,
             LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/message/narrowcast',
             json={}, status=200,
-            headers={'X-Line-Request-Id': 'request_id_test'},
         )
 
         self.tested.narrowcast(

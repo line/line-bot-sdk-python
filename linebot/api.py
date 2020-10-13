@@ -1133,7 +1133,13 @@ class LineBotApi(object):
         pass
 
     def get_webhook_endpoint(self, timeout=None):
-        pass
+        
+        response = self._get(
+            '/v2/bot/channel/webhook/endpoint',
+            timeout=timeout,
+        )
+
+        return response.json
 
     def test_webhook_endpoint(self, webhook_endpoint=None, timeout=None):
         pass

@@ -1151,7 +1151,19 @@ class LineBotApi(object):
         return response.json
 
     def test_webhook_endpoint(self, webhook_endpoint=None, timeout=None):
-        pass
+        
+        data = {}
+
+        if webhook_endpoint is not None:
+            data['endpoint'] = webhook_endpoint
+
+        response = self._post(
+            '/v2/bot/channel/webhook/test',
+            data=json.dumps(data),
+            timeout=timeout,
+        )
+
+        return response.json
 
     def _get(self, path, endpoint=None, params=None, headers=None, stream=False, timeout=None):
         url = (endpoint or self.endpoint) + path

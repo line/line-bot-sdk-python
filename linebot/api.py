@@ -1186,6 +1186,20 @@ class LineBotApi(object):
         self.__check_error(response)
         return response
 
+    def _put(self, path, endpoint=None, data=None, headers=None, timeout=None):
+        url = (endpoint or self.endpoint) + path
+
+        if headers is None:
+            headers = {'Content-Type': 'application/json'}
+        headers.update(self.headers)
+
+        response = self.http_client.put(
+            url, headers=headers, data=data, timeout=timeout
+        )
+
+        self.__check_error(response)
+        return response
+
     @staticmethod
     def __check_error(response):
         if 200 <= response.status_code < 300:

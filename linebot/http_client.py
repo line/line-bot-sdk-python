@@ -92,6 +92,9 @@ class HttpClient(with_metaclass(ABCMeta)):
         """
         raise NotImplementedError
 
+    @abstractmethod
+    def put(self, url, headers=None, data=None, timeout=None):
+        raise NotImplementedError
 
 class RequestsHttpClient(HttpClient):
     """HttpClient implemented by requests."""
@@ -177,6 +180,16 @@ class RequestsHttpClient(HttpClient):
 
         return RequestsHttpResponse(response)
 
+    def put(self, url, headers=None, data=None, timeout=None):
+        
+        if timeout is None:
+            timeout = self.timeout
+
+        response = requests.put(
+            url, headers=headers, data=data, timeout=timeout
+        )
+
+        return RequestsHttpResponse(response)
 
 class HttpResponse(with_metaclass(ABCMeta)):
     """HttpResponse."""

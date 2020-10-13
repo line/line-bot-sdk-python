@@ -1129,6 +1129,15 @@ class LineBotApi(object):
 
         return InsightMessageEventResponse.new_from_json_dict(response.json)
 
+    def set_webhook_endpoint(self, webhook_endpoint, timeout=None):
+        pass
+
+    def get_webhook_endpoint(self, timeout=None):
+        pass
+
+    def test_webhook_endpoint(self, webhook_endpoint=None, timeout=None):
+        pass
+
     def _get(self, path, endpoint=None, params=None, headers=None, stream=False, timeout=None):
         url = (endpoint or self.endpoint) + path
 

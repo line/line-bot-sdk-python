@@ -1130,7 +1130,17 @@ class LineBotApi(object):
         return InsightMessageEventResponse.new_from_json_dict(response.json)
 
     def set_webhook_endpoint(self, webhook_endpoint, timeout=None):
+        """Sets the webhook endpoint URL.
         
+        https://developers.line.biz/en/reference/messaging-api/#set-webhook-endpoint-url
+
+        :param str webhook_endpoint: A valid webhook URL to be set.
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        """
         data={
             'endpoint': webhook_endpoint
         }
@@ -1142,7 +1152,19 @@ class LineBotApi(object):
         )
 
     def get_webhook_endpoint(self, timeout=None):
+        """Gets information on a webhook endpoint.
         
+        https://developers.line.biz/en/reference/messaging-api/#get-webhook-endpoint-information
+
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        :rtype: dict
+        :return: Webhook information, including `endpoint` for webhook
+            URL and `active` for webhook usage status.
+        """
         response = self._get(
             '/v2/bot/channel/webhook/endpoint',
             timeout=timeout,
@@ -1151,7 +1173,20 @@ class LineBotApi(object):
         return response.json
 
     def test_webhook_endpoint(self, webhook_endpoint=None, timeout=None):
+        """Checks if the configured webhook endpoint can receive a test webhook event.
         
+        https://developers.line.biz/en/reference/messaging-api/#test-webhook-endpoint
+        
+        :param webhook_endpoint: (optional) Set this parameter to
+            specific the webhook endpoint of the webhook. Default is the webhook
+            endpoint that is already set to the channel.
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        :rtype: dict
+        """
         data = {}
 
         if webhook_endpoint is not None:

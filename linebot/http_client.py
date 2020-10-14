@@ -94,7 +94,21 @@ class HttpClient(with_metaclass(ABCMeta)):
 
     @abstractmethod
     def put(self, url, headers=None, data=None, timeout=None):
+        """PUT request.
+
+        :param str url: Request url
+        :param dict headers: (optional) Request headers
+        :param data: (optional) Dictionary, bytes, or file-like object to send in the body
+        :param timeout: (optional), How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is :py:attr:`self.timeout`
+        :type timeout: float | tuple(float, float)
+        :rtype: :py:class:`RequestsHttpResponse`
+        :return: RequestsHttpResponse instance
+        """
         raise NotImplementedError
+
 
 class RequestsHttpClient(HttpClient):
     """HttpClient implemented by requests."""
@@ -181,7 +195,19 @@ class RequestsHttpClient(HttpClient):
         return RequestsHttpResponse(response)
 
     def put(self, url, headers=None, data=None, timeout=None):
-        
+        """PUT request.
+
+        :param str url: Request url
+        :param dict headers: (optional) Request headers
+        :param data: (optional) Dictionary, bytes, or file-like object to send in the body
+        :param timeout: (optional), How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is :py:attr:`self.timeout`
+        :type timeout: float | tuple(float, float)
+        :rtype: :py:class:`RequestsHttpResponse`
+        :return: RequestsHttpResponse instance
+        """
         if timeout is None:
             timeout = self.timeout
 
@@ -190,6 +216,7 @@ class RequestsHttpClient(HttpClient):
         )
 
         return RequestsHttpResponse(response)
+
 
 class HttpResponse(with_metaclass(ABCMeta)):
     """HttpResponse."""

@@ -1130,8 +1130,8 @@ class LineBotApi(object):
         return InsightMessageEventResponse.new_from_json_dict(response.json)
 
     def set_webhook_endpoint(self, webhook_endpoint, timeout=None):
-        """Sets the webhook endpoint URL.
-        
+        """Set the webhook endpoint URL.
+
         https://developers.line.biz/en/reference/messaging-api/#set-webhook-endpoint-url
 
         :param str webhook_endpoint: A valid webhook URL to be set.
@@ -1141,7 +1141,7 @@ class LineBotApi(object):
             Default is self.http_client.timeout
         :type timeout: float | tuple(float, float)
         """
-        data={
+        data = {
             'endpoint': webhook_endpoint
         }
 
@@ -1152,8 +1152,8 @@ class LineBotApi(object):
         )
 
     def get_webhook_endpoint(self, timeout=None):
-        """Gets information on a webhook endpoint.
-        
+        """Get information on a webhook endpoint.
+
         https://developers.line.biz/en/reference/messaging-api/#get-webhook-endpoint-information
 
         :param timeout: (optional) How long to wait for the server
@@ -1174,9 +1174,9 @@ class LineBotApi(object):
 
     def test_webhook_endpoint(self, webhook_endpoint=None, timeout=None):
         """Checks if the configured webhook endpoint can receive a test webhook event.
-        
+
         https://developers.line.biz/en/reference/messaging-api/#test-webhook-endpoint
-        
+
         :param webhook_endpoint: (optional) Set this parameter to
             specific the webhook endpoint of the webhook. Default is the webhook
             endpoint that is already set to the channel.

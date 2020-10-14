@@ -504,7 +504,7 @@ class BotInfo(Base):
     https://developers.line.biz/en/reference/messaging-api/#get-bot-info
     """
 
-    def __init__(self, user_id=None, basic_id=None, premiun_id=None,
+    def __init__(self, user_id=None, basic_id=None, premium_id=None,
                  display_name=None, picture_url=None, chat_mode=None,
                  mark_as_read_mode=None, **kwargs):
         """__init__ method.
@@ -515,7 +515,7 @@ class BotInfo(Base):
 
         self.user_id = user_id
         self.basic_id = basic_id
-        self.premiun_id = premiun_id
+        self.premium_id = premium_id
         self.display_name = display_name
         self.picture_url = picture_url
         self.chat_mode = chat_mode

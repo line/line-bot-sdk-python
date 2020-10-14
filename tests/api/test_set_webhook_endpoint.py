@@ -36,7 +36,7 @@ class TestLineBotApi(unittest.TestCase):
             status=200
         )
 
-        result = self.tested.set_webhook_endpoint('endpoint')
+        self.tested.set_webhook_endpoint('endpoint')
 
         request = responses.calls[0].request
         self.assertEqual(request.method, 'PUT')

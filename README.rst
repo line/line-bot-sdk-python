@@ -590,6 +590,25 @@ https://developers.line.biz/en/reference/messaging-api/#get-message-event
     broadcast_response = line_bot_api.broadcast(TextSendMessage(text='Hello World!'))
     insight = line_bot_api.get_insight_message_event(broadcast_response.request_id)
     print(insight.overview)
+    
+get\_bot_info(self, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get bot's basic information.
+
+https://developers.line.biz/en/reference/messaging-api/#get-bot-info
+
+.. code:: python
+
+    bot_info = line_bot_api.get_bot_info()
+
+    print(bot_info.display_name)
+    print(bot_info.user_id)
+    print(bot_info.basic_id)
+    print(bot_info.premium_id)
+    print(bot_info.picture_url)
+    print(bot_info.chat_mode)
+    print(bot_info.mark_as_read_mode)
 
 ※ Error handling
 ^^^^^^^^^^^^^^^^^

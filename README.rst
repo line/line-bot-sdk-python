@@ -591,6 +591,46 @@ https://developers.line.biz/en/reference/messaging-api/#get-message-event
     insight = line_bot_api.get_insight_message_event(broadcast_response.request_id)
     print(insight.overview)
 
+set\_webhook\_endpoint(self, webhook_endpoint, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Set the webhook endpoint URL.
+
+https://developers.line.biz/en/reference/messaging-api/#set-webhook-endpoint-url
+
+.. code:: python
+
+    line_bot_api.set_webhook_endpoint(<webhook_endpoint_URL>)
+
+get\_webhook\_endpoint(self, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get information on a webhook endpoint.
+
+https://developers.line.biz/en/reference/messaging-api/#get-webhook-endpoint-information
+
+.. code:: python
+
+    webhook = line_bot_api.get_webhook_endpoint()
+    print(webhook.endpoint)
+    print(webhook.active)
+
+test\_webhook\_endpoint(self, webhook_endpoint=None, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Check if the configured webhook endpoint can receive a test webhook event.
+
+https://developers.line.biz/en/reference/messaging-api/#test-webhook-endpoint
+
+.. code:: python
+
+    test_result = line_bot_api.test_webhook_endpoint()
+    print(test_result.success)
+    print(test_result.timestamp)
+    print(test_result.status_code)
+    print(test_result.reason)
+    print(test_result.detail)
+
 ※ Error handling
 ^^^^^^^^^^^^^^^^^
 

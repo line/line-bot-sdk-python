@@ -36,13 +36,14 @@ class TestLineBotApi(unittest.TestCase):
             status=200
         )
 
-        self.tested.set_webhook_endpoint('endpoint')
+        result = self.tested.set_webhook_endpoint('endpoint')
 
         request = responses.calls[0].request
         self.assertEqual(request.method, 'PUT')
         self.assertEqual(
             request.url,
             LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/channel/webhook/endpoint')
+        self.assertEqual(result, {})
 
 
 if __name__ == '__main__':

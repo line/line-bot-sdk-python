@@ -1140,16 +1140,20 @@ class LineBotApi(object):
             or a (connect timeout, read timeout) float tuple.
             Default is self.http_client.timeout
         :type timeout: float | tuple(float, float)
+        :rtype: dict
+        :return: Empty dict.
         """
         data = {
             'endpoint': webhook_endpoint
         }
 
-        self._put(
+        response = self._put(
             '/v2/bot/channel/webhook/endpoint',
             data=json.dumps(data),
             timeout=timeout,
         )
+
+        return response.json
 
     def get_webhook_endpoint(self, timeout=None):
         """Get information on a webhook endpoint.

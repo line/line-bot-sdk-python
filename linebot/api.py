@@ -1165,7 +1165,7 @@ class LineBotApi(object):
             or a (connect timeout, read timeout) float tuple.
             Default is self.http_client.timeout
         :type timeout: float | tuple(float, float)
-        :rtype: dict
+        :rtype: :py:class:`linebot.models.responses.GetWebhookResponse`
         :return: Webhook information, including `endpoint` for webhook
             URL and `active` for webhook usage status.
         """
@@ -1189,7 +1189,7 @@ class LineBotApi(object):
             or a (connect timeout, read timeout) float tuple.
             Default is self.http_client.timeout
         :type timeout: float | tuple(float, float)
-        :rtype: dict
+        :rtype: :py:class:`linebot.models.responses.TestWebhookResponse`
         """
         data = {}
 

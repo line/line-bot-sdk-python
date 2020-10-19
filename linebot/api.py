@@ -28,7 +28,7 @@ from .models import (
     MessageDeliveryPushResponse, MessageDeliveryReplyResponse,
     InsightMessageDeliveryResponse, InsightFollowersResponse, InsightDemographicResponse,
     InsightMessageEventResponse, BroadcastResponse, NarrowcastResponse,
-    MessageProgressNarrowcastResponse,
+    MessageProgressNarrowcastResponse, GetWebhookResponse
 )
 from .models.responses import Group
 
@@ -1170,7 +1170,7 @@ class LineBotApi(object):
             timeout=timeout,
         )
 
-        return response.json
+        return GetWebhookResponse.new_from_json_dict(response.json)
 
     def test_webhook_endpoint(self, webhook_endpoint=None, timeout=None):
         """Checks if the configured webhook endpoint can receive a test webhook event.

@@ -150,6 +150,7 @@ from .responses import (  # noqa
     BroadcastResponse,
     NarrowcastResponse,
     MessageProgressNarrowcastResponse,
+    GetWebhookResponse,
 )
 from .rich_menu import (  # noqa
     RichMenu,

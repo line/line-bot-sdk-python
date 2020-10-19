@@ -46,8 +46,8 @@ class TestLineBotApi(unittest.TestCase):
         self.assertEqual(
             request.url,
             LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/channel/webhook/endpoint')
-        self.assertEqual(webhook['endpoint'], 'https://example.herokuapp.com/test')
-        self.assertEqual(webhook['active'], 'true')
+        self.assertEqual(webhook.endpoint, 'https://example.herokuapp.com/test')
+        self.assertEqual(webhook.active, True)
 
 
 if __name__ == '__main__':

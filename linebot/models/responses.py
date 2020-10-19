@@ -496,3 +496,25 @@ class NarrowcastResponse(Base):
         super(NarrowcastResponse, self).__init__(**kwargs)
 
         self.request_id = request_id
+
+
+class GetWebhookResponse(Base):
+    """Response of `get_webhook_endpoint()` .
+
+    https://developers.line.biz/en/reference/messaging-api/#get-webhook-endpoint-information
+    """
+
+    def __init__(self, endpoint=None, active=None, **kwargs):
+        """__init__ method.
+
+        :param str endpoint: The webhook endpoint URL.
+        :param bool active: Whether the webhook is in use.
+        :param kwargs:
+        """
+        super(GetWebhookResponse, self).__init__(**kwargs)
+
+        self.endpoint = endpoint
+        if active == 'true':
+            self.active = True
+        elif active == 'false':
+            self.active = False

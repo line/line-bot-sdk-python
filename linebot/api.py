@@ -28,7 +28,7 @@ from .models import (
     MessageDeliveryPushResponse, MessageDeliveryReplyResponse,
     InsightMessageDeliveryResponse, InsightFollowersResponse, InsightDemographicResponse,
     InsightMessageEventResponse, BroadcastResponse, NarrowcastResponse,
-    MessageProgressNarrowcastResponse, GetWebhookResponse
+    MessageProgressNarrowcastResponse, GetWebhookResponse, TestWebhookResponse
 )
 from .models.responses import Group
 
@@ -1198,7 +1198,7 @@ class LineBotApi(object):
             timeout=timeout,
         )
 
-        return response.json
+        return TestWebhookResponse.new_from_json_dict(response.json)
 
     def _get(self, path, endpoint=None, params=None, headers=None, stream=False, timeout=None):
         url = (endpoint or self.endpoint) + path

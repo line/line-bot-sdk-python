@@ -516,3 +516,29 @@ class GetWebhookResponse(Base):
         self.endpoint = endpoint
         self.active = active
 
+
+class TestWebhookResponse(Base):
+    """Response of `test_webhook_endpoint()` .
+
+    https://developers.line.biz/en/reference/messaging-api/#test-webhook-endpoint
+    """
+
+    def __init__(self, success=None, timestamp=None, status_code=None,
+                 reason=None, detail=None, **kwargs):
+        """__init__ method.
+
+        :param bool success: Result of the communication from the LINE platform
+            to the webhook URL.
+        :param str timestamp: Timestamp
+        :param int status_code: The HTTP status code.
+        :param str reason: Reason for the response.
+        :param str detail: Details of the response.
+        :param kwargs:
+        """
+        super(TestWebhookResponse, self).__init__(**kwargs)
+
+        self.success = success
+        self.timestamp = timestamp
+        self.status_code = status_code
+        self.reason = reason
+        self.detail = detail

@@ -33,7 +33,7 @@ class TestLineBotApi(unittest.TestCase):
             responses.POST,
             LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/channel/webhook/test',
             json={
-                "success": "true",
+                "success": True,
                 "timestamp": "2020-09-30T05:38:20.031Z",
                 "statusCode": 200,
                 "reason": "OK",
@@ -49,11 +49,11 @@ class TestLineBotApi(unittest.TestCase):
         self.assertEqual(
             request.url,
             LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/channel/webhook/test')
-        self.assertEqual(result['success'], 'true')
-        self.assertEqual(result['timestamp'], '2020-09-30T05:38:20.031Z')
-        self.assertEqual(result['statusCode'], 200)
-        self.assertEqual(result['reason'], 'OK')
-        self.assertEqual(result['detail'], '200')
+        self.assertEqual(result.success, True)
+        self.assertEqual(result.timestamp, '2020-09-30T05:38:20.031Z')
+        self.assertEqual(result.status_code, 200)
+        self.assertEqual(result.reason, 'OK')
+        self.assertEqual(result.detail, '200')
 
 
 if __name__ == '__main__':

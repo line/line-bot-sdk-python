@@ -514,7 +514,5 @@ class GetWebhookResponse(Base):
         super(GetWebhookResponse, self).__init__(**kwargs)
 
         self.endpoint = endpoint
-        if active == 'true':
-            self.active = True
-        elif active == 'false':
-            self.active = False
+        self.active = active
+

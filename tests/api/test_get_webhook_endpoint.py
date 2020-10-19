@@ -34,7 +34,7 @@ class TestLineBotApi(unittest.TestCase):
             LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/channel/webhook/endpoint',
             json={
                 "endpoint": "https://example.herokuapp.com/test",
-                "active": "true",
+                "active": True,
             },
             status=200
         )

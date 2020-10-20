@@ -496,3 +496,27 @@ class NarrowcastResponse(Base):
         super(NarrowcastResponse, self).__init__(**kwargs)
 
         self.request_id = request_id
+
+
+class BotInfo(Base):
+    """Response of `linebot.get_bot_info()` .
+
+    https://developers.line.biz/en/reference/messaging-api/#get-bot-info
+    """
+
+    def __init__(self, user_id=None, basic_id=None, premium_id=None,
+                 display_name=None, picture_url=None, chat_mode=None,
+                 mark_as_read_mode=None, **kwargs):
+        """__init__ method.
+
+        :param kwargs:
+        """
+        super(BotInfo, self).__init__(**kwargs)
+
+        self.user_id = user_id
+        self.basic_id = basic_id
+        self.premium_id = premium_id
+        self.display_name = display_name
+        self.picture_url = picture_url
+        self.chat_mode = chat_mode
+        self.mark_as_read_mode = mark_as_read_mode

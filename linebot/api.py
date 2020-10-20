@@ -28,7 +28,7 @@ from .models import (
     MessageDeliveryPushResponse, MessageDeliveryReplyResponse,
     InsightMessageDeliveryResponse, InsightFollowersResponse, InsightDemographicResponse,
     InsightMessageEventResponse, BroadcastResponse, NarrowcastResponse,
-    MessageProgressNarrowcastResponse,
+    MessageProgressNarrowcastResponse, BotInfo,
 )
 from .models.responses import Group
 
@@ -1128,6 +1128,24 @@ class LineBotApi(object):
         )
 
         return InsightMessageEventResponse.new_from_json_dict(response.json)
+
+    def get_bot_info(self, timeout=None):
+        """Get a bot's basic information.
+
+        https://developers.line.biz/en/reference/messaging-api/#get-bot-info
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        :rtype: :py:class:`linebot.models.responses.BotInfo`
+        """
+        response = self._get(
+            '/v2/bot/info',
+            timeout=timeout
+        )
+
+        return BotInfo.new_from_json_dict(response.json)
 
     def _get(self, path, endpoint=None, params=None, headers=None, stream=False, timeout=None):
         url = (endpoint or self.endpoint) + path

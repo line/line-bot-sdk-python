@@ -150,6 +150,7 @@ from .responses import (  # noqa
     BroadcastResponse,
     NarrowcastResponse,
     MessageProgressNarrowcastResponse,
+    BotInfo,
 )
 from .rich_menu import (  # noqa
     RichMenu,

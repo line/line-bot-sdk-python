@@ -54,7 +54,7 @@ from .events import (  # noqa
     Beacon,
     Link,
 )
-from .filter import(  # noqa
+from .filter import (  # noqa
     Filter,
     DemographicFilter,
     GenderFilter,
@@ -126,7 +126,8 @@ from .operator import (  # noqa
 )
 
 from .recipient import (  # noqa
-    AudienceRecipient
+    AudienceRecipient,
+    RedeliveryRecipient
 )
 
 from .responses import (  # noqa
@@ -150,6 +151,7 @@ from .responses import (  # noqa
     BroadcastResponse,
     NarrowcastResponse,
     MessageProgressNarrowcastResponse,
+    BotInfo,
     GetWebhookResponse,
     TestWebhookResponse,
 )

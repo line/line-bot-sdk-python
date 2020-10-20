@@ -35,6 +35,7 @@ from linebot.models import (
     AgeFilter,
     AudienceRecipient,
     SubscriptionPeriodFilter,
+    RedeliveryRecipient,
 )
 
 
@@ -76,6 +77,66 @@ class TestNarrowcastMessage(unittest.TestCase):
                 "recipient": {
                     'audienceGroupId': 5614991017776,
                     'type': 'audience'
+                },
+                "filter": {
+                    "demographic": {
+                        "type": "age",
+                        "gte": "age_35",
+                        "lt": "age_40"
+                    }
+                },
+                "limit": {
+                    "max": 10,
+                    "upToRemainingQuota": False,
+                },
+                "notificationDisabled": False,
+            }
+        )
+
+    @responses.activate
+    def test_narrowcast_redelivery_recipient_text_message(self):
+        responses.add(
+            responses.POST,
+            LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/message/narrowcast',
+            json={}, status=200,
+        )
+
+        self.tested.narrowcast(
+            self.text_message,
+            recipient=And(
+                AudienceRecipient(group_id=5614991017776),
+                Not(
+                    RedeliveryRecipient(request_id='request_id_test')
+                )
+            ),
+            filter=Filter(demographic=AgeFilter(gte="age_35", lt="age_40")),
+            limit=Limit(max=10),
+        )
+
+        request = responses.calls[0].request
+        self.assertEqual(
+            request.url,
+            LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/message/narrowcast')
+        self.assertEqual(request.method, 'POST')
+        self.assertEqual(
+            json.loads(request.body),
+            {
+                "messages": self.message,
+                "recipient": {
+                    "type": "operator",
+                    "and": [
+                        {
+                            "type": "audience",
+                            "audienceGroupId": 5614991017776
+                        },
+                        {
+                            "type": "operator",
+                            "not": {
+                                "type": "redelivery",
+                                "requestId": "request_id_test"
+                            }
+                        }
+                    ]
                 },
                 "filter": {
                     "demographic": {

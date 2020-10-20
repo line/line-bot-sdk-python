@@ -56,3 +56,19 @@ class AudienceRecipient(Recipient):
 
         self.type = "audience"
         self.audience_group_id = group_id
+
+
+class RedeliveryRecipient(Recipient):
+    """RedeliveryRecipient."""
+
+    def __init__(self, request_id=None, **kwargs):
+        """__init__ method.
+
+        :param str request_id: The request ID of the narrowcast message previously sent.
+            The request IDs is an ID issued for each Messaging API request.
+        :param kwargs:
+        """
+        super(RedeliveryRecipient, self).__init__(**kwargs)
+
+        self.type = "redelivery"
+        self.request_id = request_id

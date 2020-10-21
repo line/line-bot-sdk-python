@@ -520,3 +520,49 @@ class BotInfo(Base):
         self.picture_url = picture_url
         self.chat_mode = chat_mode
         self.mark_as_read_mode = mark_as_read_mode
+
+
+class GetWebhookResponse(Base):
+    """Response of `get_webhook_endpoint()` .
+
+    https://developers.line.biz/en/reference/messaging-api/#get-webhook-endpoint-information
+    """
+
+    def __init__(self, endpoint=None, active=None, **kwargs):
+        """__init__ method.
+
+        :param str endpoint: The webhook endpoint URL.
+        :param bool active: Whether the webhook is in use.
+        :param kwargs:
+        """
+        super(GetWebhookResponse, self).__init__(**kwargs)
+
+        self.endpoint = endpoint
+        self.active = active
+
+
+class TestWebhookResponse(Base):
+    """Response of `test_webhook_endpoint()` .
+
+    https://developers.line.biz/en/reference/messaging-api/#test-webhook-endpoint
+    """
+
+    def __init__(self, success=None, timestamp=None, status_code=None,
+                 reason=None, detail=None, **kwargs):
+        """__init__ method.
+
+        :param bool success: Result of the communication from the LINE platform
+            to the webhook URL.
+        :param str timestamp: Timestamp
+        :param int status_code: The HTTP status code.
+        :param str reason: Reason for the response.
+        :param str detail: Details of the response.
+        :param kwargs:
+        """
+        super(TestWebhookResponse, self).__init__(**kwargs)
+
+        self.success = success
+        self.timestamp = timestamp
+        self.status_code = status_code
+        self.reason = reason
+        self.detail = detail

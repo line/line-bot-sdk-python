@@ -28,7 +28,7 @@ from .models import (
     MessageDeliveryPushResponse, MessageDeliveryReplyResponse,
     InsightMessageDeliveryResponse, InsightFollowersResponse, InsightDemographicResponse,
     InsightMessageEventResponse, BroadcastResponse, NarrowcastResponse,
-    MessageProgressNarrowcastResponse, BotInfo,
+    MessageProgressNarrowcastResponse, BotInfo, GetWebhookResponse, TestWebhookResponse,
 )
 from .models.responses import Group
 
@@ -1133,6 +1133,7 @@ class LineBotApi(object):
         """Get a bot's basic information.
 
         https://developers.line.biz/en/reference/messaging-api/#get-bot-info
+
         :param timeout: (optional) How long to wait for the server
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
@@ -1146,6 +1147,76 @@ class LineBotApi(object):
         )
 
         return BotInfo.new_from_json_dict(response.json)
+
+    def set_webhook_endpoint(self, webhook_endpoint, timeout=None):
+        """Set the webhook endpoint URL.
+
+        https://developers.line.biz/en/reference/messaging-api/#set-webhook-endpoint-url
+
+        :param str webhook_endpoint: A valid webhook URL to be set.
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        :rtype: dict
+        :return: Empty dict.
+        """
+        data = {
+            'endpoint': webhook_endpoint
+        }
+
+        response = self._put(
+            '/v2/bot/channel/webhook/endpoint',
+            data=json.dumps(data),
+            timeout=timeout,
+        )
+
+        return response.json
+
+    def get_webhook_endpoint(self, timeout=None):
+        """Get information on a webhook endpoint.
+
+        https://developers.line.biz/en/reference/messaging-api/#get-webhook-endpoint-information
+
+        :rtype: :py:class:`linebot.models.responses.GetWebhookResponse`
+        :return: Webhook information, including `endpoint` for webhook
+            URL and `active` for webhook usage status.
+        """
+        response = self._get(
+            '/v2/bot/channel/webhook/endpoint',
+            timeout=timeout,
+        )
+
+        return GetWebhookResponse.new_from_json_dict(response.json)
+
+    def test_webhook_endpoint(self, webhook_endpoint=None, timeout=None):
+        """Checks if the configured webhook endpoint can receive a test webhook event.
+
+        https://developers.line.biz/en/reference/messaging-api/#test-webhook-endpoint
+
+        :param webhook_endpoint: (optional) Set this parameter to
+            specific the webhook endpoint of the webhook. Default is the webhook
+            endpoint that is already set to the channel.
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        :rtype: :py:class:`linebot.models.responses.TestWebhookResponse`
+        """
+        data = {}
+
+        if webhook_endpoint is not None:
+            data['endpoint'] = webhook_endpoint
+
+        response = self._post(
+            '/v2/bot/channel/webhook/test',
+            data=json.dumps(data),
+            timeout=timeout,
+        )
+
+        return TestWebhookResponse.new_from_json_dict(response.json)
 
     def _get(self, path, endpoint=None, params=None, headers=None, stream=False, timeout=None):
         url = (endpoint or self.endpoint) + path
@@ -1183,6 +1254,20 @@ class LineBotApi(object):
         headers.update(self.headers)
 
         response = self.http_client.delete(
+            url, headers=headers, data=data, timeout=timeout
+        )
+
+        self.__check_error(response)
+        return response
+
+    def _put(self, path, endpoint=None, data=None, headers=None, timeout=None):
+        url = (endpoint or self.endpoint) + path
+
+        if headers is None:
+            headers = {'Content-Type': 'application/json'}
+        headers.update(self.headers)
+
+        response = self.http_client.put(
             url, headers=headers, data=data, timeout=timeout
         )
 

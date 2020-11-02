@@ -196,3 +196,7 @@ from .things import (  # noqa
     ActionResult,
     Things,
 )
+
+from .background import (  # noqa
+    LinearGradientBackground,
+)

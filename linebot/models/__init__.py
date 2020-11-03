@@ -198,5 +198,6 @@ from .things import (  # noqa
 )
 
 from .background import (  # noqa
+    Background,
     LinearGradientBackground,
 )

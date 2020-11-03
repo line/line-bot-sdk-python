@@ -20,9 +20,11 @@ from abc import ABCMeta
 
 from future.utils import with_metaclass
 
+from .background import Background, LinearGradientBackground
 from .actions import get_action
 from .base import Base
 from .send_messages import SendMessage
+import warnings
 
 
 class FlexSendMessage(SendMessage):
@@ -565,6 +567,8 @@ class SpacerComponent(FlexComponent):
 
     This is an invisible component that places a fixed-size space
     at the beginning or end of the box
+
+    SpacerComponent is deprecated.
     """
 
     def __init__(self, size=None, **kwargs):
@@ -576,6 +580,9 @@ class SpacerComponent(FlexComponent):
         super(SpacerComponent, self).__init__(**kwargs)
         self.type = 'spacer'
         self.size = size
+
+        warnings.warn("'SpacerComponent' is deprecated.", DeprecationWarning, stacklevel=2)
+        raise NotImplementedError
 
 
 class SpanComponent(FlexComponent):

@@ -16,13 +16,7 @@ from __future__ import unicode_literals, absolute_import
 
 import unittest
 
-from linebot.models import (
-    GenderFilter,
-    AppTypeFilter,
-    AreaFilter,
-    AgeFilter,
-    SubscriptionPeriodFilter, LinearGradientBackground
-)
+from linebot.models import LinearGradientBackground
 from tests.models.serialize_test_case import SerializeTestCase
 
 

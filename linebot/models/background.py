@@ -42,6 +42,7 @@ class LinearGradientBackground(Background):
     def __init__(self, angle=None, start_color=None, end_color=None,
                  center_color=None, center_position=None, **kwargs):
         """__init__ method.
+
         :param str type: The type of background used
         :param str angle: The angle at which a linear gradient moves
         :param str start_color: The color at the gradient's starting point

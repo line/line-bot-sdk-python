@@ -21,57 +21,22 @@ from linebot.models import (
     AppTypeFilter,
     AreaFilter,
     AgeFilter,
-    SubscriptionPeriodFilter
+    SubscriptionPeriodFilter, LinearGradientBackground
 )
 from tests.models.serialize_test_case import SerializeTestCase
 
 
-class TestFilter(SerializeTestCase):
-    def test_gender_filter(self):
+class TestBackground(SerializeTestCase):
+    def test_background(self):
         arg = {
-            "one_of": ["male", "female"]
+            "type": "linearGradient",
+            "angle": "0deg",
+            "start_color": "#ff0000",
+            "end_color": "#0000ff"
         }
         self.assertEqual(
-            self.serialize_as_dict(arg, type=self.GENDER),
-            GenderFilter(**arg).as_json_dict()
-        )
-
-    def test_app_type_filter(self):
-        arg = {
-            "one_of": ["ios", "android"]
-        }
-        self.assertEqual(
-            self.serialize_as_dict(arg, type=self.APP_TYPE),
-            AppTypeFilter(**arg).as_json_dict()
-        )
-
-    def test_age_filter(self):
-        arg = {
-            "gte": "age_35",
-            "lt": "age_40",
-        }
-        self.assertEqual(
-            self.serialize_as_dict(arg, type=self.AGE),
-            AgeFilter(**arg).as_json_dict()
-        )
-
-    def test_area_filter(self):
-        arg = {
-            "one_of": ["jp_34", "jp_05"]
-        }
-        self.assertEqual(
-            self.serialize_as_dict(arg, type=self.AREA),
-            AreaFilter(**arg).as_json_dict()
-        )
-
-    def test_subscription_period_filter(self):
-        arg = {
-            "gte": "day_7",
-            "lt": "day_30",
-        }
-        self.assertEqual(
-            self.serialize_as_dict(arg, type=self.SUBSCRIPTION_PERIOD),
-            SubscriptionPeriodFilter(**arg).as_json_dict()
+            self.serialize_as_dict(arg, type=self.LINEAR_GRADIENT),
+            LinearGradientBackground(**arg).as_json_dict()
         )
 
 

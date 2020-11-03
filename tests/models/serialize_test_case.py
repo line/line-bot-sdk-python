@@ -60,6 +60,7 @@ class SerializeTestCase(unittest.TestCase):
     BUTTONS = 'buttons'
     CONFIRM = 'confirm'
     IMAGE_CAROUSEL = 'image_carousel'
+    LINEAR_GRADIENT = 'linearGradient'
 
     def serialize_as_dict(self, obj, type=None):
         if isinstance(obj, Base):

@@ -39,7 +39,7 @@ class Background(with_metaclass(ABCMeta, Base)):
 class LinearGradientBackground(Background):
     """LinearGradientBackground."""
 
-    def __init__(self, angle=None, start_color=None, end_color=None,
+    def __init__(self, angle, start_color, end_color,
                  center_color=None, center_position=None, **kwargs):
         """__init__ method.
 

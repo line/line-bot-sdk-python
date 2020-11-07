@@ -336,7 +336,6 @@ class BoxComponent(FlexComponent):
                         'image': ImageComponent,
                         'span': SpanComponent,
                         'separator': SeparatorComponent,
-                        'spacer': SpacerComponent,
                         'text': TextComponent
                     }
                 ))
@@ -558,31 +557,6 @@ class SeparatorComponent(FlexComponent):
         self.type = 'separator'
         self.margin = margin
         self.color = color
-
-
-class SpacerComponent(FlexComponent):
-    """SpacerComponent.
-
-    https://developers.line.biz/en/reference/messaging-api/#spacer
-
-    This is an invisible component that places a fixed-size space
-    at the beginning or end of the box
-
-    SpacerComponent is deprecated.
-    """
-
-    def __init__(self, size=None, **kwargs):
-        """__init__ method.
-
-        :param str size: Size of the space
-        :param kwargs:
-        """
-        super(SpacerComponent, self).__init__(**kwargs)
-        self.type = 'spacer'
-        self.size = size
-
-        warnings.warn("'SpacerComponent' is deprecated.", DeprecationWarning, stacklevel=2)
-        raise NotImplementedError
 
 
 class SpanComponent(FlexComponent):

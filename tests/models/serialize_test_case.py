@@ -41,7 +41,6 @@ class SerializeTestCase(unittest.TestCase):
     AGE = "age"
     AREA = "area"
     SUBSCRIPTION_PERIOD = "subscriptionPeriod"
-    SPACER = 'spacer'
     SPAN = 'span'
     BUBBLE = 'bubble'
     CAROUSEL = 'carousel'

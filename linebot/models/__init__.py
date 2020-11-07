@@ -78,7 +78,6 @@ from .flex_message import (  # noqa
     IconComponent,
     ImageComponent,
     SeparatorComponent,
-    SpacerComponent,
     TextComponent,
     SpanComponent
 )

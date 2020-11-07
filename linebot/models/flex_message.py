@@ -24,7 +24,6 @@ from .background import Background, LinearGradientBackground
 from .actions import get_action
 from .base import Base
 from .send_messages import SendMessage
-import warnings
 
 
 class FlexSendMessage(SendMessage):

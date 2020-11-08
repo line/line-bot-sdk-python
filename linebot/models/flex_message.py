@@ -20,6 +20,7 @@ from abc import ABCMeta
 
 from future.utils import with_metaclass
 
+from .background import Background, LinearGradientBackground
 from .actions import get_action
 from .base import Base
 from .send_messages import SendMessage
@@ -234,6 +235,9 @@ class BoxComponent(FlexComponent):
                  border_color=None,
                  border_width=None,
                  corner_radius=None,
+                 justify_content=None,
+                 align_items=None,
+                 background=None,
                  width=None,
                  height=None,
                  flex=None,
@@ -260,6 +264,12 @@ class BoxComponent(FlexComponent):
         :param str border_color: Color of box border
         :param str border_width: Width of box border
         :param str corner_radius: Radius at the time of rounding the corners of the border
+        :param str justify_content: How child elements are aligned along the main axis of
+            the parent element
+        :param str align_items: How child elements are aligned along the cross axis of
+            the parent element
+        :param background: Background object
+        :type background: T <= :py:class:`linebot.models.background.Background`
         :param str width: Width of the box
         :param str height: Height of the box
         :param float flex: The ratio of the width or height of this box within the parent box
@@ -291,6 +301,8 @@ class BoxComponent(FlexComponent):
         self.border_color = border_color
         self.border_width = border_width
         self.corner_radius = corner_radius
+        self.justify_content = justify_content
+        self.align_items = align_items
         self.width = width
         self.height = height
         self.flex = flex
@@ -307,6 +319,9 @@ class BoxComponent(FlexComponent):
         self.offset_start = offset_start
         self.offset_end = offset_end
         self.action = get_action(action)
+        self.background = Background.get_or_new_from_json_dict_with_types(
+            background, {'linearGradient': LinearGradientBackground}
+        )
 
         new_contents = []
         if contents:
@@ -320,7 +335,6 @@ class BoxComponent(FlexComponent):
                         'image': ImageComponent,
                         'span': SpanComponent,
                         'separator': SeparatorComponent,
-                        'spacer': SpacerComponent,
                         'text': TextComponent
                     }
                 ))
@@ -349,6 +363,7 @@ class ButtonComponent(FlexComponent):
                  style=None,
                  color=None,
                  gravity=None,
+                 adjust_mode=None,
                  **kwargs):
         """__init__ method.
 
@@ -368,6 +383,7 @@ class ButtonComponent(FlexComponent):
             Background color when the style property is primary or secondary.
             Use a hexadecimal color code
         :param str gravity: Vertical alignment style
+        :param str adjust_mode: The method by which to adjust the text font size
         :param kwargs:
         """
         super(ButtonComponent, self).__init__(**kwargs)
@@ -384,6 +400,7 @@ class ButtonComponent(FlexComponent):
         self.style = style
         self.color = color
         self.gravity = gravity
+        self.adjust_mode = adjust_mode
 
 
 class FillerComponent(FlexComponent):
@@ -539,26 +556,6 @@ class SeparatorComponent(FlexComponent):
         self.type = 'separator'
         self.margin = margin
         self.color = color
-
-
-class SpacerComponent(FlexComponent):
-    """SpacerComponent.
-
-    https://developers.line.biz/en/reference/messaging-api/#spacer
-
-    This is an invisible component that places a fixed-size space
-    at the beginning or end of the box
-    """
-
-    def __init__(self, size=None, **kwargs):
-        """__init__ method.
-
-        :param str size: Size of the space
-        :param kwargs:
-        """
-        super(SpacerComponent, self).__init__(**kwargs)
-        self.type = 'spacer'
-        self.size = size
 
 
 class SpanComponent(FlexComponent):

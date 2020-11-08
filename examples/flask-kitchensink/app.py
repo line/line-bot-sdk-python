@@ -44,7 +44,7 @@ from linebot.models import (
     UnfollowEvent, FollowEvent, JoinEvent, LeaveEvent, BeaconEvent,
     MemberJoinedEvent, MemberLeftEvent,
     FlexSendMessage, BubbleContainer, ImageComponent, BoxComponent,
-    TextComponent, SpacerComponent, IconComponent, ButtonComponent,
+    TextComponent, IconComponent, ButtonComponent,
     SeparatorComponent, QuickReply, QuickReplyButton,
     ImageSendMessage)
 
@@ -309,8 +309,6 @@ def handle_text_message(event):
                 layout='vertical',
                 spacing='sm',
                 contents=[
-                    # callAction, separator, websiteAction
-                    SpacerComponent(size='sm'),
                     # callAction
                     ButtonComponent(
                         style='link',

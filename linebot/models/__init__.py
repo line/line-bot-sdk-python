@@ -78,7 +78,6 @@ from .flex_message import (  # noqa
     IconComponent,
     ImageComponent,
     SeparatorComponent,
-    SpacerComponent,
     TextComponent,
     SpanComponent
 )
@@ -195,4 +194,9 @@ from .things import (  # noqa
     ScenarioResult,
     ActionResult,
     Things,
+)
+
+from .background import (  # noqa
+    Background,
+    LinearGradientBackground,
 )

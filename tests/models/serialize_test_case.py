@@ -41,7 +41,6 @@ class SerializeTestCase(unittest.TestCase):
     AGE = "age"
     AREA = "area"
     SUBSCRIPTION_PERIOD = "subscriptionPeriod"
-    SPACER = 'spacer'
     SPAN = 'span'
     BUBBLE = 'bubble'
     CAROUSEL = 'carousel'
@@ -60,6 +59,7 @@ class SerializeTestCase(unittest.TestCase):
     BUTTONS = 'buttons'
     CONFIRM = 'confirm'
     IMAGE_CAROUSEL = 'image_carousel'
+    LINEAR_GRADIENT = 'linearGradient'
 
     def serialize_as_dict(self, obj, type=None):
         if isinstance(obj, Base):

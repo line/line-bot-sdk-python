@@ -29,9 +29,9 @@ from linebot.models import (
     ButtonComponent,
     FillerComponent,
     IconComponent,
-    SpacerComponent,
     SpanComponent,
     URIAction,
+    LinearGradientBackground,
 )
 from tests.models.serialize_test_case import SerializeTestCase
 
@@ -158,6 +158,28 @@ class TestFlexMessage(SerializeTestCase):
             BoxComponent(**arg).as_json_dict()
         )
 
+    def test_box_component_with_linear_gradient(self):
+        arg = {
+            'layout': 'vertical',
+            'contents': [],
+            'background_color': '#00000000',
+            'border_width': 'light',
+            'corner_radius': 'xs',
+            'flex': 2,
+            'background': LinearGradientBackground(
+                angle='0deg',
+                start_color='#ff0000',
+                center_color='#0000ff',
+                end_color='#00ff00',
+                center_position='10%'
+            )
+        }
+
+        self.assertEqual(
+            self.serialize_as_dict(arg, type=self.BOX),
+            BoxComponent(**arg).as_json_dict()
+        )
+
     def test_button_component(self):
         arg = {
             'action':
@@ -210,15 +232,6 @@ class TestFlexMessage(SerializeTestCase):
         self.assertEqual(
             self.serialize_as_dict(arg, type=self.SEPARATOR),
             SeparatorComponent(**arg).as_json_dict()
-        )
-
-    def test_spacer_component(self):
-        arg = {
-            'size': 'md'
-        }
-        self.assertEqual(
-            self.serialize_as_dict(arg, type=self.SPACER),
-            SpacerComponent(**arg).as_json_dict()
         )
 
     def test_span_component(self):

@@ -106,7 +106,8 @@
         "type": "sticker",
         "packageId": "1",
         "stickerId": "1",
-        "stickerResourceType": "STATIC"
+        "stickerResourceType": "STATIC",
+        "keywords": ["Love You", "Love"]
       }
     },
     {

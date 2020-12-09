@@ -196,7 +196,7 @@ class StickerMessage(Message):
         :param str package_id: Package ID
         :param str sticker_id: Sticker ID
         :param str sticker_resource_type: Sticker resource type
-        :param list keywords: List of up to 15 keywords describing the sticker
+        :param list[str] keywords: List of up to 15 keywords describing the sticker
         :param kwargs:
         """
         super(StickerMessage, self).__init__(id=id, **kwargs)

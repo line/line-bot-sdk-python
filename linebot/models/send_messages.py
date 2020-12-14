@@ -20,6 +20,7 @@ from abc import ABCMeta
 
 from future.utils import with_metaclass
 
+from .emojis import Emojis
 from .actions import get_action
 from .base import Base
 
@@ -30,8 +31,6 @@ class SendMessage(with_metaclass(ABCMeta, Base)):
     def __init__(self, quick_reply=None, sender=None, **kwargs):
         """__init__ method.
 
-        :param quick_reply: QuickReply object
-        :type quick_reply: T <= :py:class:`linebot.models.send_messages.QuickReply`
         :param sender: Sender object
         :type sender: T <= :py:class:`linebot.models.send_messages.Sender`
         :param kwargs:
@@ -51,8 +50,10 @@ class TextSendMessage(SendMessage):
 
     def __init__(self, text=None, emojis=None, quick_reply=None, **kwargs):
         """__init__ method.
+
         :param str text: Message text
         :param List emojis: Array of LINE emoji objects
+        :type emojis: T <= :py:class:`linebot.models.Emojis`
         :param quick_reply: QuickReply object
         :type quick_reply: T <= :py:class:`linebot.models.send_messages.QuickReply`
         :param kwargs:

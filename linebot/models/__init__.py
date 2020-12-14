@@ -200,3 +200,7 @@ from .background import (  # noqa
     Background,
     LinearGradientBackground,
 )
+
+from .emojis import (  # noqa
+    Emojis
+)

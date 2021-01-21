@@ -28,7 +28,7 @@ class Mentionee(with_metaclass(ABCMeta, Base)):
 
     https://developers.line.biz/en/reference/messaging-api/#text-message
 
-    Object containing the contents of the mentioned user.
+    Mentioned user information.
     """
 
     def __init__(self, index=None, length=None, user_id=None, **kwargs):

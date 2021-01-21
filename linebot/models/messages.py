@@ -21,6 +21,7 @@ from abc import ABCMeta
 from future.utils import with_metaclass
 
 from linebot.models.emojis import Emojis
+from .mention import Mention
 from .mentionee import Mentionee
 from .base import Base
 
@@ -54,7 +55,7 @@ class TextMessage(Message):
         :param str id: Message ID
         :param str text: Message text
         :param List sticon: Array of LINE emoji objects
-        :param List mentionees: Array of LINE mentionee objects
+        :param object mention: LINE mention object
         :param kwargs:
         """
         super(TextMessage, self).__init__(id=id, **kwargs)
@@ -81,9 +82,9 @@ class TextMessage(Message):
                 )
                 if mentionee_object:
                     mentionees.append(mentionee_object)
-            self.mentionees = mentionees
+            self.mention = Mention(mentionees)
         else:
-            self.mentionees = None
+            self.mention = mention
 
 
 class ImageMessage(Message):

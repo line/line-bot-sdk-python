@@ -62,15 +62,15 @@ class TestTextMessage(SerializeTestCase):
         arg = {
             "type": "text",
             "text": "@example Hello, world! (love)",
-            "mention": {
-                "mentionees": [
-                    {
-                        "index": 0,
-                        "length": 8,
-                        "user_id": "U850014438e..."
-                    }
+            "mention": Mention(
+                mentionees=[
+                    Mentionee(
+                        index=0,
+                        length=8,
+                        user_id="U850014438e..."
+                    )
                 ]
-            },
+            ),
         }
         self.assertEqual(
             self.serialize_as_dict(arg, type=self.TEXT),

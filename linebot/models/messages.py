@@ -75,8 +75,11 @@ class TextMessage(Message):
             self.emojis = emojis
 
         if mention:
+            mention_object = self.get_or_new_from_json_dict(
+                mention, Mention
+            )
             mentionees = []
-            for mentionee in mention["mentionees"]:
+            for mentionee in mention_object.mentionees:
                 mentionee_object = self.get_or_new_from_json_dict(
                     mentionee, Mentionee
                 )

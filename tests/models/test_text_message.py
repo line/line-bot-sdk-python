@@ -64,21 +64,17 @@ class TestTextMessage(SerializeTestCase):
             "text": "@example Hello, world! (love)",
             "mention": {
                 "mentionees": [
-                    Mentionee(
-                        index=0,
-                        length=8,
-                        user_id="U850014438e..."
-                    )
+                    {
+                        "index": 0,
+                        "length": 8,
+                        "user_id": "U850014438e..."
+                    }
                 ]
             },
         }
         self.assertEqual(
             self.serialize_as_dict(arg, type=self.TEXT),
             TextMessage(**arg).as_json_dict(),
-        )
-        self.assertEqual(
-            TextMessage(**arg).mention,
-            Mention(mentionees=arg["mention"]["mentionees"])
         )
 
     def test_null_mention(self):

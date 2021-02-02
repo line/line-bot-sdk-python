@@ -21,6 +21,8 @@ from abc import ABCMeta
 from future.utils import with_metaclass
 
 from linebot.models.emojis import Emojis
+from .mention import Mention
+from .mentionee import Mentionee
 from .base import Base
 
 
@@ -47,12 +49,13 @@ class TextMessage(Message):
     Message object which contains the text sent from the source.
     """
 
-    def __init__(self, id=None, text=None, emojis=None, **kwargs):
+    def __init__(self, id=None, text=None, emojis=None, mention=None, **kwargs):
         """__init__ method.
 
         :param str id: Message ID
         :param str text: Message text
         :param List sticon: Array of LINE emoji objects
+        :param object mention: LINE mention object
         :param kwargs:
         """
         super(TextMessage, self).__init__(id=id, **kwargs)
@@ -70,6 +73,21 @@ class TextMessage(Message):
             self.emojis = new_emojis
         else:
             self.emojis = emojis
+
+        if mention:
+            mention_object = self.get_or_new_from_json_dict(
+                mention, Mention
+            )
+            mentionees = []
+            for mentionee in mention_object.mentionees:
+                mentionee_object = self.get_or_new_from_json_dict(
+                    mentionee, Mentionee
+                )
+                if mentionee_object:
+                    mentionees.append(mentionee_object)
+            self.mention = Mention(mentionees)
+        else:
+            self.mention = mention
 
 
 class ImageMessage(Message):

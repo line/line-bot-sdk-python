@@ -18,6 +18,8 @@ import unittest
 
 from linebot.models import TextMessage
 from linebot.models.emojis import Emojis
+from linebot.models.mentionee import Mentionee
+from linebot.models.mention import Mention
 from tests.models.serialize_test_case import SerializeTestCase
 
 
@@ -54,6 +56,32 @@ class TestTextMessage(SerializeTestCase):
         self.assertEqual(
             self.serialize_as_dict(arg, type=self.TEXT),
             TextMessage(**arg).as_json_dict()
+        )
+
+    def test_mention(self):
+        arg = {
+            "type": "text",
+            "text": "@example Hello, world! (love)",
+            "mention": Mention(
+                mentionees=[
+                    Mentionee(
+                        index=0,
+                        length=8,
+                        user_id="U850014438e..."
+                    )
+                ]
+            ),
+        }
+        self.assertEqual(
+            self.serialize_as_dict(arg, type=self.TEXT),
+            TextMessage(**arg).as_json_dict(),
+        )
+
+    def test_null_mention(self):
+        arg = {"type": "text", "text": "Hello, world!"}
+        self.assertEqual(
+            self.serialize_as_dict(arg, type=self.TEXT),
+            TextMessage(**arg).as_json_dict(),
         )
 
 

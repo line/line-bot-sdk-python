@@ -317,8 +317,8 @@ class MessageProgressNarrowcastResponse(Base):
         :param int error_code: Summary of the error. One of `1` or `2`. `1`
             means internal error, whereas `2` indicates too few targets.
         :param str accepted_time: Narrowcast message request accepted time in milliseconds.
-        :param str completed_time: Processing of narrowcast message request completion time in milliseconds.
-            Returned when the phase property is `succeeded` or `failed`.
+        :param str completed_time: Processing of narrowcast message request
+            completion time in milliseconds.
         :param kwargs:
         """
         super(MessageProgressNarrowcastResponse, self).__init__(**kwargs)

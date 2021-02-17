@@ -303,7 +303,8 @@ class MessageProgressNarrowcastResponse(Base):
     """MessageProgressNarrowcastResponse."""
 
     def __init__(self, phase=None, success_count=None, failure_count=None,
-                 target_count=None, failed_description=None, error_code=None, **kwargs):
+                 target_count=None, failed_description=None, error_code=None,
+                 accepted_time=None, completed_time=None, **kwargs):
         """__init__ method.
 
         :param str phase: Progress status. One of `waiting`, `sending`,
@@ -311,10 +312,13 @@ class MessageProgressNarrowcastResponse(Base):
         :param int success_count: Number of narrowcast messages sent successful.
         :param int failure_count: Number of narrowcast messages sent failed.
         :param int target_count: Number of targeted messages sent.
-        :param str failed_description: Reaseon why narrowcast failed, useful when
+        :param str failed_description: Reason why narrowcast failed, useful when
             phase is `failed`.
         :param int error_code: Summary of the error. One of `1` or `2`. `1`
             means internal error, whereas `2` indicates too few targets.
+        :param str accepted_time: Narrowcast message request accepted time in milliseconds.
+        :param str completed_time: Processing of narrowcast message request completion time in milliseconds.
+            Returned when the phase property is `succeeded` or `failed`.
         :param kwargs:
         """
         super(MessageProgressNarrowcastResponse, self).__init__(**kwargs)
@@ -325,6 +329,8 @@ class MessageProgressNarrowcastResponse(Base):
         self.target_count = target_count
         self.failed_description = failed_description
         self.error_code = error_code
+        self.accepted_time = accepted_time
+        self.completed_time = completed_time
 
 
 class IssueLinkTokenResponse(Base):

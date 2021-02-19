@@ -1,7 +1,7 @@
 LINE Messaging API SDK for Python
 =================================
 
-|Build Status| |PyPI version| |Documentation Status|
+|Build Status| |Documentation Status|
 
 SDK of the LINE Messaging API for Python.
 
@@ -1276,11 +1276,10 @@ Run tests
 
 Test by using tox. We test against the following versions.
 
--  2.7
--  3.4
--  3.5
 -  3.6
 -  3.7
+-  3.8
+-  3.9
 
 To run all tests and to run ``flake8`` against all versions, use:
 

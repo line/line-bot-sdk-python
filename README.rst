@@ -22,7 +22,7 @@ Japanese: https://developers.line.biz/ja/docs/messaging-api/overview/
 Requirements
 ------------
 
--  Python >= 3.6
+-  Python >= 2.7 or >= 3.4
 
 Installation
 ------------
@@ -1287,19 +1287,18 @@ To run all tests and to run ``flake8`` against all versions, use:
 
     tox
 
-To run all tests against version 2.7, use:
+To run all tests against version 3.6, use:
 
 ::
 
-    $ tox -e py27
+    $ tox -e py3.6
 
-To run a test against version 2.7 and against a specific file, use:
+To run a test against version 3.6 and against a specific file, use:
 
 ::
 
-    $ tox -e py27 -- tests/test_webhook.py
+    $ tox -e py3.6 -- tests/test_webhook.py
 
-And more... TBD
 
 .. |Build Status| image:: https://travis-ci.org/line/line-bot-sdk-python.svg?branch=master
    :target: https://travis-ci.org/line/line-bot-sdk-python

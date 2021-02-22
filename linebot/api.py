@@ -30,7 +30,7 @@ from .models import (
     InsightMessageEventResponse, BroadcastResponse, NarrowcastResponse,
     MessageProgressNarrowcastResponse, BotInfo, GetWebhookResponse, TestWebhookResponse,
 )
-from .models.responses import Group
+from .models.responses import Group, UserIds
 
 
 class LineBotApi(object):
@@ -1217,6 +1217,26 @@ class LineBotApi(object):
         )
 
         return TestWebhookResponse.new_from_json_dict(response.json)
+
+    def get_followers_ids(self, start=None, timeout=None):
+        """GetGet a list of users who added your LINE Official Account as a friend.
+
+        https://developers.line.biz/en/reference/messaging-api/#get-follower-ids
+
+        :param str start: Get the next array of user IDs.
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        :rtype: :py:class:`linebot.models.responses.UserIds`
+        """
+        response = self._get(
+            '/v2/bot/followers/ids?start={continuationToken}'.format(continuationToken=start),
+            timeout=timeout
+        )
+
+        return UserIds.new_from_json_dict(response.json)
 
     def _get(self, path, endpoint=None, params=None, headers=None, stream=False, timeout=None):
         url = (endpoint or self.endpoint) + path

@@ -572,3 +572,26 @@ class TestWebhookResponse(Base):
         self.status_code = status_code
         self.reason = reason
         self.detail = detail
+
+
+class UserIds(Base):
+    """UserIds.
+
+    https://developers.line.biz/en/reference/messaging-api/#get-follower-ids
+    """
+
+    def __init__(self, user_ids=None, next=None, **kwargs):
+        """__init__ method.
+
+        :param user_ids: List of user IDs of users
+            that have added the LINE Official Account as a friend.
+            Max: 300 user IDs
+        :type user_ids: list[str]
+        :param str next: continuationToken.
+            A continuation token to get the next array of user IDs.
+        :param kwargs:
+        """
+        super(UserIds, self).__init__(**kwargs)
+
+        self.user_ids = user_ids
+        self.next = next

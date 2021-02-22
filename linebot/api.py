@@ -1231,8 +1231,12 @@ class LineBotApi(object):
         :type timeout: float | tuple(float, float)
         :rtype: :py:class:`linebot.models.responses.UserIds`
         """
+
+        params = None if start is None else {'start': start}
+
         response = self._get(
-            '/v2/bot/followers/ids?start={continuationToken}'.format(continuationToken=start),
+            '/v2/bot/followers/ids',
+            params=params,
             timeout=timeout
         )
 

@@ -1231,7 +1231,6 @@ class LineBotApi(object):
         :type timeout: float | tuple(float, float)
         :rtype: :py:class:`linebot.models.responses.UserIds`
         """
-
         params = None if start is None else {'start': start}
 
         response = self._get(

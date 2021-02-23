@@ -1219,7 +1219,7 @@ class LineBotApi(object):
         return TestWebhookResponse.new_from_json_dict(response.json)
 
     def get_followers_ids(self, start=None, timeout=None):
-        """GetGet a list of users who added your LINE Official Account as a friend.
+        """Get a list of users who added your LINE Official Account as a friend.
 
         https://developers.line.biz/en/reference/messaging-api/#get-follower-ids
 

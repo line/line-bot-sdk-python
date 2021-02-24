@@ -71,7 +71,8 @@ class TextSendMessage(SendMessage):
                 if emoji_object:
                     new_emojis.append(emoji_object)
             self.emojis = new_emojis
-        self.emojis = emojis
+        else:
+            self.emojis = emojis
 
 
 class ImageSendMessage(SendMessage):

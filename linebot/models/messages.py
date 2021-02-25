@@ -54,7 +54,7 @@ class TextMessage(Message):
 
         :param str id: Message ID
         :param str text: Message text
-        :param List sticon: Array of LINE emoji objects
+        :param List emojis: Array of LINE emoji objects
         :param object mention: LINE mention object
         :param kwargs:
         """

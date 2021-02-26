@@ -1,7 +1,7 @@
 LINE Messaging API SDK for Python
 =================================
 
-|Build Status| |PyPI version| |Documentation Status|
+|Build Status| |Documentation Status|
 
 SDK of the LINE Messaging API for Python.
 
@@ -1276,11 +1276,10 @@ Run tests
 
 Test by using tox. We test against the following versions.
 
--  2.7
--  3.4
--  3.5
 -  3.6
 -  3.7
+-  3.8
+-  3.9
 
 To run all tests and to run ``flake8`` against all versions, use:
 
@@ -1288,19 +1287,18 @@ To run all tests and to run ``flake8`` against all versions, use:
 
     tox
 
-To run all tests against version 2.7, use:
+To run all tests against version 3.6, use:
 
 ::
 
-    $ tox -e py27
+    $ tox -e py3.6
 
-To run a test against version 2.7 and against a specific file, use:
+To run a test against version 3.6 and against a specific file, use:
 
 ::
 
-    $ tox -e py27 -- tests/test_webhook.py
+    $ tox -e py3.6 -- tests/test_webhook.py
 
-And more... TBD
 
 .. |Build Status| image:: https://travis-ci.org/line/line-bot-sdk-python.svg?branch=master
    :target: https://travis-ci.org/line/line-bot-sdk-python

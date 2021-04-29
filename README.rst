@@ -681,6 +681,25 @@ TextSendMessage
 
     text_message = TextSendMessage(text='Hello, world')
 
+TextSendMessage-Emoji
+^^^^^^^^^^^^^^^^^^^^^
+
+.. code:: python
+
+    emoji = [
+        {
+            "index": 0,
+            "productId": "5ac1bfd5040ab15980c9b435",
+            "emojiId": "001"
+        },  
+        {
+            "index": 13,
+            "productId": "5ac1bfd5040ab15980c9b435",
+            "emojiId": "002"
+        }
+    ]
+    text_message = TextSendMessage(text='$ LINE emoji $', emojis=[emoji])
+
 ImageSendMessage
 ^^^^^^^^^^^^^^^^
 
@@ -1176,6 +1195,13 @@ Message
     - type
     - id
     - text
+- TextMessage-Emoji
+    - type
+    - id
+    - text
+    - emojis_index
+    - emojis_productId
+    - emojis_emojiId
 - ImageMessage
     - type
     - id

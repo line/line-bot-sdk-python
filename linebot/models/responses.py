@@ -18,9 +18,9 @@ from __future__ import unicode_literals
 
 from .base import Base
 from .insight import (
-    SubscriptionPeriodInsight, AppTypeInsight,
-    AgeInsight, GenderInsight, AreaInsight,
-    MessageInsight, ClickInsight, MessageStatistics,
+    SubscriptionPeriodInsight, AppTypeInsight, AgeInsight,
+    GenderInsight, AreaInsight, MessageInsight, ClickInsight,
+    MessageStatistics, JobInsight,
 )
 from .rich_menu import RichMenuSize, RichMenuArea
 
@@ -572,6 +572,213 @@ class TestWebhookResponse(Base):
         self.status_code = status_code
         self.reason = reason
         self.detail = detail
+
+
+class AudienceGroup(Base):
+    """AudienceGroups.
+
+    https://developers.line.biz/en/reference/messaging-api/#get-audience-group
+    """
+
+    def __init__(self, audience_group_id=None, type=None, description=None, status=None,
+                 audience_count=None, created=None, is_ifa_audience=None, permission=None,
+                 create_route=None, request_id=None, failed_type=None, click_url=None,
+                 jobs=None, **kwargs):
+        """__init__ method.
+
+        :param int audience_group_id: The audience ID.
+        :param str type: The audience type. One of `UPLOAD` or `CLICK` or `IMP` or `CHAT_TAG`
+             or `FRIEND_PATH`.
+        :param str description: The audience's name.
+        :param str status: The audience's status. One of `IN_PROGRESS` or `READY` or `FAILED`
+             or `EXPIRED`.
+        :param int audience_count: The number of valid recipients.
+        :param int created: When the audience was created (in UNIX time).
+        :param bool is_ifa_audience: The value specified when creating an audience for uploading
+            user IDs to indicate the type of accounts that will be given as recipients.
+        :param str permission: Audience's update permission. Audiences linked to the same channel
+            will be READ_WRITE.
+        :param str create_route: How the audience was created. If omitted,
+            you will get all audiences.
+        :param str request_id: The request ID that was specified when the audience was created.
+        :param str failed_type: The reason why the operation failed. This is only included when
+            status is FAILED.  One of `AUDIENCE_GROUP_AUDIENCE_INSUFFICIENT` or `INTERNAL_ERROR`
+        :param str click_url: The URL that was specified when the audience was created.
+            This is only included when type is CLICK
+        :param jobs: An array of jobs. This array is used to keep track of each attempt to
+            add new user IDs or IFAs to an audience for uploading user IDs.
+        :param kwargs:
+        """
+        super(AudienceGroup, self).__init__(**kwargs)
+
+        self.audience_group_id = audience_group_id
+        self.type = type
+        self.description = description
+        self.status = status
+        self.audience_count = audience_count
+        self.created = created
+        self.is_ifa_audience = is_ifa_audience
+        self.permission = permission
+        self.create_route = create_route
+        self.request_id = request_id
+        self.failed_type = failed_type
+        self.click_url = click_url
+        if jobs:
+            self.jobs = [self.get_or_new_from_json_dict(job, JobInsight) for job in jobs]
+
+
+class ClickAudienceGroup(Base):
+    """ClickAudienceGroup.
+
+    https://developers.line.biz/en/reference/messaging-api/#create-click-audience-group
+    """
+
+    def __init__(self, audience_group_id=None, create_route=None, type=None, description=None,
+                 created=None, permission=None, expire_timestamp=None, is_ifa_audience=None,
+                 request_id=None, click_url=None, **kwargs):
+        """__init__ method.
+
+        :param int audience_group_id: The audience ID.
+        :param str create_route: How the audience was created. If omitted,
+            you will get all audiences.
+        :param str type: The audience type. One of `UPLOAD` or `CLICK` or `IMP` or `CHAT_TAG`
+             or `FRIEND_PATH`.
+        :param str description: The audience's name.
+        :param int created: When the audience was created (in UNIX time).
+        :param str permission: Audience's update permission. Audiences linked to the same channel
+            will be READ_WRITE.
+        :param int expire_timestamp: Time of audience expiration. Only returned for specific
+            audiences.
+        :param bool is_ifa_audience: The value specified when creating an audience for uploading
+            user IDs to indicate the type of accounts that will be given as recipients.
+        :param str request_id: The request ID that was specified when the audience was created.
+        :param str click_url: The URL that was specified when the audience was created.
+            This is only included when type is CLICK
+        :param kwargs:
+        """
+        super(ClickAudienceGroup, self).__init__(**kwargs)
+
+        self.audience_group_id = audience_group_id
+        self.create_route = create_route
+        self.type = type
+        self.description = description
+        self.created = created
+        self.permission = permission
+        self.expire_timestamp = expire_timestamp
+        self.is_ifa_audience = is_ifa_audience
+        self.request_id = request_id
+        self.click_url = click_url
+
+
+class CreateAudienceGroup(Base):
+    """ClickAudienceGroup.
+
+    https://developers.line.biz/en/reference/messaging-api/#create-upload-audience-group
+    """
+
+    def __init__(self, audience_group_id=None, create_route=None, type=None, description=None,
+                 created=None, permission=None, expire_timestamp=None, is_ifa_audience=None,
+                 **kwargs):
+        """__init__ method.
+
+        :param int audience_group_id: The audience ID.
+        :param str create_route: How the audience was created. If omitted,
+            you will get all audiences.
+        :param str type: The audience type. One of `UPLOAD` or `CLICK` or `IMP` or `CHAT_TAG`
+             or `FRIEND_PATH`.
+        :param str description: The audience's name.
+        :param int created: When the audience was created (in UNIX time).
+        :param str permission: Audience's update permission. Audiences linked to the same channel
+            will be READ_WRITE.
+        :param int expire_timestamp: Time of audience expiration. Only returned for specific
+            audiences.
+        :param bool is_ifa_audience: The value specified when creating an audience for uploading
+            user IDs to indicate the type of accounts that will be given as recipients.
+        :param kwargs:
+        """
+        super(CreateAudienceGroup, self).__init__(**kwargs)
+
+        self.audience_group_id = audience_group_id
+        self.create_route = create_route
+        self.type = type
+        self.description = description
+        self.created = created
+        self.permission = permission
+        self.expire_timestamp = expire_timestamp
+        self.is_ifa_audience = is_ifa_audience
+
+
+class ImpAudienceGroup(Base):
+    """ImpAudienceGroup.
+
+    https://developers.line.biz/en/reference/messaging-api/#create-imp-audience-group
+    """
+
+    def __init__(self, audience_group_id=None, create_route=None, type=None, description=None,
+                 created=None, permission=None, expire_timestamp=None, is_ifa_audience=None,
+                 request_id=None, **kwargs):
+        """__init__ method.
+
+        :param int audience_group_id: The audience ID.
+        :param str create_route: How the audience was created. If omitted,
+            you will get all audiences.
+        :param str type: The audience type. One of `UPLOAD` or `CLICK` or `IMP` or `CHAT_TAG`
+             or `FRIEND_PATH`.
+        :param str description: The audience's name.
+        :param int created: When the audience was created (in UNIX time).
+        :param str permission: Audience's update permission. Audiences linked to the same channel
+            will be READ_WRITE.
+        :param int expire_timestamp: Time of audience expiration. Only returned for specific
+            audiences.
+        :param bool is_ifa_audience: The value specified when creating an audience for uploading
+            user IDs to indicate the type of accounts that will be given as recipients.
+        :param str request_id: The request ID that was specified when the audience was created.
+        :param kwargs:
+        """
+        super(ImpAudienceGroup, self).__init__(**kwargs)
+
+        self.audience_group_id = audience_group_id
+        self.create_route = create_route
+        self.type = type
+        self.description = description
+        self.created = created
+        self.permission = permission
+        self.expire_timestamp = expire_timestamp
+        self.is_ifa_audience = is_ifa_audience
+        self.request_id = request_id
+
+
+class GetAuthorityLevel(Base):
+    """GetAuthorityLevel.
+
+    https://developers.line.biz/en/reference/messaging-api/#get-authority-level
+    """
+
+    def __init__(self, authority_level=None, **kwargs):
+        """__init__ method.
+
+        :param str authority_level: The authority level for all audiences linked to a channel.
+        :param kwargs:
+        """
+        super(GetAuthorityLevel, self).__init__(**kwargs)
+
+        self.authority_level = authority_level
+
+
+class Audience(Base):
+    """Audience.
+
+    https://developers.line.biz/en/reference/messaging-api/#update-upload-audience-group
+    """
+
+    def __init__(self, id=None, **kwargs):
+        """__init__ method.
+
+        :param str audience_id: A user ID or IFA.
+        :param kwargs:
+        """
+        super(Audience, self).__init__(**kwargs)
+        self.id = id
 
 
 class UserIds(Base):

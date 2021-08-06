@@ -22,7 +22,7 @@ from .insight import (
     GenderInsight, AreaInsight, MessageInsight, ClickInsight,
     MessageStatistics, JobInsight,
 )
-from .rich_menu import RichMenuSize, RichMenuArea
+from .rich_menu import RichMenuSize, RichMenuArea, RichMenuAlias
 
 
 class BroadcastResponse(object):
@@ -192,6 +192,49 @@ class RichMenuResponse(Base):
                     self.get_or_new_from_json_dict(area, RichMenuArea)
                 )
         self.areas = new_areas
+
+
+class RichMenuAliasResponse(Base):
+    """RichMenuAliasResponse.
+
+    https://developers.line.biz/en/reference/messaging-api/#get-rich-menu-alias-by-id-response
+    """
+
+    def __init__(self, rich_menu_alias_id=None, rich_menu_id=None, **kwargs):
+        """__init__ method.
+
+        :param str rich_menu_alias_id: Rich menu alias ID.
+        :param str rich_menu_id: Rich menu ID.
+        :param kwargs:
+        """
+        super(RichMenuAliasResponse, self).__init__(**kwargs)
+
+        self.rich_menu_alias_id = rich_menu_alias_id
+        self.rich_menu_id = rich_menu_id
+
+
+class RichMenuAliasListResponse(Base):
+    """RichMenuAliasListResponse.
+
+    https://developers.line.biz/en/reference/messaging-api/#get-rich-menu-alias-list-response
+    """
+
+    def __init__(self, aliases=None, **kwargs):
+        """__init__ method.
+
+
+        :param aliases: Array of rich menu alias objects
+        :type areas: list[T <= :py:class:`linebot.models.RichMenuAlias`]
+        :param kwargs:
+        """
+        super(RichMenuAliasListResponse, self).__init__(**kwargs)
+        new_aliases = []
+        if aliases:
+            for alias in aliases:
+                new_aliases.append(
+                    self.get_or_new_from_json_dict(alias, RichMenuAlias)
+                )
+        self.aliases = new_aliases
 
 
 class MessageQuotaResponse(Base):

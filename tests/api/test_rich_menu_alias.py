@@ -14,17 +14,11 @@
 
 from __future__ import unicode_literals, absolute_import
 
-import json
 import unittest
-
 import responses
 
 from linebot import (
     LineBotApi
-)
-from linebot.models import (
-    URITemplateAction,
-    RichMenu, RichMenuSize, RichMenuArea, RichMenuBounds
 )
 from linebot.models.rich_menu import RichMenuAlias
 
@@ -139,8 +133,7 @@ class TestLineBotApi(unittest.TestCase):
                     "richMenuAliasId": self.alias_id_b,
                     "richMenuId": self.rich_menu_id_b
                 }]
-            }
-            , status=200
+            }, status=200
         )
 
         result = self.tested.get_rich_menu_alias_list()
@@ -166,8 +159,8 @@ class TestLineBotApi(unittest.TestCase):
             responses.GET,
             LineBotApi.DEFAULT_API_ENDPOINT +
             '/v2/bot/richmenu/alias/list',
-            json={"aliases": []}
-            , status=200
+            json={"aliases": []},
+            status=200
         )
 
         result = self.tested.get_rich_menu_alias_list()

@@ -676,7 +676,7 @@ class LineBotApi(object):
         return RichMenuResponse.new_from_json_dict(response.json)
 
     def get_rich_menu_alias(self, rich_menu_alias_id=None, timeout=None):
-        """Call update rich menu alias API.
+        """Call get rich menu alias API.
 
         https://developers.line.biz/en/reference/messaging-api/#update-rich-menu-alias
 
@@ -697,7 +697,7 @@ class LineBotApi(object):
         return RichMenuAliasResponse.new_from_json_dict(response.json)
 
     def get_rich_menu_alias_list(self, timeout=None):
-        """Call update rich menu alias API.
+        """Call get rich menu alias list API.
 
         https://developers.line.biz/en/reference/messaging-api/#update-rich-menu-alias
 
@@ -807,7 +807,8 @@ class LineBotApi(object):
         :type timeout: float | tuple(float, float)
         """
         self._delete(
-            '/v2/bot/richmenu/alias/{rich_menu_alias_id}'.format(rich_menu_alias_id=rich_menu_alias_id),
+            '/v2/bot/richmenu/alias/{rich_menu_alias_id}'.format(
+                rich_menu_alias_id=rich_menu_alias_id),
             timeout=timeout
         )
 

@@ -222,7 +222,6 @@ class RichMenuAliasListResponse(Base):
     def __init__(self, aliases=None, **kwargs):
         """__init__ method.
 
-
         :param aliases: Array of rich menu alias objects
         :type areas: list[T <= :py:class:`linebot.models.RichMenuAlias`]
         :param kwargs:

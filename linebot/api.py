@@ -32,7 +32,7 @@ from .models import (
     AudienceGroup, ClickAudienceGroup, ImpAudienceGroup, GetAuthorityLevel, Audience,
     CreateAudienceGroup
 )
-from .models.responses import Group, UserIds
+from .models.responses import Group, UserIds, RichMenuAliasResponse, RichMenuAliasListResponse
 
 
 class LineBotApi(object):
@@ -675,6 +675,46 @@ class LineBotApi(object):
 
         return RichMenuResponse.new_from_json_dict(response.json)
 
+    def get_rich_menu_alias(self, rich_menu_alias_id=None, timeout=None):
+        """Call update rich menu alias API.
+
+        https://developers.line.biz/en/reference/messaging-api/#update-rich-menu-alias
+
+        :param str rich_menu_alias_id: ID of an uploaded rich menu alias.
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        :rtype: :py:class:`linebot.models.responses.RichMenuAliasResponse`
+        :return: RichMenuAliasResponse instance
+        """
+
+        response = self._get(
+            '/v2/bot/richmenu/alias/{rich_menu_id}'.format(rich_menu_id=rich_menu_alias_id),
+            timeout=timeout
+        )
+        return RichMenuAliasResponse.new_from_json_dict(response.json)
+
+    def get_rich_menu_alias_list(self, timeout=None):
+        """Call update rich menu alias API.
+
+        https://developers.line.biz/en/reference/messaging-api/#update-rich-menu-alias
+
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        :rtype: :py:class:`linebot.models.responses.RichMenuAliasListResponse`
+        :return: RichMenuAliasListResponse instance
+        """
+        response = self._get(
+            '/v2/bot/richmenu/alias/list',
+            timeout=timeout
+        )
+        return RichMenuAliasListResponse.new_from_json_dict(response.json)
+
     def create_rich_menu(self, rich_menu, timeout=None):
         """Call create rich menu API.
 
@@ -696,6 +736,47 @@ class LineBotApi(object):
 
         return response.json.get('richMenuId')
 
+    def create_rich_menu_alias(self, rich_menu_alias, timeout=None):
+        """Call create rich menu alias API.
+
+        https://developers.line.biz/en/reference/messaging-api/#create-rich-menu-alias
+
+        :param rich_menu_alias: Inquired to create a rich menu alias object.
+        :type rich_menu_alias: T <= :py:class:`linebot.models.rich_menu.RichMenuAlias`
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        :rtype: str
+        :return: rich menu id
+        """
+        self._post(
+            '/v2/bot/richmenu/alias', data=rich_menu_alias.as_json_string(), timeout=timeout
+        )
+
+    def update_rich_menu_alias(self, rich_menu_alias_id, rich_menu_alias, timeout=None):
+        """Call update rich menu alias API.
+
+        https://developers.line.biz/en/reference/messaging-api/#update-rich-menu-alias
+
+        :param str rich_menu_alias_id: ID of an uploaded rich menu alias.
+        :param rich_menu_alias: Inquired to create a rich menu alias object.
+        :type rich_menu_alias: T <= :py:class:`linebot.models.rich_menu.RichMenuAlias`
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        :rtype: str
+        :return: rich menu id
+        """
+        self._post(
+            '/v2/bot/richmenu/alias/{rich_menu_id}'.format(rich_menu_id=rich_menu_alias_id),
+            data=rich_menu_alias.as_json_string(),
+            timeout=timeout
+        )
+
     def delete_rich_menu(self, rich_menu_id, timeout=None):
         """Call delete rich menu API.
 
@@ -710,6 +791,23 @@ class LineBotApi(object):
         """
         self._delete(
             '/v2/bot/richmenu/{rich_menu_id}'.format(rich_menu_id=rich_menu_id),
+            timeout=timeout
+        )
+
+    def delete_rich_menu_alias(self, rich_menu_alias_id, timeout=None):
+        """Call delete rich menu alias API.
+
+        https://developers.line.biz/en/reference/messaging-api/#delete-rich-menu-alias
+
+        :param str rich_menu_alias_id: ID of an uploaded rich menu alias.
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        """
+        self._delete(
+            '/v2/bot/richmenu/alias/{rich_menu_alias_id}'.format(rich_menu_alias_id=rich_menu_alias_id),
             timeout=timeout
         )
 
@@ -1300,14 +1398,14 @@ class LineBotApi(object):
         if audiences:
             audiences = [Audience.new_from_json_dict(audience) for audience in audiences]
         response = self._put(
-                '/v2/bot/audienceGroup/upload',
-                data=json.dumps({
-                    "audienceGroupId": audience_group_id,
-                    "audiences": [audience.as_json_dict() for audience in audiences],
-                    "uploadDescription": upload_description,
-                }),
-                timeout=timeout
-            )
+            '/v2/bot/audienceGroup/upload',
+            data=json.dumps({
+                "audienceGroupId": audience_group_id,
+                "audiences": [audience.as_json_dict() for audience in audiences],
+                "uploadDescription": upload_description,
+            }),
+            timeout=timeout
+        )
 
         return response.json
 

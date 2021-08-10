@@ -698,7 +698,7 @@ TextSendMessage-Emoji
             "emojiId": "002"
         }
     ]
-    text_message = TextSendMessage(text='$ LINE emoji $', emojis=[emoji])
+    text_message = TextSendMessage(text='$ LINE emoji $', emojis=emoji)
 
 ImageSendMessage
 ^^^^^^^^^^^^^^^^

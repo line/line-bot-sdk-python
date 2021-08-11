@@ -26,6 +26,7 @@ from linebot.models import (
     URITemplateAction,
     RichMenu, RichMenuSize, RichMenuArea, RichMenuBounds
 )
+from linebot.models.actions import RichMenuSwitchAction
 
 
 class TestLineBotApi(unittest.TestCase):
@@ -92,7 +93,6 @@ class TestLineBotApi(unittest.TestCase):
         )
 
         rich_menu = self.tested.get_rich_menu('rich_menu_id')
-        print(rich_menu)
 
         request = responses.calls[0].request
         self.assertEqual(request.method, 'GET')
@@ -437,6 +437,74 @@ class TestLineBotApi(unittest.TestCase):
             '/v2/bot/richmenu/{rich_menu_id}/content'.format(rich_menu_id=rich_menu_id),
             request.url
         )
+
+    @responses.activate
+    def test_rich_menu_with_switch_action(self):
+        rich_menu = RichMenu(
+            size=RichMenuSize(
+                width=2500,
+                height=1686
+            ),
+            selected=False,
+            name="nice richmenu",
+            chatBarText="touch me",
+            areas=[
+                RichMenuArea(
+                    RichMenuBounds(
+                        x=0,
+                        y=0,
+                        width=833,
+                        height=843
+                    ),
+                    RichMenuSwitchAction(
+                        rich_menu_alias_id="richmenu-alias-a",
+                        data="richmenu-changed-to-a"
+                    )
+                )
+            ]
+        )
+        responses.add(
+            responses.POST,
+            LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/richmenu',
+            json={
+                "richMenuId": "rich_menu_id",
+                "size": {
+                    "width": 2500,
+                    "height": 1686
+                },
+                "selected": False,
+                "name": "name",
+                "chatBarText": "chatBarText",
+                "areas": [
+                    {
+                        "bounds": {
+                            "x": 0,
+                            "y": 0,
+                            "width": 2500,
+                            "height": 1686
+                        },
+                        "action": {
+                            "type": "richmenuswitch",
+                            "richMenuAliasId": "richmenu-alias-a",
+                            "data": "richmenu-changed-to-a"
+                        }
+                    }
+                ]
+            },
+            status=200
+        )
+
+        result = self.tested.create_rich_menu(rich_menu)
+        print(rich_menu)
+
+        request = responses.calls[0].request
+        self.assertEqual(request.method, 'POST')
+        self.assertEqual(
+            request.url,
+            LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/richmenu'
+        )
+
+        self.assertEqual(result, "rich_menu_id")
 
 
 if __name__ == '__main__':

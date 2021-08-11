@@ -34,6 +34,7 @@ def get_action(action):
             'camera': CameraAction,
             'cameraRoll': CameraRollAction,
             'location': LocationAction,
+            'richmenuswitch': RichMenuSwitchAction,
         }
     )
     return action_obj
@@ -270,3 +271,33 @@ class LocationAction(Action):
 
         self.type = 'location'
         self.label = label
+
+
+class RichMenuSwitchAction(Action):
+    """RichMenuSwitchAction.
+
+    https://developers.line.biz/en/reference/messaging-api/#richmenu-switch-action
+
+    This action can be configured only with rich menus.
+    It can't be used for Flex Messages or quick replies.
+    When you tap a rich menu associated with this action,
+    you can switch between rich menus,
+    and a postback event including the rich menu alias ID selected
+     by the user is returned via a webhook.
+    """
+
+    def __init__(self, label=None, rich_menu_alias_id=None, data=None, **kwargs):
+        """__init__ method.
+
+        :param str label: Label for the action
+        :param str rich_menu_alias_id: Rich menu alias ID to switch to.
+        :param str data: String returned by the postback.data property
+         of the postback event via a webhook
+        :param kwargs:
+        """
+        super(RichMenuSwitchAction, self).__init__(**kwargs)
+
+        self.type = 'richmenuswitch'
+        self.label = label
+        self.rich_menu_alias_id = rich_menu_alias_id
+        self.data = data

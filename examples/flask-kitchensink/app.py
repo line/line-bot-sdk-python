@@ -115,6 +115,25 @@ def handle_text_message(event):
             line_bot_api.reply_message(
                 event.reply_token,
                 TextSendMessage(text="Bot can't use profile API without user ID"))
+    elif text == 'emojis':
+        emojis = [
+            {
+                "index": 0,
+                "productId": "5ac1bfd5040ab15980c9b435",
+                "emojiId": "001"
+            },
+            {
+                "index": 13,
+                "productId": "5ac1bfd5040ab15980c9b435",
+                "emojiId": "002"
+            }
+        ]
+        text_message = TextSendMessage(text='$ LINE emoji $', emojis=emojis)
+        line_bot_api.reply_message(
+            event.reply_token, [
+                text_message
+            ]
+        )
     elif text == 'quota':
         quota = line_bot_api.get_message_quota()
         line_bot_api.reply_message(

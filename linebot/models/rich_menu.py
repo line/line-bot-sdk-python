@@ -124,3 +124,23 @@ class RichMenuBounds(with_metaclass(ABCMeta, Base)):
         self.y = y
         self.width = width
         self.height = height
+
+
+class RichMenuAlias(with_metaclass(ABCMeta, Base)):
+    """RichMenuAlias.
+
+    https://developers.line.biz/en/reference/messaging-api/#create-rich-menu-alias
+    """
+
+    def __init__(self, rich_menu_alias_id=None, rich_menu_id=None, **kwargs):
+        """__init__ method.
+
+        :param string rich_menu_alias_id: Rich menu alias ID,
+         which can be any ID, unique for each channel.
+        :param string rich_menu_id: The rich menu ID to be associated with the rich menu alias.
+        :param kwargs:
+        """
+        super(RichMenuAlias, self).__init__(**kwargs)
+
+        self.rich_menu_alias_id = rich_menu_alias_id
+        self.rich_menu_id = rich_menu_id

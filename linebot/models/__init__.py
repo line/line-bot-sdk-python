@@ -23,6 +23,7 @@ from .actions import (  # noqa
     CameraAction,
     CameraRollAction,
     LocationAction,
+    RichMenuSwitchAction,
     Action as TemplateAction,  # backward compatibility
     PostbackAction as PostbackTemplateAction,  # backward compatibility
     MessageAction as MessageTemplateAction,  # backward compatibility

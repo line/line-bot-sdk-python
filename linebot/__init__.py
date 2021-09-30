@@ -22,10 +22,17 @@ from .__about__ import (  # noqa
 from .api import (  # noqa
     LineBotApi,
 )
+from .async_api import (  # noqa
+    AsyncLineBotApi,
+)
 from .http_client import (  # noqa
     HttpClient,
     RequestsHttpClient,
     HttpResponse,
+)
+from .async_http_client import (  # noqa
+    AsyncHttpClient,
+    AsyncHttpResponse,
 )
 from .webhook import (  # noqa
     SignatureValidator,

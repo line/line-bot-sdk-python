@@ -14,7 +14,6 @@
 
 """Meta data of line-bot-sdk."""
 
-from __future__ import unicode_literals
 
 __version__ = '1.20.0'
 __author__ = 'LINE Corporation'

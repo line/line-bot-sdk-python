@@ -14,7 +14,6 @@
 
 """linebot package."""
 
-from __future__ import unicode_literals
 
 from .__about__ import (  # noqa
     __version__

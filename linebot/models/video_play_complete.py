@@ -14,7 +14,6 @@
 
 """linebot.models.video_play_complete module."""
 
-from __future__ import unicode_literals
 
 from abc import ABCMeta
 

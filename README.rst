@@ -1245,8 +1245,6 @@ The LINE Messaging API SDK for Python includes experimental asyncio support.
 (API may change without notice in a future version)
 
 .. code:: python
-    from __future__ import unicode_literals
-
     import os
     import sys
     from argparse import ArgumentParser

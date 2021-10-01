@@ -107,6 +107,7 @@ class CodegenCommand(Command):
                 + "    :param str data_endpoint: (optional) Default is https://api-data.line.me\n"
                 + "\n\"\"\"\n"
                 , async_source, flags=re.DOTALL)
+            async_source = re.sub("'line-bot-sdk-python/'", '"line-bot-sdk-python-async/"', async_source)
 
             async_source = re.sub('"""linebot.api module."""', '"""linebot.async_api module."""', async_source)
             async_source = re.sub(

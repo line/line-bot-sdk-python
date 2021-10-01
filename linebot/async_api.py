@@ -92,7 +92,7 @@ class AsyncLineBotApi(object):
         self.endpoint = endpoint
         self.headers = {
             "Authorization": "Bearer " + channel_access_token,
-            "User-Agent": "line-bot-sdk-python/" + __version__,
+            "User-Agent": "line-bot-sdk-python-async/" + __version__,
         }
 
         self.async_http_client = async_http_client

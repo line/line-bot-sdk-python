@@ -14,7 +14,6 @@
 
 """linebot.models.mentionee module."""
 
-from __future__ import unicode_literals
 
 from abc import ABCMeta
 

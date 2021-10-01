@@ -23,7 +23,6 @@
 
 """linebot.async_api module."""
 
-from __future__ import unicode_literals
 
 import json
 

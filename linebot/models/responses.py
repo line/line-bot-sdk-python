@@ -14,7 +14,6 @@
 
 """linebot.models.responses module."""
 
-from __future__ import unicode_literals
 
 from .base import Base
 from .insight import (

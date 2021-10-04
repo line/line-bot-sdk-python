@@ -6,3 +6,4 @@ sphinx>=2
 sphinx_rtd_theme
 pypandoc
 twine
+black==21.9b0

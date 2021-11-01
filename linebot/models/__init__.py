@@ -167,6 +167,7 @@ from .rich_menu import (  # noqa
     RichMenuSize,
     RichMenuArea,
     RichMenuBounds,
+    RichMenuAlias,
 )
 from .send_messages import (  # noqa
     SendMessage,

@@ -52,7 +52,7 @@ class LineBotApi(LineBotApi_ori):
         audience_groups = super(LineBotApi, self).get_audience_group_list(
             description=description, timeout=timeout)
         for audience_group in audience_groups:
-            if audience_group.description.encode('utf-8') == description:
+            if audience_group.description == description:
                 return audience_group.audience_group_id
         else:
             return None

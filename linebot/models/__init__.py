@@ -23,6 +23,7 @@ from .actions import (  # noqa
     CameraAction,
     CameraRollAction,
     LocationAction,
+    RichMenuSwitchAction,
     Action as TemplateAction,  # backward compatibility
     PostbackAction as PostbackTemplateAction,  # backward compatibility
     MessageAction as MessageTemplateAction,  # backward compatibility
@@ -166,6 +167,7 @@ from .rich_menu import (  # noqa
     RichMenuSize,
     RichMenuArea,
     RichMenuBounds,
+    RichMenuAlias,
 )
 from .send_messages import (  # noqa
     SendMessage,

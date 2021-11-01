@@ -14,7 +14,6 @@
 
 """linebot.models.sources module."""
 
-from __future__ import unicode_literals
 
 import warnings
 from abc import ABCMeta, abstractproperty

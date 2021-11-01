@@ -14,9 +14,8 @@
 
 """Meta data of line-bot-sdk."""
 
-from __future__ import unicode_literals
 
-__version__ = '1.19.0'
+__version__ = '2.0.1'
 __author__ = 'LINE Corporation'
 __copyright__ = 'Copyright 2016, LINE Corporation'
 __license__ = 'Apache 2.0'

@@ -14,7 +14,6 @@
 
 """linebot.models.messages module."""
 
-from __future__ import unicode_literals
 
 from abc import ABCMeta
 
@@ -99,13 +98,16 @@ class ImageMessage(Message):
     The binary image data can be retrieved with the Content API.
     """
 
-    def __init__(self, id=None, content_provider=None, **kwargs):
+    def __init__(self, id=None, content_provider=None, image_set=None, **kwargs):
         """__init__ method.
 
         :param str id: Message ID
         :param content_provider: ContentProvider object
         :type content_provider:
             :py:class:`linebot.models.messages.ContentProvider`
+        :param image_set: ImageSet object
+        :type image_set:
+            :py:class:`linebot.models.messages.ImageSet`
         :param kwargs:
         """
         super(ImageMessage, self).__init__(id=id, **kwargs)
@@ -113,6 +115,9 @@ class ImageMessage(Message):
         self.type = 'image'
         self.content_provider = self.get_or_new_from_json_dict(
             content_provider, ContentProvider
+        )
+        self.image_set = self.get_or_new_from_json_dict(
+            image_set, ImageSet
         )
 
 
@@ -267,3 +272,21 @@ class ContentProvider(Base):
         self.type = type
         self.original_content_url = original_content_url
         self.preview_image_url = preview_image_url
+
+
+class ImageSet(Base):
+    """Image Set."""
+
+    def __init__(self, id=None, index=None, total=0, **kwargs):
+        """__init__ method.
+
+        :param str id: Image set ID.
+        :param int index: Image number in a set of images sent simultaneously.
+        :param int total: Total number of images sent simultaneously.
+        :param kwargs:
+        """
+        super(ImageSet, self).__init__(**kwargs)
+
+        self.id = id
+        self.index = index
+        self.total = total

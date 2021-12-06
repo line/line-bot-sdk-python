@@ -83,7 +83,7 @@ class CodegenCommand(Command):
             import re
 
             async_source = header + source
-            async_source = re.sub("    def (?!__init__|__check_error)", "    async def ", async_source)
+            async_source = re.sub("    def (?!__init__)", "    async def ", async_source)
             async_source = re.sub("from .http_client import HttpClient, RequestsHttpClient", "", async_source)
 
             # Change the signature of the __init__.
@@ -117,6 +117,9 @@ class CodegenCommand(Command):
                 "self.http_client.(get|post|delete|put)", "await self.async_http_client.\\1", async_source
             )
             async_source = re.sub(
+                "response.json", "await response.json", async_source
+            )
+            async_source = re.sub(
                 "from .http_client import HttpClient, RequestsHttpClient",
                 "from .async_http_client import AsyncHttpClient, AiohttpAsyncHttpClient", async_source
             )
@@ -132,6 +135,9 @@ class CodegenCommand(Command):
             )
             async_source = re.sub(
                 "Default is self.http_client.timeout", "Default is self.async_http_client.timeout", async_source
+            )
+            async_source = re.sub(
+                "self.__check_error(response)", "await self.__check_error(response)", async_source
             )
             async_source = re.sub(
                 "class LineBotApi",

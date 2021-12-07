@@ -117,7 +117,7 @@ class CodegenCommand(Command):
                 "self.http_client.(get|post|delete|put)", "await self.async_http_client.\\1", async_source
             )
             async_source = re.sub(
-                "response.json", "await response.json", async_source
+                "response.json", "(await response.json)", async_source
             )
             async_source = re.sub(
                 "from .http_client import HttpClient, RequestsHttpClient",
@@ -137,7 +137,7 @@ class CodegenCommand(Command):
                 "Default is self.http_client.timeout", "Default is self.async_http_client.timeout", async_source
             )
             async_source = re.sub(
-                "self.__check_error(response)", "await self.__check_error(response)", async_source
+                "self.__check_error", "await self.__check_error", async_source
             )
             async_source = re.sub(
                 "class LineBotApi",

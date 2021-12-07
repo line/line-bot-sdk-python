@@ -123,7 +123,7 @@ class CodegenCommand(Command):
                 async_source
             )
             async_source = re.sub(
-                "response.json", "await response.json", async_source
+                "response.json", "(await response.json)", async_source
             )
             async_source = re.sub(
                 "from .http_client import HttpClient, RequestsHttpClient",
@@ -146,7 +146,7 @@ class CodegenCommand(Command):
                 async_source
             )
             async_source = re.sub(
-                "self.__check_error(response)", "await self.__check_error(response)", async_source
+                "self.__check_error", "await self.__check_error", async_source
             )
             async_source = re.sub(
                 "class LineBotApi",

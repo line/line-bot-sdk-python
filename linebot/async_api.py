@@ -30,44 +30,75 @@ from .__about__ import __version__
 from .exceptions import LineBotApiError
 
 from .models import (
-    Error, Profile, MemberIds, Content, RichMenuResponse, MessageQuotaResponse,
-    MessageQuotaConsumptionResponse, IssueLinkTokenResponse, IssueChannelTokenResponse,
-    MessageDeliveryBroadcastResponse, MessageDeliveryMulticastResponse,
-    MessageDeliveryPushResponse, MessageDeliveryReplyResponse,
-    InsightMessageDeliveryResponse, InsightFollowersResponse, InsightDemographicResponse,
-    InsightMessageEventResponse, BroadcastResponse, NarrowcastResponse,
-    MessageProgressNarrowcastResponse, BotInfo, GetWebhookResponse, TestWebhookResponse,
-    AudienceGroup, ClickAudienceGroup, ImpAudienceGroup, GetAuthorityLevel, Audience,
-    CreateAudienceGroup
+    Error,
+    Profile,
+    MemberIds,
+    Content,
+    RichMenuResponse,
+    MessageQuotaResponse,
+    MessageQuotaConsumptionResponse,
+    IssueLinkTokenResponse,
+    IssueChannelTokenResponse,
+    MessageDeliveryBroadcastResponse,
+    MessageDeliveryMulticastResponse,
+    MessageDeliveryPushResponse,
+    MessageDeliveryReplyResponse,
+    InsightMessageDeliveryResponse,
+    InsightFollowersResponse,
+    InsightDemographicResponse,
+    InsightMessageEventResponse,
+    BroadcastResponse,
+    NarrowcastResponse,
+    MessageProgressNarrowcastResponse,
+    BotInfo,
+    GetWebhookResponse,
+    TestWebhookResponse,
+    AudienceGroup,
+    ClickAudienceGroup,
+    ImpAudienceGroup,
+    GetAuthorityLevel,
+    Audience,
+    CreateAudienceGroup,
 )
-from .models.responses import Group, UserIds, RichMenuAliasResponse, RichMenuAliasListResponse
+from .models.responses import (
+    Group,
+    UserIds,
+    RichMenuAliasResponse,
+    RichMenuAliasListResponse,
+)
 
 
 class AsyncLineBotApi(object):
     """LineBotApi provides interface for LINE messaging API."""
 
-    DEFAULT_API_ENDPOINT = 'https://api.line.me'
-    DEFAULT_API_DATA_ENDPOINT = 'https://api-data.line.me'
+    DEFAULT_API_ENDPOINT = "https://api.line.me"
+    DEFAULT_API_DATA_ENDPOINT = "https://api-data.line.me"
 
-    def __init__(self, channel_access_token, async_http_client,
-                 endpoint=DEFAULT_API_ENDPOINT, data_endpoint=DEFAULT_API_DATA_ENDPOINT):
+    def __init__(
+        self,
+        channel_access_token,
+        async_http_client,
+        endpoint=DEFAULT_API_ENDPOINT,
+        data_endpoint=DEFAULT_API_DATA_ENDPOINT,
+    ):
         """__init__ method.
 
-    :param str channel_access_token: Your channel access token
-    :param str endpoint: (optional) Default is https://api.line.me
-    :param str data_endpoint: (optional) Default is https://api-data.line.me
-
-"""
+        :param str channel_access_token: Your channel access token
+        :param str endpoint: (optional) Default is https://api.line.me
+        :param str data_endpoint: (optional) Default is https://api-data.line.me
+        """
         self.data_endpoint = data_endpoint
         self.endpoint = endpoint
         self.headers = {
-            'Authorization': 'Bearer ' + channel_access_token,
-            'User-Agent': "line-bot-sdk-python-async/" + __version__
+            "Authorization": "Bearer " + channel_access_token,
+            "User-Agent": "line-bot-sdk-python-async/" + __version__,
         }
 
         self.async_http_client = async_http_client
 
-    async def reply_message(self, reply_token, messages, notification_disabled=False, timeout=None):
+    async def reply_message(
+        self, reply_token, messages, notification_disabled=False, timeout=None
+    ):
         """Call reply message API.
 
         https://developers.line.biz/en/reference/messaging-api/#send-reply-message
@@ -99,18 +130,18 @@ class AsyncLineBotApi(object):
             messages = [messages]
 
         data = {
-            'replyToken': reply_token,
-            'messages': [message.as_json_dict() for message in messages],
-            'notificationDisabled': notification_disabled,
+            "replyToken": reply_token,
+            "messages": [message.as_json_dict() for message in messages],
+            "notificationDisabled": notification_disabled,
         }
 
         await self._post(
-            '/v2/bot/message/reply', data=json.dumps(data), timeout=timeout
+            "/v2/bot/message/reply", data=json.dumps(data), timeout=timeout
         )
 
     async def push_message(
-            self, to, messages,
-            retry_key=None, notification_disabled=False, timeout=None):
+        self, to, messages, retry_key=None, notification_disabled=False, timeout=None
+    ):
         """Call push message API.
 
         https://developers.line.biz/en/reference/messaging-api/#send-push-message
@@ -135,19 +166,19 @@ class AsyncLineBotApi(object):
             messages = [messages]
 
         if retry_key:
-            self.headers['X-Line-Retry-Key'] = retry_key
+            self.headers["X-Line-Retry-Key"] = retry_key
 
         data = {
-            'to': to,
-            'messages': [message.as_json_dict() for message in messages],
-            'notificationDisabled': notification_disabled,
+            "to": to,
+            "messages": [message.as_json_dict() for message in messages],
+            "notificationDisabled": notification_disabled,
         }
 
-        await self._post(
-            '/v2/bot/message/push', data=json.dumps(data), timeout=timeout
-        )
+        await self._post("/v2/bot/message/push", data=json.dumps(data), timeout=timeout)
 
-    async def multicast(self, to, messages, retry_key=None, notification_disabled=False, timeout=None):
+    async def multicast(
+        self, to, messages, retry_key=None, notification_disabled=False, timeout=None
+    ):
         """Call multicast API.
 
         https://developers.line.biz/en/reference/messaging-api/#send-multicast-message
@@ -175,19 +206,21 @@ class AsyncLineBotApi(object):
             messages = [messages]
 
         if retry_key:
-            self.headers['X-Line-Retry-Key'] = retry_key
+            self.headers["X-Line-Retry-Key"] = retry_key
 
         data = {
-            'to': to,
-            'messages': [message.as_json_dict() for message in messages],
-            'notificationDisabled': notification_disabled,
+            "to": to,
+            "messages": [message.as_json_dict() for message in messages],
+            "notificationDisabled": notification_disabled,
         }
 
         await self._post(
-            '/v2/bot/message/multicast', data=json.dumps(data), timeout=timeout
+            "/v2/bot/message/multicast", data=json.dumps(data), timeout=timeout
         )
 
-    async def broadcast(self, messages, retry_key=None, notification_disabled=False, timeout=None):
+    async def broadcast(
+        self, messages, retry_key=None, notification_disabled=False, timeout=None
+    ):
         """Call broadcast API.
 
         https://developers.line.biz/en/reference/messaging-api/#send-broadcast-message
@@ -212,23 +245,29 @@ class AsyncLineBotApi(object):
             messages = [messages]
 
         if retry_key:
-            self.headers['X-Line-Retry-Key'] = retry_key
+            self.headers["X-Line-Retry-Key"] = retry_key
 
         data = {
-            'messages': [message.as_json_dict() for message in messages],
-            'notificationDisabled': notification_disabled,
+            "messages": [message.as_json_dict() for message in messages],
+            "notificationDisabled": notification_disabled,
         }
 
         response = await self._post(
-            '/v2/bot/message/broadcast', data=json.dumps(data), timeout=timeout
+            "/v2/bot/message/broadcast", data=json.dumps(data), timeout=timeout
         )
 
-        return BroadcastResponse(request_id=response.headers.get('X-Line-Request-Id'))
+        return BroadcastResponse(request_id=response.headers.get("X-Line-Request-Id"))
 
     async def narrowcast(
-            self, messages,
-            retry_key=None, recipient=None, filter=None, limit=None,
-            notification_disabled=False, timeout=None):
+        self,
+        messages,
+        retry_key=None,
+        recipient=None,
+        filter=None,
+        limit=None,
+        notification_disabled=False,
+        timeout=None,
+    ):
         """Call narrowcast API.
 
         https://developers.line.biz/en/reference/messaging-api/#send-narrowcast-message
@@ -260,21 +299,21 @@ class AsyncLineBotApi(object):
             messages = [messages]
 
         if retry_key:
-            self.headers['X-Line-Retry-Key'] = retry_key
+            self.headers["X-Line-Retry-Key"] = retry_key
 
         data = {
-            'messages': [message.as_json_dict() for message in messages],
-            'recipient': recipient.as_json_dict(),
-            'filter': filter.as_json_dict(),
-            'limit': limit.as_json_dict(),
-            'notificationDisabled': notification_disabled,
+            "messages": [message.as_json_dict() for message in messages],
+            "recipient": recipient.as_json_dict(),
+            "filter": filter.as_json_dict(),
+            "limit": limit.as_json_dict(),
+            "notificationDisabled": notification_disabled,
         }
 
         response = await self._post(
-            '/v2/bot/message/narrowcast', data=json.dumps(data), timeout=timeout
+            "/v2/bot/message/narrowcast", data=json.dumps(data), timeout=timeout
         )
 
-        return NarrowcastResponse(request_id=response.headers.get('X-Line-Request-Id'))
+        return NarrowcastResponse(request_id=response.headers.get("X-Line-Request-Id"))
 
     async def get_progress_status_narrowcast(self, request_id, timeout=None):
         """Get progress status of narrowcast messages sent.
@@ -292,12 +331,13 @@ class AsyncLineBotApi(object):
         :rtype: :py:class:`linebot.models.responses.MessageDeliveryBroadcastResponse`
         """
         response = await self._get(
-            '/v2/bot/message/progress/narrowcast?requestId={request_id}'.format(
-                request_id=request_id),
-            timeout=timeout
+            "/v2/bot/message/progress/narrowcast?requestId={request_id}".format(
+                request_id=request_id
+            ),
+            timeout=timeout,
         )
 
-        return MessageProgressNarrowcastResponse.new_from_json_dict(response.json)
+        return MessageProgressNarrowcastResponse.new_from_json_dict(await response.json)
 
     async def get_message_delivery_broadcast(self, date, timeout=None):
         """Get number of sent broadcast messages.
@@ -315,11 +355,11 @@ class AsyncLineBotApi(object):
         :rtype: :py:class:`linebot.models.responses.MessageDeliveryBroadcastResponse`
         """
         response = await self._get(
-            '/v2/bot/message/delivery/broadcast?date={date}'.format(date=date),
-            timeout=timeout
+            "/v2/bot/message/delivery/broadcast?date={date}".format(date=date),
+            timeout=timeout,
         )
 
-        return MessageDeliveryBroadcastResponse.new_from_json_dict(response.json)
+        return MessageDeliveryBroadcastResponse.new_from_json_dict(await response.json)
 
     async def get_message_delivery_reply(self, date, timeout=None):
         """Get number of sent reply messages.
@@ -337,11 +377,11 @@ class AsyncLineBotApi(object):
         :rtype: :py:class:`linebot.models.responses.MessageDeliveryReplyResponse`
         """
         response = await self._get(
-            '/v2/bot/message/delivery/reply?date={date}'.format(date=date),
-            timeout=timeout
+            "/v2/bot/message/delivery/reply?date={date}".format(date=date),
+            timeout=timeout,
         )
 
-        return MessageDeliveryReplyResponse.new_from_json_dict(response.json)
+        return MessageDeliveryReplyResponse.new_from_json_dict(await response.json)
 
     async def get_message_delivery_push(self, date, timeout=None):
         """Get number of sent push messages.
@@ -359,11 +399,11 @@ class AsyncLineBotApi(object):
         :rtype: :py:class:`linebot.models.responses.MessageDeliveryPushResponse`
         """
         response = await self._get(
-            '/v2/bot/message/delivery/push?date={date}'.format(date=date),
-            timeout=timeout
+            "/v2/bot/message/delivery/push?date={date}".format(date=date),
+            timeout=timeout,
         )
 
-        return MessageDeliveryPushResponse.new_from_json_dict(response.json)
+        return MessageDeliveryPushResponse.new_from_json_dict(await response.json)
 
     async def get_message_delivery_multicast(self, date, timeout=None):
         """Get number of sent multicast messages.
@@ -381,11 +421,11 @@ class AsyncLineBotApi(object):
         :rtype: :py:class:`linebot.models.responses.MessageDeliveryMulticastResponse`
         """
         response = await self._get(
-            '/v2/bot/message/delivery/multicast?date={date}'.format(date=date),
-            timeout=timeout
+            "/v2/bot/message/delivery/multicast?date={date}".format(date=date),
+            timeout=timeout,
         )
 
-        return MessageDeliveryMulticastResponse.new_from_json_dict(response.json)
+        return MessageDeliveryMulticastResponse.new_from_json_dict(await response.json)
 
     async def get_profile(self, user_id, timeout=None):
         """Call get profile API.
@@ -404,11 +444,10 @@ class AsyncLineBotApi(object):
         :return: Profile instance
         """
         response = await self._get(
-            '/v2/bot/profile/{user_id}'.format(user_id=user_id),
-            timeout=timeout
+            "/v2/bot/profile/{user_id}".format(user_id=user_id), timeout=timeout
         )
 
-        return Profile.new_from_json_dict(response.json)
+        return Profile.new_from_json_dict(await response.json)
 
     async def get_group_summary(self, group_id, timeout=None):
         """Call get group summary API.
@@ -428,11 +467,11 @@ class AsyncLineBotApi(object):
         :return: Profile instance
         """
         response = await self._get(
-            '/v2/bot/group/{group_id}/summary'.format(group_id=group_id),
-            timeout=timeout
+            "/v2/bot/group/{group_id}/summary".format(group_id=group_id),
+            timeout=timeout,
         )
 
-        return Group.new_from_json_dict(response.json)
+        return Group.new_from_json_dict(await response.json)
 
     async def get_group_members_count(self, group_id, timeout=None):
         """Call get members in group count API.
@@ -451,11 +490,11 @@ class AsyncLineBotApi(object):
         :return: Profile instance
         """
         response = await self._get(
-            '/v2/bot/group/{group_id}/members/count'.format(group_id=group_id),
-            timeout=timeout
+            "/v2/bot/group/{group_id}/members/count".format(group_id=group_id),
+            timeout=timeout,
         )
 
-        return response.json.get('count')
+        return await response.json.get("count")
 
     async def get_room_members_count(self, room_id, timeout=None):
         """Call get members in room count API.
@@ -474,11 +513,11 @@ class AsyncLineBotApi(object):
         :return: Profile instance
         """
         response = await self._get(
-            '/v2/bot/room/{room_id}/members/count'.format(room_id=room_id),
-            timeout=timeout
+            "/v2/bot/room/{room_id}/members/count".format(room_id=room_id),
+            timeout=timeout,
         )
 
-        return response.json.get('count')
+        return await response.json.get("count")
 
     async def get_group_member_profile(self, group_id, user_id, timeout=None):
         """Call get group member profile API.
@@ -500,11 +539,13 @@ class AsyncLineBotApi(object):
         :return: Profile instance
         """
         response = await self._get(
-            '/v2/bot/group/{group_id}/member/{user_id}'.format(group_id=group_id, user_id=user_id),
-            timeout=timeout
+            "/v2/bot/group/{group_id}/member/{user_id}".format(
+                group_id=group_id, user_id=user_id
+            ),
+            timeout=timeout,
         )
 
-        return Profile.new_from_json_dict(response.json)
+        return Profile.new_from_json_dict(await response.json)
 
     async def get_room_member_profile(self, room_id, user_id, timeout=None):
         """Call get room member profile API.
@@ -526,11 +567,13 @@ class AsyncLineBotApi(object):
         :return: Profile instance
         """
         response = await self._get(
-            '/v2/bot/room/{room_id}/member/{user_id}'.format(room_id=room_id, user_id=user_id),
-            timeout=timeout
+            "/v2/bot/room/{room_id}/member/{user_id}".format(
+                room_id=room_id, user_id=user_id
+            ),
+            timeout=timeout,
         )
 
-        return Profile.new_from_json_dict(response.json)
+        return Profile.new_from_json_dict(await response.json)
 
     async def get_group_member_ids(self, group_id, start=None, timeout=None):
         """Call get group member IDs API.
@@ -551,15 +594,15 @@ class AsyncLineBotApi(object):
         :rtype: :py:class:`linebot.models.responses.MemberIds`
         :return: MemberIds instance
         """
-        params = None if start is None else {'start': start}
+        params = None if start is None else {"start": start}
 
         response = await self._get(
-            '/v2/bot/group/{group_id}/members/ids'.format(group_id=group_id),
+            "/v2/bot/group/{group_id}/members/ids".format(group_id=group_id),
             params=params,
-            timeout=timeout
+            timeout=timeout,
         )
 
-        return MemberIds.new_from_json_dict(response.json)
+        return MemberIds.new_from_json_dict(await response.json)
 
     async def get_room_member_ids(self, room_id, start=None, timeout=None):
         """Call get room member IDs API.
@@ -580,15 +623,15 @@ class AsyncLineBotApi(object):
         :rtype: :py:class:`linebot.models.responses.MemberIds`
         :return: MemberIds instance
         """
-        params = None if start is None else {'start': start}
+        params = None if start is None else {"start": start}
 
         response = await self._get(
-            '/v2/bot/room/{room_id}/members/ids'.format(room_id=room_id),
+            "/v2/bot/room/{room_id}/members/ids".format(room_id=room_id),
             params=params,
-            timeout=timeout
+            timeout=timeout,
         )
 
-        return MemberIds.new_from_json_dict(response.json)
+        return MemberIds.new_from_json_dict(await response.json)
 
     async def get_message_content(self, message_id, timeout=None):
         """Call get content API.
@@ -607,8 +650,9 @@ class AsyncLineBotApi(object):
         :return: Content instance
         """
         response = await self._get(
-            '/v2/bot/message/{message_id}/content'.format(message_id=message_id),
-            endpoint=self.data_endpoint, timeout=timeout
+            "/v2/bot/message/{message_id}/content".format(message_id=message_id),
+            endpoint=self.data_endpoint,
+            timeout=timeout,
         )
 
         return Content(response)
@@ -628,8 +672,7 @@ class AsyncLineBotApi(object):
         :type timeout: float | tuple(float, float)
         """
         await self._post(
-            '/v2/bot/group/{group_id}/leave'.format(group_id=group_id),
-            timeout=timeout
+            "/v2/bot/group/{group_id}/leave".format(group_id=group_id), timeout=timeout
         )
 
     async def leave_room(self, room_id, timeout=None):
@@ -647,8 +690,7 @@ class AsyncLineBotApi(object):
         :type timeout: float | tuple(float, float)
         """
         await self._post(
-            '/v2/bot/room/{room_id}/leave'.format(room_id=room_id),
-            timeout=timeout
+            "/v2/bot/room/{room_id}/leave".format(room_id=room_id), timeout=timeout
         )
 
     async def get_rich_menu(self, rich_menu_id, timeout=None):
@@ -666,11 +708,11 @@ class AsyncLineBotApi(object):
         :return: RichMenuResponse instance
         """
         response = await self._get(
-            '/v2/bot/richmenu/{rich_menu_id}'.format(rich_menu_id=rich_menu_id),
-            timeout=timeout
+            "/v2/bot/richmenu/{rich_menu_id}".format(rich_menu_id=rich_menu_id),
+            timeout=timeout,
         )
 
-        return RichMenuResponse.new_from_json_dict(response.json)
+        return RichMenuResponse.new_from_json_dict(await response.json)
 
     async def get_rich_menu_alias(self, rich_menu_alias_id=None, timeout=None):
         """Call get rich menu alias API.
@@ -687,10 +729,12 @@ class AsyncLineBotApi(object):
         :return: RichMenuAliasResponse instance
         """
         response = await self._get(
-            '/v2/bot/richmenu/alias/{rich_menu_id}'.format(rich_menu_id=rich_menu_alias_id),
-            timeout=timeout
+            "/v2/bot/richmenu/alias/{rich_menu_id}".format(
+                rich_menu_id=rich_menu_alias_id
+            ),
+            timeout=timeout,
         )
-        return RichMenuAliasResponse.new_from_json_dict(response.json)
+        return RichMenuAliasResponse.new_from_json_dict(await response.json)
 
     async def get_rich_menu_alias_list(self, timeout=None):
         """Call get rich menu alias list API.
@@ -705,11 +749,8 @@ class AsyncLineBotApi(object):
         :rtype: :py:class:`linebot.models.responses.RichMenuAliasListResponse`
         :return: RichMenuAliasListResponse instance
         """
-        response = await self._get(
-            '/v2/bot/richmenu/alias/list',
-            timeout=timeout
-        )
-        return RichMenuAliasListResponse.new_from_json_dict(response.json)
+        response = await self._get("/v2/bot/richmenu/alias/list", timeout=timeout)
+        return RichMenuAliasListResponse.new_from_json_dict(await response.json)
 
     async def create_rich_menu(self, rich_menu, timeout=None):
         """Call create rich menu API.
@@ -727,10 +768,10 @@ class AsyncLineBotApi(object):
         :return: rich menu id
         """
         response = await self._post(
-            '/v2/bot/richmenu', data=rich_menu.as_json_string(), timeout=timeout
+            "/v2/bot/richmenu", data=rich_menu.as_json_string(), timeout=timeout
         )
 
-        return response.json.get('richMenuId')
+        return await response.json.get("richMenuId")
 
     async def create_rich_menu_alias(self, rich_menu_alias, timeout=None):
         """Call create rich menu alias API.
@@ -748,10 +789,14 @@ class AsyncLineBotApi(object):
         :return: rich menu id
         """
         await self._post(
-            '/v2/bot/richmenu/alias', data=rich_menu_alias.as_json_string(), timeout=timeout
+            "/v2/bot/richmenu/alias",
+            data=rich_menu_alias.as_json_string(),
+            timeout=timeout,
         )
 
-    async def update_rich_menu_alias(self, rich_menu_alias_id, rich_menu_alias, timeout=None):
+    async def update_rich_menu_alias(
+        self, rich_menu_alias_id, rich_menu_alias, timeout=None
+    ):
         """Call update rich menu alias API.
 
         https://developers.line.biz/en/reference/messaging-api/#update-rich-menu-alias
@@ -768,9 +813,11 @@ class AsyncLineBotApi(object):
         :return: rich menu id
         """
         await self._post(
-            '/v2/bot/richmenu/alias/{rich_menu_id}'.format(rich_menu_id=rich_menu_alias_id),
+            "/v2/bot/richmenu/alias/{rich_menu_id}".format(
+                rich_menu_id=rich_menu_alias_id
+            ),
             data=rich_menu_alias.as_json_string(),
-            timeout=timeout
+            timeout=timeout,
         )
 
     async def delete_rich_menu(self, rich_menu_id, timeout=None):
@@ -786,8 +833,8 @@ class AsyncLineBotApi(object):
         :type timeout: float | tuple(float, float)
         """
         await self._delete(
-            '/v2/bot/richmenu/{rich_menu_id}'.format(rich_menu_id=rich_menu_id),
-            timeout=timeout
+            "/v2/bot/richmenu/{rich_menu_id}".format(rich_menu_id=rich_menu_id),
+            timeout=timeout,
         )
 
     async def delete_rich_menu_alias(self, rich_menu_alias_id, timeout=None):
@@ -803,9 +850,10 @@ class AsyncLineBotApi(object):
         :type timeout: float | tuple(float, float)
         """
         await self._delete(
-            '/v2/bot/richmenu/alias/{rich_menu_alias_id}'.format(
-                rich_menu_alias_id=rich_menu_alias_id),
-            timeout=timeout
+            "/v2/bot/richmenu/alias/{rich_menu_alias_id}".format(
+                rich_menu_alias_id=rich_menu_alias_id
+            ),
+            timeout=timeout,
         )
 
     async def get_rich_menu_id_of_user(self, user_id, timeout=None):
@@ -823,11 +871,10 @@ class AsyncLineBotApi(object):
         :return: rich menu id
         """
         response = await self._get(
-            '/v2/bot/user/{user_id}/richmenu'.format(user_id=user_id),
-            timeout=timeout
+            "/v2/bot/user/{user_id}/richmenu".format(user_id=user_id), timeout=timeout
         )
 
-        return response.json.get('richMenuId')
+        return await response.json.get("richMenuId")
 
     async def link_rich_menu_to_user(self, user_id, rich_menu_id, timeout=None):
         """Call link rich menu to user API.
@@ -843,11 +890,10 @@ class AsyncLineBotApi(object):
         :type timeout: float | tuple(float, float)
         """
         await self._post(
-            '/v2/bot/user/{user_id}/richmenu/{rich_menu_id}'.format(
-                user_id=user_id,
-                rich_menu_id=rich_menu_id
+            "/v2/bot/user/{user_id}/richmenu/{rich_menu_id}".format(
+                user_id=user_id, rich_menu_id=rich_menu_id
             ),
-            timeout=timeout
+            timeout=timeout,
         )
 
     async def link_rich_menu_to_users(self, user_ids, rich_menu_id, timeout=None):
@@ -866,12 +912,14 @@ class AsyncLineBotApi(object):
         :type timeout: float | tuple(float, float)
         """
         await self._post(
-            '/v2/bot/richmenu/bulk/link',
-            data=json.dumps({
-                'userIds': user_ids,
-                'richMenuId': rich_menu_id,
-            }),
-            timeout=timeout
+            "/v2/bot/richmenu/bulk/link",
+            data=json.dumps(
+                {
+                    "userIds": user_ids,
+                    "richMenuId": rich_menu_id,
+                }
+            ),
+            timeout=timeout,
         )
 
     async def unlink_rich_menu_from_user(self, user_id, timeout=None):
@@ -887,8 +935,7 @@ class AsyncLineBotApi(object):
         :type timeout: float | tuple(float, float)
         """
         await self._delete(
-            '/v2/bot/user/{user_id}/richmenu'.format(user_id=user_id),
-            timeout=timeout
+            "/v2/bot/user/{user_id}/richmenu".format(user_id=user_id), timeout=timeout
         )
 
     async def unlink_rich_menu_from_users(self, user_ids, timeout=None):
@@ -906,11 +953,13 @@ class AsyncLineBotApi(object):
         :type timeout: float | tuple(float, float)
         """
         await self._post(
-            '/v2/bot/richmenu/bulk/unlink',
-            data=json.dumps({
-                'userIds': user_ids,
-            }),
-            timeout=timeout
+            "/v2/bot/richmenu/bulk/unlink",
+            data=json.dumps(
+                {
+                    "userIds": user_ids,
+                }
+            ),
+            timeout=timeout,
         )
 
     async def get_rich_menu_image(self, rich_menu_id, timeout=None):
@@ -928,13 +977,16 @@ class AsyncLineBotApi(object):
         :return: Content instance
         """
         response = await self._get(
-            '/v2/bot/richmenu/{rich_menu_id}/content'.format(rich_menu_id=rich_menu_id),
-            endpoint=self.data_endpoint, timeout=timeout
+            "/v2/bot/richmenu/{rich_menu_id}/content".format(rich_menu_id=rich_menu_id),
+            endpoint=self.data_endpoint,
+            timeout=timeout,
         )
 
         return Content(response)
 
-    async def set_rich_menu_image(self, rich_menu_id, content_type, content, timeout=None):
+    async def set_rich_menu_image(
+        self, rich_menu_id, content_type, content, timeout=None
+    ):
         """Call upload rich menu image API.
 
         https://developers.line.me/en/docs/messaging-api/reference/#upload-rich-menu-image
@@ -951,11 +1003,11 @@ class AsyncLineBotApi(object):
         :type timeout: float | tuple(float, float)
         """
         await self._post(
-            '/v2/bot/richmenu/{rich_menu_id}/content'.format(rich_menu_id=rich_menu_id),
+            "/v2/bot/richmenu/{rich_menu_id}/content".format(rich_menu_id=rich_menu_id),
             endpoint=self.data_endpoint,
             data=content,
-            headers={'Content-Type': content_type},
-            timeout=timeout
+            headers={"Content-Type": content_type},
+            timeout=timeout,
         )
 
     async def get_rich_menu_list(self, timeout=None):
@@ -971,13 +1023,10 @@ class AsyncLineBotApi(object):
         :rtype: list(T <= :py:class:`linebot.models.responses.RichMenuResponse`)
         :return: list[RichMenuResponse] instance
         """
-        response = await self._get(
-            '/v2/bot/richmenu/list',
-            timeout=timeout
-        )
+        response = await self._get("/v2/bot/richmenu/list", timeout=timeout)
 
         result = []
-        for richmenu in response.json['richmenus']:
+        for richmenu in await response.json["richmenus"]:
             result.append(RichMenuResponse.new_from_json_dict(richmenu))
 
         return result
@@ -995,10 +1044,10 @@ class AsyncLineBotApi(object):
         :type timeout: float | tuple(float, float)
         """
         await self._post(
-            '/v2/bot/user/all/richmenu/{rich_menu_id}'.format(
+            "/v2/bot/user/all/richmenu/{rich_menu_id}".format(
                 rich_menu_id=rich_menu_id,
             ),
-            timeout=timeout
+            timeout=timeout,
         )
 
     async def get_default_rich_menu(self, timeout=None):
@@ -1012,12 +1061,9 @@ class AsyncLineBotApi(object):
             Default is self.async_http_client.timeout
         :type timeout: float | tuple(float, float)
         """
-        response = await self._get(
-            '/v2/bot/user/all/richmenu',
-            timeout=timeout
-        )
+        response = await self._get("/v2/bot/user/all/richmenu", timeout=timeout)
 
-        return response.json.get('richMenuId')
+        return await response.json.get("richMenuId")
 
     async def cancel_default_rich_menu(self, timeout=None):
         """Cancel the default rich menu set with the Messaging API.
@@ -1030,10 +1076,7 @@ class AsyncLineBotApi(object):
             Default is self.async_http_client.timeout
         :type timeout: float | tuple(float, float)
         """
-        await self._delete(
-            '/v2/bot/user/all/richmenu',
-            timeout=timeout
-        )
+        await self._delete("/v2/bot/user/all/richmenu", timeout=timeout)
 
     async def get_message_quota(self, timeout=None):
         """Call Get the target limit for additional messages.
@@ -1048,12 +1091,9 @@ class AsyncLineBotApi(object):
         :rtype: :py:class:`linebot.models.responses.MessageQuotaResponse`
         :return: MessageQuotaResponse instance
         """
-        response = await self._get(
-            '/v2/bot/message/quota',
-            timeout=timeout
-        )
+        response = await self._get("/v2/bot/message/quota", timeout=timeout)
 
-        return MessageQuotaResponse.new_from_json_dict(response.json)
+        return MessageQuotaResponse.new_from_json_dict(await response.json)
 
     async def get_message_quota_consumption(self, timeout=None):
         """Get number of messages sent this month.
@@ -1068,12 +1108,9 @@ class AsyncLineBotApi(object):
         :rtype: :py:class:`linebot.models.responses.MessageQuotaConsumptionResponse`
         :return: MessageQuotaConsumptionResponse instance
         """
-        response = await self._get(
-            '/v2/bot/message/quota/consumption',
-            timeout=timeout
-        )
+        response = await self._get("/v2/bot/message/quota/consumption", timeout=timeout)
 
-        return MessageQuotaConsumptionResponse.new_from_json_dict(response.json)
+        return MessageQuotaConsumptionResponse.new_from_json_dict(await response.json)
 
     async def issue_link_token(self, user_id, timeout=None):
         """Issues a link token used for the account link feature.
@@ -1090,16 +1127,14 @@ class AsyncLineBotApi(object):
         :return: IssueLinkTokenResponse instance
         """
         response = await self._post(
-            '/v2/bot/user/{user_id}/linkToken'.format(
-                user_id=user_id
-            ),
-            timeout=timeout
+            "/v2/bot/user/{user_id}/linkToken".format(user_id=user_id), timeout=timeout
         )
 
-        return IssueLinkTokenResponse.new_from_json_dict(response.json)
+        return IssueLinkTokenResponse.new_from_json_dict(await response.json)
 
-    async def issue_channel_token(self, client_id, client_secret,
-                            grant_type='client_credentials', timeout=None):
+    async def issue_channel_token(
+        self, client_id, client_secret, grant_type="client_credentials", timeout=None
+    ):
         """Issues a short-lived channel access token.
 
         https://developers.line.biz/en/reference/messaging-api/#issue-channel-access-token
@@ -1116,17 +1151,17 @@ class AsyncLineBotApi(object):
         :return: IssueChannelTokenResponse instance
         """
         response = await self._post(
-            '/v2/oauth/accessToken',
+            "/v2/oauth/accessToken",
             data={
-                'client_id': client_id,
-                'client_secret': client_secret,
-                'grant_type': grant_type,
+                "client_id": client_id,
+                "client_secret": client_secret,
+                "grant_type": grant_type,
             },
-            headers={'Content-Type': 'application/x-www-form-urlencoded'},
-            timeout=timeout
+            headers={"Content-Type": "application/x-www-form-urlencoded"},
+            timeout=timeout,
         )
 
-        return IssueChannelTokenResponse.new_from_json_dict(response.json)
+        return IssueChannelTokenResponse.new_from_json_dict(await response.json)
 
     async def revoke_channel_token(self, access_token, timeout=None):
         """Revokes a channel access token.
@@ -1141,10 +1176,10 @@ class AsyncLineBotApi(object):
         :type timeout: float | tuple(float, float)
         """
         await self._post(
-            '/v2/oauth/revoke',
-            data={'access_token': access_token},
-            headers={'Content-Type': 'application/x-www-form-urlencoded'},
-            timeout=timeout
+            "/v2/oauth/revoke",
+            data={"access_token": access_token},
+            headers={"Content-Type": "application/x-www-form-urlencoded"},
+            timeout=timeout,
         )
 
     async def get_insight_message_delivery(self, date, timeout=None):
@@ -1161,11 +1196,11 @@ class AsyncLineBotApi(object):
         :rtype: :py:class:`linebot.models.responses.InsightMessageDeliveryResponse`
         """
         response = await self._get(
-            '/v2/bot/insight/message/delivery?date={date}'.format(date=date),
-            timeout=timeout
+            "/v2/bot/insight/message/delivery?date={date}".format(date=date),
+            timeout=timeout,
         )
 
-        return InsightMessageDeliveryResponse.new_from_json_dict(response.json)
+        return InsightMessageDeliveryResponse.new_from_json_dict(await response.json)
 
     async def get_insight_followers(self, date, timeout=None):
         """Get the number of users who have added the bot on or before a specified date.
@@ -1181,11 +1216,10 @@ class AsyncLineBotApi(object):
         :rtype: :py:class:`linebot.models.responses.InsightFollowersResponse`
         """
         response = await self._get(
-            '/v2/bot/insight/followers?date={date}'.format(date=date),
-            timeout=timeout
+            "/v2/bot/insight/followers?date={date}".format(date=date), timeout=timeout
         )
 
-        return InsightFollowersResponse.new_from_json_dict(response.json)
+        return InsightFollowersResponse.new_from_json_dict(await response.json)
 
     async def get_insight_demographic(self, timeout=None):
         """Retrieve the demographic attributes for a bot's friends.
@@ -1199,12 +1233,9 @@ class AsyncLineBotApi(object):
         :type timeout: float | tuple(float, float)
         :rtype: :py:class:`linebot.models.responses.InsightDemographicResponse`
         """
-        response = await self._get(
-            '/v2/bot/insight/demographic',
-            timeout=timeout
-        )
+        response = await self._get("/v2/bot/insight/demographic", timeout=timeout)
 
-        return InsightDemographicResponse.new_from_json_dict(response.json)
+        return InsightDemographicResponse.new_from_json_dict(await response.json)
 
     async def get_insight_message_event(self, request_id, timeout=None):
         """Return statistics about how users interact with broadcast messages.
@@ -1220,11 +1251,13 @@ class AsyncLineBotApi(object):
         :rtype: :py:class:`linebot.models.responses.InsightMessageEventResponse`
         """
         response = await self._get(
-            '/v2/bot/insight/message/event?requestId={request_id}'.format(request_id=request_id),
-            timeout=timeout
+            "/v2/bot/insight/message/event?requestId={request_id}".format(
+                request_id=request_id
+            ),
+            timeout=timeout,
         )
 
-        return InsightMessageEventResponse.new_from_json_dict(response.json)
+        return InsightMessageEventResponse.new_from_json_dict(await response.json)
 
     async def get_bot_info(self, timeout=None):
         """Get a bot's basic information.
@@ -1238,15 +1271,13 @@ class AsyncLineBotApi(object):
         :type timeout: float | tuple(float, float)
         :rtype: :py:class:`linebot.models.responses.BotInfo`
         """
-        response = await self._get(
-            '/v2/bot/info',
-            timeout=timeout
-        )
+        response = await self._get("/v2/bot/info", timeout=timeout)
 
-        return BotInfo.new_from_json_dict(response.json)
+        return BotInfo.new_from_json_dict(await response.json)
 
-    async def create_audience_group(self, audience_group_name, audiences=[],
-                              is_ifa=False, timeout=None):
+    async def create_audience_group(
+        self, audience_group_name, audiences=[], is_ifa=False, timeout=None
+    ):
         """Create an audience group.
 
         https://developers.line.biz/en/reference/messaging-api/#create-upload-audience-group
@@ -1257,18 +1288,22 @@ class AsyncLineBotApi(object):
         :return: audience group id
         """
         if audiences:
-            audiences = [Audience.new_from_json_dict(audience) for audience in audiences]
+            audiences = [
+                Audience.new_from_json_dict(audience) for audience in audiences
+            ]
         response = await self._post(
-            '/v2/bot/audienceGroup/upload',
-            data=json.dumps({
-                "description": audience_group_name,
-                "isIfaAudience": is_ifa,
-                "audiences": [audience.as_json_dict() for audience in audiences],
-            }),
-            timeout=timeout
+            "/v2/bot/audienceGroup/upload",
+            data=json.dumps(
+                {
+                    "description": audience_group_name,
+                    "isIfaAudience": is_ifa,
+                    "audiences": [audience.as_json_dict() for audience in audiences],
+                }
+            ),
+            timeout=timeout,
         )
 
-        return CreateAudienceGroup.new_from_json_dict(response.json)
+        return CreateAudienceGroup.new_from_json_dict(await response.json)
 
     async def get_audience_group(self, audience_group_id, timeout=None):
         """Get the object of audience group.
@@ -1284,16 +1319,24 @@ class AsyncLineBotApi(object):
         :return: AudienceGroup instance
         """
         response = await self._get(
-            '/v2/bot/audienceGroup/{audience_group_id}'.format(
-                audience_group_id=audience_group_id),
-            timeout=timeout
+            "/v2/bot/audienceGroup/{audience_group_id}".format(
+                audience_group_id=audience_group_id
+            ),
+            timeout=timeout,
         )
 
-        return AudienceGroup.new_from_json_dict(response.json)
+        return AudienceGroup.new_from_json_dict(await response.json)
 
-    async def get_audience_group_list(self, page=1, description=None, status=None, size=20,
-                                include_external_public_group=None, create_route=None,
-                                timeout=None):
+    async def get_audience_group_list(
+        self,
+        page=1,
+        description=None,
+        status=None,
+        size=20,
+        include_external_public_group=None,
+        create_route=None,
+        timeout=None,
+    ):
         """Get data for more than one audience.
 
         https://developers.line.biz/en/reference/messaging-api/#get-audience-groups
@@ -1321,17 +1364,21 @@ class AsyncLineBotApi(object):
         if create_route:
             params["createRoute"] = create_route
         response = await self._get(
-            '/v2/bot/audienceGroup/list?',
-            params=params,
-            timeout=timeout
+            "/v2/bot/audienceGroup/list?", params=params, timeout=timeout
         )
         result = []
-        for audience_group in response.json.get('audienceGroups', []):
+        for audience_group in await response.json.get("audienceGroups", []):
             result.append(AudienceGroup.new_from_json_dict(audience_group))
-        if response.json.get('hasNextPage', False):
-            result += self.get_audience_group_list(page + 1, description, status, size,
-                                                   include_external_public_group,
-                                                   create_route, timeout)
+        if await response.json.get("hasNextPage", False):
+            result += self.get_audience_group_list(
+                page + 1,
+                description,
+                status,
+                size,
+                include_external_public_group,
+                create_route,
+                timeout,
+            )
         return result
 
     async def delete_audience_group(self, audience_group_id, timeout=None):
@@ -1347,8 +1394,7 @@ class AsyncLineBotApi(object):
         :type timeout: float | tuple(float, float)
         """
         await self._delete(
-            '/v2/bot/audienceGroup/{}'.format(audience_group_id),
-            timeout=timeout
+            "/v2/bot/audienceGroup/{}".format(audience_group_id), timeout=timeout
         )
 
     async def rename_audience_group(self, audience_group_id, description, timeout=None):
@@ -1365,18 +1411,22 @@ class AsyncLineBotApi(object):
         :type timeout: float | tuple(float, float)
         """
         await self._put(
-            '/v2/bot/audienceGroup/{audience_group_id}/updateDescription'.format(
-                audience_group_id=audience_group_id),
-            data=json.dumps({
-                "description": description,
-            }),
-            timeout=timeout
+            "/v2/bot/audienceGroup/{audience_group_id}/updateDescription".format(
+                audience_group_id=audience_group_id
+            ),
+            data=json.dumps(
+                {
+                    "description": description,
+                }
+            ),
+            timeout=timeout,
         )
 
-        return ''
+        return ""
 
-    async def add_audiences_to_audience_group(self, audience_group_id, audiences,
-                                        upload_description=None, timeout=None):
+    async def add_audiences_to_audience_group(
+        self, audience_group_id, audiences, upload_description=None, timeout=None
+    ):
         """Add new user IDs or IFAs to an audience for uploading user IDs.
 
         https://developers.line.biz/en/reference/messaging-api/#update-upload-audience-group
@@ -1393,18 +1443,22 @@ class AsyncLineBotApi(object):
         :type timeout: float | tuple(float, float)
         """
         if audiences:
-            audiences = [Audience.new_from_json_dict(audience) for audience in audiences]
+            audiences = [
+                Audience.new_from_json_dict(audience) for audience in audiences
+            ]
         response = await self._put(
-            '/v2/bot/audienceGroup/upload',
-            data=json.dumps({
-                "audienceGroupId": audience_group_id,
-                "audiences": [audience.as_json_dict() for audience in audiences],
-                "uploadDescription": upload_description,
-            }),
-            timeout=timeout
+            "/v2/bot/audienceGroup/upload",
+            data=json.dumps(
+                {
+                    "audienceGroupId": audience_group_id,
+                    "audiences": [audience.as_json_dict() for audience in audiences],
+                    "uploadDescription": upload_description,
+                }
+            ),
+            timeout=timeout,
         )
 
-        return response.json
+        return await response.json
 
     async def get_audience_group_authority_level(self, timeout=None):
         """Get the authority level of the audience.
@@ -1419,13 +1473,14 @@ class AsyncLineBotApi(object):
         :return: json
         """
         response = await self._get(
-            '/v2/bot/audienceGroup/authorityLevel',
-            timeout=timeout
+            "/v2/bot/audienceGroup/authorityLevel", timeout=timeout
         )
 
-        return GetAuthorityLevel.new_from_json_dict(response.json)
+        return GetAuthorityLevel.new_from_json_dict(await response.json)
 
-    async def change_audience_group_authority_level(self, authority_level='PUBLIC', timeout=None):
+    async def change_audience_group_authority_level(
+        self, authority_level="PUBLIC", timeout=None
+    ):
         """Change the authority level of all audiences created in the same channel.
 
         https://developers.line.biz/en/reference/messaging-api/#change-authority-level
@@ -1433,17 +1488,20 @@ class AsyncLineBotApi(object):
         :param str authority_level: PUBLIC | PRIVATE.
         """
         await self._put(
-            '/v2/bot/audienceGroup/authorityLevel',
-            data=json.dumps({
-                "authorityLevel": authority_level,
-            }),
-            timeout=timeout
+            "/v2/bot/audienceGroup/authorityLevel",
+            data=json.dumps(
+                {
+                    "authorityLevel": authority_level,
+                }
+            ),
+            timeout=timeout,
         )
 
-        return ''
+        return ""
 
-    async def create_click_audience_group(self, description, request_id,
-                                    click_url=None, timeout=None):
+    async def create_click_audience_group(
+        self, description, request_id, click_url=None, timeout=None
+    ):
         """Create an audience for click-based retargeting.
 
         https://developers.line.biz/en/reference/messaging-api/#create-click-audience-group
@@ -1460,19 +1518,20 @@ class AsyncLineBotApi(object):
         :return: ClickAudienceGroup instance
         """
         response = await self._post(
-            '/v2/bot/audienceGroup/click',
-            data=json.dumps({
-                "description": description,
-                "requestId": request_id,
-                "clickUrl": click_url,
-            }),
-            timeout=timeout
+            "/v2/bot/audienceGroup/click",
+            data=json.dumps(
+                {
+                    "description": description,
+                    "requestId": request_id,
+                    "clickUrl": click_url,
+                }
+            ),
+            timeout=timeout,
         )
 
-        return ClickAudienceGroup.new_from_json_dict(response.json)
+        return ClickAudienceGroup.new_from_json_dict(await response.json)
 
-    async def create_imp_audience_group(self, description, request_id,
-                                  timeout=None):
+    async def create_imp_audience_group(self, description, request_id, timeout=None):
         """Create an audience for impression-based retargeting.
 
         https://developers.line.biz/en/reference/messaging-api/#create-imp-audience-group
@@ -1487,15 +1546,17 @@ class AsyncLineBotApi(object):
         :return: ImpAudienceGroup instance
         """
         response = await self._post(
-            '/v2/bot/audienceGroup/imp',
-            data=json.dumps({
-                "description": description,
-                "requestId": request_id,
-            }),
-            timeout=timeout
+            "/v2/bot/audienceGroup/imp",
+            data=json.dumps(
+                {
+                    "description": description,
+                    "requestId": request_id,
+                }
+            ),
+            timeout=timeout,
         )
 
-        return ImpAudienceGroup.new_from_json_dict(response.json)
+        return ImpAudienceGroup.new_from_json_dict(await response.json)
 
     async def set_webhook_endpoint(self, webhook_endpoint, timeout=None):
         """Set the webhook endpoint URL.
@@ -1511,17 +1572,15 @@ class AsyncLineBotApi(object):
         :rtype: dict
         :return: Empty dict.
         """
-        data = {
-            'endpoint': webhook_endpoint
-        }
+        data = {"endpoint": webhook_endpoint}
 
         response = await self._put(
-            '/v2/bot/channel/webhook/endpoint',
+            "/v2/bot/channel/webhook/endpoint",
             data=json.dumps(data),
             timeout=timeout,
         )
 
-        return response.json
+        return await response.json
 
     async def get_webhook_endpoint(self, timeout=None):
         """Get information on a webhook endpoint.
@@ -1533,11 +1592,11 @@ class AsyncLineBotApi(object):
             URL and `active` for webhook usage status.
         """
         response = await self._get(
-            '/v2/bot/channel/webhook/endpoint',
+            "/v2/bot/channel/webhook/endpoint",
             timeout=timeout,
         )
 
-        return GetWebhookResponse.new_from_json_dict(response.json)
+        return GetWebhookResponse.new_from_json_dict(await response.json)
 
     async def test_webhook_endpoint(self, webhook_endpoint=None, timeout=None):
         """Checks if the configured webhook endpoint can receive a test webhook event.
@@ -1557,15 +1616,15 @@ class AsyncLineBotApi(object):
         data = {}
 
         if webhook_endpoint is not None:
-            data['endpoint'] = webhook_endpoint
+            data["endpoint"] = webhook_endpoint
 
         response = await self._post(
-            '/v2/bot/channel/webhook/test',
+            "/v2/bot/channel/webhook/test",
             data=json.dumps(data),
             timeout=timeout,
         )
 
-        return TestWebhookResponse.new_from_json_dict(response.json)
+        return TestWebhookResponse.new_from_json_dict(await response.json)
 
     async def get_followers_ids(self, start=None, timeout=None):
         """Get a list of users who added your LINE Official Account as a friend.
@@ -1580,15 +1639,13 @@ class AsyncLineBotApi(object):
         :type timeout: float | tuple(float, float)
         :rtype: :py:class:`linebot.models.responses.UserIds`
         """
-        params = None if start is None else {'start': start}
+        params = None if start is None else {"start": start}
 
         response = await self._get(
-            '/v2/bot/followers/ids',
-            params=params,
-            timeout=timeout
+            "/v2/bot/followers/ids", params=params, timeout=timeout
         )
 
-        return UserIds.new_from_json_dict(response.json)
+        return UserIds.new_from_json_dict(await response.json)
 
     async def _get(self, path, endpoint=None, params=None, headers=None, timeout=None):
         url = (endpoint or self.endpoint) + path
@@ -1601,21 +1658,21 @@ class AsyncLineBotApi(object):
             url, headers=headers, params=params, timeout=timeout
         )
 
-        await self.__check_error(response)
+        self.__check_error(response)
         return response
 
     async def _post(self, path, endpoint=None, data=None, headers=None, timeout=None):
         url = (endpoint or self.endpoint) + path
 
         if headers is None:
-            headers = {'Content-Type': 'application/json'}
+            headers = {"Content-Type": "application/json"}
         headers.update(self.headers)
 
         response = await self.async_http_client.post(
             url, headers=headers, data=data, timeout=timeout
         )
 
-        await self.__check_error(response)
+        self.__check_error(response)
         return response
 
     async def _delete(self, path, endpoint=None, data=None, headers=None, timeout=None):
@@ -1629,21 +1686,21 @@ class AsyncLineBotApi(object):
             url, headers=headers, data=data, timeout=timeout
         )
 
-        await self.__check_error(response)
+        self.__check_error(response)
         return response
 
     async def _put(self, path, endpoint=None, data=None, headers=None, timeout=None):
         url = (endpoint or self.endpoint) + path
 
         if headers is None:
-            headers = {'Content-Type': 'application/json'}
+            headers = {"Content-Type": "application/json"}
         headers.update(self.headers)
 
         response = await self.async_http_client.put(
             url, headers=headers, data=data, timeout=timeout
         )
 
-        await self.__check_error(response)
+        self.__check_error(response)
         return response
 
     @staticmethod
@@ -1654,7 +1711,7 @@ class AsyncLineBotApi(object):
             raise LineBotApiError(
                 status_code=response.status_code,
                 headers=dict(response.headers.items()),
-                request_id=response.headers.get('X-Line-Request-Id'),
-                accepted_request_id=response.headers.get('X-Line-Accepted-Request-Id'),
-                error=Error.new_from_json_dict(await response.json)
+                request_id=response.headers.get("X-Line-Request-Id"),
+                accepted_request_id=response.headers.get("X-Line-Accepted-Request-Id"),
+                error=Error.new_from_json_dict(await response.json),
             )

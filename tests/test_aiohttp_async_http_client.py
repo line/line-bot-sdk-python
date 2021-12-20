@@ -31,6 +31,19 @@ async def test_get(aiohttp_client, loop):
     assert 'Hello, world' in text
 
 
+async def test_get_json(aiohttp_client, loop):
+    async def hello(request):
+        return web.json_response({'test': 'Hello, world'})
+
+    app = web.Application()
+    app.router.add_get('/test', hello)
+    client = AiohttpAsyncHttpClient(session=await aiohttp_client(app))
+    resp = await client.get('/test')
+    assert resp.status_code == 200
+    json = await resp.json
+    assert 'Hello, world' == json['test']
+
+
 async def test_get_iter(aiohttp_client, loop):
     async def hello(request):
         return web.Response(text='Hello, world')

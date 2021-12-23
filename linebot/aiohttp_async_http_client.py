@@ -147,9 +147,9 @@ class AiohttpAsyncHttpResponse(AsyncHttpResponse):
         return await self.response.content.read()
 
     @property
-    def json(self):
+    async def json(self):
         """Get response body as json-decoded."""
-        return self.response.json()
+        return await self.response.json()
 
     def iter_content(self, chunk_size=1024):
         """Get response body as iterator content (stream).

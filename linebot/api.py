@@ -1569,12 +1569,12 @@ class LineBotApi(object):
 
         return TestWebhookResponse.new_from_json_dict(response.json)
 
-    def get_followers_ids(self, limit=None, start=None, timeout=None):
+    def get_followers_ids(self, limit=300, start=None, timeout=None):
         """Get a list of users who added your LINE Official Account as a friend.
 
         https://developers.line.biz/en/reference/messaging-api/#get-follower-ids
 
-        :param str limit: The maximum number of user IDs to retrieve in a single request.
+        :param int limit: The maximum number of user IDs to retrieve in a single request.
             The default value is 300.
         :param str start: Get the next array of user IDs.
         :param timeout: (optional) How long to wait for the server
@@ -1584,11 +1584,8 @@ class LineBotApi(object):
         :type timeout: float | tuple(float, float)
         :rtype: :py:class:`linebot.models.responses.UserIds`
         """
-        params = None if limit is None else {'limit': limit}
-        if limit is not None and start is not None:
-            params['start'] = start
-        else:
-            params = None if start is None else {'start': start}
+
+        params = {'limit': limit} if start is None else {'start': start}
 
         response = self._get(
             '/v2/bot/followers/ids',

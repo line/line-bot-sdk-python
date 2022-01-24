@@ -229,11 +229,7 @@ class StickerMessage(Message):
         self.type = 'sticker'
         self.package_id = package_id
         self.sticker_id = sticker_id
-
-        sticker_type = ['STATIC', 'ANIMATION', 'SOUND', 'ANIMATION_SOUND', 'POPUP',
-                        'POPUP_SOUND', 'CUSTOM', 'MESSAGE', 'NAME_TEXT', 'PER_STICKER_TEXT']
-        if self.sticker_resource_type in sticker_type:
-            self.sticker_resource_type = sticker_resource_type
+        self.sticker_resource_type = sticker_resource_type
         self.keywords = keywords
         self.text = text
 

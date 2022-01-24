@@ -337,7 +337,9 @@ class AsyncLineBotApi(object):
             timeout=timeout,
         )
 
-        return MessageProgressNarrowcastResponse.new_from_json_dict(response.json)
+        return MessageProgressNarrowcastResponse.new_from_json_dict(
+            (await response.json)
+        )
 
     async def get_message_delivery_broadcast(self, date, timeout=None):
         """Get number of sent broadcast messages.
@@ -359,7 +361,9 @@ class AsyncLineBotApi(object):
             timeout=timeout,
         )
 
-        return MessageDeliveryBroadcastResponse.new_from_json_dict(response.json)
+        return MessageDeliveryBroadcastResponse.new_from_json_dict(
+            (await response.json)
+        )
 
     async def get_message_delivery_reply(self, date, timeout=None):
         """Get number of sent reply messages.
@@ -381,7 +385,7 @@ class AsyncLineBotApi(object):
             timeout=timeout,
         )
 
-        return MessageDeliveryReplyResponse.new_from_json_dict(response.json)
+        return MessageDeliveryReplyResponse.new_from_json_dict((await response.json))
 
     async def get_message_delivery_push(self, date, timeout=None):
         """Get number of sent push messages.
@@ -403,7 +407,7 @@ class AsyncLineBotApi(object):
             timeout=timeout,
         )
 
-        return MessageDeliveryPushResponse.new_from_json_dict(response.json)
+        return MessageDeliveryPushResponse.new_from_json_dict((await response.json))
 
     async def get_message_delivery_multicast(self, date, timeout=None):
         """Get number of sent multicast messages.
@@ -425,7 +429,9 @@ class AsyncLineBotApi(object):
             timeout=timeout,
         )
 
-        return MessageDeliveryMulticastResponse.new_from_json_dict(response.json)
+        return MessageDeliveryMulticastResponse.new_from_json_dict(
+            (await response.json)
+        )
 
     async def get_profile(self, user_id, timeout=None):
         """Call get profile API.
@@ -447,7 +453,7 @@ class AsyncLineBotApi(object):
             "/v2/bot/profile/{user_id}".format(user_id=user_id), timeout=timeout
         )
 
-        return Profile.new_from_json_dict(response.json)
+        return Profile.new_from_json_dict((await response.json))
 
     async def get_group_summary(self, group_id, timeout=None):
         """Call get group summary API.
@@ -471,7 +477,7 @@ class AsyncLineBotApi(object):
             timeout=timeout,
         )
 
-        return Group.new_from_json_dict(response.json)
+        return Group.new_from_json_dict((await response.json))
 
     async def get_group_members_count(self, group_id, timeout=None):
         """Call get members in group count API.
@@ -494,7 +500,7 @@ class AsyncLineBotApi(object):
             timeout=timeout,
         )
 
-        return response.json.get("count")
+        return (await response.json).get("count")
 
     async def get_room_members_count(self, room_id, timeout=None):
         """Call get members in room count API.
@@ -517,7 +523,7 @@ class AsyncLineBotApi(object):
             timeout=timeout,
         )
 
-        return response.json.get("count")
+        return (await response.json).get("count")
 
     async def get_group_member_profile(self, group_id, user_id, timeout=None):
         """Call get group member profile API.
@@ -545,7 +551,7 @@ class AsyncLineBotApi(object):
             timeout=timeout,
         )
 
-        return Profile.new_from_json_dict(response.json)
+        return Profile.new_from_json_dict((await response.json))
 
     async def get_room_member_profile(self, room_id, user_id, timeout=None):
         """Call get room member profile API.
@@ -573,7 +579,7 @@ class AsyncLineBotApi(object):
             timeout=timeout,
         )
 
-        return Profile.new_from_json_dict(response.json)
+        return Profile.new_from_json_dict((await response.json))
 
     async def get_group_member_ids(self, group_id, start=None, timeout=None):
         """Call get group member IDs API.
@@ -602,7 +608,7 @@ class AsyncLineBotApi(object):
             timeout=timeout,
         )
 
-        return MemberIds.new_from_json_dict(response.json)
+        return MemberIds.new_from_json_dict((await response.json))
 
     async def get_room_member_ids(self, room_id, start=None, timeout=None):
         """Call get room member IDs API.
@@ -631,7 +637,7 @@ class AsyncLineBotApi(object):
             timeout=timeout,
         )
 
-        return MemberIds.new_from_json_dict(response.json)
+        return MemberIds.new_from_json_dict((await response.json))
 
     async def get_message_content(self, message_id, timeout=None):
         """Call get content API.
@@ -712,7 +718,7 @@ class AsyncLineBotApi(object):
             timeout=timeout,
         )
 
-        return RichMenuResponse.new_from_json_dict(response.json)
+        return RichMenuResponse.new_from_json_dict((await response.json))
 
     async def get_rich_menu_alias(self, rich_menu_alias_id=None, timeout=None):
         """Call get rich menu alias API.
@@ -734,7 +740,7 @@ class AsyncLineBotApi(object):
             ),
             timeout=timeout,
         )
-        return RichMenuAliasResponse.new_from_json_dict(response.json)
+        return RichMenuAliasResponse.new_from_json_dict((await response.json))
 
     async def get_rich_menu_alias_list(self, timeout=None):
         """Call get rich menu alias list API.
@@ -750,7 +756,7 @@ class AsyncLineBotApi(object):
         :return: RichMenuAliasListResponse instance
         """
         response = await self._get("/v2/bot/richmenu/alias/list", timeout=timeout)
-        return RichMenuAliasListResponse.new_from_json_dict(response.json)
+        return RichMenuAliasListResponse.new_from_json_dict((await response.json))
 
     async def create_rich_menu(self, rich_menu, timeout=None):
         """Call create rich menu API.
@@ -771,7 +777,7 @@ class AsyncLineBotApi(object):
             "/v2/bot/richmenu", data=rich_menu.as_json_string(), timeout=timeout
         )
 
-        return response.json.get("richMenuId")
+        return (await response.json).get("richMenuId")
 
     async def create_rich_menu_alias(self, rich_menu_alias, timeout=None):
         """Call create rich menu alias API.
@@ -874,7 +880,7 @@ class AsyncLineBotApi(object):
             "/v2/bot/user/{user_id}/richmenu".format(user_id=user_id), timeout=timeout
         )
 
-        return response.json.get("richMenuId")
+        return (await response.json).get("richMenuId")
 
     async def link_rich_menu_to_user(self, user_id, rich_menu_id, timeout=None):
         """Call link rich menu to user API.
@@ -1026,7 +1032,7 @@ class AsyncLineBotApi(object):
         response = await self._get("/v2/bot/richmenu/list", timeout=timeout)
 
         result = []
-        for richmenu in response.json["richmenus"]:
+        for richmenu in (await response.json)["richmenus"]:
             result.append(RichMenuResponse.new_from_json_dict(richmenu))
 
         return result
@@ -1063,7 +1069,7 @@ class AsyncLineBotApi(object):
         """
         response = await self._get("/v2/bot/user/all/richmenu", timeout=timeout)
 
-        return response.json.get("richMenuId")
+        return (await response.json).get("richMenuId")
 
     async def cancel_default_rich_menu(self, timeout=None):
         """Cancel the default rich menu set with the Messaging API.
@@ -1093,7 +1099,7 @@ class AsyncLineBotApi(object):
         """
         response = await self._get("/v2/bot/message/quota", timeout=timeout)
 
-        return MessageQuotaResponse.new_from_json_dict(response.json)
+        return MessageQuotaResponse.new_from_json_dict((await response.json))
 
     async def get_message_quota_consumption(self, timeout=None):
         """Get number of messages sent this month.
@@ -1110,7 +1116,7 @@ class AsyncLineBotApi(object):
         """
         response = await self._get("/v2/bot/message/quota/consumption", timeout=timeout)
 
-        return MessageQuotaConsumptionResponse.new_from_json_dict(response.json)
+        return MessageQuotaConsumptionResponse.new_from_json_dict((await response.json))
 
     async def issue_link_token(self, user_id, timeout=None):
         """Issues a link token used for the account link feature.
@@ -1130,7 +1136,7 @@ class AsyncLineBotApi(object):
             "/v2/bot/user/{user_id}/linkToken".format(user_id=user_id), timeout=timeout
         )
 
-        return IssueLinkTokenResponse.new_from_json_dict(response.json)
+        return IssueLinkTokenResponse.new_from_json_dict((await response.json))
 
     async def issue_channel_token(
         self, client_id, client_secret, grant_type="client_credentials", timeout=None
@@ -1161,7 +1167,7 @@ class AsyncLineBotApi(object):
             timeout=timeout,
         )
 
-        return IssueChannelTokenResponse.new_from_json_dict(response.json)
+        return IssueChannelTokenResponse.new_from_json_dict((await response.json))
 
     async def revoke_channel_token(self, access_token, timeout=None):
         """Revokes a channel access token.
@@ -1200,7 +1206,7 @@ class AsyncLineBotApi(object):
             timeout=timeout,
         )
 
-        return InsightMessageDeliveryResponse.new_from_json_dict(response.json)
+        return InsightMessageDeliveryResponse.new_from_json_dict((await response.json))
 
     async def get_insight_followers(self, date, timeout=None):
         """Get the number of users who have added the bot on or before a specified date.
@@ -1219,7 +1225,7 @@ class AsyncLineBotApi(object):
             "/v2/bot/insight/followers?date={date}".format(date=date), timeout=timeout
         )
 
-        return InsightFollowersResponse.new_from_json_dict(response.json)
+        return InsightFollowersResponse.new_from_json_dict((await response.json))
 
     async def get_insight_demographic(self, timeout=None):
         """Retrieve the demographic attributes for a bot's friends.
@@ -1235,7 +1241,7 @@ class AsyncLineBotApi(object):
         """
         response = await self._get("/v2/bot/insight/demographic", timeout=timeout)
 
-        return InsightDemographicResponse.new_from_json_dict(response.json)
+        return InsightDemographicResponse.new_from_json_dict((await response.json))
 
     async def get_insight_message_event(self, request_id, timeout=None):
         """Return statistics about how users interact with broadcast messages.
@@ -1257,7 +1263,7 @@ class AsyncLineBotApi(object):
             timeout=timeout,
         )
 
-        return InsightMessageEventResponse.new_from_json_dict(response.json)
+        return InsightMessageEventResponse.new_from_json_dict((await response.json))
 
     async def get_bot_info(self, timeout=None):
         """Get a bot's basic information.
@@ -1273,7 +1279,7 @@ class AsyncLineBotApi(object):
         """
         response = await self._get("/v2/bot/info", timeout=timeout)
 
-        return BotInfo.new_from_json_dict(response.json)
+        return BotInfo.new_from_json_dict((await response.json))
 
     async def create_audience_group(
         self, audience_group_name, audiences=[], is_ifa=False, timeout=None
@@ -1303,7 +1309,7 @@ class AsyncLineBotApi(object):
             timeout=timeout,
         )
 
-        return CreateAudienceGroup.new_from_json_dict(response.json)
+        return CreateAudienceGroup.new_from_json_dict((await response.json))
 
     async def get_audience_group(self, audience_group_id, timeout=None):
         """Get the object of audience group.
@@ -1325,7 +1331,7 @@ class AsyncLineBotApi(object):
             timeout=timeout,
         )
 
-        return AudienceGroup.new_from_json_dict(response.json)
+        return AudienceGroup.new_from_json_dict((await response.json))
 
     async def get_audience_group_list(
         self,
@@ -1367,9 +1373,9 @@ class AsyncLineBotApi(object):
             "/v2/bot/audienceGroup/list?", params=params, timeout=timeout
         )
         result = []
-        for audience_group in response.json.get("audienceGroups", []):
+        for audience_group in (await response.json).get("audienceGroups", []):
             result.append(AudienceGroup.new_from_json_dict(audience_group))
-        if response.json.get("hasNextPage", False):
+        if (await response.json).get("hasNextPage", False):
             result += self.get_audience_group_list(
                 page + 1,
                 description,
@@ -1458,7 +1464,7 @@ class AsyncLineBotApi(object):
             timeout=timeout,
         )
 
-        return response.json
+        return await response.json
 
     async def get_audience_group_authority_level(self, timeout=None):
         """Get the authority level of the audience.
@@ -1476,7 +1482,7 @@ class AsyncLineBotApi(object):
             "/v2/bot/audienceGroup/authorityLevel", timeout=timeout
         )
 
-        return GetAuthorityLevel.new_from_json_dict(response.json)
+        return GetAuthorityLevel.new_from_json_dict((await response.json))
 
     async def change_audience_group_authority_level(
         self, authority_level="PUBLIC", timeout=None
@@ -1529,7 +1535,7 @@ class AsyncLineBotApi(object):
             timeout=timeout,
         )
 
-        return ClickAudienceGroup.new_from_json_dict(response.json)
+        return ClickAudienceGroup.new_from_json_dict((await response.json))
 
     async def create_imp_audience_group(self, description, request_id, timeout=None):
         """Create an audience for impression-based retargeting.
@@ -1556,7 +1562,7 @@ class AsyncLineBotApi(object):
             timeout=timeout,
         )
 
-        return ImpAudienceGroup.new_from_json_dict(response.json)
+        return ImpAudienceGroup.new_from_json_dict((await response.json))
 
     async def set_webhook_endpoint(self, webhook_endpoint, timeout=None):
         """Set the webhook endpoint URL.
@@ -1580,7 +1586,7 @@ class AsyncLineBotApi(object):
             timeout=timeout,
         )
 
-        return response.json
+        return await response.json
 
     async def get_webhook_endpoint(self, timeout=None):
         """Get information on a webhook endpoint.
@@ -1596,7 +1602,7 @@ class AsyncLineBotApi(object):
             timeout=timeout,
         )
 
-        return GetWebhookResponse.new_from_json_dict(response.json)
+        return GetWebhookResponse.new_from_json_dict((await response.json))
 
     async def test_webhook_endpoint(self, webhook_endpoint=None, timeout=None):
         """Checks if the configured webhook endpoint can receive a test webhook event.
@@ -1624,7 +1630,7 @@ class AsyncLineBotApi(object):
             timeout=timeout,
         )
 
-        return TestWebhookResponse.new_from_json_dict(response.json)
+        return TestWebhookResponse.new_from_json_dict((await response.json))
 
     async def get_followers_ids(self, start=None, timeout=None):
         """Get a list of users who added your LINE Official Account as a friend.
@@ -1645,7 +1651,7 @@ class AsyncLineBotApi(object):
             "/v2/bot/followers/ids", params=params, timeout=timeout
         )
 
-        return UserIds.new_from_json_dict(response.json)
+        return UserIds.new_from_json_dict((await response.json))
 
     async def _get(self, path, endpoint=None, params=None, headers=None, timeout=None):
         url = (endpoint or self.endpoint) + path
@@ -1658,7 +1664,7 @@ class AsyncLineBotApi(object):
             url, headers=headers, params=params, timeout=timeout
         )
 
-        self.__check_error(response)
+        await self.__check_error(response)
         return response
 
     async def _post(self, path, endpoint=None, data=None, headers=None, timeout=None):
@@ -1672,7 +1678,7 @@ class AsyncLineBotApi(object):
             url, headers=headers, data=data, timeout=timeout
         )
 
-        self.__check_error(response)
+        await self.__check_error(response)
         return response
 
     async def _delete(self, path, endpoint=None, data=None, headers=None, timeout=None):
@@ -1686,7 +1692,7 @@ class AsyncLineBotApi(object):
             url, headers=headers, data=data, timeout=timeout
         )
 
-        self.__check_error(response)
+        await self.__check_error(response)
         return response
 
     async def _put(self, path, endpoint=None, data=None, headers=None, timeout=None):
@@ -1700,11 +1706,11 @@ class AsyncLineBotApi(object):
             url, headers=headers, data=data, timeout=timeout
         )
 
-        self.__check_error(response)
+        await self.__check_error(response)
         return response
 
     @staticmethod
-    def __check_error(response):
+    async def __check_error(response):
         if 200 <= response.status_code < 300:
             pass
         else:
@@ -1713,5 +1719,5 @@ class AsyncLineBotApi(object):
                 headers=dict(response.headers.items()),
                 request_id=response.headers.get("X-Line-Request-Id"),
                 accepted_request_id=response.headers.get("X-Line-Accepted-Request-Id"),
-                error=Error.new_from_json_dict(response.json),
+                error=Error.new_from_json_dict((await response.json)),
             )

@@ -83,16 +83,19 @@ class CodegenCommand(Command):
             import re
 
             async_source = header + source
-            async_source = re.sub("    def (?!__init__|__check_error)", "    async def ", async_source)
-            async_source = re.sub("from .http_client import HttpClient, RequestsHttpClient", "", async_source)
+            async_source = re.sub("    def (?!__init__)", "    async def ",
+                                  async_source)
+            async_source = re.sub("from .http_client import HttpClient, RequestsHttpClient", "",
+                                  async_source)
 
             # Change the signature of the __init__.
             # self, channel_access_token
             async_source = re.sub(r"def __init__\(self, channel_access_token,",
                                   "def __init__(self, channel_access_token, async_http_client,",
                                   async_source)
-            async_source = re.sub(r",\s*timeout=HttpClient.DEFAULT_TIMEOUT, http_client=RequestsHttpClient",
-                                  "", async_source)
+            async_source = re.sub(
+                r",\s*timeout=HttpClient.DEFAULT_TIMEOUT, http_client=RequestsHttpClient",
+                "", async_source)
             async_source = re.sub(
                 r"if http_client:\n"
                 + r"\s*self.http_client = http_client\(timeout=timeout\)\n"
@@ -107,21 +110,32 @@ class CodegenCommand(Command):
                 + "    :param str data_endpoint: (optional) Default is https://api-data.line.me\n"
                 + "\n\"\"\"\n"
                 , async_source, flags=re.DOTALL)
-            async_source = re.sub("'line-bot-sdk-python/'", '"line-bot-sdk-python-async/"', async_source)
+            async_source = re.sub("'line-bot-sdk-python/'", '"line-bot-sdk-python-async/"',
+                                  async_source)
 
-            async_source = re.sub('"""linebot.api module."""', '"""linebot.async_api module."""', async_source)
+            async_source = re.sub('"""linebot.api module."""', '"""linebot.async_api module."""',
+                                  async_source)
             async_source = re.sub(
                 "self.(_get|_post|_delete|_put)", "await self.\\1", async_source
             )
             async_source = re.sub(
-                "self.http_client.(get|post|delete|put)", "await self.async_http_client.\\1", async_source
+                "self.http_client.(get|post|delete|put)", "await self.async_http_client.\\1",
+                async_source
+            )
+            async_source = re.sub(
+                "response.json", "(await response.json)", async_source
+            )
+            async_source = re.sub(
+                "response.json", "(await response.json)", async_source
             )
             async_source = re.sub(
                 "from .http_client import HttpClient, RequestsHttpClient",
-                "from .async_http_client import AsyncHttpClient, AiohttpAsyncHttpClient", async_source
+                "from .async_http_client import AsyncHttpClient, AiohttpAsyncHttpClient",
+                async_source
             )
             async_source = re.sub(
-                "linebot.http_client.RequestsHttpClient", "linebot.async_http_client.AiohttpAsyncHttpClient",
+                "linebot.http_client.RequestsHttpClient",
+                "linebot.async_http_client.AiohttpAsyncHttpClient",
                 async_source
             )
             async_source = re.sub(
@@ -131,7 +145,14 @@ class CodegenCommand(Command):
                 "RequestsHttpClient", "AiohttpAsyncHttpClient", async_source
             )
             async_source = re.sub(
-                "Default is self.http_client.timeout", "Default is self.async_http_client.timeout", async_source
+                "Default is self.http_client.timeout", "Default is self.async_http_client.timeout",
+                async_source
+            )
+            async_source = re.sub(
+                "self.__check_error", "await self.__check_error", async_source
+            )
+            async_source = re.sub(
+                "self.__check_error", "await self.__check_error", async_source
             )
             async_source = re.sub(
                 "class LineBotApi",

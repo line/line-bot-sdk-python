@@ -134,7 +134,7 @@ class TestLineBotApi(unittest.TestCase):
         self.assertEqual(request.method, 'GET')
         self.assertEqual(
             request.url,
-            LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/followers/ids')
+            LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/followers/ids?limit=300')
         self.assertEqual(member_ids_response.user_ids, ['U1', 'U2'])
         self.assertEqual(member_ids_response.next, None)
 
@@ -157,7 +157,7 @@ class TestLineBotApi(unittest.TestCase):
         self.assertEqual(
             request.url,
             LineBotApi.DEFAULT_API_ENDPOINT +
-            '/v2/bot/followers/ids?start=continuationToken1')
+            '/v2/bot/followers/ids?limit=300&start=continuationToken1')
         self.assertEqual(member_ids_response.user_ids, ['U1', 'U2'])
         self.assertEqual(member_ids_response.next, 'continuationToken2')
 
@@ -180,7 +180,7 @@ class TestLineBotApi(unittest.TestCase):
         self.assertEqual(
             request.url,
             LineBotApi.DEFAULT_API_ENDPOINT +
-            '/v2/bot/followers/ids?start=continuationToken1')
+            '/v2/bot/followers/ids?limit=2&start=continuationToken1')
         self.assertEqual(member_ids_response.user_ids, ['U1', 'U2'])
         self.assertEqual(member_ids_response.next, 'continuationToken2')
 

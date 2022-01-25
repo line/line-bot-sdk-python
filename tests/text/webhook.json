@@ -107,7 +107,8 @@
         "packageId": "1",
         "stickerId": "1",
         "stickerResourceType": "STATIC",
-        "keywords": ["Love You", "Love"]
+        "keywords": ["Love You", "Love"],
+        "text": "Just sticker"
       }
     },
     {

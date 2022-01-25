@@ -134,7 +134,7 @@ class TestLineBotApi(unittest.TestCase):
         self.assertEqual(request.method, 'GET')
         self.assertEqual(
             request.url,
-            LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/followers/ids')
+            LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/followers/ids?limit=300')
         self.assertEqual(member_ids_response.user_ids, ['U1', 'U2'])
         self.assertEqual(member_ids_response.next, None)
 
@@ -157,7 +157,30 @@ class TestLineBotApi(unittest.TestCase):
         self.assertEqual(
             request.url,
             LineBotApi.DEFAULT_API_ENDPOINT +
-            '/v2/bot/followers/ids?start=continuationToken1')
+            '/v2/bot/followers/ids?limit=300&start=continuationToken1')
+        self.assertEqual(member_ids_response.user_ids, ['U1', 'U2'])
+        self.assertEqual(member_ids_response.next, 'continuationToken2')
+
+    @responses.activate
+    def test_get_follower_user_ids_with_start_and_limit(self):
+        responses.add(
+            responses.GET,
+            LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/followers/ids',
+            json={
+                'userIds': ['U1', 'U2'],
+                'next': 'continuationToken2'
+            },
+            status=200
+        )
+
+        member_ids_response = self.tested.get_followers_ids(limit=2, start='continuationToken1')
+
+        request = responses.calls[0].request
+        self.assertEqual(request.method, 'GET')
+        self.assertEqual(
+            request.url,
+            LineBotApi.DEFAULT_API_ENDPOINT +
+            '/v2/bot/followers/ids?limit=2&start=continuationToken1')
         self.assertEqual(member_ids_response.user_ids, ['U1', 'U2'])
         self.assertEqual(member_ids_response.next, 'continuationToken2')
 

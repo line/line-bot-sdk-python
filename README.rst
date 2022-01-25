@@ -650,6 +650,19 @@ https://developers.line.biz/en/reference/messaging-api/#test-webhook-endpoint
     print(test_result.reason)
     print(test_result.detail)
 
+get\_followers\_ids(self, limit=300, start=None, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Get a list of users who added your LINE Official Account as a friend.
+
+https://developers.line.biz/en/reference/messaging-api/#get-follower-ids
+
+.. code:: python
+
+    test_result = line_bot_api.get_followers_ids()
+    print(test_result.user_ids)
+    print(test_result.next)
+
 ※ Error handling
 ^^^^^^^^^^^^^^^^^
 
@@ -1229,6 +1242,8 @@ Message
     - package\_id
     - sticker\_id
     - sticker\_resource\_type
+    - keywords
+    - text
 - FileMessage
     - type
     - id

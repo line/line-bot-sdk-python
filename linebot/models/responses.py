@@ -14,7 +14,6 @@
 
 """linebot.models.responses module."""
 
-
 from .base import Base
 from .insight import (
     SubscriptionPeriodInsight, AppTypeInsight, AgeInsight,
@@ -843,3 +842,47 @@ class UserIds(Base):
 
         self.user_ids = user_ids
         self.next = next
+
+
+class IssueChannelTokenResponseV2(Base):
+    """IssueAccessTokenResponseV2.
+
+    https://developers.line.biz/en/reference/messaging-api/#issue-channel-access-token-v2-1
+    """
+
+    def __init__(self, access_token=None, expires_in=None, token_type=None, key_id=None, **kwargs):
+        """__init__ method.
+
+        :param str access_token: Short-lived channel access token.
+        :param int expires_in: Time until channel access token expires in seconds
+            from time the token is issued.
+        :param str token_type: Bearer.
+        :param key_id: Unique key ID for identifying the channel access token.
+        :param kwargs:
+        """
+        super(IssueChannelTokenResponseV2, self).__init__(**kwargs)
+
+        self.access_token = access_token
+        self.expires_in = expires_in
+        self.token_type = token_type
+        self.key_id = key_id
+
+
+class ChannelAccessTokens(Base):
+    """ChannelAccessTokens.
+
+    https://developers.line.biz/ja/reference/messaging-api/#get-issued-channel-access-tokens-v2-1
+
+    """
+
+    def __init__(self, access_tokens=None, **kwargs):
+        """__init__ method.
+
+        :param access_tokens: List of channel access token
+        :type access_tokens: list[str]
+        :param kwargs:
+
+        """
+        super(ChannelAccessTokens, self).__init__(**kwargs)
+
+        self.access_tokens = access_tokens

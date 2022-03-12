@@ -871,8 +871,7 @@ class IssueChannelTokenResponseV2(Base):
 class ChannelAccessTokens(Base):
     """ChannelAccessTokens.
 
-    https://developers.line.biz/ja/reference/messaging-api/#get-issued-channel-access-tokens-v2-1
-
+    https://developers.line.biz/en/reference/messaging-api/#get-issued-channel-access-tokens-v2-1
     """
 
     def __init__(self, access_tokens=None, **kwargs):
@@ -886,3 +885,45 @@ class ChannelAccessTokens(Base):
         super(ChannelAccessTokens, self).__init__(**kwargs)
 
         self.access_tokens = access_tokens
+
+
+class VerifyChannelTokenResponseV2(Base):
+    """VerifyChannelTokenResponseV2.
+
+    https://developers.line.biz/en/reference/messaging-api/#verfiy-channel-access-token-v2-1
+
+    """
+
+    def __init__(self, client_id=None, expires_in=None, scope=None, **kwargs):
+        """__init__ method.
+
+        :param str client_id: The channel ID for which the channel access token was issued.
+        :param int expires_in: Number of seconds before the channel access token expires.
+        :param str scope: Permissions granted to the channel access token.
+        :param kwargs:
+
+        """
+        super(VerifyChannelTokenResponseV2, self).__init__(**kwargs)
+
+        self.client_id = client_id
+        self.expires_in = expires_in
+        self.scope = scope
+
+
+class ValidAccessTokenKeyIDsResponse(Base):
+    """ValidAccessTokenKeyIDsResponse.
+
+    https://developers.line.biz/en/reference/messaging-api/#get-all-valid-channel-access-token-key-ids-v2-1
+
+    """
+
+    def __init__(self, kids=None, **kwargs):
+        """__init__ method.
+
+        :param kids: Array of channel access token key IDs.
+        :type kids: list[str]
+        :param kwargs:
+        """
+        super(ValidAccessTokenKeyIDsResponse, self).__init__(**kwargs)
+
+        self.kids = kids

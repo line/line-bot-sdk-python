@@ -32,7 +32,7 @@ from .models import (
 )
 from .models.responses import (
     Group, UserIds, RichMenuAliasResponse, RichMenuAliasListResponse, ChannelAccessTokens,
-    IssueChannelTokenResponseV2
+    IssueChannelTokenResponseV2, VerifyChannelTokenResponseV2, ValidAccessTokenKeyIDsResponse
 )
 
 
@@ -1676,6 +1676,47 @@ class LineBotApi(object):
             timeout=timeout
         )
         return ChannelAccessTokens.new_from_json_dict(response.json)
+
+    def verify_channel_access_token_v2_1(self, access_token, timeout=None):
+        """Validate channel access token v2.1.
+
+        https://developers.line.biz/en/reference/messaging-api/#verfiy-channel-access-token-v2-1
+
+        :param str access_token: Channel access token.
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        :rtype: :py:class:`linebot.models.responses.VerifyChannelTokenResponseV2`
+        """
+        response = self._get('/oauth2/v2.1/verify',
+                             params={'access_token': access_token},
+                             timeout=timeout)
+        return VerifyChannelTokenResponseV2.new_from_json_dict(response.json)
+
+    def get_channel_token_key_ids_v2_1(
+           self, client_assertion,
+           client_assertion_type='urn:ietf:params:oauth:client-assertion-type:jwt-bearer',
+           timeout=None):
+        """Get all valid channel access token key IDs v2.1.
+
+        https://developers.line.biz/en/reference/messaging-api/#get-all-valid-channel-access-token-key-ids-v2-1
+
+        :param str client_assertion: Client assertion.
+        :param str client_assertion_type: `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`.
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        :rtype: :py:class:`linebot.models.responses.VerifyChannelTokenResponseV2`
+        """
+        response = self._get('/oauth2/v2.1/tokens/kid',
+                             params={"client_assertion": client_assertion,
+                                     "client_assertion_type": client_assertion_type},
+                             timeout=timeout)
+        return ValidAccessTokenKeyIDsResponse.new_from_json_dict(response.json)
 
     def _get(self, path, endpoint=None, params=None, headers=None, stream=False, timeout=None):
         url = (endpoint or self.endpoint) + path

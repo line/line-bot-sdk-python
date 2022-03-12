@@ -23,7 +23,6 @@
 
 """linebot.async_api module."""
 
-
 import json
 
 from .__about__ import __version__
@@ -65,6 +64,9 @@ from .models.responses import (
     UserIds,
     RichMenuAliasResponse,
     RichMenuAliasListResponse,
+    InsightMessageEventOfCustomAggregationUnitResponse,
+    AggregationInfoResponse,
+    AggregationNameListResponse,
 )
 
 
@@ -140,7 +142,13 @@ class AsyncLineBotApi(object):
         )
 
     async def push_message(
-        self, to, messages, retry_key=None, notification_disabled=False, timeout=None
+        self,
+        to,
+        messages,
+        retry_key=None,
+        notification_disabled=False,
+        custom_aggregation_units=None,
+        timeout=None,
     ):
         """Call push message API.
 
@@ -156,6 +164,11 @@ class AsyncLineBotApi(object):
         :param retry_key: (optional) Arbitrarily generated UUID in hexadecimal notation.
         :param bool notification_disabled: (optional) True to disable push notification
             when the message is sent. The default value is False.
+        :param custom_aggregation_units: (optional) Name of aggregation unit. Case-sensitive.
+            Max unit: 1
+            Max aggregation unit name length: 30 characters
+            Supported character types: Half-width alphanumeric characters and underscore
+        :type custom_aggregation_units: str | list[str]
         :param timeout: (optional) How long to wait for the server
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
@@ -174,10 +187,21 @@ class AsyncLineBotApi(object):
             "notificationDisabled": notification_disabled,
         }
 
+        if custom_aggregation_units is not None:
+            if not isinstance(custom_aggregation_units, (list, tuple)):
+                custom_aggregation_units = [custom_aggregation_units]
+            data["customAggregationUnits"] = custom_aggregation_units
+
         await self._post("/v2/bot/message/push", data=json.dumps(data), timeout=timeout)
 
     async def multicast(
-        self, to, messages, retry_key=None, notification_disabled=False, timeout=None
+        self,
+        to,
+        messages,
+        retry_key=None,
+        notification_disabled=False,
+        custom_aggregation_units=None,
+        timeout=None,
     ):
         """Call multicast API.
 
@@ -196,6 +220,11 @@ class AsyncLineBotApi(object):
         :param retry_key: (optional) Arbitrarily generated UUID in hexadecimal notation.
         :param bool notification_disabled: (optional) True to disable push notification
             when the message is sent. The default value is False.
+        :param custom_aggregation_units: (optional) Name of aggregation unit. Case-sensitive.
+            Max unit: 1
+            Max aggregation unit name length: 30 characters
+            Supported character types: Half-width alphanumeric characters and underscore
+        :type custom_aggregation_units: str | list[str]
         :param timeout: (optional) How long to wait for the server
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
@@ -213,6 +242,11 @@ class AsyncLineBotApi(object):
             "messages": [message.as_json_dict() for message in messages],
             "notificationDisabled": notification_disabled,
         }
+
+        if custom_aggregation_units is not None:
+            if not isinstance(custom_aggregation_units, (list, tuple)):
+                custom_aggregation_units = [custom_aggregation_units]
+            data["customAggregationUnits"] = custom_aggregation_units
 
         await self._post(
             "/v2/bot/message/multicast", data=json.dumps(data), timeout=timeout
@@ -1632,11 +1666,13 @@ class AsyncLineBotApi(object):
 
         return TestWebhookResponse.new_from_json_dict((await response.json))
 
-    async def get_followers_ids(self, start=None, timeout=None):
+    async def get_followers_ids(self, limit=300, start=None, timeout=None):
         """Get a list of users who added your LINE Official Account as a friend.
 
         https://developers.line.biz/en/reference/messaging-api/#get-follower-ids
 
+        :param int limit: The maximum number of user IDs to retrieve in a single request.
+            The default value is 300.
         :param str start: Get the next array of user IDs.
         :param timeout: (optional) How long to wait for the server
             to send data before giving up, as a float,
@@ -1645,13 +1681,88 @@ class AsyncLineBotApi(object):
         :type timeout: float | tuple(float, float)
         :rtype: :py:class:`linebot.models.responses.UserIds`
         """
-        params = None if start is None else {"start": start}
+        params = {"limit": limit} if start is None else {"limit": limit, "start": start}
 
         response = await self._get(
             "/v2/bot/followers/ids", params=params, timeout=timeout
         )
 
         return UserIds.new_from_json_dict((await response.json))
+
+    async def get_statistics_per_unit(
+        self, custom_aggregation_unit, from_date, to_date, timeout=None
+    ):
+        """Return statistics about how users interact with push and multicast messages.
+
+        https://developers.line.biz/en/reference/partner-docs/#get-statistics-per-unit
+
+        :param str custom_aggregation_unit: Name of aggregation unit specified when sending
+            the message like `push_message(...)` and `multicast(...)`.
+        :param str from_date: Start date of aggregation period.
+            The format is `yyyyMMdd` (Timezone is UTC+9).
+        :param str to_date: End date of aggregation period.
+            The end date can be specified for up to 30 days later.
+            The format is `yyyyMMdd` (Timezone is UTC+9).
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.async_http_client.timeout
+        :type timeout: float | tuple(float, float)
+        :rtype: :py:class:
+            `linebot.models.responses.InsightMessageEventOfCustomAggregationUnitResponse`
+        """
+        response = await self._get(
+            "/v2/bot/insight/message/event/aggregation?"
+            "customAggregationUnit={custom_aggregation_unit}&from={from_date}&to={to_date}".format(
+                custom_aggregation_unit=custom_aggregation_unit,
+                from_date=from_date,
+                to_date=to_date,
+            ),
+            timeout=timeout,
+        )
+
+        return InsightMessageEventOfCustomAggregationUnitResponse.new_from_json_dict(
+            (await response.json)
+        )
+
+    async def get_number_of_units_used_this_month(self, timeout=None):
+        """Return the number of aggregation units used this month.
+
+        https://developers.line.biz/en/reference/partner-docs/#get-number-of-units-used-this-month
+
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.async_http_client.timeout
+        :type timeout: float | tuple(float, float)
+        :rtype: :py:class: `linebot.models.responses.AggregationInfoResponse`
+        """
+        response = await self._get("/v2/bot/message/aggregation/info", timeout=timeout)
+        return AggregationInfoResponse.new_from_json_dict((await response.json))
+
+    async def get_name_list_of_units_used_this_month(
+        self, limit=100, start=None, timeout=None
+    ):
+        """Return the name list of units used this month for statistics aggregation.
+
+        :param int limit: Maximum number of aggregation units you can get per request.
+            If you don't specify a value, or if you specify a value greater than or equal to 100,
+            the maximum is 100.
+        :param str start: Get the next array of name list of units
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.async_http_client.timeout
+        :type timeout: float | tuple(float, float)
+        :rtype: :py:class: `linebot.models.responses.AggregationNameListResponse`
+        """
+        params = {"limit": limit} if start is None else {"limit": limit, "start": start}
+
+        response = await self._get(
+            "/v2/bot/message/aggregation/list", params=params, timeout=timeout
+        )
+
+        return AggregationNameListResponse.new_from_json_dict((await response.json))
 
     async def _get(self, path, endpoint=None, params=None, headers=None, timeout=None):
         url = (endpoint or self.endpoint) + path

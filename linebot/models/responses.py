@@ -550,6 +550,23 @@ class InsightMessageEventOfCustomAggregationUnitResponse(Base):
         self.clicks = [self.get_or_new_from_json_dict(it, ClickInsight) for it in clicks]
 
 
+class AggregationInfoResponse(Base):
+    """The number of aggregation units used this month.
+
+    https://developers.line.biz/en/reference/partner-docs/#get-number-of-units-used-this-month
+    """
+
+    def __init__(self, num_of_custom_aggregation_units=None, **kwargs):
+        """__init__ method.
+
+        :param int num_of_custom_aggregation_units: Number of aggregation units used this month.
+        :param kwargs:
+        """
+        super(AggregationInfoResponse, self).__init__(**kwargs)
+
+        self.num_of_custom_aggregation_units = num_of_custom_aggregation_units
+
+
 class NarrowcastResponse(Base):
     """NarrowcastResponse.
 

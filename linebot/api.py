@@ -31,7 +31,7 @@ from .models import (
     CreateAudienceGroup
 )
 from .models.responses import Group, UserIds, RichMenuAliasResponse, RichMenuAliasListResponse, \
-    InsightMessageEventOfCustomAggregationUnitResponse
+    InsightMessageEventOfCustomAggregationUnitResponse, AggregationInfoResponse
 
 
 class LineBotApi(object):
@@ -1645,6 +1645,21 @@ class LineBotApi(object):
         )
 
         return InsightMessageEventOfCustomAggregationUnitResponse.new_from_json_dict(response.json)
+
+    def get_number_of_units_used_this_month(self, timeout=None):
+        """Return the number of aggregation units used this month.
+
+        https://developers.line.biz/en/reference/partner-docs/#get-number-of-units-used-this-month
+
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        :rtype: :py:class: `linebot.models.responses.AggregationInfoResponse`
+        """
+        response = self._get('/v2/bot/message/aggregation/info', timeout=timeout)
+        return AggregationInfoResponse.new_from_json_dict(response.json)
 
     def _get(self, path, endpoint=None, params=None, headers=None, stream=False, timeout=None):
         url = (endpoint or self.endpoint) + path

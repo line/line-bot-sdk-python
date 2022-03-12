@@ -604,8 +604,19 @@ https://developers.line.biz/en/reference/partner-docs/#get-statistics-per-unit
     line_bot_api.push_message('to', TextSendMessage(text='Hello World!'), custom_aggregation_units=unit_name)
     insight = line_bot_api.get_statistics_per_unit(unit_name, '20210301', '20210331')
     print(insight.overview)
-    
-get\_bot_info(self, timeout=None)
+
+get\_number\_of\_units\_used\_this\_month(self, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Return the number of aggregation units used this month.
+
+https://developers.line.biz/en/reference/partner-docs/#get-number-of-units-used-this-month
+
+.. code:: python
+    usage = line_bot_api.get_number_of_units_used_this_month()
+    print(usage.num_of_custom_aggregation_units)
+
+get\_bot\_info(self, timeout=None)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Get bot's basic information.

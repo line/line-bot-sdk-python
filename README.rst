@@ -590,6 +590,20 @@ https://developers.line.biz/en/reference/messaging-api/#get-message-event
     broadcast_response = line_bot_api.broadcast(TextSendMessage(text='Hello World!'))
     insight = line_bot_api.get_insight_message_event(broadcast_response.request_id)
     print(insight.overview)
+
+get\_statistics\_per\_unit(self, custom_aggregation_unit, from_date, to_date, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Return statistics about how users interact with push and multicast messages.
+
+https://developers.line.biz/en/reference/partner-docs/#get-statistics-per-unit
+
+.. code:: python
+
+    unit_name = 'promotion_a'
+    line_bot_api.push_message('to', TextSendMessage(text='Hello World!'), custom_aggregation_units=unit_name)
+    insight = line_bot_api.get_statistics_per_unit(unit_name, '20210301', '20210331')
+    print(insight.overview)
     
 get\_bot_info(self, timeout=None)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

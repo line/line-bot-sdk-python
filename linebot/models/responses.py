@@ -19,7 +19,7 @@ from .base import Base
 from .insight import (
     SubscriptionPeriodInsight, AppTypeInsight, AgeInsight,
     GenderInsight, AreaInsight, MessageInsight, ClickInsight,
-    MessageStatistics, JobInsight,
+    MessageStatistics, JobInsight, MessageStatisticsOfCustomAggregationUnit,
 )
 from .rich_menu import RichMenuSize, RichMenuArea, RichMenuAlias
 
@@ -524,6 +524,28 @@ class InsightMessageEventResponse(Base):
         super(InsightMessageEventResponse, self).__init__(**kwargs)
 
         self.overview = self.get_or_new_from_json_dict(overview, MessageStatistics)
+        self.messages = [self.get_or_new_from_json_dict(it, MessageInsight) for it in messages]
+        self.clicks = [self.get_or_new_from_json_dict(it, ClickInsight) for it in clicks]
+
+
+class InsightMessageEventOfCustomAggregationUnitResponse(Base):
+    """InsightMessageEventResponse."""
+
+    def __init__(self, overview=None, messages=None, clicks=None, **kwargs):
+        """__init__ method.
+
+        :param overview: Summary of message statistics.
+        :type overview: T <= :py:class:`linebot.models.MessageStatisticsOfCustomAggregationUnit`
+        :param messages: Array of information about individual message bubbles.
+        :type messages: list[T <= :py:class:`linebot.models.MessageInsight`]
+        :param clicks: Array of information about URLs in the message.
+        :type clicks: list[T <= :py:class:`linebot.models.ClickInsight`]
+        :param kwargs:
+        """
+        super(InsightMessageEventOfCustomAggregationUnitResponse, self).__init__(**kwargs)
+
+        self.overview = self.get_or_new_from_json_dict(
+            overview, MessageStatisticsOfCustomAggregationUnit)
         self.messages = [self.get_or_new_from_json_dict(it, MessageInsight) for it in messages]
         self.clicks = [self.get_or_new_from_json_dict(it, ClickInsight) for it in clicks]
 

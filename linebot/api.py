@@ -14,7 +14,6 @@
 
 """linebot.api module."""
 
-
 import json
 
 from .__about__ import __version__
@@ -31,7 +30,8 @@ from .models import (
     AudienceGroup, ClickAudienceGroup, ImpAudienceGroup, GetAuthorityLevel, Audience,
     CreateAudienceGroup
 )
-from .models.responses import Group, UserIds, RichMenuAliasResponse, RichMenuAliasListResponse
+from .models.responses import Group, UserIds, RichMenuAliasResponse, RichMenuAliasListResponse, \
+    InsightMessageEventOfCustomAggregationUnitResponse
 
 
 class LineBotApi(object):
@@ -1615,6 +1615,36 @@ class LineBotApi(object):
         )
 
         return UserIds.new_from_json_dict(response.json)
+
+    def get_statistics_per_unit(self, custom_aggregation_unit, from_date, to_date, timeout=None):
+        """Return statistics about how users interact with push and multicast messages.
+
+        https://developers.line.biz/en/reference/partner-docs/#get-statistics-per-unit
+
+        :param str custom_aggregation_unit: Name of aggregation unit specified when sending
+            the message like `push_message(...)` and `multicast(...)`.
+        :param str from_date: Start date of aggregation period.
+            The format is `yyyyMMdd` (Timezone is UTC+9).
+        :param str to_date: End date of aggregation period.
+            The end date can be specified for up to 30 days later.
+            The format is `yyyyMMdd` (Timezone is UTC+9).
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        :rtype: :py:class:
+            `linebot.models.responses.InsightMessageEventOfCustomAggregationUnitResponse`
+        """
+        response = self._get(
+            '/v2/bot/insight/message/event/aggregation?'
+            'customAggregationUnit={custom_aggregation_unit}&from={from_date}&to={to_date}'.format(
+                custom_aggregation_unit=custom_aggregation_unit,
+                from_date=from_date, to_date=to_date),
+            timeout=timeout
+        )
+
+        return InsightMessageEventOfCustomAggregationUnitResponse.new_from_json_dict(response.json)
 
     def _get(self, path, endpoint=None, params=None, headers=None, stream=False, timeout=None):
         url = (endpoint or self.endpoint) + path

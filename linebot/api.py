@@ -31,7 +31,8 @@ from .models import (
     CreateAudienceGroup
 )
 from .models.responses import Group, UserIds, RichMenuAliasResponse, RichMenuAliasListResponse, \
-    InsightMessageEventOfCustomAggregationUnitResponse, AggregationInfoResponse
+    InsightMessageEventOfCustomAggregationUnitResponse, AggregationInfoResponse, \
+    AggregationNameListResponse
 
 
 class LineBotApi(object):
@@ -1660,6 +1661,30 @@ class LineBotApi(object):
         """
         response = self._get('/v2/bot/message/aggregation/info', timeout=timeout)
         return AggregationInfoResponse.new_from_json_dict(response.json)
+
+    def get_name_list_of_units_used_this_month(self, limit=100, start=None, timeout=None):
+        """Return the name list of units used this month for statistics aggregation.
+
+        :param int limit: Maximum number of aggregation units you can get per request.
+            If you don't specify a value, or if you specify a value greater than or equal to 100,
+            the maximum is 100.
+        :param str start: Get the next array of name list of units
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        :rtype: :py:class: `linebot.models.responses.AggregationNameListResponse`
+        """
+        params = {'limit': limit} if start is None else {'limit': limit, 'start': start}
+
+        response = self._get(
+            '/v2/bot/message/aggregation/list',
+            params=params,
+            timeout=timeout
+        )
+
+        return AggregationNameListResponse.new_from_json_dict(response.json)
 
     def _get(self, path, endpoint=None, params=None, headers=None, stream=False, timeout=None):
         url = (endpoint or self.endpoint) + path

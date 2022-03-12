@@ -567,6 +567,28 @@ class AggregationInfoResponse(Base):
         self.num_of_custom_aggregation_units = num_of_custom_aggregation_units
 
 
+class AggregationNameListResponse(Base):
+    """The name list of units used this month for statistics aggregation.
+
+    https://developers.line.biz/en/reference/partner-docs/#get-name-list-of-units-used-this-month
+    """
+
+    def __init__(self, custom_aggregation_units=None, next=None, **kwargs):
+        """__init__ method.
+
+        :param custom_aggregation_units: name list of aggregation units used this month.
+            Max: 100 unit names
+        :type custom_aggregation_units: list[str]
+        :param str next: continuationToken.
+            A continuation token to get the next array of unit names.
+        :param kwargs:
+        """
+        super(AggregationNameListResponse, self).__init__(**kwargs)
+
+        self.custom_aggregation_units = custom_aggregation_units
+        self.next = next
+
+
 class NarrowcastResponse(Base):
     """NarrowcastResponse.
 

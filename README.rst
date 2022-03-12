@@ -114,8 +114,8 @@ https://developers.line.biz/en/reference/messaging-api/#send-reply-message
 
     line_bot_api.reply_message(reply_token, TextSendMessage(text='Hello World!'))
 
-push\_message(self, to, messages, notification_disabled=False, timeout=None)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+push\_message(self, to, messages, notification_disabled=False, custom_aggregation_units=None, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Send messages to users, groups, and rooms at any time.
 
@@ -125,8 +125,8 @@ https://developers.line.biz/en/reference/messaging-api/#send-push-message
 
     line_bot_api.push_message(to, TextSendMessage(text='Hello World!'))
 
-multicast(self, to, messages, notification_disabled=False, timeout=None)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+multicast(self, to, messages, notification_disabled=False, custom_aggregation_units=None, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Send push messages to multiple users at any time. Messages cannot be sent to groups or rooms.
 

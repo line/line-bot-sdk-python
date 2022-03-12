@@ -112,7 +112,8 @@ class LineBotApi(object):
 
     def push_message(
             self, to, messages,
-            retry_key=None, notification_disabled=False, timeout=None):
+            retry_key=None, notification_disabled=False,
+            custom_aggregation_units=None, timeout=None):
         """Call push message API.
 
         https://developers.line.biz/en/reference/messaging-api/#send-push-message
@@ -127,6 +128,11 @@ class LineBotApi(object):
         :param retry_key: (optional) Arbitrarily generated UUID in hexadecimal notation.
         :param bool notification_disabled: (optional) True to disable push notification
             when the message is sent. The default value is False.
+        :param custom_aggregation_units: (optional) Name of aggregation unit. Case-sensitive.
+            Max unit: 1
+            Max aggregation unit name length: 30 characters
+            Supported character types: Half-width alphanumeric characters and underscore
+        :type custom_aggregation_units: str | list[str]
         :param timeout: (optional) How long to wait for the server
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
@@ -145,11 +151,17 @@ class LineBotApi(object):
             'notificationDisabled': notification_disabled,
         }
 
+        if custom_aggregation_units is not None:
+            if not isinstance(custom_aggregation_units, (list, tuple)):
+                custom_aggregation_units = [custom_aggregation_units]
+            data['customAggregationUnits'] = custom_aggregation_units
+
         self._post(
             '/v2/bot/message/push', data=json.dumps(data), timeout=timeout
         )
 
-    def multicast(self, to, messages, retry_key=None, notification_disabled=False, timeout=None):
+    def multicast(self, to, messages, retry_key=None, notification_disabled=False,
+                  custom_aggregation_units=None, timeout=None):
         """Call multicast API.
 
         https://developers.line.biz/en/reference/messaging-api/#send-multicast-message
@@ -167,6 +179,11 @@ class LineBotApi(object):
         :param retry_key: (optional) Arbitrarily generated UUID in hexadecimal notation.
         :param bool notification_disabled: (optional) True to disable push notification
             when the message is sent. The default value is False.
+        :param custom_aggregation_units: (optional) Name of aggregation unit. Case-sensitive.
+            Max unit: 1
+            Max aggregation unit name length: 30 characters
+            Supported character types: Half-width alphanumeric characters and underscore
+        :type custom_aggregation_units: str | list[str]
         :param timeout: (optional) How long to wait for the server
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
@@ -184,6 +201,11 @@ class LineBotApi(object):
             'messages': [message.as_json_dict() for message in messages],
             'notificationDisabled': notification_disabled,
         }
+
+        if custom_aggregation_units is not None:
+            if not isinstance(custom_aggregation_units, (list, tuple)):
+                custom_aggregation_units = [custom_aggregation_units]
+            data['customAggregationUnits'] = custom_aggregation_units
 
         self._post(
             '/v2/bot/message/multicast', data=json.dumps(data), timeout=timeout

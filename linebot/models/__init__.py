@@ -80,7 +80,8 @@ from .flex_message import (  # noqa
     ImageComponent,
     SeparatorComponent,
     TextComponent,
-    SpanComponent
+    SpanComponent,
+    VideoComponent
 )
 from .imagemap import (  # noqa
     ImagemapSendMessage,

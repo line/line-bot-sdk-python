@@ -30,6 +30,7 @@ from linebot.models import (
     FillerComponent,
     IconComponent,
     SpanComponent,
+    VideoComponent,
     URIAction,
     LinearGradientBackground,
 )
@@ -247,6 +248,25 @@ class TestFlexMessage(SerializeTestCase):
         self.assertEqual(
             self.serialize_as_dict(arg, type=self.SPAN),
             SpanComponent(**arg).as_json_dict()
+        )
+
+    def test_video_component(self):
+        arg = {
+            'type': 'video',
+            'url': 'https://example.com/video.mp4',
+            "preview_url": "https://example.com/video_preview.jpg",
+            "alt_content": {
+                "type": "image",
+                "size": "full",
+                "aspect_ratio": "20:13",
+                "aspect_mode": "cover",
+                "url": "https://example.com/image.jpg"
+            },
+            "aspect_ratio": "20:13"
+        }
+        self.assertEqual(
+            self.serialize_as_dict(arg, type=self.VIDEO),
+            VideoComponent(**arg).as_json_dict()
         )
 
     def test_text_component(self):

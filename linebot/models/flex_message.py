@@ -624,6 +624,7 @@ class TextComponent(FlexComponent):
                  align=None,
                  gravity=None,
                  wrap=None,
+                 line_spacing=None,
                  max_lines=None,
                  weight=None,
                  color=None,
@@ -649,6 +650,7 @@ class TextComponent(FlexComponent):
         :param str gravity: Vertical alignment style
         :param bool wrap: rue to wrap text. The default value is False.
             If set to True, you can use a new line character (\n) to begin on a new line.
+        :param str line_spacing: Line spacing in a wrapping text
         :param int max_lines: Max number of lines
         :param str weight: Font weight
         :param str color: Font color
@@ -672,6 +674,7 @@ class TextComponent(FlexComponent):
         self.align = align
         self.gravity = gravity
         self.wrap = wrap
+        self.line_spacing = line_spacing
         self.max_lines = max_lines
         self.weight = weight
         self.color = color

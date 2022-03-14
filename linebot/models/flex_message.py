@@ -240,7 +240,9 @@ class BoxComponent(FlexComponent):
                  align_items=None,
                  background=None,
                  width=None,
+                 max_width=None,
                  height=None,
+                 max_height=None,
                  flex=None,
                  spacing=None,
                  margin=None,
@@ -272,7 +274,9 @@ class BoxComponent(FlexComponent):
         :param background: Background object
         :type background: T <= :py:class:`linebot.models.background.Background`
         :param str width: Width of the box
+        :param str max_width: Maximum width of the box
         :param str height: Height of the box
+        :param str max_height: Maximum height of the box
         :param float flex: The ratio of the width or height of this box within the parent box
             and the previous component in the parent box
         :param str spacing: Minimum space between components in this box
@@ -305,7 +309,9 @@ class BoxComponent(FlexComponent):
         self.justify_content = justify_content
         self.align_items = align_items
         self.width = width
+        self.max_width = max_width
         self.height = height
+        self.max_height = max_height
         self.flex = flex
         self.spacing = spacing
         self.margin = margin

@@ -48,6 +48,7 @@ async_http_client = AiohttpAsyncHttpClient(session)
 line_bot_api = AsyncLineBotApi(channel_access_token, async_http_client)
 parser = WebhookParser(channel_secret)
 
+
 @app.post("/callback")
 async def handle_callback(request: Request):
     signature = request.headers['X-Line-Signature']
@@ -71,5 +72,5 @@ async def handle_callback(request: Request):
             event.reply_token,
             TextSendMessage(text=event.message.text)
         )
-        
+
     return 'OK'

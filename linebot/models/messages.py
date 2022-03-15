@@ -213,7 +213,7 @@ class StickerMessage(Message):
     """
 
     def __init__(self, id=None, package_id=None, sticker_id=None,
-                 sticker_resource_type=None, keywords=None, **kwargs):
+                 sticker_resource_type=None, keywords=None, text=None, **kwargs):
         """__init__ method.
 
         :param str id: Message ID
@@ -221,6 +221,7 @@ class StickerMessage(Message):
         :param str sticker_id: Sticker ID
         :param str sticker_resource_type: Sticker resource type
         :param list[str] keywords: List of up to 15 keywords describing the sticker
+        :param str text: Any text entered by the user
         :param kwargs:
         """
         super(StickerMessage, self).__init__(id=id, **kwargs)
@@ -230,6 +231,7 @@ class StickerMessage(Message):
         self.sticker_id = sticker_id
         self.sticker_resource_type = sticker_resource_type
         self.keywords = keywords
+        self.text = text
 
 
 class FileMessage(Message):

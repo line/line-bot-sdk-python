@@ -19,7 +19,6 @@ import aiohttp
 
 from fastapi import Request, FastAPI, HTTPException
 
-
 from linebot import (
     AsyncLineBotApi, WebhookParser
 )
@@ -41,12 +40,12 @@ if channel_access_token is None:
     print('Specify LINE_CHANNEL_ACCESS_TOKEN as environment variable.')
     sys.exit(1)
 
-
 app = FastAPI()
 session = aiohttp.ClientSession()
 async_http_client = AiohttpAsyncHttpClient(session)
 line_bot_api = AsyncLineBotApi(channel_access_token, async_http_client)
 parser = WebhookParser(channel_secret)
+
 
 @app.post("/callback")
 async def handle_callback(request: Request):
@@ -71,5 +70,5 @@ async def handle_callback(request: Request):
             event.reply_token,
             TextSendMessage(text=event.message.text)
         )
-        
+
     return 'OK'

@@ -18,7 +18,7 @@ from .base import Base
 from .insight import (
     SubscriptionPeriodInsight, AppTypeInsight, AgeInsight,
     GenderInsight, AreaInsight, MessageInsight, ClickInsight,
-    MessageStatistics, JobInsight,
+    MessageStatistics, JobInsight, MessageStatisticsOfCustomAggregationUnit,
 )
 from .rich_menu import RichMenuSize, RichMenuArea, RichMenuAlias
 
@@ -525,6 +525,67 @@ class InsightMessageEventResponse(Base):
         self.overview = self.get_or_new_from_json_dict(overview, MessageStatistics)
         self.messages = [self.get_or_new_from_json_dict(it, MessageInsight) for it in messages]
         self.clicks = [self.get_or_new_from_json_dict(it, ClickInsight) for it in clicks]
+
+
+class InsightMessageEventOfCustomAggregationUnitResponse(Base):
+    """InsightMessageEventResponse."""
+
+    def __init__(self, overview=None, messages=None, clicks=None, **kwargs):
+        """__init__ method.
+
+        :param overview: Summary of message statistics.
+        :type overview: T <= :py:class:`linebot.models.MessageStatisticsOfCustomAggregationUnit`
+        :param messages: Array of information about individual message bubbles.
+        :type messages: list[T <= :py:class:`linebot.models.MessageInsight`]
+        :param clicks: Array of information about URLs in the message.
+        :type clicks: list[T <= :py:class:`linebot.models.ClickInsight`]
+        :param kwargs:
+        """
+        super(InsightMessageEventOfCustomAggregationUnitResponse, self).__init__(**kwargs)
+
+        self.overview = self.get_or_new_from_json_dict(
+            overview, MessageStatisticsOfCustomAggregationUnit)
+        self.messages = [self.get_or_new_from_json_dict(it, MessageInsight) for it in messages]
+        self.clicks = [self.get_or_new_from_json_dict(it, ClickInsight) for it in clicks]
+
+
+class AggregationInfoResponse(Base):
+    """The number of aggregation units used this month.
+
+    https://developers.line.biz/en/reference/partner-docs/#get-number-of-units-used-this-month
+    """
+
+    def __init__(self, num_of_custom_aggregation_units=None, **kwargs):
+        """__init__ method.
+
+        :param int num_of_custom_aggregation_units: Number of aggregation units used this month.
+        :param kwargs:
+        """
+        super(AggregationInfoResponse, self).__init__(**kwargs)
+
+        self.num_of_custom_aggregation_units = num_of_custom_aggregation_units
+
+
+class AggregationNameListResponse(Base):
+    """The name list of units used this month for statistics aggregation.
+
+    https://developers.line.biz/en/reference/partner-docs/#get-name-list-of-units-used-this-month
+    """
+
+    def __init__(self, custom_aggregation_units=None, next=None, **kwargs):
+        """__init__ method.
+
+        :param custom_aggregation_units: name list of aggregation units used this month.
+            Max: 100 unit names
+        :type custom_aggregation_units: list[str]
+        :param str next: continuationToken.
+            A continuation token to get the next array of unit names.
+        :param kwargs:
+        """
+        super(AggregationNameListResponse, self).__init__(**kwargs)
+
+        self.custom_aggregation_units = custom_aggregation_units
+        self.next = next
 
 
 class NarrowcastResponse(Base):

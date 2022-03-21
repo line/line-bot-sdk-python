@@ -114,8 +114,8 @@ https://developers.line.biz/en/reference/messaging-api/#send-reply-message
 
     line_bot_api.reply_message(reply_token, TextSendMessage(text='Hello World!'))
 
-push\_message(self, to, messages, notification_disabled=False, timeout=None)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+push\_message(self, to, messages, notification_disabled=False, custom_aggregation_units=None, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Send messages to users, groups, and rooms at any time.
 
@@ -125,8 +125,8 @@ https://developers.line.biz/en/reference/messaging-api/#send-push-message
 
     line_bot_api.push_message(to, TextSendMessage(text='Hello World!'))
 
-multicast(self, to, messages, notification_disabled=False, timeout=None)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+multicast(self, to, messages, notification_disabled=False, custom_aggregation_units=None, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Send push messages to multiple users at any time. Messages cannot be sent to groups or rooms.
 
@@ -590,8 +590,45 @@ https://developers.line.biz/en/reference/messaging-api/#get-message-event
     broadcast_response = line_bot_api.broadcast(TextSendMessage(text='Hello World!'))
     insight = line_bot_api.get_insight_message_event(broadcast_response.request_id)
     print(insight.overview)
-    
-get\_bot_info(self, timeout=None)
+
+get\_statistics\_per\_unit(self, custom_aggregation_unit, from_date, to_date, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Return statistics about how users interact with push and multicast messages.
+
+https://developers.line.biz/en/reference/partner-docs/#get-statistics-per-unit
+
+.. code:: python
+
+    unit_name = 'promotion_a'
+    line_bot_api.push_message('to', TextSendMessage(text='Hello World!'), custom_aggregation_units=unit_name)
+    insight = line_bot_api.get_statistics_per_unit(unit_name, '20210301', '20210331')
+    print(insight.overview)
+
+get\_number\_of\_units\_used\_this\_month(self, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Return the number of aggregation units used this month.
+
+https://developers.line.biz/en/reference/partner-docs/#get-number-of-units-used-this-month
+
+.. code:: python
+    usage = line_bot_api.get_number_of_units_used_this_month()
+    print(usage.num_of_custom_aggregation_units)
+
+get\_name\_list\_of\_units\_used\_this\_month(self, limit=100, start=None, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Return the name list of units used this month for statistics aggregation.
+
+https://developers.line.biz/en/reference/partner-docs/#get-name-list-of-units-used-this-month
+
+.. code:: python
+    name_list = line_bot_api.get_name_list_of_units_used_this_month()
+    print(name_list.custom_aggregation_units)
+    print(name_list.next)
+
+get\_bot\_info(self, timeout=None)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Get bot's basic information.

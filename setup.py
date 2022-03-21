@@ -126,9 +126,6 @@ class CodegenCommand(Command):
                 "response.json", "(await response.json)", async_source
             )
             async_source = re.sub(
-                "response.json", "(await response.json)", async_source
-            )
-            async_source = re.sub(
                 "from .http_client import HttpClient, RequestsHttpClient",
                 "from .async_http_client import AsyncHttpClient, AiohttpAsyncHttpClient",
                 async_source
@@ -147,9 +144,6 @@ class CodegenCommand(Command):
             async_source = re.sub(
                 "Default is self.http_client.timeout", "Default is self.async_http_client.timeout",
                 async_source
-            )
-            async_source = re.sub(
-                "self.__check_error", "await self.__check_error", async_source
             )
             async_source = re.sub(
                 "self.__check_error", "await self.__check_error", async_source

@@ -629,7 +629,7 @@ https://developers.line.biz/en/reference/partner-docs/#get-name-list-of-units-us
     print(name_list.next)
 
 get\_bot\_info(self, timeout=None)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Get bot's basic information.
 

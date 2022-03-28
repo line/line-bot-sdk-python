@@ -613,6 +613,7 @@ Return the number of aggregation units used this month.
 https://developers.line.biz/en/reference/partner-docs/#get-number-of-units-used-this-month
 
 .. code:: python
+
     usage = line_bot_api.get_number_of_units_used_this_month()
     print(usage.num_of_custom_aggregation_units)
 
@@ -624,6 +625,7 @@ Return the name list of units used this month for statistics aggregation.
 https://developers.line.biz/en/reference/partner-docs/#get-name-list-of-units-used-this-month
 
 .. code:: python
+
     name_list = line_bot_api.get_name_list_of_units_used_this_month()
     print(name_list.custom_aggregation_units)
     print(name_list.next)

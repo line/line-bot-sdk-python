@@ -1025,6 +1025,14 @@ With QuickReply
                                        QuickReplyButton(action=MessageAction(label="label", text="text"))
                                    ]))
 
+With Sender
+^^^^^^^^^^^
+
+.. code:: python
+
+    text_message = TextSendMessage(text='Hello, world',
+                                   sender=Sender(name='name', icon_url='https://example.com/icon.jpg'))
+
 Webhook
 -------
 

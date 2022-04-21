@@ -143,7 +143,8 @@ class AudioSendMessage(SendMessage):
     https://developers.line.biz/en/reference/messaging-api/#audio-message
     """
 
-    def __init__(self, original_content_url=None, duration=None, quick_reply=None, sender=None, **kwargs):
+    def __init__(self, original_content_url=None, duration=None, quick_reply=None,
+                 sender=None, **kwargs):
         """__init__ method.
 
         :param str original_content_url: URL of audio file. HTTPS.

@@ -14,7 +14,6 @@
 
 """linebot.models.messages module."""
 
-from __future__ import unicode_literals
 
 from abc import ABCMeta
 
@@ -54,7 +53,7 @@ class TextMessage(Message):
 
         :param str id: Message ID
         :param str text: Message text
-        :param List sticon: Array of LINE emoji objects
+        :param List emojis: Array of LINE emoji objects
         :param object mention: LINE mention object
         :param kwargs:
         """
@@ -99,13 +98,16 @@ class ImageMessage(Message):
     The binary image data can be retrieved with the Content API.
     """
 
-    def __init__(self, id=None, content_provider=None, **kwargs):
+    def __init__(self, id=None, content_provider=None, image_set=None, **kwargs):
         """__init__ method.
 
         :param str id: Message ID
         :param content_provider: ContentProvider object
         :type content_provider:
             :py:class:`linebot.models.messages.ContentProvider`
+        :param image_set: ImageSet object
+        :type image_set:
+            :py:class:`linebot.models.messages.ImageSet`
         :param kwargs:
         """
         super(ImageMessage, self).__init__(id=id, **kwargs)
@@ -113,6 +115,9 @@ class ImageMessage(Message):
         self.type = 'image'
         self.content_provider = self.get_or_new_from_json_dict(
             content_provider, ContentProvider
+        )
+        self.image_set = self.get_or_new_from_json_dict(
+            image_set, ImageSet
         )
 
 
@@ -208,7 +213,7 @@ class StickerMessage(Message):
     """
 
     def __init__(self, id=None, package_id=None, sticker_id=None,
-                 sticker_resource_type=None, keywords=None, **kwargs):
+                 sticker_resource_type=None, keywords=None, text=None, **kwargs):
         """__init__ method.
 
         :param str id: Message ID
@@ -216,6 +221,7 @@ class StickerMessage(Message):
         :param str sticker_id: Sticker ID
         :param str sticker_resource_type: Sticker resource type
         :param list[str] keywords: List of up to 15 keywords describing the sticker
+        :param str text: Any text entered by the user
         :param kwargs:
         """
         super(StickerMessage, self).__init__(id=id, **kwargs)
@@ -225,6 +231,7 @@ class StickerMessage(Message):
         self.sticker_id = sticker_id
         self.sticker_resource_type = sticker_resource_type
         self.keywords = keywords
+        self.text = text
 
 
 class FileMessage(Message):
@@ -267,3 +274,21 @@ class ContentProvider(Base):
         self.type = type
         self.original_content_url = original_content_url
         self.preview_image_url = preview_image_url
+
+
+class ImageSet(Base):
+    """Image Set."""
+
+    def __init__(self, id=None, index=None, total=0, **kwargs):
+        """__init__ method.
+
+        :param str id: Image set ID.
+        :param int index: Image number in a set of images sent simultaneously.
+        :param int total: Total number of images sent simultaneously.
+        :param kwargs:
+        """
+        super(ImageSet, self).__init__(**kwargs)
+
+        self.id = id
+        self.index = index
+        self.total = total

@@ -14,12 +14,12 @@
 
 """linebot.models.send_messages module."""
 
-from __future__ import unicode_literals
 
 from abc import ABCMeta
 
 from future.utils import with_metaclass
 
+from .emojis import Emojis
 from .actions import get_action
 from .base import Base
 
@@ -49,18 +49,30 @@ class TextSendMessage(SendMessage):
     https://developers.line.biz/en/reference/messaging-api/#text-message
     """
 
-    def __init__(self, text=None, quick_reply=None, **kwargs):
+    def __init__(self, text=None, emojis=None, quick_reply=None, sender=None, **kwargs):
         """__init__ method.
 
         :param str text: Message text
         :param quick_reply: QuickReply object
         :type quick_reply: T <= :py:class:`linebot.models.send_messages.QuickReply`
+        :type sender: T <= :py:class:`linebot.models.send_messages.Sender`
         :param kwargs:
         """
-        super(TextSendMessage, self).__init__(quick_reply=quick_reply, **kwargs)
+        super(TextSendMessage, self).__init__(quick_reply=quick_reply, sender=sender, **kwargs)
 
         self.type = 'text'
         self.text = text
+        if emojis:
+            new_emojis = []
+            for emoji in emojis:
+                emoji_object = self.get_or_new_from_json_dict(
+                    emoji, Emojis
+                )
+                if emoji_object:
+                    new_emojis.append(emoji_object)
+            self.emojis = new_emojis
+        else:
+            self.emojis = emojis
 
 
 class ImageSendMessage(SendMessage):
@@ -70,7 +82,7 @@ class ImageSendMessage(SendMessage):
     """
 
     def __init__(self, original_content_url=None, preview_image_url=None,
-                 quick_reply=None, **kwargs):
+                 quick_reply=None, sender=None, **kwargs):
         """__init__ method.
 
         :param str original_content_url: Image URL.
@@ -85,9 +97,10 @@ class ImageSendMessage(SendMessage):
             Max: 1 MB
         :param quick_reply: QuickReply object
         :type quick_reply: T <= :py:class:`linebot.models.send_messages.QuickReply`
+        :type sender: T <= :py:class:`linebot.models.send_messages.Sender`
         :param kwargs:
         """
-        super(ImageSendMessage, self).__init__(quick_reply=quick_reply, **kwargs)
+        super(ImageSendMessage, self).__init__(quick_reply=quick_reply, sender=sender, **kwargs)
 
         self.type = 'image'
         self.original_content_url = original_content_url
@@ -101,7 +114,7 @@ class VideoSendMessage(SendMessage):
     """
 
     def __init__(self, original_content_url=None, preview_image_url=None,
-                 tracking_id=None, quick_reply=None, **kwargs):
+                 tracking_id=None, quick_reply=None, sender=None, **kwargs):
         """__init__ method.
 
         :param str original_content_url: URL of video file.
@@ -113,9 +126,10 @@ class VideoSendMessage(SendMessage):
             Max character limit: 100.
         :param quick_reply: QuickReply object
         :type quick_reply: T <= :py:class:`linebot.models.send_messages.QuickReply`
+        :type sender: T <= :py:class:`linebot.models.send_messages.Sender`
         :param kwargs:
         """
-        super(VideoSendMessage, self).__init__(quick_reply=quick_reply, **kwargs)
+        super(VideoSendMessage, self).__init__(quick_reply=quick_reply, sender=sender, **kwargs)
 
         self.type = 'video'
         self.original_content_url = original_content_url
@@ -129,7 +143,8 @@ class AudioSendMessage(SendMessage):
     https://developers.line.biz/en/reference/messaging-api/#audio-message
     """
 
-    def __init__(self, original_content_url=None, duration=None, quick_reply=None, **kwargs):
+    def __init__(self, original_content_url=None, duration=None, quick_reply=None,
+                 sender=None, **kwargs):
         """__init__ method.
 
         :param str original_content_url: URL of audio file. HTTPS.
@@ -137,9 +152,10 @@ class AudioSendMessage(SendMessage):
         :param long duration: Length of audio file (milliseconds).
         :param quick_reply: QuickReply object
         :type quick_reply: T <= :py:class:`linebot.models.send_messages.QuickReply`
+        :type sender: T <= :py:class:`linebot.models.send_messages.Sender`
         :param kwargs:
         """
-        super(AudioSendMessage, self).__init__(quick_reply=quick_reply, **kwargs)
+        super(AudioSendMessage, self).__init__(quick_reply=quick_reply, sender=sender, **kwargs)
 
         self.type = 'audio'
         self.original_content_url = original_content_url
@@ -153,7 +169,7 @@ class LocationSendMessage(SendMessage):
     """
 
     def __init__(self, title=None, address=None, latitude=None, longitude=None,
-                 quick_reply=None, **kwargs):
+                 quick_reply=None, sender=None, **kwargs):
         """__init__ method.
 
         :param str title: Title
@@ -162,9 +178,10 @@ class LocationSendMessage(SendMessage):
         :param float longitude: Longitude
         :param quick_reply: QuickReply object
         :type quick_reply: T <= :py:class:`linebot.models.send_messages.QuickReply`
+        :type sender: T <= :py:class:`linebot.models.send_messages.Sender`
         :param kwargs:
         """
-        super(LocationSendMessage, self).__init__(quick_reply=quick_reply, **kwargs)
+        super(LocationSendMessage, self).__init__(quick_reply=quick_reply, sender=sender, **kwargs)
 
         self.type = 'location'
         self.title = title
@@ -179,16 +196,17 @@ class StickerSendMessage(SendMessage):
     https://developers.line.biz/en/reference/messaging-api/#sticker-message
     """
 
-    def __init__(self, package_id=None, sticker_id=None, quick_reply=None, **kwargs):
+    def __init__(self, package_id=None, sticker_id=None, quick_reply=None, sender=None, **kwargs):
         """__init__ method.
 
         :param str package_id: Package ID
         :param str sticker_id: Sticker ID
         :param quick_reply: QuickReply object
         :type quick_reply: T <= :py:class:`linebot.models.send_messages.QuickReply`
+        :type sender: T <= :py:class:`linebot.models.send_messages.Sender`
         :param kwargs:
         """
-        super(StickerSendMessage, self).__init__(quick_reply=quick_reply, **kwargs)
+        super(StickerSendMessage, self).__init__(quick_reply=quick_reply, sender=sender, **kwargs)
 
         self.type = 'sticker'
         self.package_id = package_id

@@ -107,7 +107,8 @@
         "packageId": "1",
         "stickerId": "1",
         "stickerResourceType": "STATIC",
-        "keywords": ["Love You", "Love"]
+        "keywords": ["Love You", "Love"],
+        "text": "Just sticker"
       }
     },
     {
@@ -427,6 +428,28 @@
       "videoPlayComplete": {
         "trackingId": "track_id"
       }
+    },
+    {
+      "type": "message",
+      "message": {
+        "type": "image",
+        "id": "354718705033693861",
+        "contentProvider": {
+          "type": "line"
+        },
+        "imageSet": {
+          "id": "E005D41A7288F41B655",
+          "index": 2,
+          "total": 2
+        }
+      },
+      "timestamp": 1627356924722,
+      "source": {
+        "type": "user",
+        "userId": "U206d25c2ea6bd87c17655609a1c37cb8"
+      },
+      "replyToken": "fbf94e269485410da6b7e3a5e33283e8",
+      "mode": "active"
     }
   ]
 }

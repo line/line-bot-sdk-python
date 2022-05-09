@@ -14,7 +14,6 @@
 
 """linebot.models.flex_message module."""
 
-from __future__ import unicode_literals
 
 from abc import ABCMeta
 
@@ -94,6 +93,7 @@ class BubbleContainer(FlexContainer):
         :param hero: Hero block
         :type hero: :py:class:`linebot.models.flex_message.ImageComponent`
             | :py:class:`linebot.models.flex_message.BoxComponent`
+            | :py:class:`linebot.models.flex_message.VideoComponent`
         :param body: Body block
         :type body: :py:class:`linebot.models.flex_message.BoxComponent`
         :param footer: Footer block
@@ -113,7 +113,8 @@ class BubbleContainer(FlexContainer):
         self.hero = self.get_or_new_from_json_dict_with_types(
             hero, {
                 'image': ImageComponent,
-                'box': BoxComponent
+                'box': BoxComponent,
+                'video': VideoComponent
             }
         )
         self.body = self.get_or_new_from_json_dict(body, BoxComponent)
@@ -239,7 +240,9 @@ class BoxComponent(FlexComponent):
                  align_items=None,
                  background=None,
                  width=None,
+                 max_width=None,
                  height=None,
+                 max_height=None,
                  flex=None,
                  spacing=None,
                  margin=None,
@@ -271,7 +274,9 @@ class BoxComponent(FlexComponent):
         :param background: Background object
         :type background: T <= :py:class:`linebot.models.background.Background`
         :param str width: Width of the box
+        :param str max_width: Maximum width of the box
         :param str height: Height of the box
+        :param str max_height: Maximum height of the box
         :param float flex: The ratio of the width or height of this box within the parent box
             and the previous component in the parent box
         :param str spacing: Minimum space between components in this box
@@ -304,7 +309,9 @@ class BoxComponent(FlexComponent):
         self.justify_content = justify_content
         self.align_items = align_items
         self.width = width
+        self.max_width = max_width
         self.height = height
+        self.max_height = max_height
         self.flex = flex
         self.spacing = spacing
         self.margin = margin
@@ -335,7 +342,8 @@ class BoxComponent(FlexComponent):
                         'image': ImageComponent,
                         'span': SpanComponent,
                         'separator': SeparatorComponent,
-                        'text': TextComponent
+                        'text': TextComponent,
+                        'video': VideoComponent
                     }
                 ))
         self.contents = new_contents
@@ -616,6 +624,7 @@ class TextComponent(FlexComponent):
                  align=None,
                  gravity=None,
                  wrap=None,
+                 line_spacing=None,
                  max_lines=None,
                  weight=None,
                  color=None,
@@ -641,6 +650,7 @@ class TextComponent(FlexComponent):
         :param str gravity: Vertical alignment style
         :param bool wrap: rue to wrap text. The default value is False.
             If set to True, you can use a new line character (\n) to begin on a new line.
+        :param str line_spacing: Line spacing in a wrapping text
         :param int max_lines: Max number of lines
         :param str weight: Font weight
         :param str color: Font color
@@ -664,6 +674,7 @@ class TextComponent(FlexComponent):
         self.align = align
         self.gravity = gravity
         self.wrap = wrap
+        self.line_spacing = line_spacing
         self.max_lines = max_lines
         self.weight = weight
         self.color = color
@@ -675,3 +686,45 @@ class TextComponent(FlexComponent):
             self.contents = [self.get_or_new_from_json_dict(it, SpanComponent) for it in contents]
         else:
             self.contents = None
+
+
+class VideoComponent(FlexComponent):
+    """VideoComponent.
+
+    https://developers.line.biz/en/reference/messaging-api/#f-video
+
+    This component renders a video.
+    """
+
+    def __init__(self,
+                 url=None,
+                 preview_url=None,
+                 alt_content=None,
+                 aspect_ratio=None,
+                 action=None,
+                 **kwargs):
+        r"""__init__ method.
+
+        :param str url: URL of video file
+        :param str preview_url: URL of preview image
+        :param alt_content: Alternative content
+        :type alt_content: :py:class:`linebot.models.flex_message.ImageComponent`
+            | :py:class:`linebot.models.flex_message.BoxComponent`
+        :param float aspect_ratio: Aspect ratio of the video
+        :param action: Action performed when this video is tapped
+        :type action: list[T <= :py:class:`linebot.models.actions.Action`]
+        :param kwargs:
+        """
+        super(VideoComponent, self).__init__(**kwargs)
+
+        self.type = 'video'
+        self.url = url
+        self.preview_url = preview_url
+        self.alt_content = self.get_or_new_from_json_dict_with_types(
+            alt_content, {
+                'image': ImageComponent,
+                'box': BoxComponent
+            }
+        )
+        self.aspect_ratio = aspect_ratio
+        self.action = get_action(action)

@@ -257,6 +257,85 @@ class TestLineBotApi(unittest.TestCase):
         self.assertEqual(res.clicks[0].url, json['clicks'][0]['url'])
         self.assertEqual(res.clicks[0].unique_click_of_request, json['clicks'][0]['uniqueClickOfRequest'])
 
+    @responses.activate
+    def test_get_statistics_per_unit(self):
+        json = {
+            'overview': {
+                "uniqueImpression": 40,
+                "uniqueClick": 30,
+                "uniqueMediaPlayed": 25,
+                "uniqueMediaPlayed100Percent": None
+            },
+            'messages': [
+                {
+                    'seq': 1,
+                    'impression': 42,
+                    'mediaPlayed': 30,
+                    'mediaPlayed25Percent': None,
+                    'mediaPlayed50Percent': None,
+                    'mediaPlayed75Percent': None,
+                    'mediaPlayed100Percent': None,
+                    'uniqueMediaPlayed': 25,
+                    'uniqueMediaPlayed25Percent': None,
+                    'uniqueMediaPlayed50Percent': None,
+                    'uniqueMediaPlayed75Percent': None,
+                    'uniqueMediaPlayed100Percent': None
+                }
+            ],
+            'clicks': [
+                {
+                    'seq': 1,
+                    'url': 'https://developers.line.biz/',
+                    'click': 35,
+                    'uniqueClick': 25,
+                    'uniqueClickOfRequest': None
+                },
+                {
+                    'seq': 1,
+                    'url': 'https://www.line-community.me/',
+                    'click': 20,
+                    'uniqueClick': None,
+                    'uniqueClickOfRequest': None
+                }
+            ]
+        }
+        request_param = {
+            'custom_aggregation_unit': 'promotion_a',
+            'from': '20210301',
+            'to': '20210331'
+        }
+        responses.add(
+            responses.GET,
+            LineBotApi.DEFAULT_API_ENDPOINT +
+            '/v2/bot/insight/message/event/aggregation'
+            '?customAggregationUnit={custom_aggregation_unit}'
+            '&from={from_date}&to={to_date}'.format(
+                custom_aggregation_unit=request_param['custom_aggregation_unit'],
+                from_date=request_param['from'], to_date=request_param['to']),
+            status=200,
+            json=json,
+        )
+
+        res = self.tested.get_statistics_per_unit(
+            request_param['custom_aggregation_unit'], request_param['from'], request_param['to'])
+        request = responses.calls[0].request
+        self.assertEqual('GET', request.method)
+        self.assertEqual(
+            request.url,
+            LineBotApi.DEFAULT_API_ENDPOINT +
+            '/v2/bot/insight/message/event/aggregation'
+            '?customAggregationUnit={custom_aggregation_unit}'
+            '&from={from_date}&to={to_date}'.format(
+                custom_aggregation_unit=request_param['custom_aggregation_unit'],
+                from_date=request_param['from'], to_date=request_param['to'])
+        )
+
+        self.assertEqual(res.overview.unique_media_played_100_percent, json['overview']['uniqueMediaPlayed100Percent'])
+        self.assertEqual(res.messages[0].seq, json['messages'][0]['seq'])
+        self.assertEqual(res.messages[0].media_played_50_percent, json['messages'][0]['mediaPlayed50Percent'])
+        self.assertEqual(res.clicks[0].url, json['clicks'][0]['url'])
+        self.assertEqual(res.clicks[0].unique_click_of_request, json['clicks'][0]['uniqueClickOfRequest'])
+
 
 if __name__ == '__main__':
     unittest.main()

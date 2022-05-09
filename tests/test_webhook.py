@@ -81,7 +81,7 @@ class TestWebhookParser(unittest.TestCase):
         self.assertEqual(events[0].message.type, 'text')
         self.assertEqual(events[0].message.text, 'Hello, world')
 
-        # MessageEvent, SourceRoom, TextMessage
+        # MessageEvent, SourceRoom, ImageMessage
         self.assertIsInstance(events[1], MessageEvent)
         self.assertEqual(events[1].reply_token, 'nHuyWiB7yP5Zw52FIkcQobQuGDXCTA')
         self.assertEqual(events[1].type, 'message')
@@ -170,6 +170,7 @@ class TestWebhookParser(unittest.TestCase):
         self.assertEqual(events[5].message.sticker_resource_type, 'STATIC')
         self.assertEqual(events[5].message.keywords[0], 'Love You')
         self.assertEqual(events[5].message.keywords[1], 'Love')
+        self.assertEqual(events[5].message.text, 'Just sticker')
 
         # FollowEvent, SourceUser
         self.assertIsInstance(events[6], FollowEvent)
@@ -443,6 +444,23 @@ class TestWebhookParser(unittest.TestCase):
         self.assertEqual(events[26].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
         self.assertIsInstance(events[26].video_play_complete, VideoPlayComplete)
         self.assertEqual(events[26].video_play_complete.tracking_id, 'track_id')
+
+        # MessageEvent, SourceUser, ImageMessage with ImageSet
+        self.assertIsInstance(events[1], MessageEvent)
+        self.assertEqual(events[27].reply_token, 'fbf94e269485410da6b7e3a5e33283e8')
+        self.assertEqual(events[27].type, 'message')
+        self.assertEqual(events[27].mode, 'active')
+        self.assertEqual(events[27].timestamp, 1627356924722)
+        self.assertIsInstance(events[27].source, SourceUser)
+        self.assertEqual(events[27].source.type, 'user')
+        self.assertEqual(events[27].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
+        self.assertIsInstance(events[27].message, ImageMessage)
+        self.assertEqual(events[27].message.id, '354718705033693861')
+        self.assertEqual(events[27].message.type, 'image')
+        self.assertEqual(events[27].message.content_provider.type, 'line')
+        self.assertEqual(events[27].message.image_set.id, 'E005D41A7288F41B655')
+        self.assertEqual(events[27].message.image_set.index, 2)
+        self.assertEqual(events[27].message.image_set.total, 2)
 
     def test_parse_webhook_req_without_destination(self):
         body = """

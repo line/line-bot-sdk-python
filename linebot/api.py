@@ -14,8 +14,6 @@
 
 """linebot.api module."""
 
-from __future__ import unicode_literals
-
 import json
 
 from .__about__ import __version__
@@ -29,8 +27,15 @@ from .models import (
     InsightMessageDeliveryResponse, InsightFollowersResponse, InsightDemographicResponse,
     InsightMessageEventResponse, BroadcastResponse, NarrowcastResponse,
     MessageProgressNarrowcastResponse, BotInfo, GetWebhookResponse, TestWebhookResponse,
+    AudienceGroup, ClickAudienceGroup, ImpAudienceGroup, GetAuthorityLevel, Audience,
+    CreateAudienceGroup
 )
-from .models.responses import Group
+from .models.responses import (
+    Group, UserIds, RichMenuAliasResponse, RichMenuAliasListResponse, ChannelAccessTokens,
+    IssueChannelTokenResponseV2, VerifyChannelTokenResponseV2, ValidAccessTokenKeyIDsResponse,
+    InsightMessageEventOfCustomAggregationUnitResponse, AggregationInfoResponse,
+    AggregationNameListResponse
+)
 
 
 class LineBotApi(object):
@@ -111,7 +116,8 @@ class LineBotApi(object):
 
     def push_message(
             self, to, messages,
-            retry_key=None, notification_disabled=False, timeout=None):
+            retry_key=None, notification_disabled=False,
+            custom_aggregation_units=None, timeout=None):
         """Call push message API.
 
         https://developers.line.biz/en/reference/messaging-api/#send-push-message
@@ -126,6 +132,11 @@ class LineBotApi(object):
         :param retry_key: (optional) Arbitrarily generated UUID in hexadecimal notation.
         :param bool notification_disabled: (optional) True to disable push notification
             when the message is sent. The default value is False.
+        :param custom_aggregation_units: (optional) Name of aggregation unit. Case-sensitive.
+            Max unit: 1
+            Max aggregation unit name length: 30 characters
+            Supported character types: Half-width alphanumeric characters and underscore
+        :type custom_aggregation_units: str | list[str]
         :param timeout: (optional) How long to wait for the server
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
@@ -144,11 +155,17 @@ class LineBotApi(object):
             'notificationDisabled': notification_disabled,
         }
 
+        if custom_aggregation_units is not None:
+            if not isinstance(custom_aggregation_units, (list, tuple)):
+                custom_aggregation_units = [custom_aggregation_units]
+            data['customAggregationUnits'] = custom_aggregation_units
+
         self._post(
             '/v2/bot/message/push', data=json.dumps(data), timeout=timeout
         )
 
-    def multicast(self, to, messages, retry_key=None, notification_disabled=False, timeout=None):
+    def multicast(self, to, messages, retry_key=None, notification_disabled=False,
+                  custom_aggregation_units=None, timeout=None):
         """Call multicast API.
 
         https://developers.line.biz/en/reference/messaging-api/#send-multicast-message
@@ -166,6 +183,11 @@ class LineBotApi(object):
         :param retry_key: (optional) Arbitrarily generated UUID in hexadecimal notation.
         :param bool notification_disabled: (optional) True to disable push notification
             when the message is sent. The default value is False.
+        :param custom_aggregation_units: (optional) Name of aggregation unit. Case-sensitive.
+            Max unit: 1
+            Max aggregation unit name length: 30 characters
+            Supported character types: Half-width alphanumeric characters and underscore
+        :type custom_aggregation_units: str | list[str]
         :param timeout: (optional) How long to wait for the server
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
@@ -183,6 +205,11 @@ class LineBotApi(object):
             'messages': [message.as_json_dict() for message in messages],
             'notificationDisabled': notification_disabled,
         }
+
+        if custom_aggregation_units is not None:
+            if not isinstance(custom_aggregation_units, (list, tuple)):
+                custom_aggregation_units = [custom_aggregation_units]
+            data['customAggregationUnits'] = custom_aggregation_units
 
         self._post(
             '/v2/bot/message/multicast', data=json.dumps(data), timeout=timeout
@@ -655,7 +682,7 @@ class LineBotApi(object):
     def get_rich_menu(self, rich_menu_id, timeout=None):
         """Call get rich menu API.
 
-        https://developers.line.me/en/docs/messaging-api/reference/#get-rich-menu
+        https://developers.line.biz/en/reference/messaging-api/#get-rich-menu
 
         :param str rich_menu_id: ID of the rich menu
         :param timeout: (optional) How long to wait for the server
@@ -673,10 +700,49 @@ class LineBotApi(object):
 
         return RichMenuResponse.new_from_json_dict(response.json)
 
+    def get_rich_menu_alias(self, rich_menu_alias_id=None, timeout=None):
+        """Call get rich menu alias API.
+
+        https://developers.line.biz/en/reference/messaging-api/#get-rich-menu-alias-by-id
+
+        :param str rich_menu_alias_id: ID of an uploaded rich menu alias.
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        :rtype: :py:class:`linebot.models.responses.RichMenuAliasResponse`
+        :return: RichMenuAliasResponse instance
+        """
+        response = self._get(
+            '/v2/bot/richmenu/alias/{rich_menu_id}'.format(rich_menu_id=rich_menu_alias_id),
+            timeout=timeout
+        )
+        return RichMenuAliasResponse.new_from_json_dict(response.json)
+
+    def get_rich_menu_alias_list(self, timeout=None):
+        """Call get rich menu alias list API.
+
+        https://developers.line.biz/en/reference/messaging-api/#update-rich-menu-alias
+
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        :rtype: :py:class:`linebot.models.responses.RichMenuAliasListResponse`
+        :return: RichMenuAliasListResponse instance
+        """
+        response = self._get(
+            '/v2/bot/richmenu/alias/list',
+            timeout=timeout
+        )
+        return RichMenuAliasListResponse.new_from_json_dict(response.json)
+
     def create_rich_menu(self, rich_menu, timeout=None):
         """Call create rich menu API.
 
-        https://developers.line.me/en/docs/messaging-api/reference/#create-rich-menu
+        https://developers.line.biz/en/reference/messaging-api/#create-rich-menu
 
         :param rich_menu: Inquired to create a rich menu object.
         :type rich_menu: T <= :py:class:`linebot.models.rich_menu.RichMenu`
@@ -694,10 +760,51 @@ class LineBotApi(object):
 
         return response.json.get('richMenuId')
 
+    def create_rich_menu_alias(self, rich_menu_alias, timeout=None):
+        """Call create rich menu alias API.
+
+        https://developers.line.biz/en/reference/messaging-api/#create-rich-menu-alias
+
+        :param rich_menu_alias: Inquired to create a rich menu alias object.
+        :type rich_menu_alias: T <= :py:class:`linebot.models.rich_menu.RichMenuAlias`
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        :rtype: str
+        :return: rich menu id
+        """
+        self._post(
+            '/v2/bot/richmenu/alias', data=rich_menu_alias.as_json_string(), timeout=timeout
+        )
+
+    def update_rich_menu_alias(self, rich_menu_alias_id, rich_menu_alias, timeout=None):
+        """Call update rich menu alias API.
+
+        https://developers.line.biz/en/reference/messaging-api/#update-rich-menu-alias
+
+        :param str rich_menu_alias_id: ID of an uploaded rich menu alias.
+        :param rich_menu_alias: Inquired to create a rich menu alias object.
+        :type rich_menu_alias: T <= :py:class:`linebot.models.rich_menu.RichMenuAlias`
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        :rtype: str
+        :return: rich menu id
+        """
+        self._post(
+            '/v2/bot/richmenu/alias/{rich_menu_id}'.format(rich_menu_id=rich_menu_alias_id),
+            data=rich_menu_alias.as_json_string(),
+            timeout=timeout
+        )
+
     def delete_rich_menu(self, rich_menu_id, timeout=None):
         """Call delete rich menu API.
 
-        https://developers.line.me/en/docs/messaging-api/reference/#delete-rich-menu
+        https://developers.line.biz/en/reference/messaging-api/#delete-rich-menu
 
         :param str rich_menu_id: ID of an uploaded rich menu
         :param timeout: (optional) How long to wait for the server
@@ -711,10 +818,28 @@ class LineBotApi(object):
             timeout=timeout
         )
 
+    def delete_rich_menu_alias(self, rich_menu_alias_id, timeout=None):
+        """Call delete rich menu alias API.
+
+        https://developers.line.biz/en/reference/messaging-api/#delete-rich-menu-alias
+
+        :param str rich_menu_alias_id: ID of an uploaded rich menu alias.
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        """
+        self._delete(
+            '/v2/bot/richmenu/alias/{rich_menu_alias_id}'.format(
+                rich_menu_alias_id=rich_menu_alias_id),
+            timeout=timeout
+        )
+
     def get_rich_menu_id_of_user(self, user_id, timeout=None):
         """Call get rich menu ID of user API.
 
-        https://developers.line.me/en/docs/messaging-api/reference/#get-rich-menu-id-of-user
+        https://developers.line.biz/en/reference/messaging-api/#get-rich-menu-id-of-user
 
         :param str user_id: IDs of the user
         :param timeout: (optional) How long to wait for the server
@@ -735,7 +860,7 @@ class LineBotApi(object):
     def link_rich_menu_to_user(self, user_id, rich_menu_id, timeout=None):
         """Call link rich menu to user API.
 
-        https://developers.line.me/en/docs/messaging-api/reference/#link-rich-menu-to-user
+        https://developers.line.biz/en/reference/messaging-api/#link-rich-menu-to-user
 
         :param str user_id: ID of the user
         :param str rich_menu_id: ID of an uploaded rich menu
@@ -780,7 +905,7 @@ class LineBotApi(object):
     def unlink_rich_menu_from_user(self, user_id, timeout=None):
         """Call unlink rich menu from user API.
 
-        https://developers.line.me/en/docs/messaging-api/reference/#unlink-rich-menu-from-user
+        https://developers.line.biz/en/reference/messaging-api#unlink-rich-menu-from-user
 
         :param str user_id: ID of the user
         :param timeout: (optional) How long to wait for the server
@@ -819,7 +944,7 @@ class LineBotApi(object):
     def get_rich_menu_image(self, rich_menu_id, timeout=None):
         """Call download rich menu image API.
 
-        https://developers.line.me/en/docs/messaging-api/reference/#download-rich-menu-image
+        https://developers.line.biz/en/reference/messaging-api#download-rich-menu-image
 
         :param str rich_menu_id: ID of the rich menu with the image to be downloaded
         :param timeout: (optional) How long to wait for the server
@@ -1148,6 +1273,258 @@ class LineBotApi(object):
 
         return BotInfo.new_from_json_dict(response.json)
 
+    def create_audience_group(self, audience_group_name, audiences=[],
+                              is_ifa=False, timeout=None):
+        """Create an audience group.
+
+        https://developers.line.biz/en/reference/messaging-api/#create-upload-audience-group
+
+        :param str audience_group_name: The audience's name
+        :param list audiences: An array of user IDs or IFAs
+        :param bool is_ifa: true | false
+        :return: audience group id
+        """
+        if audiences:
+            audiences = [Audience.new_from_json_dict(audience) for audience in audiences]
+        response = self._post(
+            '/v2/bot/audienceGroup/upload',
+            data=json.dumps({
+                "description": audience_group_name,
+                "isIfaAudience": is_ifa,
+                "audiences": [audience.as_json_dict() for audience in audiences],
+            }),
+            timeout=timeout
+        )
+
+        return CreateAudienceGroup.new_from_json_dict(response.json)
+
+    def get_audience_group(self, audience_group_id, timeout=None):
+        """Get the object of audience group.
+
+        https://developers.line.biz/en/reference/messaging-api/#get-audience-group
+
+        :param str audience_group_id: The audience ID
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        :return: AudienceGroup instance
+        """
+        response = self._get(
+            '/v2/bot/audienceGroup/{audience_group_id}'.format(
+                audience_group_id=audience_group_id),
+            timeout=timeout
+        )
+
+        return AudienceGroup.new_from_json_dict(response.json)
+
+    def get_audience_group_list(self, page=1, description=None, status=None, size=20,
+                                include_external_public_group=None, create_route=None,
+                                timeout=None):
+        """Get data for more than one audience.
+
+        https://developers.line.biz/en/reference/messaging-api/#get-audience-groups
+
+        :param int page: The page to return when getting (paginated) results. Must be 1 or higher
+        :param str description: The name of the audience(s) to return
+        :param str status: IN_PROGRESS | READY | FAILED | EXPIRED
+        :param int size: The number of audiences per page. Default: 20, Max: 40
+        :param bool include_external_public_group: true | false
+        :param str create_route: How the audience was created.
+        :type create_route: OA_MANAGER | MESSAGING_API
+        :return: AudienceGroup instance
+        """
+        params = {}
+        if page:
+            params["page"] = page
+        if description:
+            params["description"] = description
+        if status:
+            params["status"] = status
+        if size:
+            params["size"] = size
+        if include_external_public_group:
+            params["includesExternalPublicGroup"] = include_external_public_group
+        if create_route:
+            params["createRoute"] = create_route
+        response = self._get(
+            '/v2/bot/audienceGroup/list?',
+            params=params,
+            timeout=timeout
+        )
+        result = []
+        for audience_group in response.json.get('audienceGroups', []):
+            result.append(AudienceGroup.new_from_json_dict(audience_group))
+        if response.json.get('hasNextPage', False):
+            result += self.get_audience_group_list(page + 1, description, status, size,
+                                                   include_external_public_group,
+                                                   create_route, timeout)
+        return result
+
+    def delete_audience_group(self, audience_group_id, timeout=None):
+        """Delete an existing audience.
+
+        https://developers.line.biz/en/reference/messaging-api/#delete-audience-group
+
+        :param str audience_group_id: The audience ID
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        """
+        self._delete(
+            '/v2/bot/audienceGroup/{}'.format(audience_group_id),
+            timeout=timeout
+        )
+
+    def rename_audience_group(self, audience_group_id, description, timeout=None):
+        """Modify the name of an existing audience.
+
+        https://developers.line.biz/en/reference/messaging-api/#set-description-audience-group
+
+        :param str audience_group_id: The audience ID
+        :param str description: The new audience's name
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        """
+        self._put(
+            '/v2/bot/audienceGroup/{audience_group_id}/updateDescription'.format(
+                audience_group_id=audience_group_id),
+            data=json.dumps({
+                "description": description,
+            }),
+            timeout=timeout
+        )
+
+        return ''
+
+    def add_audiences_to_audience_group(self, audience_group_id, audiences,
+                                        upload_description=None, timeout=None):
+        """Add new user IDs or IFAs to an audience for uploading user IDs.
+
+        https://developers.line.biz/en/reference/messaging-api/#update-upload-audience-group
+
+        :param str audience_group_id: The audience ID
+        :param list audiences: An array of user IDs or IFAs
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :param bool is_ifa: If this is false (default), recipients are specified by user IDs.
+            If true, recipients must be specified by IFAs.
+        :param str upload_description: The description to register for the job
+        :type timeout: float | tuple(float, float)
+        """
+        if audiences:
+            audiences = [Audience.new_from_json_dict(audience) for audience in audiences]
+        response = self._put(
+            '/v2/bot/audienceGroup/upload',
+            data=json.dumps({
+                "audienceGroupId": audience_group_id,
+                "audiences": [audience.as_json_dict() for audience in audiences],
+                "uploadDescription": upload_description,
+            }),
+            timeout=timeout
+        )
+
+        return response.json
+
+    def get_audience_group_authority_level(self, timeout=None):
+        """Get the authority level of the audience.
+
+        https://developers.line.biz/en/reference/messaging-api/#get-authority-level
+
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        :return: json
+        """
+        response = self._get(
+            '/v2/bot/audienceGroup/authorityLevel',
+            timeout=timeout
+        )
+
+        return GetAuthorityLevel.new_from_json_dict(response.json)
+
+    def change_audience_group_authority_level(self, authority_level='PUBLIC', timeout=None):
+        """Change the authority level of all audiences created in the same channel.
+
+        https://developers.line.biz/en/reference/messaging-api/#change-authority-level
+
+        :param str authority_level: PUBLIC | PRIVATE.
+        """
+        self._put(
+            '/v2/bot/audienceGroup/authorityLevel',
+            data=json.dumps({
+                "authorityLevel": authority_level,
+            }),
+            timeout=timeout
+        )
+
+        return ''
+
+    def create_click_audience_group(self, description, request_id,
+                                    click_url=None, timeout=None):
+        """Create an audience for click-based retargeting.
+
+        https://developers.line.biz/en/reference/messaging-api/#create-click-audience-group
+
+        :param str description: The audience's name. Audience names must be unique.
+        :param str request_id: The request ID of a message sent in the past 60 days.
+        :param str click_url: The URL clicked by the user.
+        If empty, users who clicked any URL in the message are added to the list of recipients.
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        :return: ClickAudienceGroup instance
+        """
+        response = self._post(
+            '/v2/bot/audienceGroup/click',
+            data=json.dumps({
+                "description": description,
+                "requestId": request_id,
+                "clickUrl": click_url,
+            }),
+            timeout=timeout
+        )
+
+        return ClickAudienceGroup.new_from_json_dict(response.json)
+
+    def create_imp_audience_group(self, description, request_id,
+                                  timeout=None):
+        """Create an audience for impression-based retargeting.
+
+        https://developers.line.biz/en/reference/messaging-api/#create-imp-audience-group
+
+        :param str description: The audience's name. Audience names must be unique.
+        :param str request_id: The request ID of a  message sent in the past 60 days.
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        :return: ImpAudienceGroup instance
+        """
+        response = self._post(
+            '/v2/bot/audienceGroup/imp',
+            data=json.dumps({
+                "description": description,
+                "requestId": request_id,
+            }),
+            timeout=timeout
+        )
+
+        return ImpAudienceGroup.new_from_json_dict(response.json)
+
     def set_webhook_endpoint(self, webhook_endpoint, timeout=None):
         """Set the webhook endpoint URL.
 
@@ -1217,6 +1594,222 @@ class LineBotApi(object):
         )
 
         return TestWebhookResponse.new_from_json_dict(response.json)
+
+    def get_followers_ids(self, limit=300, start=None, timeout=None):
+        """Get a list of users who added your LINE Official Account as a friend.
+
+        https://developers.line.biz/en/reference/messaging-api/#get-follower-ids
+
+        :param int limit: The maximum number of user IDs to retrieve in a single request.
+            The default value is 300.
+        :param str start: Get the next array of user IDs.
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        :rtype: :py:class:`linebot.models.responses.UserIds`
+        """
+        params = {'limit': limit} if start is None else {'limit': limit, 'start': start}
+
+        response = self._get(
+            '/v2/bot/followers/ids',
+            params=params,
+            timeout=timeout
+        )
+
+        return UserIds.new_from_json_dict(response.json)
+
+    def issue_channel_access_token_v2_1(
+            self, client_assertion, grant_type='client_credentials',
+            client_assertion_type='urn:ietf:params:oauth:client-assertion-type:jwt-bearer',
+            timeout=None):
+        """Issues a channel access token v2.1.
+
+        https://developers.line.biz/en/reference/messaging-api/#issue-channel-access-token-v2-1
+
+        :param str client_assertion: Client assertion.
+        :param str grant_type: `client_credentials`
+        :param str client_assertion_type: `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`.
+        :param timeout: (optional) How long to wait for the server
+        to send data before giving up, as a float,
+        or a (connect timeout, read timeout) float tuple.
+        Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        :rtype: :py:class:`linebot.models.responses.IssueChannelTokenResponseV2`
+        """
+        response = self._post(
+            '/oauth2/v2.1/token',
+            data={
+                'grant_type': grant_type,
+                'client_assertion_type': client_assertion_type,
+                'client_assertion': client_assertion,
+            },
+            headers={'Content-Type': 'application/x-www-form-urlencoded'},
+            timeout=timeout
+        )
+
+        return IssueChannelTokenResponseV2.new_from_json_dict(response.json)
+
+    def revoke_channel_access_token_v2_1(
+             self, client_id,
+             client_secret, access_token,
+             timeout=None):
+        """Revokes a channel access token v2.1.
+
+        https://developers.line.biz/en/reference/messaging-api/#revoke-channel-access-token-v2-1
+
+        :param str client_id: Client id.
+        :param str client_secret: Channel secret.
+        :param str access_token: Channel access token.
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        """
+        self._post(
+            '/oauth2/v2.1/revoke',
+            data={'client_id': client_id,
+                  'client_secret': client_secret,
+                  'access_token': access_token},
+            timeout=timeout
+        )
+
+    def get_channel_access_tokens_v2_1(
+            self, client_assertion,
+            client_assertion_type='urn:ietf:params:oauth:client-assertion-type:jwt-bearer',
+            timeout=None):
+        """Get issued channel access tokens v2.1.
+
+        https://developers.line.biz/en/reference/messaging-api/#get-issued-channel-access-tokens-v2-1
+
+        :param str client_assertion: Client assertion.
+        :param str client_assertion_type: `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`.
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        :rtype: :py:class:`linebot.models.responses.ChannelAccessTokens`
+        """
+        response = self._get(
+            '/oauth2/v2.1/tokens',
+            params={'client_assertion': client_assertion,
+                    'client_assertion_type': client_assertion_type},
+            timeout=timeout
+        )
+        return ChannelAccessTokens.new_from_json_dict(response.json)
+
+    def verify_channel_access_token_v2_1(self, access_token, timeout=None):
+        """Validate channel access token v2.1.
+
+        https://developers.line.biz/en/reference/messaging-api/#verfiy-channel-access-token-v2-1
+
+        :param str access_token: Channel access token.
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        :rtype: :py:class:`linebot.models.responses.VerifyChannelTokenResponseV2`
+        """
+        response = self._get('/oauth2/v2.1/verify',
+                             params={'access_token': access_token},
+                             timeout=timeout)
+        return VerifyChannelTokenResponseV2.new_from_json_dict(response.json)
+
+    def get_channel_token_key_ids_v2_1(
+           self, client_assertion,
+           client_assertion_type='urn:ietf:params:oauth:client-assertion-type:jwt-bearer',
+           timeout=None):
+        """Get all valid channel access token key IDs v2.1.
+
+        https://developers.line.biz/en/reference/messaging-api/#get-all-valid-channel-access-token-key-ids-v2-1
+
+        :param str client_assertion: Client assertion.
+        :param str client_assertion_type: `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`.
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        :rtype: :py:class:`linebot.models.responses.VerifyChannelTokenResponseV2`
+        """
+        response = self._get('/oauth2/v2.1/tokens/kid',
+                             params={"client_assertion": client_assertion,
+                                     "client_assertion_type": client_assertion_type},
+                             timeout=timeout)
+        return ValidAccessTokenKeyIDsResponse.new_from_json_dict(response.json)
+
+    def get_statistics_per_unit(self, custom_aggregation_unit, from_date, to_date, timeout=None):
+        """Return statistics about how users interact with push and multicast messages.
+
+        https://developers.line.biz/en/reference/partner-docs/#get-statistics-per-unit
+
+        :param str custom_aggregation_unit: Name of aggregation unit specified when sending
+            the message like `push_message(...)` and `multicast(...)`.
+        :param str from_date: Start date of aggregation period.
+            The format is `yyyyMMdd` (Timezone is UTC+9).
+        :param str to_date: End date of aggregation period.
+            The end date can be specified for up to 30 days later.
+            The format is `yyyyMMdd` (Timezone is UTC+9).
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        :rtype: :py:class:
+            `linebot.models.responses.InsightMessageEventOfCustomAggregationUnitResponse`
+        """
+        response = self._get(
+            '/v2/bot/insight/message/event/aggregation?'
+            'customAggregationUnit={custom_aggregation_unit}&from={from_date}&to={to_date}'.format(
+                custom_aggregation_unit=custom_aggregation_unit,
+                from_date=from_date, to_date=to_date),
+            timeout=timeout
+        )
+
+        return InsightMessageEventOfCustomAggregationUnitResponse.new_from_json_dict(response.json)
+
+    def get_number_of_units_used_this_month(self, timeout=None):
+        """Return the number of aggregation units used this month.
+
+        https://developers.line.biz/en/reference/partner-docs/#get-number-of-units-used-this-month
+
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        :rtype: :py:class: `linebot.models.responses.AggregationInfoResponse`
+        """
+        response = self._get('/v2/bot/message/aggregation/info', timeout=timeout)
+        return AggregationInfoResponse.new_from_json_dict(response.json)
+
+    def get_name_list_of_units_used_this_month(self, limit=100, start=None, timeout=None):
+        """Return the name list of units used this month for statistics aggregation.
+
+        :param int limit: Maximum number of aggregation units you can get per request.
+            If you don't specify a value, or if you specify a value greater than or equal to 100,
+            the maximum is 100.
+        :param str start: Get the next array of name list of units
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        :rtype: :py:class: `linebot.models.responses.AggregationNameListResponse`
+        """
+        params = {'limit': limit} if start is None else {'limit': limit, 'start': start}
+
+        response = self._get(
+            '/v2/bot/message/aggregation/list',
+            params=params,
+            timeout=timeout
+        )
+
+        return AggregationNameListResponse.new_from_json_dict(response.json)
 
     def _get(self, path, endpoint=None, params=None, headers=None, stream=False, timeout=None):
         url = (endpoint or self.endpoint) + path

@@ -23,6 +23,7 @@ from .actions import (  # noqa
     CameraAction,
     CameraRollAction,
     LocationAction,
+    RichMenuSwitchAction,
     Action as TemplateAction,  # backward compatibility
     PostbackAction as PostbackTemplateAction,  # backward compatibility
     MessageAction as MessageTemplateAction,  # backward compatibility
@@ -79,7 +80,8 @@ from .flex_message import (  # noqa
     ImageComponent,
     SeparatorComponent,
     TextComponent,
-    SpanComponent
+    SpanComponent,
+    VideoComponent
 )
 from .imagemap import (  # noqa
     ImagemapSendMessage,
@@ -101,6 +103,7 @@ from .insight import (  # noqa
     MessageStatistics,
     MessageInsight,
     ClickInsight,
+    JobInsight,
 )
 
 from .limit import (  # noqa
@@ -153,12 +156,19 @@ from .responses import (  # noqa
     BotInfo,
     GetWebhookResponse,
     TestWebhookResponse,
+    AudienceGroup,
+    ClickAudienceGroup,
+    ImpAudienceGroup,
+    GetAuthorityLevel,
+    Audience,
+    CreateAudienceGroup,
 )
 from .rich_menu import (  # noqa
     RichMenu,
     RichMenuSize,
     RichMenuArea,
     RichMenuBounds,
+    RichMenuAlias,
 )
 from .send_messages import (  # noqa
     SendMessage,
@@ -199,4 +209,8 @@ from .things import (  # noqa
 from .background import (  # noqa
     Background,
     LinearGradientBackground,
+)
+
+from .emojis import (  # noqa
+    Emojis
 )

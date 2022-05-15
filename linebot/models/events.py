@@ -20,6 +20,7 @@ from abc import ABCMeta
 from future.utils import with_metaclass
 
 from linebot.models.base import Base
+from linebot.models.delivery_context import DeliveryContext
 from linebot.models.messages import (
     TextMessage,
     ImageMessage,
@@ -46,7 +47,15 @@ class Event(with_metaclass(ABCMeta, Base)):
     https://developers.line.biz/en/reference/messaging-api/#webhook-event-objects
     """
 
-    def __init__(self, mode=None, timestamp=None, source=None, **kwargs):
+    def __init__(
+        self,
+        mode=None,
+        timestamp=None,
+        source=None,
+        webhook_event_id=None,
+        delivery_context=None,
+        **kwargs
+    ):
         """__init__ method.
 
         :param str mode: Channel state
@@ -66,6 +75,10 @@ class Event(with_metaclass(ABCMeta, Base)):
                 'group': SourceGroup,
                 'room': SourceRoom,
             }
+        )
+        self.webhook_event_id = webhook_event_id
+        self.delivery_context = self.get_or_new_from_json_dict(
+            delivery_context, DeliveryContext
         )
 
 

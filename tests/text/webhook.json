@@ -10,6 +10,10 @@
         "type": "user",
         "userId": "U206d25c2ea6bd87c17655609a1c37cb8"
       },
+      "webhookEventId": "testwebhookeventid",
+      "deliveryContext": {
+        "isRedelivery": false
+      },
       "message": {
         "id": "325708",
         "type": "text",
@@ -24,6 +28,10 @@
       "source": {
         "type": "room",
         "roomId": "Ra8dbf4673c4c812cd491258042226c99"
+      },
+      "webhookEventId": "testwebhookeventid",
+      "deliveryContext": {
+        "isRedelivery": false
       },
       "message": {
         "id": "325708",
@@ -43,6 +51,10 @@
       "source": {
         "type": "user",
         "userId": "U206d25c2ea6bd87c17655609a1c37cb8"
+      },
+      "webhookEventId": "testwebhookeventid",
+      "deliveryContext": {
+        "isRedelivery": false
       },
       "message": {
         "id": "325708",
@@ -64,6 +76,10 @@
         "type": "user",
         "userId": "U206d25c2ea6bd87c17655609a1c37cb8"
       },
+      "webhookEventId": "testwebhookeventid",
+      "deliveryContext": {
+        "isRedelivery": false
+      },
       "message": {
         "id": "325708",
         "type": "audio",
@@ -83,6 +99,10 @@
         "type": "user",
         "userId": "U206d25c2ea6bd87c17655609a1c37cb8"
       },
+      "webhookEventId": "testwebhookeventid",
+      "deliveryContext": {
+        "isRedelivery": false
+      },
       "message": {
         "id": "325708",
         "type": "location",
@@ -100,6 +120,10 @@
       "source": {
         "type": "user",
         "userId": "U206d25c2ea6bd87c17655609a1c37cb8"
+      },
+      "webhookEventId": "testwebhookeventid",
+      "deliveryContext": {
+        "isRedelivery": false
       },
       "message": {
         "id": "325708",
@@ -119,6 +143,10 @@
       "source": {
         "type": "user",
         "userId": "U206d25c2ea6bd87c17655609a1c37cb8"
+      },
+      "webhookEventId": "testwebhookeventid",
+      "deliveryContext": {
+        "isRedelivery": false
       }
     },
     {
@@ -128,6 +156,10 @@
       "source": {
         "type": "user",
         "userId": "U206d25c2ea6bd87c17655609a1c37cb8"
+      },
+      "webhookEventId": "testwebhookeventid",
+      "deliveryContext": {
+        "isRedelivery": false
       }
     },
     {
@@ -138,6 +170,10 @@
       "source": {
         "type": "group",
         "groupId": "Ca56f94637cc4347f90a25382909b24b9"
+      },
+      "webhookEventId": "testwebhookeventid",
+      "deliveryContext": {
+        "isRedelivery": false
       }
     },
     {
@@ -147,6 +183,10 @@
       "source": {
         "type": "group",
         "groupId": "Ca56f94637cc4347f90a25382909b24b9"
+      },
+      "webhookEventId": "testwebhookeventid",
+      "deliveryContext": {
+        "isRedelivery": false
       }
     },
     {
@@ -160,6 +200,10 @@
       },
       "postback": {
         "data": "action=buyItem&itemId=123123&color=red"
+      },
+      "webhookEventId": "testwebhookeventid",
+      "deliveryContext": {
+        "isRedelivery": false
       }
     },
     {
@@ -170,6 +214,10 @@
       "source": {
         "type": "user",
         "userId": "U206d25c2ea6bd87c17655609a1c37cb8"
+      },
+      "webhookEventId": "testwebhookeventid",
+      "deliveryContext": {
+        "isRedelivery": false
       },
       "beacon": {
         "hwid": "d41d8cd98f",
@@ -184,6 +232,10 @@
       "source": {
         "type": "user",
         "userId": "U206d25c2ea6bd87c17655609a1c37cb8"
+      },
+      "webhookEventId": "testwebhookeventid",
+      "deliveryContext": {
+        "isRedelivery": false
       },
       "beacon": {
         "hwid": "d41d8cd98f",
@@ -200,6 +252,10 @@
         "type": "user",
         "userId": "U206d25c2ea6bd87c17655609a1c37cb8"
       },
+      "webhookEventId": "testwebhookeventid",
+      "deliveryContext": {
+        "isRedelivery": false
+      },
       "link": {
         "result": "ok",
         "nonce": "Vb771wDYtXuammLszK6h9A"
@@ -214,6 +270,10 @@
         "type": "group",
         "groupId": "Ca56f94637cc4347f90a25382909b24b9",
         "userId": "U206d25c2ea6bd87c17655609a1c37cb8"
+      },
+      "webhookEventId": "testwebhookeventid",
+      "deliveryContext": {
+        "isRedelivery": false
       },
       "message": {
         "id": "325708",
@@ -231,6 +291,10 @@
         "roomId": "Ra8dbf4673c4c812cd491258042226c99",
         "userId": "U206d25c2ea6bd87c17655609a1c37cb8"
       },
+      "webhookEventId": "testwebhookeventid",
+      "deliveryContext": {
+        "isRedelivery": false
+      },
       "message": {
         "id": "325708",
         "type": "text",
@@ -245,6 +309,10 @@
       "source": {
         "type": "user",
         "userId": "U206d25c2ea6bd87c17655609a1c37cb8"
+      },
+      "webhookEventId": "testwebhookeventid",
+      "deliveryContext": {
+        "isRedelivery": false
       },
       "postback": {
         "data": "action=buyItem&itemId=123123&color=red",
@@ -262,6 +330,10 @@
         "type": "user",
         "userId": "U206d25c2ea6bd87c17655609a1c37cb8"
       },
+      "webhookEventId": "testwebhookeventid",
+      "deliveryContext": {
+        "isRedelivery": false
+      },
       "postback": {
         "data": "action=buyItem&itemId=123123&color=red",
         "params": {
@@ -277,6 +349,10 @@
       "source": {
         "type": "user",
         "userId": "U206d25c2ea6bd87c17655609a1c37cb8"
+      },
+      "webhookEventId": "testwebhookeventid",
+      "deliveryContext": {
+        "isRedelivery": false
       },
       "postback": {
         "data": "action=buyItem&itemId=123123&color=red",
@@ -294,6 +370,10 @@
         "type": "user",
         "userId": "U206d25c2ea6bd87c17655609a1c37cb8"
       },
+      "webhookEventId": "testwebhookeventid",
+      "deliveryContext": {
+        "isRedelivery": false
+      },
       "things": {
         "deviceId": "t2c449c9d1",
         "type": "link"
@@ -307,6 +387,10 @@
       "source": {
         "type": "group",
         "groupId": "C4af4980629..."
+      },
+      "webhookEventId": "testwebhookeventid",
+      "deliveryContext": {
+        "isRedelivery": false
       },
       "joined": {
         "members": [
@@ -328,6 +412,10 @@
       "source": {
         "type": "group",
         "groupId": "C4af4980629..."
+      },
+      "webhookEventId": "testwebhookeventid",
+      "deliveryContext": {
+        "isRedelivery": false
       },
       "left": {
         "members": [
@@ -351,6 +439,10 @@
         "type": "user",
         "userId": "U206d25c2ea6bd87c17655609a1c37cb8"
       },
+      "webhookEventId": "testwebhookeventid",
+      "deliveryContext": {
+        "isRedelivery": false
+      },
       "things": {
         "deviceId": "t2c449c9d1",
         "type": "unlink"
@@ -364,6 +456,10 @@
       "source": {
         "type": "user",
         "userId": "U206d25c2ea6bd87c17655609a1c37cb8"
+      },
+      "webhookEventId": "testwebhookeventid",
+      "deliveryContext": {
+        "isRedelivery": false
       },
       "message": {
         "id": "325708",
@@ -379,6 +475,10 @@
       "source": {
         "type": "user",
         "userId": "U206d25c2ea6bd87c17655609a1c37cb8"
+      },
+      "webhookEventId": "testwebhookeventid",
+      "deliveryContext": {
+        "isRedelivery": false
       },
       "timestamp": 1547817848122,
       "things": {
@@ -412,6 +512,10 @@
         "groupId": "Ca56f94637cc4347f90a25382909b24b9",
         "userId": "U206d25c2ea6bd87c17655609a1c37cb8"
       },
+      "webhookEventId": "testwebhookeventid",
+      "deliveryContext": {
+        "isRedelivery": false
+      },
       "unsend": {
         "messageId": "325708"
       }
@@ -424,6 +528,10 @@
       "source": {
         "type": "user",
         "userId": "U206d25c2ea6bd87c17655609a1c37cb8"
+      },
+      "webhookEventId": "testwebhookeventid",
+      "deliveryContext": {
+        "isRedelivery": false
       },
       "videoPlayComplete": {
         "trackingId": "track_id"
@@ -448,8 +556,31 @@
         "type": "user",
         "userId": "U206d25c2ea6bd87c17655609a1c37cb8"
       },
+      "webhookEventId": "testwebhookeventid",
+      "deliveryContext": {
+        "isRedelivery": false
+      },
       "replyToken": "fbf94e269485410da6b7e3a5e33283e8",
       "mode": "active"
+    },
+    {
+      "replyToken": "nHuyWiB7yP5Zw52FIkcQobQuGDXCTA",
+      "type": "message",
+      "mode": "active",
+      "timestamp": 1462629479859,
+      "source": {
+        "type": "user",
+        "userId": "U206d25c2ea6bd87c17655609a1c37cb8"
+      },
+      "webhookEventId": "testwebhookeventid",
+      "deliveryContext": {
+        "isRedelivery": true
+      },
+      "message": {
+        "id": "325708",
+        "type": "text",
+        "text": "Hello, world"
+      }
     }
   ]
 }

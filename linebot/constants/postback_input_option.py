@@ -14,7 +14,8 @@
 
 
 class PostbackInputOption:
-    """Constant class for Postback input option"""
+    """Constant class for Postback input option."""
+
     CLOSE_RICH_MENU = "closeRichMenu"
     OPEN_RICH_MENU = "openRichMenu"
     OPEN_KEYBOARD = "openKeyboard"

@@ -15,6 +15,7 @@
 from __future__ import unicode_literals, absolute_import
 
 import unittest
+from linebot.constants.postback_input_option import PostbackInputOption
 
 from linebot.models import (
     PostbackAction,
@@ -34,7 +35,9 @@ class TestActions(SerializeTestCase):
         arg = {
             'label': 'Buy',
             'data': 'action=buy&id=1',
-            'display_text': 'buy'
+            'display_text': 'buy',
+            'input_option': PostbackInputOption.OPEN_KEYBOARD,
+            'fill_in_text': 'fill in text',
         }
         self.assertEqual(
             self.serialize_as_dict(arg, type=self.POSTBACK),

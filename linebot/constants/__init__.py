@@ -12,4 +12,4 @@
 
 """linebot.constants package."""
 
-from .postback_input_option import PostbackInputOption
+from .postback_input_option import PostbackInputOption  # noqa

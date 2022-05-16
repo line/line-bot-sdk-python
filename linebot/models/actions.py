@@ -73,7 +73,16 @@ class PostbackAction(Action):
     a postback event is returned via webhook with the specified string in the data property.
     """
 
-    def __init__(self, label=None, data=None, display_text=None, text=None, **kwargs):
+    def __init__(
+        self,
+        label=None,
+        data=None,
+        display_text=None,
+        text=None,
+        input_option=None,
+        fill_in_text=None,
+        **kwargs
+    ):
         """__init__ method.
 
         :param str label: Label for the action.
@@ -92,6 +101,8 @@ class PostbackAction(Action):
         self.data = data
         self.display_text = display_text
         self.text = text
+        self.input_option = input_option
+        self.fill_in_text = fill_in_text
 
 
 class MessageAction(Action):

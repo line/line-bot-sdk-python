@@ -739,6 +739,24 @@ class LineBotApi(object):
         )
         return RichMenuAliasListResponse.new_from_json_dict(response.json)
 
+    def validate_rich_menu_object(self, rich_menu, timeout=None):
+        """Call validate rich menu object API.
+
+        https://developers.line.biz/ja/reference/messaging-api/#validate-rich-menu-object
+
+        :param rich_menu: Inquired to validate a rich menu object.
+        :type rich_menu: T <= :py:class:`linebot.models.rich_menu.RichMenu`
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        """
+        self._post(
+            '/v2/bot/richmenu/validate', data=rich_menu.as_json_string(),
+            timeout=timeout
+        )
+
     def create_rich_menu(self, rich_menu, timeout=None):
         """Call create rich menu API.
 

@@ -115,6 +115,46 @@ class TestLineBotApi(unittest.TestCase):
         self.assertEqual(rich_menu.areas[0].action.data, 'action=buy&itemid=123')
 
     @responses.activate
+    def test_validate_rich_menu_object(self):
+        responses.add(
+            responses.POST,
+            LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/richmenu/validate',
+            json={}, status=200
+        )
+
+        rich_menu = RichMenu(
+            size=RichMenuSize(
+                width=2500,
+                height=1686
+            ),
+            selected=False,
+            name="nice richmenu",
+            chatBarText="touch me",
+            areas=[
+                RichMenuArea(
+                    RichMenuBounds(
+                        x=0,
+                        y=0,
+                        width=833,
+                        height=843
+                    ),
+                    URITemplateAction(
+                        uri='https://line.me/R/nv/location/'
+                    )
+                )
+            ]
+        )
+
+        self.tested.validate_rich_menu_object(rich_menu)
+
+        request = responses.calls[0].request
+        self.assertEqual(request.method, 'POST')
+        self.assertEqual(
+            request.url,
+            LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/richmenu/validate'
+        )
+
+    @responses.activate
     def test_create_rich_menu(self):
         responses.add(
             responses.POST,

@@ -346,6 +346,27 @@ https://developers.line.biz/en/reference/messaging-api/#get-rich-menu
     rich_menu = line_bot_api.get_rich_menu(rich_menu_id)
     print(rich_menu.rich_menu_id)
 
+validate\_rich\_menu\_object(self, rich\_menu, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Validate a rich menu object.
+You can verify that a rich menu object is valid as a request body for creating rich menu.
+
+https://developers.line.biz/ja/reference/messaging-api/#validate-rich-menu-object
+
+.. code:: python
+
+    rich_menu_to_validate = RichMenu(
+        size=RichMenuSize(width=2500, height=843),
+        selected=False,
+        name="Nice richmenu",
+        chat_bar_text="Tap here",
+        areas=[RichMenuArea(
+            bounds=RichMenuBounds(x=0, y=0, width=2500, height=843),
+            action=URIAction(label='Go to line.me', uri='https://line.me'))]
+    )
+    line_bot_api.validate_rich_menu_object(rich_menu=rich_menu_to_create)
+
 create\_rich\_menu(self, rich\_menu, timeout=None)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

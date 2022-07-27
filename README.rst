@@ -365,7 +365,7 @@ https://developers.line.biz/ja/reference/messaging-api/#validate-rich-menu-objec
             bounds=RichMenuBounds(x=0, y=0, width=2500, height=843),
             action=URIAction(label='Go to line.me', uri='https://line.me'))]
     )
-    line_bot_api.validate_rich_menu_object(rich_menu=rich_menu_to_create)
+    line_bot_api.validate_rich_menu_object(rich_menu=rich_menu_to_validate)
 
 create\_rich\_menu(self, rich\_menu, timeout=None)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

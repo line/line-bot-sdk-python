@@ -161,7 +161,7 @@ class CarouselTemplate(Template):
 
         :param columns: Array of columns.
             Max: 10
-        :type columns: list[T <= :py:class:`linebot.models.template.CarouselColumn`]
+        :type columns: list[:py:class:`linebot.models.template.CarouselColumn`]
         :param str image_aspect_ratio: Aspect ratio of the image.
             Specify ``rectangle`` or ``square``.
         :param str image_size: Size of the image. Specify ``cover`` or ``contain``.
@@ -195,7 +195,7 @@ class ImageCarouselTemplate(Template):
 
         :param columns: Array of columns.
             Max: 10
-        :type columns: list[T <= :py:class:`linebot.models.template.ImageCarouselColumn`]
+        :type columns: list[:py:class:`linebot.models.template.ImageCarouselColumn`]
         :param kwargs:
         """
         super(ImageCarouselTemplate, self).__init__(**kwargs)

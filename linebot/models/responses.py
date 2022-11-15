@@ -72,9 +72,9 @@ class Group(Base):
     def __init__(self, group_id=None, group_name=None, picture_url=None, **kwargs):
         """__init__ method.
 
-        :param str group_id
-        :param str group_name
-        :param str picture_url
+        :param str group_id:
+        :param str group_name:
+        :param str picture_url:
         :param kwargs:
         """
         super(Group, self).__init__(**kwargs)
@@ -161,7 +161,7 @@ class RichMenuResponse(Base):
                  chat_bar_text=None, areas=None, **kwargs):
         """__init__ method.
 
-        :param str id: Rich Menu ID
+        :param str rich_menu_id: Rich Menu ID
         :param size: size object which describe the rich menu displayed in the chat.
             Rich menu images must be one of the following sizes: 2500x1686, 2500x843.
         :type size: :py:class:`linebot.models.rich_menu.RichMenuSize`
@@ -172,7 +172,7 @@ class RichMenuResponse(Base):
             Maximum of 14 characters.
         :param areas: Array of area objects which define coordinates and size of tappable areas.
             Maximum of 20 area objects.
-        :type areas: list[T <= :py:class:`linebot.models.rich_menu.RichMenuArea`]
+        :type areas: list[:py:class:`linebot.models.rich_menu.RichMenuArea`]
         :param kwargs:
         """
         super(RichMenuResponse, self).__init__(**kwargs)
@@ -221,7 +221,7 @@ class RichMenuAliasListResponse(Base):
         """__init__ method.
 
         :param aliases: Array of rich menu alias objects
-        :type areas: list[T <= :py:class:`linebot.models.RichMenuAlias`]
+        :type aliases: list[:py:class:`linebot.models.rich_menu.RichMenuAlias`]
         :param kwargs:
         """
         super(RichMenuAliasListResponse, self).__init__(**kwargs)
@@ -484,15 +484,16 @@ class InsightDemographicResponse(Base):
 
         :param bool available: `true` if friend demographic information is available.
         :param genders: Percentage per gender.
-        :type genders: list[T <= :py:class:`linebot.models.GenderInsight`]
+        :type genders: list[:py:class:`linebot.models.insight.GenderInsight`]
         :param ages: Percentage per age group.
-        :type ages: list[T <= :py:class:`linebot.models.AgeInsight`]
+        :type ages: list[:py:class:`linebot.models.insight.AgeInsight`]
         :param areas: Percentage per area.
-        :type areas: list[T <= :py:class:`linebot.models.AreaInsight`]
+        :type areas: list[:py:class:`linebot.models.insight.AreaInsight`]
         :param app_types: Percentage by OS.
-        :type app_types: list[T <= :py:class:`linebot.models.AppTypeInsight`]
+        :type app_types: list[:py:class:`linebot.models.insight.AppTypeInsight`]
         :param subscription_periods: Percentage per friendship duration.
-        :type subscription_periods: list[T <= :py:class:`linebot.models.SubscriptionPeriodInsight`]
+        :type subscription_periods:
+            list[:py:class:`linebot.models.insight.SubscriptionPeriodInsight`]
         :param kwargs:
         """
         super(InsightDemographicResponse, self).__init__(**kwargs)
@@ -513,11 +514,11 @@ class InsightMessageEventResponse(Base):
         """__init__ method.
 
         :param overview: Summary of message statistics.
-        :type overview: T <= :py:class:`linebot.models.MessageStatistics`
+        :type overview: :py:class:`linebot.models.insight.MessageStatistics`
         :param messages: Array of information about individual message bubbles.
-        :type messages: list[T <= :py:class:`linebot.models.MessageInsight`]
+        :type messages: list[:py:class:`linebot.models.insight.MessageInsight`]
         :param clicks: Array of information about URLs in the message.
-        :type clicks: list[T <= :py:class:`linebot.models.ClickInsight`]
+        :type clicks: list[:py:class:`linebot.models.insight.ClickInsight`]
         :param kwargs:
         """
         super(InsightMessageEventResponse, self).__init__(**kwargs)
@@ -534,11 +535,11 @@ class InsightMessageEventOfCustomAggregationUnitResponse(Base):
         """__init__ method.
 
         :param overview: Summary of message statistics.
-        :type overview: T <= :py:class:`linebot.models.MessageStatisticsOfCustomAggregationUnit`
+        :type overview: :py:class:`linebot.models.insight.MessageStatisticsOfCustomAggregationUnit`
         :param messages: Array of information about individual message bubbles.
-        :type messages: list[T <= :py:class:`linebot.models.MessageInsight`]
+        :type messages: list[:py:class:`linebot.models.insight.MessageInsight`]
         :param clicks: Array of information about URLs in the message.
-        :type clicks: list[T <= :py:class:`linebot.models.ClickInsight`]
+        :type clicks: list[:py:class:`linebot.models.insight.ClickInsight`]
         :param kwargs:
         """
         super(InsightMessageEventOfCustomAggregationUnitResponse, self).__init__(**kwargs)

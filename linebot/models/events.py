@@ -444,7 +444,7 @@ class UnsendEvent(Event):
         :param source: Source object
         :type source: T <= :py:class:`linebot.models.sources.Source`
         :param unsend: Unsend object
-        :type unsend: T <= :py:class:`linebot.models.unsend.Unsend`
+        :type unsend: :py:class:`linebot.models.unsend.Unsend`
         :param kwargs:
         """
         super(UnsendEvent, self).__init__(
@@ -475,8 +475,7 @@ class VideoPlayCompleteEvent(Event):
         :type source: T <= :py:class:`linebot.models.sources.Source`
         :param str reply_token: Reply token
         :param video_play_complete: VideoPlayComplete object
-        :type video_play_complete:
-            T <= :py:class:`linebot.models.video_play_complete.VideoPlayComplete`
+        :type video_play_complete: :py:class:`linebot.models.video_play_complete.VideoPlayComplete`
         :param kwargs:
         """
         super(VideoPlayCompleteEvent, self).__init__(

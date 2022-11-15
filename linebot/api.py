@@ -804,7 +804,7 @@ class LineBotApi(object):
 
         :param str rich_menu_alias_id: ID of an uploaded rich menu alias.
         :param rich_menu_alias: Inquired to create a rich menu alias object.
-        :type rich_menu_alias: T <= :py:class:`linebot.models.rich_menu.RichMenuAlias`
+        :type rich_menu_alias: :py:class:`linebot.models.rich_menu.RichMenuAlias`
         :param timeout: (optional) How long to wait for the server
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
@@ -1300,6 +1300,11 @@ class LineBotApi(object):
         :param str audience_group_name: The audience's name
         :param list audiences: An array of user IDs or IFAs
         :param bool is_ifa: true | false
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | (float, float)
         :return: audience group id
         """
         if audiences:
@@ -1351,6 +1356,11 @@ class LineBotApi(object):
         :param bool include_external_public_group: true | false
         :param str create_route: How the audience was created.
         :type create_route: OA_MANAGER | MESSAGING_API
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | (float, float)
         :return: AudienceGroup instance
         """
         params = {}
@@ -1477,6 +1487,11 @@ class LineBotApi(object):
         https://developers.line.biz/en/reference/messaging-api/#change-authority-level
 
         :param str authority_level: PUBLIC | PRIVATE.
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | (float, float)
         """
         self._put(
             '/v2/bot/audienceGroup/authorityLevel',
@@ -1590,7 +1605,7 @@ class LineBotApi(object):
 
         https://developers.line.biz/en/reference/messaging-api/#test-webhook-endpoint
 
-        :param webhook_endpoint: (optional) Set this parameter to
+        :param str webhook_endpoint: (optional) Set this parameter to
             specific the webhook endpoint of the webhook. Default is the webhook
             endpoint that is already set to the channel.
         :param timeout: (optional) How long to wait for the server

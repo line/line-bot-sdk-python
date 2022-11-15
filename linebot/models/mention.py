@@ -33,7 +33,8 @@ class Mention(with_metaclass(ABCMeta, Base)):
     def __init__(self, mentionees=None, **kwargs):
         """__init__ method.
 
-        :param List mentionees: Array of LINE mentionee objects
+        :param mentionees: Array of LINE mentionee objects
+        :type mentionees: list[:py:class:`linebot.models.mentionee.Mentionee`]
         :param kwargs:
         """
         super(Mention, self).__init__(**kwargs)

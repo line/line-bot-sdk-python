@@ -130,7 +130,7 @@ class AsyncLineBotApi(object):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         """
         if not isinstance(messages, (list, tuple)):
             messages = [messages]
@@ -177,7 +177,7 @@ class AsyncLineBotApi(object):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         """
         if not isinstance(messages, (list, tuple)):
             messages = [messages]
@@ -233,7 +233,7 @@ class AsyncLineBotApi(object):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         """
         if not isinstance(messages, (list, tuple)):
             messages = [messages]
@@ -276,7 +276,7 @@ class AsyncLineBotApi(object):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         :rtype: :py:class:`linebot.models.responses.BroadcastResponse`
         """
         if not isinstance(messages, (list, tuple)):
@@ -319,18 +319,18 @@ class AsyncLineBotApi(object):
             list[T <= :py:class:`linebot.models.send_messages.SendMessage`]
         :param retry_key: (optional) Arbitrarily generated UUID in hexadecimal notation.
         :param recipient: audience object of recipient
-        :type recipient: T <= :py:class:`linebot.models.recipient.AudienceRecipient`
+        :type recipient: :py:class:`linebot.models.recipient.AudienceRecipient`
         :param filter: demographic filter of recipient
-        :type filter: T <= :py:class:`linebot.models.filter.DemographicFilter`
+        :type filter: :py:class:`linebot.models.filter.DemographicFilter`
         :param limit: limit on this narrowcast
-        :type limit: T <= :py:class:`linebot.models.limit.Limit`
+        :type limit: :py:class:`linebot.models.limit.Limit`
         :param bool notification_disabled: (optional) True to disable push notification
             when the message is sent. The default value is False.
         :param timeout: (optional) How long to wait for the server
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         :rtype: :py:class:`linebot.models.responses.NarrowcastResponse`
         """
         if not isinstance(messages, (list, tuple)):
@@ -365,7 +365,7 @@ class AsyncLineBotApi(object):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         :rtype: :py:class:`linebot.models.responses.MessageDeliveryBroadcastResponse`
         """
         response = await self._get(
@@ -391,7 +391,7 @@ class AsyncLineBotApi(object):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         :rtype: :py:class:`linebot.models.responses.MessageDeliveryBroadcastResponse`
         """
         response = await self._get(
@@ -415,7 +415,7 @@ class AsyncLineBotApi(object):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         :rtype: :py:class:`linebot.models.responses.MessageDeliveryReplyResponse`
         """
         response = await self._get(
@@ -437,7 +437,7 @@ class AsyncLineBotApi(object):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         :rtype: :py:class:`linebot.models.responses.MessageDeliveryPushResponse`
         """
         response = await self._get(
@@ -459,7 +459,7 @@ class AsyncLineBotApi(object):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         :rtype: :py:class:`linebot.models.responses.MessageDeliveryMulticastResponse`
         """
         response = await self._get(
@@ -483,7 +483,7 @@ class AsyncLineBotApi(object):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         :rtype: :py:class:`linebot.models.responses.Profile`
         :return: Profile instance
         """
@@ -506,7 +506,7 @@ class AsyncLineBotApi(object):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         :rtype: :py:class:`linebot.models.responses.Group`
         :return: Profile instance
         """
@@ -529,7 +529,7 @@ class AsyncLineBotApi(object):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         :rtype: :py:class:`linebot.models.responses.Group`
         :return: Profile instance
         """
@@ -552,7 +552,7 @@ class AsyncLineBotApi(object):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         :rtype: :py:class:`linebot.models.responses.Group`
         :return: Profile instance
         """
@@ -578,7 +578,7 @@ class AsyncLineBotApi(object):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         :rtype: :py:class:`linebot.models.responses.Profile`
         :return: Profile instance
         """
@@ -606,7 +606,7 @@ class AsyncLineBotApi(object):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         :rtype: :py:class:`linebot.models.responses.Profile`
         :return: Profile instance
         """
@@ -634,7 +634,7 @@ class AsyncLineBotApi(object):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         :rtype: :py:class:`linebot.models.responses.MemberIds`
         :return: MemberIds instance
         """
@@ -663,7 +663,7 @@ class AsyncLineBotApi(object):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         :rtype: :py:class:`linebot.models.responses.MemberIds`
         :return: MemberIds instance
         """
@@ -689,7 +689,7 @@ class AsyncLineBotApi(object):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         :rtype: :py:class:`linebot.models.responses.Content`
         :return: Content instance
         """
@@ -713,7 +713,7 @@ class AsyncLineBotApi(object):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         """
         await self._post(
             "/v2/bot/group/{group_id}/leave".format(group_id=group_id), timeout=timeout
@@ -731,7 +731,7 @@ class AsyncLineBotApi(object):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         """
         await self._post(
             "/v2/bot/room/{room_id}/leave".format(room_id=room_id), timeout=timeout
@@ -747,7 +747,7 @@ class AsyncLineBotApi(object):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         :rtype: :py:class:`linebot.models.responses.RichMenuResponse`
         :return: RichMenuResponse instance
         """
@@ -768,7 +768,7 @@ class AsyncLineBotApi(object):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         :rtype: :py:class:`linebot.models.responses.RichMenuAliasResponse`
         :return: RichMenuAliasResponse instance
         """
@@ -789,7 +789,7 @@ class AsyncLineBotApi(object):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         :rtype: :py:class:`linebot.models.responses.RichMenuAliasListResponse`
         :return: RichMenuAliasListResponse instance
         """
@@ -802,12 +802,12 @@ class AsyncLineBotApi(object):
         https://developers.line.biz/ja/reference/messaging-api/#validate-rich-menu-object
 
         :param rich_menu: Inquired to create a rich menu object.
-        :type rich_menu: T <= :py:class:`linebot.models.rich_menu.RichMenu`
+        :type rich_menu: :py:class:`linebot.models.rich_menu.RichMenu`
         :param timeout: (optional) How long to wait for the server
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         """
         await self._post(
             "/v2/bot/richmenu/validate", data=rich_menu.as_json_string(),
@@ -820,12 +820,12 @@ class AsyncLineBotApi(object):
         https://developers.line.biz/en/reference/messaging-api/#create-rich-menu
 
         :param rich_menu: Inquired to create a rich menu object.
-        :type rich_menu: T <= :py:class:`linebot.models.rich_menu.RichMenu`
+        :type rich_menu: :py:class:`linebot.models.rich_menu.RichMenu`
         :param timeout: (optional) How long to wait for the server
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         :rtype: str
         :return: rich menu id
         """
@@ -841,12 +841,12 @@ class AsyncLineBotApi(object):
         https://developers.line.biz/en/reference/messaging-api/#create-rich-menu-alias
 
         :param rich_menu_alias: Inquired to create a rich menu alias object.
-        :type rich_menu_alias: T <= :py:class:`linebot.models.rich_menu.RichMenuAlias`
+        :type rich_menu_alias: :py:class:`linebot.models.rich_menu.RichMenuAlias`
         :param timeout: (optional) How long to wait for the server
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         :rtype: str
         :return: rich menu id
         """
@@ -865,12 +865,12 @@ class AsyncLineBotApi(object):
 
         :param str rich_menu_alias_id: ID of an uploaded rich menu alias.
         :param rich_menu_alias: Inquired to create a rich menu alias object.
-        :type rich_menu_alias: T <= :py:class:`linebot.models.rich_menu.RichMenuAlias`
+        :type rich_menu_alias: :py:class:`linebot.models.rich_menu.RichMenuAlias`
         :param timeout: (optional) How long to wait for the server
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         :rtype: str
         :return: rich menu id
         """
@@ -892,7 +892,7 @@ class AsyncLineBotApi(object):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         """
         await self._delete(
             "/v2/bot/richmenu/{rich_menu_id}".format(rich_menu_id=rich_menu_id),
@@ -909,7 +909,7 @@ class AsyncLineBotApi(object):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         """
         await self._delete(
             "/v2/bot/richmenu/alias/{rich_menu_alias_id}".format(
@@ -928,7 +928,7 @@ class AsyncLineBotApi(object):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         :rtype: str
         :return: rich menu id
         """
@@ -949,7 +949,7 @@ class AsyncLineBotApi(object):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         """
         await self._post(
             "/v2/bot/user/{user_id}/richmenu/{rich_menu_id}".format(
@@ -971,7 +971,7 @@ class AsyncLineBotApi(object):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         """
         await self._post(
             "/v2/bot/richmenu/bulk/link",
@@ -994,7 +994,7 @@ class AsyncLineBotApi(object):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         """
         await self._delete(
             "/v2/bot/user/{user_id}/richmenu".format(user_id=user_id), timeout=timeout
@@ -1012,7 +1012,7 @@ class AsyncLineBotApi(object):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         """
         await self._post(
             "/v2/bot/richmenu/bulk/unlink",
@@ -1034,7 +1034,7 @@ class AsyncLineBotApi(object):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         :rtype: :py:class:`linebot.models.responses.Content`
         :return: Content instance
         """
@@ -1062,7 +1062,7 @@ class AsyncLineBotApi(object):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         """
         await self._post(
             "/v2/bot/richmenu/{rich_menu_id}/content".format(rich_menu_id=rich_menu_id),
@@ -1081,7 +1081,7 @@ class AsyncLineBotApi(object):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         :rtype: list(T <= :py:class:`linebot.models.responses.RichMenuResponse`)
         :return: list[RichMenuResponse] instance
         """
@@ -1103,7 +1103,7 @@ class AsyncLineBotApi(object):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         """
         await self._post(
             "/v2/bot/user/all/richmenu/{rich_menu_id}".format(
@@ -1121,7 +1121,7 @@ class AsyncLineBotApi(object):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         """
         response = await self._get("/v2/bot/user/all/richmenu", timeout=timeout)
 
@@ -1136,7 +1136,7 @@ class AsyncLineBotApi(object):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         """
         await self._delete("/v2/bot/user/all/richmenu", timeout=timeout)
 
@@ -1149,7 +1149,7 @@ class AsyncLineBotApi(object):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         :rtype: :py:class:`linebot.models.responses.MessageQuotaResponse`
         :return: MessageQuotaResponse instance
         """
@@ -1166,7 +1166,7 @@ class AsyncLineBotApi(object):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         :rtype: :py:class:`linebot.models.responses.MessageQuotaConsumptionResponse`
         :return: MessageQuotaConsumptionResponse instance
         """
@@ -1184,7 +1184,7 @@ class AsyncLineBotApi(object):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         :rtype: :py:class:`linebot.models.responses.IssueLinkTokenResponse`
         :return: IssueLinkTokenResponse instance
         """
@@ -1208,7 +1208,7 @@ class AsyncLineBotApi(object):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         :rtype: :py:class:`linebot.models.responses.IssueChannelTokenResponse`
         :return: IssueChannelTokenResponse instance
         """
@@ -1235,7 +1235,7 @@ class AsyncLineBotApi(object):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         """
         await self._post(
             "/v2/oauth/revoke",
@@ -1254,7 +1254,7 @@ class AsyncLineBotApi(object):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         :rtype: :py:class:`linebot.models.responses.InsightMessageDeliveryResponse`
         """
         response = await self._get(
@@ -1274,7 +1274,7 @@ class AsyncLineBotApi(object):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         :rtype: :py:class:`linebot.models.responses.InsightFollowersResponse`
         """
         response = await self._get(
@@ -1292,7 +1292,7 @@ class AsyncLineBotApi(object):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         :rtype: :py:class:`linebot.models.responses.InsightDemographicResponse`
         """
         response = await self._get("/v2/bot/insight/demographic", timeout=timeout)
@@ -1309,7 +1309,7 @@ class AsyncLineBotApi(object):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         :rtype: :py:class:`linebot.models.responses.InsightMessageEventResponse`
         """
         response = await self._get(
@@ -1330,7 +1330,7 @@ class AsyncLineBotApi(object):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         :rtype: :py:class:`linebot.models.responses.BotInfo`
         """
         response = await self._get("/v2/bot/info", timeout=timeout)
@@ -1377,7 +1377,7 @@ class AsyncLineBotApi(object):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         :return: AudienceGroup instance
         """
         response = await self._get(
@@ -1410,6 +1410,11 @@ class AsyncLineBotApi(object):
         :param bool include_external_public_group: true | false
         :param str create_route: How the audience was created.
         :type create_route: OA_MANAGER | MESSAGING_API
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.async_http_client.timeout
+        :type timeout: float | (float, float)
         :return: AudienceGroup instance
         """
         params = {}
@@ -1453,7 +1458,7 @@ class AsyncLineBotApi(object):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         """
         await self._delete(
             "/v2/bot/audienceGroup/{}".format(audience_group_id), timeout=timeout
@@ -1470,7 +1475,7 @@ class AsyncLineBotApi(object):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         """
         await self._put(
             "/v2/bot/audienceGroup/{audience_group_id}/updateDescription".format(
@@ -1502,7 +1507,7 @@ class AsyncLineBotApi(object):
         :param bool is_ifa: If this is false (default), recipients are specified by user IDs.
             If true, recipients must be specified by IFAs.
         :param str upload_description: The description to register for the job
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         """
         if audiences:
             audiences = [
@@ -1531,7 +1536,7 @@ class AsyncLineBotApi(object):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         :return: json
         """
         response = await self._get(
@@ -1548,6 +1553,11 @@ class AsyncLineBotApi(object):
         https://developers.line.biz/en/reference/messaging-api/#change-authority-level
 
         :param str authority_level: PUBLIC | PRIVATE.
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.async_http_client.timeout
+        :type timeout: float | (float, float)
         """
         await self._put(
             "/v2/bot/audienceGroup/authorityLevel",
@@ -1576,7 +1586,7 @@ class AsyncLineBotApi(object):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         :return: ClickAudienceGroup instance
         """
         response = await self._post(
@@ -1604,7 +1614,7 @@ class AsyncLineBotApi(object):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         :return: ImpAudienceGroup instance
         """
         response = await self._post(
@@ -1630,7 +1640,7 @@ class AsyncLineBotApi(object):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         :rtype: dict
         :return: Empty dict.
         """
@@ -1665,14 +1675,14 @@ class AsyncLineBotApi(object):
 
         https://developers.line.biz/en/reference/messaging-api/#test-webhook-endpoint
 
-        :param webhook_endpoint: (optional) Set this parameter to
+        :param str webhook_endpoint: (optional) Set this parameter to
             specific the webhook endpoint of the webhook. Default is the webhook
             endpoint that is already set to the channel.
         :param timeout: (optional) How long to wait for the server
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         :rtype: :py:class:`linebot.models.responses.TestWebhookResponse`
         """
         data = {}
@@ -1700,7 +1710,7 @@ class AsyncLineBotApi(object):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         :rtype: :py:class:`linebot.models.responses.UserIds`
         """
         params = {"limit": limit} if start is None else {"limit": limit, "start": start}
@@ -1729,7 +1739,7 @@ class AsyncLineBotApi(object):
         to send data before giving up, as a float,
         or a (connect timeout, read timeout) float tuple.
         Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         :rtype: :py:class:`linebot.models.responses.IssueChannelTokenResponseV2`
         """
         response = await self._post(
@@ -1759,7 +1769,7 @@ class AsyncLineBotApi(object):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         """
         await self._post(
             "/oauth2/v2.1/revoke",
@@ -1787,7 +1797,7 @@ class AsyncLineBotApi(object):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         :rtype: :py:class:`linebot.models.responses.ChannelAccessTokens`
         """
         response = await self._get(
@@ -1810,7 +1820,7 @@ class AsyncLineBotApi(object):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         :rtype: :py:class:`linebot.models.responses.VerifyChannelTokenResponseV2`
         """
         response = await self._get(
@@ -1836,7 +1846,7 @@ class AsyncLineBotApi(object):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         :rtype: :py:class:`linebot.models.responses.VerifyChannelTokenResponseV2`
         """
         response = await self._get(
@@ -1867,7 +1877,7 @@ class AsyncLineBotApi(object):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         :rtype: :py:class:
             `linebot.models.responses.InsightMessageEventOfCustomAggregationUnitResponse`
         """
@@ -1894,7 +1904,7 @@ class AsyncLineBotApi(object):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         :rtype: :py:class: `linebot.models.responses.AggregationInfoResponse`
         """
         response = await self._get("/v2/bot/message/aggregation/info", timeout=timeout)
@@ -1913,7 +1923,7 @@ class AsyncLineBotApi(object):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is self.async_http_client.timeout
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         :rtype: :py:class: `linebot.models.responses.AggregationNameListResponse`
         """
         params = {"limit": limit} if start is None else {"limit": limit, "start": start}

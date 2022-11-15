@@ -199,10 +199,11 @@ class WebhookHandler(object):
         """Add handler method.
 
         :param event: Specify a kind of Event which you want to handle
-        :type event: T <= :py:class:`linebot.models.events.Event` class
+        :type event: T <= :py:class:`linebot.models.events.Event`
         :param message: (optional) If event is MessageEvent,
             specify kind of Messages which you want to handle
-        :type: message: T <= :py:class:`linebot.models.messages.Message` class
+        :type message: T <= :py:class:`linebot.models.messages.Message` |
+            list[T <= :py:class:`linebot.models.messages.Message`]
         :rtype: func
         :return: decorator
         """

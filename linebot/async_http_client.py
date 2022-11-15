@@ -33,7 +33,7 @@ class AsyncHttpClient(with_metaclass(ABCMeta)):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is :py:attr:`DEFAULT_TIMEOUT`
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         :rtype: T <= :py:class:`HttpResponse`
         :return: HttpResponse instance
         """
@@ -50,7 +50,7 @@ class AsyncHttpClient(with_metaclass(ABCMeta)):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is :py:attr:`self.timeout`
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         :rtype: T <= :py:class:`HttpResponse`
         :return: HttpResponse instance
         """
@@ -67,7 +67,7 @@ class AsyncHttpClient(with_metaclass(ABCMeta)):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is :py:attr:`self.timeout`
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         :rtype: T <= :py:class:`HttpResponse`
         :return: HttpResponse instance
         """
@@ -84,7 +84,7 @@ class AsyncHttpClient(with_metaclass(ABCMeta)):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is :py:attr:`self.timeout`
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         :rtype: T <= :py:class:`HttpResponse`
         :return: HttpResponse instance
         """
@@ -101,7 +101,7 @@ class AsyncHttpClient(with_metaclass(ABCMeta)):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is :py:attr:`self.timeout`
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         :rtype: :py:class:`AsyncHttpResponse`
         :return: AsyncHttpResponse instance
         """

@@ -144,7 +144,7 @@ class URIAction(Action):
             Max: 20 characters
         :param str uri: URI opened when the action is performed.
         :param alt_uri: URI opened when the desktop app.
-        :type alt_uri: T <= :py:class:`linebot.models.actions.AltUri`
+        :type alt_uri: :py:class:`linebot.models.actions.AltUri`
         :param kwargs:
         """
         super(URIAction, self).__init__(**kwargs)

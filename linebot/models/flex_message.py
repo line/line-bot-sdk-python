@@ -636,7 +636,7 @@ class TextComponent(FlexComponent):
 
         :param str text: Text
         :param contents: Array of spans
-        :type contents: list[T <= :py:class:`linebot.models.flex_message.SpanComponent`]
+        :type contents: list[:py:class:`linebot.models.flex_message.SpanComponent`]
         :param float flex: The ratio of the width or height of this component within the parent box
         :param str margin: Minimum space between this component
             and the previous component in the parent box

@@ -31,9 +31,9 @@ class SendMessage(with_metaclass(ABCMeta, Base)):
         """__init__ method.
 
         :param quick_reply: QuickReply object
-        :type quick_reply: T <= :py:class:`linebot.models.send_messages.QuickReply`
+        :type quick_reply: :py:class:`linebot.models.send_messages.QuickReply`
         :param sender: Sender object
-        :type sender: T <= :py:class:`linebot.models.send_messages.Sender`
+        :type sender: :py:class:`linebot.models.send_messages.Sender`
         :param kwargs:
         """
         super(SendMessage, self).__init__(**kwargs)
@@ -54,8 +54,8 @@ class TextSendMessage(SendMessage):
 
         :param str text: Message text
         :param quick_reply: QuickReply object
-        :type quick_reply: T <= :py:class:`linebot.models.send_messages.QuickReply`
-        :type sender: T <= :py:class:`linebot.models.send_messages.Sender`
+        :type quick_reply: :py:class:`linebot.models.send_messages.QuickReply`
+        :type sender: :py:class:`linebot.models.send_messages.Sender`
         :param kwargs:
         """
         super(TextSendMessage, self).__init__(quick_reply=quick_reply, sender=sender, **kwargs)
@@ -96,8 +96,8 @@ class ImageSendMessage(SendMessage):
             Max: 240 x 240
             Max: 1 MB
         :param quick_reply: QuickReply object
-        :type quick_reply: T <= :py:class:`linebot.models.send_messages.QuickReply`
-        :type sender: T <= :py:class:`linebot.models.send_messages.Sender`
+        :type quick_reply: :py:class:`linebot.models.send_messages.QuickReply`
+        :type sender: :py:class:`linebot.models.send_messages.Sender`
         :param kwargs:
         """
         super(ImageSendMessage, self).__init__(quick_reply=quick_reply, sender=sender, **kwargs)
@@ -125,8 +125,8 @@ class VideoSendMessage(SendMessage):
             when the user finishes watching the video.
             Max character limit: 100.
         :param quick_reply: QuickReply object
-        :type quick_reply: T <= :py:class:`linebot.models.send_messages.QuickReply`
-        :type sender: T <= :py:class:`linebot.models.send_messages.Sender`
+        :type quick_reply: :py:class:`linebot.models.send_messages.QuickReply`
+        :type sender: :py:class:`linebot.models.send_messages.Sender`
         :param kwargs:
         """
         super(VideoSendMessage, self).__init__(quick_reply=quick_reply, sender=sender, **kwargs)
@@ -151,8 +151,8 @@ class AudioSendMessage(SendMessage):
             m4a. Less than 1 minute. Max 10 MB.
         :param long duration: Length of audio file (milliseconds).
         :param quick_reply: QuickReply object
-        :type quick_reply: T <= :py:class:`linebot.models.send_messages.QuickReply`
-        :type sender: T <= :py:class:`linebot.models.send_messages.Sender`
+        :type quick_reply: :py:class:`linebot.models.send_messages.QuickReply`
+        :type sender: :py:class:`linebot.models.send_messages.Sender`
         :param kwargs:
         """
         super(AudioSendMessage, self).__init__(quick_reply=quick_reply, sender=sender, **kwargs)
@@ -177,8 +177,8 @@ class LocationSendMessage(SendMessage):
         :param float latitude: Latitude
         :param float longitude: Longitude
         :param quick_reply: QuickReply object
-        :type quick_reply: T <= :py:class:`linebot.models.send_messages.QuickReply`
-        :type sender: T <= :py:class:`linebot.models.send_messages.Sender`
+        :type quick_reply: :py:class:`linebot.models.send_messages.QuickReply`
+        :type sender: :py:class:`linebot.models.send_messages.Sender`
         :param kwargs:
         """
         super(LocationSendMessage, self).__init__(quick_reply=quick_reply, sender=sender, **kwargs)
@@ -202,8 +202,8 @@ class StickerSendMessage(SendMessage):
         :param str package_id: Package ID
         :param str sticker_id: Sticker ID
         :param quick_reply: QuickReply object
-        :type quick_reply: T <= :py:class:`linebot.models.send_messages.QuickReply`
-        :type sender: T <= :py:class:`linebot.models.send_messages.Sender`
+        :type quick_reply: :py:class:`linebot.models.send_messages.QuickReply`
+        :type sender: :py:class:`linebot.models.send_messages.Sender`
         :param kwargs:
         """
         super(StickerSendMessage, self).__init__(quick_reply=quick_reply, sender=sender, **kwargs)
@@ -223,7 +223,7 @@ class QuickReply(with_metaclass(ABCMeta, Base)):
         """__init__ method.
 
         :param items: Quick reply button objects
-        :type items: list[T <= :py:class:`linebot.models.send_messages.QuickReplyButton`]
+        :type items: list[:py:class:`linebot.models.send_messages.QuickReplyButton`]
         :param kwargs:
         """
         super(QuickReply, self).__init__(**kwargs)

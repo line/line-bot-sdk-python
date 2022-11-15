@@ -39,11 +39,11 @@ class RichMenu(with_metaclass(ABCMeta, Base)):
         :param bool selected: true to display the rich menu by default. Otherwise, false.
         :param str name: Name of the rich menu.
             Maximum of 300 characters.
-        :param str chatBarText: Text displayed in the chat bar.
+        :param str chat_bar_text: Text displayed in the chat bar.
                                 Maximum of 14 characters.
         :param areas: Array of area objects which define coordinates and size of tappable areas.
                       Maximum of 20 area objects.
-        :type areas: list[T <= :py:class:`linebot.models.rich_menu.RichMenuArea`]
+        :type areas: list[:py:class:`linebot.models.rich_menu.RichMenuArea`]
         :param kwargs:
         """
         super(RichMenu, self).__init__(**kwargs)
@@ -91,7 +91,7 @@ class RichMenuArea(with_metaclass(ABCMeta, Base)):
         """__init__ method.
 
         :param bounds: Object describing the boundaries of the area in pixels. See bounds object.
-        :type bounds: :py:class:`linebot.models.rich_menu.RichMenuBound`
+        :type bounds: :py:class:`linebot.models.rich_menu.RichMenuBounds`
         :param action: Action performed when the area is tapped. See action objects.
         :type action: T <= :py:class:`linebot.models.actions.Action`
         :param kwargs:

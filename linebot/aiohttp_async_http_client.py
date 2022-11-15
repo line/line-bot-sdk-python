@@ -27,7 +27,7 @@ class AiohttpAsyncHttpClient(AsyncHttpClient):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is :py:attr:`DEFAULT_TIMEOUT`
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         """
         super(AiohttpAsyncHttpClient, self).__init__(timeout)
         self.session = session
@@ -42,7 +42,7 @@ class AiohttpAsyncHttpClient(AsyncHttpClient):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is :py:attr:`self.timeout`
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         :rtype: :py:class:`AsyncHttpResponse`
         :return: AsyncHttpResponse instance
         """
@@ -62,7 +62,7 @@ class AiohttpAsyncHttpClient(AsyncHttpClient):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is :py:attr:`self.timeout`
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         :rtype: :py:class:`AiohttpAsyncHttpResponse`
         :return: AiohttpAsyncHttpResponse instance
         """
@@ -82,7 +82,7 @@ class AiohttpAsyncHttpClient(AsyncHttpClient):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is :py:attr:`self.timeout`
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         :rtype: :py:class:`AiohttpAsyncHttpResponse`
         :return: AiohttpAsyncHttpResponse instance
         """
@@ -102,7 +102,7 @@ class AiohttpAsyncHttpClient(AsyncHttpClient):
             to send data before giving up, as a float,
             or a (connect timeout, read timeout) float tuple.
             Default is :py:attr:`self.timeout`
-        :type timeout: float | tuple(float, float)
+        :type timeout: float | (float, float)
         :rtype: :py:class:`AiohttpAsyncHttpResponse`
         :return: AiohttpAsyncHttpResponse instance
         """

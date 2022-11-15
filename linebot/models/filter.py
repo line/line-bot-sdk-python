@@ -68,7 +68,7 @@ class DemographicFilter(Filter):
 class GenderFilter(DemographicFilter):
     """GenderFilter."""
 
-    def __init__(self, one_of=[], **kwargs):
+    def __init__(self, one_of=None, **kwargs):
         """__init__ method.
 
         :param one_of: Send messages to users of a given gender. One of:
@@ -78,6 +78,9 @@ class GenderFilter(DemographicFilter):
         """
         super(GenderFilter, self).__init__(**kwargs)
 
+        if one_of is None:
+            one_of = []
+
         self.type = "gender"
         self.one_of = one_of
 
@@ -85,7 +88,7 @@ class GenderFilter(DemographicFilter):
 class AppTypeFilter(DemographicFilter):
     """AppTypeFilter."""
 
-    def __init__(self, one_of=[], **kwargs):
+    def __init__(self, one_of=None, **kwargs):
         """__init__ method.
 
         :param one_of: Send messages to users of the specified OS. One of:
@@ -95,6 +98,9 @@ class AppTypeFilter(DemographicFilter):
         """
         super(AppTypeFilter, self).__init__(**kwargs)
 
+        if one_of is None:
+            one_of = []
+
         self.type = "appType"
         self.one_of = one_of
 
@@ -102,13 +108,16 @@ class AppTypeFilter(DemographicFilter):
 class AreaFilter(DemographicFilter):
     """AreaFilter."""
 
-    def __init__(self, one_of=[], **kwargs):
+    def __init__(self, one_of=None, **kwargs):
         """__init__ method.
 
         :param one_of: Send messages to users in the specified region.
         :type one_of: list[str]
         """
         super(AreaFilter, self).__init__(**kwargs)
+
+        if one_of is None:
+            one_of = []
 
         self.type = "area"
         self.one_of = one_of

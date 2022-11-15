@@ -1338,7 +1338,7 @@ class AsyncLineBotApi(object):
         return BotInfo.new_from_json_dict((await response.json))
 
     async def create_audience_group(
-        self, audience_group_name, audiences=[], is_ifa=False, timeout=None
+        self, audience_group_name, audiences=None, is_ifa=False, timeout=None
     ):
         """Create an audience group.
 
@@ -1349,6 +1349,9 @@ class AsyncLineBotApi(object):
         :param bool is_ifa: true | false
         :return: audience group id
         """
+        if audiences is None:
+            audiences = []
+
         if audiences:
             audiences = [
                 Audience.new_from_json_dict(audience) for audience in audiences

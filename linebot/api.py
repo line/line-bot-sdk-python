@@ -1291,7 +1291,7 @@ class LineBotApi(object):
 
         return BotInfo.new_from_json_dict(response.json)
 
-    def create_audience_group(self, audience_group_name, audiences=[],
+    def create_audience_group(self, audience_group_name, audiences=None,
                               is_ifa=False, timeout=None):
         """Create an audience group.
 
@@ -1302,6 +1302,9 @@ class LineBotApi(object):
         :param bool is_ifa: true | false
         :return: audience group id
         """
+        if audiences is None:
+            audiences = []
+
         if audiences:
             audiences = [Audience.new_from_json_dict(audience) for audience in audiences]
         response = self._post(

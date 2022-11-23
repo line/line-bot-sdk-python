@@ -940,6 +940,11 @@ TemplateSendMessage - CarouselTemplate
                             label='uri1',
                             uri='http://example.com/1'
                         )
+                    ], 
+                    default_action=[
+                        URIAction(
+                            label="uri1".,
+                            uri='http://example.com/1'
                     ]
                 ),
                 CarouselColumn(
@@ -960,6 +965,11 @@ TemplateSendMessage - CarouselTemplate
                             label='uri2',
                             uri='http://example.com/2'
                         )
+                    ], 
+                    default_action=[
+                        URIAction(
+                            label="uri1".,
+                            uri='http://example.com/1'
                     ]
                 )
             ]

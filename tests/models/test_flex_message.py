@@ -218,6 +218,7 @@ class TestFlexMessage(SerializeTestCase):
         arg = {
             'url': 'https://example.com/flex/images/image.jpg',
             'size': 'full',
+            'animated': False,
             'aspect_ratio': '1.91:1'
         }
         self.assertEqual(
@@ -260,6 +261,7 @@ class TestFlexMessage(SerializeTestCase):
                 "size": "full",
                 "aspect_ratio": "20:13",
                 "aspect_mode": "cover",
+                "animated": False,
                 "url": "https://example.com/image.jpg"
             },
             "aspect_ratio": "20:13"

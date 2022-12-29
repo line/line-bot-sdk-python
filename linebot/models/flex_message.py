@@ -501,7 +501,7 @@ class ImageComponent(FlexComponent):
                  aspect_mode=None,
                  background_color=None,
                  action=None,
-                 animated=None,
+                 animated=False,
                  **kwargs):
         """__init__ method.
 
@@ -524,7 +524,7 @@ class ImageComponent(FlexComponent):
         :param str background_color: Background color of the image. Use a hexadecimal color code.
         :param action: Action performed when this image is tapped
         :type action: list[T <= :py:class:`linebot.models.actions.Action`]
-        :param bool action: True to play an animated image
+        :param bool animated: True to play an animated image. Default is False.
         :param kwargs:
         """
         super(ImageComponent, self).__init__(**kwargs)

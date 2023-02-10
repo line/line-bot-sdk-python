@@ -180,6 +180,61 @@ https://developers.line.biz/en/reference/messaging-api/#get-narrowcast-progress-
     print(narrowcast.target_count)
 
 
+validate\_reply\_message\_objects(self, messages, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Validate that an array of message objects used for reply message is valid.
+
+https://developers.line.biz/en/reference/messaging-api/#validate-message-objects-of-reply-message
+
+.. code:: python
+
+    line_bot_api.validate_reply_message_objects(TextSendMessage(text='Hello World!'))
+
+validate\_push\_message\_objects(self, messages, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Validate that an array of message objects used for push message is valid.
+
+https://developers.line.biz/en/reference/messaging-api/#validate-message-objects-of-push-message
+
+.. code:: python
+
+    line_bot_api.validate_push_message_objects(TextSendMessage(text='Hello World!'))
+
+validate\_multicast\_message\_objects(self, messages, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Validate that an array of message objects used for multicast message is valid.
+
+https://developers.line.biz/en/reference/messaging-api/#validate-message-objects-of-multicast-message
+
+.. code:: python
+
+    line_bot_api.validate_multicast_message_objects(TextSendMessage(text='Hello World!'))
+
+validate\_broadcast\_message\_objects(self, messages, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Validate that an array of message objects used for broadcast message is valid.
+
+https://developers.line.biz/en/reference/messaging-api/#validate-message-objects-of-broadcast-message
+
+.. code:: python
+
+    line_bot_api.validate_broadcast_message_objects(TextSendMessage(text='Hello World!'))
+
+validate\_narrowcast\_message\_objects(self, messages, timeout=None)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Validate that an array of message objects used for narrowcast message is valid.
+
+https://developers.line.biz/en/reference/messaging-api/#validate-message-objects-of-narrowcast-message
+
+.. code:: python
+
+    line_bot_api.validate_narrowcast_message_objects(TextSendMessage(text='Hello World!'))
+
 get\_profile(self, user\_id, timeout=None)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -764,7 +819,7 @@ TextSendMessage-Emoji
             "index": 0,
             "productId": "5ac1bfd5040ab15980c9b435",
             "emojiId": "001"
-        },  
+        },
         {
             "index": 13,
             "productId": "5ac1bfd5040ab15980c9b435",

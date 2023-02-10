@@ -34,7 +34,10 @@ from .models.responses import (
     Group, UserIds, RichMenuAliasResponse, RichMenuAliasListResponse, ChannelAccessTokens,
     IssueChannelTokenResponseV2, VerifyChannelTokenResponseV2, ValidAccessTokenKeyIDsResponse,
     InsightMessageEventOfCustomAggregationUnitResponse, AggregationInfoResponse,
-    AggregationNameListResponse
+    AggregationNameListResponse,
+    ValidateBroadcastMessageObjectsResponse,
+    ValidateMulticastMessageObjectsResponse, ValidateNarrowcastMessageObjectsResponse,
+    ValidatePushMessageObjectsResponse, ValidateReplyMessageObjectsResponse,
 )
 
 
@@ -174,7 +177,7 @@ class LineBotApi(object):
         Messages cannot be sent to groups or rooms.
 
         :param to: IDs of the receivers
-            Max: 150 users
+            Max: 500 users
         :type to: list[str]
         :param messages: Messages.
             Max: 5
@@ -326,6 +329,176 @@ class LineBotApi(object):
         )
 
         return MessageProgressNarrowcastResponse.new_from_json_dict(response.json)
+
+    def validate_reply_message_objects(self, messages, timeout=None):
+        """Call validate reply message objects API.
+
+        https://developers.line.biz/en/reference/messaging-api/#validate-message-objects-of-reply-message
+
+        You can validate that an array of message objects is valid as a value
+        for the messages property of the request body for the send reply message endpoint.
+
+        :param messages: Messages.
+            Max: 5
+        :type messages: T <= :py:class:`linebot.models.send_messages.SendMessage` |
+            list[T <= :py:class:`linebot.models.send_messages.SendMessage`]
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        :rtype: :py:class:`linebot.models.responses.ValidateReplyMessageObjectsResponse`
+        """
+        if not isinstance(messages, (list, tuple)):
+            messages = [messages]
+
+        data = {
+            'messages': [message.as_json_dict() for message in messages],
+        }
+
+        response = self._post(
+            '/v2/bot/message/validate/reply', data=json.dumps(data),
+            timeout=timeout
+        )
+
+        return ValidateReplyMessageObjectsResponse(
+            request_id=response.headers.get('X-Line-Request-Id'))
+
+    def validate_push_message_objects(self, messages, timeout=None):
+        """Call validate push message objects API.
+
+        https://developers.line.biz/en/reference/messaging-api/#validate-message-objects-of-push-message
+
+        You can validate that an array of message objects is valid as a value
+        for the messages property of the request body for the send push message endpoint.
+
+        :param messages: Messages.
+            Max: 5
+        :type messages: T <= :py:class:`linebot.models.send_messages.SendMessage` |
+            list[T <= :py:class:`linebot.models.send_messages.SendMessage`]
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        :rtype: :py:class:`linebot.models.responses.ValidatePushMessageObjectsResponse`
+        """
+        if not isinstance(messages, (list, tuple)):
+            messages = [messages]
+
+        data = {
+            'messages': [message.as_json_dict() for message in messages],
+        }
+
+        response = self._post(
+            '/v2/bot/message/validate/push', data=json.dumps(data),
+            timeout=timeout
+        )
+
+        return ValidatePushMessageObjectsResponse(
+            request_id=response.headers.get('X-Line-Request-Id'))
+
+    def validate_multicast_message_objects(self, messages, timeout=None):
+        """Call validate multicast message objects API.
+
+        https://developers.line.biz/en/reference/messaging-api/#validate-message-objects-of-multicast-message
+
+        You can validate that an array of message objects is valid as a value
+        for the messages property of the request body for the send multicast message endpoint.
+
+        :param messages: Messages.
+            Max: 5
+        :type messages: T <= :py:class:`linebot.models.send_messages.SendMessage` |
+            list[T <= :py:class:`linebot.models.send_messages.SendMessage`]
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        :rtype: :py:class:`linebot.models.responses.ValidateMulticastMessageObjectsResponse`
+        """
+        if not isinstance(messages, (list, tuple)):
+            messages = [messages]
+
+        data = {
+            'messages': [message.as_json_dict() for message in messages],
+        }
+
+        response = self._post(
+            '/v2/bot/message/validate/multicast', data=json.dumps(data),
+            timeout=timeout
+        )
+
+        return ValidateMulticastMessageObjectsResponse(
+            request_id=response.headers.get('X-Line-Request-Id'))
+
+    def validate_broadcast_message_objects(self, messages, timeout=None):
+        """Call validate broadcast message objects API.
+
+        https://developers.line.biz/en/reference/messaging-api/#validate-message-objects-of-broadcast-message
+
+        You can validate that an array of message objects is valid as a value
+        for the messages property of the request body for the send broadcast message endpoint.
+
+        :param messages: Messages.
+            Max: 5
+        :type messages: T <= :py:class:`linebot.models.send_messages.SendMessage` |
+            list[T <= :py:class:`linebot.models.send_messages.SendMessage`]
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        :rtype: :py:class:`linebot.models.responses.ValidateBroadcastMessageObjectsResponse`
+        """
+        if not isinstance(messages, (list, tuple)):
+            messages = [messages]
+
+        data = {
+            'messages': [message.as_json_dict() for message in messages],
+        }
+
+        response = self._post(
+            '/v2/bot/message/validate/broadcast', data=json.dumps(data),
+            timeout=timeout
+        )
+
+        return ValidateBroadcastMessageObjectsResponse(
+            request_id=response.headers.get('X-Line-Request-Id'))
+
+    def validate_narrowcast_message_objects(self, messages, timeout=None):
+        """Call validate narrowcast message objects API.
+
+        https://developers.line.biz/en/reference/messaging-api/#validate-message-objects-of-narrowcast-message
+
+        You can validate that an array of message objects is valid as a value
+        for the messages property of the request body for the send narrowcast message endpoint.
+
+        :param messages: Messages.
+            Max: 5
+        :type messages: T <= :py:class:`linebot.models.send_messages.SendMessage` |
+            list[T <= :py:class:`linebot.models.send_messages.SendMessage`]
+        :param timeout: (optional) How long to wait for the server
+            to send data before giving up, as a float,
+            or a (connect timeout, read timeout) float tuple.
+            Default is self.http_client.timeout
+        :type timeout: float | tuple(float, float)
+        :rtype: :py:class:`linebot.models.responses.ValidateNarrowcastMessageObjectsResponse`
+        """
+        if not isinstance(messages, (list, tuple)):
+            messages = [messages]
+
+        data = {
+            'messages': [message.as_json_dict() for message in messages],
+        }
+
+        response = self._post(
+            '/v2/bot/message/validate/narrowcast', data=json.dumps(data),
+            timeout=timeout
+        )
+
+        return ValidateNarrowcastMessageObjectsResponse(
+            request_id=response.headers.get('X-Line-Request-Id'))
 
     def get_message_delivery_broadcast(self, date, timeout=None):
         """Get number of sent broadcast messages.

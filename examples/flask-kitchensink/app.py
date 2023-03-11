@@ -41,7 +41,7 @@ from linebot.models import (
     StickerMessage, StickerSendMessage, LocationMessage, LocationSendMessage,
     ImageMessage, VideoMessage, AudioMessage, FileMessage,
     UnfollowEvent, FollowEvent, JoinEvent, LeaveEvent, BeaconEvent,
-    MemberJoinedEvent, MemberLeftEvent,
+    MemberJoinedEvent, MemberLeftEvent, UnknownEvent,
     FlexSendMessage, BubbleContainer, ImageComponent, BoxComponent,
     TextComponent, IconComponent, ButtonComponent,
     SeparatorComponent, QuickReply, QuickReplyButton,
@@ -678,6 +678,11 @@ def handle_member_joined(event):
 @handler.add(MemberLeftEvent)
 def handle_member_left(event):
     app.logger.info("Got memberLeft event")
+
+
+@handler.add(UnknownEvent)
+def handle_unknown_left(event):
+    app.logger.info(f"unknown event {event}")
 
 
 @app.route('/static/<path:path>')

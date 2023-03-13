@@ -498,6 +498,7 @@ class UnknownEvent(Event):
 
     def __init__(self, **kwargs):
         """__init__ method.
+
         :param kwargs:
         """
         super(UnknownEvent, self).__init__(**kwargs)

@@ -26,6 +26,7 @@ from linebot.models import (
     MessageEvent, FollowEvent, UnfollowEvent, JoinEvent,
     LeaveEvent, PostbackEvent, BeaconEvent, AccountLinkEvent,
     MemberJoinedEvent, MemberLeftEvent, ThingsEvent,
+    UnknownEvent,
     TextMessage, ImageMessage, VideoMessage, AudioMessage,
     LocationMessage, StickerMessage, FileMessage,
     SourceUser, SourceRoom, SourceGroup,
@@ -69,7 +70,7 @@ class TestWebhookParser(unittest.TestCase):
         events = self.parser.parse(body, 'channel_secret')
 
         # events count
-        self.assertEqual(len(events), 29)
+        self.assertEqual(len(events), 30)
 
         # MessageEvent, SourceUser, TextMessage
         self.assertIsInstance(events[0], MessageEvent)
@@ -566,6 +567,9 @@ class TestWebhookParser(unittest.TestCase):
         self.assertEqual(events[28].message.id, '325708')
         self.assertEqual(events[28].message.type, 'text')
         self.assertEqual(events[28].message.text, 'Hello, world')
+
+        # UnknownEvent
+        self.assertIsInstance(events[29], UnknownEvent)
 
     def test_parse_webhook_req_without_destination(self):
         body = """

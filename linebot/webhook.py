@@ -33,7 +33,10 @@ from .models.events import (
     AccountLinkEvent,
     MemberJoinedEvent,
     MemberLeftEvent,
-    ThingsEvent, UnsendEvent, VideoPlayCompleteEvent,
+    ThingsEvent,
+    UnsendEvent,
+    VideoPlayCompleteEvent,
+    UnknownEvent,
 )
 from .utils import LOGGER, PY3, safe_compare_digest
 
@@ -172,7 +175,8 @@ class WebhookParser(object):
             elif event_type == 'videoPlayComplete':
                 events.append(VideoPlayCompleteEvent.new_from_json_dict(event))
             else:
-                LOGGER.warn('Unknown event type. type=' + event_type)
+                LOGGER.info('Unknown event type. type=' + event_type)
+                events.append(UnknownEvent.new_from_json_dict(event))
 
         if as_payload:
             return WebhookPayload(events=events, destination=body_json.get('destination'))

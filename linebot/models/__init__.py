@@ -51,6 +51,7 @@ from .events import (  # noqa
     MemberLeftEvent,
     BeaconEvent,
     ThingsEvent,
+    UnknownEvent,
     Postback,
     Beacon,
     Link,

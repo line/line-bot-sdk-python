@@ -490,6 +490,22 @@ class VideoPlayCompleteEvent(Event):
         )
 
 
+class UnknownEvent(Event):
+    """Unknown event.
+
+    We welcome your contribution to line-bot-sdk-python!
+    """
+
+    def __init__(self, **kwargs):
+        """__init__ method.
+
+        :param kwargs:
+        """
+        super(UnknownEvent, self).__init__(**kwargs)
+
+        self.type = 'unknown'
+
+
 class Postback(Base):
     """Postback.
 

@@ -1,0 +1,3 @@
+[submodule "line-openapi"]
+	path = line-openapi
+	url = https://github.com/line/line-openapi.git

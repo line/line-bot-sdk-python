@@ -71,14 +71,10 @@ def callback():
 
     # if event is MessageEvent and message is TextMessage, then echo text
     for event in events:
-        print(11)
         if not isinstance(event, MessageEvent):
-            print(22)
             continue
         if not isinstance(event.message, TextMessageContent):
-            print(33)
             continue
-        print("hi")
         with ApiClient(configuration) as api_client:
             line_bot_api = MessagingApiApi(api_client)
             line_bot_api.reply_message_with_http_info(

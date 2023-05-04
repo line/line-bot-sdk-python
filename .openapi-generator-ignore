@@ -23,5 +23,5 @@
 #!docs/README.md
 linebot/__init__.py
 
-## Webhooks
-linebot/webhooks_README.md
+## common readmes
+linebot/*_README.md

@@ -19,15 +19,6 @@ import unittest
 from builtins import open
 import inspect
 
-## TODO: delete this
-## BEGIN
-import os
-import sys
-linebot_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', ''))
-sys.path.append(linebot_path)
-print(sys.path)
-## END
-
 from linebot import (
     SignatureValidator, WebhookParser, WebhookHandler
 )

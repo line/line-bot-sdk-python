@@ -26,18 +26,6 @@ from .exceptions import InvalidSignatureError
 from linebot.webhooks import (
     Event,
     MessageEvent,
-    FollowEvent,
-    UnfollowEvent,
-    JoinEvent,
-    LeaveEvent,
-    PostbackEvent,
-    BeaconEvent,
-    AccountLinkEvent,
-    MemberJoinedEvent,
-    MemberLeftEvent,
-    ThingsEvent,
-    UnsendEvent,
-    VideoPlayCompleteEvent,
 )
 from .models.events import UnknownEvent ## Special
 from .utils import LOGGER, PY3, safe_compare_digest

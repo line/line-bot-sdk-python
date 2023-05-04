@@ -16,25 +16,23 @@ import os
 import sys
 from argparse import ArgumentParser
 
-
-## TODO: delete this
-## BEGIN
-import os
-import sys
-linebot_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..', ''))
-sys.path.append(linebot_path)
-## END
-
-
 from flask import Flask, request, abort
 from linebot import (
-    LineBotApi, WebhookHandler
+     WebhookHandler
 )
 from linebot.exceptions import (
     InvalidSignatureError
 )
-from linebot.models import (
-    MessageEvent, TextMessage,
+from linebot.webhooks import (
+    MessageEvent,
+    TextMessageContent,
+)
+from linebot.messaging import (
+    Configuration,
+    ApiClient,
+    MessagingApiApi,
+    ReplyMessageRequest,
+    TextMessage
 )
 
 app = Flask(__name__)
@@ -49,20 +47,12 @@ if channel_access_token is None:
     print('Specify LINE_CHANNEL_ACCESS_TOKEN as environment variable.')
     sys.exit(1)
 
-line_bot_api = LineBotApi(channel_access_token)
 handler = WebhookHandler(channel_secret)
 
-from linebot.messaging import (
-    Configuration,
-    ApiClient,
-    MessagingApiApi,
-    ReplyMessageRequest,
-    TextMessage
+configuration = Configuration(
+    access_token=channel_access_token
 )
 
-configuration = Configuration(
-    access_token = channel_access_token
-)
 
 @app.route("/callback", methods=['POST'])
 def callback():
@@ -82,14 +72,14 @@ def callback():
     return 'OK'
 
 
-@handler.add(MessageEvent, message=TextMessage)
+@handler.add(MessageEvent, message=TextMessageContent)
 def message_text(event):
     with ApiClient(configuration) as api_client:
-        api_instance = MessagingApiApi(api_client)
-        api_instance.reply_message_with_http_info(
+        line_bot_api = MessagingApiApi(api_client)
+        line_bot_api.reply_message_with_http_info(
             ReplyMessageRequest(
-                reply_token = event.reply_token,
-                messages = [ TextMessage(text=event.message.text) ]
+                reply_token=event.reply_token,
+                messages=[TextMessage(text=event.message.text)]
             )
         )
 
@@ -98,7 +88,7 @@ if __name__ == "__main__":
     arg_parser = ArgumentParser(
         usage='Usage: python ' + __file__ + ' [--port <port>] [--help]'
     )
-    arg_parser.add_argument('-p', '--port', default=8080, help='port')
+    arg_parser.add_argument('-p', '--port', default=8000, help='port')
     arg_parser.add_argument('-d', '--debug', default=False, help='debug')
     options = arg_parser.parse_args()
 

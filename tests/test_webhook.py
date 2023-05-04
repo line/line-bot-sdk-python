@@ -571,7 +571,7 @@ class TestWebhookParser(unittest.TestCase):
         # UnknownEvent
         self.assertIsInstance(events[29], UnknownEvent)
 
-        ## TODO: richmenu switch
+        # TODO: richmenu switch
 
     def test_parse_webhook_req_without_destination(self):
         body = """

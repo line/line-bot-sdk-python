@@ -91,3 +91,4 @@ class ScenarioResult(BaseModel):
             "error_reason": obj.get("errorReason")
         })
         return _obj
+

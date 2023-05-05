@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 
-from typing import Dict
+from typing import Dict, Optional
 from pydantic import BaseModel, Field, StrictStr
 
 class PostbackContent(BaseModel):
@@ -26,7 +26,7 @@ class PostbackContent(BaseModel):
     PostbackContent
     """
     data: StrictStr = Field(..., description="Postback data")
-    params: Dict[str, StrictStr] = Field(...)
+    params: Optional[Dict[str, StrictStr]] = None
 
     __properties = ["data", "params"]
 

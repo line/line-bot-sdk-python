@@ -43,7 +43,7 @@ class FlexImage(FlexComponent):
     aspect_mode: Optional[StrictStr] = Field(None, alias="aspectMode", description="The display style of the image if the aspect ratio of the image and that specified by the aspectRatio property do not match. ")
     background_color: Optional[StrictStr] = Field(None, alias="backgroundColor", description="Background color of the image. Use a hexadecimal color code.")
     action: Optional[Action] = None
-    animated: Optional[StrictBool] = Field(False, description="When this is `true`, an animated image (APNG) plays. You can specify a value of true up to 10 images in a single message. You can't send messages that exceed this limit.  This is `false` by default. Animated images larger than 300 KB aren't played back. ")
+    animated: Optional[StrictBool] = Field(False, description="When this is `true`, an animated image (APNG) plays. You can specify a value of true up to 10 images in a single message. You can't send messages that exceed this limit. This is `false` by default. Animated images larger than 300 KB aren't played back. ")
     type: str = "image"
 
     __properties = ["type", "url", "flex", "margin", "position", "offsetTop", "offsetBottom", "offsetStart", "offsetEnd", "align", "gravity", "size", "aspectRatio", "aspectMode", "backgroundColor", "action", "animated"]

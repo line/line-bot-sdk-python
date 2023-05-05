@@ -31,7 +31,7 @@ class FlexBoxLinearGradient(FlexBoxBackground):
     end_color: Optional[StrictStr] = Field(None, alias="endColor")
     center_color: Optional[StrictStr] = Field(None, alias="centerColor")
     center_position: Optional[StrictStr] = Field(None, alias="centerPosition")
-    type: str = "flexBoxLinearGradient"
+    type: str = "linearGradient"
 
     __properties = ["type", "angle", "startColor", "endColor", "centerColor", "centerPosition"]
 

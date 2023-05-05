@@ -32,7 +32,7 @@ class DatetimePickerAction(Action):
     initial: Optional[StrictStr] = None
     max: Optional[StrictStr] = None
     min: Optional[StrictStr] = None
-    type: str = "datetimePicker"
+    type: str = "datetimepicker"
 
     __properties = ["type", "label", "data", "mode", "initial", "max", "min"]
 

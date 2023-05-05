@@ -28,7 +28,7 @@ class RichMenuSwitchAction(Action):
     """
     data: Optional[constr(strict=True, max_length=300, min_length=0)] = None
     rich_menu_alias_id: Optional[constr(strict=True, max_length=32, min_length=0)] = Field(None, alias="richMenuAliasId")
-    type: str = "richMenuSwitch"
+    type: str = "richmenuswitch"
 
     __properties = ["type", "label", "data", "richMenuAliasId"]
 

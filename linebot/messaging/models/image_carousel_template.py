@@ -28,7 +28,7 @@ class ImageCarouselTemplate(Template):
     ImageCarouselTemplate
     """
     columns: Optional[conlist(ImageCarouselColumn)] = None
-    type: str = "imageCarousel"
+    type: str = "image_carousel"
 
     __properties = ["type", "columns"]
 

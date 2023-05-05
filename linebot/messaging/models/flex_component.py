@@ -40,7 +40,6 @@ class FlexComponent(BaseModel):
 
     # discriminator mappings
     __discriminator_value_class_map = {
-        'FlexSpacer': 'FlexSpacer',
         'box': 'FlexBox',
         'button': 'FlexButton',
         'filler': 'FlexFiller',
@@ -70,7 +69,7 @@ class FlexComponent(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Union(FlexBox, FlexButton, FlexFiller, FlexIcon, FlexImage, FlexSeparator, FlexSpacer, FlexSpan, FlexText, FlexVideo):
+    def from_json(cls, json_str: str) -> Union(FlexBox, FlexButton, FlexFiller, FlexIcon, FlexImage, FlexSeparator, FlexSpan, FlexText, FlexVideo):
         """Create an instance of FlexComponent from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -83,7 +82,7 @@ class FlexComponent(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Union(FlexBox, FlexButton, FlexFiller, FlexIcon, FlexImage, FlexSeparator, FlexSpacer, FlexSpan, FlexText, FlexVideo):
+    def from_dict(cls, obj: dict) -> Union(FlexBox, FlexButton, FlexFiller, FlexIcon, FlexImage, FlexSeparator, FlexSpan, FlexText, FlexVideo):
         """Create an instance of FlexComponent from a dict"""
         # look up the object type based on discriminator mapping
         object_type = cls.get_discriminator_value(obj)

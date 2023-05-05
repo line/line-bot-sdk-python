@@ -1331,13 +1331,8 @@ public class PythonNextgenCustomClientGenerator extends AbstractPythonCodegen im
                 // Extention for discriminator
                 modelImports.addAll(model.imports);
 
-                String name = model.name.replace(model.parent, "");
-                if (model.parent.equals("FlexComponent") || model.parent.equals("FlexContainer")) {
-                    // Flex related components are prefixed.
-                    name = name.replace("Flex", "");
-                }
-                name = name.equals("URI") ? "uri" : lowerFirst(name);
-                model.vendorExtensions.putIfAbsent("x-py-type-name", name);
+                String mappedTypeName = mappingName(model.name, model.parentModel.getDiscriminator());
+                model.vendorExtensions.putIfAbsent("x-py-type-name", mappedTypeName);
             }
 
             // set enum type in extensions and update `name` in enumVars
@@ -1372,16 +1367,19 @@ public class PythonNextgenCustomClientGenerator extends AbstractPythonCodegen im
                 }
 
                 model.getVendorExtensions().putIfAbsent("x-py-model-imports", modelsToImport);
-
-                // parentも！
             }
         }
 
         return objs;
     }
-    private String lowerFirst(String name) {
-        String lower = name.toLowerCase();
-        return lower.charAt(0) + name.substring(1);
+
+    private String mappingName(String modelName, CodegenDiscriminator discriminator) {
+        String valueToSearch = "#/components/schemas/" + modelName;
+        return discriminator.getMapping().entrySet().stream()
+                   .filter(entry -> valueToSearch.equals(entry.getValue()))
+                   .map(Map.Entry::getKey)
+                   .findFirst()
+                   .orElseThrow(() -> new NoSuchElementException("Key not found (" + modelName + ") mapping (" + discriminator.getMapping() + ")"));
     }
 
     @Override

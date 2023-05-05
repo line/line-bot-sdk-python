@@ -74,7 +74,6 @@ from linebot.messaging.models.flex_icon import FlexIcon
 from linebot.messaging.models.flex_image import FlexImage
 from linebot.messaging.models.flex_message import FlexMessage
 from linebot.messaging.models.flex_separator import FlexSeparator
-from linebot.messaging.models.flex_spacer import FlexSpacer
 from linebot.messaging.models.flex_span import FlexSpan
 from linebot.messaging.models.flex_text import FlexText
 from linebot.messaging.models.flex_video import FlexVideo

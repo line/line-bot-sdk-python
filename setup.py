@@ -13,12 +13,10 @@
 #  under the License.
 
 
-import os
 import re
 import sys
-import subprocess
 
-from setuptools import setup, Command
+from setuptools import setup
 from setuptools.command.test import test as TestCommand
 
 __version__ = ''
@@ -86,6 +84,7 @@ setup(
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
         "Topic :: Software Development"
     ]
 )

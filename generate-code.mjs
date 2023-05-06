@@ -4,6 +4,7 @@ async function main() {
     await $`mvn package -DskipTests=true`;
     cd("..");
 
+    const packageVersion = await $`grep "__version__ =" linebot/__about__.py | awk -F"'" '{print $2}'`
 
     for (const components of [
         { SRCYML: "channel-access-token.yml", modelPackage: "linebot.oauth" },
@@ -30,7 +31,7 @@ async function main() {
                 --additional-properties=generateSourceCodeOnly=true \\
                 --package-name ${modelPackage} \\
                 -i line-openapi/${SRCYML} \\
-                --additional-properties=packageVersion=3.0.0
+                --additional-properties=packageVersion=${packageVersion}
               `;
     }
 
@@ -53,10 +54,6 @@ async function main() {
                 -i line-openapi/${SRCYML}
               `;
     }
-}
-
-function getVersion() {
-
 }
 
 await main();

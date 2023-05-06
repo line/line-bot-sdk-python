@@ -1,7 +1,7 @@
 LINE Messaging API SDK for Python
 =================================
 
-|PyPI version| |Documentation Status|
+|PyPI version|
 
 SDK of the LINE Messaging API for Python.
 
@@ -77,7 +77,7 @@ Usage:
         try:
             handler.handle(body, signature)
         except InvalidSignatureError:
-            print("Invalid signature. Please check your channel access token/channel secret.")
+            applogger.info("Invalid signature. Please check your channel access token/channel secret.")
             abort(400)
 
         return 'OK'
@@ -100,9 +100,7 @@ Usage:
 API
 ---
 
-See
-
-Thus, You can send a JSON designed with `Flex Message Simulator <https://developers.line.biz/console/fx/>`__.
+See `linebot/messaging/docs <linebot/messaging/docs/MessagingApiApi.md>`__ . Other docs are in ``linebot/<feature>/docs/*.md``.
 
 
 Webhook
@@ -173,8 +171,10 @@ Add a **handler** method by using this decorator.
     @handler.add(MessageEvent, message=TextMessage)
     def handle_message(event):
         line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text=event.message.text))
+            ReplyMessageRequest(
+                reply_token=event.reply_token,
+                messages=[TextMessage(text=event.message.text))]
+            )
 
 When the event is an instance of MessageEvent and event.message is an instance of TextMessage,
 this handler method is called.
@@ -227,39 +227,61 @@ https://developers.line.biz/en/reference/messaging-api/#webhook-event-objects
 Hints
 -----
 
-Experimental Asyncio support
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
 Examples
 ~~~~~~~~
 
-`simple-server-echo <https://github.com/line/line-bot-sdk-python/tree/master/examples/simple-server-echo>`__
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+`aiohttp-echo <examples/aiohttp-echo>`__
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Sample echo-bot with asynchronous processings.
+
+`fastapi-echo <examples/fastapi-echo>`__
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Sample echo-bot using `FastAPI <https://fastapi.tiangolo.com/>`__
+
+
+`flask-echo <examples/flask-echo>`__
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Sample echo-bot using `Flask <http://flask.pocoo.org/>`__
+
+`flask-kitchensink <examples/flask-kitchensink>`__
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Sample bot using `Flask <http://flask.pocoo.org/>`__
+
+
+`rich-menu <examples/rich-menu>`__
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Switching richmenu script
+
+`simple-server-echo <examples/simple-server-echo>`__
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Sample echo-bot using
 `wsgiref.simple\_server <https://docs.python.org/3/library/wsgiref.html>`__
 
-`flask-echo <https://github.com/line/line-bot-sdk-python/tree/master/examples/flask-echo>`__
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Sample echo-bot using `Flask <http://flask.pocoo.org/>`__
+How to deserializes JSON to FlexMessage or RichMenu
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-`flask-kitchensink <https://github.com/line/line-bot-sdk-python/tree/master/examples/flask-kitchensink>`__
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+line-bot-python-sdk provides ``from_json`` method for each model.
+It deserializes the JSON into the specified model.
+Thus, you can send a JSON designed with `Flex Message Simulator <https://developers.line.biz/console/fx/>`__.
 
-Sample bot using `Flask <http://flask.pocoo.org/>`__
+.. code:: python
 
-API documentation
------------------
+    bubble_string = """{ type:"bubble", ... }"""
+    message = FlexMessage(alt_text="hello", contents=FlexContainer.from_json(bubble_string))
+    line_bot_api.reply_message(
+        ReplyMessageRequest(
+            reply_token=event.reply_token,
+            messages=[message]
+        )
+    )
 
-::
-
-    $ cd docs
-    $ make html
-    $ open build/html/index.html
-
-OR |Documentation Status|
 
 Help and media
 --------------
@@ -290,6 +312,17 @@ First install for development.
 
     $ pip install -r requirements-dev.txt
 
+
+You can generate new or fixed models and APIs by this command.
+
+::
+
+    $ zx generate-code.mjs
+
+
+When you update line-bot-sdk-python version, please update `linebot/__about__.py <linebot/__about__.py>`__ and generate code again.
+
+
 Run tests
 ~~~~~~~~~
 
@@ -306,25 +339,21 @@ To run all tests and to run ``flake8`` against all versions, use:
 
     tox
 
-To run all tests against version 3.7, use:
+To run all tests against version 3.10, use:
 
 ::
 
-    $ tox -e py3.7
+    $ tox -e py3.10
 
-To run a test against version 3.7 and against a specific file, use:
+To run a test against version 3.10 and against a specific file, use:
 
 ::
 
-    $ tox -e py3.7 -- tests/test_webhook.py
+    $ tox -e py3.10 -- tests/test_webhook.py
 
 
-.. |Build Status| image:: https://travis-ci.org/line/line-bot-sdk-python.svg?branch=master
-   :target: https://travis-ci.org/line/line-bot-sdk-python
 .. |PyPI version| image:: https://badge.fury.io/py/line-bot-sdk.svg
    :target: https://badge.fury.io/py/line-bot-sdk
-.. |Documentation Status| image:: https://readthedocs.org/projects/line-bot-sdk-python/badge/?version=stable
-   :target: http://line-bot-sdk-python.readthedocs.io/en/stable
 
 License
 --------

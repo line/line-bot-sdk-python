@@ -134,6 +134,7 @@ public class PythonNextgenCustomClientGenerator extends AbstractPythonCodegen im
 
         modelTemplateFiles.put("model.mustache", ".py");
         apiTemplateFiles.put("api.mustache", ".py");
+        apiTemplateFiles.put("asyncio/async_api.mustache", ".py");
 
         embeddedTemplateDir = templateDir = "python-nextgen-custom-client";
 
@@ -357,17 +358,17 @@ public class PythonNextgenCustomClientGenerator extends AbstractPythonCodegen im
             supportingFiles.add(new SupportingFile("__init__.mustache", testFolder, "__init__.py"));
         }
 
+        // Generate both sync and async client/rest files.
         supportingFiles.add(new SupportingFile("api_client.mustache", packagePath(), "api_client.py"));
+        supportingFiles.add(new SupportingFile("asyncio/api_client.mustache", packagePath(), "async_api_client.py"));
+
         supportingFiles.add(new SupportingFile("api_response.mustache", packagePath(), "api_response.py"));
 
+        supportingFiles.add(new SupportingFile("rest.mustache", packagePath(), "rest.py"));
+        supportingFiles.add(new SupportingFile("asyncio/rest.mustache", packagePath(), "async_rest.py"));
+
         if ("asyncio".equals(getLibrary())) {
-            supportingFiles.add(new SupportingFile("asyncio/rest.mustache", packagePath(), "rest.py"));
             additionalProperties.put("asyncio", "true");
-        } else if ("tornado".equals(getLibrary())) {
-            supportingFiles.add(new SupportingFile("tornado/rest.mustache", packagePath(), "rest.py"));
-            additionalProperties.put("tornado", "true");
-        } else {
-            supportingFiles.add(new SupportingFile("rest.mustache", packagePath(), "rest.py"));
         }
 
         modelPackage = this.packageName + "." + modelPackage;
@@ -1484,6 +1485,18 @@ public class PythonNextgenCustomClientGenerator extends AbstractPythonCodegen im
     @Override
     public String apiFileFolder() {
         return outputFolder + File.separatorChar + apiPackage().replace('.', File.separatorChar);
+    }
+
+    @Override
+    public String apiFilename(String templateName, String tag) {
+        String result = super.apiFilename(templateName, tag);
+        System.out.println("hi result " + result);
+        if (templateName.startsWith("async")) {
+            int ix = result.lastIndexOf('/');
+            result = result.substring(0, ix + 1) + "async_" + result.substring(ix + 1);
+            System.out.println("hi new result " + result);
+        }
+        return result;
     }
 
     @Override

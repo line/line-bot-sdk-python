@@ -20,9 +20,14 @@ __version__ = "1.0.0"
 from linebot.messaging.api.messaging_api_api import MessagingApiApi
 from linebot.messaging.api.messaging_api_blob_api import MessagingApiBlobApi
 
+from linebot.messaging.api.async_messaging_api_api import AsyncMessagingApiApi
+from linebot.messaging.api.async_messaging_api_blob_api import AsyncMessagingApiBlobApi
+
+
 # import ApiClient
 from linebot.messaging.api_response import ApiResponse
 from linebot.messaging.api_client import ApiClient
+from linebot.messaging.async_api_client import AsyncApiClient
 from linebot.messaging.configuration import Configuration
 from linebot.messaging.exceptions import OpenApiException
 from linebot.messaging.exceptions import ApiTypeError

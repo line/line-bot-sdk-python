@@ -9,9 +9,13 @@ __version__ = "{{packageVersion}}"
 # import apis into sdk package
 {{#apiInfo}}{{#apis}}from {{apiPackage}}.{{classFilename}} import {{classname}}
 {{/apis}}{{/apiInfo}}
+{{#apiInfo}}{{#apis}}from {{apiPackage}}.async_{{classFilename}} import Async{{classname}}
+{{/apis}}{{/apiInfo}}
+
 # import ApiClient
 from {{packageName}}.api_response import ApiResponse
 from {{packageName}}.api_client import ApiClient
+from {{packageName}}.async_api_client import AsyncApiClient
 from {{packageName}}.configuration import Configuration
 from {{packageName}}.exceptions import OpenApiException
 from {{packageName}}.exceptions import ApiTypeError

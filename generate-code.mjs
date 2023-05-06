@@ -23,8 +23,6 @@ async function main() {
                 -cp ./tools/openapi-generator-cli.jar:./generator/target/python-nextgen-custom-client-openapi-generator-1.0.0.jar \\
                 org.openapitools.codegen.OpenAPIGenerator \\
                 generate \\
-                --group-id com.linecorp.bot.model \\
-                --package-name com.linecorp.bot.model \\
                 -g python-nextgen-custom-client \\
                 -o . \\
                 --global-property modelDocs=false \\
@@ -45,8 +43,6 @@ async function main() {
                 -cp ./tools/openapi-generator-cli.jar:./generator/target/python-nextgen-custom-client-openapi-generator-1.0.0.jar \\
                 org.openapitools.codegen.OpenAPIGenerator \\
                 generate \\
-                --group-id com.linecorp.bot.model \\
-                --package-name com.linecorp.bot.model \\
                 -g python-nextgen-custom-client \\
                 -o . \\
                 --global-property modelDocs=false,apiDocs=false \\

@@ -19,9 +19,13 @@ __version__ = "1.0.0"
 # import apis into sdk package
 from linebot.shop.api.shop_api import ShopApi
 
+from linebot.shop.api.async_shop_api import AsyncShopApi
+
+
 # import ApiClient
 from linebot.shop.api_response import ApiResponse
 from linebot.shop.api_client import ApiClient
+from linebot.shop.async_api_client import AsyncApiClient
 from linebot.shop.configuration import Configuration
 from linebot.shop.exceptions import OpenApiException
 from linebot.shop.exceptions import ApiTypeError

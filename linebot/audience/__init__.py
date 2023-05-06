@@ -20,9 +20,14 @@ __version__ = "1.0.0"
 from linebot.audience.api.manage_audience_api import ManageAudienceApi
 from linebot.audience.api.manage_audience_blob_api import ManageAudienceBlobApi
 
+from linebot.audience.api.async_manage_audience_api import AsyncManageAudienceApi
+from linebot.audience.api.async_manage_audience_blob_api import AsyncManageAudienceBlobApi
+
+
 # import ApiClient
 from linebot.audience.api_response import ApiResponse
 from linebot.audience.api_client import ApiClient
+from linebot.audience.async_api_client import AsyncApiClient
 from linebot.audience.configuration import Configuration
 from linebot.audience.exceptions import OpenApiException
 from linebot.audience.exceptions import ApiTypeError

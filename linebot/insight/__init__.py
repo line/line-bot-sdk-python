@@ -19,9 +19,13 @@ __version__ = "1.0.0"
 # import apis into sdk package
 from linebot.insight.api.insight_api import InsightApi
 
+from linebot.insight.api.async_insight_api import AsyncInsightApi
+
+
 # import ApiClient
 from linebot.insight.api_response import ApiResponse
 from linebot.insight.api_client import ApiClient
+from linebot.insight.async_api_client import AsyncApiClient
 from linebot.insight.configuration import Configuration
 from linebot.insight.exceptions import OpenApiException
 from linebot.insight.exceptions import ApiTypeError

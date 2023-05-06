@@ -19,9 +19,13 @@ __version__ = "1.0.0"
 # import apis into sdk package
 from linebot.moduleattach.api.line_module_attach_api import LineModuleAttachApi
 
+from linebot.moduleattach.api.async_line_module_attach_api import AsyncLineModuleAttachApi
+
+
 # import ApiClient
 from linebot.moduleattach.api_response import ApiResponse
 from linebot.moduleattach.api_client import ApiClient
+from linebot.moduleattach.async_api_client import AsyncApiClient
 from linebot.moduleattach.configuration import Configuration
 from linebot.moduleattach.exceptions import OpenApiException
 from linebot.moduleattach.exceptions import ApiTypeError

@@ -19,9 +19,13 @@ __version__ = "1.0.0"
 # import apis into sdk package
 from linebot.oauth.api.channel_access_token_api import ChannelAccessTokenApi
 
+from linebot.oauth.api.async_channel_access_token_api import AsyncChannelAccessTokenApi
+
+
 # import ApiClient
 from linebot.oauth.api_response import ApiResponse
 from linebot.oauth.api_client import ApiClient
+from linebot.oauth.async_api_client import AsyncApiClient
 from linebot.oauth.configuration import Configuration
 from linebot.oauth.exceptions import OpenApiException
 from linebot.oauth.exceptions import ApiTypeError

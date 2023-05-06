@@ -14,7 +14,7 @@
 """
 
 
-__version__ = "1.0.0"
+__version__ = "3.0.0"
 
 # import apis into sdk package
 from linebot.module.api.line_module_api import LineModuleApi

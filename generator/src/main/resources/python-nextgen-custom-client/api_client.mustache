@@ -70,7 +70,7 @@ class ApiClient(object):
         self.default_headers['Authorization'] = 'Bearer ' + configuration.access_token
         self.cookie = cookie
         # Set default User-Agent.
-        self.user_agent = '{{{httpUserAgent}}}{{^httpUserAgent}}OpenAPI-Generator/{{{packageVersion}}}/python{{/httpUserAgent}}'
+        self.user_agent = 'line-bot-sdk-python/{{{packageVersion}}}'
         self.client_side_validation = configuration.client_side_validation
 
     {{#asyncio}}

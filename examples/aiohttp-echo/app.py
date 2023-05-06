@@ -76,8 +76,6 @@ class Handler:
                 continue
             if not isinstance(event.message, TextMessageContent):
                 continue
-            print("hi")
-            print(event.message)
             await self.line_bot_api.reply_message(
                 ReplyMessageRequest(
                     reply_token=event.reply_token,

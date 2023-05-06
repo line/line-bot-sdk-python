@@ -29,7 +29,8 @@ async function main() {
                 --additional-properties=excludeText=true \\
                 --additional-properties=generateSourceCodeOnly=true \\
                 --package-name ${modelPackage} \\
-                -i line-openapi/${SRCYML}
+                -i line-openapi/${SRCYML} \\
+                --additional-properties=packageVersion=3.0.0
               `;
     }
 
@@ -52,6 +53,10 @@ async function main() {
                 -i line-openapi/${SRCYML}
               `;
     }
+}
+
+function getVersion() {
+
 }
 
 await main();

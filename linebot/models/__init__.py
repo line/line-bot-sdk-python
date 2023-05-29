@@ -55,6 +55,8 @@ from .events import (  # noqa
     Postback,
     Beacon,
     Link,
+    VideoPlayCompleteEvent,
+    UnsendEvent,
 )
 from .filter import (  # noqa
     Filter,

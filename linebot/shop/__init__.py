@@ -35,4 +35,5 @@ from linebot.shop.exceptions import ApiAttributeError
 from linebot.shop.exceptions import ApiException
 
 # import models into sdk package
+from linebot.shop.models.error_response import ErrorResponse
 from linebot.shop.models.mission_sticker_request import MissionStickerRequest

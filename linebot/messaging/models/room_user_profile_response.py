@@ -21,18 +21,16 @@ import json
 from typing import Optional
 from pydantic import BaseModel, Field, StrictStr
 
-class UserProfileResponse(BaseModel):
+class RoomUserProfileResponse(BaseModel):
     """
-    UserProfileResponse
-    https://developers.line.biz/en/reference/messaging-api/#get-profile
+    RoomUserProfileResponse
+    https://developers.line.biz/en/reference/messaging-api/#get-room-member-profile
     """
     display_name: StrictStr = Field(..., alias="displayName", description="User's display name")
     user_id: StrictStr = Field(..., alias="userId", description="User ID")
     picture_url: Optional[StrictStr] = Field(None, alias="pictureUrl", description="Profile image URL. `https` image URL. Not included in the response if the user doesn't have a profile image.")
-    status_message: Optional[StrictStr] = Field(None, alias="statusMessage", description="User's status message. Not included in the response if the user doesn't have a status message.")
-    language: Optional[StrictStr] = Field(None, description="User's language, as a BCP 47 (opens new window)language tag. Not included in the response if the user hasn't yet consented to the LINE Privacy Policy.")
 
-    __properties = ["displayName", "userId", "pictureUrl", "statusMessage", "language"]
+    __properties = ["displayName", "userId", "pictureUrl"]
 
     class Config:
         """Pydantic configuration"""
@@ -48,8 +46,8 @@ class UserProfileResponse(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> UserProfileResponse:
-        """Create an instance of UserProfileResponse from a JSON string"""
+    def from_json(cls, json_str: str) -> RoomUserProfileResponse:
+        """Create an instance of RoomUserProfileResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -61,20 +59,18 @@ class UserProfileResponse(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> UserProfileResponse:
-        """Create an instance of UserProfileResponse from a dict"""
+    def from_dict(cls, obj: dict) -> RoomUserProfileResponse:
+        """Create an instance of RoomUserProfileResponse from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return UserProfileResponse.parse_obj(obj)
+            return RoomUserProfileResponse.parse_obj(obj)
 
-        _obj = UserProfileResponse.parse_obj({
+        _obj = RoomUserProfileResponse.parse_obj({
             "display_name": obj.get("displayName"),
             "user_id": obj.get("userId"),
-            "picture_url": obj.get("pictureUrl"),
-            "status_message": obj.get("statusMessage"),
-            "language": obj.get("language")
+            "picture_url": obj.get("pictureUrl")
         })
         return _obj
 

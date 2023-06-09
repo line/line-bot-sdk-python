@@ -91,6 +91,7 @@ from linebot.messaging.models.get_message_content_transcoding_response import Ge
 from linebot.messaging.models.get_webhook_endpoint_response import GetWebhookEndpointResponse
 from linebot.messaging.models.group_member_count_response import GroupMemberCountResponse
 from linebot.messaging.models.group_summary_response import GroupSummaryResponse
+from linebot.messaging.models.group_user_profile_response import GroupUserProfileResponse
 from linebot.messaging.models.image_carousel_column import ImageCarouselColumn
 from linebot.messaging.models.image_carousel_template import ImageCarouselTemplate
 from linebot.messaging.models.image_message import ImageMessage
@@ -139,6 +140,7 @@ from linebot.messaging.models.rich_menu_response import RichMenuResponse
 from linebot.messaging.models.rich_menu_size import RichMenuSize
 from linebot.messaging.models.rich_menu_switch_action import RichMenuSwitchAction
 from linebot.messaging.models.room_member_count_response import RoomMemberCountResponse
+from linebot.messaging.models.room_user_profile_response import RoomUserProfileResponse
 from linebot.messaging.models.sender import Sender
 from linebot.messaging.models.set_webhook_endpoint_request import SetWebhookEndpointRequest
 from linebot.messaging.models.sticker_message import StickerMessage

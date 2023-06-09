@@ -49,7 +49,7 @@ Usage:
     from linebot.messaging import (
         Configuration,
         ApiClient,
-        MessagingApiApi,
+        MessagingApi,
         ReplyMessageRequest,
         TextMessage
     )
@@ -86,7 +86,7 @@ Usage:
     @handler.add(MessageEvent, message=TextMessageContent)
     def handle_message(event):
         with ApiClient(configuration) as api_client:
-            line_bot_api = MessagingApiApi(api_client)
+            line_bot_api = MessagingApi(api_client)
             line_bot_api.reply_message_with_http_info(
                 ReplyMessageRequest(
                     reply_token=event.reply_token,
@@ -100,7 +100,7 @@ Usage:
 API
 ---
 
-See `linebot/messaging/docs <linebot/messaging/docs/MessagingApiApi.md>`__ . Other docs are in ``linebot/<feature>/docs/*.md``.
+See `linebot/messaging/docs <linebot/messaging/docs/MessagingApi.md>`__ . Other docs are in ``linebot/<feature>/docs/*.md``.
 
 
 Webhook

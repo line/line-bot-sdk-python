@@ -1097,7 +1097,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_group_member_profile**
-> UserProfileResponse get_group_member_profile(group_id, user_id)
+> GroupUserProfileResponse get_group_member_profile(group_id, user_id)
 
 
 
@@ -1110,7 +1110,7 @@ Get group chat member profile
 import time
 import os
 import linebot.messaging
-from linebot.messaging.models.user_profile_response import UserProfileResponse
+from linebot.messaging.models.group_user_profile_response import GroupUserProfileResponse
 from linebot.messaging.rest import ApiException
 from pprint import pprint
 
@@ -1155,7 +1155,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**UserProfileResponse**](UserProfileResponse.md)
+[**GroupUserProfileResponse**](GroupUserProfileResponse.md)
 
 ### Authorization
 
@@ -2435,7 +2435,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_room_member_profile**
-> UserProfileResponse get_room_member_profile(room_id, user_id)
+> RoomUserProfileResponse get_room_member_profile(room_id, user_id)
 
 
 
@@ -2448,7 +2448,7 @@ Get multi-person chat member profile
 import time
 import os
 import linebot.messaging
-from linebot.messaging.models.user_profile_response import UserProfileResponse
+from linebot.messaging.models.room_user_profile_response import RoomUserProfileResponse
 from linebot.messaging.rest import ApiException
 from pprint import pprint
 
@@ -2493,7 +2493,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**UserProfileResponse**](UserProfileResponse.md)
+[**RoomUserProfileResponse**](RoomUserProfileResponse.md)
 
 ### Authorization
 

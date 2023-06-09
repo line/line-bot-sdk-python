@@ -32,6 +32,7 @@ from linebot.messaging.models.get_followers_response import GetFollowersResponse
 from linebot.messaging.models.get_webhook_endpoint_response import GetWebhookEndpointResponse
 from linebot.messaging.models.group_member_count_response import GroupMemberCountResponse
 from linebot.messaging.models.group_summary_response import GroupSummaryResponse
+from linebot.messaging.models.group_user_profile_response import GroupUserProfileResponse
 from linebot.messaging.models.issue_link_token_response import IssueLinkTokenResponse
 from linebot.messaging.models.mark_messages_as_read_request import MarkMessagesAsReadRequest
 from linebot.messaging.models.members_ids_response import MembersIdsResponse
@@ -53,6 +54,7 @@ from linebot.messaging.models.rich_menu_list_response import RichMenuListRespons
 from linebot.messaging.models.rich_menu_request import RichMenuRequest
 from linebot.messaging.models.rich_menu_response import RichMenuResponse
 from linebot.messaging.models.room_member_count_response import RoomMemberCountResponse
+from linebot.messaging.models.room_user_profile_response import RoomUserProfileResponse
 from linebot.messaging.models.set_webhook_endpoint_request import SetWebhookEndpointRequest
 from linebot.messaging.models.test_webhook_endpoint_request import TestWebhookEndpointRequest
 from linebot.messaging.models.test_webhook_endpoint_response import TestWebhookEndpointResponse
@@ -2023,7 +2025,7 @@ class MessagingApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_group_member_profile(self, group_id : Annotated[StrictStr, Field(..., description="Group ID")], user_id : Annotated[StrictStr, Field(..., description="User ID")], **kwargs) -> UserProfileResponse:  # noqa: E501
+    def get_group_member_profile(self, group_id : Annotated[StrictStr, Field(..., description="Group ID")], user_id : Annotated[StrictStr, Field(..., description="User ID")], **kwargs) -> GroupUserProfileResponse:  # noqa: E501
         """get_group_member_profile  # noqa: E501
 
         Get group chat member profile  # noqa: E501
@@ -2046,7 +2048,7 @@ class MessagingApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: UserProfileResponse
+        :rtype: GroupUserProfileResponse
         """
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
@@ -2090,7 +2092,7 @@ class MessagingApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(UserProfileResponse, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(GroupUserProfileResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -2149,7 +2151,7 @@ class MessagingApi(object):
         _auth_settings = ['Bearer']  # noqa: E501
 
         _response_types_map = {
-            '200': "UserProfileResponse",
+            '200': "GroupUserProfileResponse",
         }
 
         return self.api_client.call_api(
@@ -4509,7 +4511,7 @@ class MessagingApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_room_member_profile(self, room_id : Annotated[StrictStr, Field(..., description="Room ID")], user_id : Annotated[StrictStr, Field(..., description="User ID")], **kwargs) -> UserProfileResponse:  # noqa: E501
+    def get_room_member_profile(self, room_id : Annotated[StrictStr, Field(..., description="Room ID")], user_id : Annotated[StrictStr, Field(..., description="User ID")], **kwargs) -> RoomUserProfileResponse:  # noqa: E501
         """get_room_member_profile  # noqa: E501
 
         Get multi-person chat member profile  # noqa: E501
@@ -4532,7 +4534,7 @@ class MessagingApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: UserProfileResponse
+        :rtype: RoomUserProfileResponse
         """
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
@@ -4576,7 +4578,7 @@ class MessagingApi(object):
         :return: Returns the result object.
                  If the method is called asynchronously,
                  returns the request thread.
-        :rtype: tuple(UserProfileResponse, status_code(int), headers(HTTPHeaderDict))
+        :rtype: tuple(RoomUserProfileResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
         _params = locals()
@@ -4635,7 +4637,7 @@ class MessagingApi(object):
         _auth_settings = ['Bearer']  # noqa: E501
 
         _response_types_map = {
-            '200': "UserProfileResponse",
+            '200': "RoomUserProfileResponse",
         }
 
         return self.api_client.call_api(

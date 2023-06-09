@@ -14,4 +14,5 @@
 
 
 # import models into model package
+from linebot.shop.models.error_response import ErrorResponse
 from linebot.shop.models.mission_sticker_request import MissionStickerRequest

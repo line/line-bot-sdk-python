@@ -1,10 +1,10 @@
-# linebot.moduleattach.LineModuleAttachApi
+# linebot.moduleattach.LineModuleAttach
 
 All URIs are relative to *https://manager.line.biz*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**attach_module**](LineModuleAttachApi.md#attach_module) | **POST** /module/auth/v1/token | 
+[**attach_module**](LineModuleAttach.md#attach_module) | **POST** /module/auth/v1/token | 
 
 
 # **attach_module**
@@ -45,7 +45,7 @@ configuration = linebot.moduleattach.Configuration(
 # Enter a context with an instance of the API client
 with linebot.moduleattach.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.moduleattach.LineModuleAttachApi(api_client)
+    api_instance = linebot.moduleattach.LineModuleAttach(api_client)
     grant_type = 'grant_type_example' # str | authorization_code (optional)
     code = 'code_example' # str | Authorization code received from the LINE Platform. (optional)
     redirect_uri = 'redirect_uri_example' # str | Specify the redirect_uri specified in the URL for authentication and authorization. (optional)
@@ -59,10 +59,10 @@ with linebot.moduleattach.ApiClient(configuration) as api_client:
 
     try:
         api_response = api_instance.attach_module(grant_type=grant_type, code=code, redirect_uri=redirect_uri, code_verifier=code_verifier, client_id=client_id, client_secret=client_secret, region=region, basic_search_id=basic_search_id, scope=scope, brand_type=brand_type)
-        print("The response of LineModuleAttachApi->attach_module:\n")
+        print("The response of LineModuleAttach->attach_module:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling LineModuleAttachApi->attach_module: %s\n" % e)
+        print("Exception when calling LineModuleAttach->attach_module: %s\n" % e)
 ```
 
 

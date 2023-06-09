@@ -17,9 +17,9 @@
 __version__ = "1.0.0"
 
 # import apis into sdk package
-from linebot.webhooks.api.dummy_api import DummyApi
+from linebot.webhooks.api.dummy import Dummy
 
-from linebot.webhooks.api.async_dummy_api import AsyncDummyApi
+from linebot.webhooks.api.async_dummy import AsyncDummy
 
 
 # import ApiClient

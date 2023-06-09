@@ -1,9 +1,9 @@
 # flake8: noqa
 
 # import apis into api package
-from linebot.insight.api.insight_api import InsightApi
+from linebot.insight.api.insight import Insight
 
 
 # Async version
-from linebot.insight.api.async_insight_api import AsyncInsightApi
+from linebot.insight.api.async_insight import AsyncInsight
 

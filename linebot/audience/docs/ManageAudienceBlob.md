@@ -1,11 +1,11 @@
-# linebot.audience.ManageAudienceBlobApi
+# linebot.audience.ManageAudienceBlob
 
 All URIs are relative to *https://api.line.me*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**add_user_ids_to_audience**](ManageAudienceBlobApi.md#add_user_ids_to_audience) | **PUT** /v2/bot/audienceGroup/upload/byFile | 
-[**create_audience_for_uploading_user_ids**](ManageAudienceBlobApi.md#create_audience_for_uploading_user_ids) | **POST** /v2/bot/audienceGroup/upload/byFile | 
+[**add_user_ids_to_audience**](ManageAudienceBlob.md#add_user_ids_to_audience) | **PUT** /v2/bot/audienceGroup/upload/byFile | 
+[**create_audience_for_uploading_user_ids**](ManageAudienceBlob.md#create_audience_for_uploading_user_ids) | **POST** /v2/bot/audienceGroup/upload/byFile | 
 
 
 # **add_user_ids_to_audience**
@@ -44,7 +44,7 @@ configuration = linebot.audience.Configuration(
 # Enter a context with an instance of the API client
 with linebot.audience.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.audience.ManageAudienceBlobApi(api_client)
+    api_instance = linebot.audience.ManageAudienceBlob(api_client)
     file = None # bytearray | A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000 
     audience_group_id = 56 # int | The audience ID. (optional)
     upload_description = 'upload_description_example' # str | The description to register with the job (optional)
@@ -52,7 +52,7 @@ with linebot.audience.ApiClient(configuration) as api_client:
     try:
         api_instance.add_user_ids_to_audience(file, audience_group_id=audience_group_id, upload_description=upload_description)
     except Exception as e:
-        print("Exception when calling ManageAudienceBlobApi->add_user_ids_to_audience: %s\n" % e)
+        print("Exception when calling ManageAudienceBlob->add_user_ids_to_audience: %s\n" % e)
 ```
 
 
@@ -121,7 +121,7 @@ configuration = linebot.audience.Configuration(
 # Enter a context with an instance of the API client
 with linebot.audience.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.audience.ManageAudienceBlobApi(api_client)
+    api_instance = linebot.audience.ManageAudienceBlob(api_client)
     file = None # bytearray | A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000 
     description = 'description_example' # str | The audience's name. This is case-insensitive, meaning AUDIENCE and audience are considered identical. Max character limit: 120  (optional)
     is_ifa_audience = True # bool | To specify recipients by IFAs: set `true`. To specify recipients by user IDs: set `false` or omit isIfaAudience property.  (optional)
@@ -129,10 +129,10 @@ with linebot.audience.ApiClient(configuration) as api_client:
 
     try:
         api_response = api_instance.create_audience_for_uploading_user_ids(file, description=description, is_ifa_audience=is_ifa_audience, upload_description=upload_description)
-        print("The response of ManageAudienceBlobApi->create_audience_for_uploading_user_ids:\n")
+        print("The response of ManageAudienceBlob->create_audience_for_uploading_user_ids:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling ManageAudienceBlobApi->create_audience_for_uploading_user_ids: %s\n" % e)
+        print("Exception when calling ManageAudienceBlob->create_audience_for_uploading_user_ids: %s\n" % e)
 ```
 
 

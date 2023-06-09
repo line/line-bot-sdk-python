@@ -1,14 +1,14 @@
-# linebot.messaging.MessagingApiBlobApi
+# linebot.messaging.MessagingApiBlob
 
 All URIs are relative to *https://api.line.me*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_message_content**](MessagingApiBlobApi.md#get_message_content) | **GET** /v2/bot/message/{messageId}/content | 
-[**get_message_content_preview**](MessagingApiBlobApi.md#get_message_content_preview) | **GET** /v2/bot/message/{messageId}/content/preview | 
-[**get_message_content_transcoding_by_message_id**](MessagingApiBlobApi.md#get_message_content_transcoding_by_message_id) | **GET** /v2/bot/message/{messageId}/content/transcoding | 
-[**get_rich_menu_image**](MessagingApiBlobApi.md#get_rich_menu_image) | **GET** /v2/bot/richmenu/{richMenuId}/content | 
-[**set_rich_menu_image**](MessagingApiBlobApi.md#set_rich_menu_image) | **POST** /v2/bot/richmenu/{richMenuId}/content | 
+[**get_message_content**](MessagingApiBlob.md#get_message_content) | **GET** /v2/bot/message/{messageId}/content | 
+[**get_message_content_preview**](MessagingApiBlob.md#get_message_content_preview) | **GET** /v2/bot/message/{messageId}/content/preview | 
+[**get_message_content_transcoding_by_message_id**](MessagingApiBlob.md#get_message_content_transcoding_by_message_id) | **GET** /v2/bot/message/{messageId}/content/transcoding | 
+[**get_rich_menu_image**](MessagingApiBlob.md#get_rich_menu_image) | **GET** /v2/bot/richmenu/{richMenuId}/content | 
+[**set_rich_menu_image**](MessagingApiBlob.md#set_rich_menu_image) | **POST** /v2/bot/richmenu/{richMenuId}/content | 
 
 
 # **get_message_content**
@@ -47,15 +47,15 @@ configuration = linebot.messaging.Configuration(
 # Enter a context with an instance of the API client
 with linebot.messaging.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.messaging.MessagingApiBlobApi(api_client)
+    api_instance = linebot.messaging.MessagingApiBlob(api_client)
     message_id = 'message_id_example' # str | Message ID of video or audio
 
     try:
         api_response = api_instance.get_message_content(message_id)
-        print("The response of MessagingApiBlobApi->get_message_content:\n")
+        print("The response of MessagingApiBlob->get_message_content:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling MessagingApiBlobApi->get_message_content: %s\n" % e)
+        print("Exception when calling MessagingApiBlob->get_message_content: %s\n" % e)
 ```
 
 
@@ -121,15 +121,15 @@ configuration = linebot.messaging.Configuration(
 # Enter a context with an instance of the API client
 with linebot.messaging.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.messaging.MessagingApiBlobApi(api_client)
+    api_instance = linebot.messaging.MessagingApiBlob(api_client)
     message_id = 'message_id_example' # str | Message ID of image or video
 
     try:
         api_response = api_instance.get_message_content_preview(message_id)
-        print("The response of MessagingApiBlobApi->get_message_content_preview:\n")
+        print("The response of MessagingApiBlob->get_message_content_preview:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling MessagingApiBlobApi->get_message_content_preview: %s\n" % e)
+        print("Exception when calling MessagingApiBlob->get_message_content_preview: %s\n" % e)
 ```
 
 
@@ -196,15 +196,15 @@ configuration = linebot.messaging.Configuration(
 # Enter a context with an instance of the API client
 with linebot.messaging.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.messaging.MessagingApiBlobApi(api_client)
+    api_instance = linebot.messaging.MessagingApiBlob(api_client)
     message_id = 'message_id_example' # str | Message ID of video or audio
 
     try:
         api_response = api_instance.get_message_content_transcoding_by_message_id(message_id)
-        print("The response of MessagingApiBlobApi->get_message_content_transcoding_by_message_id:\n")
+        print("The response of MessagingApiBlob->get_message_content_transcoding_by_message_id:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling MessagingApiBlobApi->get_message_content_transcoding_by_message_id: %s\n" % e)
+        print("Exception when calling MessagingApiBlob->get_message_content_transcoding_by_message_id: %s\n" % e)
 ```
 
 
@@ -270,15 +270,15 @@ configuration = linebot.messaging.Configuration(
 # Enter a context with an instance of the API client
 with linebot.messaging.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.messaging.MessagingApiBlobApi(api_client)
+    api_instance = linebot.messaging.MessagingApiBlob(api_client)
     rich_menu_id = 'rich_menu_id_example' # str | ID of the rich menu with the image to be downloaded
 
     try:
         api_response = api_instance.get_rich_menu_image(rich_menu_id)
-        print("The response of MessagingApiBlobApi->get_rich_menu_image:\n")
+        print("The response of MessagingApiBlob->get_rich_menu_image:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling MessagingApiBlobApi->get_rich_menu_image: %s\n" % e)
+        print("Exception when calling MessagingApiBlob->get_rich_menu_image: %s\n" % e)
 ```
 
 
@@ -344,14 +344,14 @@ configuration = linebot.messaging.Configuration(
 # Enter a context with an instance of the API client
 with linebot.messaging.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.messaging.MessagingApiBlobApi(api_client)
+    api_instance = linebot.messaging.MessagingApiBlob(api_client)
     rich_menu_id = 'rich_menu_id_example' # str | The ID of the rich menu to attach the image to
     body = None # bytearray |  (optional)
 
     try:
         api_instance.set_rich_menu_image(rich_menu_id, body=body)
     except Exception as e:
-        print("Exception when calling MessagingApiBlobApi->set_rich_menu_image: %s\n" % e)
+        print("Exception when calling MessagingApiBlob->set_rich_menu_image: %s\n" % e)
 ```
 
 

@@ -1,13 +1,13 @@
-# linebot.module.LineModuleApi
+# linebot.module.LineModule
 
 All URIs are relative to *https://api.line.me*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**acquire_chat_control**](LineModuleApi.md#acquire_chat_control) | **POST** /v2/bot/chat/{chatId}/control/acquire | 
-[**detach_module**](LineModuleApi.md#detach_module) | **POST** /v2/bot/channel/detach | 
-[**get_modules**](LineModuleApi.md#get_modules) | **GET** /v2/bot/list | 
-[**release_chat_control**](LineModuleApi.md#release_chat_control) | **POST** /v2/bot/chat/{chatId}/control/release | 
+[**acquire_chat_control**](LineModule.md#acquire_chat_control) | **POST** /v2/bot/chat/{chatId}/control/acquire | 
+[**detach_module**](LineModule.md#detach_module) | **POST** /v2/bot/channel/detach | 
+[**get_modules**](LineModule.md#get_modules) | **GET** /v2/bot/list | 
+[**release_chat_control**](LineModule.md#release_chat_control) | **POST** /v2/bot/chat/{chatId}/control/release | 
 
 
 # **acquire_chat_control**
@@ -47,14 +47,14 @@ configuration = linebot.module.Configuration(
 # Enter a context with an instance of the API client
 with linebot.module.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.module.LineModuleApi(api_client)
+    api_instance = linebot.module.LineModule(api_client)
     chat_id = 'chat_id_example' # str | The `userId`, `roomId`, or `groupId`
     acquire_chat_control_request = linebot.module.AcquireChatControlRequest() # AcquireChatControlRequest |  (optional)
 
     try:
         api_instance.acquire_chat_control(chat_id, acquire_chat_control_request=acquire_chat_control_request)
     except Exception as e:
-        print("Exception when calling LineModuleApi->acquire_chat_control: %s\n" % e)
+        print("Exception when calling LineModule->acquire_chat_control: %s\n" % e)
 ```
 
 
@@ -122,13 +122,13 @@ configuration = linebot.module.Configuration(
 # Enter a context with an instance of the API client
 with linebot.module.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.module.LineModuleApi(api_client)
+    api_instance = linebot.module.LineModule(api_client)
     detach_module_request = linebot.module.DetachModuleRequest() # DetachModuleRequest |  (optional)
 
     try:
         api_instance.detach_module(detach_module_request=detach_module_request)
     except Exception as e:
-        print("Exception when calling LineModuleApi->detach_module: %s\n" % e)
+        print("Exception when calling LineModule->detach_module: %s\n" % e)
 ```
 
 
@@ -195,16 +195,16 @@ configuration = linebot.module.Configuration(
 # Enter a context with an instance of the API client
 with linebot.module.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.module.LineModuleApi(api_client)
+    api_instance = linebot.module.LineModule(api_client)
     start = 'start_example' # str | Value of the continuation token found in the next property of the JSON object returned in the response. If you can't get all basic information about the bots in one request, include this parameter to get the remaining array.  (optional)
     limit = 100 # int | Specify the maximum number of bots that you get basic information from. The default value is 100. Max value: 100  (optional) (default to 100)
 
     try:
         api_response = api_instance.get_modules(start=start, limit=limit)
-        print("The response of LineModuleApi->get_modules:\n")
+        print("The response of LineModule->get_modules:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling LineModuleApi->get_modules: %s\n" % e)
+        print("Exception when calling LineModule->get_modules: %s\n" % e)
 ```
 
 
@@ -271,13 +271,13 @@ configuration = linebot.module.Configuration(
 # Enter a context with an instance of the API client
 with linebot.module.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.module.LineModuleApi(api_client)
+    api_instance = linebot.module.LineModule(api_client)
     chat_id = 'chat_id_example' # str | The `userId`, `roomId`, or `groupId`
 
     try:
         api_instance.release_chat_control(chat_id)
     except Exception as e:
-        print("Exception when calling LineModuleApi->release_chat_control: %s\n" % e)
+        print("Exception when calling LineModule->release_chat_control: %s\n" % e)
 ```
 
 

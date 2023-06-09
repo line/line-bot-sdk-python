@@ -17,9 +17,9 @@
 __version__ = "3.0.0"
 
 # import apis into sdk package
-from linebot.insight.api.insight_api import InsightApi
+from linebot.insight.api.insight import Insight
 
-from linebot.insight.api.async_insight_api import AsyncInsightApi
+from linebot.insight.api.async_insight import AsyncInsight
 
 
 # import ApiClient

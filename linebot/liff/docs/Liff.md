@@ -1,13 +1,13 @@
-# linebot.liff.LiffApi
+# linebot.liff.Liff
 
 All URIs are relative to *https://api.line.me*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**liff_v1_apps_get**](LiffApi.md#liff_v1_apps_get) | **GET** /liff/v1/apps | Get all LIFF apps
-[**liff_v1_apps_liff_id_delete**](LiffApi.md#liff_v1_apps_liff_id_delete) | **DELETE** /liff/v1/apps/{liffId} | Delete LIFF app from a channel
-[**liff_v1_apps_liff_id_put**](LiffApi.md#liff_v1_apps_liff_id_put) | **PUT** /liff/v1/apps/{liffId} | 
-[**liff_v1_apps_post**](LiffApi.md#liff_v1_apps_post) | **POST** /liff/v1/apps | 
+[**liff_v1_apps_get**](Liff.md#liff_v1_apps_get) | **GET** /liff/v1/apps | Get all LIFF apps
+[**liff_v1_apps_liff_id_delete**](Liff.md#liff_v1_apps_liff_id_delete) | **DELETE** /liff/v1/apps/{liffId} | Delete LIFF app from a channel
+[**liff_v1_apps_liff_id_put**](Liff.md#liff_v1_apps_liff_id_put) | **PUT** /liff/v1/apps/{liffId} | 
+[**liff_v1_apps_post**](Liff.md#liff_v1_apps_post) | **POST** /liff/v1/apps | 
 
 
 # **liff_v1_apps_get**
@@ -47,15 +47,15 @@ configuration = linebot.liff.Configuration(
 # Enter a context with an instance of the API client
 with linebot.liff.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.liff.LiffApi(api_client)
+    api_instance = linebot.liff.Liff(api_client)
 
     try:
         # Get all LIFF apps
         api_response = api_instance.liff_v1_apps_get()
-        print("The response of LiffApi->liff_v1_apps_get:\n")
+        print("The response of Liff->liff_v1_apps_get:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling LiffApi->liff_v1_apps_get: %s\n" % e)
+        print("Exception when calling Liff->liff_v1_apps_get: %s\n" % e)
 ```
 
 
@@ -120,14 +120,14 @@ configuration = linebot.liff.Configuration(
 # Enter a context with an instance of the API client
 with linebot.liff.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.liff.LiffApi(api_client)
+    api_instance = linebot.liff.Liff(api_client)
     liff_id = 'liff_id_example' # str | ID of the LIFF app to be updated
 
     try:
         # Delete LIFF app from a channel
         api_instance.liff_v1_apps_liff_id_delete(liff_id)
     except Exception as e:
-        print("Exception when calling LiffApi->liff_v1_apps_liff_id_delete: %s\n" % e)
+        print("Exception when calling Liff->liff_v1_apps_liff_id_delete: %s\n" % e)
 ```
 
 
@@ -196,14 +196,14 @@ configuration = linebot.liff.Configuration(
 # Enter a context with an instance of the API client
 with linebot.liff.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.liff.LiffApi(api_client)
+    api_instance = linebot.liff.Liff(api_client)
     liff_id = 'liff_id_example' # str | ID of the LIFF app to be updated
     update_liff_app_request = linebot.liff.UpdateLiffAppRequest() # UpdateLiffAppRequest | 
 
     try:
         api_instance.liff_v1_apps_liff_id_put(liff_id, update_liff_app_request)
     except Exception as e:
-        print("Exception when calling LiffApi->liff_v1_apps_liff_id_put: %s\n" % e)
+        print("Exception when calling Liff->liff_v1_apps_liff_id_put: %s\n" % e)
 ```
 
 
@@ -275,15 +275,15 @@ configuration = linebot.liff.Configuration(
 # Enter a context with an instance of the API client
 with linebot.liff.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.liff.LiffApi(api_client)
+    api_instance = linebot.liff.Liff(api_client)
     add_liff_app_request = linebot.liff.AddLiffAppRequest() # AddLiffAppRequest | 
 
     try:
         api_response = api_instance.liff_v1_apps_post(add_liff_app_request)
-        print("The response of LiffApi->liff_v1_apps_post:\n")
+        print("The response of Liff->liff_v1_apps_post:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling LiffApi->liff_v1_apps_post: %s\n" % e)
+        print("Exception when calling Liff->liff_v1_apps_post: %s\n" % e)
 ```
 
 

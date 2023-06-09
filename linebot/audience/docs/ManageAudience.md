@@ -1,20 +1,20 @@
-# linebot.audience.ManageAudienceApi
+# linebot.audience.ManageAudience
 
 All URIs are relative to *https://api.line.me*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**activate_audience_group**](ManageAudienceApi.md#activate_audience_group) | **PUT** /v2/bot/audienceGroup/{audienceGroupId}/activate | 
-[**add_audience_to_audience_group**](ManageAudienceApi.md#add_audience_to_audience_group) | **PUT** /v2/bot/audienceGroup/upload | 
-[**create_audience_group**](ManageAudienceApi.md#create_audience_group) | **POST** /v2/bot/audienceGroup/upload | 
-[**create_click_based_audience_group**](ManageAudienceApi.md#create_click_based_audience_group) | **POST** /v2/bot/audienceGroup/click | 
-[**create_imp_based_audience_group**](ManageAudienceApi.md#create_imp_based_audience_group) | **POST** /v2/bot/audienceGroup/imp | 
-[**delete_audience_group**](ManageAudienceApi.md#delete_audience_group) | **DELETE** /v2/bot/audienceGroup/{audienceGroupId} | 
-[**get_audience_data**](ManageAudienceApi.md#get_audience_data) | **GET** /v2/bot/audienceGroup/{audienceGroupId} | 
-[**get_audience_group_authority_level**](ManageAudienceApi.md#get_audience_group_authority_level) | **GET** /v2/bot/audienceGroup/authorityLevel | 
-[**get_audience_groups**](ManageAudienceApi.md#get_audience_groups) | **GET** /v2/bot/audienceGroup/list | 
-[**update_audience_group_authority_level**](ManageAudienceApi.md#update_audience_group_authority_level) | **PUT** /v2/bot/audienceGroup/authorityLevel | 
-[**update_audience_group_description**](ManageAudienceApi.md#update_audience_group_description) | **PUT** /v2/bot/audienceGroup/{audienceGroupId}/updateDescription | 
+[**activate_audience_group**](ManageAudience.md#activate_audience_group) | **PUT** /v2/bot/audienceGroup/{audienceGroupId}/activate | 
+[**add_audience_to_audience_group**](ManageAudience.md#add_audience_to_audience_group) | **PUT** /v2/bot/audienceGroup/upload | 
+[**create_audience_group**](ManageAudience.md#create_audience_group) | **POST** /v2/bot/audienceGroup/upload | 
+[**create_click_based_audience_group**](ManageAudience.md#create_click_based_audience_group) | **POST** /v2/bot/audienceGroup/click | 
+[**create_imp_based_audience_group**](ManageAudience.md#create_imp_based_audience_group) | **POST** /v2/bot/audienceGroup/imp | 
+[**delete_audience_group**](ManageAudience.md#delete_audience_group) | **DELETE** /v2/bot/audienceGroup/{audienceGroupId} | 
+[**get_audience_data**](ManageAudience.md#get_audience_data) | **GET** /v2/bot/audienceGroup/{audienceGroupId} | 
+[**get_audience_group_authority_level**](ManageAudience.md#get_audience_group_authority_level) | **GET** /v2/bot/audienceGroup/authorityLevel | 
+[**get_audience_groups**](ManageAudience.md#get_audience_groups) | **GET** /v2/bot/audienceGroup/list | 
+[**update_audience_group_authority_level**](ManageAudience.md#update_audience_group_authority_level) | **PUT** /v2/bot/audienceGroup/authorityLevel | 
+[**update_audience_group_description**](ManageAudience.md#update_audience_group_description) | **PUT** /v2/bot/audienceGroup/{audienceGroupId}/updateDescription | 
 
 
 # **activate_audience_group**
@@ -53,13 +53,13 @@ configuration = linebot.audience.Configuration(
 # Enter a context with an instance of the API client
 with linebot.audience.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.audience.ManageAudienceApi(api_client)
+    api_instance = linebot.audience.ManageAudience(api_client)
     audience_group_id = 56 # int | The audience ID.
 
     try:
         api_instance.activate_audience_group(audience_group_id)
     except Exception as e:
-        print("Exception when calling ManageAudienceApi->activate_audience_group: %s\n" % e)
+        print("Exception when calling ManageAudience->activate_audience_group: %s\n" % e)
 ```
 
 
@@ -126,13 +126,13 @@ configuration = linebot.audience.Configuration(
 # Enter a context with an instance of the API client
 with linebot.audience.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.audience.ManageAudienceApi(api_client)
+    api_instance = linebot.audience.ManageAudience(api_client)
     add_audience_to_audience_group_request = linebot.audience.AddAudienceToAudienceGroupRequest() # AddAudienceToAudienceGroupRequest | 
 
     try:
         api_instance.add_audience_to_audience_group(add_audience_to_audience_group_request)
     except Exception as e:
-        print("Exception when calling ManageAudienceApi->add_audience_to_audience_group: %s\n" % e)
+        print("Exception when calling ManageAudience->add_audience_to_audience_group: %s\n" % e)
 ```
 
 
@@ -200,15 +200,15 @@ configuration = linebot.audience.Configuration(
 # Enter a context with an instance of the API client
 with linebot.audience.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.audience.ManageAudienceApi(api_client)
+    api_instance = linebot.audience.ManageAudience(api_client)
     create_audience_group_request = linebot.audience.CreateAudienceGroupRequest() # CreateAudienceGroupRequest | 
 
     try:
         api_response = api_instance.create_audience_group(create_audience_group_request)
-        print("The response of ManageAudienceApi->create_audience_group:\n")
+        print("The response of ManageAudience->create_audience_group:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling ManageAudienceApi->create_audience_group: %s\n" % e)
+        print("Exception when calling ManageAudience->create_audience_group: %s\n" % e)
 ```
 
 
@@ -276,15 +276,15 @@ configuration = linebot.audience.Configuration(
 # Enter a context with an instance of the API client
 with linebot.audience.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.audience.ManageAudienceApi(api_client)
+    api_instance = linebot.audience.ManageAudience(api_client)
     create_click_based_audience_group_request = linebot.audience.CreateClickBasedAudienceGroupRequest() # CreateClickBasedAudienceGroupRequest | 
 
     try:
         api_response = api_instance.create_click_based_audience_group(create_click_based_audience_group_request)
-        print("The response of ManageAudienceApi->create_click_based_audience_group:\n")
+        print("The response of ManageAudience->create_click_based_audience_group:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling ManageAudienceApi->create_click_based_audience_group: %s\n" % e)
+        print("Exception when calling ManageAudience->create_click_based_audience_group: %s\n" % e)
 ```
 
 
@@ -352,15 +352,15 @@ configuration = linebot.audience.Configuration(
 # Enter a context with an instance of the API client
 with linebot.audience.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.audience.ManageAudienceApi(api_client)
+    api_instance = linebot.audience.ManageAudience(api_client)
     create_imp_based_audience_group_request = linebot.audience.CreateImpBasedAudienceGroupRequest() # CreateImpBasedAudienceGroupRequest | 
 
     try:
         api_response = api_instance.create_imp_based_audience_group(create_imp_based_audience_group_request)
-        print("The response of ManageAudienceApi->create_imp_based_audience_group:\n")
+        print("The response of ManageAudience->create_imp_based_audience_group:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling ManageAudienceApi->create_imp_based_audience_group: %s\n" % e)
+        print("Exception when calling ManageAudience->create_imp_based_audience_group: %s\n" % e)
 ```
 
 
@@ -426,13 +426,13 @@ configuration = linebot.audience.Configuration(
 # Enter a context with an instance of the API client
 with linebot.audience.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.audience.ManageAudienceApi(api_client)
+    api_instance = linebot.audience.ManageAudience(api_client)
     audience_group_id = 56 # int | The audience ID.
 
     try:
         api_instance.delete_audience_group(audience_group_id)
     except Exception as e:
-        print("Exception when calling ManageAudienceApi->delete_audience_group: %s\n" % e)
+        print("Exception when calling ManageAudience->delete_audience_group: %s\n" % e)
 ```
 
 
@@ -499,15 +499,15 @@ configuration = linebot.audience.Configuration(
 # Enter a context with an instance of the API client
 with linebot.audience.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.audience.ManageAudienceApi(api_client)
+    api_instance = linebot.audience.ManageAudience(api_client)
     audience_group_id = 56 # int | The audience ID.
 
     try:
         api_response = api_instance.get_audience_data(audience_group_id)
-        print("The response of ManageAudienceApi->get_audience_data:\n")
+        print("The response of ManageAudience->get_audience_data:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling ManageAudienceApi->get_audience_data: %s\n" % e)
+        print("Exception when calling ManageAudience->get_audience_data: %s\n" % e)
 ```
 
 
@@ -575,14 +575,14 @@ configuration = linebot.audience.Configuration(
 # Enter a context with an instance of the API client
 with linebot.audience.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.audience.ManageAudienceApi(api_client)
+    api_instance = linebot.audience.ManageAudience(api_client)
 
     try:
         api_response = api_instance.get_audience_group_authority_level()
-        print("The response of ManageAudienceApi->get_audience_group_authority_level:\n")
+        print("The response of ManageAudience->get_audience_group_authority_level:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling ManageAudienceApi->get_audience_group_authority_level: %s\n" % e)
+        print("Exception when calling ManageAudience->get_audience_group_authority_level: %s\n" % e)
 ```
 
 
@@ -648,7 +648,7 @@ configuration = linebot.audience.Configuration(
 # Enter a context with an instance of the API client
 with linebot.audience.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.audience.ManageAudienceApi(api_client)
+    api_instance = linebot.audience.ManageAudience(api_client)
     page = 56 # int | The page to return when getting (paginated) results. Must be 1 or higher.
     description = 'description_example' # str | The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion. 
     status = linebot.audience.AudienceGroupStatus() # AudienceGroupStatus | The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion. 
@@ -658,10 +658,10 @@ with linebot.audience.ApiClient(configuration) as api_client:
 
     try:
         api_response = api_instance.get_audience_groups(page, description, status, size, includes_external_public_groups, create_route)
-        print("The response of ManageAudienceApi->get_audience_groups:\n")
+        print("The response of ManageAudience->get_audience_groups:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling ManageAudienceApi->get_audience_groups: %s\n" % e)
+        print("Exception when calling ManageAudience->get_audience_groups: %s\n" % e)
 ```
 
 
@@ -733,13 +733,13 @@ configuration = linebot.audience.Configuration(
 # Enter a context with an instance of the API client
 with linebot.audience.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.audience.ManageAudienceApi(api_client)
+    api_instance = linebot.audience.ManageAudience(api_client)
     update_audience_group_authority_level_request = linebot.audience.UpdateAudienceGroupAuthorityLevelRequest() # UpdateAudienceGroupAuthorityLevelRequest | 
 
     try:
         api_instance.update_audience_group_authority_level(update_audience_group_authority_level_request)
     except Exception as e:
-        print("Exception when calling ManageAudienceApi->update_audience_group_authority_level: %s\n" % e)
+        print("Exception when calling ManageAudience->update_audience_group_authority_level: %s\n" % e)
 ```
 
 
@@ -806,14 +806,14 @@ configuration = linebot.audience.Configuration(
 # Enter a context with an instance of the API client
 with linebot.audience.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.audience.ManageAudienceApi(api_client)
+    api_instance = linebot.audience.ManageAudience(api_client)
     audience_group_id = 56 # int | The audience ID.
     update_audience_group_description_request = linebot.audience.UpdateAudienceGroupDescriptionRequest() # UpdateAudienceGroupDescriptionRequest | 
 
     try:
         api_instance.update_audience_group_description(audience_group_id, update_audience_group_description_request)
     except Exception as e:
-        print("Exception when calling ManageAudienceApi->update_audience_group_description: %s\n" % e)
+        print("Exception when calling ManageAudience->update_audience_group_description: %s\n" % e)
 ```
 
 

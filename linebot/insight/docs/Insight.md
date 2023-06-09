@@ -1,14 +1,14 @@
-# linebot.insight.InsightApi
+# linebot.insight.Insight
 
 All URIs are relative to *https://api.line.me*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_friends_demographics**](InsightApi.md#get_friends_demographics) | **GET** /v2/bot/insight/demographic | 
-[**get_message_event**](InsightApi.md#get_message_event) | **GET** /v2/bot/insight/message/event | Get user interaction statistics
-[**get_number_of_followers**](InsightApi.md#get_number_of_followers) | **GET** /v2/bot/insight/followers | Get number of followers
-[**get_number_of_message_deliveries**](InsightApi.md#get_number_of_message_deliveries) | **GET** /v2/bot/insight/message/delivery | Get number of message deliveries
-[**get_statistics_per_unit**](InsightApi.md#get_statistics_per_unit) | **GET** /v2/bot/insight/message/event/aggregation | 
+[**get_friends_demographics**](Insight.md#get_friends_demographics) | **GET** /v2/bot/insight/demographic | 
+[**get_message_event**](Insight.md#get_message_event) | **GET** /v2/bot/insight/message/event | Get user interaction statistics
+[**get_number_of_followers**](Insight.md#get_number_of_followers) | **GET** /v2/bot/insight/followers | Get number of followers
+[**get_number_of_message_deliveries**](Insight.md#get_number_of_message_deliveries) | **GET** /v2/bot/insight/message/delivery | Get number of message deliveries
+[**get_statistics_per_unit**](Insight.md#get_statistics_per_unit) | **GET** /v2/bot/insight/message/event/aggregation | 
 
 
 # **get_friends_demographics**
@@ -48,14 +48,14 @@ configuration = linebot.insight.Configuration(
 # Enter a context with an instance of the API client
 with linebot.insight.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.insight.InsightApi(api_client)
+    api_instance = linebot.insight.Insight(api_client)
 
     try:
         api_response = api_instance.get_friends_demographics()
-        print("The response of InsightApi->get_friends_demographics:\n")
+        print("The response of Insight->get_friends_demographics:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling InsightApi->get_friends_demographics: %s\n" % e)
+        print("Exception when calling Insight->get_friends_demographics: %s\n" % e)
 ```
 
 
@@ -119,16 +119,16 @@ configuration = linebot.insight.Configuration(
 # Enter a context with an instance of the API client
 with linebot.insight.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.insight.InsightApi(api_client)
+    api_instance = linebot.insight.Insight(api_client)
     request_id = 'request_id_example' # str | Request ID of a narrowcast message or broadcast message. Each Messaging API request has a request ID. 
 
     try:
         # Get user interaction statistics
         api_response = api_instance.get_message_event(request_id)
-        print("The response of InsightApi->get_message_event:\n")
+        print("The response of Insight->get_message_event:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling InsightApi->get_message_event: %s\n" % e)
+        print("Exception when calling Insight->get_message_event: %s\n" % e)
 ```
 
 
@@ -195,16 +195,16 @@ configuration = linebot.insight.Configuration(
 # Enter a context with an instance of the API client
 with linebot.insight.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.insight.InsightApi(api_client)
+    api_instance = linebot.insight.Insight(api_client)
     var_date = 'var_date_example' # str | Date for which to retrieve the number of followers.  Format: yyyyMMdd (e.g. 20191231) Timezone: UTC+9  (optional)
 
     try:
         # Get number of followers
         api_response = api_instance.get_number_of_followers(var_date=var_date)
-        print("The response of InsightApi->get_number_of_followers:\n")
+        print("The response of Insight->get_number_of_followers:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling InsightApi->get_number_of_followers: %s\n" % e)
+        print("Exception when calling Insight->get_number_of_followers: %s\n" % e)
 ```
 
 
@@ -271,16 +271,16 @@ configuration = linebot.insight.Configuration(
 # Enter a context with an instance of the API client
 with linebot.insight.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.insight.InsightApi(api_client)
+    api_instance = linebot.insight.Insight(api_client)
     var_date = 'var_date_example' # str | Date for which to retrieve number of sent messages. - Format: yyyyMMdd (e.g. 20191231) - Timezone: UTC+9 
 
     try:
         # Get number of message deliveries
         api_response = api_instance.get_number_of_message_deliveries(var_date)
-        print("The response of InsightApi->get_number_of_message_deliveries:\n")
+        print("The response of Insight->get_number_of_message_deliveries:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling InsightApi->get_number_of_message_deliveries: %s\n" % e)
+        print("Exception when calling Insight->get_number_of_message_deliveries: %s\n" % e)
 ```
 
 
@@ -347,17 +347,17 @@ configuration = linebot.insight.Configuration(
 # Enter a context with an instance of the API client
 with linebot.insight.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.insight.InsightApi(api_client)
+    api_instance = linebot.insight.Insight(api_client)
     custom_aggregation_unit = 'custom_aggregation_unit_example' # str | Name of aggregation unit specified when sending the message. Case-sensitive. For example, `Promotion_a` and `Promotion_A` are regarded as different unit names. 
     var_from = '20210301' # str | Start date of aggregation period.  Format: yyyyMMdd (e.g. 20210301) Time zone: UTC+9 
     to = '20210301' # str | End date of aggregation period. The end date can be specified for up to 30 days later. For example, if the start date is 20210301, the latest end date is 20210331.  Format: yyyyMMdd (e.g. 20210301) Time zone: UTC+9 
 
     try:
         api_response = api_instance.get_statistics_per_unit(custom_aggregation_unit, var_from, to)
-        print("The response of InsightApi->get_statistics_per_unit:\n")
+        print("The response of Insight->get_statistics_per_unit:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling InsightApi->get_statistics_per_unit: %s\n" % e)
+        print("Exception when calling Insight->get_statistics_per_unit: %s\n" % e)
 ```
 
 

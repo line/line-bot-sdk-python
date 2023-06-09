@@ -6,8 +6,8 @@ import sys
 from linebot.messaging import (
     Configuration,
     ApiClient,
-    MessagingApiApi,
-    MessagingApiBlobApi,
+    MessagingApi,
+    MessagingApiBlob,
     RichMenuRequest,
     RichMenuArea,
     RichMenuSize,
@@ -117,8 +117,8 @@ def create_action(action):
 
 def main():
     with ApiClient(configuration) as api_client:
-        line_bot_api = MessagingApiApi(api_client)
-        line_bot_blob_api = MessagingApiBlobApi(api_client)
+        line_bot_api = MessagingApi(api_client)
+        line_bot_blob_api = MessagingApiBlob(api_client)
 
         # 2. Create rich menu A (richmenu-a)
         rich_menu_object_a = rich_menu_object_a_json()

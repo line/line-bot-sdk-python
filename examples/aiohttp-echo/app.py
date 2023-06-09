@@ -29,7 +29,7 @@ from linebot import (
 from linebot.messaging import (
     Configuration,
     AsyncApiClient,
-    AsyncMessagingApiApi,
+    AsyncMessagingApi,
     TextMessage,
     ReplyMessageRequest
 )
@@ -58,7 +58,7 @@ configuration = Configuration(
 
 
 class Handler:
-    def __init__(self, line_bot_api: AsyncMessagingApiApi, parser: WebhookParser):
+    def __init__(self, line_bot_api: AsyncMessagingApi, parser: WebhookParser):
         self.line_bot_api = line_bot_api
         self.parser = parser
 
@@ -88,7 +88,7 @@ class Handler:
 
 async def main(port=8000):
     async_api_client = AsyncApiClient(configuration)
-    line_bot_api = AsyncMessagingApiApi(async_api_client)
+    line_bot_api = AsyncMessagingApi(async_api_client)
     parser = WebhookParser(channel_secret)
 
     handler = Handler(line_bot_api, parser)

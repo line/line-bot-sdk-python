@@ -17,9 +17,9 @@
 __version__ = "3.0.0"
 
 # import apis into sdk package
-from linebot.liff.api.liff_api import LiffApi
+from linebot.liff.api.liff import Liff
 
-from linebot.liff.api.async_liff_api import AsyncLiffApi
+from linebot.liff.api.async_liff import AsyncLiff
 
 
 # import ApiClient

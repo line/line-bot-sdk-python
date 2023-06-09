@@ -57,8 +57,8 @@ from linebot.webhooks import (
 from linebot.messaging import (
     Configuration,
     ApiClient,
-    MessagingApiApi,
-    MessagingApiBlobApi,
+    MessagingApi,
+    MessagingApiBlob,
     ReplyMessageRequest,
     PushMessageRequest,
     MulticastRequest,
@@ -97,8 +97,8 @@ from linebot.messaging import (
 )
 
 from linebot.insight import (
-    ApiClient as InsightApiClient,
-    InsightApi
+    ApiClient as InsightClient,
+    Insight
 )
 
 
@@ -159,7 +159,7 @@ def callback():
 def handle_text_message(event):
     text = event.message.text
     with ApiClient(configuration) as api_client:
-        line_bot_api = MessagingApiApi(api_client)
+        line_bot_api = MessagingApi(api_client)
         if text == 'profile':
             if isinstance(event.source, UserSource):
                 profile = line_bot_api.get_profile(user_id=event.source.user_id)
@@ -659,8 +659,8 @@ def handle_text_message(event):
                 )
             )
         elif text == 'insight_message_delivery':
-            with InsightApiClient(configuration) as api_client:
-                line_bot_insight_api = InsightApi(api_client)
+            with InsightClient(configuration) as api_client:
+                line_bot_insight_api = Insight(api_client)
                 today = datetime.date.today().strftime("%Y%m%d")
                 response = line_bot_insight_api.get_number_of_message_deliveries(var_date=today)
                 if response.status == 'ready':
@@ -677,8 +677,8 @@ def handle_text_message(event):
                 )
             )
         elif text == 'insight_followers':
-            with InsightApiClient(configuration) as api_client:
-                line_bot_insight_api = InsightApi(api_client)
+            with InsightClient(configuration) as api_client:
+                line_bot_insight_api = Insight(api_client)
                 today = datetime.date.today().strftime("%Y%m%d")
                 response = line_bot_insight_api.get_number_of_followers(var_date=today)
             if response.status == 'ready':
@@ -696,8 +696,8 @@ def handle_text_message(event):
                 )
             )
         elif text == 'insight_demographic':
-            with InsightApiClient(configuration) as api_client:
-                line_bot_insight_api = InsightApi(api_client)
+            with InsightClient(configuration) as api_client:
+                line_bot_insight_api = Insight(api_client)
                 response = line_bot_insight_api.get_friends_demographics()
             if response.available:
                 messages = ["{gender}: {percentage}".format(gender=it.gender, percentage=it.percentage)
@@ -722,7 +722,7 @@ def handle_text_message(event):
 @handler.add(MessageEvent, message=LocationMessageContent)
 def handle_location_message(event):
     with ApiClient(configuration) as api_client:
-        line_bot_api = MessagingApiApi(api_client)
+        line_bot_api = MessagingApi(api_client)
         line_bot_api.reply_message(
             ReplyMessageRequest(
                 reply_token=event.reply_token,
@@ -739,7 +739,7 @@ def handle_location_message(event):
 @handler.add(MessageEvent, message=StickerMessageContent)
 def handle_sticker_message(event):
     with ApiClient(configuration) as api_client:
-        line_bot_api = MessagingApiApi(api_client)
+        line_bot_api = MessagingApi(api_client)
         line_bot_api.reply_message(
             ReplyMessageRequest(
                 reply_token=event.reply_token,
@@ -766,7 +766,7 @@ def handle_content_message(event):
         return
 
     with ApiClient(configuration) as api_client:
-        line_bot_blob_api = MessagingApiBlobApi(api_client)
+        line_bot_blob_api = MessagingApiBlob(api_client)
         message_content = line_bot_blob_api.get_message_content(message_id=event.message.id)
         with tempfile.NamedTemporaryFile(dir=static_tmp_path, prefix=ext + '-', delete=False) as tf:
             tf.write(message_content)
@@ -777,7 +777,7 @@ def handle_content_message(event):
     os.rename(tempfile_path, dist_path)
 
     with ApiClient(configuration) as api_client:
-        line_bot_api = MessagingApiApi(api_client)
+        line_bot_api = MessagingApi(api_client)
         line_bot_api.reply_message(
             ReplyMessageRequest(
                 reply_token=event.reply_token,
@@ -792,7 +792,7 @@ def handle_content_message(event):
 @handler.add(MessageEvent, message=FileMessageContent)
 def handle_file_message(event):
     with ApiClient(configuration) as api_client:
-        line_bot_blob_api = MessagingApiBlobApi(api_client)
+        line_bot_blob_api = MessagingApiBlob(api_client)
         message_content = line_bot_blob_api.get_message_content(message_id=event.message.id)
         with tempfile.NamedTemporaryFile(dir=static_tmp_path, prefix='file-', delete=False) as tf:
             tf.write(message_content)
@@ -803,7 +803,7 @@ def handle_file_message(event):
     os.rename(tempfile_path, dist_path)
 
     with ApiClient(configuration) as api_client:
-        line_bot_api = MessagingApiApi(api_client)
+        line_bot_api = MessagingApi(api_client)
         line_bot_api.reply_message(
             ReplyMessageRequest(
                 reply_token=event.reply_token,
@@ -819,7 +819,7 @@ def handle_file_message(event):
 def handle_follow(event):
     app.logger.info("Got Follow event:" + event.source.user_id)
     with ApiClient(configuration) as api_client:
-        line_bot_api = MessagingApiApi(api_client)
+        line_bot_api = MessagingApi(api_client)
         line_bot_api.reply_message(
             ReplyMessageRequest(
                 reply_token=event.reply_token,
@@ -836,7 +836,7 @@ def handle_unfollow(event):
 @handler.add(JoinEvent)
 def handle_join(event):
     with ApiClient(configuration) as api_client:
-        line_bot_api = MessagingApiApi(api_client)
+        line_bot_api = MessagingApi(api_client)
         line_bot_api.reply_message(
             ReplyMessageRequest(
                 reply_token=event.reply_token,
@@ -853,7 +853,7 @@ def handle_leave():
 @handler.add(PostbackEvent)
 def handle_postback(event: PostbackEvent):
     with ApiClient(configuration) as api_client:
-        line_bot_api = MessagingApiApi(api_client)
+        line_bot_api = MessagingApi(api_client)
         if event.postback.data == 'ping':
             line_bot_api.reply_message(
                 ReplyMessageRequest(
@@ -880,7 +880,7 @@ def handle_postback(event: PostbackEvent):
 @handler.add(BeaconEvent)
 def handle_beacon(event: BeaconEvent):
     with ApiClient(configuration) as api_client:
-        line_bot_api = MessagingApiApi(api_client)
+        line_bot_api = MessagingApi(api_client)
         line_bot_api.reply_message(
             ReplyMessageRequest(
                 reply_token=event.reply_token,
@@ -893,7 +893,7 @@ def handle_beacon(event: BeaconEvent):
 @handler.add(MemberJoinedEvent)
 def handle_member_joined(event):
     with ApiClient(configuration) as api_client:
-        line_bot_api = MessagingApiApi(api_client)
+        line_bot_api = MessagingApi(api_client)
         line_bot_api.reply_message(
             ReplyMessageRequest(
                 reply_token=event.reply_token,

@@ -1,16 +1,16 @@
-# linebot.oauth.ChannelAccessTokenApi
+# linebot.oauth.ChannelAccessToken
 
 All URIs are relative to *https://api.line.me*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**gets_all_valid_channel_access_token_key_ids**](ChannelAccessTokenApi.md#gets_all_valid_channel_access_token_key_ids) | **GET** /oauth2/v2.1/tokens/kid | 
-[**issue_channel_token**](ChannelAccessTokenApi.md#issue_channel_token) | **POST** /v2/oauth/accessToken | 
-[**issue_channel_token_by_jwt**](ChannelAccessTokenApi.md#issue_channel_token_by_jwt) | **POST** /oauth2/v2.1/token | 
-[**revoke_channel_token**](ChannelAccessTokenApi.md#revoke_channel_token) | **POST** /v2/oauth/revoke | 
-[**revoke_channel_token_by_jwt**](ChannelAccessTokenApi.md#revoke_channel_token_by_jwt) | **POST** /oauth2/v2.1/revoke | 
-[**verify_channel_token**](ChannelAccessTokenApi.md#verify_channel_token) | **POST** /v2/oauth/verify | 
-[**verify_channel_token_by_jwt**](ChannelAccessTokenApi.md#verify_channel_token_by_jwt) | **GET** /oauth2/v2.1/verify | 
+[**gets_all_valid_channel_access_token_key_ids**](ChannelAccessToken.md#gets_all_valid_channel_access_token_key_ids) | **GET** /oauth2/v2.1/tokens/kid | 
+[**issue_channel_token**](ChannelAccessToken.md#issue_channel_token) | **POST** /v2/oauth/accessToken | 
+[**issue_channel_token_by_jwt**](ChannelAccessToken.md#issue_channel_token_by_jwt) | **POST** /oauth2/v2.1/token | 
+[**revoke_channel_token**](ChannelAccessToken.md#revoke_channel_token) | **POST** /v2/oauth/revoke | 
+[**revoke_channel_token_by_jwt**](ChannelAccessToken.md#revoke_channel_token_by_jwt) | **POST** /oauth2/v2.1/revoke | 
+[**verify_channel_token**](ChannelAccessToken.md#verify_channel_token) | **POST** /v2/oauth/verify | 
+[**verify_channel_token_by_jwt**](ChannelAccessToken.md#verify_channel_token_by_jwt) | **GET** /oauth2/v2.1/verify | 
 
 
 # **gets_all_valid_channel_access_token_key_ids**
@@ -50,16 +50,16 @@ configuration = linebot.oauth.Configuration(
 # Enter a context with an instance of the API client
 with linebot.oauth.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.oauth.ChannelAccessTokenApi(api_client)
+    api_instance = linebot.oauth.ChannelAccessToken(api_client)
     client_assertion_type = 'client_assertion_type_example' # str | `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`
     client_assertion = 'client_assertion_example' # str | A JSON Web Token (JWT) (opens new window)the client needs to create and sign with the private key.
 
     try:
         api_response = api_instance.gets_all_valid_channel_access_token_key_ids(client_assertion_type, client_assertion)
-        print("The response of ChannelAccessTokenApi->gets_all_valid_channel_access_token_key_ids:\n")
+        print("The response of ChannelAccessToken->gets_all_valid_channel_access_token_key_ids:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling ChannelAccessTokenApi->gets_all_valid_channel_access_token_key_ids: %s\n" % e)
+        print("Exception when calling ChannelAccessToken->gets_all_valid_channel_access_token_key_ids: %s\n" % e)
 ```
 
 
@@ -127,17 +127,17 @@ configuration = linebot.oauth.Configuration(
 # Enter a context with an instance of the API client
 with linebot.oauth.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.oauth.ChannelAccessTokenApi(api_client)
+    api_instance = linebot.oauth.ChannelAccessToken(api_client)
     grant_type = 'grant_type_example' # str | `client_credentials` (optional)
     client_id = 'client_id_example' # str | Channel ID. (optional)
     client_secret = 'client_secret_example' # str | Channel secret. (optional)
 
     try:
         api_response = api_instance.issue_channel_token(grant_type=grant_type, client_id=client_id, client_secret=client_secret)
-        print("The response of ChannelAccessTokenApi->issue_channel_token:\n")
+        print("The response of ChannelAccessToken->issue_channel_token:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling ChannelAccessTokenApi->issue_channel_token: %s\n" % e)
+        print("Exception when calling ChannelAccessToken->issue_channel_token: %s\n" % e)
 ```
 
 
@@ -207,17 +207,17 @@ configuration = linebot.oauth.Configuration(
 # Enter a context with an instance of the API client
 with linebot.oauth.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.oauth.ChannelAccessTokenApi(api_client)
+    api_instance = linebot.oauth.ChannelAccessToken(api_client)
     grant_type = 'grant_type_example' # str | client_credentials (optional)
     client_assertion_type = 'client_assertion_type_example' # str | urn:ietf:params:oauth:client-assertion-type:jwt-bearer (optional)
     client_assertion = 'client_assertion_example' # str | A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key. (optional)
 
     try:
         api_response = api_instance.issue_channel_token_by_jwt(grant_type=grant_type, client_assertion_type=client_assertion_type, client_assertion=client_assertion)
-        print("The response of ChannelAccessTokenApi->issue_channel_token_by_jwt:\n")
+        print("The response of ChannelAccessToken->issue_channel_token_by_jwt:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling ChannelAccessTokenApi->issue_channel_token_by_jwt: %s\n" % e)
+        print("Exception when calling ChannelAccessToken->issue_channel_token_by_jwt: %s\n" % e)
 ```
 
 
@@ -285,13 +285,13 @@ configuration = linebot.oauth.Configuration(
 # Enter a context with an instance of the API client
 with linebot.oauth.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.oauth.ChannelAccessTokenApi(api_client)
+    api_instance = linebot.oauth.ChannelAccessToken(api_client)
     access_token = 'access_token_example' # str | Channel access token (optional)
 
     try:
         api_instance.revoke_channel_token(access_token=access_token)
     except Exception as e:
-        print("Exception when calling ChannelAccessTokenApi->revoke_channel_token: %s\n" % e)
+        print("Exception when calling ChannelAccessToken->revoke_channel_token: %s\n" % e)
 ```
 
 
@@ -357,7 +357,7 @@ configuration = linebot.oauth.Configuration(
 # Enter a context with an instance of the API client
 with linebot.oauth.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.oauth.ChannelAccessTokenApi(api_client)
+    api_instance = linebot.oauth.ChannelAccessToken(api_client)
     client_id = 'client_id_example' # str | Channel ID (optional)
     client_secret = 'client_secret_example' # str | Channel Secret (optional)
     access_token = 'access_token_example' # str | Channel access token (optional)
@@ -365,7 +365,7 @@ with linebot.oauth.ApiClient(configuration) as api_client:
     try:
         api_instance.revoke_channel_token_by_jwt(client_id=client_id, client_secret=client_secret, access_token=access_token)
     except Exception as e:
-        print("Exception when calling ChannelAccessTokenApi->revoke_channel_token_by_jwt: %s\n" % e)
+        print("Exception when calling ChannelAccessToken->revoke_channel_token_by_jwt: %s\n" % e)
 ```
 
 
@@ -434,15 +434,15 @@ configuration = linebot.oauth.Configuration(
 # Enter a context with an instance of the API client
 with linebot.oauth.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.oauth.ChannelAccessTokenApi(api_client)
+    api_instance = linebot.oauth.ChannelAccessToken(api_client)
     access_token = 'access_token_example' # str | A short-lived or long-lived channel access token. (optional)
 
     try:
         api_response = api_instance.verify_channel_token(access_token=access_token)
-        print("The response of ChannelAccessTokenApi->verify_channel_token:\n")
+        print("The response of ChannelAccessToken->verify_channel_token:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling ChannelAccessTokenApi->verify_channel_token: %s\n" % e)
+        print("Exception when calling ChannelAccessToken->verify_channel_token: %s\n" % e)
 ```
 
 
@@ -509,15 +509,15 @@ configuration = linebot.oauth.Configuration(
 # Enter a context with an instance of the API client
 with linebot.oauth.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.oauth.ChannelAccessTokenApi(api_client)
+    api_instance = linebot.oauth.ChannelAccessToken(api_client)
     access_token = 'access_token_example' # str | Channel access token with a user-specified expiration (Channel Access Token v2.1).
 
     try:
         api_response = api_instance.verify_channel_token_by_jwt(access_token)
-        print("The response of ChannelAccessTokenApi->verify_channel_token_by_jwt:\n")
+        print("The response of ChannelAccessToken->verify_channel_token_by_jwt:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling ChannelAccessTokenApi->verify_channel_token_by_jwt: %s\n" % e)
+        print("Exception when calling ChannelAccessToken->verify_channel_token_by_jwt: %s\n" % e)
 ```
 
 

@@ -1,9 +1,9 @@
 # flake8: noqa
 
 # import apis into api package
-from linebot.webhooks.api.dummy_api import DummyApi
+from linebot.webhooks.api.dummy import Dummy
 
 
 # Async version
-from linebot.webhooks.api.async_dummy_api import AsyncDummyApi
+from linebot.webhooks.api.async_dummy import AsyncDummy
 

@@ -22,7 +22,7 @@ from linebot import (
 )
 from linebot.messaging import (
     AsyncApiClient,
-    AsyncMessagingApiApi,
+    AsyncMessagingApi,
     Configuration,
     ReplyMessageRequest,
     TextMessage
@@ -52,7 +52,7 @@ configuration = Configuration(
 
 app = FastAPI()
 async_api_client = AsyncApiClient(configuration)
-line_bot_api = AsyncMessagingApiApi(async_api_client)
+line_bot_api = AsyncMessagingApi(async_api_client)
 parser = WebhookParser(channel_secret)
 
 

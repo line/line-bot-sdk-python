@@ -1,67 +1,67 @@
-# linebot.messaging.MessagingApiApi
+# linebot.messaging.MessagingApi
 
 All URIs are relative to *https://api.line.me*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**audience_match**](MessagingApiApi.md#audience_match) | **POST** /bot/ad/multicast/phone | 
-[**broadcast**](MessagingApiApi.md#broadcast) | **POST** /v2/bot/message/broadcast | 
-[**cancel_default_rich_menu**](MessagingApiApi.md#cancel_default_rich_menu) | **DELETE** /v2/bot/user/all/richmenu | 
-[**create_rich_menu**](MessagingApiApi.md#create_rich_menu) | **POST** /v2/bot/richmenu | 
-[**create_rich_menu_alias**](MessagingApiApi.md#create_rich_menu_alias) | **POST** /v2/bot/richmenu/alias | 
-[**delete_rich_menu**](MessagingApiApi.md#delete_rich_menu) | **DELETE** /v2/bot/richmenu/{richMenuId} | 
-[**delete_rich_menu_alias**](MessagingApiApi.md#delete_rich_menu_alias) | **DELETE** /v2/bot/richmenu/alias/{richMenuAliasId} | 
-[**get_ad_phone_message_statistics**](MessagingApiApi.md#get_ad_phone_message_statistics) | **GET** /v2/bot/message/delivery/ad_phone | 
-[**get_aggregation_unit_name_list**](MessagingApiApi.md#get_aggregation_unit_name_list) | **GET** /v2/bot/message/aggregation/list | 
-[**get_aggregation_unit_usage**](MessagingApiApi.md#get_aggregation_unit_usage) | **GET** /v2/bot/message/aggregation/info | 
-[**get_bot_info**](MessagingApiApi.md#get_bot_info) | **GET** /v2/bot/info | 
-[**get_default_rich_menu_id**](MessagingApiApi.md#get_default_rich_menu_id) | **GET** /v2/bot/user/all/richmenu | 
-[**get_followers**](MessagingApiApi.md#get_followers) | **GET** /v2/bot/followers/ids | 
-[**get_group_member_count**](MessagingApiApi.md#get_group_member_count) | **GET** /v2/bot/group/{groupId}/members/count | 
-[**get_group_member_profile**](MessagingApiApi.md#get_group_member_profile) | **GET** /v2/bot/group/{groupId}/member/{userId} | 
-[**get_group_members_ids**](MessagingApiApi.md#get_group_members_ids) | **GET** /v2/bot/group/{groupId}/members/ids | 
-[**get_group_summary**](MessagingApiApi.md#get_group_summary) | **GET** /v2/bot/group/{groupId}/summary | 
-[**get_message_quota**](MessagingApiApi.md#get_message_quota) | **GET** /v2/bot/message/quota | 
-[**get_message_quota_consumption**](MessagingApiApi.md#get_message_quota_consumption) | **GET** /v2/bot/message/quota/consumption | 
-[**get_narrowcast_progress**](MessagingApiApi.md#get_narrowcast_progress) | **GET** /v2/bot/message/progress/narrowcast | 
-[**get_number_of_sent_broadcast_messages**](MessagingApiApi.md#get_number_of_sent_broadcast_messages) | **GET** /v2/bot/message/delivery/broadcast | 
-[**get_number_of_sent_multicast_messages**](MessagingApiApi.md#get_number_of_sent_multicast_messages) | **GET** /v2/bot/message/delivery/multicast | 
-[**get_number_of_sent_push_messages**](MessagingApiApi.md#get_number_of_sent_push_messages) | **GET** /v2/bot/message/delivery/push | 
-[**get_number_of_sent_reply_messages**](MessagingApiApi.md#get_number_of_sent_reply_messages) | **GET** /v2/bot/message/delivery/reply | 
-[**get_pnp_message_statistics**](MessagingApiApi.md#get_pnp_message_statistics) | **GET** /v2/bot/message/delivery/pnp | 
-[**get_profile**](MessagingApiApi.md#get_profile) | **GET** /v2/bot/profile/{userId} | 
-[**get_rich_menu**](MessagingApiApi.md#get_rich_menu) | **GET** /v2/bot/richmenu/{richMenuId} | 
-[**get_rich_menu_alias**](MessagingApiApi.md#get_rich_menu_alias) | **GET** /v2/bot/richmenu/alias/{richMenuAliasId} | 
-[**get_rich_menu_alias_list**](MessagingApiApi.md#get_rich_menu_alias_list) | **GET** /v2/bot/richmenu/alias/list | 
-[**get_rich_menu_id_of_user**](MessagingApiApi.md#get_rich_menu_id_of_user) | **GET** /v2/bot/user/{userId}/richmenu | 
-[**get_rich_menu_list**](MessagingApiApi.md#get_rich_menu_list) | **GET** /v2/bot/richmenu/list | 
-[**get_room_member_count**](MessagingApiApi.md#get_room_member_count) | **GET** /v2/bot/room/{roomId}/members/count | 
-[**get_room_member_profile**](MessagingApiApi.md#get_room_member_profile) | **GET** /v2/bot/room/{roomId}/member/{userId} | 
-[**get_room_members_ids**](MessagingApiApi.md#get_room_members_ids) | **GET** /v2/bot/room/{roomId}/members/ids | 
-[**get_webhook_endpoint**](MessagingApiApi.md#get_webhook_endpoint) | **GET** /v2/bot/channel/webhook/endpoint | 
-[**issue_link_token**](MessagingApiApi.md#issue_link_token) | **POST** /v2/bot/user/{userId}/linkToken | 
-[**leave_group**](MessagingApiApi.md#leave_group) | **POST** /v2/bot/group/{groupId}/leave | 
-[**leave_room**](MessagingApiApi.md#leave_room) | **POST** /v2/bot/room/{roomId}/leave | 
-[**link_rich_menu_id_to_user**](MessagingApiApi.md#link_rich_menu_id_to_user) | **POST** /v2/bot/user/{userId}/richmenu/{richMenuId} | 
-[**link_rich_menu_id_to_users**](MessagingApiApi.md#link_rich_menu_id_to_users) | **POST** /v2/bot/richmenu/bulk/link | 
-[**mark_messages_as_read**](MessagingApiApi.md#mark_messages_as_read) | **POST** /v2/bot/message/markAsRead | 
-[**multicast**](MessagingApiApi.md#multicast) | **POST** /v2/bot/message/multicast | 
-[**narrowcast**](MessagingApiApi.md#narrowcast) | **POST** /v2/bot/message/narrowcast | 
-[**push_message**](MessagingApiApi.md#push_message) | **POST** /v2/bot/message/push | 
-[**push_messages_by_phone**](MessagingApiApi.md#push_messages_by_phone) | **POST** /bot/pnp/push | 
-[**reply_message**](MessagingApiApi.md#reply_message) | **POST** /v2/bot/message/reply | 
-[**set_default_rich_menu**](MessagingApiApi.md#set_default_rich_menu) | **POST** /v2/bot/user/all/richmenu/{richMenuId} | 
-[**set_webhook_endpoint**](MessagingApiApi.md#set_webhook_endpoint) | **PUT** /v2/bot/channel/webhook/endpoint | 
-[**test_webhook_endpoint**](MessagingApiApi.md#test_webhook_endpoint) | **POST** /v2/bot/channel/webhook/test | 
-[**unlink_rich_menu_id_from_user**](MessagingApiApi.md#unlink_rich_menu_id_from_user) | **DELETE** /v2/bot/user/{userId}/richmenu | 
-[**unlink_rich_menu_id_from_users**](MessagingApiApi.md#unlink_rich_menu_id_from_users) | **POST** /v2/bot/richmenu/bulk/unlink | 
-[**update_rich_menu_alias**](MessagingApiApi.md#update_rich_menu_alias) | **POST** /v2/bot/richmenu/alias/{richMenuAliasId} | 
-[**validate_broadcast**](MessagingApiApi.md#validate_broadcast) | **POST** /v2/bot/message/validate/broadcast | 
-[**validate_multicast**](MessagingApiApi.md#validate_multicast) | **POST** /v2/bot/message/validate/multicast | 
-[**validate_narrowcast**](MessagingApiApi.md#validate_narrowcast) | **POST** /v2/bot/message/validate/narrowcast | 
-[**validate_push**](MessagingApiApi.md#validate_push) | **POST** /v2/bot/message/validate/push | 
-[**validate_reply**](MessagingApiApi.md#validate_reply) | **POST** /v2/bot/message/validate/reply | 
-[**validate_rich_menu_object**](MessagingApiApi.md#validate_rich_menu_object) | **POST** /v2/bot/richmenu/validate | 
+[**audience_match**](MessagingApi.md#audience_match) | **POST** /bot/ad/multicast/phone | 
+[**broadcast**](MessagingApi.md#broadcast) | **POST** /v2/bot/message/broadcast | 
+[**cancel_default_rich_menu**](MessagingApi.md#cancel_default_rich_menu) | **DELETE** /v2/bot/user/all/richmenu | 
+[**create_rich_menu**](MessagingApi.md#create_rich_menu) | **POST** /v2/bot/richmenu | 
+[**create_rich_menu_alias**](MessagingApi.md#create_rich_menu_alias) | **POST** /v2/bot/richmenu/alias | 
+[**delete_rich_menu**](MessagingApi.md#delete_rich_menu) | **DELETE** /v2/bot/richmenu/{richMenuId} | 
+[**delete_rich_menu_alias**](MessagingApi.md#delete_rich_menu_alias) | **DELETE** /v2/bot/richmenu/alias/{richMenuAliasId} | 
+[**get_ad_phone_message_statistics**](MessagingApi.md#get_ad_phone_message_statistics) | **GET** /v2/bot/message/delivery/ad_phone | 
+[**get_aggregation_unit_name_list**](MessagingApi.md#get_aggregation_unit_name_list) | **GET** /v2/bot/message/aggregation/list | 
+[**get_aggregation_unit_usage**](MessagingApi.md#get_aggregation_unit_usage) | **GET** /v2/bot/message/aggregation/info | 
+[**get_bot_info**](MessagingApi.md#get_bot_info) | **GET** /v2/bot/info | 
+[**get_default_rich_menu_id**](MessagingApi.md#get_default_rich_menu_id) | **GET** /v2/bot/user/all/richmenu | 
+[**get_followers**](MessagingApi.md#get_followers) | **GET** /v2/bot/followers/ids | 
+[**get_group_member_count**](MessagingApi.md#get_group_member_count) | **GET** /v2/bot/group/{groupId}/members/count | 
+[**get_group_member_profile**](MessagingApi.md#get_group_member_profile) | **GET** /v2/bot/group/{groupId}/member/{userId} | 
+[**get_group_members_ids**](MessagingApi.md#get_group_members_ids) | **GET** /v2/bot/group/{groupId}/members/ids | 
+[**get_group_summary**](MessagingApi.md#get_group_summary) | **GET** /v2/bot/group/{groupId}/summary | 
+[**get_message_quota**](MessagingApi.md#get_message_quota) | **GET** /v2/bot/message/quota | 
+[**get_message_quota_consumption**](MessagingApi.md#get_message_quota_consumption) | **GET** /v2/bot/message/quota/consumption | 
+[**get_narrowcast_progress**](MessagingApi.md#get_narrowcast_progress) | **GET** /v2/bot/message/progress/narrowcast | 
+[**get_number_of_sent_broadcast_messages**](MessagingApi.md#get_number_of_sent_broadcast_messages) | **GET** /v2/bot/message/delivery/broadcast | 
+[**get_number_of_sent_multicast_messages**](MessagingApi.md#get_number_of_sent_multicast_messages) | **GET** /v2/bot/message/delivery/multicast | 
+[**get_number_of_sent_push_messages**](MessagingApi.md#get_number_of_sent_push_messages) | **GET** /v2/bot/message/delivery/push | 
+[**get_number_of_sent_reply_messages**](MessagingApi.md#get_number_of_sent_reply_messages) | **GET** /v2/bot/message/delivery/reply | 
+[**get_pnp_message_statistics**](MessagingApi.md#get_pnp_message_statistics) | **GET** /v2/bot/message/delivery/pnp | 
+[**get_profile**](MessagingApi.md#get_profile) | **GET** /v2/bot/profile/{userId} | 
+[**get_rich_menu**](MessagingApi.md#get_rich_menu) | **GET** /v2/bot/richmenu/{richMenuId} | 
+[**get_rich_menu_alias**](MessagingApi.md#get_rich_menu_alias) | **GET** /v2/bot/richmenu/alias/{richMenuAliasId} | 
+[**get_rich_menu_alias_list**](MessagingApi.md#get_rich_menu_alias_list) | **GET** /v2/bot/richmenu/alias/list | 
+[**get_rich_menu_id_of_user**](MessagingApi.md#get_rich_menu_id_of_user) | **GET** /v2/bot/user/{userId}/richmenu | 
+[**get_rich_menu_list**](MessagingApi.md#get_rich_menu_list) | **GET** /v2/bot/richmenu/list | 
+[**get_room_member_count**](MessagingApi.md#get_room_member_count) | **GET** /v2/bot/room/{roomId}/members/count | 
+[**get_room_member_profile**](MessagingApi.md#get_room_member_profile) | **GET** /v2/bot/room/{roomId}/member/{userId} | 
+[**get_room_members_ids**](MessagingApi.md#get_room_members_ids) | **GET** /v2/bot/room/{roomId}/members/ids | 
+[**get_webhook_endpoint**](MessagingApi.md#get_webhook_endpoint) | **GET** /v2/bot/channel/webhook/endpoint | 
+[**issue_link_token**](MessagingApi.md#issue_link_token) | **POST** /v2/bot/user/{userId}/linkToken | 
+[**leave_group**](MessagingApi.md#leave_group) | **POST** /v2/bot/group/{groupId}/leave | 
+[**leave_room**](MessagingApi.md#leave_room) | **POST** /v2/bot/room/{roomId}/leave | 
+[**link_rich_menu_id_to_user**](MessagingApi.md#link_rich_menu_id_to_user) | **POST** /v2/bot/user/{userId}/richmenu/{richMenuId} | 
+[**link_rich_menu_id_to_users**](MessagingApi.md#link_rich_menu_id_to_users) | **POST** /v2/bot/richmenu/bulk/link | 
+[**mark_messages_as_read**](MessagingApi.md#mark_messages_as_read) | **POST** /v2/bot/message/markAsRead | 
+[**multicast**](MessagingApi.md#multicast) | **POST** /v2/bot/message/multicast | 
+[**narrowcast**](MessagingApi.md#narrowcast) | **POST** /v2/bot/message/narrowcast | 
+[**push_message**](MessagingApi.md#push_message) | **POST** /v2/bot/message/push | 
+[**push_messages_by_phone**](MessagingApi.md#push_messages_by_phone) | **POST** /bot/pnp/push | 
+[**reply_message**](MessagingApi.md#reply_message) | **POST** /v2/bot/message/reply | 
+[**set_default_rich_menu**](MessagingApi.md#set_default_rich_menu) | **POST** /v2/bot/user/all/richmenu/{richMenuId} | 
+[**set_webhook_endpoint**](MessagingApi.md#set_webhook_endpoint) | **PUT** /v2/bot/channel/webhook/endpoint | 
+[**test_webhook_endpoint**](MessagingApi.md#test_webhook_endpoint) | **POST** /v2/bot/channel/webhook/test | 
+[**unlink_rich_menu_id_from_user**](MessagingApi.md#unlink_rich_menu_id_from_user) | **DELETE** /v2/bot/user/{userId}/richmenu | 
+[**unlink_rich_menu_id_from_users**](MessagingApi.md#unlink_rich_menu_id_from_users) | **POST** /v2/bot/richmenu/bulk/unlink | 
+[**update_rich_menu_alias**](MessagingApi.md#update_rich_menu_alias) | **POST** /v2/bot/richmenu/alias/{richMenuAliasId} | 
+[**validate_broadcast**](MessagingApi.md#validate_broadcast) | **POST** /v2/bot/message/validate/broadcast | 
+[**validate_multicast**](MessagingApi.md#validate_multicast) | **POST** /v2/bot/message/validate/multicast | 
+[**validate_narrowcast**](MessagingApi.md#validate_narrowcast) | **POST** /v2/bot/message/validate/narrowcast | 
+[**validate_push**](MessagingApi.md#validate_push) | **POST** /v2/bot/message/validate/push | 
+[**validate_reply**](MessagingApi.md#validate_reply) | **POST** /v2/bot/message/validate/reply | 
+[**validate_rich_menu_object**](MessagingApi.md#validate_rich_menu_object) | **POST** /v2/bot/richmenu/validate | 
 
 
 # **audience_match**
@@ -101,13 +101,13 @@ configuration = linebot.messaging.Configuration(
 # Enter a context with an instance of the API client
 with linebot.messaging.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.messaging.MessagingApiApi(api_client)
+    api_instance = linebot.messaging.MessagingApi(api_client)
     audience_match_messages_request = linebot.messaging.AudienceMatchMessagesRequest() # AudienceMatchMessagesRequest | 
 
     try:
         api_instance.audience_match(audience_match_messages_request)
     except Exception as e:
-        print("Exception when calling MessagingApiApi->audience_match: %s\n" % e)
+        print("Exception when calling MessagingApi->audience_match: %s\n" % e)
 ```
 
 
@@ -174,14 +174,14 @@ configuration = linebot.messaging.Configuration(
 # Enter a context with an instance of the API client
 with linebot.messaging.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.messaging.MessagingApiApi(api_client)
+    api_instance = linebot.messaging.MessagingApi(api_client)
     broadcast_request = linebot.messaging.BroadcastRequest() # BroadcastRequest | 
     x_line_retry_key = 'x_line_retry_key_example' # str | Retry key. Specifies the UUID in hexadecimal format (e.g., `123e4567-e89b-12d3-a456-426614174000`) generated by any method. The retry key isn't generated by LINE. Each developer must generate their own retry key.  (optional)
 
     try:
         api_instance.broadcast(broadcast_request, x_line_retry_key=x_line_retry_key)
     except Exception as e:
-        print("Exception when calling MessagingApiApi->broadcast: %s\n" % e)
+        print("Exception when calling MessagingApi->broadcast: %s\n" % e)
 ```
 
 
@@ -252,12 +252,12 @@ configuration = linebot.messaging.Configuration(
 # Enter a context with an instance of the API client
 with linebot.messaging.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.messaging.MessagingApiApi(api_client)
+    api_instance = linebot.messaging.MessagingApi(api_client)
 
     try:
         api_instance.cancel_default_rich_menu()
     except Exception as e:
-        print("Exception when calling MessagingApiApi->cancel_default_rich_menu: %s\n" % e)
+        print("Exception when calling MessagingApi->cancel_default_rich_menu: %s\n" % e)
 ```
 
 
@@ -322,15 +322,15 @@ configuration = linebot.messaging.Configuration(
 # Enter a context with an instance of the API client
 with linebot.messaging.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.messaging.MessagingApiApi(api_client)
+    api_instance = linebot.messaging.MessagingApi(api_client)
     rich_menu_request = linebot.messaging.RichMenuRequest() # RichMenuRequest | 
 
     try:
         api_response = api_instance.create_rich_menu(rich_menu_request)
-        print("The response of MessagingApiApi->create_rich_menu:\n")
+        print("The response of MessagingApi->create_rich_menu:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling MessagingApiApi->create_rich_menu: %s\n" % e)
+        print("Exception when calling MessagingApi->create_rich_menu: %s\n" % e)
 ```
 
 
@@ -397,13 +397,13 @@ configuration = linebot.messaging.Configuration(
 # Enter a context with an instance of the API client
 with linebot.messaging.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.messaging.MessagingApiApi(api_client)
+    api_instance = linebot.messaging.MessagingApi(api_client)
     create_rich_menu_alias_request = linebot.messaging.CreateRichMenuAliasRequest() # CreateRichMenuAliasRequest | 
 
     try:
         api_instance.create_rich_menu_alias(create_rich_menu_alias_request)
     except Exception as e:
-        print("Exception when calling MessagingApiApi->create_rich_menu_alias: %s\n" % e)
+        print("Exception when calling MessagingApi->create_rich_menu_alias: %s\n" % e)
 ```
 
 
@@ -470,13 +470,13 @@ configuration = linebot.messaging.Configuration(
 # Enter a context with an instance of the API client
 with linebot.messaging.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.messaging.MessagingApiApi(api_client)
+    api_instance = linebot.messaging.MessagingApi(api_client)
     rich_menu_id = 'rich_menu_id_example' # str | ID of a rich menu
 
     try:
         api_instance.delete_rich_menu(rich_menu_id)
     except Exception as e:
-        print("Exception when calling MessagingApiApi->delete_rich_menu: %s\n" % e)
+        print("Exception when calling MessagingApi->delete_rich_menu: %s\n" % e)
 ```
 
 
@@ -542,13 +542,13 @@ configuration = linebot.messaging.Configuration(
 # Enter a context with an instance of the API client
 with linebot.messaging.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.messaging.MessagingApiApi(api_client)
+    api_instance = linebot.messaging.MessagingApi(api_client)
     rich_menu_alias_id = 'rich_menu_alias_id_example' # str | Rich menu alias ID that you want to delete.
 
     try:
         api_instance.delete_rich_menu_alias(rich_menu_alias_id)
     except Exception as e:
-        print("Exception when calling MessagingApiApi->delete_rich_menu_alias: %s\n" % e)
+        print("Exception when calling MessagingApi->delete_rich_menu_alias: %s\n" % e)
 ```
 
 
@@ -616,15 +616,15 @@ configuration = linebot.messaging.Configuration(
 # Enter a context with an instance of the API client
 with linebot.messaging.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.messaging.MessagingApiApi(api_client)
+    api_instance = linebot.messaging.MessagingApi(api_client)
     var_date = 'var_date_example' # str | Date the message was sent  Format: `yyyyMMdd` (e.g. `20190831`) Time Zone: UTC+9 
 
     try:
         api_response = api_instance.get_ad_phone_message_statistics(var_date)
-        print("The response of MessagingApiApi->get_ad_phone_message_statistics:\n")
+        print("The response of MessagingApi->get_ad_phone_message_statistics:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling MessagingApiApi->get_ad_phone_message_statistics: %s\n" % e)
+        print("Exception when calling MessagingApi->get_ad_phone_message_statistics: %s\n" % e)
 ```
 
 
@@ -691,16 +691,16 @@ configuration = linebot.messaging.Configuration(
 # Enter a context with an instance of the API client
 with linebot.messaging.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.messaging.MessagingApiApi(api_client)
+    api_instance = linebot.messaging.MessagingApi(api_client)
     limit = 'limit_example' # str | The maximum number of aggregation units you can get per request.  (optional)
     start = 'start_example' # str | Value of the continuation token found in the next property of the JSON object returned in the response. If you can't get all the aggregation units in one request, include this parameter to get the remaining array.  (optional)
 
     try:
         api_response = api_instance.get_aggregation_unit_name_list(limit=limit, start=start)
-        print("The response of MessagingApiApi->get_aggregation_unit_name_list:\n")
+        print("The response of MessagingApi->get_aggregation_unit_name_list:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling MessagingApiApi->get_aggregation_unit_name_list: %s\n" % e)
+        print("Exception when calling MessagingApi->get_aggregation_unit_name_list: %s\n" % e)
 ```
 
 
@@ -768,14 +768,14 @@ configuration = linebot.messaging.Configuration(
 # Enter a context with an instance of the API client
 with linebot.messaging.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.messaging.MessagingApiApi(api_client)
+    api_instance = linebot.messaging.MessagingApi(api_client)
 
     try:
         api_response = api_instance.get_aggregation_unit_usage()
-        print("The response of MessagingApiApi->get_aggregation_unit_usage:\n")
+        print("The response of MessagingApi->get_aggregation_unit_usage:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling MessagingApiApi->get_aggregation_unit_usage: %s\n" % e)
+        print("Exception when calling MessagingApi->get_aggregation_unit_usage: %s\n" % e)
 ```
 
 
@@ -839,14 +839,14 @@ configuration = linebot.messaging.Configuration(
 # Enter a context with an instance of the API client
 with linebot.messaging.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.messaging.MessagingApiApi(api_client)
+    api_instance = linebot.messaging.MessagingApi(api_client)
 
     try:
         api_response = api_instance.get_bot_info()
-        print("The response of MessagingApiApi->get_bot_info:\n")
+        print("The response of MessagingApi->get_bot_info:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling MessagingApiApi->get_bot_info: %s\n" % e)
+        print("Exception when calling MessagingApi->get_bot_info: %s\n" % e)
 ```
 
 
@@ -910,14 +910,14 @@ configuration = linebot.messaging.Configuration(
 # Enter a context with an instance of the API client
 with linebot.messaging.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.messaging.MessagingApiApi(api_client)
+    api_instance = linebot.messaging.MessagingApi(api_client)
 
     try:
         api_response = api_instance.get_default_rich_menu_id()
-        print("The response of MessagingApiApi->get_default_rich_menu_id:\n")
+        print("The response of MessagingApi->get_default_rich_menu_id:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling MessagingApiApi->get_default_rich_menu_id: %s\n" % e)
+        print("Exception when calling MessagingApi->get_default_rich_menu_id: %s\n" % e)
 ```
 
 
@@ -981,16 +981,16 @@ configuration = linebot.messaging.Configuration(
 # Enter a context with an instance of the API client
 with linebot.messaging.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.messaging.MessagingApiApi(api_client)
+    api_instance = linebot.messaging.MessagingApi(api_client)
     start = 'start_example' # str | Value of the continuation token found in the next property of the JSON object returned in the response. Include this parameter to get the next array of user IDs.  (optional)
     limit = 300 # int | The maximum number of user IDs to retrieve in a single request. (optional) (default to 300)
 
     try:
         api_response = api_instance.get_followers(start=start, limit=limit)
-        print("The response of MessagingApiApi->get_followers:\n")
+        print("The response of MessagingApi->get_followers:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling MessagingApiApi->get_followers: %s\n" % e)
+        print("Exception when calling MessagingApi->get_followers: %s\n" % e)
 ```
 
 
@@ -1058,15 +1058,15 @@ configuration = linebot.messaging.Configuration(
 # Enter a context with an instance of the API client
 with linebot.messaging.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.messaging.MessagingApiApi(api_client)
+    api_instance = linebot.messaging.MessagingApi(api_client)
     group_id = 'group_id_example' # str | Group ID
 
     try:
         api_response = api_instance.get_group_member_count(group_id)
-        print("The response of MessagingApiApi->get_group_member_count:\n")
+        print("The response of MessagingApi->get_group_member_count:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling MessagingApiApi->get_group_member_count: %s\n" % e)
+        print("Exception when calling MessagingApi->get_group_member_count: %s\n" % e)
 ```
 
 
@@ -1133,16 +1133,16 @@ configuration = linebot.messaging.Configuration(
 # Enter a context with an instance of the API client
 with linebot.messaging.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.messaging.MessagingApiApi(api_client)
+    api_instance = linebot.messaging.MessagingApi(api_client)
     group_id = 'group_id_example' # str | Group ID
     user_id = 'user_id_example' # str | User ID
 
     try:
         api_response = api_instance.get_group_member_profile(group_id, user_id)
-        print("The response of MessagingApiApi->get_group_member_profile:\n")
+        print("The response of MessagingApi->get_group_member_profile:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling MessagingApiApi->get_group_member_profile: %s\n" % e)
+        print("Exception when calling MessagingApi->get_group_member_profile: %s\n" % e)
 ```
 
 
@@ -1210,16 +1210,16 @@ configuration = linebot.messaging.Configuration(
 # Enter a context with an instance of the API client
 with linebot.messaging.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.messaging.MessagingApiApi(api_client)
+    api_instance = linebot.messaging.MessagingApi(api_client)
     group_id = 'group_id_example' # str | Group ID
     start = 'start_example' # str | Value of the continuation token found in the `next` property of the JSON object returned in the response. Include this parameter to get the next array of user IDs for the members of the group.  (optional)
 
     try:
         api_response = api_instance.get_group_members_ids(group_id, start=start)
-        print("The response of MessagingApiApi->get_group_members_ids:\n")
+        print("The response of MessagingApi->get_group_members_ids:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling MessagingApiApi->get_group_members_ids: %s\n" % e)
+        print("Exception when calling MessagingApi->get_group_members_ids: %s\n" % e)
 ```
 
 
@@ -1287,15 +1287,15 @@ configuration = linebot.messaging.Configuration(
 # Enter a context with an instance of the API client
 with linebot.messaging.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.messaging.MessagingApiApi(api_client)
+    api_instance = linebot.messaging.MessagingApi(api_client)
     group_id = 'group_id_example' # str | Group ID
 
     try:
         api_response = api_instance.get_group_summary(group_id)
-        print("The response of MessagingApiApi->get_group_summary:\n")
+        print("The response of MessagingApi->get_group_summary:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling MessagingApiApi->get_group_summary: %s\n" % e)
+        print("Exception when calling MessagingApi->get_group_summary: %s\n" % e)
 ```
 
 
@@ -1362,14 +1362,14 @@ configuration = linebot.messaging.Configuration(
 # Enter a context with an instance of the API client
 with linebot.messaging.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.messaging.MessagingApiApi(api_client)
+    api_instance = linebot.messaging.MessagingApi(api_client)
 
     try:
         api_response = api_instance.get_message_quota()
-        print("The response of MessagingApiApi->get_message_quota:\n")
+        print("The response of MessagingApi->get_message_quota:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling MessagingApiApi->get_message_quota: %s\n" % e)
+        print("Exception when calling MessagingApi->get_message_quota: %s\n" % e)
 ```
 
 
@@ -1433,14 +1433,14 @@ configuration = linebot.messaging.Configuration(
 # Enter a context with an instance of the API client
 with linebot.messaging.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.messaging.MessagingApiApi(api_client)
+    api_instance = linebot.messaging.MessagingApi(api_client)
 
     try:
         api_response = api_instance.get_message_quota_consumption()
-        print("The response of MessagingApiApi->get_message_quota_consumption:\n")
+        print("The response of MessagingApi->get_message_quota_consumption:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling MessagingApiApi->get_message_quota_consumption: %s\n" % e)
+        print("Exception when calling MessagingApi->get_message_quota_consumption: %s\n" % e)
 ```
 
 
@@ -1504,15 +1504,15 @@ configuration = linebot.messaging.Configuration(
 # Enter a context with an instance of the API client
 with linebot.messaging.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.messaging.MessagingApiApi(api_client)
+    api_instance = linebot.messaging.MessagingApi(api_client)
     request_id = 'request_id_example' # str | The narrowcast message's request ID. Each Messaging API request has a request ID.
 
     try:
         api_response = api_instance.get_narrowcast_progress(request_id)
-        print("The response of MessagingApiApi->get_narrowcast_progress:\n")
+        print("The response of MessagingApi->get_narrowcast_progress:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling MessagingApiApi->get_narrowcast_progress: %s\n" % e)
+        print("Exception when calling MessagingApi->get_narrowcast_progress: %s\n" % e)
 ```
 
 
@@ -1579,15 +1579,15 @@ configuration = linebot.messaging.Configuration(
 # Enter a context with an instance of the API client
 with linebot.messaging.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.messaging.MessagingApiApi(api_client)
+    api_instance = linebot.messaging.MessagingApi(api_client)
     var_date = 'var_date_example' # str | Date the messages were sent  Format: yyyyMMdd (e.g. 20191231) Timezone: UTC+9 
 
     try:
         api_response = api_instance.get_number_of_sent_broadcast_messages(var_date)
-        print("The response of MessagingApiApi->get_number_of_sent_broadcast_messages:\n")
+        print("The response of MessagingApi->get_number_of_sent_broadcast_messages:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling MessagingApiApi->get_number_of_sent_broadcast_messages: %s\n" % e)
+        print("Exception when calling MessagingApi->get_number_of_sent_broadcast_messages: %s\n" % e)
 ```
 
 
@@ -1654,15 +1654,15 @@ configuration = linebot.messaging.Configuration(
 # Enter a context with an instance of the API client
 with linebot.messaging.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.messaging.MessagingApiApi(api_client)
+    api_instance = linebot.messaging.MessagingApi(api_client)
     var_date = 'var_date_example' # str | Date the messages were sent  Format: `yyyyMMdd` (e.g. `20191231`) Timezone: UTC+9 
 
     try:
         api_response = api_instance.get_number_of_sent_multicast_messages(var_date)
-        print("The response of MessagingApiApi->get_number_of_sent_multicast_messages:\n")
+        print("The response of MessagingApi->get_number_of_sent_multicast_messages:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling MessagingApiApi->get_number_of_sent_multicast_messages: %s\n" % e)
+        print("Exception when calling MessagingApi->get_number_of_sent_multicast_messages: %s\n" % e)
 ```
 
 
@@ -1729,15 +1729,15 @@ configuration = linebot.messaging.Configuration(
 # Enter a context with an instance of the API client
 with linebot.messaging.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.messaging.MessagingApiApi(api_client)
+    api_instance = linebot.messaging.MessagingApi(api_client)
     var_date = 'var_date_example' # str | Date the messages were sent  Format: `yyyyMMdd` (e.g. `20191231`) Timezone: UTC+9 
 
     try:
         api_response = api_instance.get_number_of_sent_push_messages(var_date)
-        print("The response of MessagingApiApi->get_number_of_sent_push_messages:\n")
+        print("The response of MessagingApi->get_number_of_sent_push_messages:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling MessagingApiApi->get_number_of_sent_push_messages: %s\n" % e)
+        print("Exception when calling MessagingApi->get_number_of_sent_push_messages: %s\n" % e)
 ```
 
 
@@ -1804,15 +1804,15 @@ configuration = linebot.messaging.Configuration(
 # Enter a context with an instance of the API client
 with linebot.messaging.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.messaging.MessagingApiApi(api_client)
+    api_instance = linebot.messaging.MessagingApi(api_client)
     var_date = 'var_date_example' # str | Date the messages were sent  Format: `yyyyMMdd` (e.g. `20191231`) Timezone: UTC+9 
 
     try:
         api_response = api_instance.get_number_of_sent_reply_messages(var_date)
-        print("The response of MessagingApiApi->get_number_of_sent_reply_messages:\n")
+        print("The response of MessagingApi->get_number_of_sent_reply_messages:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling MessagingApiApi->get_number_of_sent_reply_messages: %s\n" % e)
+        print("Exception when calling MessagingApi->get_number_of_sent_reply_messages: %s\n" % e)
 ```
 
 
@@ -1879,15 +1879,15 @@ configuration = linebot.messaging.Configuration(
 # Enter a context with an instance of the API client
 with linebot.messaging.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.messaging.MessagingApiApi(api_client)
+    api_instance = linebot.messaging.MessagingApi(api_client)
     var_date = 'var_date_example' # str | Date the message was sent  Format: `yyyyMMdd` (Example:`20211231`) Time zone: UTC+9 
 
     try:
         api_response = api_instance.get_pnp_message_statistics(var_date)
-        print("The response of MessagingApiApi->get_pnp_message_statistics:\n")
+        print("The response of MessagingApi->get_pnp_message_statistics:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling MessagingApiApi->get_pnp_message_statistics: %s\n" % e)
+        print("Exception when calling MessagingApi->get_pnp_message_statistics: %s\n" % e)
 ```
 
 
@@ -1954,15 +1954,15 @@ configuration = linebot.messaging.Configuration(
 # Enter a context with an instance of the API client
 with linebot.messaging.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.messaging.MessagingApiApi(api_client)
+    api_instance = linebot.messaging.MessagingApi(api_client)
     user_id = 'user_id_example' # str | User ID
 
     try:
         api_response = api_instance.get_profile(user_id)
-        print("The response of MessagingApiApi->get_profile:\n")
+        print("The response of MessagingApi->get_profile:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling MessagingApiApi->get_profile: %s\n" % e)
+        print("Exception when calling MessagingApi->get_profile: %s\n" % e)
 ```
 
 
@@ -2029,15 +2029,15 @@ configuration = linebot.messaging.Configuration(
 # Enter a context with an instance of the API client
 with linebot.messaging.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.messaging.MessagingApiApi(api_client)
+    api_instance = linebot.messaging.MessagingApi(api_client)
     rich_menu_id = 'rich_menu_id_example' # str | ID of a rich menu
 
     try:
         api_response = api_instance.get_rich_menu(rich_menu_id)
-        print("The response of MessagingApiApi->get_rich_menu:\n")
+        print("The response of MessagingApi->get_rich_menu:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling MessagingApiApi->get_rich_menu: %s\n" % e)
+        print("Exception when calling MessagingApi->get_rich_menu: %s\n" % e)
 ```
 
 
@@ -2104,15 +2104,15 @@ configuration = linebot.messaging.Configuration(
 # Enter a context with an instance of the API client
 with linebot.messaging.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.messaging.MessagingApiApi(api_client)
+    api_instance = linebot.messaging.MessagingApi(api_client)
     rich_menu_alias_id = 'rich_menu_alias_id_example' # str | The rich menu alias ID whose information you want to obtain.
 
     try:
         api_response = api_instance.get_rich_menu_alias(rich_menu_alias_id)
-        print("The response of MessagingApiApi->get_rich_menu_alias:\n")
+        print("The response of MessagingApi->get_rich_menu_alias:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling MessagingApiApi->get_rich_menu_alias: %s\n" % e)
+        print("Exception when calling MessagingApi->get_rich_menu_alias: %s\n" % e)
 ```
 
 
@@ -2179,14 +2179,14 @@ configuration = linebot.messaging.Configuration(
 # Enter a context with an instance of the API client
 with linebot.messaging.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.messaging.MessagingApiApi(api_client)
+    api_instance = linebot.messaging.MessagingApi(api_client)
 
     try:
         api_response = api_instance.get_rich_menu_alias_list()
-        print("The response of MessagingApiApi->get_rich_menu_alias_list:\n")
+        print("The response of MessagingApi->get_rich_menu_alias_list:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling MessagingApiApi->get_rich_menu_alias_list: %s\n" % e)
+        print("Exception when calling MessagingApi->get_rich_menu_alias_list: %s\n" % e)
 ```
 
 
@@ -2250,15 +2250,15 @@ configuration = linebot.messaging.Configuration(
 # Enter a context with an instance of the API client
 with linebot.messaging.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.messaging.MessagingApiApi(api_client)
+    api_instance = linebot.messaging.MessagingApi(api_client)
     user_id = 'user_id_example' # str | User ID. Found in the `source` object of webhook event objects. Do not use the LINE ID used in LINE.
 
     try:
         api_response = api_instance.get_rich_menu_id_of_user(user_id)
-        print("The response of MessagingApiApi->get_rich_menu_id_of_user:\n")
+        print("The response of MessagingApi->get_rich_menu_id_of_user:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling MessagingApiApi->get_rich_menu_id_of_user: %s\n" % e)
+        print("Exception when calling MessagingApi->get_rich_menu_id_of_user: %s\n" % e)
 ```
 
 
@@ -2325,14 +2325,14 @@ configuration = linebot.messaging.Configuration(
 # Enter a context with an instance of the API client
 with linebot.messaging.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.messaging.MessagingApiApi(api_client)
+    api_instance = linebot.messaging.MessagingApi(api_client)
 
     try:
         api_response = api_instance.get_rich_menu_list()
-        print("The response of MessagingApiApi->get_rich_menu_list:\n")
+        print("The response of MessagingApi->get_rich_menu_list:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling MessagingApiApi->get_rich_menu_list: %s\n" % e)
+        print("Exception when calling MessagingApi->get_rich_menu_list: %s\n" % e)
 ```
 
 
@@ -2396,15 +2396,15 @@ configuration = linebot.messaging.Configuration(
 # Enter a context with an instance of the API client
 with linebot.messaging.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.messaging.MessagingApiApi(api_client)
+    api_instance = linebot.messaging.MessagingApi(api_client)
     room_id = 'room_id_example' # str | Room ID
 
     try:
         api_response = api_instance.get_room_member_count(room_id)
-        print("The response of MessagingApiApi->get_room_member_count:\n")
+        print("The response of MessagingApi->get_room_member_count:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling MessagingApiApi->get_room_member_count: %s\n" % e)
+        print("Exception when calling MessagingApi->get_room_member_count: %s\n" % e)
 ```
 
 
@@ -2471,16 +2471,16 @@ configuration = linebot.messaging.Configuration(
 # Enter a context with an instance of the API client
 with linebot.messaging.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.messaging.MessagingApiApi(api_client)
+    api_instance = linebot.messaging.MessagingApi(api_client)
     room_id = 'room_id_example' # str | Room ID
     user_id = 'user_id_example' # str | User ID
 
     try:
         api_response = api_instance.get_room_member_profile(room_id, user_id)
-        print("The response of MessagingApiApi->get_room_member_profile:\n")
+        print("The response of MessagingApi->get_room_member_profile:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling MessagingApiApi->get_room_member_profile: %s\n" % e)
+        print("Exception when calling MessagingApi->get_room_member_profile: %s\n" % e)
 ```
 
 
@@ -2548,16 +2548,16 @@ configuration = linebot.messaging.Configuration(
 # Enter a context with an instance of the API client
 with linebot.messaging.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.messaging.MessagingApiApi(api_client)
+    api_instance = linebot.messaging.MessagingApi(api_client)
     room_id = 'room_id_example' # str | Room ID
     start = 'start_example' # str | Value of the continuation token found in the `next` property of the JSON object returned in the response. Include this parameter to get the next array of user IDs for the members of the group.  (optional)
 
     try:
         api_response = api_instance.get_room_members_ids(room_id, start=start)
-        print("The response of MessagingApiApi->get_room_members_ids:\n")
+        print("The response of MessagingApi->get_room_members_ids:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling MessagingApiApi->get_room_members_ids: %s\n" % e)
+        print("Exception when calling MessagingApi->get_room_members_ids: %s\n" % e)
 ```
 
 
@@ -2625,14 +2625,14 @@ configuration = linebot.messaging.Configuration(
 # Enter a context with an instance of the API client
 with linebot.messaging.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.messaging.MessagingApiApi(api_client)
+    api_instance = linebot.messaging.MessagingApi(api_client)
 
     try:
         api_response = api_instance.get_webhook_endpoint()
-        print("The response of MessagingApiApi->get_webhook_endpoint:\n")
+        print("The response of MessagingApi->get_webhook_endpoint:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling MessagingApiApi->get_webhook_endpoint: %s\n" % e)
+        print("Exception when calling MessagingApi->get_webhook_endpoint: %s\n" % e)
 ```
 
 
@@ -2696,15 +2696,15 @@ configuration = linebot.messaging.Configuration(
 # Enter a context with an instance of the API client
 with linebot.messaging.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.messaging.MessagingApiApi(api_client)
+    api_instance = linebot.messaging.MessagingApi(api_client)
     user_id = 'user_id_example' # str | User ID for the LINE account to be linked. Found in the `source` object of account link event objects. Do not use the LINE ID used in LINE. 
 
     try:
         api_response = api_instance.issue_link_token(user_id)
-        print("The response of MessagingApiApi->issue_link_token:\n")
+        print("The response of MessagingApi->issue_link_token:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling MessagingApiApi->issue_link_token: %s\n" % e)
+        print("Exception when calling MessagingApi->issue_link_token: %s\n" % e)
 ```
 
 
@@ -2770,13 +2770,13 @@ configuration = linebot.messaging.Configuration(
 # Enter a context with an instance of the API client
 with linebot.messaging.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.messaging.MessagingApiApi(api_client)
+    api_instance = linebot.messaging.MessagingApi(api_client)
     group_id = 'group_id_example' # str | Group ID
 
     try:
         api_instance.leave_group(group_id)
     except Exception as e:
-        print("Exception when calling MessagingApiApi->leave_group: %s\n" % e)
+        print("Exception when calling MessagingApi->leave_group: %s\n" % e)
 ```
 
 
@@ -2844,13 +2844,13 @@ configuration = linebot.messaging.Configuration(
 # Enter a context with an instance of the API client
 with linebot.messaging.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.messaging.MessagingApiApi(api_client)
+    api_instance = linebot.messaging.MessagingApi(api_client)
     room_id = 'room_id_example' # str | Room ID
 
     try:
         api_instance.leave_room(room_id)
     except Exception as e:
-        print("Exception when calling MessagingApiApi->leave_room: %s\n" % e)
+        print("Exception when calling MessagingApi->leave_room: %s\n" % e)
 ```
 
 
@@ -2916,14 +2916,14 @@ configuration = linebot.messaging.Configuration(
 # Enter a context with an instance of the API client
 with linebot.messaging.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.messaging.MessagingApiApi(api_client)
+    api_instance = linebot.messaging.MessagingApi(api_client)
     user_id = 'user_id_example' # str | User ID. Found in the `source` object of webhook event objects. Do not use the LINE ID used in LINE.
     rich_menu_id = 'rich_menu_id_example' # str | ID of a rich menu
 
     try:
         api_instance.link_rich_menu_id_to_user(user_id, rich_menu_id)
     except Exception as e:
-        print("Exception when calling MessagingApiApi->link_rich_menu_id_to_user: %s\n" % e)
+        print("Exception when calling MessagingApi->link_rich_menu_id_to_user: %s\n" % e)
 ```
 
 
@@ -2991,13 +2991,13 @@ configuration = linebot.messaging.Configuration(
 # Enter a context with an instance of the API client
 with linebot.messaging.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.messaging.MessagingApiApi(api_client)
+    api_instance = linebot.messaging.MessagingApi(api_client)
     rich_menu_bulk_link_request = linebot.messaging.RichMenuBulkLinkRequest() # RichMenuBulkLinkRequest | 
 
     try:
         api_instance.link_rich_menu_id_to_users(rich_menu_bulk_link_request)
     except Exception as e:
-        print("Exception when calling MessagingApiApi->link_rich_menu_id_to_users: %s\n" % e)
+        print("Exception when calling MessagingApi->link_rich_menu_id_to_users: %s\n" % e)
 ```
 
 
@@ -3064,13 +3064,13 @@ configuration = linebot.messaging.Configuration(
 # Enter a context with an instance of the API client
 with linebot.messaging.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.messaging.MessagingApiApi(api_client)
+    api_instance = linebot.messaging.MessagingApi(api_client)
     mark_messages_as_read_request = {"chat":{"userId":"Uxxxxxxxxxxxxxxxxxx"}} # MarkMessagesAsReadRequest | 
 
     try:
         api_instance.mark_messages_as_read(mark_messages_as_read_request)
     except Exception as e:
-        print("Exception when calling MessagingApiApi->mark_messages_as_read: %s\n" % e)
+        print("Exception when calling MessagingApi->mark_messages_as_read: %s\n" % e)
 ```
 
 
@@ -3137,14 +3137,14 @@ configuration = linebot.messaging.Configuration(
 # Enter a context with an instance of the API client
 with linebot.messaging.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.messaging.MessagingApiApi(api_client)
+    api_instance = linebot.messaging.MessagingApi(api_client)
     multicast_request = linebot.messaging.MulticastRequest() # MulticastRequest | 
     x_line_retry_key = 'x_line_retry_key_example' # str | Retry key. Specifies the UUID in hexadecimal format (e.g., `123e4567-e89b-12d3-a456-426614174000`) generated by any method. The retry key isn't generated by LINE. Each developer must generate their own retry key.  (optional)
 
     try:
         api_instance.multicast(multicast_request, x_line_retry_key=x_line_retry_key)
     except Exception as e:
-        print("Exception when calling MessagingApiApi->multicast: %s\n" % e)
+        print("Exception when calling MessagingApi->multicast: %s\n" % e)
 ```
 
 
@@ -3216,14 +3216,14 @@ configuration = linebot.messaging.Configuration(
 # Enter a context with an instance of the API client
 with linebot.messaging.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.messaging.MessagingApiApi(api_client)
+    api_instance = linebot.messaging.MessagingApi(api_client)
     narrowcast_request = linebot.messaging.NarrowcastRequest() # NarrowcastRequest | 
     x_line_retry_key = 'x_line_retry_key_example' # str | Retry key. Specifies the UUID in hexadecimal format (e.g., `123e4567-e89b-12d3-a456-426614174000`) generated by any method. The retry key isn't generated by LINE. Each developer must generate their own retry key.  (optional)
 
     try:
         api_instance.narrowcast(narrowcast_request, x_line_retry_key=x_line_retry_key)
     except Exception as e:
-        print("Exception when calling MessagingApiApi->narrowcast: %s\n" % e)
+        print("Exception when calling MessagingApi->narrowcast: %s\n" % e)
 ```
 
 
@@ -3295,14 +3295,14 @@ configuration = linebot.messaging.Configuration(
 # Enter a context with an instance of the API client
 with linebot.messaging.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.messaging.MessagingApiApi(api_client)
+    api_instance = linebot.messaging.MessagingApi(api_client)
     push_message_request = linebot.messaging.PushMessageRequest() # PushMessageRequest | 
     x_line_retry_key = 'x_line_retry_key_example' # str | Retry key. Specifies the UUID in hexadecimal format (e.g., `123e4567-e89b-12d3-a456-426614174000`) generated by any method. The retry key isn't generated by LINE. Each developer must generate their own retry key.  (optional)
 
     try:
         api_instance.push_message(push_message_request, x_line_retry_key=x_line_retry_key)
     except Exception as e:
-        print("Exception when calling MessagingApiApi->push_message: %s\n" % e)
+        print("Exception when calling MessagingApi->push_message: %s\n" % e)
 ```
 
 
@@ -3374,14 +3374,14 @@ configuration = linebot.messaging.Configuration(
 # Enter a context with an instance of the API client
 with linebot.messaging.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.messaging.MessagingApiApi(api_client)
+    api_instance = linebot.messaging.MessagingApi(api_client)
     pnp_messages_request = linebot.messaging.PnpMessagesRequest() # PnpMessagesRequest | 
     x_line_delivery_tag = 'x_line_delivery_tag_example' # str | String returned in the delivery.data property of the delivery completion event via Webhook. (optional)
 
     try:
         api_instance.push_messages_by_phone(pnp_messages_request, x_line_delivery_tag=x_line_delivery_tag)
     except Exception as e:
-        print("Exception when calling MessagingApiApi->push_messages_by_phone: %s\n" % e)
+        print("Exception when calling MessagingApi->push_messages_by_phone: %s\n" % e)
 ```
 
 
@@ -3450,13 +3450,13 @@ configuration = linebot.messaging.Configuration(
 # Enter a context with an instance of the API client
 with linebot.messaging.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.messaging.MessagingApiApi(api_client)
+    api_instance = linebot.messaging.MessagingApi(api_client)
     reply_message_request = linebot.messaging.ReplyMessageRequest() # ReplyMessageRequest | 
 
     try:
         api_instance.reply_message(reply_message_request)
     except Exception as e:
-        print("Exception when calling MessagingApiApi->reply_message: %s\n" % e)
+        print("Exception when calling MessagingApi->reply_message: %s\n" % e)
 ```
 
 
@@ -3524,13 +3524,13 @@ configuration = linebot.messaging.Configuration(
 # Enter a context with an instance of the API client
 with linebot.messaging.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.messaging.MessagingApiApi(api_client)
+    api_instance = linebot.messaging.MessagingApi(api_client)
     rich_menu_id = 'rich_menu_id_example' # str | ID of a rich menu
 
     try:
         api_instance.set_default_rich_menu(rich_menu_id)
     except Exception as e:
-        print("Exception when calling MessagingApiApi->set_default_rich_menu: %s\n" % e)
+        print("Exception when calling MessagingApi->set_default_rich_menu: %s\n" % e)
 ```
 
 
@@ -3597,13 +3597,13 @@ configuration = linebot.messaging.Configuration(
 # Enter a context with an instance of the API client
 with linebot.messaging.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.messaging.MessagingApiApi(api_client)
+    api_instance = linebot.messaging.MessagingApi(api_client)
     set_webhook_endpoint_request = linebot.messaging.SetWebhookEndpointRequest() # SetWebhookEndpointRequest | 
 
     try:
         api_instance.set_webhook_endpoint(set_webhook_endpoint_request)
     except Exception as e:
-        print("Exception when calling MessagingApiApi->set_webhook_endpoint: %s\n" % e)
+        print("Exception when calling MessagingApi->set_webhook_endpoint: %s\n" % e)
 ```
 
 
@@ -3671,15 +3671,15 @@ configuration = linebot.messaging.Configuration(
 # Enter a context with an instance of the API client
 with linebot.messaging.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.messaging.MessagingApiApi(api_client)
+    api_instance = linebot.messaging.MessagingApi(api_client)
     test_webhook_endpoint_request = linebot.messaging.TestWebhookEndpointRequest() # TestWebhookEndpointRequest |  (optional)
 
     try:
         api_response = api_instance.test_webhook_endpoint(test_webhook_endpoint_request=test_webhook_endpoint_request)
-        print("The response of MessagingApiApi->test_webhook_endpoint:\n")
+        print("The response of MessagingApi->test_webhook_endpoint:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling MessagingApiApi->test_webhook_endpoint: %s\n" % e)
+        print("Exception when calling MessagingApi->test_webhook_endpoint: %s\n" % e)
 ```
 
 
@@ -3745,13 +3745,13 @@ configuration = linebot.messaging.Configuration(
 # Enter a context with an instance of the API client
 with linebot.messaging.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.messaging.MessagingApiApi(api_client)
+    api_instance = linebot.messaging.MessagingApi(api_client)
     user_id = 'user_id_example' # str | User ID. Found in the `source` object of webhook event objects. Do not use the LINE ID used in LINE.
 
     try:
         api_instance.unlink_rich_menu_id_from_user(user_id)
     except Exception as e:
-        print("Exception when calling MessagingApiApi->unlink_rich_menu_id_from_user: %s\n" % e)
+        print("Exception when calling MessagingApi->unlink_rich_menu_id_from_user: %s\n" % e)
 ```
 
 
@@ -3818,13 +3818,13 @@ configuration = linebot.messaging.Configuration(
 # Enter a context with an instance of the API client
 with linebot.messaging.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.messaging.MessagingApiApi(api_client)
+    api_instance = linebot.messaging.MessagingApi(api_client)
     rich_menu_bulk_unlink_request = linebot.messaging.RichMenuBulkUnlinkRequest() # RichMenuBulkUnlinkRequest | 
 
     try:
         api_instance.unlink_rich_menu_id_from_users(rich_menu_bulk_unlink_request)
     except Exception as e:
-        print("Exception when calling MessagingApiApi->unlink_rich_menu_id_from_users: %s\n" % e)
+        print("Exception when calling MessagingApi->unlink_rich_menu_id_from_users: %s\n" % e)
 ```
 
 
@@ -3891,14 +3891,14 @@ configuration = linebot.messaging.Configuration(
 # Enter a context with an instance of the API client
 with linebot.messaging.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.messaging.MessagingApiApi(api_client)
+    api_instance = linebot.messaging.MessagingApi(api_client)
     rich_menu_alias_id = 'rich_menu_alias_id_example' # str | The rich menu alias ID you want to update.
     update_rich_menu_alias_request = linebot.messaging.UpdateRichMenuAliasRequest() # UpdateRichMenuAliasRequest | 
 
     try:
         api_instance.update_rich_menu_alias(rich_menu_alias_id, update_rich_menu_alias_request)
     except Exception as e:
-        print("Exception when calling MessagingApiApi->update_rich_menu_alias: %s\n" % e)
+        print("Exception when calling MessagingApi->update_rich_menu_alias: %s\n" % e)
 ```
 
 
@@ -3967,13 +3967,13 @@ configuration = linebot.messaging.Configuration(
 # Enter a context with an instance of the API client
 with linebot.messaging.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.messaging.MessagingApiApi(api_client)
+    api_instance = linebot.messaging.MessagingApi(api_client)
     validate_message_request = linebot.messaging.ValidateMessageRequest() # ValidateMessageRequest | 
 
     try:
         api_instance.validate_broadcast(validate_message_request)
     except Exception as e:
-        print("Exception when calling MessagingApiApi->validate_broadcast: %s\n" % e)
+        print("Exception when calling MessagingApi->validate_broadcast: %s\n" % e)
 ```
 
 
@@ -4040,13 +4040,13 @@ configuration = linebot.messaging.Configuration(
 # Enter a context with an instance of the API client
 with linebot.messaging.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.messaging.MessagingApiApi(api_client)
+    api_instance = linebot.messaging.MessagingApi(api_client)
     validate_message_request = linebot.messaging.ValidateMessageRequest() # ValidateMessageRequest | 
 
     try:
         api_instance.validate_multicast(validate_message_request)
     except Exception as e:
-        print("Exception when calling MessagingApiApi->validate_multicast: %s\n" % e)
+        print("Exception when calling MessagingApi->validate_multicast: %s\n" % e)
 ```
 
 
@@ -4113,13 +4113,13 @@ configuration = linebot.messaging.Configuration(
 # Enter a context with an instance of the API client
 with linebot.messaging.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.messaging.MessagingApiApi(api_client)
+    api_instance = linebot.messaging.MessagingApi(api_client)
     validate_message_request = linebot.messaging.ValidateMessageRequest() # ValidateMessageRequest | 
 
     try:
         api_instance.validate_narrowcast(validate_message_request)
     except Exception as e:
-        print("Exception when calling MessagingApiApi->validate_narrowcast: %s\n" % e)
+        print("Exception when calling MessagingApi->validate_narrowcast: %s\n" % e)
 ```
 
 
@@ -4186,13 +4186,13 @@ configuration = linebot.messaging.Configuration(
 # Enter a context with an instance of the API client
 with linebot.messaging.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.messaging.MessagingApiApi(api_client)
+    api_instance = linebot.messaging.MessagingApi(api_client)
     validate_message_request = linebot.messaging.ValidateMessageRequest() # ValidateMessageRequest | 
 
     try:
         api_instance.validate_push(validate_message_request)
     except Exception as e:
-        print("Exception when calling MessagingApiApi->validate_push: %s\n" % e)
+        print("Exception when calling MessagingApi->validate_push: %s\n" % e)
 ```
 
 
@@ -4259,13 +4259,13 @@ configuration = linebot.messaging.Configuration(
 # Enter a context with an instance of the API client
 with linebot.messaging.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.messaging.MessagingApiApi(api_client)
+    api_instance = linebot.messaging.MessagingApi(api_client)
     validate_message_request = linebot.messaging.ValidateMessageRequest() # ValidateMessageRequest | 
 
     try:
         api_instance.validate_reply(validate_message_request)
     except Exception as e:
-        print("Exception when calling MessagingApiApi->validate_reply: %s\n" % e)
+        print("Exception when calling MessagingApi->validate_reply: %s\n" % e)
 ```
 
 
@@ -4332,13 +4332,13 @@ configuration = linebot.messaging.Configuration(
 # Enter a context with an instance of the API client
 with linebot.messaging.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.messaging.MessagingApiApi(api_client)
+    api_instance = linebot.messaging.MessagingApi(api_client)
     rich_menu_request = linebot.messaging.RichMenuRequest() # RichMenuRequest | 
 
     try:
         api_instance.validate_rich_menu_object(rich_menu_request)
     except Exception as e:
-        print("Exception when calling MessagingApiApi->validate_rich_menu_object: %s\n" % e)
+        print("Exception when calling MessagingApi->validate_rich_menu_object: %s\n" % e)
 ```
 
 

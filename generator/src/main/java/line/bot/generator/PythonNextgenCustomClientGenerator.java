@@ -44,6 +44,7 @@ import java.util.*;
 
 import static org.openapitools.codegen.utils.StringUtils.escape;
 import static org.openapitools.codegen.utils.StringUtils.underscore;
+import static org.openapitools.codegen.utils.StringUtils.camelize;
 
 public class PythonNextgenCustomClientGenerator extends AbstractPythonCodegen implements CodegenConfig {
     private final Logger LOGGER = LoggerFactory.getLogger(PythonNextgenCustomClientGenerator.class);
@@ -1466,6 +1467,11 @@ public class PythonNextgenCustomClientGenerator extends AbstractPythonCodegen im
     @Override
     public String toApiDocFilename(String name) {
         return toApiName(name);
+    }
+
+    @Override
+    public String toApiName(String name) {
+        return camelize(name);
     }
 
     @Override

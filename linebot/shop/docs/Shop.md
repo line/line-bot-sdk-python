@@ -1,10 +1,10 @@
-# linebot.shop.ShopApi
+# linebot.shop.Shop
 
 All URIs are relative to *https://api.line.me*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**mission_sticker_v3**](ShopApi.md#mission_sticker_v3) | **POST** /shop/v3/mission | 
+[**mission_sticker_v3**](Shop.md#mission_sticker_v3) | **POST** /shop/v3/mission | 
 
 
 # **mission_sticker_v3**
@@ -44,13 +44,13 @@ configuration = linebot.shop.Configuration(
 # Enter a context with an instance of the API client
 with linebot.shop.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = linebot.shop.ShopApi(api_client)
+    api_instance = linebot.shop.Shop(api_client)
     mission_sticker_request = linebot.shop.MissionStickerRequest() # MissionStickerRequest | 
 
     try:
         api_instance.mission_sticker_v3(mission_sticker_request)
     except Exception as e:
-        print("Exception when calling ShopApi->mission_sticker_v3: %s\n" % e)
+        print("Exception when calling Shop->mission_sticker_v3: %s\n" % e)
 ```
 
 

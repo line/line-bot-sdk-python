@@ -31,7 +31,7 @@ from linebot.webhooks import (
 from linebot.messaging import (
     Configuration,
     ApiClient,
-    MessagingApiApi,
+    MessagingApi,
     ReplyMessageRequest,
     TextMessage
 )
@@ -88,7 +88,7 @@ def application(environ, start_response):
             continue
 
         with ApiClient(configuration) as api_client:
-            line_bot_api = MessagingApiApi(api_client)
+            line_bot_api = MessagingApi(api_client)
             line_bot_api.reply_message_with_http_info(
                 ReplyMessageRequest(
                     reply_token=event.reply_token,

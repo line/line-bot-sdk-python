@@ -17,9 +17,9 @@
 __version__ = "3.0.0"
 
 # import apis into sdk package
-from linebot.oauth.api.channel_access_token_api import ChannelAccessTokenApi
+from linebot.oauth.api.channel_access_token import ChannelAccessToken
 
-from linebot.oauth.api.async_channel_access_token_api import AsyncChannelAccessTokenApi
+from linebot.oauth.api.async_channel_access_token import AsyncChannelAccessToken
 
 
 # import ApiClient

@@ -17,9 +17,9 @@
 __version__ = "3.0.0"
 
 # import apis into sdk package
-from linebot.shop.api.shop_api import ShopApi
+from linebot.shop.api.shop import Shop
 
-from linebot.shop.api.async_shop_api import AsyncShopApi
+from linebot.shop.api.async_shop import AsyncShop
 
 
 # import ApiClient

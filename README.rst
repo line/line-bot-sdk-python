@@ -317,7 +317,7 @@ You can generate new or fixed models and APIs by this command.
 
 ::
 
-    $ zx generate-code.mjs
+    $ python generate-code.py
 
 
 When you update line-bot-sdk-python version, please update `linebot/__about__.py <linebot/__about__.py>`__ and generate code again.

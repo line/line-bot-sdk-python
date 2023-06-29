@@ -1,10 +1,9 @@
 name: Diff check and open pull request
 
-on: [push, pull_request] # For test
-#on:
-#  push:
-#    branches:
-#      - 'master'
+on:
+  push:
+    branches:
+      - 'master'
 
 jobs:
   build:

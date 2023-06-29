@@ -20,24 +20,14 @@ import hashlib
 import hmac
 import inspect
 import json
+import pprint
 
 from .exceptions import InvalidSignatureError
-from .models.events import (
+from linebot.webhooks import (
+    Event,
     MessageEvent,
-    FollowEvent,
-    UnfollowEvent,
-    JoinEvent,
-    LeaveEvent,
-    PostbackEvent,
-    BeaconEvent,
-    AccountLinkEvent,
-    MemberJoinedEvent,
-    MemberLeftEvent,
-    ThingsEvent,
-    UnsendEvent,
-    VideoPlayCompleteEvent,
-    UnknownEvent,
 )
+from .models.events import UnknownEvent ## Special
 from .utils import LOGGER, PY3, safe_compare_digest
 
 if hasattr(hmac, "compare_digest"):
@@ -147,35 +137,10 @@ class WebhookParser(object):
         body_json = json.loads(body)
         events = []
         for event in body_json['events']:
-            event_type = event['type']
-            if event_type == 'message':
-                events.append(MessageEvent.new_from_json_dict(event))
-            elif event_type == 'follow':
-                events.append(FollowEvent.new_from_json_dict(event))
-            elif event_type == 'unfollow':
-                events.append(UnfollowEvent.new_from_json_dict(event))
-            elif event_type == 'join':
-                events.append(JoinEvent.new_from_json_dict(event))
-            elif event_type == 'leave':
-                events.append(LeaveEvent.new_from_json_dict(event))
-            elif event_type == 'postback':
-                events.append(PostbackEvent.new_from_json_dict(event))
-            elif event_type == 'beacon':
-                events.append(BeaconEvent.new_from_json_dict(event))
-            elif event_type == 'accountLink':
-                events.append(AccountLinkEvent.new_from_json_dict(event))
-            elif event_type == 'memberJoined':
-                events.append(MemberJoinedEvent.new_from_json_dict(event))
-            elif event_type == 'memberLeft':
-                events.append(MemberLeftEvent.new_from_json_dict(event))
-            elif event_type == 'things':
-                events.append(ThingsEvent.new_from_json_dict(event))
-            elif event_type == 'unsend':
-                events.append(UnsendEvent.new_from_json_dict(event))
-            elif event_type == 'videoPlayComplete':
-                events.append(VideoPlayCompleteEvent.new_from_json_dict(event))
-            else:
-                LOGGER.info('Unknown event type. type=' + event_type)
+            try:
+                events.append(Event.from_dict(event))
+            except ValueError:
+                LOGGER.info('Unknown event type. type=' + event['type'])
                 events.append(UnknownEvent.new_from_json_dict(event))
 
         if as_payload:

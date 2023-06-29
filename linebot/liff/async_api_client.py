@@ -77,7 +77,7 @@ class AsyncApiClient(object):
         self.default_headers['Authorization'] = 'Bearer ' + configuration.access_token
         self.cookie = cookie
         # Set default User-Agent.
-        self.user_agent = 'line-bot-sdk-python-async/3.0.0'
+        self.user_agent = 'line-bot-sdk-python-async/3.0.1'
         self.client_side_validation = configuration.client_side_validation
 
     async def __aenter__(self):

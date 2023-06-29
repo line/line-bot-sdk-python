@@ -67,7 +67,17 @@ setup(
     long_description=long_description,
     license='Apache License 2.0',
     packages=[
-        "linebot", "linebot.models"
+        "linebot",
+        "linebot.audience",
+        "linebot.insight",
+        "linebot.liff",
+        "linebot.messaging",
+        "linebot.models",
+        "linebot.module",
+        "linebot.moduleattach",
+        "linebot.oauth",
+        "linebot.shop",
+        "linebot.webhooks"
     ],
     python_requires=">=3.7.0",
     install_requires=_requirements(),

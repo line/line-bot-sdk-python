@@ -20,10 +20,9 @@ import hashlib
 import hmac
 import inspect
 import json
-import pprint
 
 from .exceptions import InvalidSignatureError
-from linebot.webhooks import (
+from .webhooks import (
     Event,
     MessageEvent,
 )

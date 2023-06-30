@@ -12,11 +12,8 @@
 #  License for the specific language governing permissions and limitations
 #  under the License.
 
-"""linebot.v3 package."""
+"""linebot.v3.models package."""
 
-from .webhook import (  # noqa
-    SignatureValidator,
-    WebhookParser,
-    WebhookHandler,
-    WebhookPayload,
+from .events import (  # noqa
+    UnknownEvent,
 )

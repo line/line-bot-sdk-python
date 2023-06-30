@@ -17,6 +17,7 @@ import sys
 from argparse import ArgumentParser
 
 import asyncio
+import aiohttp
 from aiohttp import web
 
 import logging
@@ -24,23 +25,15 @@ import logging
 from aiohttp.web_runner import TCPSite
 
 from linebot import (
-    WebhookParser
+    AsyncLineBotApi, WebhookParser
 )
-from linebot.messaging import (
-    Configuration,
-    AsyncApiClient,
-    AsyncMessagingApi,
-    TextMessage,
-    ReplyMessageRequest
-)
+from linebot.aiohttp_async_http_client import AiohttpAsyncHttpClient
 from linebot.exceptions import (
     InvalidSignatureError
 )
-from linebot.webhooks import (
-    MessageEvent,
-    TextMessageContent
+from linebot.models import (
+    MessageEvent, TextMessage, TextSendMessage,
 )
-
 
 # get channel_secret and channel_access_token from your environment variable
 channel_secret = os.getenv('LINE_CHANNEL_SECRET', None)
@@ -52,13 +45,9 @@ if channel_access_token is None:
     print('Specify LINE_CHANNEL_ACCESS_TOKEN as environment variable.')
     sys.exit(1)
 
-configuration = Configuration(
-    access_token=channel_access_token
-)
-
 
 class Handler:
-    def __init__(self, line_bot_api: AsyncMessagingApi, parser: WebhookParser):
+    def __init__(self, line_bot_api, parser):
         self.line_bot_api = line_bot_api
         self.parser = parser
 
@@ -74,21 +63,21 @@ class Handler:
         for event in events:
             if not isinstance(event, MessageEvent):
                 continue
-            if not isinstance(event.message, TextMessageContent):
+            if not isinstance(event.message, TextMessage):
                 continue
+
             await self.line_bot_api.reply_message(
-                ReplyMessageRequest(
-                    reply_token=event.reply_token,
-                    messages=[TextMessage(text=event.message.text)]
-                )
+                event.reply_token,
+                TextSendMessage(text=event.message.text)
             )
 
         return web.Response(text="OK\n")
 
 
 async def main(port=8000):
-    async_api_client = AsyncApiClient(configuration)
-    line_bot_api = AsyncMessagingApi(async_api_client)
+    session = aiohttp.ClientSession()
+    async_http_client = AiohttpAsyncHttpClient(session)
+    line_bot_api = AsyncLineBotApi(channel_access_token, async_http_client)
     parser = WebhookParser(channel_secret)
 
     handler = Handler(line_bot_api, parser)

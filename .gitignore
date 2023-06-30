@@ -103,5 +103,3 @@ ENV/
 .DS_Store
 tmp/
 *.iml
-
-.openapi-generator

@@ -199,10 +199,7 @@
         "userId": "U206d25c2ea6bd87c17655609a1c37cb8"
       },
       "postback": {
-        "data": "action=buyItem&itemId=123123&color=red",
-        "params": {
-          "datetime": "2017-12-25T01:00"
-        }
+        "data": "action=buyItem&itemId=123123&color=red"
       },
       "webhookEventId": "testwebhookeventid",
       "deliveryContext": {

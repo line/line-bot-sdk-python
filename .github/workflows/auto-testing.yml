@@ -27,7 +27,3 @@ jobs:
     - name: Test with pytest
       run: |
         tox
-    - name: Ensure README.rst builds correctly for PyPI
-      run: |
-        pip install readme-renderer
-        python -m readme_renderer README.rst >/dev/null

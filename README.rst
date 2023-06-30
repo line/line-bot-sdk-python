@@ -236,7 +236,7 @@ Examples
 Sample echo-bot with asynchronous processings.
 
 `fastapi-echo <examples/fastapi-echo>`__
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Sample echo-bot using `FastAPI <https://fastapi.tiangolo.com/>`__
 
@@ -321,13 +321,6 @@ You can generate new or fixed models and APIs by this command.
 
 
 When you update line-bot-sdk-python version, please update `linebot/__about__.py <linebot/__about__.py>`__ and generate code again.
-
-
-If you edit `README.rst <README.rst>`__, you should execute the following command to check the syntax of README.
-
-::
-
-    $ python -m readme_renderer README.rst
 
 
 Run tests

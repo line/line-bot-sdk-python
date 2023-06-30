@@ -15,7 +15,7 @@
 """Meta data of line-bot-sdk."""
 
 
-__version__ = '2.4.2'
+__version__ = '2.4.3'
 __author__ = 'LINE Corporation'
 __copyright__ = 'Copyright 2016, LINE Corporation'
 __license__ = 'Apache 2.0'

@@ -14,14 +14,14 @@ def main():
     package_version = run_command("grep '__version__ =' linebot/__about__.py | awk -F\"'\" '{print $2}'")
 
     components = [
-        {"sourceYaml": "channel-access-token.yml", "modelPackage": "linebot.oauth"},
-        {"sourceYaml": "insight.yml", "modelPackage": "linebot.insight"},
-        {"sourceYaml": "liff.yml", "modelPackage": "linebot.liff"},
-        {"sourceYaml": "manage-audience.yml", "modelPackage": "linebot.audience"},
-        {"sourceYaml": "messaging-api.yml", "modelPackage": "linebot.messaging"},
-        {"sourceYaml": "module-attach.yml", "modelPackage": "linebot.moduleattach"},
-        {"sourceYaml": "module.yml", "modelPackage": "linebot.module"},
-        {"sourceYaml": "shop.yml", "modelPackage": "linebot.shop"},
+        {"sourceYaml": "channel-access-token.yml", "modelPackage": "linebot.v3.oauth"},
+        {"sourceYaml": "insight.yml", "modelPackage": "linebot.v3.insight"},
+        {"sourceYaml": "liff.yml", "modelPackage": "linebot.v3.liff"},
+        {"sourceYaml": "manage-audience.yml", "modelPackage": "linebot.v3.audience"},
+        {"sourceYaml": "messaging-api.yml", "modelPackage": "linebot.v3.messaging"},
+        {"sourceYaml": "module-attach.yml", "modelPackage": "linebot.v3.moduleattach"},
+        {"sourceYaml": "module.yml", "modelPackage": "linebot.v3.module"},
+        {"sourceYaml": "shop.yml", "modelPackage": "linebot.v3.shop"},
     ]
 
     for component in components:
@@ -49,7 +49,7 @@ def main():
     ## webhook requires only models.
     ## TODO: We'd like to specify apis=false but __init__.py is deleted. Fix it.
     sourceYaml = "webhook.yml"
-    modelPackage = "linebot.webhooks"
+    modelPackage = "linebot.v3.webhooks"
     modelPackagePath = modelPackage.replace(".", "/")
 
     run_command(f'rm -rf {modelPackagePath}/')

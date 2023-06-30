@@ -24,4 +24,4 @@
 linebot/__init__.py
 
 ## common readmes
-linebot/*_README.md
+linebot/v3/*_README.md

@@ -77,7 +77,7 @@ Usage:
         try:
             handler.handle(body, signature)
         except InvalidSignatureError:
-            applogger.info("Invalid signature. Please check your channel access token/channel secret.")
+            app.logger.info("Invalid signature. Please check your channel access token/channel secret.")
             abort(400)
 
         return 'OK'

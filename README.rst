@@ -40,20 +40,20 @@ Usage:
 
     from flask import Flask, request, abort
 
-    from linebot import (
+    from linebot.v3 import (
         WebhookHandler
     )
-    from linebot.exceptions import (
+    from linebot.v3.exceptions import (
         InvalidSignatureError
     )
-    from linebot.messaging import (
+    from linebot.v3.messaging import (
         Configuration,
         ApiClient,
         MessagingApi,
         ReplyMessageRequest,
         TextMessage
     )
-    from linebot.webhooks import (
+    from linebot.v3.webhooks import (
         MessageEvent,
         TextMessageContent
     )
@@ -100,7 +100,7 @@ Usage:
 API
 ---
 
-See `linebot/messaging/docs <linebot/messaging/docs/MessagingApi.md>`__ . Other docs are in ``linebot/<feature>/docs/*.md``.
+See `linebot/v3/messaging/docs <linebot/v3/messaging/docs/MessagingApi.md>`__ . Other docs are in ``linebot/v3/<feature>/docs/*.md``.
 
 
 Webhook
@@ -116,7 +116,7 @@ WebhookParser
 
 .. code:: python
 
-    parser = linebot.WebhookParser('YOUR_CHANNEL_SECRET')
+    parser = linebot.v3.WebhookParser('YOUR_CHANNEL_SECRET')
 
 parse(self, body, signature, as_payload=False)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -148,7 +148,7 @@ WebhookHandler
 
 .. code:: python
 
-    handler = linebot.WebhookHandler('YOUR_CHANNEL_SECRET')
+    handler = linebot.v3.WebhookHandler('YOUR_CHANNEL_SECRET')
 
 handle(self, body, signature)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

@@ -15,20 +15,26 @@
 import os
 import sys
 
-import aiohttp
-
 from fastapi import Request, FastAPI, HTTPException
 
 from linebot import (
-    AsyncLineBotApi, WebhookParser
+    WebhookParser
 )
-from linebot.aiohttp_async_http_client import AiohttpAsyncHttpClient
-from linebot.exceptions import (
+from linebot.v3.messaging import (
+    AsyncApiClient,
+    AsyncMessagingApi,
+    Configuration,
+    ReplyMessageRequest,
+    TextMessage
+)
+from linebot.v3.exceptions import (
     InvalidSignatureError
 )
-from linebot.models import (
-    MessageEvent, TextMessage, TextSendMessage,
+from linebot.v3.webhooks import (
+    MessageEvent,
+    TextMessageContent
 )
+
 
 # get channel_secret and channel_access_token from your environment variable
 channel_secret = os.getenv('LINE_CHANNEL_SECRET', None)
@@ -40,10 +46,13 @@ if channel_access_token is None:
     print('Specify LINE_CHANNEL_ACCESS_TOKEN as environment variable.')
     sys.exit(1)
 
+configuration = Configuration(
+    access_token=channel_access_token
+)
+
 app = FastAPI()
-session = aiohttp.ClientSession()
-async_http_client = AiohttpAsyncHttpClient(session)
-line_bot_api = AsyncLineBotApi(channel_access_token, async_http_client)
+async_api_client = AsyncApiClient(configuration)
+line_bot_api = AsyncMessagingApi(async_api_client)
 parser = WebhookParser(channel_secret)
 
 
@@ -63,12 +72,14 @@ async def handle_callback(request: Request):
     for event in events:
         if not isinstance(event, MessageEvent):
             continue
-        if not isinstance(event.message, TextMessage):
+        if not isinstance(event.message, TextMessageContent):
             continue
 
         await line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text=event.message.text)
+            ReplyMessageRequest(
+                reply_token=event.reply_token,
+                messages=[TextMessage(text=event.message.text)]
+            )
         )
 
     return 'OK'

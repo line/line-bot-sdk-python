@@ -299,6 +299,21 @@ This project respects semantic versioning
 
 See http://semver.org/
 
+
+Version 3.x
+-----------
+LINE's SDK developer team decided to generate SDK code based on OpenAPI spec. https://github.com/line/line-openapi
+
+As a result, LINE bot sdk 3.x is not compatible with 2.x. It can follow the future API changes very quickly.
+
+We will be maintaining only ``linebot.v3`` going forward.
+To utilize the latest features, we recommend you gradually transition to ``linebot.v3`` modules in your application, although you can still continue to use the 2.x ``linebot`` modules.
+
+While we won't update ``linebot`` modules anymore, users can still continue to use the version 2.x ``linebot`` modules.
+We also welcome pull requests for the version ``2.x`` and ``3.x`` modules.
+
+
+
 Contributing
 ------------
 Please check `CONTRIBUTING <CONTRIBUTING.md>`__ before making a contribution.

@@ -40,6 +40,8 @@ from .models.responses import (
     ValidatePushMessageObjectsResponse, ValidateReplyMessageObjectsResponse,
 )
 
+from deprecated import deprecated
+
 
 class LineBotApi(object):
     """LineBotApi provides interface for LINE messaging API."""
@@ -588,6 +590,7 @@ class LineBotApi(object):
 
         return MessageDeliveryMulticastResponse.new_from_json_dict(response.json)
 
+    @deprecated(reason="Use v3 function; linebot.v3.messaging.api.MessagingApi.get_profile", version='3.0.0')
     def get_profile(self, user_id, timeout=None):
         """Call get profile API.
 

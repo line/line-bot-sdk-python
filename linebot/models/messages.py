@@ -24,6 +24,7 @@ from .mention import Mention
 from .mentionee import Mentionee
 from .base import Base
 
+from deprecated import deprecated
 
 class Message(with_metaclass(ABCMeta, Base)):
     """Abstract Base Class of Message."""
@@ -40,6 +41,7 @@ class Message(with_metaclass(ABCMeta, Base)):
         self.id = id
 
 
+@deprecated(reason="Use v3 modules; linebot.v3.webhooks.models.TextMessageContent", version='3.0.0')
 class TextMessage(Message):
     """TextMessage.
 

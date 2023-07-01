@@ -4,3 +4,4 @@ future
 pydantic >= 1.10.5, < 2
 aenum >= 3.1.11
 python_dateutil >= 2.5.3
+Deprecated

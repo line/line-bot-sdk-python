@@ -40,6 +40,7 @@ from linebot.models.things import Things  # noqa, backward compatibility
 from linebot.models.unsend import Unsend
 from linebot.models.video_play_complete import VideoPlayComplete
 
+from deprecated import deprecated
 
 class Event(with_metaclass(ABCMeta, Base)):
     """Abstract Base Class of Webhook Event.
@@ -81,7 +82,7 @@ class Event(with_metaclass(ABCMeta, Base)):
             delivery_context, DeliveryContext
         )
 
-
+@deprecated(reason="Use v3 modules; linebot.v3.webhooks.models.MessageEvent", version='3.0.0')
 class MessageEvent(Event):
     """Webhook MessageEvent.
 

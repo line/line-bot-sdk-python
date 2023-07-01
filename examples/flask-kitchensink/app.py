@@ -180,18 +180,6 @@ def handle_text_message(event):
                     )
                 )
         elif text == 'emojis':
-            emojis = [
-                {
-                    "index": 0,
-                    "productId": "5ac1bfd5040ab15980c9b435",
-                    "emojiId": "001"
-                },
-                {
-                    "index": 13,
-                    "productId": "5ac1bfd5040ab15980c9b435",
-                    "emojiId": "002"
-                }
-            ]
             emojis = [Emoji(index=0, product_id="5ac1bfd5040ab15980c9b435", emoji_id="001"),
                       Emoji(index=13, product_id="5ac1bfd5040ab15980c9b435", emoji_id="002")]
             line_bot_api.reply_message(

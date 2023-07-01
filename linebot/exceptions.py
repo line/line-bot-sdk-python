@@ -14,12 +14,14 @@
 
 """linebot.exceptions module."""
 
-
 from abc import ABCMeta
 
 from future.utils import with_metaclass
 
+from deprecated import deprecated
 
+
+@deprecated(reason="Use v3 class; linebot.v3.exceptions.BaseError", version='3.0.0')
 class BaseError(with_metaclass(ABCMeta, Exception)):
     """Base Exception class."""
 
@@ -43,6 +45,7 @@ class BaseError(with_metaclass(ABCMeta, Exception)):
             self.__class__.__name__, self.message)
 
 
+@deprecated(reason="Use v3 class; linebot.v3.exceptions.InvalidSignatureError", version='3.0.0')
 class InvalidSignatureError(BaseError):
     """When Webhook signature does NOT match, this error will be raised."""
 

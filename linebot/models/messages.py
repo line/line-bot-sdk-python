@@ -41,7 +41,7 @@ class Message(with_metaclass(ABCMeta, Base)):
         self.id = id
 
 
-@deprecated(reason="Use v3 modules; linebot.v3.webhooks.models.TextMessageContent", version='3.0.0')
+@deprecated(reason="Use v3 class; linebot.v3.webhooks.models.TextMessageContent", version='3.0.0')  # noqa: E501
 class TextMessage(Message):
     """TextMessage.
 

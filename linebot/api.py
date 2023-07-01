@@ -43,6 +43,7 @@ from .models.responses import (
 from deprecated import deprecated
 
 
+@deprecated(reason="Use v3 class; linebot.v3.<feature>", version='3.0.0')  # noqa: E501
 class LineBotApi(object):
     """LineBotApi provides interface for LINE messaging API."""
 
@@ -78,6 +79,7 @@ class LineBotApi(object):
         else:
             self.http_client = RequestsHttpClient(timeout=timeout)
 
+    @deprecated(reason="Use 'from linebot.v3.messaging import MessagingApi' and 'MessagingApi.reply_message(...)' instead.", version='3.0.0')  # noqa: E501
     def reply_message(self, reply_token, messages, notification_disabled=False, timeout=None):
         """Call reply message API.
 
@@ -119,6 +121,7 @@ class LineBotApi(object):
             '/v2/bot/message/reply', data=json.dumps(data), timeout=timeout
         )
 
+    @deprecated(reason="Use 'from linebot.v3.messaging import MessagingApi' and 'MessagingApi.push_message(...)' instead.", version='3.0.0')  # noqa: E501
     def push_message(
             self, to, messages,
             retry_key=None, notification_disabled=False,
@@ -169,6 +172,7 @@ class LineBotApi(object):
             '/v2/bot/message/push', data=json.dumps(data), timeout=timeout
         )
 
+    @deprecated(reason="Use 'from linebot.v3.messaging import MessagingApi' and 'MessagingApi.multicast(...)' instead.", version='3.0.0')  # noqa: E501
     def multicast(self, to, messages, retry_key=None, notification_disabled=False,
                   custom_aggregation_units=None, timeout=None):
         """Call multicast API.
@@ -220,6 +224,7 @@ class LineBotApi(object):
             '/v2/bot/message/multicast', data=json.dumps(data), timeout=timeout
         )
 
+    @deprecated(reason="Use 'from linebot.v3.messaging import MessagingApi' and 'MessagingApi.broadcast(...)' instead.", version='3.0.0')  # noqa: E501
     def broadcast(self, messages, retry_key=None, notification_disabled=False, timeout=None):
         """Call broadcast API.
 
@@ -258,6 +263,7 @@ class LineBotApi(object):
 
         return BroadcastResponse(request_id=response.headers.get('X-Line-Request-Id'))
 
+    @deprecated(reason="Use 'from linebot.v3.messaging import MessagingApi' and 'MessagingApi.narrowcast(...)' instead.", version='3.0.0')  # noqa: E501
     def narrowcast(
             self, messages,
             retry_key=None, recipient=None, filter=None, limit=None,
@@ -309,6 +315,7 @@ class LineBotApi(object):
 
         return NarrowcastResponse(request_id=response.headers.get('X-Line-Request-Id'))
 
+    @deprecated(reason="Use 'from linebot.v3.messaging import MessagingApi' and 'MessagingApi.get_narrowcast_progress(...)' instead.", version='3.0.0')  # noqa: E501
     def get_progress_status_narrowcast(self, request_id, timeout=None):
         """Get progress status of narrowcast messages sent.
 
@@ -332,6 +339,7 @@ class LineBotApi(object):
 
         return MessageProgressNarrowcastResponse.new_from_json_dict(response.json)
 
+    @deprecated(reason="Use 'from linebot.v3.messaging import MessagingApi' and 'MessagingApi.validate_reply(...)' instead.", version='3.0.0')  # noqa: E501
     def validate_reply_message_objects(self, messages, timeout=None):
         """Call validate reply message objects API.
 
@@ -366,6 +374,7 @@ class LineBotApi(object):
         return ValidateReplyMessageObjectsResponse(
             request_id=response.headers.get('X-Line-Request-Id'))
 
+    @deprecated(reason="Use 'from linebot.v3.messaging import MessagingApi' and 'MessagingApi.validate_push(...)' instead.", version='3.0.0')  # noqa: E501
     def validate_push_message_objects(self, messages, timeout=None):
         """Call validate push message objects API.
 
@@ -400,6 +409,7 @@ class LineBotApi(object):
         return ValidatePushMessageObjectsResponse(
             request_id=response.headers.get('X-Line-Request-Id'))
 
+    @deprecated(reason="Use 'from linebot.v3.messaging import MessagingApi' and 'MessagingApi.validate_multicast(...)' instead.", version='3.0.0')  # noqa: E501
     def validate_multicast_message_objects(self, messages, timeout=None):
         """Call validate multicast message objects API.
 
@@ -434,6 +444,7 @@ class LineBotApi(object):
         return ValidateMulticastMessageObjectsResponse(
             request_id=response.headers.get('X-Line-Request-Id'))
 
+    @deprecated(reason="Use 'from linebot.v3.messaging import MessagingApi' and 'MessagingApi.validate_broadcast(...)' instead.", version='3.0.0')  # noqa: E501
     def validate_broadcast_message_objects(self, messages, timeout=None):
         """Call validate broadcast message objects API.
 
@@ -468,6 +479,7 @@ class LineBotApi(object):
         return ValidateBroadcastMessageObjectsResponse(
             request_id=response.headers.get('X-Line-Request-Id'))
 
+    @deprecated(reason="Use 'from linebot.v3.messaging import MessagingApi' and 'MessagingApi.validate_narrowcast(...)' instead.", version='3.0.0')  # noqa: E501
     def validate_narrowcast_message_objects(self, messages, timeout=None):
         """Call validate narrowcast message objects API.
 
@@ -502,6 +514,7 @@ class LineBotApi(object):
         return ValidateNarrowcastMessageObjectsResponse(
             request_id=response.headers.get('X-Line-Request-Id'))
 
+    @deprecated(reason="Use 'from linebot.v3.messaging import MessagingApi' and 'MessagingApi.get_number_of_sent_broadcast_messages(...)' instead.", version='3.0.0')  # noqa: E501
     def get_message_delivery_broadcast(self, date, timeout=None):
         """Get number of sent broadcast messages.
 
@@ -524,6 +537,7 @@ class LineBotApi(object):
 
         return MessageDeliveryBroadcastResponse.new_from_json_dict(response.json)
 
+    @deprecated(reason="Use 'from linebot.v3.messaging import MessagingApi' and 'MessagingApi.get_number_of_sent_reply_messages(...)' instead.", version='3.0.0')  # noqa: E501
     def get_message_delivery_reply(self, date, timeout=None):
         """Get number of sent reply messages.
 
@@ -546,6 +560,7 @@ class LineBotApi(object):
 
         return MessageDeliveryReplyResponse.new_from_json_dict(response.json)
 
+    @deprecated(reason="Use 'from linebot.v3.messaging import MessagingApi' and 'MessagingApi.get_number_of_sent_push_messages(...)' instead.", version='3.0.0')  # noqa: E501
     def get_message_delivery_push(self, date, timeout=None):
         """Get number of sent push messages.
 
@@ -568,6 +583,7 @@ class LineBotApi(object):
 
         return MessageDeliveryPushResponse.new_from_json_dict(response.json)
 
+    @deprecated(reason="Use 'from linebot.v3.messaging import MessagingApi' and 'MessagingApi.get_number_of_sent_multicast_messages(...)' instead.", version='3.0.0')  # noqa: E501
     def get_message_delivery_multicast(self, date, timeout=None):
         """Get number of sent multicast messages.
 
@@ -590,7 +606,7 @@ class LineBotApi(object):
 
         return MessageDeliveryMulticastResponse.new_from_json_dict(response.json)
 
-    @deprecated(reason="Use v3 function; linebot.v3.messaging.api.MessagingApi.get_profile", version='3.0.0')
+    @deprecated(reason="Use 'from linebot.v3.messaging import MessagingApi' and 'MessagingApi.get_profile(...)' instead.", version='3.0.0')  # noqa: E501
     def get_profile(self, user_id, timeout=None):
         """Call get profile API.
 
@@ -614,6 +630,7 @@ class LineBotApi(object):
 
         return Profile.new_from_json_dict(response.json)
 
+    @deprecated(reason="Use 'from linebot.v3.messaging import MessagingApi' and 'MessagingApi.get_group_summary(...)' instead.", version='3.0.0')  # noqa: E501
     def get_group_summary(self, group_id, timeout=None):
         """Call get group summary API.
 
@@ -638,6 +655,8 @@ class LineBotApi(object):
 
         return Group.new_from_json_dict(response.json)
 
+    @deprecated(reason="Use v3 function; linebot.v3.messaging MessagingApi.get_group_member_count",
+                version='3.0.0')  # noqa: E501
     def get_group_members_count(self, group_id, timeout=None):
         """Call get members in group count API.
 
@@ -661,6 +680,8 @@ class LineBotApi(object):
 
         return response.json.get('count')
 
+    @deprecated(reason="Use v3 function; linebot.v3.messaging MessagingApi.get_room_member_count",
+                version='3.0.0')  # noqa: E501
     def get_room_members_count(self, room_id, timeout=None):
         """Call get members in room count API.
 
@@ -684,6 +705,8 @@ class LineBotApi(object):
 
         return response.json.get('count')
 
+    @deprecated(reason="Use v3 function; linebot.v3.messaging MessagingApi.get_group_member_profile",
+                version='3.0.0')  # noqa: E501
     def get_group_member_profile(self, group_id, user_id, timeout=None):
         """Call get group member profile API.
 
@@ -710,6 +733,8 @@ class LineBotApi(object):
 
         return Profile.new_from_json_dict(response.json)
 
+    @deprecated(reason="Use v3 function; linebot.v3.messaging MessagingApi.get_room_member_profile",
+                version='3.0.0')  # noqa: E501
     def get_room_member_profile(self, room_id, user_id, timeout=None):
         """Call get room member profile API.
 
@@ -736,6 +761,8 @@ class LineBotApi(object):
 
         return Profile.new_from_json_dict(response.json)
 
+    @deprecated(reason="Use v3 function; linebot.v3.messaging MessagingApi.get_group_members_ids",
+                version='3.0.0')  # noqa: E501
     def get_group_member_ids(self, group_id, start=None, timeout=None):
         """Call get group member IDs API.
 
@@ -765,6 +792,8 @@ class LineBotApi(object):
 
         return MemberIds.new_from_json_dict(response.json)
 
+    @deprecated(reason="Use v3 function; linebot.v3.messaging MessagingApi.get_room_members_ids",
+                version='3.0.0')  # noqa: E501
     def get_room_member_ids(self, room_id, start=None, timeout=None):
         """Call get room member IDs API.
 
@@ -794,6 +823,8 @@ class LineBotApi(object):
 
         return MemberIds.new_from_json_dict(response.json)
 
+    @deprecated(reason="Use v3 function; linebot.v3.messaging MessagingApiBlob.get_message_content",
+                version='3.0.0')  # noqa: E501
     def get_message_content(self, message_id, timeout=None):
         """Call get content API.
 
@@ -817,6 +848,7 @@ class LineBotApi(object):
 
         return Content(response)
 
+    @deprecated(reason="Use v3 function; linebot.v3.messaging MessagingApi.leave_group", version='3.0.0')  # noqa: E501
     def leave_group(self, group_id, timeout=None):
         """Call leave group API.
 
@@ -836,6 +868,7 @@ class LineBotApi(object):
             timeout=timeout
         )
 
+    @deprecated(reason="Use v3 function; linebot.v3.messaging MessagingApi.leave_room", version='3.0.0')  # noqa: E501
     def leave_room(self, room_id, timeout=None):
         """Call leave room API.
 
@@ -855,6 +888,8 @@ class LineBotApi(object):
             timeout=timeout
         )
 
+    @deprecated(reason="Use v3 function; linebot.v3.messaging MessagingApi.get_rich_menu",
+                version='3.0.0')  # noqa: E501
     def get_rich_menu(self, rich_menu_id, timeout=None):
         """Call get rich menu API.
 
@@ -876,6 +911,8 @@ class LineBotApi(object):
 
         return RichMenuResponse.new_from_json_dict(response.json)
 
+    @deprecated(reason="Use v3 function; linebot.v3.messaging MessagingApi.get_rich_menu_alias",
+                version='3.0.0')  # noqa: E501
     def get_rich_menu_alias(self, rich_menu_alias_id=None, timeout=None):
         """Call get rich menu alias API.
 
@@ -896,6 +933,8 @@ class LineBotApi(object):
         )
         return RichMenuAliasResponse.new_from_json_dict(response.json)
 
+    @deprecated(reason="Use v3 function; linebot.v3.messaging MessagingApi.get_rich_menu_alias_list",
+                version='3.0.0')  # noqa: E501
     def get_rich_menu_alias_list(self, timeout=None):
         """Call get rich menu alias list API.
 
@@ -915,6 +954,8 @@ class LineBotApi(object):
         )
         return RichMenuAliasListResponse.new_from_json_dict(response.json)
 
+    @deprecated(reason="Use v3 function; linebot.v3.messaging MessagingApi.validate_rich_menu_object",
+                version='3.0.0')  # noqa: E501
     def validate_rich_menu_object(self, rich_menu, timeout=None):
         """Call validate rich menu object API.
 
@@ -933,6 +974,8 @@ class LineBotApi(object):
             timeout=timeout
         )
 
+    @deprecated(reason="Use v3 function; linebot.v3.messaging MessagingApi.create_rich_menu",
+                version='3.0.0')  # noqa: E501
     def create_rich_menu(self, rich_menu, timeout=None):
         """Call create rich menu API.
 
@@ -954,6 +997,8 @@ class LineBotApi(object):
 
         return response.json.get('richMenuId')
 
+    @deprecated(reason="Use v3 function; linebot.v3.messaging MessagingApi.create_rich_menu_alias",
+                version='3.0.0')  # noqa: E501
     def create_rich_menu_alias(self, rich_menu_alias, timeout=None):
         """Call create rich menu alias API.
 
@@ -973,6 +1018,8 @@ class LineBotApi(object):
             '/v2/bot/richmenu/alias', data=rich_menu_alias.as_json_string(), timeout=timeout
         )
 
+    @deprecated(reason="Use v3 function; linebot.v3.messaging MessagingApi.update_rich_menu_alias",
+                version='3.0.0')  # noqa: E501
     def update_rich_menu_alias(self, rich_menu_alias_id, rich_menu_alias, timeout=None):
         """Call update rich menu alias API.
 
@@ -995,6 +1042,8 @@ class LineBotApi(object):
             timeout=timeout
         )
 
+    @deprecated(reason="Use v3 function; linebot.v3.messaging MessagingApi.delete_rich_menu",
+                version='3.0.0')  # noqa: E501
     def delete_rich_menu(self, rich_menu_id, timeout=None):
         """Call delete rich menu API.
 
@@ -1012,6 +1061,8 @@ class LineBotApi(object):
             timeout=timeout
         )
 
+    @deprecated(reason="Use v3 function; linebot.v3.messaging MessagingApi.delete_rich_menu_alias",
+                version='3.0.0')  # noqa: E501
     def delete_rich_menu_alias(self, rich_menu_alias_id, timeout=None):
         """Call delete rich menu alias API.
 
@@ -1030,6 +1081,8 @@ class LineBotApi(object):
             timeout=timeout
         )
 
+    @deprecated(reason="Use v3 function; linebot.v3.messaging MessagingApi.get_rich_menu_id_of_user",
+                version='3.0.0')  # noqa: E501
     def get_rich_menu_id_of_user(self, user_id, timeout=None):
         """Call get rich menu ID of user API.
 
@@ -1051,6 +1104,8 @@ class LineBotApi(object):
 
         return response.json.get('richMenuId')
 
+    @deprecated(reason="Use v3 function; linebot.v3.messaging MessagingApi.link_rich_menu_id_to_user",
+                version='3.0.0')  # noqa: E501
     def link_rich_menu_to_user(self, user_id, rich_menu_id, timeout=None):
         """Call link rich menu to user API.
 
@@ -1072,6 +1127,8 @@ class LineBotApi(object):
             timeout=timeout
         )
 
+    @deprecated(reason="Use v3 function; linebot.v3.messaging MessagingApi.link_rich_menu_id_to_users",
+                version='3.0.0')  # noqa: E501
     def link_rich_menu_to_users(self, user_ids, rich_menu_id, timeout=None):
         """Links a rich menu to multiple users.
 
@@ -1096,6 +1153,8 @@ class LineBotApi(object):
             timeout=timeout
         )
 
+    @deprecated(reason="Use v3 function; linebot.v3.messaging MessagingApi.unlink_rich_menu_id_from_user",
+                version='3.0.0')  # noqa: E501
     def unlink_rich_menu_from_user(self, user_id, timeout=None):
         """Call unlink rich menu from user API.
 
@@ -1113,6 +1172,8 @@ class LineBotApi(object):
             timeout=timeout
         )
 
+    @deprecated(reason="Use v3 function; linebot.v3.messaging MessagingApi.unlink_rich_menu_id_from_users",
+                version='3.0.0')  # noqa: E501
     def unlink_rich_menu_from_users(self, user_ids, timeout=None):
         """Unlinks rich menus from multiple users.
 
@@ -1135,6 +1196,8 @@ class LineBotApi(object):
             timeout=timeout
         )
 
+    @deprecated(reason="Use v3 function; linebot.v3.messaging MessagingApiBlob.get_rich_menu_image",
+                version='3.0.0')  # noqa: E501
     def get_rich_menu_image(self, rich_menu_id, timeout=None):
         """Call download rich menu image API.
 
@@ -1156,6 +1219,8 @@ class LineBotApi(object):
 
         return Content(response)
 
+    @deprecated(reason="Use v3 function; linebot.v3.messaging MessagingApiBlob.set_rich_menu_image",
+                version='3.0.0')  # noqa: E501
     def set_rich_menu_image(self, rich_menu_id, content_type, content, timeout=None):
         """Call upload rich menu image API.
 
@@ -1180,6 +1245,8 @@ class LineBotApi(object):
             timeout=timeout
         )
 
+    @deprecated(reason="Use v3 function; linebot.v3.messaging MessagingApi.get_rich_menu_list",
+                version='3.0.0')  # noqa: E501
     def get_rich_menu_list(self, timeout=None):
         """Call get rich menu list API.
 
@@ -1204,6 +1271,8 @@ class LineBotApi(object):
 
         return result
 
+    @deprecated(reason="Use v3 function; linebot.v3.messaging MessagingApi.set_default_rich_menu",
+                version='3.0.0')  # noqa: E501
     def set_default_rich_menu(self, rich_menu_id, timeout=None):
         """Set the default rich menu.
 
@@ -1223,6 +1292,8 @@ class LineBotApi(object):
             timeout=timeout
         )
 
+    @deprecated(reason="Use v3 function; linebot.v3.messaging MessagingApi.get_default_rich_menu_id",
+                version='3.0.0')  # noqa: E501
     def get_default_rich_menu(self, timeout=None):
         """Get the ID of the default rich menu set with the Messaging API.
 
@@ -1241,6 +1312,8 @@ class LineBotApi(object):
 
         return response.json.get('richMenuId')
 
+    @deprecated(reason="Use v3 function; linebot.v3.messaging MessagingApi.cancel_default_rich_menu",
+                version='3.0.0')  # noqa: E501
     def cancel_default_rich_menu(self, timeout=None):
         """Cancel the default rich menu set with the Messaging API.
 
@@ -1257,6 +1330,8 @@ class LineBotApi(object):
             timeout=timeout
         )
 
+    @deprecated(reason="Use v3 function; linebot.v3.messaging MessagingApi.get_message_quota",
+                version='3.0.0')  # noqa: E501
     def get_message_quota(self, timeout=None):
         """Call Get the target limit for additional messages.
 
@@ -1277,6 +1352,8 @@ class LineBotApi(object):
 
         return MessageQuotaResponse.new_from_json_dict(response.json)
 
+    @deprecated(reason="Use v3 function; linebot.v3.messaging MessagingApi.get_message_quota_consumption",
+                version='3.0.0')  # noqa: E501
     def get_message_quota_consumption(self, timeout=None):
         """Get number of messages sent this month.
 
@@ -1297,6 +1374,8 @@ class LineBotApi(object):
 
         return MessageQuotaConsumptionResponse.new_from_json_dict(response.json)
 
+    @deprecated(reason="Use v3 function; linebot.v3.messaging MessagingApi.issue_link_token",
+                version='3.0.0')  # noqa: E501
     def issue_link_token(self, user_id, timeout=None):
         """Issues a link token used for the account link feature.
 
@@ -1320,6 +1399,8 @@ class LineBotApi(object):
 
         return IssueLinkTokenResponse.new_from_json_dict(response.json)
 
+    @deprecated(reason="Use v3 function; linebot.v3.oauth ChannelAccessToken.issue_channel_token",
+                version='3.0.0')  # noqa: E501
     def issue_channel_token(self, client_id, client_secret,
                             grant_type='client_credentials', timeout=None):
         """Issues a short-lived channel access token.
@@ -1350,6 +1431,8 @@ class LineBotApi(object):
 
         return IssueChannelTokenResponse.new_from_json_dict(response.json)
 
+    @deprecated(reason="Use v3 function; linebot.v3.oauth ChannelAccessToken.revoke_channel_token",
+                version='3.0.0')  # noqa: E501
     def revoke_channel_token(self, access_token, timeout=None):
         """Revokes a channel access token.
 
@@ -1369,6 +1452,8 @@ class LineBotApi(object):
             timeout=timeout
         )
 
+    @deprecated(reason="Use v3 function; linebot.v3.insight Insight.get_number_of_message_deliveries",
+                version='3.0.0')  # noqa: E501
     def get_insight_message_delivery(self, date, timeout=None):
         """Get the number of messages sent on a specified day.
 
@@ -1389,6 +1474,8 @@ class LineBotApi(object):
 
         return InsightMessageDeliveryResponse.new_from_json_dict(response.json)
 
+    @deprecated(reason="Use v3 function; linebot.v3.insight Insight.get_number_of_followers",
+                version='3.0.0')  # noqa: E501
     def get_insight_followers(self, date, timeout=None):
         """Get the number of users who have added the bot on or before a specified date.
 
@@ -1409,6 +1496,8 @@ class LineBotApi(object):
 
         return InsightFollowersResponse.new_from_json_dict(response.json)
 
+    @deprecated(reason="Use v3 function; linebot.v3.insight Insight.get_friends_demographics",
+                version='3.0.0')  # noqa: E501
     def get_insight_demographic(self, timeout=None):
         """Retrieve the demographic attributes for a bot's friends.
 
@@ -1428,6 +1517,7 @@ class LineBotApi(object):
 
         return InsightDemographicResponse.new_from_json_dict(response.json)
 
+    @deprecated(reason="Use v3 function; linebot.v3.insight Insight.get_message_event", version='3.0.0')  # noqa: E501
     def get_insight_message_event(self, request_id, timeout=None):
         """Return statistics about how users interact with broadcast messages.
 
@@ -1448,6 +1538,7 @@ class LineBotApi(object):
 
         return InsightMessageEventResponse.new_from_json_dict(response.json)
 
+    @deprecated(reason="Use v3 function; linebot.v3.messaging MessagingApi.get_bot_info", version='3.0.0')  # noqa: E501
     def get_bot_info(self, timeout=None):
         """Get a bot's basic information.
 
@@ -1467,6 +1558,8 @@ class LineBotApi(object):
 
         return BotInfo.new_from_json_dict(response.json)
 
+    @deprecated(reason="Use v3 function; linebot.v3.audience ManageAudience.create_audience_group",
+                version='3.0.0')  # noqa: E501
     def create_audience_group(self, audience_group_name, audiences=None,
                               is_ifa=False, timeout=None):
         """Create an audience group.
@@ -1495,6 +1588,8 @@ class LineBotApi(object):
 
         return CreateAudienceGroup.new_from_json_dict(response.json)
 
+    @deprecated(reason="Use v3 function; linebot.v3.audience ManageAudience.get_audience_data",
+                version='3.0.0')  # noqa: E501
     def get_audience_group(self, audience_group_id, timeout=None):
         """Get the object of audience group.
 
@@ -1516,6 +1611,8 @@ class LineBotApi(object):
 
         return AudienceGroup.new_from_json_dict(response.json)
 
+    @deprecated(reason="Use v3 function; linebot.v3.audience ManageAudience.get_audience_groups",
+                version='3.0.0')  # noqa: E501
     def get_audience_group_list(self, page=1, description=None, status=None, size=20,
                                 include_external_public_group=None, create_route=None,
                                 timeout=None):
@@ -1559,6 +1656,8 @@ class LineBotApi(object):
                                                    create_route, timeout)
         return result
 
+    @deprecated(reason="Use v3 function; linebot.v3.audience ManageAudience.delete_audience_group",
+                version='3.0.0')  # noqa: E501
     def delete_audience_group(self, audience_group_id, timeout=None):
         """Delete an existing audience.
 
@@ -1576,6 +1675,8 @@ class LineBotApi(object):
             timeout=timeout
         )
 
+    @deprecated(reason="Use v3 function; linebot.v3.audience ManageAudience.update_audience_group_description",
+                version='3.0.0')  # noqa: E501
     def rename_audience_group(self, audience_group_id, description, timeout=None):
         """Modify the name of an existing audience.
 
@@ -1600,6 +1701,8 @@ class LineBotApi(object):
 
         return ''
 
+    @deprecated(reason="Use v3 function; linebot.v3.audience ManageAudience.add_audience_to_audience_group",
+                version='3.0.0')  # noqa: E501
     def add_audiences_to_audience_group(self, audience_group_id, audiences,
                                         upload_description=None, timeout=None):
         """Add new user IDs or IFAs to an audience for uploading user IDs.
@@ -1631,6 +1734,8 @@ class LineBotApi(object):
 
         return response.json
 
+    @deprecated(reason="Use v3 function; linebot.v3.audience ManageAudience.get_audience_group_authority_level",
+                version='3.0.0')  # noqa: E501
     def get_audience_group_authority_level(self, timeout=None):
         """Get the authority level of the audience.
 
@@ -1650,6 +1755,8 @@ class LineBotApi(object):
 
         return GetAuthorityLevel.new_from_json_dict(response.json)
 
+    @deprecated(reason="Use v3 function; linebot.v3.audience ManageAudience.update_audience_group_authority_level",
+                version='3.0.0')  # noqa: E501
     def change_audience_group_authority_level(self, authority_level='PUBLIC', timeout=None):
         """Change the authority level of all audiences created in the same channel.
 
@@ -1667,6 +1774,8 @@ class LineBotApi(object):
 
         return ''
 
+    @deprecated(reason="Use v3 function; linebot.v3.audience ManageAudience.create_click_based_audience_group",
+                version='3.0.0')  # noqa: E501
     def create_click_audience_group(self, description, request_id,
                                     click_url=None, timeout=None):
         """Create an audience for click-based retargeting.
@@ -1696,6 +1805,8 @@ class LineBotApi(object):
 
         return ClickAudienceGroup.new_from_json_dict(response.json)
 
+    @deprecated(reason="Use v3 function; linebot.v3.audience ManageAudience.create_imp_based_audience_group",
+                version='3.0.0')  # noqa: E501
     def create_imp_audience_group(self, description, request_id,
                                   timeout=None):
         """Create an audience for impression-based retargeting.
@@ -1722,6 +1833,8 @@ class LineBotApi(object):
 
         return ImpAudienceGroup.new_from_json_dict(response.json)
 
+    @deprecated(reason="Use v3 function; linebot.v3.messaging MessagingApi.set_webhook_endpoint",
+                version='3.0.0')  # noqa: E501
     def set_webhook_endpoint(self, webhook_endpoint, timeout=None):
         """Set the webhook endpoint URL.
 
@@ -1748,6 +1861,8 @@ class LineBotApi(object):
 
         return response.json
 
+    @deprecated(reason="Use v3 function; linebot.v3.messaging MessagingApi.get_webhook_endpoint",
+                version='3.0.0')  # noqa: E501
     def get_webhook_endpoint(self, timeout=None):
         """Get information on a webhook endpoint.
 
@@ -1764,6 +1879,8 @@ class LineBotApi(object):
 
         return GetWebhookResponse.new_from_json_dict(response.json)
 
+    @deprecated(reason="Use v3 function; linebot.v3.messaging MessagingApi.test_webhook_endpoint",
+                version='3.0.0')  # noqa: E501
     def test_webhook_endpoint(self, webhook_endpoint=None, timeout=None):
         """Checks if the configured webhook endpoint can receive a test webhook event.
 
@@ -1792,6 +1909,8 @@ class LineBotApi(object):
 
         return TestWebhookResponse.new_from_json_dict(response.json)
 
+    @deprecated(reason="Use v3 function; linebot.v3.messaging MessagingApi.get_followers",
+                version='3.0.0')  # noqa: E501
     def get_followers_ids(self, limit=300, start=None, timeout=None):
         """Get a list of users who added your LINE Official Account as a friend.
 
@@ -1817,6 +1936,8 @@ class LineBotApi(object):
 
         return UserIds.new_from_json_dict(response.json)
 
+    @deprecated(reason="Use v3 function; linebot.v3.oauth ChannelAccessToken.issue_channel_token_by_jwt",
+                version='3.0.0')  # noqa: E501
     def issue_channel_access_token_v2_1(
             self, client_assertion, grant_type='client_credentials',
             client_assertion_type='urn:ietf:params:oauth:client-assertion-type:jwt-bearer',
@@ -1848,10 +1969,12 @@ class LineBotApi(object):
 
         return IssueChannelTokenResponseV2.new_from_json_dict(response.json)
 
+    @deprecated(reason="Use v3 function; linebot.v3.oauth ChannelAccessToken.revoke_channel_token_by_jwt",
+                version='3.0.0')  # noqa: E501
     def revoke_channel_access_token_v2_1(
-             self, client_id,
-             client_secret, access_token,
-             timeout=None):
+            self, client_id,
+            client_secret, access_token,
+            timeout=None):
         """Revokes a channel access token v2.1.
 
         https://developers.line.biz/en/reference/messaging-api/#revoke-channel-access-token-v2-1
@@ -1898,6 +2021,8 @@ class LineBotApi(object):
         )
         return ChannelAccessTokens.new_from_json_dict(response.json)
 
+    @deprecated(reason="Use v3 function; linebot.v3.oauth ChannelAccessToken.verify_channel_token_by_jwt",
+                version='3.0.0')  # noqa: E501
     def verify_channel_access_token_v2_1(self, access_token, timeout=None):
         """Validate channel access token v2.1.
 
@@ -1916,10 +2041,13 @@ class LineBotApi(object):
                              timeout=timeout)
         return VerifyChannelTokenResponseV2.new_from_json_dict(response.json)
 
+    @deprecated(
+        reason="Use v3 function; linebot.v3.oauth ChannelAccessToken.gets_all_valid_channel_access_token_key_ids",
+        version='3.0.0')  # noqa: E501
     def get_channel_token_key_ids_v2_1(
-           self, client_assertion,
-           client_assertion_type='urn:ietf:params:oauth:client-assertion-type:jwt-bearer',
-           timeout=None):
+            self, client_assertion,
+            client_assertion_type='urn:ietf:params:oauth:client-assertion-type:jwt-bearer',
+            timeout=None):
         """Get all valid channel access token key IDs v2.1.
 
         https://developers.line.biz/en/reference/messaging-api/#get-all-valid-channel-access-token-key-ids-v2-1
@@ -1939,6 +2067,8 @@ class LineBotApi(object):
                              timeout=timeout)
         return ValidAccessTokenKeyIDsResponse.new_from_json_dict(response.json)
 
+    @deprecated(reason="Use v3 function; linebot.v3.insight Insight.get_statistics_per_unit",
+                version='3.0.0')  # noqa: E501
     def get_statistics_per_unit(self, custom_aggregation_unit, from_date, to_date, timeout=None):
         """Return statistics about how users interact with push and multicast messages.
 
@@ -1969,6 +2099,8 @@ class LineBotApi(object):
 
         return InsightMessageEventOfCustomAggregationUnitResponse.new_from_json_dict(response.json)
 
+    @deprecated(reason="Use v3 function; linebot.v3.messaging MessagingApi.get_aggregation_unit_usage",
+                version='3.0.0')  # noqa: E501
     def get_number_of_units_used_this_month(self, timeout=None):
         """Return the number of aggregation units used this month.
 
@@ -1984,6 +2116,8 @@ class LineBotApi(object):
         response = self._get('/v2/bot/message/aggregation/info', timeout=timeout)
         return AggregationInfoResponse.new_from_json_dict(response.json)
 
+    @deprecated(reason="Use v3 function; linebot.v3.messaging MessagingApi.get_aggregation_unit_name_list",
+                version='3.0.0')  # noqa: E501
     def get_name_list_of_units_used_this_month(self, limit=100, start=None, timeout=None):
         """Return the name list of units used this month for statistics aggregation.
 

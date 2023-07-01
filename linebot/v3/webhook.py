@@ -34,7 +34,7 @@ if hasattr(hmac, "compare_digest"):
         """compare_digest function.
 
         If hmac module has compare_digest function, use it.
-        Or not, use linebot.utils.safe_compare_digest.
+        Or not, use linebot.v3.utils.safe_compare_digest.
 
         :param val1: string or bytes for compare
         :type val1: str | bytes
@@ -49,7 +49,7 @@ else:
         """compare_digest function.
 
         If hmac module has compare_digest function, use it.
-        Or not, use linebot.utils.safe_compare_digest.
+        Or not, use linebot.v3.utils.safe_compare_digest.
 
         :param val1: string or bytes for compare
         :type val1: str | bytes
@@ -102,7 +102,7 @@ class WebhookPayload(object):
         """__init__ method.
 
         :param events: Information about the events.
-        :type events: list[T <= :py:class:`linebot.models.events.Event`]
+        :type events: list[T <= :py:class:`linebot.v3.webhooks.models.Event`]
         :param str destination: User ID of a bot that should receive webhook events.
         """
         self.events = events
@@ -125,8 +125,8 @@ class WebhookParser(object):
         :param str body: Webhook request body (as text)
         :param str signature: X-Line-Signature value (as text)
         :param bool as_payload: (optional) True to return WebhookPayload object.
-        :rtype: list[T <= :py:class:`linebot.models.events.Event`]
-            | :py:class:`linebot.webhook.WebhookPayload`
+        :rtype: list[T <= :py:class:`linebot.v3.webhooks.models.Event`]
+            | :py:class:`linebot.v3.webhook.WebhookPayload`
         :return: Events list, or WebhookPayload instance
         """
         if not self.signature_validator.validate(body, signature):
@@ -167,10 +167,10 @@ class WebhookHandler(object):
         """Add handler method.
 
         :param event: Specify a kind of Event which you want to handle
-        :type event: T <= :py:class:`linebot.models.events.Event` class
+        :type event: T <= :py:class:`linebot.v3.webhooks.models.Event` class
         :param message: (optional) If event is MessageEvent,
             specify kind of Messages which you want to handle
-        :type: message: T <= :py:class:`linebot.models.messages.Message` class
+        :type: message: T <= :py:class:`linebot.v3.webhooks.models.message_content.MessageContent` class
         :rtype: func
         :return: decorator
         """

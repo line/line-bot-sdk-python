@@ -14,7 +14,6 @@
 
 """linebot.webhook module."""
 
-
 import base64
 import hashlib
 import hmac
@@ -39,6 +38,8 @@ from .models.events import (
     UnknownEvent,
 )
 from .utils import LOGGER, PY3, safe_compare_digest
+
+from deprecated import deprecated
 
 if hasattr(hmac, "compare_digest"):
     def compare_digest(val1, val2):
@@ -72,6 +73,7 @@ else:
         return safe_compare_digest(val1, val2)
 
 
+@deprecated(reason="Use v3 class; linebot.v3.webhook.SignatureValidator", version='3.0.0')  # noqa: E501
 class SignatureValidator(object):
     """Signature validator.
 
@@ -103,6 +105,7 @@ class SignatureValidator(object):
         )
 
 
+@deprecated(reason="Use v3 class; linebot.v3.webhook.WebhookPayload", version='3.0.0')  # noqa: E501
 class WebhookPayload(object):
     """Webhook Payload.
 
@@ -120,6 +123,7 @@ class WebhookPayload(object):
         self.destination = destination
 
 
+@deprecated(reason="Use v3 class; linebot.v3.webhook.WebhookParser", version='3.0.0')  # noqa: E501
 class WebhookParser(object):
     """Webhook Parser."""
 
@@ -184,6 +188,7 @@ class WebhookParser(object):
             return events
 
 
+@deprecated(reason="Use v3 class; linebot.v3.webhook.WebhookHandler", version='3.0.0')  # noqa: E501
 class WebhookHandler(object):
     """Webhook Handler.
 
@@ -210,6 +215,7 @@ class WebhookHandler(object):
         :rtype: func
         :return: decorator
         """
+
         def decorator(func):
             if isinstance(message, (list, tuple)):
                 for it in message:
@@ -227,6 +233,7 @@ class WebhookHandler(object):
         :rtype: func
         :return: decorator
         """
+
         def decorator(func):
             self._default = func
             return func

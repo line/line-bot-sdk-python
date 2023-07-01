@@ -82,7 +82,7 @@ class Event(with_metaclass(ABCMeta, Base)):
             delivery_context, DeliveryContext
         )
 
-@deprecated(reason="Use v3 modules; linebot.v3.webhooks.models.MessageEvent", version='3.0.0')
+@deprecated(reason="Use v3 class; linebot.v3.webhooks.models.MessageEvent", version='3.0.0')  # noqa: E501
 class MessageEvent(Event):
     """Webhook MessageEvent.
 

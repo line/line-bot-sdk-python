@@ -12,35 +12,12 @@
 #  License for the specific language governing permissions and limitations
 #  under the License.
 
-"""linebot package."""
+"""linebot.deprecations module."""
 
 
-from .__about__ import (  # noqa
-    __version__
-)
-from .api import (  # noqa
-    LineBotApi,
-)
-from .async_api import (  # noqa
-    AsyncLineBotApi,
-)
-from .http_client import (  # noqa
-    HttpClient,
-    RequestsHttpClient,
-    HttpResponse,
-)
-from .async_http_client import (  # noqa
-    AsyncHttpClient,
-    AsyncHttpResponse,
-)
-from .webhook import (  # noqa
-    SignatureValidator,
-    WebhookParser,
-    WebhookHandler,
-    WebhookPayload,
-)
+class LineBotSdkDeprecationWarning(DeprecationWarning):
+    """ My DeprecationWarning """
 
-from .deprecations import (
-    LineBotSdkDeprecationWarning,
-    LineBotSdkDeprecatedIn30,
-)
+
+class LineBotSdkDeprecatedIn30(LineBotSdkDeprecationWarning):
+    """ deprecated in 3.0 """

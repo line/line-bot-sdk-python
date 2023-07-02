@@ -22,12 +22,16 @@ import sys
 
 from deprecated import deprecated
 
+from .deprecations import (
+    LineBotSdkDeprecatedIn30
+)
+
 LOGGER = logging.getLogger('linebot')
 
 PY3 = sys.version_info[0] == 3
 
 
-@deprecated(reason="Use v3 function; linebot.v3.utils.to_snake_case", version='3.0.0')  # noqa: E501
+@deprecated(reason="Use 'from linebot.v3.utils import to_snake_case' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 def to_snake_case(text):
     """Convert to snake case.
 
@@ -40,7 +44,7 @@ def to_snake_case(text):
     return s3.lower()
 
 
-@deprecated(reason="Use v3 function; linebot.v3.utils.to_camel_case", version='3.0.0')  # noqa: E501
+@deprecated(reason="Use 'from linebot.v3.utils import to_camel_case' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 def to_camel_case(text):
     """Convert to camel case.
 
@@ -51,7 +55,7 @@ def to_camel_case(text):
     return split[0] + "".join(x.title() for x in split[1:])
 
 
-@deprecated(reason="Use v3 function; linebot.v3.utils.safe_compare_digest", version='3.0.0')  # noqa: E501
+@deprecated(reason="Use 'from linebot.v3.utils import safe_compare_digest' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 def safe_compare_digest(val1, val2):
     """safe_compare_digest method.
 

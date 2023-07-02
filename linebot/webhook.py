@@ -41,6 +41,10 @@ from .utils import LOGGER, PY3, safe_compare_digest
 
 from deprecated import deprecated
 
+from .deprecations import (
+    LineBotSdkDeprecatedIn30
+)
+
 if hasattr(hmac, "compare_digest"):
     def compare_digest(val1, val2):
         """compare_digest function.
@@ -73,7 +77,7 @@ else:
         return safe_compare_digest(val1, val2)
 
 
-@deprecated(reason="Use v3 class; linebot.v3.webhook.SignatureValidator", version='3.0.0')  # noqa: E501
+@deprecated(reason="Use 'from linebot.v3.webhook import SignatureValidator' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class SignatureValidator(object):
     """Signature validator.
 
@@ -105,7 +109,7 @@ class SignatureValidator(object):
         )
 
 
-@deprecated(reason="Use v3 class; linebot.v3.webhook.WebhookPayload", version='3.0.0')  # noqa: E501
+@deprecated(reason="Use 'from linebot.v3.webhook import WebhookPayload' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class WebhookPayload(object):
     """Webhook Payload.
 
@@ -123,7 +127,7 @@ class WebhookPayload(object):
         self.destination = destination
 
 
-@deprecated(reason="Use v3 class; linebot.v3.webhook.WebhookParser", version='3.0.0')  # noqa: E501
+@deprecated(reason="Use 'from linebot.v3.webhook import WebhookParser' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class WebhookParser(object):
     """Webhook Parser."""
 
@@ -188,7 +192,7 @@ class WebhookParser(object):
             return events
 
 
-@deprecated(reason="Use v3 class; linebot.v3.webhook.WebhookHandler", version='3.0.0')  # noqa: E501
+@deprecated(reason="Use 'from linebot.v3.webhook import WebhookHandler' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class WebhookHandler(object):
     """Webhook Handler.
 

@@ -31,3 +31,7 @@ jobs:
       run: |
         pip install readme-renderer
         python -m readme_renderer README.rst >/dev/null
+    - name: Run generate-code.py without error
+      run: |
+        python generate-code.py
+        

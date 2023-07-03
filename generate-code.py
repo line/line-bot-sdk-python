@@ -68,7 +68,5 @@ def main():
               '''
     run_command(command)
 
-    run_command("a")
-
 if __name__ == "__main__":
     main()

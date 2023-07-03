@@ -39,3 +39,8 @@ from .webhook import (  # noqa
     WebhookHandler,
     WebhookPayload,
 )
+
+from .deprecations import (
+    LineBotSdkDeprecationWarning,
+    LineBotSdkDeprecatedIn30,
+)

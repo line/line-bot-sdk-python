@@ -18,16 +18,24 @@ import wsgiref.simple_server
 from argparse import ArgumentParser
 
 from builtins import bytes
-from linebot import (
-    LineBotApi, WebhookParser
+from linebot.v3 import (
+    WebhookParser
 )
-from linebot.exceptions import (
+from linebot.v3.exceptions import (
     InvalidSignatureError
 )
-from linebot.models import (
-    MessageEvent, TextMessage, TextSendMessage
+from linebot.v3.webhooks import (
+    MessageEvent,
+    TextMessageContent,
 )
-from linebot.utils import PY3
+from linebot.v3.messaging import (
+    Configuration,
+    ApiClient,
+    MessagingApi,
+    ReplyMessageRequest,
+    TextMessage
+)
+from linebot.v3.utils import PY3
 
 # get channel_secret and channel_access_token from your environment variable
 channel_secret = os.getenv('LINE_CHANNEL_SECRET', None)
@@ -39,8 +47,11 @@ if channel_access_token is None:
     print('Specify LINE_CHANNEL_ACCESS_TOKEN as environment variable.')
     sys.exit(1)
 
-line_bot_api = LineBotApi(channel_access_token)
 parser = WebhookParser(channel_secret)
+
+configuration = Configuration(
+    access_token=channel_access_token
+)
 
 
 def application(environ, start_response):
@@ -73,13 +84,17 @@ def application(environ, start_response):
     for event in events:
         if not isinstance(event, MessageEvent):
             continue
-        if not isinstance(event.message, TextMessage):
+        if not isinstance(event.message, TextMessageContent):
             continue
 
-        line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text=event.message.text)
-        )
+        with ApiClient(configuration) as api_client:
+            line_bot_api = MessagingApi(api_client)
+            line_bot_api.reply_message_with_http_info(
+                ReplyMessageRequest(
+                    reply_token=event.reply_token,
+                    messages=[TextMessage(text=event.message.text)]
+                )
+            )
 
     start_response('200 OK', [])
     return create_body('OK')

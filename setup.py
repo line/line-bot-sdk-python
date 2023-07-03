@@ -154,6 +154,17 @@ class CodegenCommand(Command):
             )
             async_source = re.sub("stream=(stream|False|True), ", "", async_source)
 
+            async_source = re.sub("MessagingApiBlob'", "AsyncMessagingApiBlob'", async_source)
+            async_source = re.sub("MessagingApiBlob\\(", "AsyncMessagingApiBlob(", async_source)
+            async_source = re.sub("MessagingApi'", "AsyncMessagingApi'", async_source)
+            async_source = re.sub("MessagingApi\\(", "AsyncMessagingApi(", async_source)
+            async_source = re.sub("ManageAudience'", "AsyncManageAudience'", async_source)
+            async_source = re.sub("ManageAudience\\(", "AsyncManageAudience(", async_source)
+            async_source = re.sub("Insight'", "AsyncInsight'", async_source)
+            async_source = re.sub("Insight\\(", "AsyncInsight(", async_source)
+            async_source = re.sub("ChannelAccessToken'", "AsyncChannelAccessToken'", async_source)
+            async_source = re.sub("ChannelAccessToken\\(", "AsyncChannelAccessToken(", async_source)
+
             with open(f"{basedir}/linebot/async_api.py", "w") as output:
                 output.write(async_source)
 
@@ -177,7 +188,19 @@ setup(
     long_description=long_description,
     license='Apache License 2.0',
     packages=[
-        "linebot", "linebot.models"
+        "linebot",
+        "linebot.models",
+        "linebot.v3",
+        "linebot.v3.audience",
+        "linebot.v3.insight",
+        "linebot.v3.liff",
+        "linebot.v3.messaging",
+        "linebot.v3.models",
+        "linebot.v3.module",
+        "linebot.v3.moduleattach",
+        "linebot.v3.oauth",
+        "linebot.v3.shop",
+        "linebot.v3.webhooks",
     ],
     python_requires=">=3.7.0",
     install_requires=_requirements(),
@@ -195,6 +218,7 @@ setup(
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
         "Topic :: Software Development"
     ]
 )

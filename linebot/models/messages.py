@@ -24,7 +24,14 @@ from .mention import Mention
 from .mentionee import Mentionee
 from .base import Base
 
+from deprecated import deprecated
 
+from linebot.deprecations import (
+    LineBotSdkDeprecatedIn30
+)
+
+
+@deprecated(reason="Use 'from linebot.v3.webhooks import MessageContent' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class Message(with_metaclass(ABCMeta, Base)):
     """Abstract Base Class of Message."""
 
@@ -40,6 +47,7 @@ class Message(with_metaclass(ABCMeta, Base)):
         self.id = id
 
 
+@deprecated(reason="Use 'from linebot.v3.webhooks import TextMessageContent' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class TextMessage(Message):
     """TextMessage.
 
@@ -89,6 +97,7 @@ class TextMessage(Message):
             self.mention = mention
 
 
+@deprecated(reason="Use 'from linebot.v3.webhooks import ImageMessageContent' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class ImageMessage(Message):
     """ImageMessage.
 
@@ -121,6 +130,7 @@ class ImageMessage(Message):
         )
 
 
+@deprecated(reason="Use 'from linebot.v3.webhooks import VideoMessageContent' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class VideoMessage(Message):
     """VideoMessage.
 
@@ -149,6 +159,7 @@ class VideoMessage(Message):
         )
 
 
+@deprecated(reason="Use 'from linebot.v3.webhooks import AudioMessageContent' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class AudioMessage(Message):
     """AudioMessage.
 
@@ -177,6 +188,7 @@ class AudioMessage(Message):
         )
 
 
+@deprecated(reason="Use 'from linebot.v3.webhooks import LocationMessageContent' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class LocationMessage(Message):
     """LocationMessage.
 
@@ -203,6 +215,7 @@ class LocationMessage(Message):
         self.longitude = longitude
 
 
+@deprecated(reason="Use 'from linebot.v3.webhooks import StickerMessageContent' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class StickerMessage(Message):
     """StickerMessage.
 
@@ -234,6 +247,7 @@ class StickerMessage(Message):
         self.text = text
 
 
+@deprecated(reason="Use 'from linebot.v3.webhooks import FileMessageContent' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class FileMessage(Message):
     """FileMessage.
 
@@ -258,6 +272,7 @@ class FileMessage(Message):
         self.file_name = file_name
 
 
+@deprecated(reason="Use 'from linebot.v3.webhooks import ContentProvider' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class ContentProvider(Base):
     """Content provider."""
 
@@ -276,6 +291,7 @@ class ContentProvider(Base):
         self.preview_image_url = preview_image_url
 
 
+@deprecated(reason="Use 'from linebot.v3.webhooks import ImageSet' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class ImageSet(Base):
     """Image Set."""
 

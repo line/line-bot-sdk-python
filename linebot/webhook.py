@@ -14,7 +14,6 @@
 
 """linebot.webhook module."""
 
-
 import base64
 import hashlib
 import hmac
@@ -39,6 +38,12 @@ from .models.events import (
     UnknownEvent,
 )
 from .utils import LOGGER, PY3, safe_compare_digest
+
+from deprecated import deprecated
+
+from .deprecations import (
+    LineBotSdkDeprecatedIn30
+)
 
 if hasattr(hmac, "compare_digest"):
     def compare_digest(val1, val2):
@@ -72,6 +77,7 @@ else:
         return safe_compare_digest(val1, val2)
 
 
+@deprecated(reason="Use 'from linebot.v3.webhook import SignatureValidator' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class SignatureValidator(object):
     """Signature validator.
 
@@ -103,6 +109,7 @@ class SignatureValidator(object):
         )
 
 
+@deprecated(reason="Use 'from linebot.v3.webhook import WebhookPayload' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class WebhookPayload(object):
     """Webhook Payload.
 
@@ -120,6 +127,7 @@ class WebhookPayload(object):
         self.destination = destination
 
 
+@deprecated(reason="Use 'from linebot.v3.webhook import WebhookParser' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class WebhookParser(object):
     """Webhook Parser."""
 
@@ -184,6 +192,7 @@ class WebhookParser(object):
             return events
 
 
+@deprecated(reason="Use 'from linebot.v3.webhook import WebhookHandler' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class WebhookHandler(object):
     """Webhook Handler.
 
@@ -210,6 +219,7 @@ class WebhookHandler(object):
         :rtype: func
         :return: decorator
         """
+
         def decorator(func):
             if isinstance(message, (list, tuple)):
                 for it in message:
@@ -227,6 +237,7 @@ class WebhookHandler(object):
         :rtype: func
         :return: decorator
         """
+
         def decorator(func):
             self._default = func
             return func

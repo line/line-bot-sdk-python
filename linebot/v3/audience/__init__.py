@@ -14,7 +14,7 @@
 """
 
 
-__version__ = "3.0.2"
+__version__ = "3.0.3"
 
 # import apis into sdk package
 from linebot.v3.audience.api.manage_audience import ManageAudience

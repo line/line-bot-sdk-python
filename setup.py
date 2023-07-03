@@ -187,7 +187,7 @@ setup(
     description="LINE Messaging API SDK for Python",
     long_description=long_description,
     license='Apache License 2.0',
-    packages=find_packages(where="linebot"),
+    packages=find_packages(include=["linebot*"]),
     python_requires=">=3.7.0",
     install_requires=_requirements(),
     tests_require=_requirements_test(),

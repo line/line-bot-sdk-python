@@ -22,6 +22,7 @@
 # Then explicitly reverse the ignore rule for a single file:
 #!docs/README.md
 linebot/__init__.py
+linebot/v3/__init__.py
 
 ## common readmes
 linebot/v3/*_README.md

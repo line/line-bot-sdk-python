@@ -18,7 +18,7 @@ import re
 import sys
 import subprocess
 
-from setuptools import setup, Command
+from setuptools import setup, Command, find_packages
 from setuptools.command.test import test as TestCommand
 
 __version__ = ''
@@ -187,21 +187,7 @@ setup(
     description="LINE Messaging API SDK for Python",
     long_description=long_description,
     license='Apache License 2.0',
-    packages=[
-        "linebot",
-        "linebot.models",
-        "linebot.v3",
-        "linebot.v3.audience",
-        "linebot.v3.insight",
-        "linebot.v3.liff",
-        "linebot.v3.messaging",
-        "linebot.v3.models",
-        "linebot.v3.module",
-        "linebot.v3.moduleattach",
-        "linebot.v3.oauth",
-        "linebot.v3.shop",
-        "linebot.v3.webhooks",
-    ],
+    packages=find_packages(include=["linebot*"]),
     python_requires=">=3.7.0",
     install_requires=_requirements(),
     tests_require=_requirements_test(),

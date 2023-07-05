@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictStr, validator
+from pydantic import BaseModel, Field, StrictBool, StrictStr, validator
 from linebot.v3.messaging.models.flex_component import FlexComponent
 
 class FlexIcon(FlexComponent):
@@ -36,9 +36,10 @@ class FlexIcon(FlexComponent):
     offset_bottom: Optional[StrictStr] = Field(None, alias="offsetBottom")
     offset_start: Optional[StrictStr] = Field(None, alias="offsetStart")
     offset_end: Optional[StrictStr] = Field(None, alias="offsetEnd")
+    scaling: Optional[StrictBool] = None
     type: str = "icon"
 
-    __properties = ["type", "url", "size", "aspectRatio", "margin", "position", "offsetTop", "offsetBottom", "offsetStart", "offsetEnd"]
+    __properties = ["type", "url", "size", "aspectRatio", "margin", "position", "offsetTop", "offsetBottom", "offsetStart", "offsetEnd", "scaling"]
 
     @validator('position')
     def position_validate_enum(cls, value):
@@ -95,7 +96,8 @@ class FlexIcon(FlexComponent):
             "offset_top": obj.get("offsetTop"),
             "offset_bottom": obj.get("offsetBottom"),
             "offset_start": obj.get("offsetStart"),
-            "offset_end": obj.get("offsetEnd")
+            "offset_end": obj.get("offsetEnd"),
+            "scaling": obj.get("scaling")
         })
         return _obj
 

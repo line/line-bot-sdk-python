@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictInt, StrictStr, validator
+from pydantic import BaseModel, Field, StrictBool, StrictInt, StrictStr, validator
 from linebot.v3.messaging.models.action import Action
 from linebot.v3.messaging.models.flex_component import FlexComponent
 
@@ -40,9 +40,10 @@ class FlexButton(FlexComponent):
     offset_end: Optional[StrictStr] = Field(None, alias="offsetEnd")
     height: Optional[StrictStr] = None
     adjust_mode: Optional[StrictStr] = Field(None, alias="adjustMode")
+    scaling: Optional[StrictBool] = None
     type: str = "button"
 
-    __properties = ["type", "flex", "color", "style", "action", "gravity", "margin", "position", "offsetTop", "offsetBottom", "offsetStart", "offsetEnd", "height", "adjustMode"]
+    __properties = ["type", "flex", "color", "style", "action", "gravity", "margin", "position", "offsetTop", "offsetBottom", "offsetStart", "offsetEnd", "height", "adjustMode", "scaling"]
 
     @validator('style')
     def style_validate_enum(cls, value):
@@ -146,7 +147,8 @@ class FlexButton(FlexComponent):
             "offset_start": obj.get("offsetStart"),
             "offset_end": obj.get("offsetEnd"),
             "height": obj.get("height"),
-            "adjust_mode": obj.get("adjustMode")
+            "adjust_mode": obj.get("adjustMode"),
+            "scaling": obj.get("scaling")
         })
         return _obj
 

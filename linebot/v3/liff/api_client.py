@@ -77,7 +77,7 @@ class ApiClient(object):
         self.default_headers['Authorization'] = 'Bearer ' + configuration.access_token
         self.cookie = cookie
         # Set default User-Agent.
-        self.user_agent = 'line-bot-sdk-python/3.0.3'
+        self.user_agent = 'line-bot-sdk-python/3.1.0'
         self.client_side_validation = configuration.client_side_validation
 
     def __enter__(self):

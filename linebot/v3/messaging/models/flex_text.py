@@ -49,9 +49,10 @@ class FlexText(FlexComponent):
     max_lines: Optional[StrictInt] = Field(None, alias="maxLines")
     contents: Optional[conlist(FlexSpan)] = None
     adjust_mode: Optional[StrictStr] = Field(None, alias="adjustMode")
+    scaling: Optional[StrictBool] = None
     type: str = "text"
 
-    __properties = ["type", "flex", "text", "size", "align", "gravity", "color", "weight", "style", "decoration", "wrap", "lineSpacing", "margin", "position", "offsetTop", "offsetBottom", "offsetStart", "offsetEnd", "action", "maxLines", "contents", "adjustMode"]
+    __properties = ["type", "flex", "text", "size", "align", "gravity", "color", "weight", "style", "decoration", "wrap", "lineSpacing", "margin", "position", "offsetTop", "offsetBottom", "offsetStart", "offsetEnd", "action", "maxLines", "contents", "adjustMode", "scaling"]
 
     @validator('align')
     def align_validate_enum(cls, value):
@@ -190,7 +191,8 @@ class FlexText(FlexComponent):
             "action": Action.from_dict(obj.get("action")) if obj.get("action") is not None else None,
             "max_lines": obj.get("maxLines"),
             "contents": [FlexSpan.from_dict(_item) for _item in obj.get("contents")] if obj.get("contents") is not None else None,
-            "adjust_mode": obj.get("adjustMode")
+            "adjust_mode": obj.get("adjustMode"),
+            "scaling": obj.get("scaling")
         })
         return _obj
 

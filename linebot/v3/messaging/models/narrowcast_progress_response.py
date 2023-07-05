@@ -32,8 +32,8 @@ class NarrowcastProgressResponse(BaseModel):
     target_count: Optional[StrictInt] = Field(None, alias="targetCount", description="The number of intended recipients of the message.")
     failed_description: Optional[StrictStr] = Field(None, alias="failedDescription", description="The reason the message failed to be sent. This is only included with a `phase` property value of `failed`.")
     error_code: Optional[StrictInt] = Field(None, alias="errorCode", description="Error summary. This is only included with a phase property value of failed. One of:  `1`: An internal error occurred. `2`: An error occurred because there weren't enough recipients. `3`: A conflict error of requests occurs because a request that has already been accepted is retried. ")
-    accepted_time: datetime = Field(..., alias="acceptedTime", description="Narrowcast message request accepted time in milliseconds.  Format: ISO 8601 (opens new window)(e.g. 2020-12-03T10:15:30.121Z) Timezone: UTC ")
-    completed_time: Optional[datetime] = Field(None, alias="completedTime", description="Processing of narrowcast message request completion time in milliseconds. Returned when the phase property is succeeded or failed.  Format: ISO 8601 (opens new window)(e.g. 2020-12-03T10:15:30.121Z) Timezone: UTC ")
+    accepted_time: datetime = Field(..., alias="acceptedTime", description="Narrowcast message request accepted time in milliseconds.  Format: ISO 8601 (e.g. 2020-12-03T10:15:30.121Z) Timezone: UTC ")
+    completed_time: Optional[datetime] = Field(None, alias="completedTime", description="Processing of narrowcast message request completion time in milliseconds. Returned when the phase property is succeeded or failed.  Format: ISO 8601 (e.g. 2020-12-03T10:15:30.121Z) Timezone: UTC ")
 
     __properties = ["phase", "successCount", "failureCount", "targetCount", "failedDescription", "errorCode", "acceptedTime", "completedTime"]
 

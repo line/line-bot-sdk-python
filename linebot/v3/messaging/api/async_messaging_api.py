@@ -49,6 +49,8 @@ from linebot.v3.messaging.models.quota_consumption_response import QuotaConsumpt
 from linebot.v3.messaging.models.reply_message_request import ReplyMessageRequest
 from linebot.v3.messaging.models.rich_menu_alias_list_response import RichMenuAliasListResponse
 from linebot.v3.messaging.models.rich_menu_alias_response import RichMenuAliasResponse
+from linebot.v3.messaging.models.rich_menu_batch_progress_response import RichMenuBatchProgressResponse
+from linebot.v3.messaging.models.rich_menu_batch_request import RichMenuBatchRequest
 from linebot.v3.messaging.models.rich_menu_bulk_link_request import RichMenuBulkLinkRequest
 from linebot.v3.messaging.models.rich_menu_bulk_unlink_request import RichMenuBulkUnlinkRequest
 from linebot.v3.messaging.models.rich_menu_id_response import RichMenuIdResponse
@@ -4394,6 +4396,155 @@ class AsyncMessagingApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @overload
+    async def get_rich_menu_batch_progress(self, request_id : Annotated[StrictStr, Field(..., description="A request ID used to batch control the rich menu linked to the user. Each Messaging API request has a request ID.")], **kwargs) -> RichMenuBatchProgressResponse:  # noqa: E501
+        ...
+
+    @overload
+    def get_rich_menu_batch_progress(self, request_id : Annotated[StrictStr, Field(..., description="A request ID used to batch control the rich menu linked to the user. Each Messaging API request has a request ID.")], async_req: Optional[bool]=True, **kwargs) -> RichMenuBatchProgressResponse:  # noqa: E501
+        ...
+
+    @validate_arguments
+    def get_rich_menu_batch_progress(self, request_id : Annotated[StrictStr, Field(..., description="A request ID used to batch control the rich menu linked to the user. Each Messaging API request has a request ID.")], async_req: Optional[bool]=None, **kwargs) -> Union[RichMenuBatchProgressResponse, Awaitable[RichMenuBatchProgressResponse]]:  # noqa: E501
+        """get_rich_menu_batch_progress  # noqa: E501
+
+        Get the status of Replace or unlink a linked rich menus in batches.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_rich_menu_batch_progress(request_id, async_req=True)
+        >>> result = thread.get()
+
+        :param request_id: A request ID used to batch control the rich menu linked to the user. Each Messaging API request has a request ID. (required)
+        :type request_id: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: RichMenuBatchProgressResponse
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the get_rich_menu_batch_progress_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        if async_req is not None:
+            kwargs['async_req'] = async_req
+        return self.get_rich_menu_batch_progress_with_http_info(request_id, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def get_rich_menu_batch_progress_with_http_info(self, request_id : Annotated[StrictStr, Field(..., description="A request ID used to batch control the rich menu linked to the user. Each Messaging API request has a request ID.")], **kwargs) -> ApiResponse:  # noqa: E501
+        """get_rich_menu_batch_progress  # noqa: E501
+
+        Get the status of Replace or unlink a linked rich menus in batches.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_rich_menu_batch_progress_with_http_info(request_id, async_req=True)
+        >>> result = thread.get()
+
+        :param request_id: A request ID used to batch control the rich menu linked to the user. Each Messaging API request has a request ID. (required)
+        :type request_id: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(RichMenuBatchProgressResponse, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'request_id'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_rich_menu_batch_progress" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('request_id') is not None:  # noqa: E501
+            _query_params.append(('requestId', _params['request_id']))
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['Bearer']  # noqa: E501
+
+        _response_types_map = {
+            '200': "RichMenuBatchProgressResponse",
+        }
+
+        return self.api_client.call_api(
+            '/v2/bot/richmenu/progress/batch', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @overload
     async def get_rich_menu_id_of_user(self, user_id : Annotated[StrictStr, Field(..., description="User ID. Found in the `source` object of webhook event objects. Do not use the LINE ID used in LINE.")], **kwargs) -> RichMenuIdResponse:  # noqa: E501
         ...
 
@@ -6980,6 +7131,156 @@ class AsyncMessagingApi(object):
             _request_auth=_params.get('_request_auth'))
 
     @overload
+    async def rich_menu_batch(self, rich_menu_batch_request : RichMenuBatchRequest, **kwargs) -> None:  # noqa: E501
+        ...
+
+    @overload
+    def rich_menu_batch(self, rich_menu_batch_request : RichMenuBatchRequest, async_req: Optional[bool]=True, **kwargs) -> None:  # noqa: E501
+        ...
+
+    @validate_arguments
+    def rich_menu_batch(self, rich_menu_batch_request : RichMenuBatchRequest, async_req: Optional[bool]=None, **kwargs) -> Union[None, Awaitable[None]]:  # noqa: E501
+        """rich_menu_batch  # noqa: E501
+
+        You can use this endpoint to batch control the rich menu linked to the users using the endpoint such as Link rich menu to user.  The following operations are available:  1. Replace a rich menu with another rich menu for all users linked to a specific rich menu 2. Unlink a rich menu for all users linked to a specific rich menu 3. Unlink a rich menu for all users linked the rich menu   # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.rich_menu_batch(rich_menu_batch_request, async_req=True)
+        >>> result = thread.get()
+
+        :param rich_menu_batch_request: (required)
+        :type rich_menu_batch_request: RichMenuBatchRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the rich_menu_batch_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        if async_req is not None:
+            kwargs['async_req'] = async_req
+        return self.rich_menu_batch_with_http_info(rich_menu_batch_request, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def rich_menu_batch_with_http_info(self, rich_menu_batch_request : RichMenuBatchRequest, **kwargs) -> ApiResponse:  # noqa: E501
+        """rich_menu_batch  # noqa: E501
+
+        You can use this endpoint to batch control the rich menu linked to the users using the endpoint such as Link rich menu to user.  The following operations are available:  1. Replace a rich menu with another rich menu for all users linked to a specific rich menu 2. Unlink a rich menu for all users linked to a specific rich menu 3. Unlink a rich menu for all users linked the rich menu   # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.rich_menu_batch_with_http_info(rich_menu_batch_request, async_req=True)
+        >>> result = thread.get()
+
+        :param rich_menu_batch_request: (required)
+        :type rich_menu_batch_request: RichMenuBatchRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'rich_menu_batch_request'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method rich_menu_batch" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['rich_menu_batch_request'] is not None:
+            _body_params = _params['rich_menu_batch_request']
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['Bearer']  # noqa: E501
+
+        _response_types_map = {}
+
+        return self.api_client.call_api(
+            '/v2/bot/richmenu/batch', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @overload
     async def set_default_rich_menu(self, rich_menu_id : Annotated[StrictStr, Field(..., description="ID of a rich menu")], **kwargs) -> None:  # noqa: E501
         ...
 
@@ -8618,6 +8919,156 @@ class AsyncMessagingApi(object):
 
         return self.api_client.call_api(
             '/v2/bot/message/validate/reply', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @overload
+    async def validate_rich_menu_batch_request(self, rich_menu_batch_request : RichMenuBatchRequest, **kwargs) -> None:  # noqa: E501
+        ...
+
+    @overload
+    def validate_rich_menu_batch_request(self, rich_menu_batch_request : RichMenuBatchRequest, async_req: Optional[bool]=True, **kwargs) -> None:  # noqa: E501
+        ...
+
+    @validate_arguments
+    def validate_rich_menu_batch_request(self, rich_menu_batch_request : RichMenuBatchRequest, async_req: Optional[bool]=None, **kwargs) -> Union[None, Awaitable[None]]:  # noqa: E501
+        """validate_rich_menu_batch_request  # noqa: E501
+
+        Validate a request body of the Replace or unlink the linked rich menus in batches endpoint.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.validate_rich_menu_batch_request(rich_menu_batch_request, async_req=True)
+        >>> result = thread.get()
+
+        :param rich_menu_batch_request: (required)
+        :type rich_menu_batch_request: RichMenuBatchRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the validate_rich_menu_batch_request_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        if async_req is not None:
+            kwargs['async_req'] = async_req
+        return self.validate_rich_menu_batch_request_with_http_info(rich_menu_batch_request, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def validate_rich_menu_batch_request_with_http_info(self, rich_menu_batch_request : RichMenuBatchRequest, **kwargs) -> ApiResponse:  # noqa: E501
+        """validate_rich_menu_batch_request  # noqa: E501
+
+        Validate a request body of the Replace or unlink the linked rich menus in batches endpoint.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.validate_rich_menu_batch_request_with_http_info(rich_menu_batch_request, async_req=True)
+        >>> result = thread.get()
+
+        :param rich_menu_batch_request: (required)
+        :type rich_menu_batch_request: RichMenuBatchRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'rich_menu_batch_request'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method validate_rich_menu_batch_request" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['rich_menu_batch_request'] is not None:
+            _body_params = _params['rich_menu_batch_request']
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['Bearer']  # noqa: E501
+
+        _response_types_map = {}
+
+        return self.api_client.call_api(
+            '/v2/bot/richmenu/validate/batch', 'POST',
             _path_params,
             _query_params,
             _header_params,

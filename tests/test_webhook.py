@@ -20,7 +20,7 @@ from builtins import open
 import inspect
 
 from linebot import (
-    SignatureValidator, WebhookParser, WebhookHandler
+    SignatureValidator, WebhookParser, WebhookHandler, utils
 )
 from linebot.models import (
     MessageEvent, FollowEvent, UnfollowEvent, JoinEvent,
@@ -614,6 +614,9 @@ class TestWebhookParser(unittest.TestCase):
 class TestWebhookHandler(unittest.TestCase):
     def setUp(self):
         self.handler = WebhookHandler('channel_secret')
+        self.use_raw_message = True
+        self.retrieve_attr_name = lambda x: x if self.use_raw_message \
+            else utils.to_snake_case(x)
 
         @self.handler.add(MessageEvent, message=TextMessage)
         def message_text(event, destination):
@@ -634,6 +637,13 @@ class TestWebhookHandler(unittest.TestCase):
         def message_sticker(event):
             self.assertEqual('message', event.type)
             self.assertEqual('sticker', event.message.type)
+
+        @self.handler.add(MessageEvent, message=FileMessage)
+        def message_file(event):
+            self.assertEqual('message', event.type)
+            self.assertEqual('file', event.message.type)
+            self.assertNotEqual(event.message[self.retrieve_attr_name("fileName")], None)
+            self.assertNotEqual(event.message[self.retrieve_attr_name("fileSize")], None)
 
         @self.handler.add(MessageEvent)
         def message(event):
@@ -680,7 +690,7 @@ class TestWebhookHandler(unittest.TestCase):
         # mock
         self.handler.parser.signature_validator.validate = lambda a, b: True
 
-        self.handler.handle(body, 'signature')
+        self.handler.handle(body, 'signature', self.use_raw_message)
 
 
 class TestInvokeWebhookHandler(unittest.TestCase):

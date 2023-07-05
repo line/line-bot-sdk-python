@@ -50,6 +50,6 @@ jobs:
           popd
 
           git push origin update-diff-${{ env.CURRENT_DATETIME }}
-          gh pr create -B ${{ github.ref_name }} -t "$latest_commit_title" -b "latest_commit_msg_without_title" --label "auto-generated-code"
+          gh pr create -B ${{ github.ref_name }} --title "$latest_commit_title" --body "$latest_commit_msg_without_title" --label "auto-generated-code"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

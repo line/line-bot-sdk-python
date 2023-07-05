@@ -21,7 +21,14 @@ from future.utils import with_metaclass
 
 from .base import Base
 
+from deprecated import deprecated
 
+from linebot.deprecations import (
+    LineBotSdkDeprecatedIn30
+)
+
+
+@deprecated(reason="Use 'from linebot.v3.webhooks import ThingsContent' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class Things(with_metaclass(ABCMeta, Base)):
     """Abstract Base Class of Things."""
 
@@ -35,6 +42,7 @@ class Things(with_metaclass(ABCMeta, Base)):
         self.device_id = device_id
 
 
+@deprecated(reason="Use 'from linebot.v3.webhooks import LinkThingsContent' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class DeviceLink(Things):
     """DeviceLink.
 
@@ -54,6 +62,7 @@ class DeviceLink(Things):
         self.type = 'link'
 
 
+@deprecated(reason="Use 'from linebot.v3.webhooks import UnlinkThingsContent' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class DeviceUnlink(Things):
     """DeviceUnlink.
 
@@ -73,6 +82,7 @@ class DeviceUnlink(Things):
         self.type = 'unlink'
 
 
+@deprecated(reason="Use 'from linebot.v3.webhooks import ScenarioResultThingsContent' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class ScenarioResult(Things):
     """ScenarioResult.
 
@@ -96,6 +106,7 @@ class ScenarioResult(Things):
         )
 
 
+@deprecated(reason="Use 'from linebot.v3.webhooks import ScenarioResult' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class ScenarioResultPayload(Base):
     """ScenarioResultPayload."""
 
@@ -130,6 +141,7 @@ class ScenarioResultPayload(Base):
         self.error_reason = error_reason
 
 
+@deprecated(reason="Use 'from linebot.v3.webhooks import ActionResult' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class ActionResult(Base):
     """ActionResult.
 

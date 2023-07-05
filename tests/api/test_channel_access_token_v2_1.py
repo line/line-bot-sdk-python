@@ -151,12 +151,12 @@ class TestLineBotApi(unittest.TestCase):
 
         request = responses.calls[0].request
         self.assertEqual('GET', request.method)
-        self.assertEqual(endpoint, request.url)
-
-        encoded_body = parse.parse_qs(request.body)
-        self.assertEqual(self.client_id, encoded_body['client_id'][0])
-        self.assertEqual(self.expires_in, encoded_body['expires_in'][0])
-        self.assertEqual(self.scope, encoded_body['scope'][0])
+        self.assertEqual(
+            parse.unquote(request.url),
+            parse.unquote('{}?access_token={}'.format(
+                endpoint, self.access_token
+            ))
+        )
 
     @responses.activate
     def test_get_channel_token_key_ids_v2_1(self):
@@ -175,10 +175,13 @@ class TestLineBotApi(unittest.TestCase):
 
         request = responses.calls[0].request
         self.assertEqual('GET', request.method)
-        self.assertEqual(endpoint, request.url)
+        self.assertEqual(
+            parse.unquote(request.url),
+            parse.unquote('{}?client_assertion={}&client_assertion_type={}'.format(
+                endpoint, self.client_assertion, self.client_assertion_type
+            ))
+        )
 
-        encoded_body = parse.parse_qs(request.body)
-        self.assertEqual(self.kids, encoded_body['kids'][0])
 
 if __name__ == '__main__':
     unittest.main()

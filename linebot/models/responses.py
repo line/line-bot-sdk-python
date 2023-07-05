@@ -37,6 +37,76 @@ class BroadcastResponse(object):
         self.request_id = request_id
 
 
+class ValidateReplyMessageObjectsResponse(object):
+    """ValidateReplyMessageObjectsResponse.
+
+    https://developers.line.biz/en/reference/messaging-api/#validate-message-objects-of-reply-message
+    """
+
+    def __init__(self, request_id=None):
+        """__init__ method.
+
+        :param str request_id: Request ID. A unique ID is generated for each request
+        """
+        self.request_id = request_id
+
+
+class ValidatePushMessageObjectsResponse(object):
+    """ValidatePushMessageObjectsResponse.
+
+    https://developers.line.biz/en/reference/messaging-api/#validate-message-objects-of-push-message
+    """
+
+    def __init__(self, request_id=None):
+        """__init__ method.
+
+        :param str request_id: Request ID. A unique ID is generated for each request
+        """
+        self.request_id = request_id
+
+
+class ValidateMulticastMessageObjectsResponse(object):
+    """ValidateMulticastMessageObjectsResponse.
+
+    https://developers.line.biz/en/reference/messaging-api/#validate-message-objects-of-multicast-message
+    """
+
+    def __init__(self, request_id=None):
+        """__init__ method.
+
+        :param str request_id: Request ID. A unique ID is generated for each request
+        """
+        self.request_id = request_id
+
+
+class ValidateNarrowcastMessageObjectsResponse(object):
+    """ValidateNarrowcastMessageObjectsResponse.
+
+    https://developers.line.biz/en/reference/messaging-api/#validate-message-objects-of-narrowcast-message
+    """
+
+    def __init__(self, request_id=None):
+        """__init__ method.
+
+        :param str request_id: Request ID. A unique ID is generated for each request
+        """
+        self.request_id = request_id
+
+
+class ValidateBroadcastMessageObjectsResponse(object):
+    """ValidateBroadcastMessageObjectsResponse.
+
+    https://developers.line.biz/en/reference/messaging-api/#validate-message-objects-of-broadcast-message
+    """
+
+    def __init__(self, request_id=None):
+        """__init__ method.
+
+        :param str request_id: Request ID. A unique ID is generated for each request
+        """
+        self.request_id = request_id
+
+
 class Profile(Base):
     """Profile.
 

@@ -14,7 +14,6 @@
 
 """linebot.webhook module."""
 
-
 import base64
 import hashlib
 import hmac
@@ -33,9 +32,18 @@ from .models.events import (
     AccountLinkEvent,
     MemberJoinedEvent,
     MemberLeftEvent,
-    ThingsEvent, UnsendEvent, VideoPlayCompleteEvent,
+    ThingsEvent,
+    UnsendEvent,
+    VideoPlayCompleteEvent,
+    UnknownEvent,
 )
 from .utils import LOGGER, PY3, safe_compare_digest
+
+from deprecated import deprecated
+
+from .deprecations import (
+    LineBotSdkDeprecatedIn30
+)
 
 if hasattr(hmac, "compare_digest"):
     def compare_digest(val1, val2):
@@ -69,6 +77,7 @@ else:
         return safe_compare_digest(val1, val2)
 
 
+@deprecated(reason="Use 'from linebot.v3.webhook import SignatureValidator' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class SignatureValidator(object):
     """Signature validator.
 
@@ -100,6 +109,7 @@ class SignatureValidator(object):
         )
 
 
+@deprecated(reason="Use 'from linebot.v3.webhook import WebhookPayload' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class WebhookPayload(object):
     """Webhook Payload.
 
@@ -117,6 +127,7 @@ class WebhookPayload(object):
         self.destination = destination
 
 
+@deprecated(reason="Use 'from linebot.v3.webhook import WebhookParser' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class WebhookParser(object):
     """Webhook Parser."""
 
@@ -127,7 +138,7 @@ class WebhookParser(object):
         """
         self.signature_validator = SignatureValidator(channel_secret)
 
-    def parse(self, body, signature, as_payload=False):
+    def parse(self, body, signature, as_payload=False, use_raw_message=False):
         """Parse webhook request body as text.
 
         :param str body: Webhook request body (as text)
@@ -135,6 +146,7 @@ class WebhookParser(object):
         :param bool as_payload: (optional) True to return WebhookPayload object.
         :rtype: list[T <= :py:class:`linebot.models.events.Event`]
             | :py:class:`linebot.webhook.WebhookPayload`
+        :param bool use_raw_message: Using original Message key as attribute
         :return: Events list, or WebhookPayload instance
         """
         if not self.signature_validator.validate(body, signature):
@@ -146,7 +158,8 @@ class WebhookParser(object):
         for event in body_json['events']:
             event_type = event['type']
             if event_type == 'message':
-                events.append(MessageEvent.new_from_json_dict(event))
+                events.append(MessageEvent.new_from_json_dict(event,
+                              use_raw_message=use_raw_message))
             elif event_type == 'follow':
                 events.append(FollowEvent.new_from_json_dict(event))
             elif event_type == 'unfollow':
@@ -172,7 +185,8 @@ class WebhookParser(object):
             elif event_type == 'videoPlayComplete':
                 events.append(VideoPlayCompleteEvent.new_from_json_dict(event))
             else:
-                LOGGER.warn('Unknown event type. type=' + event_type)
+                LOGGER.info('Unknown event type. type=' + event_type)
+                events.append(UnknownEvent.new_from_json_dict(event))
 
         if as_payload:
             return WebhookPayload(events=events, destination=body_json.get('destination'))
@@ -180,6 +194,7 @@ class WebhookParser(object):
             return events
 
 
+@deprecated(reason="Use 'from linebot.v3.webhook import WebhookHandler' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class WebhookHandler(object):
     """Webhook Handler.
 
@@ -206,6 +221,7 @@ class WebhookHandler(object):
         :rtype: func
         :return: decorator
         """
+
         def decorator(func):
             if isinstance(message, (list, tuple)):
                 for it in message:
@@ -223,19 +239,22 @@ class WebhookHandler(object):
         :rtype: func
         :return: decorator
         """
+
         def decorator(func):
             self._default = func
             return func
 
         return decorator
 
-    def handle(self, body, signature):
+    def handle(self, body, signature, use_raw_message=False):
         """Handle webhook.
 
         :param str body: Webhook request body (as text)
         :param str signature: X-Line-Signature value (as text)
+        :param bool use_raw_message: Using original Message key as attribute
         """
-        payload = self.parser.parse(body, signature, as_payload=True)
+        payload = self.parser.parse(body, signature, as_payload=True,
+                                    use_raw_message=use_raw_message)
 
         for event in payload.events:
             func = None

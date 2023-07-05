@@ -18,7 +18,7 @@ import re
 import sys
 import subprocess
 
-from setuptools import setup, Command
+from setuptools import setup, Command, find_packages
 from setuptools.command.test import test as TestCommand
 
 __version__ = ''
@@ -154,6 +154,17 @@ class CodegenCommand(Command):
             )
             async_source = re.sub("stream=(stream|False|True), ", "", async_source)
 
+            async_source = re.sub("MessagingApiBlob'", "AsyncMessagingApiBlob'", async_source)
+            async_source = re.sub("MessagingApiBlob\\(", "AsyncMessagingApiBlob(", async_source)
+            async_source = re.sub("MessagingApi'", "AsyncMessagingApi'", async_source)
+            async_source = re.sub("MessagingApi\\(", "AsyncMessagingApi(", async_source)
+            async_source = re.sub("ManageAudience'", "AsyncManageAudience'", async_source)
+            async_source = re.sub("ManageAudience\\(", "AsyncManageAudience(", async_source)
+            async_source = re.sub("Insight'", "AsyncInsight'", async_source)
+            async_source = re.sub("Insight\\(", "AsyncInsight(", async_source)
+            async_source = re.sub("ChannelAccessToken'", "AsyncChannelAccessToken'", async_source)
+            async_source = re.sub("ChannelAccessToken\\(", "AsyncChannelAccessToken(", async_source)
+
             with open(f"{basedir}/linebot/async_api.py", "w") as output:
                 output.write(async_source)
 
@@ -176,9 +187,7 @@ setup(
     description="LINE Messaging API SDK for Python",
     long_description=long_description,
     license='Apache License 2.0',
-    packages=[
-        "linebot", "linebot.models"
-    ],
+    packages=find_packages(include=["linebot*"]),
     python_requires=">=3.7.0",
     install_requires=_requirements(),
     tests_require=_requirements_test(),
@@ -195,6 +204,7 @@ setup(
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
         "Topic :: Software Development"
     ]
 )

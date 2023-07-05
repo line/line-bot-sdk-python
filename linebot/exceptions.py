@@ -14,10 +14,15 @@
 
 """linebot.exceptions module."""
 
-
 from abc import ABCMeta
 
 from future.utils import with_metaclass
+
+from deprecated import deprecated
+
+from .deprecations import (
+    LineBotSdkDeprecatedIn30
+)
 
 
 class BaseError(with_metaclass(ABCMeta, Exception)):
@@ -43,6 +48,7 @@ class BaseError(with_metaclass(ABCMeta, Exception)):
             self.__class__.__name__, self.message)
 
 
+@deprecated(reason="Use 'from linebot.v3.exceptions import InvalidSignatureError' and v3 webhook handlers instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class InvalidSignatureError(BaseError):
     """When Webhook signature does NOT match, this error will be raised."""
 

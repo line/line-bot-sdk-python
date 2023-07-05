@@ -581,6 +581,22 @@
         "type": "text",
         "text": "Hello, world"
       }
+    },
+    {
+      "type": "undefined",
+      "mode": "active",
+      "timestamp": 1462629479859,
+      "source": {
+        "type": "user",
+        "userId": "U206d25c2ea6bd87c17655609a1c37cb8"
+      },
+      "webhookEventId": "testwebhookeventid",
+      "deliveryContext": {
+        "isRedelivery": true
+      },
+      "undefinedField": {
+        "1": 1
+      }
     }
   ]
 }

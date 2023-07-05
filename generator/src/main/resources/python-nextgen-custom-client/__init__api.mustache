@@ -1,0 +1,9 @@
+# flake8: noqa
+
+# import apis into api package
+{{#apiInfo}}{{#apis}}from {{apiPackage}}.{{classFilename}} import {{classname}}
+{{/apis}}{{/apiInfo}}
+
+# Async version
+{{#apiInfo}}{{#apis}}from {{apiPackage}}.async_{{classFilename}} import Async{{classname}}
+{{/apis}}{{/apiInfo}}

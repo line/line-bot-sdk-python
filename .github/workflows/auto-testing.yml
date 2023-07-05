@@ -10,10 +10,12 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ['3.7', '3.8', '3.9', '3.10']
+        python-version: ['3.7', '3.8', '3.9', '3.10', '3.11']
 
     steps:
     - uses: actions/checkout@v3
+      with:
+        submodules: true
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v4
       with:
@@ -25,3 +27,11 @@ jobs:
     - name: Test with pytest
       run: |
         tox
+    - name: Ensure README.rst builds correctly for PyPI
+      run: |
+        pip install readme-renderer
+        python -m readme_renderer README.rst >/dev/null
+    - name: Ensure generate-code.py doesn't throw any error
+      run: |
+        python generate-code.py
+        

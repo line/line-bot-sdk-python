@@ -173,8 +173,9 @@ Add a **handler** method by using this decorator.
         line_bot_api.reply_message(
             ReplyMessageRequest(
                 reply_token=event.reply_token,
-                messages=[TextMessage(text=event.message.text))]
+                messages=[TextMessage(text=event.message.text)]
             )
+        )
 
 When the event is an instance of MessageEvent and event.message is an instance of TextMessage,
 this handler method is called.

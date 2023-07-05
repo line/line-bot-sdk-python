@@ -14,7 +14,6 @@
 
 """linebot.models.insight module."""
 
-from __future__ import unicode_literals
 
 from abc import ABCMeta
 
@@ -142,6 +141,29 @@ class MessageStatistics(Base):
         self.unique_media_played_100_percent = unique_media_played_100_percent
 
 
+class MessageStatisticsOfCustomAggregationUnit(Base):
+    """MessageStatisticsOfCustomAggregationUnit."""
+
+    def __init__(self, unique_impression=None, unique_click=None, unique_media_played=None,
+                 unique_media_played_100_percent=None, **kwargs):
+        """__init__ method.
+
+        :param int unique_impression: Number of people who opened the message,
+            meaning they displayed at least 1 bubble.
+        :param int unique_click: Number of people who opened any URL in the message.
+        :param int unique_media_played: Number of people who started playing any video
+            or audio in the message.
+        :param int unique_media_played_100_percent: Number of people who played the entirety of
+            any video or audio in the message.
+        """
+        super(MessageStatisticsOfCustomAggregationUnit, self).__init__(**kwargs)
+
+        self.unique_impression = unique_impression
+        self.unique_click = unique_click
+        self.unique_media_played = unique_media_played
+        self.unique_media_played_100_percent = unique_media_played_100_percent
+
+
 class MessageInsight(Base):
     """MessageInsight."""
 
@@ -212,3 +234,33 @@ class ClickInsight(Base):
         self.click = click
         self.unique_click = unique_click
         self.unique_click_of_request = unique_click_of_request
+
+
+class JobInsight(Base):
+    """ClickInsight."""
+
+    def __init__(self, audience_group_job_id=None, audience_group_id=None, description=None,
+                 type=None, job_status=None, failed_type=None, audience_count=None,
+                 created=None, **kwargs):
+        """__init__ method.
+
+        :param int audience_group_job_id: A job ID.
+        :param int audience_group_id: An audience ID.
+        :param str description: The job's description.
+        :param str type: The job's type. One of: 'DIFF_ADD'
+        :param str job_status: The job's status. One of: 'QUEUED', 'WORKING', 'FINISHED', 'FAILED'
+        :param str failed_type: The reason why the operation failed. This is only included when
+            jobs[].jobStatus is FAILED.
+        :param int audience_count: The number of accounts (recipients) that were added or removed.
+        :param int created: When the job was created (in UNIX time).
+        :param kwargs:
+        """
+        super(JobInsight, self).__init__(**kwargs)
+        self.audience_group_job_id = audience_group_job_id
+        self.audience_group_id = audience_group_id
+        self.description = description
+        self.type = type
+        self.job_status = job_status
+        self.failed_type = failed_type
+        self.audience_count = audience_count
+        self.created = created

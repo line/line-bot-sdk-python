@@ -23,6 +23,7 @@ from .actions import (  # noqa
     CameraAction,
     CameraRollAction,
     LocationAction,
+    RichMenuSwitchAction,
     Action as TemplateAction,  # backward compatibility
     PostbackAction as PostbackTemplateAction,  # backward compatibility
     MessageAction as MessageTemplateAction,  # backward compatibility
@@ -50,11 +51,14 @@ from .events import (  # noqa
     MemberLeftEvent,
     BeaconEvent,
     ThingsEvent,
+    UnknownEvent,
     Postback,
     Beacon,
     Link,
+    VideoPlayCompleteEvent,
+    UnsendEvent,
 )
-from .filter import(  # noqa
+from .filter import (  # noqa
     Filter,
     DemographicFilter,
     GenderFilter,
@@ -78,9 +82,9 @@ from .flex_message import (  # noqa
     IconComponent,
     ImageComponent,
     SeparatorComponent,
-    SpacerComponent,
     TextComponent,
-    SpanComponent
+    SpanComponent,
+    VideoComponent
 )
 from .imagemap import (  # noqa
     ImagemapSendMessage,
@@ -102,6 +106,7 @@ from .insight import (  # noqa
     MessageStatistics,
     MessageInsight,
     ClickInsight,
+    JobInsight,
 )
 
 from .limit import (  # noqa
@@ -126,7 +131,8 @@ from .operator import (  # noqa
 )
 
 from .recipient import (  # noqa
-    AudienceRecipient
+    AudienceRecipient,
+    RedeliveryRecipient
 )
 
 from .responses import (  # noqa
@@ -149,13 +155,28 @@ from .responses import (  # noqa
     InsightMessageEventResponse,
     BroadcastResponse,
     NarrowcastResponse,
+    ValidateReplyMessageObjectsResponse,
+    ValidatePushMessageObjectsResponse,
+    ValidateMulticastMessageObjectsResponse,
+    ValidateBroadcastMessageObjectsResponse,
+    ValidateNarrowcastMessageObjectsResponse,
     MessageProgressNarrowcastResponse,
+    BotInfo,
+    GetWebhookResponse,
+    TestWebhookResponse,
+    AudienceGroup,
+    ClickAudienceGroup,
+    ImpAudienceGroup,
+    GetAuthorityLevel,
+    Audience,
+    CreateAudienceGroup,
 )
 from .rich_menu import (  # noqa
     RichMenu,
     RichMenuSize,
     RichMenuArea,
     RichMenuBounds,
+    RichMenuAlias,
 )
 from .send_messages import (  # noqa
     SendMessage,
@@ -191,4 +212,13 @@ from .things import (  # noqa
     ScenarioResult,
     ActionResult,
     Things,
+)
+
+from .background import (  # noqa
+    Background,
+    LinearGradientBackground,
+)
+
+from .emojis import (  # noqa
+    Emojis
 )

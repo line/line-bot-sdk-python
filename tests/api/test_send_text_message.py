@@ -30,7 +30,6 @@ from linebot.models import (
 class TestSendTestMessage(unittest.TestCase):
     def setUp(self):
         self.tested = LineBotApi('channel_secret')
-
         # test data
         self.text_message = TextSendMessage(text='Hello, world')
         self.message = [{"type": "text", "text": "Hello, world"}]
@@ -50,6 +49,40 @@ class TestSendTestMessage(unittest.TestCase):
         self.assertEqual(
             request.url,
             LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/message/push')
+        self.assertEqual(
+            json.loads(request.body),
+            {
+                "to": "to",
+                'notificationDisabled': False,
+                "messages": self.message
+            }
+        )
+
+    @responses.activate
+    def test_push_text_message_with_retry_key(self):
+        responses.add(
+            responses.POST,
+            LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/message/push',
+            json={}, status=200,
+            headers={'X-Line-Retry-Key': '123e4567-e89b-12d3-a456-426614174000'}
+        )
+
+        self.tested.push_message(
+            'to',
+            self.text_message,
+            retry_key='123e4567-e89b-12d3-a456-426614174000'
+        )
+
+        request = responses.calls[0].request
+
+        self.assertEqual(request.method, 'POST')
+        self.assertEqual(
+            request.url,
+            LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/message/push')
+        self.assertEqual(
+            request.headers['X-Line-Retry-Key'],
+            '123e4567-e89b-12d3-a456-426614174000'
+        )
         self.assertEqual(
             json.loads(request.body),
             {
@@ -108,6 +141,40 @@ class TestSendTestMessage(unittest.TestCase):
         )
 
     @responses.activate
+    def test_multicast_text_message_with_retry_key(self):
+        responses.add(
+            responses.POST,
+            LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/message/multicast',
+            json={}, status=200,
+            headers={'X-Line-Retry-Key': '123e4567-e89b-12d3-a456-426614174000'}
+
+        )
+
+        self.tested.multicast(
+            ['to1', 'to2'],
+            self.text_message,
+            retry_key='123e4567-e89b-12d3-a456-426614174000'
+        )
+
+        request = responses.calls[0].request
+        self.assertEqual(
+            request.url,
+            LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/message/multicast')
+        self.assertEqual(request.method, 'POST')
+        self.assertEqual(
+            request.headers['X-Line-Retry-Key'],
+            '123e4567-e89b-12d3-a456-426614174000'
+        )
+        self.assertEqual(
+            json.loads(request.body),
+            {
+                "to": ['to1', 'to2'],
+                'notificationDisabled': False,
+                "messages": self.message
+            }
+        )
+
+    @responses.activate
     def test_broadcast_text_message(self):
         responses.add(
             responses.POST,
@@ -143,6 +210,41 @@ class TestSendTestMessage(unittest.TestCase):
             json.loads(request.body),
             {
                 'notificationDisabled': True,
+                "messages": self.message
+            }
+        )
+        self.assertEqual('request_id_test', response.request_id)
+
+    @responses.activate
+    def test_broadcast_text_message_with_retry_key(self):
+        responses.add(
+            responses.POST,
+            LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/message/broadcast',
+            json={}, status=200,
+            headers={
+                'X-Line-Request-Id': 'request_id_test',
+                'X-Line-Retry-Key': '123e4567-e89b-12d3-a456-426614174000'
+            }
+        )
+
+        response = self.tested.broadcast(
+            self.text_message,
+            retry_key='123e4567-e89b-12d3-a456-426614174000'
+        )
+
+        request = responses.calls[0].request
+        self.assertEqual(
+            request.url,
+            LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/message/broadcast')
+        self.assertEqual(request.method, 'POST')
+        self.assertEqual(
+            request.headers['X-Line-Retry-Key'],
+            '123e4567-e89b-12d3-a456-426614174000'
+        )
+        self.assertEqual(
+            json.loads(request.body),
+            {
+                'notificationDisabled': False,
                 "messages": self.message
             }
         )

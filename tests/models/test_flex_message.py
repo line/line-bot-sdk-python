@@ -29,9 +29,10 @@ from linebot.models import (
     ButtonComponent,
     FillerComponent,
     IconComponent,
-    SpacerComponent,
     SpanComponent,
+    VideoComponent,
     URIAction,
+    LinearGradientBackground,
 )
 from tests.models.serialize_test_case import SerializeTestCase
 
@@ -61,8 +62,6 @@ class TestFlexMessage(SerializeTestCase):
             'header':
                 BoxComponent(layout='vertical',
                              contents=[TextComponent(text='Header text')]),
-            'hero':
-                ImageComponent(uri='https://example.com/flex/images/image.jpg'),
             'body':
                 BoxComponent(layout='vertical',
                              contents=[TextComponent(text='Body text')]),
@@ -79,10 +78,17 @@ class TestFlexMessage(SerializeTestCase):
                                       separator_color='#00ffff')
                 )
         }
-        self.assertEqual(
-            self.serialize_as_dict(arg, type=self.BUBBLE),
-            BubbleContainer(**arg).as_json_dict()
-        )
+        heros = [
+            ImageComponent(uri='https://example.com/flex/images/image.jpg'),
+            BoxComponent(layout='vertical',
+                         contents=[TextComponent(text='Body text')]),
+        ]
+        for hero in heros:
+            arg['hero'] = hero
+            self.assertEqual(
+                self.serialize_as_dict(arg, type=self.BUBBLE),
+                BubbleContainer(**arg).as_json_dict()
+            )
 
     def test_bubble_style(self):
         arg = {
@@ -153,6 +159,28 @@ class TestFlexMessage(SerializeTestCase):
             BoxComponent(**arg).as_json_dict()
         )
 
+    def test_box_component_with_linear_gradient(self):
+        arg = {
+            'layout': 'vertical',
+            'contents': [],
+            'background_color': '#00000000',
+            'border_width': 'light',
+            'corner_radius': 'xs',
+            'flex': 2,
+            'background': LinearGradientBackground(
+                angle='0deg',
+                start_color='#ff0000',
+                center_color='#0000ff',
+                end_color='#00ff00',
+                center_position='10%'
+            )
+        }
+
+        self.assertEqual(
+            self.serialize_as_dict(arg, type=self.BOX),
+            BoxComponent(**arg).as_json_dict()
+        )
+
     def test_button_component(self):
         arg = {
             'action':
@@ -190,6 +218,7 @@ class TestFlexMessage(SerializeTestCase):
         arg = {
             'url': 'https://example.com/flex/images/image.jpg',
             'size': 'full',
+            'animated': False,
             'aspect_ratio': '1.91:1'
         }
         self.assertEqual(
@@ -207,15 +236,6 @@ class TestFlexMessage(SerializeTestCase):
             SeparatorComponent(**arg).as_json_dict()
         )
 
-    def test_spacer_component(self):
-        arg = {
-            'size': 'md'
-        }
-        self.assertEqual(
-            self.serialize_as_dict(arg, type=self.SPACER),
-            SpacerComponent(**arg).as_json_dict()
-        )
-
     def test_span_component(self):
         arg = {
             'type': 'span',
@@ -229,6 +249,26 @@ class TestFlexMessage(SerializeTestCase):
         self.assertEqual(
             self.serialize_as_dict(arg, type=self.SPAN),
             SpanComponent(**arg).as_json_dict()
+        )
+
+    def test_video_component(self):
+        arg = {
+            'type': 'video',
+            'url': 'https://example.com/video.mp4',
+            "preview_url": "https://example.com/video_preview.jpg",
+            "alt_content": {
+                "type": "image",
+                "size": "full",
+                "aspect_ratio": "20:13",
+                "aspect_mode": "cover",
+                "animated": False,
+                "url": "https://example.com/image.jpg"
+            },
+            "aspect_ratio": "20:13"
+        }
+        self.assertEqual(
+            self.serialize_as_dict(arg, type=self.VIDEO),
+            VideoComponent(**arg).as_json_dict()
         )
 
     def test_text_component(self):

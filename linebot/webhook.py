@@ -14,8 +14,6 @@
 
 """linebot.webhook module."""
 
-from __future__ import unicode_literals
-
 import base64
 import hashlib
 import hmac
@@ -35,8 +33,17 @@ from .models.events import (
     MemberJoinedEvent,
     MemberLeftEvent,
     ThingsEvent,
+    UnsendEvent,
+    VideoPlayCompleteEvent,
+    UnknownEvent,
 )
 from .utils import LOGGER, PY3, safe_compare_digest
+
+from deprecated import deprecated
+
+from .deprecations import (
+    LineBotSdkDeprecatedIn30
+)
 
 if hasattr(hmac, "compare_digest"):
     def compare_digest(val1, val2):
@@ -70,6 +77,7 @@ else:
         return safe_compare_digest(val1, val2)
 
 
+@deprecated(reason="Use 'from linebot.v3.webhook import SignatureValidator' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class SignatureValidator(object):
     """Signature validator.
 
@@ -101,6 +109,7 @@ class SignatureValidator(object):
         )
 
 
+@deprecated(reason="Use 'from linebot.v3.webhook import WebhookPayload' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class WebhookPayload(object):
     """Webhook Payload.
 
@@ -118,6 +127,7 @@ class WebhookPayload(object):
         self.destination = destination
 
 
+@deprecated(reason="Use 'from linebot.v3.webhook import WebhookParser' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class WebhookParser(object):
     """Webhook Parser."""
 
@@ -170,8 +180,13 @@ class WebhookParser(object):
                 events.append(MemberLeftEvent.new_from_json_dict(event))
             elif event_type == 'things':
                 events.append(ThingsEvent.new_from_json_dict(event))
+            elif event_type == 'unsend':
+                events.append(UnsendEvent.new_from_json_dict(event))
+            elif event_type == 'videoPlayComplete':
+                events.append(VideoPlayCompleteEvent.new_from_json_dict(event))
             else:
-                LOGGER.warn('Unknown event type. type=' + event_type)
+                LOGGER.info('Unknown event type. type=' + event_type)
+                events.append(UnknownEvent.new_from_json_dict(event))
 
         if as_payload:
             return WebhookPayload(events=events, destination=body_json.get('destination'))
@@ -179,6 +194,7 @@ class WebhookParser(object):
             return events
 
 
+@deprecated(reason="Use 'from linebot.v3.webhook import WebhookHandler' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class WebhookHandler(object):
     """Webhook Handler.
 
@@ -205,6 +221,7 @@ class WebhookHandler(object):
         :rtype: func
         :return: decorator
         """
+
         def decorator(func):
             if isinstance(message, (list, tuple)):
                 for it in message:
@@ -222,6 +239,7 @@ class WebhookHandler(object):
         :rtype: func
         :return: decorator
         """
+
         def decorator(func):
             self._default = func
             return func
@@ -257,26 +275,30 @@ class WebhookHandler(object):
             if func is None:
                 LOGGER.info('No handler of ' + key + ' and no default handler')
             else:
-                args_count = self.__get_args_count(func)
-                if args_count == 0:
-                    func()
-                elif args_count == 1:
-                    func(event)
-                else:
-                    func(event, payload.destination)
+                self.__invoke_func(func, event, payload)
 
     def __add_handler(self, func, event, message=None):
         key = self.__get_handler_key(event, message=message)
         self._handlers[key] = func
 
+    @classmethod
+    def __invoke_func(cls, func, event, payload):
+        (has_varargs, args_count) = cls.__get_args_count(func)
+        if has_varargs or args_count == 2:
+            func(event, payload.destination)
+        elif args_count == 1:
+            func(event)
+        else:
+            func()
+
     @staticmethod
     def __get_args_count(func):
         if PY3:
             arg_spec = inspect.getfullargspec(func)
-            return len(arg_spec.args)
+            return (arg_spec.varargs is not None, len(arg_spec.args))
         else:
             arg_spec = inspect.getargspec(func)
-            return len(arg_spec.args)
+            return (arg_spec.varargs is not None, len(arg_spec.args))
 
     @staticmethod
     def __get_handler_key(event, message=None):

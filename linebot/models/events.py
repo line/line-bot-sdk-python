@@ -14,13 +14,13 @@
 
 """linebot.models.events module."""
 
-from __future__ import unicode_literals
 
 from abc import ABCMeta
 
 from future.utils import with_metaclass
 
 from linebot.models.base import Base
+from linebot.models.delivery_context import DeliveryContext
 from linebot.models.messages import (
     TextMessage,
     ImageMessage,
@@ -37,15 +37,34 @@ from linebot.models.things import (
     ScenarioResult,
 )
 from linebot.models.things import Things  # noqa, backward compatibility
+from linebot.models.unsend import Unsend
+from linebot.models.video_play_complete import VideoPlayComplete
+
+from deprecated import deprecated
+
+from deprecated import deprecated
+
+from linebot.deprecations import (
+    LineBotSdkDeprecatedIn30
+)
 
 
+@deprecated(reason="Use 'from linebot.v3.webhooks import VideoPlayComplete' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class Event(with_metaclass(ABCMeta, Base)):
     """Abstract Base Class of Webhook Event.
 
     https://developers.line.biz/en/reference/messaging-api/#webhook-event-objects
     """
 
-    def __init__(self, mode=None, timestamp=None, source=None, **kwargs):
+    def __init__(
+        self,
+        mode=None,
+        timestamp=None,
+        source=None,
+        webhook_event_id=None,
+        delivery_context=None,
+        **kwargs
+    ):
         """__init__ method.
 
         :param str mode: Channel state
@@ -66,8 +85,13 @@ class Event(with_metaclass(ABCMeta, Base)):
                 'room': SourceRoom,
             }
         )
+        self.webhook_event_id = webhook_event_id
+        self.delivery_context = self.get_or_new_from_json_dict(
+            delivery_context, DeliveryContext
+        )
 
 
+@deprecated(reason="Use 'from linebot.v3.webhooks import MessageEvent' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class MessageEvent(Event):
     """Webhook MessageEvent.
 
@@ -111,6 +135,7 @@ class MessageEvent(Event):
         )
 
 
+@deprecated(reason="Use 'from linebot.v3.webhooks import FollowEvent' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class FollowEvent(Event):
     """Webhook FollowEvent.
 
@@ -138,6 +163,7 @@ class FollowEvent(Event):
         self.reply_token = reply_token
 
 
+@deprecated(reason="Use 'from linebot.v3.webhooks import UnfollowEvent' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class UnfollowEvent(Event):
     """Webhook UnfollowEvent.
 
@@ -162,6 +188,7 @@ class UnfollowEvent(Event):
         self.type = 'unfollow'
 
 
+@deprecated(reason="Use 'from linebot.v3.webhooks import JoinEvent' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class JoinEvent(Event):
     """Webhook JoinEvent.
 
@@ -189,6 +216,7 @@ class JoinEvent(Event):
         self.reply_token = reply_token
 
 
+@deprecated(reason="Use 'from linebot.v3.webhooks import LeaveEvent' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class LeaveEvent(Event):
     """Webhook LeaveEvent.
 
@@ -213,6 +241,7 @@ class LeaveEvent(Event):
         self.type = 'leave'
 
 
+@deprecated(reason="Use 'from linebot.v3.webhooks import PostbackEvent' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class PostbackEvent(Event):
     """Webhook PostbackEvent.
 
@@ -247,6 +276,7 @@ class PostbackEvent(Event):
         )
 
 
+@deprecated(reason="Use 'from linebot.v3.webhooks import BeaconEvent' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class BeaconEvent(Event):
     """Webhook BeaconEvent.
 
@@ -279,6 +309,7 @@ class BeaconEvent(Event):
         )
 
 
+@deprecated(reason="Use 'from linebot.v3.webhooks import MemberJoinedEvent' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class MemberJoinedEvent(Event):
     """Webhook MemberJoinedEvent.
 
@@ -312,6 +343,7 @@ class MemberJoinedEvent(Event):
         )
 
 
+@deprecated(reason="Use 'from linebot.v3.webhooks import MemberLeftEvent' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class MemberLeftEvent(Event):
     """Webhook MemberLeftEvent.
 
@@ -342,6 +374,7 @@ class MemberLeftEvent(Event):
         )
 
 
+@deprecated(reason="Use 'from linebot.v3.webhooks import AccountLinkEvent' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class AccountLinkEvent(Event):
     """Webhook AccountLinkEvent.
 
@@ -377,6 +410,7 @@ class AccountLinkEvent(Event):
         )
 
 
+@deprecated(reason="Use 'from linebot.v3.webhooks import ThingsEvent' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class ThingsEvent(Event):
     """Webhook ThingsEvent.
 
@@ -415,6 +449,88 @@ class ThingsEvent(Event):
         )
 
 
+@deprecated(reason="Use 'from linebot.v3.webhooks import UnsendEvent' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
+class UnsendEvent(Event):
+    """Webhook UnsendEvent.
+
+    https://developers.line.biz/en/reference/messaging-api/#unsend-event
+
+    Event object for when the user unsends a message in a group or room.
+    """
+
+    def __init__(self, mode=None, timestamp=None, source=None, unsend=None, **kwargs):
+        """__init__ method.
+
+        :param str mode: Channel state
+        :param long timestamp: Time of the event in milliseconds
+        :param source: Source object
+        :type source: T <= :py:class:`linebot.models.sources.Source`
+        :param unsend: Unsend object
+        :type unsend: T <= :py:class:`linebot.models.unsend.Unsend`
+        :param kwargs:
+        """
+        super(UnsendEvent, self).__init__(
+            mode=mode, timestamp=timestamp, source=source, **kwargs
+        )
+
+        self.type = 'unsend'
+        self.unsend = self.get_or_new_from_json_dict(
+            unsend, Unsend
+        )
+
+
+@deprecated(reason="Use 'from linebot.v3.webhooks import VideoPlayCompleteEvent' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
+class VideoPlayCompleteEvent(Event):
+    """Webhook VideoCompleteEvent.
+
+    https://developers.line.biz/en/reference/messaging-api/#video-viewing-complete
+
+    Event object Event for when a user finishes viewing a video at least once.
+    """
+
+    def __init__(self, mode=None, timestamp=None, source=None, reply_token=None,
+                 video_play_complete=None, **kwargs):
+        """__init__ method.
+
+        :param str mode: Channel state
+        :param long timestamp: Time of the event in milliseconds
+        :param source: Source object
+        :type source: T <= :py:class:`linebot.models.sources.Source`
+        :param str reply_token: Reply token
+        :param video_play_complete: VideoPlayComplete object
+        :type video_play_complete:
+            T <= :py:class:`linebot.models.video_play_complete.VideoPlayComplete`
+        :param kwargs:
+        """
+        super(VideoPlayCompleteEvent, self).__init__(
+            mode=mode, timestamp=timestamp, source=source, **kwargs
+        )
+
+        self.type = 'videoPlayComplete'
+        self.reply_token = reply_token
+        self.video_play_complete = self.get_or_new_from_json_dict(
+            video_play_complete, VideoPlayComplete
+        )
+
+
+@deprecated(reason="Use 'from linebot.v3.models import UnknownEvent' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
+class UnknownEvent(Event):
+    """Unknown event.
+
+    We welcome your contribution to line-bot-sdk-python!
+    """
+
+    def __init__(self, **kwargs):
+        """__init__ method.
+
+        :param kwargs:
+        """
+        super(UnknownEvent, self).__init__(**kwargs)
+
+        self.type = 'unknown'
+
+
+@deprecated(reason="Use 'from linebot.v3.webhooks import PostbackContent' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class Postback(Base):
     """Postback.
 
@@ -436,6 +552,7 @@ class Postback(Base):
         self.params = params
 
 
+@deprecated(reason="Use 'from linebot.v3.webhooks import BeaconContent' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class Beacon(Base):
     """Beacon.
 
@@ -465,6 +582,7 @@ class Beacon(Base):
         return bytearray.fromhex(self.dm) if self.dm is not None else None
 
 
+@deprecated(reason="Use 'from linebot.v3.webhooks import JoinedMembers' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class Joined(Base):
     """Joined.
 
@@ -487,6 +605,7 @@ class Joined(Base):
         return [SourceUser(user_id=x['userId']) for x in self._members]
 
 
+@deprecated(reason="Use 'from linebot.v3.webhooks import LeftMembers' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class Left(Base):
     """Left.
 
@@ -509,6 +628,7 @@ class Left(Base):
         return [SourceUser(user_id=x['userId']) for x in self._members]
 
 
+@deprecated(reason="Use 'from linebot.v3.webhooks import AccountLinkEvent' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class Link(Base):
     """Link.
 

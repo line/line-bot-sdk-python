@@ -35,6 +35,7 @@ from linebot.models import (
     AgeFilter,
     AudienceRecipient,
     SubscriptionPeriodFilter,
+    RedeliveryRecipient,
 )
 
 
@@ -85,8 +86,70 @@ class TestNarrowcastMessage(unittest.TestCase):
                     }
                 },
                 "limit": {
-                    "max": 10
-                }
+                    "max": 10,
+                    "upToRemainingQuota": False,
+                },
+                "notificationDisabled": False,
+            }
+        )
+
+    @responses.activate
+    def test_narrowcast_redelivery_recipient_text_message(self):
+        responses.add(
+            responses.POST,
+            LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/message/narrowcast',
+            json={}, status=200,
+        )
+
+        self.tested.narrowcast(
+            self.text_message,
+            recipient=And(
+                AudienceRecipient(group_id=5614991017776),
+                Not(
+                    RedeliveryRecipient(request_id='request_id_test')
+                )
+            ),
+            filter=Filter(demographic=AgeFilter(gte="age_35", lt="age_40")),
+            limit=Limit(max=10),
+        )
+
+        request = responses.calls[0].request
+        self.assertEqual(
+            request.url,
+            LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/message/narrowcast')
+        self.assertEqual(request.method, 'POST')
+        self.assertEqual(
+            json.loads(request.body),
+            {
+                "messages": self.message,
+                "recipient": {
+                    "type": "operator",
+                    "and": [
+                        {
+                            "type": "audience",
+                            "audienceGroupId": 5614991017776
+                        },
+                        {
+                            "type": "operator",
+                            "not": {
+                                "type": "redelivery",
+                                "requestId": "request_id_test"
+                            }
+                        }
+                    ]
+                },
+                "filter": {
+                    "demographic": {
+                        "type": "age",
+                        "gte": "age_35",
+                        "lt": "age_40"
+                    }
+                },
+                "limit": {
+                    "max": 10,
+                    "upToRemainingQuota": False,
+                },
+                "notificationDisabled": False,
             }
         )
 
@@ -120,7 +183,7 @@ class TestNarrowcastMessage(unittest.TestCase):
                     )
                 )
             ),
-            limit=Limit(max=100),
+            limit=Limit(max=100, up_to_remaining_quota=True),
         )
 
         request = responses.calls[0].request
@@ -211,8 +274,96 @@ class TestNarrowcastMessage(unittest.TestCase):
                     }
                 },
                 "limit": {
-                    "max": 100
-                }
+                    "max": 100,
+                    "upToRemainingQuota": True,
+                },
+                "notificationDisabled": False,
+            }
+        )
+        self.assertEqual('request_id_test', response.request_id)
+
+    @responses.activate
+    def test_narrowcast_text_message_with_retry_key(self):
+        responses.add(
+            responses.POST,
+            LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/message/narrowcast',
+            json={}, status=200,
+            headers={
+                'X-Line-Request-Id': 'request_id_test',
+                'X-Line-Retry-Key': '123e4567-e89b-12d3-a456-426614174000'
+            },
+        )
+
+        response = self.tested.narrowcast(
+            self.text_message,
+            recipient=And(
+                AudienceRecipient(group_id=5614991017776),
+                Not(AudienceRecipient(group_id=4389303728991))
+            ),
+            filter=Filter(
+                demographic=Or(
+                    And(
+                        GenderFilter(one_of=["male", "female"])
+                    )
+                )
+            ),
+            limit=Limit(max=100, up_to_remaining_quota=True),
+            retry_key='123e4567-e89b-12d3-a456-426614174000',
+        )
+
+        request = responses.calls[0].request
+        self.assertEqual(
+            request.url,
+            LineBotApi.DEFAULT_API_ENDPOINT + '/v2/bot/message/narrowcast')
+        self.assertEqual(request.method, 'POST')
+        self.assertEqual(
+            request.headers['X-Line-Retry-Key'],
+            '123e4567-e89b-12d3-a456-426614174000'
+        )
+        self.assertEqual(
+            json.loads(request.body),
+            {
+                "messages": self.message,
+                "recipient": {
+                    "type": "operator",
+                    "and": [
+                        {
+                            'audienceGroupId': 5614991017776,
+                            'type': 'audience'
+                        },
+                        {
+                            "type": "operator",
+                            "not": {
+                                "type": "audience",
+                                "audienceGroupId": 4389303728991
+                            }
+                        }
+                    ]
+                },
+                "filter": {
+                    "demographic": {
+                        "type": "operator",
+                        "or": [
+                            {
+                                "type": "operator",
+                                "and": [
+                                    {
+                                        "type": "gender",
+                                        "oneOf": [
+                                            "male",
+                                            "female"
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                },
+                "limit": {
+                    "max": 100,
+                    "upToRemainingQuota": True,
+                },
+                "notificationDisabled": False,
             }
         )
         self.assertEqual('request_id_test', response.request_id)

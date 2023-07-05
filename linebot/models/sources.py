@@ -14,7 +14,6 @@
 
 """linebot.models.sources module."""
 
-from __future__ import unicode_literals
 
 import warnings
 from abc import ABCMeta, abstractproperty
@@ -23,7 +22,14 @@ from future.utils import with_metaclass
 
 from .base import Base
 
+from deprecated import deprecated
 
+from linebot.deprecations import (
+    LineBotSdkDeprecatedIn30
+)
+
+
+@deprecated(reason="Use 'from linebot.v3.webhooks import Source' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class Source(with_metaclass(ABCMeta, Base)):
     """Abstract Base Class of Source."""
 
@@ -51,6 +57,7 @@ class Source(with_metaclass(ABCMeta, Base)):
         raise NotImplementedError
 
 
+@deprecated(reason="Use 'from linebot.v3.webhooks import UserSource' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class SourceUser(Source):
     """SourceUser.
 
@@ -82,6 +89,7 @@ class SourceUser(Source):
         return self.user_id
 
 
+@deprecated(reason="Use 'from linebot.v3.webhooks import GroupSource' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class SourceGroup(Source):
     """SourceGroup.
 
@@ -115,6 +123,7 @@ class SourceGroup(Source):
         return self.group_id
 
 
+@deprecated(reason="Use 'from linebot.v3.webhooks import RoomSource' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class SourceRoom(Source):
     """SourceRoom.
 

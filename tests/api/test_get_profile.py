@@ -36,7 +36,8 @@ class TestLineBotApi(unittest.TestCase):
                 "displayName": "LINE taro",
                 "userId": "Uxxxxxxxxxxxxxx...",
                 "pictureUrl": "http://obs.line-apps.com/...",
-                "statusMessage": "Hello, LINE!"
+                "statusMessage": "Hello, LINE!",
+                "language": "en"
             },
             status=200
         )
@@ -52,6 +53,7 @@ class TestLineBotApi(unittest.TestCase):
         self.assertEqual(profile.user_id, 'Uxxxxxxxxxxxxxx...')
         self.assertEqual(profile.picture_url, 'http://obs.line-apps.com/...')
         self.assertEqual(profile.status_message, 'Hello, LINE!')
+        self.assertEqual(profile.language, 'en')
 
 
 if __name__ == '__main__':

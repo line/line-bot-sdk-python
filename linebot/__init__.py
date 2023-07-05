@@ -14,7 +14,6 @@
 
 """linebot package."""
 
-from __future__ import unicode_literals
 
 from .__about__ import (  # noqa
     __version__
@@ -22,14 +21,26 @@ from .__about__ import (  # noqa
 from .api import (  # noqa
     LineBotApi,
 )
+from .async_api import (  # noqa
+    AsyncLineBotApi,
+)
 from .http_client import (  # noqa
     HttpClient,
     RequestsHttpClient,
     HttpResponse,
+)
+from .async_http_client import (  # noqa
+    AsyncHttpClient,
+    AsyncHttpResponse,
 )
 from .webhook import (  # noqa
     SignatureValidator,
     WebhookParser,
     WebhookHandler,
     WebhookPayload,
+)
+
+from .deprecations import (
+    LineBotSdkDeprecationWarning,
+    LineBotSdkDeprecatedIn30,
 )

@@ -17,6 +17,7 @@ from __future__ import unicode_literals, absolute_import
 import os
 import unittest
 from builtins import open
+import inspect
 
 from linebot import (
     SignatureValidator, WebhookParser, WebhookHandler, utils
@@ -25,10 +26,16 @@ from linebot.models import (
     MessageEvent, FollowEvent, UnfollowEvent, JoinEvent,
     LeaveEvent, PostbackEvent, BeaconEvent, AccountLinkEvent,
     MemberJoinedEvent, MemberLeftEvent, ThingsEvent,
+    UnknownEvent,
     TextMessage, ImageMessage, VideoMessage, AudioMessage,
     LocationMessage, StickerMessage, FileMessage,
     SourceUser, SourceRoom, SourceGroup,
     DeviceLink, DeviceUnlink, ScenarioResult, ActionResult)
+from linebot.models.delivery_context import DeliveryContext
+from linebot.models.events import UnsendEvent, VideoPlayCompleteEvent
+from linebot.models.unsend import Unsend
+from linebot.models.video_play_complete import VideoPlayComplete
+from linebot.utils import PY3
 
 
 class TestSignatureValidator(unittest.TestCase):
@@ -62,6 +69,9 @@ class TestWebhookParser(unittest.TestCase):
 
         events = self.parser.parse(body, 'channel_secret')
 
+        # events count
+        self.assertEqual(len(events), 30)
+
         # MessageEvent, SourceUser, TextMessage
         self.assertIsInstance(events[0], MessageEvent)
         self.assertEqual(events[0].reply_token, 'nHuyWiB7yP5Zw52FIkcQobQuGDXCTA')
@@ -71,12 +81,15 @@ class TestWebhookParser(unittest.TestCase):
         self.assertIsInstance(events[0].source, SourceUser)
         self.assertEqual(events[0].source.type, 'user')
         self.assertEqual(events[0].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
+        self.assertEqual(events[0].webhook_event_id, 'testwebhookeventid')
+        self.assertIsInstance(events[0].delivery_context, DeliveryContext)
+        self.assertFalse(events[0].delivery_context.is_redelivery)
         self.assertIsInstance(events[0].message, TextMessage)
         self.assertEqual(events[0].message.id, '325708')
         self.assertEqual(events[0].message.type, 'text')
         self.assertEqual(events[0].message.text, 'Hello, world')
 
-        # MessageEvent, SourceRoom, TextMessage
+        # MessageEvent, SourceRoom, ImageMessage
         self.assertIsInstance(events[1], MessageEvent)
         self.assertEqual(events[1].reply_token, 'nHuyWiB7yP5Zw52FIkcQobQuGDXCTA')
         self.assertEqual(events[1].type, 'message')
@@ -86,6 +99,9 @@ class TestWebhookParser(unittest.TestCase):
         self.assertEqual(events[1].source.type, 'room')
         self.assertEqual(events[1].source.room_id, 'Ra8dbf4673c4c812cd491258042226c99')
         self.assertEqual(events[1].source.user_id, None)
+        self.assertEqual(events[1].webhook_event_id, 'testwebhookeventid')
+        self.assertIsInstance(events[1].delivery_context, DeliveryContext)
+        self.assertFalse(events[1].delivery_context.is_redelivery)
         self.assertIsInstance(events[1].message, ImageMessage)
         self.assertEqual(events[1].message.id, '325708')
         self.assertEqual(events[1].message.type, 'image')
@@ -104,6 +120,9 @@ class TestWebhookParser(unittest.TestCase):
         self.assertIsInstance(events[2].source, SourceUser)
         self.assertEqual(events[2].source.type, 'user')
         self.assertEqual(events[2].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
+        self.assertEqual(events[2].webhook_event_id, 'testwebhookeventid')
+        self.assertIsInstance(events[2].delivery_context, DeliveryContext)
+        self.assertFalse(events[2].delivery_context.is_redelivery)
         self.assertIsInstance(events[2].message, VideoMessage)
         self.assertEqual(events[2].message.id, '325708')
         self.assertEqual(events[2].message.type, 'video')
@@ -123,6 +142,9 @@ class TestWebhookParser(unittest.TestCase):
         self.assertIsInstance(events[3].source, SourceUser)
         self.assertEqual(events[3].source.type, 'user')
         self.assertEqual(events[3].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
+        self.assertEqual(events[3].webhook_event_id, 'testwebhookeventid')
+        self.assertIsInstance(events[3].delivery_context, DeliveryContext)
+        self.assertFalse(events[3].delivery_context.is_redelivery)
         self.assertIsInstance(events[3].message, AudioMessage)
         self.assertEqual(events[3].message.id, '325708')
         self.assertEqual(events[3].message.type, 'audio')
@@ -140,6 +162,9 @@ class TestWebhookParser(unittest.TestCase):
         self.assertIsInstance(events[4].source, SourceUser)
         self.assertEqual(events[4].source.type, 'user')
         self.assertEqual(events[4].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
+        self.assertEqual(events[4].webhook_event_id, 'testwebhookeventid')
+        self.assertIsInstance(events[4].delivery_context, DeliveryContext)
+        self.assertFalse(events[4].delivery_context.is_redelivery)
         self.assertIsInstance(events[4].message, LocationMessage)
         self.assertEqual(events[4].message.id, '325708')
         self.assertEqual(events[4].message.type, 'location')
@@ -157,12 +182,18 @@ class TestWebhookParser(unittest.TestCase):
         self.assertIsInstance(events[5].source, SourceUser)
         self.assertEqual(events[5].source.type, 'user')
         self.assertEqual(events[5].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
+        self.assertEqual(events[5].webhook_event_id, 'testwebhookeventid')
+        self.assertIsInstance(events[5].delivery_context, DeliveryContext)
+        self.assertFalse(events[5].delivery_context.is_redelivery)
         self.assertIsInstance(events[5].message, StickerMessage)
         self.assertEqual(events[5].message.id, '325708')
         self.assertEqual(events[5].message.type, 'sticker')
         self.assertEqual(events[5].message.package_id, '1')
         self.assertEqual(events[5].message.sticker_id, '1')
         self.assertEqual(events[5].message.sticker_resource_type, 'STATIC')
+        self.assertEqual(events[5].message.keywords[0], 'Love You')
+        self.assertEqual(events[5].message.keywords[1], 'Love')
+        self.assertEqual(events[5].message.text, 'Just sticker')
 
         # FollowEvent, SourceUser
         self.assertIsInstance(events[6], FollowEvent)
@@ -173,6 +204,9 @@ class TestWebhookParser(unittest.TestCase):
         self.assertIsInstance(events[6].source, SourceUser)
         self.assertEqual(events[6].source.type, 'user')
         self.assertEqual(events[6].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
+        self.assertEqual(events[6].webhook_event_id, 'testwebhookeventid')
+        self.assertIsInstance(events[6].delivery_context, DeliveryContext)
+        self.assertFalse(events[6].delivery_context.is_redelivery)
 
         # UnfollowEvent, SourceUser
         self.assertIsInstance(events[7], UnfollowEvent)
@@ -182,6 +216,9 @@ class TestWebhookParser(unittest.TestCase):
         self.assertIsInstance(events[7].source, SourceUser)
         self.assertEqual(events[7].source.type, 'user')
         self.assertEqual(events[7].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
+        self.assertEqual(events[7].webhook_event_id, 'testwebhookeventid')
+        self.assertIsInstance(events[7].delivery_context, DeliveryContext)
+        self.assertFalse(events[7].delivery_context.is_redelivery)
 
         # JoinEvent, SourceGroup
         self.assertIsInstance(events[8], JoinEvent)
@@ -193,6 +230,9 @@ class TestWebhookParser(unittest.TestCase):
         self.assertEqual(events[8].source.type, 'group')
         self.assertEqual(events[8].source.group_id, 'Ca56f94637cc4347f90a25382909b24b9')
         self.assertEqual(events[8].source.user_id, None)
+        self.assertEqual(events[8].webhook_event_id, 'testwebhookeventid')
+        self.assertIsInstance(events[8].delivery_context, DeliveryContext)
+        self.assertFalse(events[8].delivery_context.is_redelivery)
 
         # LeaveEvent, SourceGroup
         self.assertIsInstance(events[9], LeaveEvent)
@@ -203,6 +243,9 @@ class TestWebhookParser(unittest.TestCase):
         self.assertEqual(events[9].source.type, 'group')
         self.assertEqual(events[9].source.group_id, 'Ca56f94637cc4347f90a25382909b24b9')
         self.assertEqual(events[9].source.user_id, None)
+        self.assertEqual(events[9].webhook_event_id, 'testwebhookeventid')
+        self.assertIsInstance(events[9].delivery_context, DeliveryContext)
+        self.assertFalse(events[9].delivery_context.is_redelivery)
 
         # PostbackEvent, SourceUser
         self.assertIsInstance(events[10], PostbackEvent)
@@ -213,6 +256,9 @@ class TestWebhookParser(unittest.TestCase):
         self.assertIsInstance(events[10].source, SourceUser)
         self.assertEqual(events[10].source.type, 'user')
         self.assertEqual(events[10].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
+        self.assertEqual(events[10].webhook_event_id, 'testwebhookeventid')
+        self.assertIsInstance(events[10].delivery_context, DeliveryContext)
+        self.assertFalse(events[10].delivery_context.is_redelivery)
         self.assertEqual(events[10].postback.data, 'action=buyItem&itemId=123123&color=red')
         self.assertEqual(events[10].postback.params, None)
 
@@ -225,6 +271,9 @@ class TestWebhookParser(unittest.TestCase):
         self.assertIsInstance(events[11].source, SourceUser)
         self.assertEqual(events[11].source.type, 'user')
         self.assertEqual(events[11].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
+        self.assertEqual(events[11].webhook_event_id, 'testwebhookeventid')
+        self.assertIsInstance(events[11].delivery_context, DeliveryContext)
+        self.assertFalse(events[11].delivery_context.is_redelivery)
         self.assertEqual(events[11].beacon.hwid, 'd41d8cd98f')
         self.assertEqual(events[11].beacon.type, 'enter')
         self.assertEqual(events[11].beacon.dm, None)
@@ -239,6 +288,9 @@ class TestWebhookParser(unittest.TestCase):
         self.assertIsInstance(events[12].source, SourceUser)
         self.assertEqual(events[12].source.type, 'user')
         self.assertEqual(events[12].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
+        self.assertEqual(events[12].webhook_event_id, 'testwebhookeventid')
+        self.assertIsInstance(events[12].delivery_context, DeliveryContext)
+        self.assertFalse(events[12].delivery_context.is_redelivery)
         self.assertEqual(events[12].beacon.hwid, 'd41d8cd98f')
         self.assertEqual(events[12].beacon.type, 'enter')
         self.assertEqual(events[12].beacon.dm, '1234567890abcdef')
@@ -253,6 +305,9 @@ class TestWebhookParser(unittest.TestCase):
         self.assertIsInstance(events[13].source, SourceUser)
         self.assertEqual(events[13].source.type, 'user')
         self.assertEqual(events[13].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
+        self.assertEqual(events[13].webhook_event_id, 'testwebhookeventid')
+        self.assertIsInstance(events[13].delivery_context, DeliveryContext)
+        self.assertFalse(events[13].delivery_context.is_redelivery)
         self.assertEqual(events[13].link.result, 'ok')
         self.assertEqual(events[13].link.nonce, 'Vb771wDYtXuammLszK6h9A')
 
@@ -266,6 +321,9 @@ class TestWebhookParser(unittest.TestCase):
         self.assertEqual(events[14].source.type, 'group')
         self.assertEqual(events[14].source.group_id, 'Ca56f94637cc4347f90a25382909b24b9')
         self.assertEqual(events[14].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
+        self.assertEqual(events[14].webhook_event_id, 'testwebhookeventid')
+        self.assertIsInstance(events[14].delivery_context, DeliveryContext)
+        self.assertFalse(events[14].delivery_context.is_redelivery)
         self.assertIsInstance(events[14].message, TextMessage)
         self.assertEqual(events[14].message.id, '325708')
         self.assertEqual(events[14].message.type, 'text')
@@ -281,6 +339,9 @@ class TestWebhookParser(unittest.TestCase):
         self.assertEqual(events[15].source.type, 'room')
         self.assertEqual(events[15].source.room_id, 'Ra8dbf4673c4c812cd491258042226c99')
         self.assertEqual(events[15].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
+        self.assertEqual(events[15].webhook_event_id, 'testwebhookeventid')
+        self.assertIsInstance(events[15].delivery_context, DeliveryContext)
+        self.assertFalse(events[15].delivery_context.is_redelivery)
         self.assertIsInstance(events[15].message, TextMessage)
         self.assertEqual(events[15].message.id, '325708')
         self.assertEqual(events[15].message.type, 'text')
@@ -295,6 +356,9 @@ class TestWebhookParser(unittest.TestCase):
         self.assertIsInstance(events[16].source, SourceUser)
         self.assertEqual(events[16].source.type, 'user')
         self.assertEqual(events[16].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
+        self.assertEqual(events[16].webhook_event_id, 'testwebhookeventid')
+        self.assertIsInstance(events[16].delivery_context, DeliveryContext)
+        self.assertFalse(events[16].delivery_context.is_redelivery)
         self.assertEqual(events[16].postback.data, 'action=buyItem&itemId=123123&color=red')
         self.assertEqual(events[16].postback.params['date'], '2013-04-01')
 
@@ -307,6 +371,9 @@ class TestWebhookParser(unittest.TestCase):
         self.assertIsInstance(events[17].source, SourceUser)
         self.assertEqual(events[17].source.type, 'user')
         self.assertEqual(events[17].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
+        self.assertEqual(events[17].webhook_event_id, 'testwebhookeventid')
+        self.assertIsInstance(events[17].delivery_context, DeliveryContext)
+        self.assertFalse(events[17].delivery_context.is_redelivery)
         self.assertEqual(events[17].postback.data, 'action=buyItem&itemId=123123&color=red')
         self.assertEqual(events[17].postback.params['time'], '10:00')
 
@@ -319,6 +386,9 @@ class TestWebhookParser(unittest.TestCase):
         self.assertIsInstance(events[18].source, SourceUser)
         self.assertEqual(events[18].source.type, 'user')
         self.assertEqual(events[18].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
+        self.assertEqual(events[18].webhook_event_id, 'testwebhookeventid')
+        self.assertIsInstance(events[18].delivery_context, DeliveryContext)
+        self.assertFalse(events[18].delivery_context.is_redelivery)
         self.assertEqual(events[18].postback.data, 'action=buyItem&itemId=123123&color=red')
         self.assertEqual(events[18].postback.params['datetime'], '2013-04-01T10:00')
 
@@ -331,6 +401,9 @@ class TestWebhookParser(unittest.TestCase):
         self.assertIsInstance(events[19].source, SourceUser)
         self.assertEqual(events[19].source.type, 'user')
         self.assertEqual(events[19].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
+        self.assertEqual(events[19].webhook_event_id, 'testwebhookeventid')
+        self.assertIsInstance(events[19].delivery_context, DeliveryContext)
+        self.assertFalse(events[19].delivery_context.is_redelivery)
         self.assertIsInstance(events[19].things, DeviceLink)
         self.assertEqual(events[19].things.type, 'link')
         self.assertEqual(events[19].things.device_id, 't2c449c9d1')
@@ -344,6 +417,9 @@ class TestWebhookParser(unittest.TestCase):
         self.assertIsInstance(events[20].source, SourceGroup)
         self.assertEqual(events[20].source.type, 'group')
         self.assertEqual(events[20].source.group_id, 'C4af4980629...')
+        self.assertEqual(events[20].webhook_event_id, 'testwebhookeventid')
+        self.assertIsInstance(events[20].delivery_context, DeliveryContext)
+        self.assertFalse(events[20].delivery_context.is_redelivery)
         self.assertEqual(len(events[20].joined.members), 2)
         self.assertIsInstance(events[20].joined.members[0], SourceUser)
         self.assertEqual(events[20].joined.members[0].user_id, 'U4af4980629...')
@@ -357,6 +433,9 @@ class TestWebhookParser(unittest.TestCase):
         self.assertIsInstance(events[21].source, SourceGroup)
         self.assertEqual(events[21].source.type, 'group')
         self.assertEqual(events[21].source.group_id, 'C4af4980629...')
+        self.assertEqual(events[21].webhook_event_id, 'testwebhookeventid')
+        self.assertIsInstance(events[21].delivery_context, DeliveryContext)
+        self.assertFalse(events[21].delivery_context.is_redelivery)
         self.assertEqual(len(events[21].left.members), 2)
         self.assertIsInstance(events[21].left.members[0], SourceUser)
         self.assertEqual(events[21].left.members[0].user_id, 'U4af4980629...')
@@ -371,6 +450,9 @@ class TestWebhookParser(unittest.TestCase):
         self.assertIsInstance(events[22].source, SourceUser)
         self.assertEqual(events[22].source.type, 'user')
         self.assertEqual(events[22].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
+        self.assertEqual(events[22].webhook_event_id, 'testwebhookeventid')
+        self.assertIsInstance(events[22].delivery_context, DeliveryContext)
+        self.assertFalse(events[22].delivery_context.is_redelivery)
         self.assertIsInstance(events[22].things, DeviceUnlink)
         self.assertEqual(events[22].things.type, 'unlink')
         self.assertEqual(events[22].things.device_id, 't2c449c9d1')
@@ -384,7 +466,9 @@ class TestWebhookParser(unittest.TestCase):
         self.assertIsInstance(events[23].source, SourceUser)
         self.assertEqual(events[23].source.type, 'user')
         self.assertEqual(events[23].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
-        self.assertEqual(events[23].source.sender_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
+        self.assertEqual(events[23].webhook_event_id, 'testwebhookeventid')
+        self.assertIsInstance(events[23].delivery_context, DeliveryContext)
+        self.assertFalse(events[23].delivery_context.is_redelivery)
         self.assertIsInstance(events[23].message, FileMessage)
         self.assertEqual(events[23].message.id, '325708')
         self.assertEqual(events[23].message.type, 'file')
@@ -400,6 +484,9 @@ class TestWebhookParser(unittest.TestCase):
         self.assertIsInstance(events[24].source, SourceUser)
         self.assertEqual(events[24].source.type, 'user')
         self.assertEqual(events[24].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
+        self.assertEqual(events[24].webhook_event_id, 'testwebhookeventid')
+        self.assertIsInstance(events[24].delivery_context, DeliveryContext)
+        self.assertFalse(events[24].delivery_context.is_redelivery)
         self.assertIsInstance(events[24].things, ScenarioResult)
         self.assertEqual(events[24].things.type, 'scenarioResult')
         self.assertEqual(events[24].things.device_id, 't2c449c9d1')
@@ -414,6 +501,75 @@ class TestWebhookParser(unittest.TestCase):
         self.assertEqual(events[24].things.result.action_results[0].data, '/w==')
         self.assertIsInstance(events[24].things.result.action_results[1], ActionResult)
         self.assertEqual(events[24].things.result.action_results[1].type, 'void')
+
+        # UnsendEvent
+        self.assertIsInstance(events[25], UnsendEvent)
+        self.assertEqual(events[25].type, 'unsend')
+        self.assertEqual(events[25].mode, 'active')
+        self.assertEqual(events[25].timestamp, 1547817848122)
+        self.assertIsInstance(events[25].source, SourceGroup)
+        self.assertEqual(events[25].source.type, 'group')
+        self.assertEqual(events[25].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
+        self.assertEqual(events[25].webhook_event_id, 'testwebhookeventid')
+        self.assertIsInstance(events[25].delivery_context, DeliveryContext)
+        self.assertFalse(events[25].delivery_context.is_redelivery)
+        self.assertIsInstance(events[25].unsend, Unsend)
+        self.assertEqual(events[25].unsend.message_id, '325708')
+
+        # VideoPlayCompleteEvent
+        self.assertIsInstance(events[26], VideoPlayCompleteEvent)
+        self.assertEqual(events[26].reply_token, 'nHuyWiB7yP5Zw52FIkcQobQuGDXCTA')
+        self.assertEqual(events[26].type, 'videoPlayComplete')
+        self.assertEqual(events[26].mode, 'active')
+        self.assertEqual(events[26].timestamp, 1462629479859)
+        self.assertIsInstance(events[26].source, SourceUser)
+        self.assertEqual(events[26].source.type, 'user')
+        self.assertEqual(events[26].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
+        self.assertEqual(events[26].webhook_event_id, 'testwebhookeventid')
+        self.assertIsInstance(events[26].delivery_context, DeliveryContext)
+        self.assertFalse(events[26].delivery_context.is_redelivery)
+        self.assertIsInstance(events[26].video_play_complete, VideoPlayComplete)
+        self.assertEqual(events[26].video_play_complete.tracking_id, 'track_id')
+
+        # MessageEvent, SourceUser, ImageMessage with ImageSet
+        self.assertIsInstance(events[1], MessageEvent)
+        self.assertEqual(events[27].reply_token, 'fbf94e269485410da6b7e3a5e33283e8')
+        self.assertEqual(events[27].type, 'message')
+        self.assertEqual(events[27].mode, 'active')
+        self.assertEqual(events[27].timestamp, 1627356924722)
+        self.assertIsInstance(events[27].source, SourceUser)
+        self.assertEqual(events[27].source.type, 'user')
+        self.assertEqual(events[27].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
+        self.assertEqual(events[27].webhook_event_id, 'testwebhookeventid')
+        self.assertIsInstance(events[27].delivery_context, DeliveryContext)
+        self.assertFalse(events[27].delivery_context.is_redelivery)
+        self.assertIsInstance(events[27].message, ImageMessage)
+        self.assertEqual(events[27].message.id, '354718705033693861')
+        self.assertEqual(events[27].message.type, 'image')
+        self.assertEqual(events[27].message.content_provider.type, 'line')
+        self.assertEqual(events[27].message.image_set.id, 'E005D41A7288F41B655')
+        self.assertEqual(events[27].message.image_set.index, 2)
+        self.assertEqual(events[27].message.image_set.total, 2)
+
+        # MessageEvent, SourceUser, TextMessage (Redeliveried)
+        self.assertIsInstance(events[28], MessageEvent)
+        self.assertEqual(events[28].reply_token, 'nHuyWiB7yP5Zw52FIkcQobQuGDXCTA')
+        self.assertEqual(events[28].type, 'message')
+        self.assertEqual(events[28].mode, 'active')
+        self.assertEqual(events[28].timestamp, 1462629479859)
+        self.assertIsInstance(events[28].source, SourceUser)
+        self.assertEqual(events[28].source.type, 'user')
+        self.assertEqual(events[28].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
+        self.assertEqual(events[28].webhook_event_id, 'testwebhookeventid')
+        self.assertIsInstance(events[28].delivery_context, DeliveryContext)
+        self.assertTrue(events[28].delivery_context.is_redelivery)
+        self.assertIsInstance(events[28].message, TextMessage)
+        self.assertEqual(events[28].message.id, '325708')
+        self.assertEqual(events[28].message.type, 'text')
+        self.assertEqual(events[28].message.text, 'Hello, world')
+
+        # UnknownEvent
+        self.assertIsInstance(events[29], UnknownEvent)
 
     def test_parse_webhook_req_without_destination(self):
         body = """
@@ -535,6 +691,90 @@ class TestWebhookHandler(unittest.TestCase):
         self.handler.parser.signature_validator.validate = lambda a, b: True
 
         self.handler.handle(body, 'signature', self.use_raw_message)
+
+
+class TestInvokeWebhookHandler(unittest.TestCase):
+    def setUp(self):
+        def wrap(func):
+            def wrapper(*args):
+                if PY3:
+                    arg_spec = inspect.getfullargspec(func)
+                else:
+                    arg_spec = inspect.getargspec(func)
+                return func(*args[0:len(arg_spec.args)])
+
+            return wrapper
+
+        def func_with_0_args():
+            assert True
+
+        def func_with_1_arg(arg):
+            assert arg
+
+        def func_with_2_args(arg1, arg2):
+            assert arg1 and arg2
+
+        def func_with_1_arg_with_default(arg=False):
+            assert arg
+
+        def func_with_2_args_with_default(arg1=False, arg2=False):
+            assert arg1 and arg2
+
+        def func_with_1_arg_and_1_arg_with_default(arg1, arg2=False):
+            assert arg1 and arg2
+
+        @wrap
+        def wrapped_func_with_0_args():
+            assert True
+
+        @wrap
+        def wrapped_func_with_1_arg(arg):
+            assert arg
+
+        @wrap
+        def wrapped_func_with_2_args(arg1, arg2):
+            assert arg1 and arg2
+
+        @wrap
+        def wrapped_func_with_1_arg_with_default(arg=False):
+            assert arg
+
+        @wrap
+        def wrapped_func_with_2_args_with_default(arg1=False, arg2=False):
+            assert arg1 and arg2
+
+        @wrap
+        def wrapped_func_with_1_arg_and_1_arg_with_default(
+                arg1, arg2=False):
+            assert arg1 and arg2
+
+        self.functions = [
+            func_with_0_args,
+            func_with_1_arg,
+            func_with_2_args,
+            func_with_1_arg_with_default,
+            func_with_2_args_with_default,
+            func_with_1_arg_and_1_arg_with_default,
+            wrapped_func_with_0_args,
+            wrapped_func_with_1_arg,
+            wrapped_func_with_2_args,
+            wrapped_func_with_1_arg_with_default,
+            wrapped_func_with_2_args_with_default,
+            wrapped_func_with_1_arg_and_1_arg_with_default,
+        ]
+
+    def test_invoke_func(self):
+        class PayloadMock(object):
+            def __init__(self):
+                self.destination = True
+
+        event = True
+        payload = PayloadMock()
+
+        for func in self.functions:
+            WebhookHandler._WebhookHandler__invoke_func(
+                func, event, payload
+            )
 
 
 if __name__ == '__main__':

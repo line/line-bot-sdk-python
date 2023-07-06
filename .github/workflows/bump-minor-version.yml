@@ -1,0 +1,33 @@
+name: Bump minor version and commit updated code
+
+on:
+  workflow_dispatch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - name: Update submodules
+        run: git submodule update --remote --recursive
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+      - name: Install bump
+        run: pip install bump
+      - name: Bump minor version and Commit generated code
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          VERSION=$(bump -m -r linebot/__about__.py)
+          python generate-code.py
+          git add .
+          git commit -m "Bump version to $VERSION"
+          git push origin master
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

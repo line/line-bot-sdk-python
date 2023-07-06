@@ -14,7 +14,7 @@
 """
 
 
-__version__ = "3.0.3"
+__version__ = "3.1.0"
 
 # import apis into sdk package
 from linebot.v3.oauth.api.channel_access_token import ChannelAccessToken

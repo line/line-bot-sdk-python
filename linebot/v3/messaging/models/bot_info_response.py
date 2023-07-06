@@ -31,7 +31,7 @@ class BotInfoResponse(BaseModel):
     premium_id: Optional[StrictStr] = Field(None, alias="premiumId", description="Bot's premium ID. Not included in the response if the premium ID isn't set.")
     display_name: StrictStr = Field(..., alias="displayName", description="Bot's display name")
     picture_url: Optional[StrictStr] = Field(None, alias="pictureUrl", description="Profile image URL. `https` image URL. Not included in the response if the bot doesn't have a profile image.")
-    chat_mode: StrictStr = Field(..., alias="chatMode", description="Chat settings set in the LINE Official Account Manager (opens new window). One of:  `chat`: Chat is set to \"On\". `bot`: Chat is set to \"Off\". ")
+    chat_mode: StrictStr = Field(..., alias="chatMode", description="Chat settings set in the LINE Official Account Manager. One of:  `chat`: Chat is set to \"On\". `bot`: Chat is set to \"Off\". ")
     mark_as_read_mode: StrictStr = Field(..., alias="markAsReadMode", description="Automatic read setting for messages. If the chat is set to \"Off\", auto is returned. If the chat is set to \"On\", manual is returned.  `auto`: Auto read setting is enabled. `manual`: Auto read setting is disabled.  ")
 
     __properties = ["userId", "basicId", "premiumId", "displayName", "pictureUrl", "chatMode", "markAsReadMode"]

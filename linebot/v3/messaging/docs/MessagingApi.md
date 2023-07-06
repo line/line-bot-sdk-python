@@ -33,6 +33,7 @@ Method | HTTP request | Description
 [**get_rich_menu**](MessagingApi.md#get_rich_menu) | **GET** /v2/bot/richmenu/{richMenuId} | 
 [**get_rich_menu_alias**](MessagingApi.md#get_rich_menu_alias) | **GET** /v2/bot/richmenu/alias/{richMenuAliasId} | 
 [**get_rich_menu_alias_list**](MessagingApi.md#get_rich_menu_alias_list) | **GET** /v2/bot/richmenu/alias/list | 
+[**get_rich_menu_batch_progress**](MessagingApi.md#get_rich_menu_batch_progress) | **GET** /v2/bot/richmenu/progress/batch | 
 [**get_rich_menu_id_of_user**](MessagingApi.md#get_rich_menu_id_of_user) | **GET** /v2/bot/user/{userId}/richmenu | 
 [**get_rich_menu_list**](MessagingApi.md#get_rich_menu_list) | **GET** /v2/bot/richmenu/list | 
 [**get_room_member_count**](MessagingApi.md#get_room_member_count) | **GET** /v2/bot/room/{roomId}/members/count | 
@@ -50,6 +51,7 @@ Method | HTTP request | Description
 [**push_message**](MessagingApi.md#push_message) | **POST** /v2/bot/message/push | 
 [**push_messages_by_phone**](MessagingApi.md#push_messages_by_phone) | **POST** /bot/pnp/push | 
 [**reply_message**](MessagingApi.md#reply_message) | **POST** /v2/bot/message/reply | 
+[**rich_menu_batch**](MessagingApi.md#rich_menu_batch) | **POST** /v2/bot/richmenu/batch | 
 [**set_default_rich_menu**](MessagingApi.md#set_default_rich_menu) | **POST** /v2/bot/user/all/richmenu/{richMenuId} | 
 [**set_webhook_endpoint**](MessagingApi.md#set_webhook_endpoint) | **PUT** /v2/bot/channel/webhook/endpoint | 
 [**test_webhook_endpoint**](MessagingApi.md#test_webhook_endpoint) | **POST** /v2/bot/channel/webhook/test | 
@@ -61,6 +63,7 @@ Method | HTTP request | Description
 [**validate_narrowcast**](MessagingApi.md#validate_narrowcast) | **POST** /v2/bot/message/validate/narrowcast | 
 [**validate_push**](MessagingApi.md#validate_push) | **POST** /v2/bot/message/validate/push | 
 [**validate_reply**](MessagingApi.md#validate_reply) | **POST** /v2/bot/message/validate/reply | 
+[**validate_rich_menu_batch_request**](MessagingApi.md#validate_rich_menu_batch_request) | **POST** /v2/bot/richmenu/validate/batch | 
 [**validate_rich_menu_object**](MessagingApi.md#validate_rich_menu_object) | **POST** /v2/bot/richmenu/validate | 
 
 
@@ -2213,6 +2216,81 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_rich_menu_batch_progress**
+> RichMenuBatchProgressResponse get_rich_menu_batch_progress(request_id)
+
+
+
+Get the status of Replace or unlink a linked rich menus in batches.
+
+### Example
+
+* Bearer Authentication (Bearer):
+```python
+import time
+import os
+import linebot.v3.messaging
+from linebot.v3.messaging.models.rich_menu_batch_progress_response import RichMenuBatchProgressResponse
+from linebot.v3.messaging.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.line.me
+# See configuration.py for a list of all supported configuration parameters.
+configuration = linebot.v3.messaging.Configuration(
+    host = "https://api.line.me"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: Bearer
+configuration = linebot.v3.messaging.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with linebot.v3.messaging.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = linebot.v3.messaging.MessagingApi(api_client)
+    request_id = 'request_id_example' # str | A request ID used to batch control the rich menu linked to the user. Each Messaging API request has a request ID.
+
+    try:
+        api_response = api_instance.get_rich_menu_batch_progress(request_id)
+        print("The response of MessagingApi->get_rich_menu_batch_progress:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling MessagingApi->get_rich_menu_batch_progress: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **request_id** | **str**| A request ID used to batch control the rich menu linked to the user. Each Messaging API request has a request ID. | 
+
+### Return type
+
+[**RichMenuBatchProgressResponse**](RichMenuBatchProgressResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_rich_menu_id_of_user**
 > RichMenuIdResponse get_rich_menu_id_of_user(user_id)
 
@@ -3488,6 +3566,79 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **rich_menu_batch**
+> rich_menu_batch(rich_menu_batch_request)
+
+
+
+You can use this endpoint to batch control the rich menu linked to the users using the endpoint such as Link rich menu to user.  The following operations are available:  1. Replace a rich menu with another rich menu for all users linked to a specific rich menu 2. Unlink a rich menu for all users linked to a specific rich menu 3. Unlink a rich menu for all users linked the rich menu 
+
+### Example
+
+* Bearer Authentication (Bearer):
+```python
+import time
+import os
+import linebot.v3.messaging
+from linebot.v3.messaging.models.rich_menu_batch_request import RichMenuBatchRequest
+from linebot.v3.messaging.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.line.me
+# See configuration.py for a list of all supported configuration parameters.
+configuration = linebot.v3.messaging.Configuration(
+    host = "https://api.line.me"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: Bearer
+configuration = linebot.v3.messaging.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with linebot.v3.messaging.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = linebot.v3.messaging.MessagingApi(api_client)
+    rich_menu_batch_request = linebot.v3.messaging.RichMenuBatchRequest() # RichMenuBatchRequest | 
+
+    try:
+        api_instance.rich_menu_batch(rich_menu_batch_request)
+    except Exception as e:
+        print("Exception when calling MessagingApi->rich_menu_batch: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **rich_menu_batch_request** | [**RichMenuBatchRequest**](RichMenuBatchRequest.md)|  | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**202** | Accepted |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **set_default_rich_menu**
 > set_default_rich_menu(rich_menu_id)
 
@@ -4274,6 +4425,79 @@ with linebot.v3.messaging.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **validate_message_request** | [**ValidateMessageRequest**](ValidateMessageRequest.md)|  | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **validate_rich_menu_batch_request**
+> validate_rich_menu_batch_request(rich_menu_batch_request)
+
+
+
+Validate a request body of the Replace or unlink the linked rich menus in batches endpoint.
+
+### Example
+
+* Bearer Authentication (Bearer):
+```python
+import time
+import os
+import linebot.v3.messaging
+from linebot.v3.messaging.models.rich_menu_batch_request import RichMenuBatchRequest
+from linebot.v3.messaging.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.line.me
+# See configuration.py for a list of all supported configuration parameters.
+configuration = linebot.v3.messaging.Configuration(
+    host = "https://api.line.me"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: Bearer
+configuration = linebot.v3.messaging.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with linebot.v3.messaging.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = linebot.v3.messaging.MessagingApi(api_client)
+    rich_menu_batch_request = linebot.v3.messaging.RichMenuBatchRequest() # RichMenuBatchRequest | 
+
+    try:
+        api_instance.validate_rich_menu_batch_request(rich_menu_batch_request)
+    except Exception as e:
+        print("Exception when calling MessagingApi->validate_rich_menu_batch_request: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **rich_menu_batch_request** | [**RichMenuBatchRequest**](RichMenuBatchRequest.md)|  | 
 
 ### Return type
 

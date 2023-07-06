@@ -30,7 +30,7 @@ class UserProfileResponse(BaseModel):
     user_id: StrictStr = Field(..., alias="userId", description="User ID")
     picture_url: Optional[StrictStr] = Field(None, alias="pictureUrl", description="Profile image URL. `https` image URL. Not included in the response if the user doesn't have a profile image.")
     status_message: Optional[StrictStr] = Field(None, alias="statusMessage", description="User's status message. Not included in the response if the user doesn't have a status message.")
-    language: Optional[StrictStr] = Field(None, description="User's language, as a BCP 47 (opens new window)language tag. Not included in the response if the user hasn't yet consented to the LINE Privacy Policy.")
+    language: Optional[StrictStr] = Field(None, description="User's language, as a BCP 47 language tag. Not included in the response if the user hasn't yet consented to the LINE Privacy Policy.")
 
     __properties = ["displayName", "userId", "pictureUrl", "statusMessage", "language"]
 

@@ -1,4 +1,4 @@
-name: Bump minor version and commit updated code
+name: Bump minor version and commit updated code in branch
 
 on:
   workflow_dispatch
@@ -20,14 +20,19 @@ jobs:
           python-version: '3.x'
       - name: Install bump
         run: pip install bump
-      - name: Bump minor version and Commit generated code
+      - name: Bump minor version and Commit generated code in branch
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
+
           VERSION=$(bump -m -r linebot/__about__.py)
+          git checkout -b bump-version-to-$VERSION
+
           python generate-code.py
           git add .
           git commit -m "Bump version to $VERSION"
-          git push origin master
+
+          git push origin bump-version-to-$VERSION
+          gh pr create -B ${{ github.ref_name }} --title "Bump version to $VERSION" --body "" --label "auto-generated-code"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

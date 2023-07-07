@@ -58,8 +58,8 @@ class FlexBubble(FlexContainer):
         if value is None:
             return value
 
-        if value not in ('nano', 'micro', 'kilo', 'mega', 'giga'):
-            raise ValueError("must be one of enum values ('nano', 'micro', 'kilo', 'mega', 'giga')")
+        if value not in ('nano', 'micro', 'deca', 'hecto', 'kilo', 'mega', 'giga'):
+            raise ValueError("must be one of enum values ('nano', 'micro', 'deca', 'hecto', 'kilo', 'mega', 'giga')")
         return value
 
     class Config:

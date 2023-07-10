@@ -35,16 +35,27 @@ from linebot.deprecations import (
 class Message(with_metaclass(ABCMeta, Base)):
     """Abstract Base Class of Message."""
 
-    def __init__(self, id=None, **kwargs):
+    def __init__(self, id=None, use_raw_message=False, **kwargs):
         """__init__ method.
 
         :param str id: Message ID
+        :param bool use_raw_message: Using original Message key as attribute
         :param kwargs:
         """
         super(Message, self).__init__(**kwargs)
 
+        if use_raw_message:
+            self.__dict__.update(kwargs)
+
         self.type = None
         self.id = id
+
+    def __getitem__(self, key):
+        """__getitem__ method.
+
+        :param str key: Message key
+        """
+        return self.__dict__.get(key, None)
 
 
 @deprecated(reason="Use 'from linebot.v3.webhooks import TextMessageContent' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501

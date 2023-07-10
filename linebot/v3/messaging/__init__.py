@@ -14,7 +14,7 @@
 """
 
 
-__version__ = "3.0.3"
+__version__ = "3.1.0"
 
 # import apis into sdk package
 from linebot.v3.messaging.api.messaging_api import MessagingApi
@@ -130,6 +130,13 @@ from linebot.v3.messaging.models.reply_message_request import ReplyMessageReques
 from linebot.v3.messaging.models.rich_menu_alias_list_response import RichMenuAliasListResponse
 from linebot.v3.messaging.models.rich_menu_alias_response import RichMenuAliasResponse
 from linebot.v3.messaging.models.rich_menu_area import RichMenuArea
+from linebot.v3.messaging.models.rich_menu_batch_link_operation import RichMenuBatchLinkOperation
+from linebot.v3.messaging.models.rich_menu_batch_operation import RichMenuBatchOperation
+from linebot.v3.messaging.models.rich_menu_batch_progress_phase import RichMenuBatchProgressPhase
+from linebot.v3.messaging.models.rich_menu_batch_progress_response import RichMenuBatchProgressResponse
+from linebot.v3.messaging.models.rich_menu_batch_request import RichMenuBatchRequest
+from linebot.v3.messaging.models.rich_menu_batch_unlink_all_operation import RichMenuBatchUnlinkAllOperation
+from linebot.v3.messaging.models.rich_menu_batch_unlink_operation import RichMenuBatchUnlinkOperation
 from linebot.v3.messaging.models.rich_menu_bounds import RichMenuBounds
 from linebot.v3.messaging.models.rich_menu_bulk_link_request import RichMenuBulkLinkRequest
 from linebot.v3.messaging.models.rich_menu_bulk_unlink_request import RichMenuBulkUnlinkRequest

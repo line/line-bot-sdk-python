@@ -1,19 +1,37 @@
 import os
 import subprocess
+import fnmatch
+from typing import List, Tuple
 
 def run_command(command):
     output = subprocess.check_output(command, shell=True)
     return output.decode('utf-8').strip()
 
-import fileinput
+def replace_in_file(file_path: str, replacements: List[Tuple[str, str]]):
+    with open(file_path, 'r') as file:
+        filedata = file.read()
+    for k, v in replacements:
+        filedata = filedata.replace(k, v)
+    with open(file_path, 'w') as file:
+        file.write(filedata)
 
-def replace_text_in_files(dir_path: str, text_to_search: str, text_to_replace: str):
-    for foldername, subfolders, filenames in os.walk(dir_path):
-        for filename in filenames:
-            file_path = os.path.join(foldername, filename)
-            with fileinput.FileInput(file_path, inplace=True) as file:
-                for line in file:
-                    print(line.replace(text_to_search, text_to_replace), end='')
+def replace_in_files(directory: str, replacements: List[Tuple[str, str]]):
+    for path, dirs, files in os.walk(directory):
+        for filename in fnmatch.filter(files, "*"):
+            file_path = os.path.join(path, filename)
+            replace_in_file(file_path, replacements)
+
+def replace_in_files_by_keyword(directory: str, wrong_function_name: str, original_function_name: str, prefix: List[str], suffix: List[str]):
+    replacements = []
+    for x in prefix:
+        replacements.append((x + wrong_function_name, x + original_function_name))
+    for x in suffix:
+        replacements.append((wrong_function_name + x, original_function_name + x))
+    replace_in_files(directory, replacements)
+
+def replace_liff_function_name(wrong_function_name: str, original_function_name: str):
+    replace_in_files_by_keyword('./linebot/v3/liff/api', wrong_function_name, original_function_name, ['method '], ['(', '  ', '_with_http_info(', '_with_http_info method'])
+    replace_in_files_by_keyword('./linebot/v3/liff/docs', wrong_function_name, original_function_name, [], ['(', '**', ':', ')'])
 
 
 def main():
@@ -79,54 +97,18 @@ def main():
               '''
     run_command(command)
 
-    ##
+
     ## TODO(v4): Delete this workaround in v4 and use operation-id in line-openapi.
     ## This workaround is to avoid breaking change in v3.
 
-    ## POST   /liff/v1/apps          <- addLIFFApp
     ## GET    /liff/v1/apps          <- getAllLIFFApps
+    replace_liff_function_name('get_all_liff_apps', 'liff_v1_apps_get')
+    ## POST   /liff/v1/apps          <- addLIFFApp
+    replace_liff_function_name('add_liff_app', 'liff_v1_apps_post')
     ## PUT    /liff/v1/apps/{liffId} <- updateLIFFApp
+    replace_liff_function_name('update_liff_app', 'liff_v1_apps_liff_id_put')
     ## DELETE /liff/v1/apps/{liffId} <- deleteLIFFApp
-
-    replace_text_in_files('./linebot/v3/liff/api', 'get_all_liff_apps(', 'liff_v1_apps_get(')
-    replace_text_in_files('./linebot/v3/liff/api', 'get_all_liff_apps  ', 'liff_v1_apps_get  ')
-    replace_text_in_files('./linebot/v3/liff/api', 'method get_all_liff_apps', 'method liff_v1_apps_get')
-    replace_text_in_files('./linebot/v3/liff/api', 'get_all_liff_apps_with_http_info(', 'liff_v1_apps_get_with_http_info(')
-    replace_text_in_files('./linebot/v3/liff/api', 'get_all_liff_apps_with_http_info method', 'liff_v1_apps_get_with_http_info method')
-    replace_text_in_files('./linebot/v3/liff/docs', 'get_all_liff_apps(', 'liff_v1_apps_get(')
-    replace_text_in_files('./linebot/v3/liff/docs', 'get_all_liff_apps**', 'liff_v1_apps_get**')
-    replace_text_in_files('./linebot/v3/liff/docs', 'get_all_liff_apps:', 'liff_v1_apps_get:')
-    replace_text_in_files('./linebot/v3/liff/docs', 'get_all_liff_apps)', 'liff_v1_apps_get)')
-
-    replace_text_in_files('./linebot/v3/liff/api', 'add_liff_app(', 'liff_v1_apps_post(')
-    replace_text_in_files('./linebot/v3/liff/api', 'add_liff_app  ', 'liff_v1_apps_post  ')
-    replace_text_in_files('./linebot/v3/liff/api', 'method add_liff_app', 'method liff_v1_apps_post')
-    replace_text_in_files('./linebot/v3/liff/api', 'add_liff_app_with_http_info(', 'liff_v1_apps_post_with_http_info(')
-    replace_text_in_files('./linebot/v3/liff/api', 'add_liff_app_with_http_info method', 'liff_v1_apps_post_with_http_info method')
-    replace_text_in_files('./linebot/v3/liff/docs', 'add_liff_app(', 'liff_v1_apps_post(')
-    replace_text_in_files('./linebot/v3/liff/docs', 'add_liff_app**', 'liff_v1_apps_post**')
-    replace_text_in_files('./linebot/v3/liff/docs', 'add_liff_app:', 'liff_v1_apps_post:')
-    replace_text_in_files('./linebot/v3/liff/docs', 'add_liff_app)', 'liff_v1_apps_post)')
-
-    replace_text_in_files('./linebot/v3/liff/api', 'update_liff_app(', 'liff_v1_apps_liff_id_put(')
-    replace_text_in_files('./linebot/v3/liff/api', 'update_liff_app  ', 'liff_v1_apps_liff_id_put  ')
-    replace_text_in_files('./linebot/v3/liff/api', 'method update_liff_app', 'method liff_v1_apps_liff_id_put')
-    replace_text_in_files('./linebot/v3/liff/api', 'update_liff_app_with_http_info(', 'liff_v1_apps_liff_id_put_with_http_info(')
-    replace_text_in_files('./linebot/v3/liff/api', 'update_liff_app_with_http_info method', 'liff_v1_apps_liff_id_put_with_http_info method')
-    replace_text_in_files('./linebot/v3/liff/docs', 'update_liff_app(', 'liff_v1_apps_liff_id_put(')
-    replace_text_in_files('./linebot/v3/liff/docs', 'update_liff_app**', 'liff_v1_apps_liff_id_put**')
-    replace_text_in_files('./linebot/v3/liff/docs', 'update_liff_app:', 'liff_v1_apps_liff_id_put:')
-    replace_text_in_files('./linebot/v3/liff/docs', 'update_liff_app)', 'liff_v1_apps_liff_id_put)')
-
-    replace_text_in_files('./linebot/v3/liff/api', 'delete_liff_app(', 'liff_v1_apps_liff_id_delete(')
-    replace_text_in_files('./linebot/v3/liff/api', 'delete_liff_app  ', 'liff_v1_apps_liff_id_delete  ')
-    replace_text_in_files('./linebot/v3/liff/api', 'method delete_liff_app', 'method liff_v1_apps_liff_id_delete')
-    replace_text_in_files('./linebot/v3/liff/api', 'delete_liff_app_with_http_info(', 'liff_v1_apps_liff_id_delete_with_http_info(')
-    replace_text_in_files('./linebot/v3/liff/api', 'delete_liff_app_with_http_info method', 'liff_v1_apps_liff_id_delete_with_http_info method')
-    replace_text_in_files('./linebot/v3/liff/docs', 'delete_liff_app(', 'liff_v1_apps_liff_id_delete(')
-    replace_text_in_files('./linebot/v3/liff/docs', 'delete_liff_app**', 'liff_v1_apps_liff_id_delete**')
-    replace_text_in_files('./linebot/v3/liff/docs', 'delete_liff_app:', 'liff_v1_apps_liff_id_delete:')
-    replace_text_in_files('./linebot/v3/liff/docs', 'delete_liff_app)', 'liff_v1_apps_liff_id_delete)')
+    replace_liff_function_name('delete_liff_app', 'liff_v1_apps_liff_id_delete')
 
 
 if __name__ == "__main__":

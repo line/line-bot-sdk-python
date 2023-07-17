@@ -4,14 +4,14 @@ All URIs are relative to *https://api.line.me*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**add_liff_app**](Liff.md#add_liff_app) | **POST** /liff/v1/apps | 
-[**delete_liff_app**](Liff.md#delete_liff_app) | **DELETE** /liff/v1/apps/{liffId} | Delete LIFF app from a channel
-[**get_all_liff_apps**](Liff.md#get_all_liff_apps) | **GET** /liff/v1/apps | Get all LIFF apps
-[**update_liff_app**](Liff.md#update_liff_app) | **PUT** /liff/v1/apps/{liffId} | 
+[**liff_v1_apps_post**](Liff.md#liff_v1_apps_post) | **POST** /liff/v1/apps | 
+[**liff_v1_apps_liff_id_delete**](Liff.md#liff_v1_apps_liff_id_delete) | **DELETE** /liff/v1/apps/{liffId} | Delete LIFF app from a channel
+[**liff_v1_apps_get**](Liff.md#liff_v1_apps_get) | **GET** /liff/v1/apps | Get all LIFF apps
+[**liff_v1_apps_liff_id_put**](Liff.md#liff_v1_apps_liff_id_put) | **PUT** /liff/v1/apps/{liffId} | 
 
 
-# **add_liff_app**
-> AddLiffAppResponse add_liff_app(add_liff_app_request)
+# **liff_v1_apps_post**
+> AddLiffAppResponse liff_v1_apps_post(add_liff_app_request)
 
 
 
@@ -52,11 +52,11 @@ with linebot.v3.liff.ApiClient(configuration) as api_client:
     add_liff_app_request = linebot.v3.liff.AddLiffAppRequest() # AddLiffAppRequest | 
 
     try:
-        api_response = api_instance.add_liff_app(add_liff_app_request)
-        print("The response of Liff->add_liff_app:\n")
+        api_response = api_instance.liff_v1_apps_post(add_liff_app_request)
+        print("The response of Liff->liff_v1_apps_post:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling Liff->add_liff_app: %s\n" % e)
+        print("Exception when calling Liff->liff_v1_apps_post: %s\n" % e)
 ```
 
 
@@ -88,8 +88,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **delete_liff_app**
-> delete_liff_app(liff_id)
+# **liff_v1_apps_liff_id_delete**
+> liff_v1_apps_liff_id_delete(liff_id)
 
 Delete LIFF app from a channel
 
@@ -129,9 +129,9 @@ with linebot.v3.liff.ApiClient(configuration) as api_client:
 
     try:
         # Delete LIFF app from a channel
-        api_instance.delete_liff_app(liff_id)
+        api_instance.liff_v1_apps_liff_id_delete(liff_id)
     except Exception as e:
-        print("Exception when calling Liff->delete_liff_app: %s\n" % e)
+        print("Exception when calling Liff->liff_v1_apps_liff_id_delete: %s\n" % e)
 ```
 
 
@@ -163,8 +163,8 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_all_liff_apps**
-> GetAllLiffAppsResponse get_all_liff_apps()
+# **liff_v1_apps_get**
+> GetAllLiffAppsResponse liff_v1_apps_get()
 
 Get all LIFF apps
 
@@ -204,11 +204,11 @@ with linebot.v3.liff.ApiClient(configuration) as api_client:
 
     try:
         # Get all LIFF apps
-        api_response = api_instance.get_all_liff_apps()
-        print("The response of Liff->get_all_liff_apps:\n")
+        api_response = api_instance.liff_v1_apps_get()
+        print("The response of Liff->liff_v1_apps_get:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling Liff->get_all_liff_apps: %s\n" % e)
+        print("Exception when calling Liff->liff_v1_apps_get: %s\n" % e)
 ```
 
 
@@ -237,8 +237,8 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **update_liff_app**
-> update_liff_app(liff_id, update_liff_app_request)
+# **liff_v1_apps_liff_id_put**
+> liff_v1_apps_liff_id_put(liff_id, update_liff_app_request)
 
 
 
@@ -279,9 +279,9 @@ with linebot.v3.liff.ApiClient(configuration) as api_client:
     update_liff_app_request = linebot.v3.liff.UpdateLiffAppRequest() # UpdateLiffAppRequest | 
 
     try:
-        api_instance.update_liff_app(liff_id, update_liff_app_request)
+        api_instance.liff_v1_apps_liff_id_put(liff_id, update_liff_app_request)
     except Exception as e:
-        print("Exception when calling Liff->update_liff_app: %s\n" % e)
+        print("Exception when calling Liff->liff_v1_apps_liff_id_put: %s\n" % e)
 ```
 
 

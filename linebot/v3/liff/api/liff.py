@@ -46,14 +46,14 @@ class Liff(object):
         self.api_client = api_client
 
     @validate_arguments
-    def add_liff_app(self, add_liff_app_request : AddLiffAppRequest, **kwargs) -> AddLiffAppResponse:  # noqa: E501
-        """add_liff_app  # noqa: E501
+    def liff_v1_apps_post(self, add_liff_app_request : AddLiffAppRequest, **kwargs) -> AddLiffAppResponse:  # noqa: E501
+        """liff_v1_apps_post  # noqa: E501
 
         Adding the LIFF app to a channel  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.add_liff_app(add_liff_app_request, async_req=True)
+        >>> thread = api.liff_v1_apps_post(add_liff_app_request, async_req=True)
         >>> result = thread.get()
 
         :param add_liff_app_request: (required)
@@ -71,18 +71,18 @@ class Liff(object):
         """
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
-            raise ValueError("Error! Please call the add_liff_app_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
-        return self.add_liff_app_with_http_info(add_liff_app_request, **kwargs)  # noqa: E501
+            raise ValueError("Error! Please call the liff_v1_apps_post_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.liff_v1_apps_post_with_http_info(add_liff_app_request, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def add_liff_app_with_http_info(self, add_liff_app_request : AddLiffAppRequest, **kwargs) -> ApiResponse:  # noqa: E501
-        """add_liff_app  # noqa: E501
+    def liff_v1_apps_post_with_http_info(self, add_liff_app_request : AddLiffAppRequest, **kwargs) -> ApiResponse:  # noqa: E501
+        """liff_v1_apps_post  # noqa: E501
 
         Adding the LIFF app to a channel  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.add_liff_app_with_http_info(add_liff_app_request, async_req=True)
+        >>> thread = api.liff_v1_apps_post_with_http_info(add_liff_app_request, async_req=True)
         >>> result = thread.get()
 
         :param add_liff_app_request: (required)
@@ -134,7 +134,7 @@ class Liff(object):
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method add_liff_app" % _key
+                    " to method liff_v1_apps_post" % _key
                 )
             _params[_key] = _val
         del _params['kwargs']
@@ -194,14 +194,14 @@ class Liff(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def delete_liff_app(self, liff_id : Annotated[StrictStr, Field(..., description="ID of the LIFF app to be updated")], **kwargs) -> None:  # noqa: E501
+    def liff_v1_apps_liff_id_delete(self, liff_id : Annotated[StrictStr, Field(..., description="ID of the LIFF app to be updated")], **kwargs) -> None:  # noqa: E501
         """Delete LIFF app from a channel  # noqa: E501
 
         Deletes a LIFF app from a channel.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.delete_liff_app(liff_id, async_req=True)
+        >>> thread = api.liff_v1_apps_liff_id_delete(liff_id, async_req=True)
         >>> result = thread.get()
 
         :param liff_id: ID of the LIFF app to be updated (required)
@@ -219,18 +219,18 @@ class Liff(object):
         """
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
-            raise ValueError("Error! Please call the delete_liff_app_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
-        return self.delete_liff_app_with_http_info(liff_id, **kwargs)  # noqa: E501
+            raise ValueError("Error! Please call the liff_v1_apps_liff_id_delete_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.liff_v1_apps_liff_id_delete_with_http_info(liff_id, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def delete_liff_app_with_http_info(self, liff_id : Annotated[StrictStr, Field(..., description="ID of the LIFF app to be updated")], **kwargs) -> ApiResponse:  # noqa: E501
+    def liff_v1_apps_liff_id_delete_with_http_info(self, liff_id : Annotated[StrictStr, Field(..., description="ID of the LIFF app to be updated")], **kwargs) -> ApiResponse:  # noqa: E501
         """Delete LIFF app from a channel  # noqa: E501
 
         Deletes a LIFF app from a channel.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.delete_liff_app_with_http_info(liff_id, async_req=True)
+        >>> thread = api.liff_v1_apps_liff_id_delete_with_http_info(liff_id, async_req=True)
         >>> result = thread.get()
 
         :param liff_id: ID of the LIFF app to be updated (required)
@@ -282,7 +282,7 @@ class Liff(object):
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method delete_liff_app" % _key
+                    " to method liff_v1_apps_liff_id_delete" % _key
                 )
             _params[_key] = _val
         del _params['kwargs']
@@ -327,14 +327,14 @@ class Liff(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def get_all_liff_apps(self, **kwargs) -> GetAllLiffAppsResponse:  # noqa: E501
+    def liff_v1_apps_get(self, **kwargs) -> GetAllLiffAppsResponse:  # noqa: E501
         """Get all LIFF apps  # noqa: E501
 
         Gets information on all the LIFF apps added to the channel.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_all_liff_apps(async_req=True)
+        >>> thread = api.liff_v1_apps_get(async_req=True)
         >>> result = thread.get()
 
         :param async_req: Whether to execute the request asynchronously.
@@ -350,18 +350,18 @@ class Liff(object):
         """
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
-            raise ValueError("Error! Please call the get_all_liff_apps_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
-        return self.get_all_liff_apps_with_http_info(**kwargs)  # noqa: E501
+            raise ValueError("Error! Please call the liff_v1_apps_get_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.liff_v1_apps_get_with_http_info(**kwargs)  # noqa: E501
 
     @validate_arguments
-    def get_all_liff_apps_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
+    def liff_v1_apps_get_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
         """Get all LIFF apps  # noqa: E501
 
         Gets information on all the LIFF apps added to the channel.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_all_liff_apps_with_http_info(async_req=True)
+        >>> thread = api.liff_v1_apps_get_with_http_info(async_req=True)
         >>> result = thread.get()
 
         :param async_req: Whether to execute the request asynchronously.
@@ -410,7 +410,7 @@ class Liff(object):
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method get_all_liff_apps" % _key
+                    " to method liff_v1_apps_get" % _key
                 )
             _params[_key] = _val
         del _params['kwargs']
@@ -460,14 +460,14 @@ class Liff(object):
             _request_auth=_params.get('_request_auth'))
 
     @validate_arguments
-    def update_liff_app(self, liff_id : Annotated[StrictStr, Field(..., description="ID of the LIFF app to be updated")], update_liff_app_request : UpdateLiffAppRequest, **kwargs) -> None:  # noqa: E501
-        """update_liff_app  # noqa: E501
+    def liff_v1_apps_liff_id_put(self, liff_id : Annotated[StrictStr, Field(..., description="ID of the LIFF app to be updated")], update_liff_app_request : UpdateLiffAppRequest, **kwargs) -> None:  # noqa: E501
+        """liff_v1_apps_liff_id_put  # noqa: E501
 
         Update LIFF app settings  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.update_liff_app(liff_id, update_liff_app_request, async_req=True)
+        >>> thread = api.liff_v1_apps_liff_id_put(liff_id, update_liff_app_request, async_req=True)
         >>> result = thread.get()
 
         :param liff_id: ID of the LIFF app to be updated (required)
@@ -487,18 +487,18 @@ class Liff(object):
         """
         kwargs['_return_http_data_only'] = True
         if '_preload_content' in kwargs:
-            raise ValueError("Error! Please call the update_liff_app_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
-        return self.update_liff_app_with_http_info(liff_id, update_liff_app_request, **kwargs)  # noqa: E501
+            raise ValueError("Error! Please call the liff_v1_apps_liff_id_put_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.liff_v1_apps_liff_id_put_with_http_info(liff_id, update_liff_app_request, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def update_liff_app_with_http_info(self, liff_id : Annotated[StrictStr, Field(..., description="ID of the LIFF app to be updated")], update_liff_app_request : UpdateLiffAppRequest, **kwargs) -> ApiResponse:  # noqa: E501
-        """update_liff_app  # noqa: E501
+    def liff_v1_apps_liff_id_put_with_http_info(self, liff_id : Annotated[StrictStr, Field(..., description="ID of the LIFF app to be updated")], update_liff_app_request : UpdateLiffAppRequest, **kwargs) -> ApiResponse:  # noqa: E501
+        """liff_v1_apps_liff_id_put  # noqa: E501
 
         Update LIFF app settings  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.update_liff_app_with_http_info(liff_id, update_liff_app_request, async_req=True)
+        >>> thread = api.liff_v1_apps_liff_id_put_with_http_info(liff_id, update_liff_app_request, async_req=True)
         >>> result = thread.get()
 
         :param liff_id: ID of the LIFF app to be updated (required)
@@ -553,7 +553,7 @@ class Liff(object):
             if _key not in _all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method update_liff_app" % _key
+                    " to method liff_v1_apps_liff_id_put" % _key
                 )
             _params[_key] = _val
         del _params['kwargs']

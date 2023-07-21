@@ -88,8 +88,7 @@ def main():
     run_command(command)
 
 
-    ## TODO(v4): Delete this workaround in v4 and use operation-id in line-openapi.
-    ## This workaround is to avoid breaking change in v3.
+    ## TODO(v4): Delete this workaround in v4. This workaround keeps backward compatibility.
     rewrite_liff_function_name_backward_compats()
 
 

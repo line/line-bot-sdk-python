@@ -5,6 +5,25 @@ def run_command(command):
     output = subprocess.check_output(command, shell=True)
     return output.decode('utf-8').strip()
 
+
+def rewrite_liff_function_name_backward_compats():
+    for fname in ['liff.py', 'async_liff.py']:
+        with open(f'linebot/v3/liff/api/{fname}', 'a') as fp:
+             fp.write("\n\n")
+             for (orig, cur) in [('liff_v1_apps_get', 'get_all_liff_apps'),
+                                 ('liff_v1_apps_get_with_http_info', 'get_all_liff_apps_with_http_info'),
+                                 ('liff_v1_apps_post', 'add_liff_app'),
+                                 ('liff_v1_apps_post_with_http_info', 'add_liff_app_with_http_info'),
+                                 ('liff_v1_apps_liff_id_put', 'update_liff_app'),
+                                 ('liff_v1_apps_liff_id_put_with_http_info', 'update_liff_app_with_http_info'),
+                                 ('liff_v1_apps_liff_id_delete', 'delete_liff_app'),
+                                 ('liff_v1_apps_liff_id_delete_with_http_info', 'delete_liff_app_with_http_info')]:
+                 fp.write(f"\n")
+                 fp.write(f"    def {orig}(self, *args, **kwargs):\n")
+                 fp.write(f"        import warnings\n")
+                 fp.write(f"        warnings.warn('{orig} was deprecated. use {cur} instead.', DeprecationWarning)\n")
+                 fp.write(f"        return self.{cur}(*args, **kwargs)\n")
+
 def main():
 
     os.chdir("generator")
@@ -67,6 +86,11 @@ def main():
                 -i line-openapi/{sourceYaml}
               '''
     run_command(command)
+
+
+    ## TODO(v4): Delete this workaround in v4. This workaround keeps backward compatibility.
+    rewrite_liff_function_name_backward_compats()
+
 
 if __name__ == "__main__":
     main()

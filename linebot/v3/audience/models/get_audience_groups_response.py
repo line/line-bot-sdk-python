@@ -19,7 +19,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictBool, StrictInt, conlist
+from pydantic.v1 import BaseModel, Field, StrictBool, StrictInt, conlist
 from linebot.v3.audience.models.audience_group import AudienceGroup
 
 class GetAudienceGroupsResponse(BaseModel):
@@ -60,7 +60,7 @@ class GetAudienceGroupsResponse(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of each item in audience_groups (list)
+        # override the default output from pydantic.v1 by calling `to_dict()` of each item in audience_groups (list)
         _items = []
         if self.audience_groups:
             for _item in self.audience_groups:

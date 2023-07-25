@@ -19,7 +19,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, conlist, constr, validator
+from pydantic.v1 import BaseModel, Field, conlist, constr, validator
 from linebot.v3.webhooks.models.event import Event
 
 class CallbackRequest(BaseModel):
@@ -66,7 +66,7 @@ class CallbackRequest(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of each item in events (list)
+        # override the default output from pydantic.v1 by calling `to_dict()` of each item in events (list)
         _items = []
         if self.events:
             for _item in self.events:

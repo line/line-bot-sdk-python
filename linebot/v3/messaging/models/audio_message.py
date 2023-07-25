@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictInt, StrictStr
+from pydantic.v1 import BaseModel, Field, StrictInt, StrictStr
 from linebot.v3.messaging.models.message import Message
 from linebot.v3.messaging.models.quick_reply import QuickReply
 from linebot.v3.messaging.models.sender import Sender
@@ -58,10 +58,10 @@ class AudioMessage(Message):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of quick_reply
+        # override the default output from pydantic.v1 by calling `to_dict()` of quick_reply
         if self.quick_reply:
             _dict['quickReply'] = self.quick_reply.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of sender
+        # override the default output from pydantic.v1 by calling `to_dict()` of sender
         if self.sender:
             _dict['sender'] = self.sender.to_dict()
         return _dict

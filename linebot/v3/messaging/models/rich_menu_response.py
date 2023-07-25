@@ -19,7 +19,7 @@ import json
 
 
 from typing import List
-from pydantic import BaseModel, Field, StrictBool, StrictStr, conlist, constr
+from pydantic.v1 import BaseModel, Field, StrictBool, StrictStr, conlist, constr
 from linebot.v3.messaging.models.rich_menu_area import RichMenuArea
 from linebot.v3.messaging.models.rich_menu_size import RichMenuSize
 
@@ -60,10 +60,10 @@ class RichMenuResponse(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of size
+        # override the default output from pydantic.v1 by calling `to_dict()` of size
         if self.size:
             _dict['size'] = self.size.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of each item in areas (list)
+        # override the default output from pydantic.v1 by calling `to_dict()` of each item in areas (list)
         _items = []
         if self.areas:
             for _item in self.areas:

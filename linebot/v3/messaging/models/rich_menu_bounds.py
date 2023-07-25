@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, conint
+from pydantic.v1 import BaseModel, Field, conint
 
 class RichMenuBounds(BaseModel):
     """

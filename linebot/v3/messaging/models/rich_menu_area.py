@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel
+from pydantic.v1 import BaseModel
 from linebot.v3.messaging.models.action import Action
 from linebot.v3.messaging.models.rich_menu_bounds import RichMenuBounds
 
@@ -56,10 +56,10 @@ class RichMenuArea(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of bounds
+        # override the default output from pydantic.v1 by calling `to_dict()` of bounds
         if self.bounds:
             _dict['bounds'] = self.bounds.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of action
+        # override the default output from pydantic.v1 by calling `to_dict()` of action
         if self.action:
             _dict['action'] = self.action.to_dict()
         return _dict

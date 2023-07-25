@@ -19,7 +19,7 @@ import json
 
 
 from typing import List
-from pydantic import BaseModel, Field, conlist
+from pydantic.v1 import BaseModel, Field, conlist
 from linebot.v3.webhooks.models.user_source import UserSource
 
 class JoinedMembers(BaseModel):
@@ -54,7 +54,7 @@ class JoinedMembers(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of each item in members (list)
+        # override the default output from pydantic.v1 by calling `to_dict()` of each item in members (list)
         _items = []
         if self.members:
             for _item in self.members:

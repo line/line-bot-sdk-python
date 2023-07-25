@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictStr
+from pydantic.v1 import BaseModel, Field, StrictStr
 from linebot.v3.messaging.models.action import Action
 
 class ImageCarouselColumn(BaseModel):
@@ -55,7 +55,7 @@ class ImageCarouselColumn(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of action
+        # override the default output from pydantic.v1 by calling `to_dict()` of action
         if self.action:
             _dict['action'] = self.action.to_dict()
         return _dict

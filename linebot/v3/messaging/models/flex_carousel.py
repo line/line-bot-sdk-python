@@ -19,7 +19,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, conlist
+from pydantic.v1 import BaseModel, conlist
 from linebot.v3.messaging.models.flex_bubble import FlexBubble
 from linebot.v3.messaging.models.flex_container import FlexContainer
 
@@ -56,7 +56,7 @@ class FlexCarousel(FlexContainer):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of each item in contents (list)
+        # override the default output from pydantic.v1 by calling `to_dict()` of each item in contents (list)
         _items = []
         if self.contents:
             for _item in self.contents:

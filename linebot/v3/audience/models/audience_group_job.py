@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictInt, StrictStr
+from pydantic.v1 import BaseModel, Field, StrictInt, StrictStr
 from linebot.v3.audience.models.audience_group_job_failed_type import AudienceGroupJobFailedType
 from linebot.v3.audience.models.audience_group_job_status import AudienceGroupJobStatus
 from linebot.v3.audience.models.audience_group_job_type import AudienceGroupJobType

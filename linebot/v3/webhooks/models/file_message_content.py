@@ -19,7 +19,7 @@ import json
 
 
 
-from pydantic import BaseModel, Field, StrictInt, StrictStr
+from pydantic.v1 import BaseModel, Field, StrictInt, StrictStr
 from linebot.v3.webhooks.models.message_content import MessageContent
 
 class FileMessageContent(MessageContent):

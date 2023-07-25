@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional, Union
-from pydantic import BaseModel, Field, StrictFloat, StrictInt, StrictStr, validator
+from pydantic.v1 import BaseModel, Field, StrictFloat, StrictInt, StrictStr, validator
 
 class AgeTile(BaseModel):
     """

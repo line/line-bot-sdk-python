@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictBool, StrictInt, StrictStr
+from pydantic.v1 import BaseModel, Field, StrictBool, StrictInt, StrictStr
 from linebot.v3.audience.models.audience_group_create_route import AudienceGroupCreateRoute
 from linebot.v3.audience.models.audience_group_failed_type import AudienceGroupFailedType
 from linebot.v3.audience.models.audience_group_permission import AudienceGroupPermission

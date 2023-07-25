@@ -19,7 +19,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictInt, StrictStr, conlist, validator
+from pydantic.v1 import BaseModel, Field, StrictInt, StrictStr, conlist, validator
 from linebot.v3.messaging.models.action import Action
 from linebot.v3.messaging.models.flex_box_background import FlexBoxBackground
 from linebot.v3.messaging.models.flex_component import FlexComponent
@@ -123,17 +123,17 @@ class FlexBox(FlexComponent):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of each item in contents (list)
+        # override the default output from pydantic.v1 by calling `to_dict()` of each item in contents (list)
         _items = []
         if self.contents:
             for _item in self.contents:
                 if _item:
                     _items.append(_item.to_dict())
             _dict['contents'] = _items
-        # override the default output from pydantic by calling `to_dict()` of action
+        # override the default output from pydantic.v1 by calling `to_dict()` of action
         if self.action:
             _dict['action'] = self.action.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of background
+        # override the default output from pydantic.v1 by calling `to_dict()` of background
         if self.background:
             _dict['background'] = self.background.to_dict()
         return _dict

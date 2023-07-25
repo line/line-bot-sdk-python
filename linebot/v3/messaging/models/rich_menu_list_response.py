@@ -19,7 +19,7 @@ import json
 
 
 from typing import List
-from pydantic import BaseModel, Field, conlist
+from pydantic.v1 import BaseModel, Field, conlist
 from linebot.v3.messaging.models.rich_menu_response import RichMenuResponse
 
 class RichMenuListResponse(BaseModel):
@@ -55,7 +55,7 @@ class RichMenuListResponse(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of each item in richmenus (list)
+        # override the default output from pydantic.v1 by calling `to_dict()` of each item in richmenus (list)
         _items = []
         if self.richmenus:
             for _item in self.richmenus:

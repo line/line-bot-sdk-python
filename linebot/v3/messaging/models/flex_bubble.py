@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, StrictStr, validator
+from pydantic.v1 import BaseModel, StrictStr, validator
 from linebot.v3.messaging.models.action import Action
 from linebot.v3.messaging.models.flex_box import FlexBox
 from linebot.v3.messaging.models.flex_bubble_styles import FlexBubbleStyles
@@ -86,22 +86,22 @@ class FlexBubble(FlexContainer):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of styles
+        # override the default output from pydantic.v1 by calling `to_dict()` of styles
         if self.styles:
             _dict['styles'] = self.styles.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of header
+        # override the default output from pydantic.v1 by calling `to_dict()` of header
         if self.header:
             _dict['header'] = self.header.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of hero
+        # override the default output from pydantic.v1 by calling `to_dict()` of hero
         if self.hero:
             _dict['hero'] = self.hero.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of body
+        # override the default output from pydantic.v1 by calling `to_dict()` of body
         if self.body:
             _dict['body'] = self.body.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of footer
+        # override the default output from pydantic.v1 by calling `to_dict()` of footer
         if self.footer:
             _dict['footer'] = self.footer.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of action
+        # override the default output from pydantic.v1 by calling `to_dict()` of action
         if self.action:
             _dict['action'] = self.action.to_dict()
         return _dict

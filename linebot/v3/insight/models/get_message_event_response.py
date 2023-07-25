@@ -19,7 +19,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, conlist
+from pydantic.v1 import BaseModel, Field, conlist
 from linebot.v3.insight.models.get_message_event_response_click import GetMessageEventResponseClick
 from linebot.v3.insight.models.get_message_event_response_message import GetMessageEventResponseMessage
 from linebot.v3.insight.models.get_message_event_response_overview import GetMessageEventResponseOverview
@@ -59,17 +59,17 @@ class GetMessageEventResponse(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of overview
+        # override the default output from pydantic.v1 by calling `to_dict()` of overview
         if self.overview:
             _dict['overview'] = self.overview.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of each item in messages (list)
+        # override the default output from pydantic.v1 by calling `to_dict()` of each item in messages (list)
         _items = []
         if self.messages:
             for _item in self.messages:
                 if _item:
                     _items.append(_item.to_dict())
             _dict['messages'] = _items
-        # override the default output from pydantic by calling `to_dict()` of each item in clicks (list)
+        # override the default output from pydantic.v1 by calling `to_dict()` of each item in clicks (list)
         _items = []
         if self.clicks:
             for _item in self.clicks:

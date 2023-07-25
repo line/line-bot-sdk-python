@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictBool, StrictStr, validator
+from pydantic.v1 import BaseModel, Field, StrictBool, StrictStr, validator
 
 class LiffView(BaseModel):
     """

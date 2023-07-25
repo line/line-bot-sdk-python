@@ -19,7 +19,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, conlist, constr, validator
+from pydantic.v1 import BaseModel, Field, conlist, constr, validator
 from linebot.v3.messaging.models.rich_menu_batch_operation import RichMenuBatchOperation
 
 class RichMenuBatchRequest(BaseModel):
@@ -65,7 +65,7 @@ class RichMenuBatchRequest(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of each item in operations (list)
+        # override the default output from pydantic.v1 by calling `to_dict()` of each item in operations (list)
         _items = []
         if self.operations:
             for _item in self.operations:

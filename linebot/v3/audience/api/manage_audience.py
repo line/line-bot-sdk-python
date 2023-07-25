@@ -15,10 +15,10 @@
 import re  # noqa: F401
 import io
 
-from pydantic import validate_arguments, ValidationError
+from pydantic.v1 import validate_arguments, ValidationError
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictBool, StrictInt, StrictStr, conint
+from pydantic.v1 import Field, StrictBool, StrictInt, StrictStr, conint
 
 from linebot.v3.audience.models.add_audience_to_audience_group_request import AddAudienceToAudienceGroupRequest
 from linebot.v3.audience.models.audience_group_create_route import AudienceGroupCreateRoute

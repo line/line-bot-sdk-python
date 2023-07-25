@@ -19,7 +19,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictStr, conlist
+from pydantic.v1 import BaseModel, Field, StrictStr, conlist
 from linebot.v3.liff.models.liff_bot_prompt import LiffBotPrompt
 from linebot.v3.liff.models.liff_features import LiffFeatures
 from linebot.v3.liff.models.liff_scope import LiffScope
@@ -63,10 +63,10 @@ class LiffApp(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of view
+        # override the default output from pydantic.v1 by calling `to_dict()` of view
         if self.view:
             _dict['view'] = self.view.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of features
+        # override the default output from pydantic.v1 by calling `to_dict()` of features
         if self.features:
             _dict['features'] = self.features.to_dict()
         return _dict

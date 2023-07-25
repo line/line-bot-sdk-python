@@ -20,7 +20,7 @@ import linebot.v3.webhooks.models
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictInt, StrictStr
+from pydantic.v1 import BaseModel, Field, StrictInt, StrictStr
 
 class Mentionee(BaseModel):
     """

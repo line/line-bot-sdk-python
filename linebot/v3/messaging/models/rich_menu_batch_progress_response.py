@@ -19,7 +19,7 @@ import json
 
 from datetime import datetime
 from typing import Optional
-from pydantic import BaseModel, Field
+from pydantic.v1 import BaseModel, Field
 from linebot.v3.messaging.models.rich_menu_batch_progress_phase import RichMenuBatchProgressPhase
 
 class RichMenuBatchProgressResponse(BaseModel):

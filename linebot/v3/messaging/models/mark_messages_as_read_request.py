@@ -19,7 +19,7 @@ import json
 
 
 
-from pydantic import BaseModel, Field
+from pydantic.v1 import BaseModel, Field
 from linebot.v3.messaging.models.chat_reference import ChatReference
 
 class MarkMessagesAsReadRequest(BaseModel):
@@ -55,7 +55,7 @@ class MarkMessagesAsReadRequest(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of chat
+        # override the default output from pydantic.v1 by calling `to_dict()` of chat
         if self.chat:
             _dict['chat'] = self.chat.to_dict()
         return _dict

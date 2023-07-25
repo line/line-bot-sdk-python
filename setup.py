@@ -188,7 +188,7 @@ setup(
     long_description=long_description,
     license='Apache License 2.0',
     packages=find_packages(include=["linebot*"]),
-    python_requires=">=3.7.0",
+    python_requires=">=3.8.0",
     install_requires=_requirements(),
     tests_require=_requirements_test(),
     cmdclass={
@@ -200,7 +200,6 @@ setup(
         "License :: OSI Approved :: Apache Software License",
         "Intended Audience :: Developers",
         "Programming Language :: Python",
-        "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",

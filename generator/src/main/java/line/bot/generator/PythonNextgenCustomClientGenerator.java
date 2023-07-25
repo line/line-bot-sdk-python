@@ -1544,7 +1544,7 @@ public class PythonNextgenCustomClientGenerator extends AbstractPythonCodegen im
 
     @Override
     public String generatorLanguageVersion() {
-        return "3.7+";
+        return "3.8+";
     }
 
     @Override

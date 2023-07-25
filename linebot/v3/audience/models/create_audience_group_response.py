@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional, Union
-from pydantic import BaseModel, Field, StrictBool, StrictFloat, StrictInt, StrictStr, validator
+from pydantic.v1 import BaseModel, Field, StrictBool, StrictFloat, StrictInt, StrictStr, validator
 from linebot.v3.audience.models.audience_group_type import AudienceGroupType
 
 class CreateAudienceGroupResponse(BaseModel):

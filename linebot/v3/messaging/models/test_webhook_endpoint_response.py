@@ -19,7 +19,7 @@ import json
 
 from datetime import datetime
 from typing import Optional
-from pydantic import BaseModel, Field, StrictBool, StrictInt, StrictStr
+from pydantic.v1 import BaseModel, Field, StrictBool, StrictInt, StrictStr
 
 class TestWebhookEndpointResponse(BaseModel):
     """

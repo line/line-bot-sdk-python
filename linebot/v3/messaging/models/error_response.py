@@ -19,7 +19,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictStr, conlist
+from pydantic.v1 import BaseModel, Field, StrictStr, conlist
 from linebot.v3.messaging.models.error_detail import ErrorDetail
 
 class ErrorResponse(BaseModel):
@@ -56,7 +56,7 @@ class ErrorResponse(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of each item in details (list)
+        # override the default output from pydantic.v1 by calling `to_dict()` of each item in details (list)
         _items = []
         if self.details:
             for _item in self.details:

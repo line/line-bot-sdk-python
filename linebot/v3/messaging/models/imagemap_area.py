@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, StrictInt
+from pydantic.v1 import BaseModel, StrictInt
 
 class ImagemapArea(BaseModel):
     """

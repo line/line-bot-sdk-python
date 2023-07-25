@@ -1055,7 +1055,7 @@ public class PythonNextgenCustomClientGenerator extends AbstractPythonCodegen im
         // need pydantic imports
         if (!pydanticImports.isEmpty()) {
             Map<String, String> item = new HashMap<>();
-            item.put("import", String.format(Locale.ROOT, "from pydantic import %s\n", StringUtils.join(pydanticImports, ", ")));
+            item.put("import", String.format(Locale.ROOT, "from pydantic.v1 import %s\n", StringUtils.join(pydanticImports, ", ")));
             newImports.add(item);
         }
 

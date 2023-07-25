@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictStr
+from pydantic.v1 import BaseModel, Field, StrictStr
 from linebot.v3.webhooks.models.content_provider import ContentProvider
 from linebot.v3.webhooks.models.image_set import ImageSet
 from linebot.v3.webhooks.models.message_content import MessageContent
@@ -59,10 +59,10 @@ class ImageMessageContent(MessageContent):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of content_provider
+        # override the default output from pydantic.v1 by calling `to_dict()` of content_provider
         if self.content_provider:
             _dict['contentProvider'] = self.content_provider.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of image_set
+        # override the default output from pydantic.v1 by calling `to_dict()` of image_set
         if self.image_set:
             _dict['imageSet'] = self.image_set.to_dict()
         return _dict

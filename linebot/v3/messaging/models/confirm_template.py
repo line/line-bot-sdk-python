@@ -19,7 +19,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, StrictStr, conlist
+from pydantic.v1 import BaseModel, StrictStr, conlist
 from linebot.v3.messaging.models.action import Action
 from linebot.v3.messaging.models.template import Template
 
@@ -57,7 +57,7 @@ class ConfirmTemplate(Template):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of each item in actions (list)
+        # override the default output from pydantic.v1 by calling `to_dict()` of each item in actions (list)
         _items = []
         if self.actions:
             for _item in self.actions:

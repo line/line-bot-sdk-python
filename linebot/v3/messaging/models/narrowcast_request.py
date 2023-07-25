@@ -19,7 +19,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictBool, conlist
+from pydantic.v1 import BaseModel, Field, StrictBool, conlist
 from linebot.v3.messaging.models.filter import Filter
 from linebot.v3.messaging.models.limit import Limit
 from linebot.v3.messaging.models.message import Message
@@ -62,20 +62,20 @@ class NarrowcastRequest(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of each item in messages (list)
+        # override the default output from pydantic.v1 by calling `to_dict()` of each item in messages (list)
         _items = []
         if self.messages:
             for _item in self.messages:
                 if _item:
                     _items.append(_item.to_dict())
             _dict['messages'] = _items
-        # override the default output from pydantic by calling `to_dict()` of recipient
+        # override the default output from pydantic.v1 by calling `to_dict()` of recipient
         if self.recipient:
             _dict['recipient'] = self.recipient.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of filter
+        # override the default output from pydantic.v1 by calling `to_dict()` of filter
         if self.filter:
             _dict['filter'] = self.filter.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of limit
+        # override the default output from pydantic.v1 by calling `to_dict()` of limit
         if self.limit:
             _dict['limit'] = self.limit.to_dict()
         return _dict

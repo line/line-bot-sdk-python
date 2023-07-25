@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel
+from pydantic.v1 import BaseModel
 from linebot.v3.messaging.models.flex_block_style import FlexBlockStyle
 
 class FlexBubbleStyles(BaseModel):
@@ -57,16 +57,16 @@ class FlexBubbleStyles(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of header
+        # override the default output from pydantic.v1 by calling `to_dict()` of header
         if self.header:
             _dict['header'] = self.header.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of hero
+        # override the default output from pydantic.v1 by calling `to_dict()` of hero
         if self.hero:
             _dict['hero'] = self.hero.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of body
+        # override the default output from pydantic.v1 by calling `to_dict()` of body
         if self.body:
             _dict['body'] = self.body.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of footer
+        # override the default output from pydantic.v1 by calling `to_dict()` of footer
         if self.footer:
             _dict['footer'] = self.footer.to_dict()
         return _dict

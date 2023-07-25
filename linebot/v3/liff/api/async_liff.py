@@ -16,11 +16,11 @@ import re  # noqa: F401
 import io
 import warnings
 
-from pydantic import validate_arguments, ValidationError
+from pydantic.v1 import validate_arguments, ValidationError
 from typing_extensions import Annotated
 from typing import overload, Optional, Union, Awaitable
 
-from pydantic import Field, StrictStr
+from pydantic.v1 import Field, StrictStr
 
 from linebot.v3.liff.models.add_liff_app_request import AddLiffAppRequest
 from linebot.v3.liff.models.add_liff_app_response import AddLiffAppResponse

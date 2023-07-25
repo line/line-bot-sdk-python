@@ -19,7 +19,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictStr, conlist
+from pydantic.v1 import BaseModel, Field, StrictStr, conlist
 from linebot.v3.module.models.module_bot import ModuleBot
 
 class GetModulesResponse(BaseModel):
@@ -56,7 +56,7 @@ class GetModulesResponse(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of each item in bots (list)
+        # override the default output from pydantic.v1 by calling `to_dict()` of each item in bots (list)
         _items = []
         if self.bots:
             for _item in self.bots:

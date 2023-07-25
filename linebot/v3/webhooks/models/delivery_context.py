@@ -19,7 +19,7 @@ import json
 
 
 
-from pydantic import BaseModel, Field, StrictBool
+from pydantic.v1 import BaseModel, Field, StrictBool
 
 class DeliveryContext(BaseModel):
     """

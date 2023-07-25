@@ -19,7 +19,7 @@ import json
 
 
 
-from pydantic import BaseModel, Field, StrictStr, validator
+from pydantic.v1 import BaseModel, Field, StrictStr, validator
 from linebot.v3.webhooks.models.module_content import ModuleContent
 
 class DetachedModuleContent(ModuleContent):

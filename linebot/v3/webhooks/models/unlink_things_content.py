@@ -19,7 +19,7 @@ import json
 
 
 
-from pydantic import BaseModel, Field, StrictStr
+from pydantic.v1 import BaseModel, Field, StrictStr
 from linebot.v3.webhooks.models.things_content import ThingsContent
 
 class UnlinkThingsContent(ThingsContent):

@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, StrictStr
+from pydantic.v1 import BaseModel, StrictStr
 from linebot.v3.messaging.models.imagemap_action import ImagemapAction
 from linebot.v3.messaging.models.imagemap_area import ImagemapArea
 
@@ -57,7 +57,7 @@ class MessageImagemapAction(ImagemapAction):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of area
+        # override the default output from pydantic.v1 by calling `to_dict()` of area
         if self.area:
             _dict['area'] = self.area.to_dict()
         return _dict

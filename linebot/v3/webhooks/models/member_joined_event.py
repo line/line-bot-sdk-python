@@ -19,7 +19,7 @@ import json
 
 
 
-from pydantic import BaseModel, Field, StrictStr
+from pydantic.v1 import BaseModel, Field, StrictStr
 from linebot.v3.webhooks.models.delivery_context import DeliveryContext
 from linebot.v3.webhooks.models.event import Event
 from linebot.v3.webhooks.models.event_mode import EventMode
@@ -60,13 +60,13 @@ class MemberJoinedEvent(Event):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of source
+        # override the default output from pydantic.v1 by calling `to_dict()` of source
         if self.source:
             _dict['source'] = self.source.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of delivery_context
+        # override the default output from pydantic.v1 by calling `to_dict()` of delivery_context
         if self.delivery_context:
             _dict['deliveryContext'] = self.delivery_context.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of joined
+        # override the default output from pydantic.v1 by calling `to_dict()` of joined
         if self.joined:
             _dict['joined'] = self.joined.to_dict()
         return _dict

@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictStr
+from pydantic.v1 import BaseModel, Field, StrictStr
 from linebot.v3.messaging.models.action import Action
 from linebot.v3.messaging.models.alt_uri import AltUri
 
@@ -57,7 +57,7 @@ class URIAction(Action):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of alt_uri
+        # override the default output from pydantic.v1 by calling `to_dict()` of alt_uri
         if self.alt_uri:
             _dict['altUri'] = self.alt_uri.to_dict()
         return _dict

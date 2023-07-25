@@ -20,7 +20,7 @@ import linebot.v3.webhooks.models
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictStr
+from pydantic.v1 import BaseModel, Field, StrictStr
 
 class MessageContent(BaseModel):
     """

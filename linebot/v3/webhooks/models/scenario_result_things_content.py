@@ -19,7 +19,7 @@ import json
 
 
 
-from pydantic import BaseModel, Field, StrictStr
+from pydantic.v1 import BaseModel, Field, StrictStr
 from linebot.v3.webhooks.models.scenario_result import ScenarioResult
 from linebot.v3.webhooks.models.things_content import ThingsContent
 
@@ -57,7 +57,7 @@ class ScenarioResultThingsContent(ThingsContent):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of result
+        # override the default output from pydantic.v1 by calling `to_dict()` of result
         if self.result:
             _dict['result'] = self.result.to_dict()
         return _dict

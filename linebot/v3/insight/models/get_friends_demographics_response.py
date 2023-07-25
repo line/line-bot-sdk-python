@@ -19,7 +19,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictBool, conlist
+from pydantic.v1 import BaseModel, Field, StrictBool, conlist
 from linebot.v3.insight.models.age_tile import AgeTile
 from linebot.v3.insight.models.app_type_tile import AppTypeTile
 from linebot.v3.insight.models.area_tile import AreaTile
@@ -64,35 +64,35 @@ class GetFriendsDemographicsResponse(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of each item in genders (list)
+        # override the default output from pydantic.v1 by calling `to_dict()` of each item in genders (list)
         _items = []
         if self.genders:
             for _item in self.genders:
                 if _item:
                     _items.append(_item.to_dict())
             _dict['genders'] = _items
-        # override the default output from pydantic by calling `to_dict()` of each item in ages (list)
+        # override the default output from pydantic.v1 by calling `to_dict()` of each item in ages (list)
         _items = []
         if self.ages:
             for _item in self.ages:
                 if _item:
                     _items.append(_item.to_dict())
             _dict['ages'] = _items
-        # override the default output from pydantic by calling `to_dict()` of each item in areas (list)
+        # override the default output from pydantic.v1 by calling `to_dict()` of each item in areas (list)
         _items = []
         if self.areas:
             for _item in self.areas:
                 if _item:
                     _items.append(_item.to_dict())
             _dict['areas'] = _items
-        # override the default output from pydantic by calling `to_dict()` of each item in app_types (list)
+        # override the default output from pydantic.v1 by calling `to_dict()` of each item in app_types (list)
         _items = []
         if self.app_types:
             for _item in self.app_types:
                 if _item:
                     _items.append(_item.to_dict())
             _dict['appTypes'] = _items
-        # override the default output from pydantic by calling `to_dict()` of each item in subscription_periods (list)
+        # override the default output from pydantic.v1 by calling `to_dict()` of each item in subscription_periods (list)
         _items = []
         if self.subscription_periods:
             for _item in self.subscription_periods:

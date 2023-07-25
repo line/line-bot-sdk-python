@@ -15,10 +15,10 @@
 import re  # noqa: F401
 import io
 
-from pydantic import validate_arguments, ValidationError
+from pydantic.v1 import validate_arguments, ValidationError
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictBytes, StrictStr
+from pydantic.v1 import Field, StrictBytes, StrictStr
 
 from typing import Optional, Union
 

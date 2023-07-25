@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, StrictStr
+from pydantic.v1 import BaseModel, StrictStr
 from linebot.v3.messaging.models.action import Action
 
 class MessageAction(Action):

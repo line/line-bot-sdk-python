@@ -10,7 +10,7 @@ import {{{modelPackage}}}
 
 {{#vendorExtensions.x-py-datetime-imports}}{{#-first}}from datetime import{{/-first}} {{{.}}}{{^-last}},{{/-last}}{{/vendorExtensions.x-py-datetime-imports}}
 {{#vendorExtensions.x-py-typing-imports}}{{#-first}}from typing import{{/-first}} {{{.}}}{{^-last}},{{/-last}}{{/vendorExtensions.x-py-typing-imports}}
-{{#vendorExtensions.x-py-pydantic-imports}}{{#-first}}from pydantic import{{/-first}} {{{.}}}{{^-last}},{{/-last}}{{/vendorExtensions.x-py-pydantic-imports}}
+{{#vendorExtensions.x-py-pydantic-imports}}{{#-first}}from pydantic.v1 import{{/-first}} {{{.}}}{{^-last}},{{/-last}}{{/vendorExtensions.x-py-pydantic-imports}}
 {{#vendorExtensions.x-py-model-imports}}
 {{{.}}}
 {{/vendorExtensions.x-py-model-imports}}
@@ -147,7 +147,7 @@ class {{classname}}({{#parent}}{{{.}}}{{/parent}}{{^parent}}BaseModel{{/parent}}
         {{#isArray}}
         {{^items.isPrimitiveType}}
         {{^items.isEnumOrRef}}
-        # override the default output from pydantic by calling `to_dict()` of each item in {{{name}}} (list)
+        # override the default output from pydantic.v1 by calling `to_dict()` of each item in {{{name}}} (list)
         _items = []
         if self.{{{name}}}:
             for _item in self.{{{name}}}:
@@ -160,7 +160,7 @@ class {{classname}}({{#parent}}{{{.}}}{{/parent}}{{^parent}}BaseModel{{/parent}}
         {{#isMap}}
         {{^items.isPrimitiveType}}
         {{^items.isEnumOrRef}}
-        # override the default output from pydantic by calling `to_dict()` of each value in {{{name}}} (dict)
+        # override the default output from pydantic.v1 by calling `to_dict()` of each value in {{{name}}} (dict)
         _field_dict = {}
         if self.{{{name}}}:
             for _key in self.{{{name}}}:
@@ -174,7 +174,7 @@ class {{classname}}({{#parent}}{{{.}}}{{/parent}}{{^parent}}BaseModel{{/parent}}
         {{^isContainer}}
         {{^isPrimitiveType}}
         {{^isEnumOrRef}}
-        # override the default output from pydantic by calling `to_dict()` of {{{name}}}
+        # override the default output from pydantic.v1 by calling `to_dict()` of {{{name}}}
         if self.{{{name}}}:
             _dict['{{{baseName}}}'] = self.{{{name}}}.to_dict()
         {{/isEnumOrRef}}

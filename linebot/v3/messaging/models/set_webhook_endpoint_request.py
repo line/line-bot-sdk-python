@@ -19,7 +19,7 @@ import json
 
 
 
-from pydantic import BaseModel, Field, constr
+from pydantic.v1 import BaseModel, Field, constr
 
 class SetWebhookEndpointRequest(BaseModel):
     """

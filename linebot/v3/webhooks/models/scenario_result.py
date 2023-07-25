@@ -19,7 +19,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictInt, StrictStr, conlist
+from pydantic.v1 import BaseModel, Field, StrictInt, StrictStr, conlist
 from linebot.v3.webhooks.models.action_result import ActionResult
 
 class ScenarioResult(BaseModel):
@@ -62,7 +62,7 @@ class ScenarioResult(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of each item in action_results (list)
+        # override the default output from pydantic.v1 by calling `to_dict()` of each item in action_results (list)
         _items = []
         if self.action_results:
             for _item in self.action_results:

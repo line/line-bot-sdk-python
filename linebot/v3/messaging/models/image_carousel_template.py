@@ -19,7 +19,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, conlist
+from pydantic.v1 import BaseModel, conlist
 from linebot.v3.messaging.models.image_carousel_column import ImageCarouselColumn
 from linebot.v3.messaging.models.template import Template
 
@@ -56,7 +56,7 @@ class ImageCarouselTemplate(Template):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of each item in columns (list)
+        # override the default output from pydantic.v1 by calling `to_dict()` of each item in columns (list)
         _items = []
         if self.columns:
             for _item in self.columns:

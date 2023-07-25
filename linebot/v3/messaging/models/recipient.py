@@ -20,7 +20,7 @@ import linebot.v3.messaging.models
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictStr
+from pydantic.v1 import BaseModel, Field, StrictStr
 
 class Recipient(BaseModel):
     """

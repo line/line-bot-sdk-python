@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictInt
+from pydantic.v1 import BaseModel, Field, StrictInt
 from linebot.v3.messaging.models.quota_type import QuotaType
 
 class MessageQuotaResponse(BaseModel):

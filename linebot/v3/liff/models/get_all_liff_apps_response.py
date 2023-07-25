@@ -19,7 +19,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, conlist
+from pydantic.v1 import BaseModel, conlist
 from linebot.v3.liff.models.liff_app import LiffApp
 
 class GetAllLiffAppsResponse(BaseModel):
@@ -54,7 +54,7 @@ class GetAllLiffAppsResponse(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of each item in apps (list)
+        # override the default output from pydantic.v1 by calling `to_dict()` of each item in apps (list)
         _items = []
         if self.apps:
             for _item in self.apps:

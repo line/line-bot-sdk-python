@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictStr
+from pydantic.v1 import BaseModel, Field, StrictStr
 from linebot.v3.messaging.models.action import Action
 from linebot.v3.messaging.models.flex_component import FlexComponent
 
@@ -60,10 +60,10 @@ class FlexVideo(FlexComponent):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of alt_content
+        # override the default output from pydantic.v1 by calling `to_dict()` of alt_content
         if self.alt_content:
             _dict['altContent'] = self.alt_content.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of action
+        # override the default output from pydantic.v1 by calling `to_dict()` of action
         if self.action:
             _dict['action'] = self.action.to_dict()
         return _dict

@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel
+from pydantic.v1 import BaseModel
 from linebot.v3.messaging.models.demographic_filter import DemographicFilter
 
 class Filter(BaseModel):
@@ -54,7 +54,7 @@ class Filter(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of demographic
+        # override the default output from pydantic.v1 by calling `to_dict()` of demographic
         if self.demographic:
             _dict['demographic'] = self.demographic.to_dict()
         return _dict

@@ -19,7 +19,7 @@ import json
 
 
 
-from pydantic import BaseModel
+from pydantic.v1 import BaseModel
 from linebot.v3.messaging.models.action import Action
 
 class CameraAction(Action):

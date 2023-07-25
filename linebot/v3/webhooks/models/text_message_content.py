@@ -19,7 +19,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictStr, conlist
+from pydantic.v1 import BaseModel, Field, StrictStr, conlist
 from linebot.v3.webhooks.models.emoji import Emoji
 from linebot.v3.webhooks.models.mention import Mention
 from linebot.v3.webhooks.models.message_content import MessageContent
@@ -60,14 +60,14 @@ class TextMessageContent(MessageContent):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of each item in emojis (list)
+        # override the default output from pydantic.v1 by calling `to_dict()` of each item in emojis (list)
         _items = []
         if self.emojis:
             for _item in self.emojis:
                 if _item:
                     _items.append(_item.to_dict())
             _dict['emojis'] = _items
-        # override the default output from pydantic by calling `to_dict()` of mention
+        # override the default output from pydantic.v1 by calling `to_dict()` of mention
         if self.mention:
             _dict['mention'] = self.mention.to_dict()
         return _dict

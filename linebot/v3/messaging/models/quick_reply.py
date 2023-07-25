@@ -19,7 +19,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, conlist
+from pydantic.v1 import BaseModel, Field, conlist
 from linebot.v3.messaging.models.quick_reply_item import QuickReplyItem
 
 class QuickReply(BaseModel):
@@ -55,7 +55,7 @@ class QuickReply(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of each item in items (list)
+        # override the default output from pydantic.v1 by calling `to_dict()` of each item in items (list)
         _items = []
         if self.items:
             for _item in self.items:

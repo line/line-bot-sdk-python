@@ -19,7 +19,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictStr, conlist
+from pydantic.v1 import BaseModel, Field, StrictStr, conlist
 from linebot.v3.messaging.models.imagemap_action import ImagemapAction
 from linebot.v3.messaging.models.imagemap_base_size import ImagemapBaseSize
 from linebot.v3.messaging.models.imagemap_video import ImagemapVideo
@@ -65,23 +65,23 @@ class ImagemapMessage(Message):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of quick_reply
+        # override the default output from pydantic.v1 by calling `to_dict()` of quick_reply
         if self.quick_reply:
             _dict['quickReply'] = self.quick_reply.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of sender
+        # override the default output from pydantic.v1 by calling `to_dict()` of sender
         if self.sender:
             _dict['sender'] = self.sender.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of base_size
+        # override the default output from pydantic.v1 by calling `to_dict()` of base_size
         if self.base_size:
             _dict['baseSize'] = self.base_size.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of each item in actions (list)
+        # override the default output from pydantic.v1 by calling `to_dict()` of each item in actions (list)
         _items = []
         if self.actions:
             for _item in self.actions:
                 if _item:
                     _items.append(_item.to_dict())
             _dict['actions'] = _items
-        # override the default output from pydantic by calling `to_dict()` of video
+        # override the default output from pydantic.v1 by calling `to_dict()` of video
         if self.video:
             _dict['video'] = self.video.to_dict()
         return _dict

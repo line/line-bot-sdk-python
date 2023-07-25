@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictStr
+from pydantic.v1 import BaseModel, Field, StrictStr
 from linebot.v3.messaging.models.imagemap_area import ImagemapArea
 from linebot.v3.messaging.models.imagemap_external_link import ImagemapExternalLink
 
@@ -58,10 +58,10 @@ class ImagemapVideo(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of area
+        # override the default output from pydantic.v1 by calling `to_dict()` of area
         if self.area:
             _dict['area'] = self.area.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of external_link
+        # override the default output from pydantic.v1 by calling `to_dict()` of external_link
         if self.external_link:
             _dict['externalLink'] = self.external_link.to_dict()
         return _dict

@@ -19,7 +19,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, conlist
+from pydantic.v1 import BaseModel, Field, conlist
 from linebot.v3.messaging.models.demographic_filter import DemographicFilter
 
 class OperatorDemographicFilter(DemographicFilter):
@@ -57,21 +57,21 @@ class OperatorDemographicFilter(DemographicFilter):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic by calling `to_dict()` of each item in var_and (list)
+        # override the default output from pydantic.v1 by calling `to_dict()` of each item in var_and (list)
         _items = []
         if self.var_and:
             for _item in self.var_and:
                 if _item:
                     _items.append(_item.to_dict())
             _dict['and'] = _items
-        # override the default output from pydantic by calling `to_dict()` of each item in var_or (list)
+        # override the default output from pydantic.v1 by calling `to_dict()` of each item in var_or (list)
         _items = []
         if self.var_or:
             for _item in self.var_or:
                 if _item:
                     _items.append(_item.to_dict())
             _dict['or'] = _items
-        # override the default output from pydantic by calling `to_dict()` of var_not
+        # override the default output from pydantic.v1 by calling `to_dict()` of var_not
         if self.var_not:
             _dict['not'] = self.var_not.to_dict()
         return _dict

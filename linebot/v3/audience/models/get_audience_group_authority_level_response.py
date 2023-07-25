@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field
+from pydantic.v1 import BaseModel, Field
 from linebot.v3.audience.models.audience_group_authority_level import AudienceGroupAuthorityLevel
 
 class GetAudienceGroupAuthorityLevelResponse(BaseModel):

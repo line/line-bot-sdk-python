@@ -39,6 +39,8 @@ class AudienceGroupType(str, Enum):
     VIDEO_VIEW = 'VIDEO_VIEW'
     WEBTRAFFIC = 'WEBTRAFFIC'
     IMAGE_CLICK = 'IMAGE_CLICK'
+    RICHMENU_IMP = 'RICHMENU_IMP'
+    RICHMENU_CLICK = 'RICHMENU_CLICK'
 
     @classmethod
     def from_json(cls, json_str: str) -> AudienceGroupType:

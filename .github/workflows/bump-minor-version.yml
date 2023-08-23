@@ -33,6 +33,6 @@ jobs:
           git commit -m "Bump version to $VERSION"
 
           git push origin bump-version-to-$VERSION
-          gh pr create -B ${{ github.ref_name }} --title "Bump version to $VERSION" --body "" --label "auto-generated-code"
+          gh pr create -B ${{ github.ref_name }} --title "Bump version to $VERSION" --body "" --label "line-openapi-update"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

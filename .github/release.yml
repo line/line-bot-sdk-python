@@ -14,6 +14,8 @@ changelog:
       labels:
         - bug-fix
     - title: Dependency updates
+      labels:
+        - dependency upgrade
       exclude:
         labels:
           - line-openapi-update

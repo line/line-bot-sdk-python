@@ -19,7 +19,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic.v1 import BaseModel, Field, StrictStr, conlist, constr, validator
+from pydantic.v1 import Field, StrictStr, conlist, constr, validator
 from linebot.v3.webhooks.models.message_content import MessageContent
 
 class StickerMessageContent(MessageContent):

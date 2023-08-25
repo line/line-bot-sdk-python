@@ -406,7 +406,7 @@ public class PythonNextgenCustomClientGenerator extends AbstractPythonCodegen im
             Schema inner = ap.getItems();
             return getSchemaType(p) + "[" + getTypeDeclaration(inner) + "]";
         } else if (ModelUtils.isMapSchema(p)) {
-            Schema inner = getAdditionalProperties(p);
+            Schema inner = ModelUtils.getAdditionalProperties(p);
 
             return getSchemaType(p) + "[str, " + getTypeDeclaration(inner) + "]";
         }
@@ -1549,7 +1549,7 @@ public class PythonNextgenCustomClientGenerator extends AbstractPythonCodegen im
 
     @Override
     protected void addAdditionPropertiesToCodeGenModel(CodegenModel codegenModel, Schema schema) {
-        final Schema additionalProperties = getAdditionalProperties(schema);
+        final Schema additionalProperties = ModelUtils.getAdditionalProperties(schema);
 
         if (additionalProperties != null) {
             codegenModel.additionalPropertiesType = getSchemaType(additionalProperties);

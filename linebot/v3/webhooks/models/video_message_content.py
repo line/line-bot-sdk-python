@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic.v1 import BaseModel, Field, StrictInt, StrictStr
+from pydantic.v1 import Field, StrictInt, StrictStr
 from linebot.v3.webhooks.models.content_provider import ContentProvider
 from linebot.v3.webhooks.models.message_content import MessageContent
 

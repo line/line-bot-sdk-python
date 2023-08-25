@@ -1305,7 +1305,7 @@ class ManageAudience(object):
             _query_params.append(('description', _params['description']))
 
         if _params.get('status') is not None:  # noqa: E501
-            _query_params.append(('status', _params['status']))
+            _query_params.append(('status', _params['status'].value))
 
         if _params.get('size') is not None:  # noqa: E501
             _query_params.append(('size', _params['size']))
@@ -1314,7 +1314,7 @@ class ManageAudience(object):
             _query_params.append(('includesExternalPublicGroups', _params['includes_external_public_groups']))
 
         if _params.get('create_route') is not None:  # noqa: E501
-            _query_params.append(('createRoute', _params['create_route']))
+            _query_params.append(('createRoute', _params['create_route'].value))
 
         # process the header parameters
         _header_params = dict(_params.get('_headers', {}))

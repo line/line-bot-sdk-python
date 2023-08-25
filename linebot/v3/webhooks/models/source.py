@@ -19,7 +19,7 @@ import json
 import linebot.v3.webhooks.models
 
 
-from typing import Optional
+from typing import Optional, Union
 from pydantic.v1 import BaseModel, Field, StrictStr
 
 class Source(BaseModel):

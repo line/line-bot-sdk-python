@@ -19,7 +19,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic.v1 import BaseModel, conlist
+from pydantic.v1 import conlist
 from linebot.v3.messaging.models.flex_bubble import FlexBubble
 from linebot.v3.messaging.models.flex_container import FlexContainer
 

@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic.v1 import BaseModel, Field, StrictBool, StrictStr, validator
+from pydantic.v1 import Field, StrictBool, StrictStr, validator
 from linebot.v3.messaging.models.flex_component import FlexComponent
 
 class FlexIcon(FlexComponent):

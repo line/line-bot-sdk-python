@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic.v1 import BaseModel
+
 from linebot.v3.messaging.models.demographic_filter import DemographicFilter
 from linebot.v3.messaging.models.subscription_period_demographic import SubscriptionPeriodDemographic
 

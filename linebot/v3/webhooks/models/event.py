@@ -19,7 +19,7 @@ import json
 import linebot.v3.webhooks.models
 
 
-from typing import Optional
+from typing import Optional, Union
 from pydantic.v1 import BaseModel, Field, StrictInt, StrictStr
 from linebot.v3.webhooks.models.delivery_context import DeliveryContext
 from linebot.v3.webhooks.models.event_mode import EventMode

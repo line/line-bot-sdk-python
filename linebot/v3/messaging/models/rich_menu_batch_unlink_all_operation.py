@@ -19,7 +19,7 @@ import json
 
 
 
-from pydantic.v1 import BaseModel
+
 from linebot.v3.messaging.models.rich_menu_batch_operation import RichMenuBatchOperation
 
 class RichMenuBatchUnlinkAllOperation(RichMenuBatchOperation):

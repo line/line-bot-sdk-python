@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic.v1 import BaseModel, StrictStr, validator
+from pydantic.v1 import StrictStr, validator
 from linebot.v3.messaging.models.action import Action
 from linebot.v3.messaging.models.flex_box import FlexBox
 from linebot.v3.messaging.models.flex_bubble_styles import FlexBubbleStyles

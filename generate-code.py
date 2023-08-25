@@ -1,9 +1,22 @@
 import os
 import subprocess
+import sys
 
 def run_command(command):
-    output = subprocess.check_output(command, shell=True)
-    return output.decode('utf-8').strip()
+    proc = subprocess.run(command, shell=True, text=True, capture_output=True)
+
+    if len(proc.stderr) != 0:
+        print("\n\nSTDERR:\n\n")
+        print(proc.stderr)
+        print("\n\n")
+
+    if proc.returncode != 0:
+        print("\n\nSTDOUT:\n\n")
+        print(proc.stdout)
+        print(f"\n\nCommand '{command}' returned non-zero exit status {proc.returncode}.")
+        sys.exit(1)
+
+    return proc.stdout.strip()
 
 
 def rewrite_liff_function_name_backward_compats():

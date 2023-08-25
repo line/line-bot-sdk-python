@@ -7,5 +7,12 @@
   "platformAutomerge": true,
   "git-submodules": {
     "enabled": true
-  }
+  },
+  "labels": [ "dependency upgrade" ],
+  "packageRules": [
+    {
+      "matchPackagePatterns": ["^line-openapi$"],
+      "labels": ["dependency upgrade", "line-openapi-update"]
+    }
+  ]
 }

@@ -1,0 +1,24 @@
+# https://docs.github.com/en/repositories/releasing-projects-on-github/automatically-generated-release-notes
+changelog:
+  categories:
+    - title: Breaking Changes
+      labels:
+        - breaking-change
+    - title: line-openapi updates
+      labels:
+        - line-openapi-update
+    - title: New Features
+      labels:
+        - new-features
+    - title: Bug fix
+      labels:
+        - bug-fix
+    - title: Dependency updates
+      labels:
+        - dependency upgrade
+      exclude:
+        labels:
+          - line-openapi-update
+    - title: Other Changes
+      labels:
+        - "*"

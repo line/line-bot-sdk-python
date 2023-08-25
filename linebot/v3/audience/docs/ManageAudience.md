@@ -610,7 +610,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_audience_groups**
-> GetAudienceGroupsResponse get_audience_groups(page, description, status, size, includes_external_public_groups, create_route)
+> GetAudienceGroupsResponse get_audience_groups(page, description=description, status=status, size=size, includes_external_public_groups=includes_external_public_groups, create_route=create_route)
 
 
 
@@ -650,14 +650,14 @@ with linebot.v3.audience.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = linebot.v3.audience.ManageAudience(api_client)
     page = 56 # int | The page to return when getting (paginated) results. Must be 1 or higher.
-    description = 'description_example' # str | The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion. 
-    status = linebot.v3.audience.AudienceGroupStatus() # AudienceGroupStatus | The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion. 
-    size = 20 # int | The number of audiences per page. Default: 20 Max: 40 
-    includes_external_public_groups = true # bool | true (default): Get public audiences created in all channels linked to the same bot. false: Get audiences created in the same channel. 
-    create_route = linebot.v3.audience.AudienceGroupCreateRoute() # AudienceGroupCreateRoute | How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API. 
+    description = 'description_example' # str | The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion.  (optional)
+    status = linebot.v3.audience.AudienceGroupStatus() # AudienceGroupStatus | The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion.  (optional)
+    size = 20 # int | The number of audiences per page. Default: 20 Max: 40  (optional)
+    includes_external_public_groups = true # bool | true (default): Get public audiences created in all channels linked to the same bot. false: Get audiences created in the same channel.  (optional)
+    create_route = linebot.v3.audience.AudienceGroupCreateRoute() # AudienceGroupCreateRoute | How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API.  (optional)
 
     try:
-        api_response = api_instance.get_audience_groups(page, description, status, size, includes_external_public_groups, create_route)
+        api_response = api_instance.get_audience_groups(page, description=description, status=status, size=size, includes_external_public_groups=includes_external_public_groups, create_route=create_route)
         print("The response of ManageAudience->get_audience_groups:\n")
         pprint(api_response)
     except Exception as e:
@@ -670,11 +670,11 @@ with linebot.v3.audience.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **page** | **int**| The page to return when getting (paginated) results. Must be 1 or higher. | 
- **description** | **str**| The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion.  | 
- **status** | [**AudienceGroupStatus**](.md)| The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion.  | 
- **size** | **int**| The number of audiences per page. Default: 20 Max: 40  | 
- **includes_external_public_groups** | **bool**| true (default): Get public audiences created in all channels linked to the same bot. false: Get audiences created in the same channel.  | 
- **create_route** | [**AudienceGroupCreateRoute**](.md)| How the audience was created. If omitted, all audiences are included.  &#x60;OA_MANAGER&#x60;: Return only audiences created with LINE Official Account Manager (opens new window). &#x60;MESSAGING_API&#x60;: Return only audiences created with Messaging API.  | 
+ **description** | **str**| The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion.  | [optional] 
+ **status** | [**AudienceGroupStatus**](.md)| The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion.  | [optional] 
+ **size** | **int**| The number of audiences per page. Default: 20 Max: 40  | [optional] 
+ **includes_external_public_groups** | **bool**| true (default): Get public audiences created in all channels linked to the same bot. false: Get audiences created in the same channel.  | [optional] 
+ **create_route** | [**AudienceGroupCreateRoute**](.md)| How the audience was created. If omitted, all audiences are included.  &#x60;OA_MANAGER&#x60;: Return only audiences created with LINE Official Account Manager (opens new window). &#x60;MESSAGING_API&#x60;: Return only audiences created with Messaging API.  | [optional] 
 
 ### Return type
 

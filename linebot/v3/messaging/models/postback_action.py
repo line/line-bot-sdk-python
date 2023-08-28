@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic.v1 import BaseModel, Field, StrictStr, constr, validator
+from pydantic.v1 import Field, StrictStr, constr, validator
 from linebot.v3.messaging.models.action import Action
 
 class PostbackAction(Action):

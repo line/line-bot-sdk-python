@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional, Union
-from pydantic.v1 import BaseModel, Field, StrictFloat, StrictInt, StrictStr
+from pydantic.v1 import Field, StrictFloat, StrictInt, StrictStr
 from linebot.v3.webhooks.models.message_content import MessageContent
 
 class LocationMessageContent(MessageContent):

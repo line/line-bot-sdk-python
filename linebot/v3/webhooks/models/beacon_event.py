@@ -19,7 +19,7 @@ import json
 
 
 
-from pydantic.v1 import BaseModel, Field, StrictStr
+from pydantic.v1 import Field, StrictStr
 from linebot.v3.webhooks.models.beacon_content import BeaconContent
 from linebot.v3.webhooks.models.delivery_context import DeliveryContext
 from linebot.v3.webhooks.models.event import Event

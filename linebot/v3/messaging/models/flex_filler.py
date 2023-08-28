@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic.v1 import BaseModel, StrictInt
+from pydantic.v1 import StrictInt
 from linebot.v3.messaging.models.flex_component import FlexComponent
 
 class FlexFiller(FlexComponent):

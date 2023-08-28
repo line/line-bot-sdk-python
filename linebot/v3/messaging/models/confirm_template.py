@@ -19,7 +19,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic.v1 import BaseModel, StrictStr, conlist
+from pydantic.v1 import StrictStr, conlist
 from linebot.v3.messaging.models.action import Action
 from linebot.v3.messaging.models.template import Template
 

@@ -19,7 +19,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic.v1 import BaseModel, Field, conlist
+from pydantic.v1 import Field, conlist
 from linebot.v3.messaging.models.recipient import Recipient
 
 class OperatorRecipient(Recipient):

@@ -19,7 +19,7 @@ import json
 
 
 
-from pydantic.v1 import BaseModel
+
 from linebot.v3.webhooks.models.mentionee import Mentionee
 
 class AllMentionee(Mentionee):

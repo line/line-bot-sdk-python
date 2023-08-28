@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic.v1 import BaseModel, StrictStr, constr, validator
+from pydantic.v1 import StrictStr, constr, validator
 from linebot.v3.messaging.models.action import Action
 
 class DatetimePickerAction(Action):

@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic.v1 import BaseModel, Field, StrictStr
+from pydantic.v1 import Field, StrictStr
 from linebot.v3.messaging.models.imagemap_action import ImagemapAction
 from linebot.v3.messaging.models.imagemap_area import ImagemapArea
 

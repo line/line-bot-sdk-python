@@ -19,7 +19,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic.v1 import BaseModel, Field, conlist
+from pydantic.v1 import Field, conlist
 from linebot.v3.messaging.models.app_type_demographic import AppTypeDemographic
 from linebot.v3.messaging.models.demographic_filter import DemographicFilter
 

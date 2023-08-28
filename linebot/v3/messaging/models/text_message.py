@@ -19,7 +19,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic.v1 import BaseModel, StrictStr, conlist
+from pydantic.v1 import StrictStr, conlist
 from linebot.v3.messaging.models.emoji import Emoji
 from linebot.v3.messaging.models.message import Message
 from linebot.v3.messaging.models.quick_reply import QuickReply

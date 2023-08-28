@@ -19,7 +19,7 @@ import json
 
 
 
-from pydantic.v1 import BaseModel
+
 from linebot.v3.webhooks.models.delivery_context import DeliveryContext
 from linebot.v3.webhooks.models.event import Event
 from linebot.v3.webhooks.models.event_mode import EventMode

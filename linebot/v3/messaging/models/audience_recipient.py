@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic.v1 import BaseModel, Field, StrictInt
+from pydantic.v1 import Field, StrictInt
 from linebot.v3.messaging.models.recipient import Recipient
 
 class AudienceRecipient(Recipient):

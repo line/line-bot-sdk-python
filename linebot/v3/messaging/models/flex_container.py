@@ -19,7 +19,7 @@ import json
 import linebot.v3.messaging.models
 
 
-
+from typing import Union
 from pydantic.v1 import BaseModel, Field, StrictStr
 
 class FlexContainer(BaseModel):

@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional, Union
-from pydantic.v1 import BaseModel, StrictFloat, StrictInt, StrictStr
+from pydantic.v1 import StrictFloat, StrictInt, StrictStr
 from linebot.v3.messaging.models.message import Message
 from linebot.v3.messaging.models.quick_reply import QuickReply
 from linebot.v3.messaging.models.sender import Sender

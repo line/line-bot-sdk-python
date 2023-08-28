@@ -19,7 +19,7 @@ import json
 
 
 
-from pydantic.v1 import BaseModel, Field
+from pydantic.v1 import Field
 from linebot.v3.webhooks.models.chat_control import ChatControl
 from linebot.v3.webhooks.models.delivery_context import DeliveryContext
 from linebot.v3.webhooks.models.event import Event

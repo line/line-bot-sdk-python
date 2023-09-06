@@ -21,13 +21,13 @@ import json
 
 from pydantic.v1 import BaseModel, Field, StrictInt, StrictStr
 
-class IssueShortLivedChannelAccessTokenResponse(BaseModel):
+class IssueStatelessChannelAccessTokenResponse(BaseModel):
     """
-    Issued short-lived channel access token
-    https://developers.line.biz/en/reference/messaging-api/#issue-shortlived-channel-access-token
+    Issued stateless channel access token
+    https://developers.line.biz/en/reference/messaging-api/#issue-stateless-channel-access-token
     """
-    access_token: StrictStr = Field(..., description="A short-lived channel access token. Valid for 30 days. Note: Channel access tokens cannot be refreshed. ")
-    expires_in: StrictInt = Field(..., description="Time until channel access token expires in seconds from time the token is issued.")
+    access_token: StrictStr = Field(..., description="A stateless channel access token. The token is an opaque string which means its format is an implementation detail and the consumer of this token should never try to use the data parsed from the token. ")
+    expires_in: StrictInt = Field(..., description="Duration in seconds after which the issued access token expires")
     token_type: StrictStr = Field(..., description="Token type. The value is always `Bearer`.")
 
     __properties = ["access_token", "expires_in", "token_type"]
@@ -46,8 +46,8 @@ class IssueShortLivedChannelAccessTokenResponse(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> IssueShortLivedChannelAccessTokenResponse:
-        """Create an instance of IssueShortLivedChannelAccessTokenResponse from a JSON string"""
+    def from_json(cls, json_str: str) -> IssueStatelessChannelAccessTokenResponse:
+        """Create an instance of IssueStatelessChannelAccessTokenResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -59,15 +59,15 @@ class IssueShortLivedChannelAccessTokenResponse(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> IssueShortLivedChannelAccessTokenResponse:
-        """Create an instance of IssueShortLivedChannelAccessTokenResponse from a dict"""
+    def from_dict(cls, obj: dict) -> IssueStatelessChannelAccessTokenResponse:
+        """Create an instance of IssueStatelessChannelAccessTokenResponse from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return IssueShortLivedChannelAccessTokenResponse.parse_obj(obj)
+            return IssueStatelessChannelAccessTokenResponse.parse_obj(obj)
 
-        _obj = IssueShortLivedChannelAccessTokenResponse.parse_obj({
+        _obj = IssueStatelessChannelAccessTokenResponse.parse_obj({
             "access_token": obj.get("access_token"),
             "expires_in": obj.get("expires_in"),
             "token_type": obj.get("token_type") if obj.get("token_type") is not None else 'Bearer'

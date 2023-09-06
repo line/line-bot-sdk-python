@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**gets_all_valid_channel_access_token_key_ids**](ChannelAccessToken.md#gets_all_valid_channel_access_token_key_ids) | **GET** /oauth2/v2.1/tokens/kid | 
 [**issue_channel_token**](ChannelAccessToken.md#issue_channel_token) | **POST** /v2/oauth/accessToken | 
 [**issue_channel_token_by_jwt**](ChannelAccessToken.md#issue_channel_token_by_jwt) | **POST** /oauth2/v2.1/token | 
+[**issue_stateless_channel_token**](ChannelAccessToken.md#issue_stateless_channel_token) | **POST** /oauth2/v3/token | 
 [**revoke_channel_token**](ChannelAccessToken.md#revoke_channel_token) | **POST** /v2/oauth/revoke | 
 [**revoke_channel_token_by_jwt**](ChannelAccessToken.md#revoke_channel_token_by_jwt) | **POST** /oauth2/v2.1/revoke | 
 [**verify_channel_token**](ChannelAccessToken.md#verify_channel_token) | **POST** /v2/oauth/verify | 
@@ -232,6 +233,89 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**IssueChannelAccessTokenResponse**](IssueChannelAccessTokenResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **issue_stateless_channel_token**
+> IssueStatelessChannelAccessTokenResponse issue_stateless_channel_token(grant_type, client_assertion_type, client_assertion, client_id, client_secret)
+
+
+
+Issues a new stateless channel access token, which doesn't have max active token limit unlike the other token types. The newly issued token is only valid for 15 minutes but can not be revoked until it naturally expires. 
+
+### Example
+
+* Bearer Authentication (Bearer):
+```python
+import time
+import os
+import linebot.v3.oauth
+from linebot.v3.oauth.models.issue_stateless_channel_access_token_response import IssueStatelessChannelAccessTokenResponse
+from linebot.v3.oauth.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.line.me
+# See configuration.py for a list of all supported configuration parameters.
+configuration = linebot.v3.oauth.Configuration(
+    host = "https://api.line.me"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: Bearer
+configuration = linebot.v3.oauth.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with linebot.v3.oauth.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = linebot.v3.oauth.ChannelAccessToken(api_client)
+    grant_type = 'grant_type_example' # str | `client_credentials`
+    client_assertion_type = 'client_assertion_type_example' # str | URL-encoded value of `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`
+    client_assertion = 'client_assertion_example' # str | A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key.
+    client_id = 'client_id_example' # str | Channel ID.
+    client_secret = 'client_secret_example' # str | Channel secret.
+
+    try:
+        api_response = api_instance.issue_stateless_channel_token(grant_type, client_assertion_type, client_assertion, client_id, client_secret)
+        print("The response of ChannelAccessToken->issue_stateless_channel_token:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ChannelAccessToken->issue_stateless_channel_token: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **grant_type** | **str**| &#x60;client_credentials&#x60; | 
+ **client_assertion_type** | **str**| URL-encoded value of &#x60;urn:ietf:params:oauth:client-assertion-type:jwt-bearer&#x60; | 
+ **client_assertion** | **str**| A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key. | 
+ **client_id** | **str**| Channel ID. | 
+ **client_secret** | **str**| Channel secret. | 
+
+### Return type
+
+[**IssueStatelessChannelAccessTokenResponse**](IssueStatelessChannelAccessTokenResponse.md)
 
 ### Authorization
 

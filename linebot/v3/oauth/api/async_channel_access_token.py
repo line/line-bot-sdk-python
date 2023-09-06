@@ -27,6 +27,7 @@ from typing import Optional
 from linebot.v3.oauth.models.channel_access_token_key_ids_response import ChannelAccessTokenKeyIdsResponse
 from linebot.v3.oauth.models.issue_channel_access_token_response import IssueChannelAccessTokenResponse
 from linebot.v3.oauth.models.issue_short_lived_channel_access_token_response import IssueShortLivedChannelAccessTokenResponse
+from linebot.v3.oauth.models.issue_stateless_channel_access_token_response import IssueStatelessChannelAccessTokenResponse
 from linebot.v3.oauth.models.verify_channel_access_token_response import VerifyChannelAccessTokenResponse
 
 from linebot.v3.oauth.async_api_client import AsyncApiClient
@@ -536,6 +537,194 @@ class AsyncChannelAccessToken(object):
 
         return self.api_client.call_api(
             '/oauth2/v2.1/token', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @overload
+    async def issue_stateless_channel_token(self, grant_type : Annotated[StrictStr, Field(..., description="`client_credentials`")], client_assertion_type : Annotated[StrictStr, Field(..., description="URL-encoded value of `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`")], client_assertion : Annotated[StrictStr, Field(..., description="A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key.")], client_id : Annotated[StrictStr, Field(..., description="Channel ID.")], client_secret : Annotated[StrictStr, Field(..., description="Channel secret.")], **kwargs) -> IssueStatelessChannelAccessTokenResponse:  # noqa: E501
+        ...
+
+    @overload
+    def issue_stateless_channel_token(self, grant_type : Annotated[StrictStr, Field(..., description="`client_credentials`")], client_assertion_type : Annotated[StrictStr, Field(..., description="URL-encoded value of `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`")], client_assertion : Annotated[StrictStr, Field(..., description="A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key.")], client_id : Annotated[StrictStr, Field(..., description="Channel ID.")], client_secret : Annotated[StrictStr, Field(..., description="Channel secret.")], async_req: Optional[bool]=True, **kwargs) -> IssueStatelessChannelAccessTokenResponse:  # noqa: E501
+        ...
+
+    @validate_arguments
+    def issue_stateless_channel_token(self, grant_type : Annotated[StrictStr, Field(..., description="`client_credentials`")], client_assertion_type : Annotated[StrictStr, Field(..., description="URL-encoded value of `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`")], client_assertion : Annotated[StrictStr, Field(..., description="A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key.")], client_id : Annotated[StrictStr, Field(..., description="Channel ID.")], client_secret : Annotated[StrictStr, Field(..., description="Channel secret.")], async_req: Optional[bool]=None, **kwargs) -> Union[IssueStatelessChannelAccessTokenResponse, Awaitable[IssueStatelessChannelAccessTokenResponse]]:  # noqa: E501
+        """issue_stateless_channel_token  # noqa: E501
+
+        Issues a new stateless channel access token, which doesn't have max active token limit unlike the other token types. The newly issued token is only valid for 15 minutes but can not be revoked until it naturally expires.   # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.issue_stateless_channel_token(grant_type, client_assertion_type, client_assertion, client_id, client_secret, async_req=True)
+        >>> result = thread.get()
+
+        :param grant_type: `client_credentials` (required)
+        :type grant_type: str
+        :param client_assertion_type: URL-encoded value of `urn:ietf:params:oauth:client-assertion-type:jwt-bearer` (required)
+        :type client_assertion_type: str
+        :param client_assertion: A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key. (required)
+        :type client_assertion: str
+        :param client_id: Channel ID. (required)
+        :type client_id: str
+        :param client_secret: Channel secret. (required)
+        :type client_secret: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: IssueStatelessChannelAccessTokenResponse
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the issue_stateless_channel_token_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        if async_req is not None:
+            kwargs['async_req'] = async_req
+        return self.issue_stateless_channel_token_with_http_info(grant_type, client_assertion_type, client_assertion, client_id, client_secret, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def issue_stateless_channel_token_with_http_info(self, grant_type : Annotated[StrictStr, Field(..., description="`client_credentials`")], client_assertion_type : Annotated[StrictStr, Field(..., description="URL-encoded value of `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`")], client_assertion : Annotated[StrictStr, Field(..., description="A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key.")], client_id : Annotated[StrictStr, Field(..., description="Channel ID.")], client_secret : Annotated[StrictStr, Field(..., description="Channel secret.")], **kwargs) -> ApiResponse:  # noqa: E501
+        """issue_stateless_channel_token  # noqa: E501
+
+        Issues a new stateless channel access token, which doesn't have max active token limit unlike the other token types. The newly issued token is only valid for 15 minutes but can not be revoked until it naturally expires.   # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.issue_stateless_channel_token_with_http_info(grant_type, client_assertion_type, client_assertion, client_id, client_secret, async_req=True)
+        >>> result = thread.get()
+
+        :param grant_type: `client_credentials` (required)
+        :type grant_type: str
+        :param client_assertion_type: URL-encoded value of `urn:ietf:params:oauth:client-assertion-type:jwt-bearer` (required)
+        :type client_assertion_type: str
+        :param client_assertion: A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key. (required)
+        :type client_assertion: str
+        :param client_id: Channel ID. (required)
+        :type client_id: str
+        :param client_secret: Channel secret. (required)
+        :type client_secret: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(IssueStatelessChannelAccessTokenResponse, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'grant_type',
+            'client_assertion_type',
+            'client_assertion',
+            'client_id',
+            'client_secret'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method issue_stateless_channel_token" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        if _params['grant_type']:
+            _form_params.append(('grant_type', _params['grant_type']))
+
+        if _params['client_assertion_type']:
+            _form_params.append(('client_assertion_type', _params['client_assertion_type']))
+
+        if _params['client_assertion']:
+            _form_params.append(('client_assertion', _params['client_assertion']))
+
+        if _params['client_id']:
+            _form_params.append(('client_id', _params['client_id']))
+
+        if _params['client_secret']:
+            _form_params.append(('client_secret', _params['client_secret']))
+
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/x-www-form-urlencoded']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['Bearer']  # noqa: E501
+
+        _response_types_map = {
+            '200': "IssueStatelessChannelAccessTokenResponse",
+        }
+
+        return self.api_client.call_api(
+            '/oauth2/v3/token', 'POST',
             _path_params,
             _query_params,
             _header_params,

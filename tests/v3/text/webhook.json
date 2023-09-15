@@ -17,7 +17,8 @@
       "message": {
         "id": "325708",
         "type": "text",
-        "text": "Hello, world"
+        "text": "Hello, world",
+        "quoteToken": "quoteToken"
       }
     },
     {
@@ -40,7 +41,8 @@
           "type": "external",
           "originalContentUrl": "https://example.com",
           "previewImageUrl": "https://example.com"
-        }
+        },
+        "quoteToken": "quoteToken"
       }
     },
     {
@@ -64,7 +66,8 @@
           "type": "external",
           "originalContentUrl": "https://example.com",
           "previewImageUrl": "https://example.com"
-        }
+        },
+        "quoteToken": "quoteToken"
       }
     },
     {
@@ -87,7 +90,8 @@
         "contentProvider": {
           "type": "external",
           "originalContentUrl": "https://example.com"
-        }
+        },
+        "quoteToken": "quoteToken"
       }
     },
     {
@@ -132,7 +136,8 @@
         "stickerId": "1",
         "stickerResourceType": "STATIC",
         "keywords": ["Love You", "Love"],
-        "text": "Just sticker"
+        "text": "Just sticker",
+        "quoteToken": "quoteToken"
       }
     },
     {
@@ -281,7 +286,8 @@
       "message": {
         "id": "325708",
         "type": "text",
-        "text": "Hello, world"
+        "text": "Hello, world",
+        "quoteToken": "quoteToken"
       }
     },
     {
@@ -301,7 +307,8 @@
       "message": {
         "id": "325708",
         "type": "text",
-        "text": "Hello, world"
+        "text": "Hello, world",
+        "quoteToken": "quoteToken"
       }
     },
     {
@@ -552,7 +559,8 @@
           "id": "E005D41A7288F41B655",
           "index": 2,
           "total": 2
-        }
+        },
+        "quoteToken": "quoteToken"
       },
       "timestamp": 1627356924722,
       "source": {
@@ -582,7 +590,8 @@
       "message": {
         "id": "325708",
         "type": "text",
-        "text": "Hello, world"
+        "text": "Hello, world",
+        "quoteToken": "quoteToken"
       }
     },
     {

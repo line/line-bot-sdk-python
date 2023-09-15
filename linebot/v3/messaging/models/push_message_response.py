@@ -18,21 +18,18 @@ import re  # noqa: F401
 import json
 
 
-from typing import List, Optional
-from pydantic.v1 import BaseModel, Field, StrictStr, conlist
-from linebot.v3.messaging.models.error_detail import ErrorDetail
+from typing import List
+from pydantic.v1 import BaseModel, Field, conlist
 from linebot.v3.messaging.models.sent_message import SentMessage
 
-class ErrorResponse(BaseModel):
+class PushMessageResponse(BaseModel):
     """
-    ErrorResponse
-    https://developers.line.biz/en/reference/messaging-api/#error-responses
+    PushMessageResponse
+    https://developers.line.biz/en/reference/messaging-api/#send-push-message-response
     """
-    message: StrictStr = Field(..., description="Message containing information about the error.")
-    details: Optional[conlist(ErrorDetail)] = Field(None, description="An array of error details. If the array is empty, this property will not be included in the response.")
-    sent_messages: Optional[conlist(SentMessage, max_items=5, min_items=1)] = Field(None, alias="sentMessages", description="Array of sent messages.")
+    sent_messages: conlist(SentMessage, max_items=5, min_items=1) = Field(..., alias="sentMessages", description="Array of sent messages.")
 
-    __properties = ["message", "details", "sentMessages"]
+    __properties = ["sentMessages"]
 
     class Config:
         """Pydantic configuration"""
@@ -48,8 +45,8 @@ class ErrorResponse(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> ErrorResponse:
-        """Create an instance of ErrorResponse from a JSON string"""
+    def from_json(cls, json_str: str) -> PushMessageResponse:
+        """Create an instance of PushMessageResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -58,13 +55,6 @@ class ErrorResponse(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic.v1 by calling `to_dict()` of each item in details (list)
-        _items = []
-        if self.details:
-            for _item in self.details:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict['details'] = _items
         # override the default output from pydantic.v1 by calling `to_dict()` of each item in sent_messages (list)
         _items = []
         if self.sent_messages:
@@ -75,17 +65,15 @@ class ErrorResponse(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> ErrorResponse:
-        """Create an instance of ErrorResponse from a dict"""
+    def from_dict(cls, obj: dict) -> PushMessageResponse:
+        """Create an instance of PushMessageResponse from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return ErrorResponse.parse_obj(obj)
+            return PushMessageResponse.parse_obj(obj)
 
-        _obj = ErrorResponse.parse_obj({
-            "message": obj.get("message"),
-            "details": [ErrorDetail.from_dict(_item) for _item in obj.get("details")] if obj.get("details") is not None else None,
+        _obj = PushMessageResponse.parse_obj({
             "sent_messages": [SentMessage.from_dict(_item) for _item in obj.get("sentMessages")] if obj.get("sentMessages") is not None else None
         })
         return _obj

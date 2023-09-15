@@ -31,9 +31,10 @@ class ImageMessageContent(MessageContent):
     id: StrictStr = Field(..., description="Message ID")
     content_provider: ContentProvider = Field(..., alias="contentProvider")
     image_set: Optional[ImageSet] = Field(None, alias="imageSet")
+    quote_token: StrictStr = Field(..., alias="quoteToken", description="Quote token to quote this message. ")
     type: str = "image"
 
-    __properties = ["type", "id", "contentProvider", "imageSet"]
+    __properties = ["type", "id", "contentProvider", "imageSet", "quoteToken"]
 
     class Config:
         """Pydantic configuration"""
@@ -80,7 +81,8 @@ class ImageMessageContent(MessageContent):
             "type": obj.get("type"),
             "id": obj.get("id"),
             "content_provider": ContentProvider.from_dict(obj.get("contentProvider")) if obj.get("contentProvider") is not None else None,
-            "image_set": ImageSet.from_dict(obj.get("imageSet")) if obj.get("imageSet") is not None else None
+            "image_set": ImageSet.from_dict(obj.get("imageSet")) if obj.get("imageSet") is not None else None,
+            "quote_token": obj.get("quoteToken")
         })
         return _obj
 

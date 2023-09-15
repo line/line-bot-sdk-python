@@ -19,7 +19,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic.v1 import StrictStr, conlist
+from pydantic.v1 import Field, StrictStr, conlist
 from linebot.v3.messaging.models.emoji import Emoji
 from linebot.v3.messaging.models.message import Message
 from linebot.v3.messaging.models.quick_reply import QuickReply
@@ -31,9 +31,10 @@ class TextMessage(Message):
     """
     text: Optional[StrictStr] = None
     emojis: Optional[conlist(Emoji)] = None
+    quote_token: Optional[StrictStr] = Field(None, alias="quoteToken", description="Quote token of the message you want to quote.")
     type: str = "text"
 
-    __properties = ["type", "quickReply", "sender", "text", "emojis"]
+    __properties = ["type", "quickReply", "sender", "text", "emojis", "quoteToken"]
 
     class Config:
         """Pydantic configuration"""
@@ -88,7 +89,8 @@ class TextMessage(Message):
             "quick_reply": QuickReply.from_dict(obj.get("quickReply")) if obj.get("quickReply") is not None else None,
             "sender": Sender.from_dict(obj.get("sender")) if obj.get("sender") is not None else None,
             "text": obj.get("text"),
-            "emojis": [Emoji.from_dict(_item) for _item in obj.get("emojis")] if obj.get("emojis") is not None else None
+            "emojis": [Emoji.from_dict(_item) for _item in obj.get("emojis")] if obj.get("emojis") is not None else None,
+            "quote_token": obj.get("quoteToken")
         })
         return _obj
 

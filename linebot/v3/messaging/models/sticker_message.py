@@ -30,9 +30,10 @@ class StickerMessage(Message):
     """
     package_id: Optional[StrictStr] = Field(None, alias="packageId")
     sticker_id: Optional[StrictStr] = Field(None, alias="stickerId")
+    quote_token: Optional[StrictStr] = Field(None, alias="quoteToken", description="Quote token of the message you want to quote.")
     type: str = "sticker"
 
-    __properties = ["type", "quickReply", "sender", "packageId", "stickerId"]
+    __properties = ["type", "quickReply", "sender", "packageId", "stickerId", "quoteToken"]
 
     class Config:
         """Pydantic configuration"""
@@ -80,7 +81,8 @@ class StickerMessage(Message):
             "quick_reply": QuickReply.from_dict(obj.get("quickReply")) if obj.get("quickReply") is not None else None,
             "sender": Sender.from_dict(obj.get("sender")) if obj.get("sender") is not None else None,
             "package_id": obj.get("packageId"),
-            "sticker_id": obj.get("stickerId")
+            "sticker_id": obj.get("stickerId"),
+            "quote_token": obj.get("quoteToken")
         })
         return _obj
 

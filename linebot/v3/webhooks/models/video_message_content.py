@@ -30,9 +30,10 @@ class VideoMessageContent(MessageContent):
     id: StrictStr = Field(..., description="Message ID")
     duration: Optional[StrictInt] = Field(None, description="Length of video file (milliseconds)")
     content_provider: ContentProvider = Field(..., alias="contentProvider")
+    quote_token: StrictStr = Field(..., alias="quoteToken", description="Quote token to quote this message. ")
     type: str = "video"
 
-    __properties = ["type", "id", "duration", "contentProvider"]
+    __properties = ["type", "id", "duration", "contentProvider", "quoteToken"]
 
     class Config:
         """Pydantic configuration"""
@@ -76,7 +77,8 @@ class VideoMessageContent(MessageContent):
             "type": obj.get("type"),
             "id": obj.get("id"),
             "duration": obj.get("duration"),
-            "content_provider": ContentProvider.from_dict(obj.get("contentProvider")) if obj.get("contentProvider") is not None else None
+            "content_provider": ContentProvider.from_dict(obj.get("contentProvider")) if obj.get("contentProvider") is not None else None,
+            "quote_token": obj.get("quoteToken")
         })
         return _obj
 

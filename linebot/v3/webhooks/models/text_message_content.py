@@ -32,9 +32,11 @@ class TextMessageContent(MessageContent):
     text: StrictStr = Field(..., description="Message text.")
     emojis: Optional[conlist(Emoji)] = Field(None, description="Array of one or more LINE emoji objects. Only included in the message event when the text property contains a LINE emoji.")
     mention: Optional[Mention] = None
+    quote_token: StrictStr = Field(..., alias="quoteToken", description="Quote token to quote this message. ")
+    quoted_message_id: Optional[StrictStr] = Field(None, alias="quotedMessageId", description="Message ID of a quoted message. Only included when the received message quotes a past message.")
     type: str = "text"
 
-    __properties = ["type", "id", "text", "emojis", "mention"]
+    __properties = ["type", "id", "text", "emojis", "mention", "quoteToken", "quotedMessageId"]
 
     class Config:
         """Pydantic configuration"""
@@ -86,7 +88,9 @@ class TextMessageContent(MessageContent):
             "id": obj.get("id"),
             "text": obj.get("text"),
             "emojis": [Emoji.from_dict(_item) for _item in obj.get("emojis")] if obj.get("emojis") is not None else None,
-            "mention": Mention.from_dict(obj.get("mention")) if obj.get("mention") is not None else None
+            "mention": Mention.from_dict(obj.get("mention")) if obj.get("mention") is not None else None,
+            "quote_token": obj.get("quoteToken"),
+            "quoted_message_id": obj.get("quotedMessageId")
         })
         return _obj
 

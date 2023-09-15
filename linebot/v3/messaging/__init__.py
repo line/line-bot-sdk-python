@@ -14,7 +14,7 @@
 """
 
 
-__version__ = "3.4.0"
+__version__ = "3.5.0"
 
 # import apis into sdk package
 from linebot.v3.messaging.api.messaging_api import MessagingApi
@@ -120,6 +120,7 @@ from linebot.v3.messaging.models.operator_recipient import OperatorRecipient
 from linebot.v3.messaging.models.pnp_messages_request import PnpMessagesRequest
 from linebot.v3.messaging.models.postback_action import PostbackAction
 from linebot.v3.messaging.models.push_message_request import PushMessageRequest
+from linebot.v3.messaging.models.push_message_response import PushMessageResponse
 from linebot.v3.messaging.models.quick_reply import QuickReply
 from linebot.v3.messaging.models.quick_reply_item import QuickReplyItem
 from linebot.v3.messaging.models.quota_consumption_response import QuotaConsumptionResponse
@@ -127,6 +128,7 @@ from linebot.v3.messaging.models.quota_type import QuotaType
 from linebot.v3.messaging.models.recipient import Recipient
 from linebot.v3.messaging.models.redelivery_recipient import RedeliveryRecipient
 from linebot.v3.messaging.models.reply_message_request import ReplyMessageRequest
+from linebot.v3.messaging.models.reply_message_response import ReplyMessageResponse
 from linebot.v3.messaging.models.rich_menu_alias_list_response import RichMenuAliasListResponse
 from linebot.v3.messaging.models.rich_menu_alias_response import RichMenuAliasResponse
 from linebot.v3.messaging.models.rich_menu_area import RichMenuArea
@@ -149,6 +151,7 @@ from linebot.v3.messaging.models.rich_menu_switch_action import RichMenuSwitchAc
 from linebot.v3.messaging.models.room_member_count_response import RoomMemberCountResponse
 from linebot.v3.messaging.models.room_user_profile_response import RoomUserProfileResponse
 from linebot.v3.messaging.models.sender import Sender
+from linebot.v3.messaging.models.sent_message import SentMessage
 from linebot.v3.messaging.models.set_webhook_endpoint_request import SetWebhookEndpointRequest
 from linebot.v3.messaging.models.sticker_message import StickerMessage
 from linebot.v3.messaging.models.subscription_period_demographic import SubscriptionPeriodDemographic

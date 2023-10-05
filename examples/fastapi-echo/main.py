@@ -17,9 +17,7 @@ import sys
 
 from fastapi import Request, FastAPI, HTTPException
 
-from linebot import (
-    WebhookParser
-)
+from linebot.v3.webhook import WebhookParser
 from linebot.v3.messaging import (
     AsyncApiClient,
     AsyncMessagingApi,

@@ -34,4 +34,8 @@ jobs:
     - name: Ensure generate-code.py doesn't throw any error
       run: |
         python generate-code.py
+    - name: Update version in linebot/__about__.py
+      run: |
+        sed -i 's/__version__ = "__LINE_BOT_SDK_PYTHON_VERSION__"/__version__ = "'12.34.5"/g' linebot/__about__.py
+        cat linebot/__about__.py
         

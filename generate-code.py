@@ -43,8 +43,6 @@ def main():
     run_command('mvn package -DskipTests=true')
     os.chdir("..")
 
-    package_version = run_command("grep '__version__ =' linebot/__about__.py | awk -F\"'\" '{print $2}'")
-
     components = [
         {"sourceYaml": "channel-access-token.yml", "modelPackage": "linebot.v3.oauth"},
         {"sourceYaml": "insight.yml", "modelPackage": "linebot.v3.insight"},
@@ -73,8 +71,7 @@ def main():
                     --additional-properties=excludeText=true \\
                     --additional-properties=generateSourceCodeOnly=true \\
                     --package-name {modelPackage} \\
-                    -i line-openapi/{sourceYaml} \\
-                    --additional-properties=packageVersion={package_version}
+                    -i line-openapi/{sourceYaml}
                   '''
         run_command(command)
 

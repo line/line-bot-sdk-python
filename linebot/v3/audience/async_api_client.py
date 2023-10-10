@@ -29,7 +29,7 @@ from linebot.v3.audience.api_response import ApiResponse
 import linebot.v3.audience.models
 from linebot.v3.audience import async_rest
 from linebot.v3.audience.exceptions import ApiValueError, ApiException
-
+from linebot.__about__ import __version__
 
 class AsyncApiClient(object):
     """Generic API client for OpenAPI client library builds.
@@ -77,7 +77,7 @@ class AsyncApiClient(object):
         self.default_headers['Authorization'] = 'Bearer ' + configuration.access_token
         self.cookie = cookie
         # Set default User-Agent.
-        self.user_agent = 'line-bot-sdk-python-async/3.5.0'
+        self.user_agent = f"line-bot-sdk-python/{__version__}"
         self.client_side_validation = configuration.client_side_validation
 
     async def __aenter__(self):

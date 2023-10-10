@@ -15,7 +15,7 @@
 """Meta data of line-bot-sdk."""
 
 
-__version__ = '3.5.0'
+__version__ = "__LINE_BOT_SDK_PYTHON_VERSION__"
 __author__ = 'LINE Corporation'
 __copyright__ = 'Copyright 2016, LINE Corporation'
 __license__ = 'Apache 2.0'

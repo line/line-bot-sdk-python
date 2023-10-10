@@ -14,8 +14,6 @@
 """
 
 
-__version__ = "3.5.0"
-
 # import apis into sdk package
 from linebot.v3.messaging.api.messaging_api import MessagingApi
 from linebot.v3.messaging.api.messaging_api_blob import MessagingApiBlob

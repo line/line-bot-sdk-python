@@ -22,7 +22,7 @@ from {{packageName}}.api_response import ApiResponse
 import {{modelPackage}}
 from {{packageName}} import rest
 from {{packageName}}.exceptions import ApiValueError, ApiException
-
+from linebot.__about__ import __version__
 
 class ApiClient(object):
     """Generic API client for OpenAPI client library builds.
@@ -70,7 +70,7 @@ class ApiClient(object):
         self.default_headers['Authorization'] = 'Bearer ' + configuration.access_token
         self.cookie = cookie
         # Set default User-Agent.
-        self.user_agent = 'line-bot-sdk-python/{{{packageVersion}}}'
+        self.user_agent = f"line-bot-sdk-python/{__version__}"
         self.client_side_validation = configuration.client_side_validation
 
     {{#asyncio}}

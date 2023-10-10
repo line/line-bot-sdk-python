@@ -14,8 +14,6 @@
 """
 
 
-__version__ = "3.5.0"
-
 # import apis into sdk package
 from linebot.v3.liff.api.liff import Liff
 

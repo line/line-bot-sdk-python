@@ -14,8 +14,6 @@
 """
 
 
-__version__ = "1.0.0"
-
 # import apis into sdk package
 from linebot.v3.webhooks.api.dummy import Dummy
 

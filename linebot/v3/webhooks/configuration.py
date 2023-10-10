@@ -20,6 +20,7 @@ import urllib3
 
 import http.client as httplib
 from linebot.v3.webhooks.exceptions import ApiValueError
+from linebot.__about__ import __version__
 
 JSON_SCHEMA_VALIDATION_KEYWORDS = {
     'multipleOf', 'maximum', 'exclusiveMaximum',
@@ -364,8 +365,8 @@ class Configuration(object):
                "OS: {env}\n"\
                "Python Version: {pyversion}\n"\
                "Version of the API: 1.0.0\n"\
-               "SDK Package Version: 1.0.0".\
-               format(env=sys.platform, pyversion=sys.version)
+               "SDK Package Version: {__version__}".\
+               format(env=sys.platform, pyversion=sys.version, package_version=__version__)
 
     def get_host_settings(self):
         """Gets an array of host settings

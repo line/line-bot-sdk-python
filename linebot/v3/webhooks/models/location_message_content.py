@@ -26,7 +26,6 @@ class LocationMessageContent(MessageContent):
     """
     LocationMessageContent
     """
-    id: StrictStr = Field(..., description="Message ID")
     title: Optional[StrictStr] = Field(None, description="Title")
     address: Optional[StrictStr] = Field(None, description="Address")
     latitude: Union[StrictFloat, StrictInt] = Field(..., description="Latitude")

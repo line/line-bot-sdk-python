@@ -28,7 +28,6 @@ class TextMessageContent(MessageContent):
     """
     TextMessageContent
     """
-    id: StrictStr = Field(..., description="Message ID")
     text: StrictStr = Field(..., description="Message text.")
     emojis: Optional[conlist(Emoji)] = Field(None, description="Array of one or more LINE emoji objects. Only included in the message event when the text property contains a LINE emoji.")
     mention: Optional[Mention] = None

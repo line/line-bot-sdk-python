@@ -28,8 +28,9 @@ class MessageContent(BaseModel):
     https://developers.line.biz/en/reference/messaging-api/#message-event
     """
     type: Optional[StrictStr] = Field(None, description="Type")
+    id: StrictStr = Field(..., description="Message ID")
 
-    __properties = ["type"]
+    __properties = ["type", "id"]
 
     class Config:
         """Pydantic configuration"""

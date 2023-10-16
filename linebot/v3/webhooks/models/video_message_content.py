@@ -27,7 +27,6 @@ class VideoMessageContent(MessageContent):
     """
     VideoMessageContent
     """
-    id: StrictStr = Field(..., description="Message ID")
     duration: Optional[StrictInt] = Field(None, description="Length of video file (milliseconds)")
     content_provider: ContentProvider = Field(..., alias="contentProvider")
     quote_token: StrictStr = Field(..., alias="quoteToken", description="Quote token to quote this message. ")

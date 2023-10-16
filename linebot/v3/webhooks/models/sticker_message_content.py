@@ -27,7 +27,6 @@ class StickerMessageContent(MessageContent):
     StickerMessageContent
     https://developers.line.biz/en/reference/messaging-api/#wh-sticker
     """
-    id: StrictStr = Field(..., description="Message ID")
     package_id: StrictStr = Field(..., alias="packageId", description="Package ID")
     sticker_id: StrictStr = Field(..., alias="stickerId", description="Sticker ID")
     sticker_resource_type: StrictStr = Field(..., alias="stickerResourceType")

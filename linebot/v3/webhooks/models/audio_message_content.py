@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic.v1 import Field, StrictInt, StrictStr
+from pydantic.v1 import Field, StrictInt
 from linebot.v3.webhooks.models.content_provider import ContentProvider
 from linebot.v3.webhooks.models.message_content import MessageContent
 
@@ -27,7 +27,6 @@ class AudioMessageContent(MessageContent):
     """
     AudioMessageContent
     """
-    id: StrictStr = Field(..., description="Message ID")
     content_provider: ContentProvider = Field(..., alias="contentProvider")
     duration: Optional[StrictInt] = Field(None, description="Length of audio file (milliseconds)")
     type: str = "audio"

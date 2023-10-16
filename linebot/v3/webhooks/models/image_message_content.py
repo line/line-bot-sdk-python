@@ -28,7 +28,6 @@ class ImageMessageContent(MessageContent):
     """
     ImageMessageContent
     """
-    id: StrictStr = Field(..., description="Message ID")
     content_provider: ContentProvider = Field(..., alias="contentProvider")
     image_set: Optional[ImageSet] = Field(None, alias="imageSet")
     quote_token: StrictStr = Field(..., alias="quoteToken", description="Quote token to quote this message. ")

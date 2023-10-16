@@ -26,7 +26,6 @@ class FileMessageContent(MessageContent):
     """
     FileMessageContent
     """
-    id: StrictStr = Field(..., description="Message ID")
     file_name: StrictStr = Field(..., alias="fileName", description="File name")
     file_size: StrictInt = Field(..., alias="fileSize", description="File size in bytes")
     type: str = "file"

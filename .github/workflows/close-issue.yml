@@ -14,13 +14,13 @@ jobs:
     steps:
       - uses: actions/stale@v5
         with:
-          days-before-issue-stale: 30
-          days-before-issue-close: 14
-          stale-issue-label: "stale"
+          days-before-issue-stale: 14
+          days-before-issue-close: 0
+          stale-issue-label: "no-activity"
+          close-issue-message: "This issue was closed because it has been inactive for 14 days."
           exempt-issue-labels: "bug,enhancement,keep"
-          stale-issue-message: "This issue is stale because it has been open for 30 days with no activity."
-          close-issue-message: "This issue was closed because it has been inactive for 14 days since being marked as stale."
           days-before-pr-stale: -1
           days-before-pr-close: 14
-          stale-pr-label: "stale"
+          stale-pr-label: "no-activity"
+          close-pr-message: "This pull request was closed because it has been inactive for 14 days. Please reopen if you still intend to submit this pull request."
           repo-token: ${{ secrets.GITHUB_TOKEN }}

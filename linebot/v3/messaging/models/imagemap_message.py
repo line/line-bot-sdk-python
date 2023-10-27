@@ -32,10 +32,10 @@ class ImagemapMessage(Message):
     ImagemapMessage
     https://developers.line.biz/en/reference/messaging-api/#imagemap-message
     """
-    base_url: Optional[StrictStr] = Field(None, alias="baseUrl")
-    alt_text: Optional[StrictStr] = Field(None, alias="altText")
-    base_size: Optional[ImagemapBaseSize] = Field(None, alias="baseSize")
-    actions: Optional[conlist(ImagemapAction)] = None
+    base_url: StrictStr = Field(..., alias="baseUrl")
+    alt_text: StrictStr = Field(..., alias="altText")
+    base_size: ImagemapBaseSize = Field(..., alias="baseSize")
+    actions: conlist(ImagemapAction) = Field(...)
     video: Optional[ImagemapVideo] = None
     type: str = "imagemap"
 

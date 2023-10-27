@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
+
 from pydantic.v1 import Field, StrictStr
 from linebot.v3.messaging.models.flex_container import FlexContainer
 from linebot.v3.messaging.models.message import Message
@@ -30,8 +30,8 @@ class FlexMessage(Message):
     FlexMessage
     https://developers.line.biz/en/reference/messaging-api/#flex-message
     """
-    alt_text: Optional[StrictStr] = Field(None, alias="altText")
-    contents: Optional[FlexContainer] = None
+    alt_text: StrictStr = Field(..., alias="altText")
+    contents: FlexContainer = Field(...)
     type: str = "flex"
 
     __properties = ["type", "quickReply", "sender", "altText", "contents"]

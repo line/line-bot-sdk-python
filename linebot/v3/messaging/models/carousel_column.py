@@ -29,9 +29,9 @@ class CarouselColumn(BaseModel):
     thumbnail_image_url: Optional[StrictStr] = Field(None, alias="thumbnailImageUrl")
     image_background_color: Optional[StrictStr] = Field(None, alias="imageBackgroundColor")
     title: Optional[StrictStr] = None
-    text: Optional[StrictStr] = None
+    text: StrictStr = Field(...)
     default_action: Optional[Action] = Field(None, alias="defaultAction")
-    actions: Optional[conlist(Action)] = None
+    actions: conlist(Action) = Field(...)
 
     __properties = ["thumbnailImageUrl", "imageBackgroundColor", "title", "text", "defaultAction", "actions"]
 

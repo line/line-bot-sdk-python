@@ -27,7 +27,7 @@ class FlexIcon(FlexComponent):
     FlexIcon
     https://developers.line.biz/en/reference/messaging-api/#icon
     """
-    url: Optional[StrictStr] = None
+    url: StrictStr = Field(...)
     size: Optional[StrictStr] = None
     aspect_ratio: Optional[StrictStr] = Field(None, alias="aspectRatio")
     margin: Optional[StrictStr] = None

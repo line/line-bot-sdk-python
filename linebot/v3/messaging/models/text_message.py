@@ -28,8 +28,9 @@ from linebot.v3.messaging.models.sender import Sender
 class TextMessage(Message):
     """
     TextMessage
+    https://developers.line.biz/en/reference/messaging-api/#text-message
     """
-    text: Optional[StrictStr] = None
+    text: StrictStr = Field(...)
     emojis: Optional[conlist(Emoji)] = None
     quote_token: Optional[StrictStr] = Field(None, alias="quoteToken", description="Quote token of the message you want to quote.")
     type: str = "text"

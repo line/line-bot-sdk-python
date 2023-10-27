@@ -27,7 +27,7 @@ class CarouselTemplate(Template):
     """
     CarouselTemplate
     """
-    columns: Optional[conlist(CarouselColumn)] = None
+    columns: conlist(CarouselColumn) = Field(...)
     image_aspect_ratio: Optional[StrictStr] = Field(None, alias="imageAspectRatio")
     image_size: Optional[StrictStr] = Field(None, alias="imageSize")
     type: str = "carousel"

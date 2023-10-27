@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
+
 from pydantic.v1 import BaseModel, Field, StrictStr
 from linebot.v3.messaging.models.action import Action
 
@@ -26,8 +26,8 @@ class ImageCarouselColumn(BaseModel):
     """
     ImageCarouselColumn
     """
-    image_url: Optional[StrictStr] = Field(None, alias="imageUrl")
-    action: Optional[Action] = None
+    image_url: StrictStr = Field(..., alias="imageUrl")
+    action: Action = Field(...)
 
     __properties = ["imageUrl", "action"]
 

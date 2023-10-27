@@ -27,9 +27,9 @@ class FlexVideo(FlexComponent):
     """
     FlexVideo
     """
-    url: Optional[StrictStr] = None
-    preview_url: Optional[StrictStr] = Field(None, alias="previewUrl")
-    alt_content: Optional[FlexComponent] = Field(None, alias="altContent")
+    url: StrictStr = Field(...)
+    preview_url: StrictStr = Field(..., alias="previewUrl")
+    alt_content: FlexComponent = Field(..., alias="altContent")
     aspect_ratio: Optional[StrictStr] = Field(None, alias="aspectRatio")
     action: Optional[Action] = None
     type: str = "video"

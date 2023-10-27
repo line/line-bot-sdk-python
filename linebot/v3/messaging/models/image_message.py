@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
+
 from pydantic.v1 import Field, StrictStr
 from linebot.v3.messaging.models.message import Message
 from linebot.v3.messaging.models.quick_reply import QuickReply
@@ -27,9 +27,10 @@ from linebot.v3.messaging.models.sender import Sender
 class ImageMessage(Message):
     """
     ImageMessage
+    https://developers.line.biz/en/reference/messaging-api/#image-message
     """
-    original_content_url: Optional[StrictStr] = Field(None, alias="originalContentUrl")
-    preview_image_url: Optional[StrictStr] = Field(None, alias="previewImageUrl")
+    original_content_url: StrictStr = Field(..., alias="originalContentUrl")
+    preview_image_url: StrictStr = Field(..., alias="previewImageUrl")
     type: str = "image"
 
     __properties = ["type", "quickReply", "sender", "originalContentUrl", "previewImageUrl"]

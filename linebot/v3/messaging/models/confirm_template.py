@@ -18,8 +18,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import List, Optional
-from pydantic.v1 import StrictStr, conlist
+from typing import List
+from pydantic.v1 import Field, StrictStr, conlist
 from linebot.v3.messaging.models.action import Action
 from linebot.v3.messaging.models.template import Template
 
@@ -27,8 +27,8 @@ class ConfirmTemplate(Template):
     """
     ConfirmTemplate
     """
-    text: Optional[StrictStr] = None
-    actions: Optional[conlist(Action)] = None
+    text: StrictStr = Field(...)
+    actions: conlist(Action) = Field(...)
     type: str = "confirm"
 
     __properties = ["type", "text", "actions"]

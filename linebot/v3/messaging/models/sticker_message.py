@@ -27,9 +27,10 @@ from linebot.v3.messaging.models.sender import Sender
 class StickerMessage(Message):
     """
     StickerMessage
+    https://developers.line.biz/en/reference/messaging-api/#sticker-message
     """
-    package_id: Optional[StrictStr] = Field(None, alias="packageId")
-    sticker_id: Optional[StrictStr] = Field(None, alias="stickerId")
+    package_id: StrictStr = Field(..., alias="packageId")
+    sticker_id: StrictStr = Field(..., alias="stickerId")
     quote_token: Optional[StrictStr] = Field(None, alias="quoteToken", description="Quote token of the message you want to quote.")
     type: str = "sticker"
 

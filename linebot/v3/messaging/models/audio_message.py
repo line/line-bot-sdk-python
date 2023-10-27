@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
+
 from pydantic.v1 import Field, StrictInt, StrictStr
 from linebot.v3.messaging.models.message import Message
 from linebot.v3.messaging.models.quick_reply import QuickReply
@@ -27,9 +27,10 @@ from linebot.v3.messaging.models.sender import Sender
 class AudioMessage(Message):
     """
     AudioMessage
+    https://developers.line.biz/en/reference/messaging-api/#audio-message
     """
-    original_content_url: Optional[StrictStr] = Field(None, alias="originalContentUrl")
-    duration: Optional[StrictInt] = None
+    original_content_url: StrictStr = Field(..., alias="originalContentUrl")
+    duration: StrictInt = Field(...)
     type: str = "audio"
 
     __properties = ["type", "quickReply", "sender", "originalContentUrl", "duration"]

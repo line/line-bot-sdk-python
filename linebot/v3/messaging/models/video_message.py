@@ -27,9 +27,10 @@ from linebot.v3.messaging.models.sender import Sender
 class VideoMessage(Message):
     """
     VideoMessage
+    https://developers.line.biz/en/reference/messaging-api/#video-message
     """
-    original_content_url: Optional[StrictStr] = Field(None, alias="originalContentUrl")
-    preview_image_url: Optional[StrictStr] = Field(None, alias="previewImageUrl")
+    original_content_url: StrictStr = Field(..., alias="originalContentUrl")
+    preview_image_url: StrictStr = Field(..., alias="previewImageUrl")
     tracking_id: Optional[StrictStr] = Field(None, alias="trackingId")
     type: str = "video"
 

@@ -28,9 +28,9 @@ class FlexBox(FlexComponent):
     """
     FlexBox
     """
-    layout: Optional[StrictStr] = None
+    layout: StrictStr = Field(...)
     flex: Optional[StrictInt] = None
-    contents: Optional[conlist(FlexComponent)] = None
+    contents: conlist(FlexComponent) = Field(...)
     spacing: Optional[StrictStr] = None
     margin: Optional[StrictStr] = None
     position: Optional[StrictStr] = None
@@ -62,9 +62,6 @@ class FlexBox(FlexComponent):
     @validator('layout')
     def layout_validate_enum(cls, value):
         """Validates the enum"""
-        if value is None:
-            return value
-
         if value not in ('horizontal', 'vertical', 'baseline'):
             raise ValueError("must be one of enum values ('horizontal', 'vertical', 'baseline')")
         return value

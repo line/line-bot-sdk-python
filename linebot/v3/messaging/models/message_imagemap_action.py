@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic.v1 import StrictStr
+from pydantic.v1 import Field, StrictStr
 from linebot.v3.messaging.models.imagemap_action import ImagemapAction
 from linebot.v3.messaging.models.imagemap_area import ImagemapArea
 
@@ -27,7 +27,7 @@ class MessageImagemapAction(ImagemapAction):
     """
     MessageImagemapAction
     """
-    text: Optional[StrictStr] = None
+    text: StrictStr = Field(...)
     label: Optional[StrictStr] = None
     type: str = "message"
 

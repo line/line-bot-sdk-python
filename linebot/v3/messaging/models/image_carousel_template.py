@@ -18,8 +18,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import List, Optional
-from pydantic.v1 import conlist
+from typing import List
+from pydantic.v1 import Field, conlist
 from linebot.v3.messaging.models.image_carousel_column import ImageCarouselColumn
 from linebot.v3.messaging.models.template import Template
 
@@ -27,7 +27,7 @@ class ImageCarouselTemplate(Template):
     """
     ImageCarouselTemplate
     """
-    columns: Optional[conlist(ImageCarouselColumn)] = None
+    columns: conlist(ImageCarouselColumn) = Field(...)
     type: str = "image_carousel"
 
     __properties = ["type", "columns"]

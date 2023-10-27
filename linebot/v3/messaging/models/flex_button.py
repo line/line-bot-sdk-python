@@ -30,7 +30,7 @@ class FlexButton(FlexComponent):
     flex: Optional[StrictInt] = None
     color: Optional[StrictStr] = None
     style: Optional[StrictStr] = None
-    action: Optional[Action] = None
+    action: Action = Field(...)
     gravity: Optional[StrictStr] = None
     margin: Optional[StrictStr] = None
     position: Optional[StrictStr] = None

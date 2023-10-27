@@ -27,7 +27,7 @@ class URIImagemapAction(ImagemapAction):
     """
     URIImagemapAction
     """
-    link_uri: Optional[StrictStr] = Field(None, alias="linkUri")
+    link_uri: StrictStr = Field(..., alias="linkUri")
     label: Optional[StrictStr] = None
     type: str = "uri"
 

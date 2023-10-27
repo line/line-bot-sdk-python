@@ -32,9 +32,9 @@ class ButtonsTemplate(Template):
     image_size: Optional[StrictStr] = Field(None, alias="imageSize")
     image_background_color: Optional[StrictStr] = Field(None, alias="imageBackgroundColor")
     title: Optional[StrictStr] = None
-    text: Optional[StrictStr] = None
+    text: StrictStr = Field(...)
     default_action: Optional[Action] = Field(None, alias="defaultAction")
-    actions: Optional[conlist(Action)] = None
+    actions: conlist(Action) = Field(...)
     type: str = "buttons"
 
     __properties = ["type", "thumbnailImageUrl", "imageAspectRatio", "imageSize", "imageBackgroundColor", "title", "text", "defaultAction", "actions"]

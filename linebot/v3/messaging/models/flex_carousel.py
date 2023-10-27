@@ -18,8 +18,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import List, Optional
-from pydantic.v1 import conlist
+from typing import List
+from pydantic.v1 import Field, conlist
 from linebot.v3.messaging.models.flex_bubble import FlexBubble
 from linebot.v3.messaging.models.flex_container import FlexContainer
 
@@ -27,7 +27,7 @@ class FlexCarousel(FlexContainer):
     """
     FlexCarousel
     """
-    contents: Optional[conlist(FlexBubble)] = None
+    contents: conlist(FlexBubble) = Field(...)
     type: str = "carousel"
 
     __properties = ["type", "contents"]

@@ -19,7 +19,7 @@ import json
 import linebot.v3.messaging.models
 
 
-from typing import Optional, Union
+from typing import Union
 from pydantic.v1 import BaseModel, Field, StrictStr
 from linebot.v3.messaging.models.imagemap_area import ImagemapArea
 
@@ -29,7 +29,7 @@ class ImagemapAction(BaseModel):
     https://developers.line.biz/en/reference/messaging-api/#imagemap-action-objects
     """
     type: StrictStr = Field(...)
-    area: Optional[ImagemapArea] = None
+    area: ImagemapArea = Field(...)
 
     __properties = ["type", "area"]
 

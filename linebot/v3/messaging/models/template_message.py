@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
+
 from pydantic.v1 import Field, StrictStr
 from linebot.v3.messaging.models.message import Message
 from linebot.v3.messaging.models.quick_reply import QuickReply
@@ -28,9 +28,10 @@ from linebot.v3.messaging.models.template import Template
 class TemplateMessage(Message):
     """
     TemplateMessage
+    https://developers.line.biz/en/reference/messaging-api/#template-messages
     """
-    alt_text: Optional[StrictStr] = Field(None, alias="altText")
-    template: Optional[Template] = None
+    alt_text: StrictStr = Field(..., alias="altText")
+    template: Template = Field(...)
     type: str = "template"
 
     __properties = ["type", "quickReply", "sender", "altText", "template"]

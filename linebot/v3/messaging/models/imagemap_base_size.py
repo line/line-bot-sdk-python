@@ -18,15 +18,15 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
-from pydantic.v1 import BaseModel, StrictInt
+
+from pydantic.v1 import BaseModel, Field, StrictInt
 
 class ImagemapBaseSize(BaseModel):
     """
     ImagemapBaseSize
     """
-    height: Optional[StrictInt] = None
-    width: Optional[StrictInt] = None
+    height: StrictInt = Field(...)
+    width: StrictInt = Field(...)
 
     __properties = ["height", "width"]
 

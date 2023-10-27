@@ -18,8 +18,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional, Union
-from pydantic.v1 import StrictFloat, StrictInt, StrictStr
+from typing import Union
+from pydantic.v1 import Field, StrictFloat, StrictInt, StrictStr
 from linebot.v3.messaging.models.message import Message
 from linebot.v3.messaging.models.quick_reply import QuickReply
 from linebot.v3.messaging.models.sender import Sender
@@ -27,11 +27,12 @@ from linebot.v3.messaging.models.sender import Sender
 class LocationMessage(Message):
     """
     LocationMessage
+    https://developers.line.biz/en/reference/messaging-api/#location-message
     """
-    title: Optional[StrictStr] = None
-    address: Optional[StrictStr] = None
-    latitude: Optional[Union[StrictFloat, StrictInt]] = None
-    longitude: Optional[Union[StrictFloat, StrictInt]] = None
+    title: StrictStr = Field(...)
+    address: StrictStr = Field(...)
+    latitude: Union[StrictFloat, StrictInt] = Field(...)
+    longitude: Union[StrictFloat, StrictInt] = Field(...)
     type: str = "location"
 
     __properties = ["type", "quickReply", "sender", "title", "address", "latitude", "longitude"]

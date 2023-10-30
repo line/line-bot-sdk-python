@@ -31,7 +31,7 @@ class MessageEvent(Event):
     Webhook event object which contains the sent message.
     """
     reply_token: Optional[StrictStr] = Field(None, alias="replyToken")
-    message: Optional[MessageContent] = None
+    message: MessageContent = Field(...)
     type: str = "message"
 
     __properties = ["type", "source", "timestamp", "mode", "webhookEventId", "deliveryContext", "replyToken", "message"]

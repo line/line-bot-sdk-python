@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 
-from typing import List, Optional
+from typing import List
 from pydantic.v1 import BaseModel, Field, conlist, constr, validator
 from linebot.v3.webhooks.models.event import Event
 
@@ -27,17 +27,14 @@ class CallbackRequest(BaseModel):
     The request body contains a JSON object with the user ID of a bot that should receive webhook events and an array of webhook event objects. 
     https://developers.line.biz/en/reference/messaging-api/#request-body
     """
-    destination: Optional[constr(strict=True, max_length=33, min_length=33)] = Field(None, description="User ID of a bot that should receive webhook events. The user ID value is a string that matches the regular expression, `U[0-9a-f]{32}`. ")
-    events: Optional[conlist(Event)] = Field(None, description="Array of webhook event objects. The LINE Platform may send an empty array that doesn't include a webhook event object to confirm communication. ")
+    destination: constr(strict=True, max_length=33, min_length=33) = Field(..., description="User ID of a bot that should receive webhook events. The user ID value is a string that matches the regular expression, `U[0-9a-f]{32}`. ")
+    events: conlist(Event) = Field(..., description="Array of webhook event objects. The LINE Platform may send an empty array that doesn't include a webhook event object to confirm communication. ")
 
     __properties = ["destination", "events"]
 
     @validator('destination')
     def destination_validate_regular_expression(cls, value):
         """Validates the regular expression"""
-        if value is None:
-            return value
-
         if not re.match(r"^U[0-9a-f]{32}$", value):
             raise ValueError(r"must validate the regular expression /^U[0-9a-f]{32}$/")
         return value

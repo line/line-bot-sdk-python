@@ -19,14 +19,14 @@ import json
 import linebot.v3.webhooks.models
 
 
-from typing import Optional, Union
+from typing import Union
 from pydantic.v1 import BaseModel, Field, StrictStr
 
 class ModuleContent(BaseModel):
     """
     ModuleContent
     """
-    type: Optional[StrictStr] = Field(None, description="Type")
+    type: StrictStr = Field(..., description="Type")
 
     __properties = ["type"]
 

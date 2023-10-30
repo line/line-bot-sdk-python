@@ -19,7 +19,7 @@ import json
 import linebot.v3.webhooks.models
 
 
-from typing import Optional, Union
+from typing import Union
 from pydantic.v1 import BaseModel, Field, StrictInt, StrictStr
 
 class Mentionee(BaseModel):
@@ -27,7 +27,7 @@ class Mentionee(BaseModel):
     Mentionee
     https://developers.line.biz/en/reference/messaging-api/#wh-text
     """
-    type: Optional[StrictStr] = Field(None, description="Mentioned target.")
+    type: StrictStr = Field(..., description="Mentioned target.")
     index: StrictInt = Field(..., description="Index position of the user mention for a character in text, with the first character being at position 0.")
     length: StrictInt = Field(..., description="The length of the text of the mentioned user. For a mention @example, 8 is the length.")
 

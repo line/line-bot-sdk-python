@@ -25,7 +25,7 @@ class ImageSet(BaseModel):
     """
     ImageSet
     """
-    id: Optional[StrictStr] = Field(None, description="Image set ID. Only included when multiple images are sent simultaneously.")
+    id: StrictStr = Field(..., description="Image set ID. Only included when multiple images are sent simultaneously.")
     index: Optional[StrictInt] = Field(None, description="An index starting from 1, indicating the image number in a set of images sent simultaneously. Only included when multiple images are sent simultaneously. However, it won't be included if the sender is using LINE 11.15 or earlier for Android.")
     total: Optional[StrictInt] = Field(None, description="The total number of images sent simultaneously.")
 

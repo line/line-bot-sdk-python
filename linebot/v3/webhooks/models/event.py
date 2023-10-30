@@ -29,7 +29,7 @@ class Event(BaseModel):
     """
     Webhook event
     """
-    type: Optional[StrictStr] = Field(None, description="Type of the event")
+    type: StrictStr = Field(..., description="Type of the event")
     source: Optional[Source] = None
     timestamp: StrictInt = Field(..., description="Time of the event in milliseconds.")
     mode: EventMode = Field(...)

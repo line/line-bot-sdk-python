@@ -31,7 +31,7 @@ class PostbackEvent(Event):
     Event object for when a user performs a postback action which initiates a postback. You can reply to postback events.
     """
     reply_token: Optional[StrictStr] = Field(None, alias="replyToken", description="Reply token used to send reply message to this event")
-    postback: Optional[PostbackContent] = None
+    postback: PostbackContent = Field(...)
     type: str = "postback"
 
     __properties = ["type", "source", "timestamp", "mode", "webhookEventId", "deliveryContext", "replyToken", "postback"]

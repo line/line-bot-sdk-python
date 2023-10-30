@@ -18,8 +18,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional
 
+from pydantic.v1 import Field
 from linebot.v3.webhooks.models.delivery_context import DeliveryContext
 from linebot.v3.webhooks.models.event import Event
 from linebot.v3.webhooks.models.event_mode import EventMode
@@ -30,7 +30,7 @@ class UnsendEvent(Event):
     """
     Event object for when the user unsends a message.
     """
-    unsend: Optional[UnsendDetail] = None
+    unsend: UnsendDetail = Field(...)
     type: str = "unsend"
 
     __properties = ["type", "source", "timestamp", "mode", "webhookEventId", "deliveryContext", "unsend"]

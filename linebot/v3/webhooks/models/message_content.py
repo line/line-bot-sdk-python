@@ -19,7 +19,7 @@ import json
 import linebot.v3.webhooks.models
 
 
-from typing import Optional, Union
+from typing import Union
 from pydantic.v1 import BaseModel, Field, StrictStr
 
 class MessageContent(BaseModel):
@@ -27,7 +27,7 @@ class MessageContent(BaseModel):
     MessageContent
     https://developers.line.biz/en/reference/messaging-api/#message-event
     """
-    type: Optional[StrictStr] = Field(None, description="Type")
+    type: StrictStr = Field(..., description="Type")
     id: StrictStr = Field(..., description="Message ID")
 
     __properties = ["type", "id"]

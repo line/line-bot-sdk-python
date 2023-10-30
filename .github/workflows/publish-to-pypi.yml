@@ -5,7 +5,7 @@ name: Upload Python Package
 
 on:
   release:
-    types: [created]
+    types: [published]
 
 jobs:
   deploy:
@@ -27,7 +27,8 @@ jobs:
     - name: Update version in linebot/__about__.py
       run: |
         VERSION=${{ github.event.release.tag_name }}
-        sed -i 's/__version__ = "__LINE_BOT_SDK_PYTHON_VERSION__"/__version__ = "$VERSION"/g' linebot/__about__.py
+        VERSION=${VERSION#v}
+        sed -i "s/__version__ = '__LINE_BOT_SDK_PYTHON_VERSION__'/__version__ = '$VERSION'/g" linebot/__about__.py
         cat linebot/__about__.py
     - name: Build and publish
       env:

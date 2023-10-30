@@ -30,6 +30,7 @@ jobs:
     - name: Update version in linebot/__about__.py
       run: |
         VERSION="12.3.0"
+        VERSION=${VERSION#v}
         sed -i "s/__version__ = '__LINE_BOT_SDK_PYTHON_VERSION__'/__version__ = '$VERSION'/g" linebot/__about__.py
         cat linebot/__about__.py
     - name: Test with pytest

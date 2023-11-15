@@ -184,7 +184,7 @@ class AsyncChannelAccessToken(object):
             ['application/json'])  # noqa: E501
 
         # authentication setting
-        _auth_settings = ['Bearer']  # noqa: E501
+        _auth_settings = []  # noqa: E501
 
         _response_types_map = {
             '200': "ChannelAccessTokenKeyIdsResponse",
@@ -356,7 +356,7 @@ class AsyncChannelAccessToken(object):
                 _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
-        _auth_settings = ['Bearer']  # noqa: E501
+        _auth_settings = []  # noqa: E501
 
         _response_types_map = {
             '200': "IssueShortLivedChannelAccessTokenResponse",
@@ -529,7 +529,7 @@ class AsyncChannelAccessToken(object):
                 _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
-        _auth_settings = ['Bearer']  # noqa: E501
+        _auth_settings = []  # noqa: E501
 
         _response_types_map = {
             '200': "IssueChannelAccessTokenResponse",
@@ -717,7 +717,7 @@ class AsyncChannelAccessToken(object):
                 _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
-        _auth_settings = ['Bearer']  # noqa: E501
+        _auth_settings = []  # noqa: E501
 
         _response_types_map = {
             '200': "IssueStatelessChannelAccessTokenResponse",
@@ -869,7 +869,7 @@ class AsyncChannelAccessToken(object):
                 _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
-        _auth_settings = ['Bearer']  # noqa: E501
+        _auth_settings = []  # noqa: E501
 
         _response_types_map = {}
 
@@ -1035,7 +1035,7 @@ class AsyncChannelAccessToken(object):
                 _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
-        _auth_settings = ['Bearer']  # noqa: E501
+        _auth_settings = []  # noqa: E501
 
         _response_types_map = {}
 
@@ -1189,7 +1189,7 @@ class AsyncChannelAccessToken(object):
                 _header_params['Content-Type'] = _content_types_list
 
         # authentication setting
-        _auth_settings = ['Bearer']  # noqa: E501
+        _auth_settings = []  # noqa: E501
 
         _response_types_map = {
             '200': "VerifyChannelAccessTokenResponse",
@@ -1338,7 +1338,7 @@ class AsyncChannelAccessToken(object):
             ['application/json'])  # noqa: E501
 
         # authentication setting
-        _auth_settings = ['Bearer']  # noqa: E501
+        _auth_settings = []  # noqa: E501
 
         _response_types_map = {
             '200': "VerifyChannelAccessTokenResponse",

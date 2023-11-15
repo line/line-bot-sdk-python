@@ -23,7 +23,6 @@ Gets all valid channel access token key IDs.
 
 ### Example
 
-* Bearer Authentication (Bearer):
 ```python
 import time
 import os
@@ -38,15 +37,6 @@ configuration = linebot.v3.oauth.Configuration(
     host = "https://api.line.me"
 )
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure Bearer authorization: Bearer
-configuration = linebot.v3.oauth.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
 
 # Enter a context with an instance of the API client
 with linebot.v3.oauth.ApiClient(configuration) as api_client:
@@ -77,7 +67,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Bearer](../README.md#Bearer)
+No authorization required
 
 ### HTTP request headers
 
@@ -100,7 +90,6 @@ Issue short-lived channel access token
 
 ### Example
 
-* Bearer Authentication (Bearer):
 ```python
 import time
 import os
@@ -115,15 +104,6 @@ configuration = linebot.v3.oauth.Configuration(
     host = "https://api.line.me"
 )
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure Bearer authorization: Bearer
-configuration = linebot.v3.oauth.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
 
 # Enter a context with an instance of the API client
 with linebot.v3.oauth.ApiClient(configuration) as api_client:
@@ -156,7 +136,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Bearer](../README.md#Bearer)
+No authorization required
 
 ### HTTP request headers
 
@@ -180,7 +160,6 @@ Issues a channel access token that allows you to specify a desired expiration da
 
 ### Example
 
-* Bearer Authentication (Bearer):
 ```python
 import time
 import os
@@ -195,15 +174,6 @@ configuration = linebot.v3.oauth.Configuration(
     host = "https://api.line.me"
 )
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure Bearer authorization: Bearer
-configuration = linebot.v3.oauth.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
 
 # Enter a context with an instance of the API client
 with linebot.v3.oauth.ApiClient(configuration) as api_client:
@@ -236,7 +206,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Bearer](../README.md#Bearer)
+No authorization required
 
 ### HTTP request headers
 
@@ -259,7 +229,6 @@ Issues a new stateless channel access token, which doesn't have max active token
 
 ### Example
 
-* Bearer Authentication (Bearer):
 ```python
 import time
 import os
@@ -274,15 +243,6 @@ configuration = linebot.v3.oauth.Configuration(
     host = "https://api.line.me"
 )
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure Bearer authorization: Bearer
-configuration = linebot.v3.oauth.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
 
 # Enter a context with an instance of the API client
 with linebot.v3.oauth.ApiClient(configuration) as api_client:
@@ -319,7 +279,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Bearer](../README.md#Bearer)
+No authorization required
 
 ### HTTP request headers
 
@@ -342,7 +302,6 @@ Revoke short-lived or long-lived channel access token
 
 ### Example
 
-* Bearer Authentication (Bearer):
 ```python
 import time
 import os
@@ -356,15 +315,6 @@ configuration = linebot.v3.oauth.Configuration(
     host = "https://api.line.me"
 )
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure Bearer authorization: Bearer
-configuration = linebot.v3.oauth.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
 
 # Enter a context with an instance of the API client
 with linebot.v3.oauth.ApiClient(configuration) as api_client:
@@ -391,7 +341,7 @@ void (empty response body)
 
 ### Authorization
 
-[Bearer](../README.md#Bearer)
+No authorization required
 
 ### HTTP request headers
 
@@ -414,7 +364,6 @@ Revoke channel access token v2.1
 
 ### Example
 
-* Bearer Authentication (Bearer):
 ```python
 import time
 import os
@@ -428,15 +377,6 @@ configuration = linebot.v3.oauth.Configuration(
     host = "https://api.line.me"
 )
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure Bearer authorization: Bearer
-configuration = linebot.v3.oauth.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
 
 # Enter a context with an instance of the API client
 with linebot.v3.oauth.ApiClient(configuration) as api_client:
@@ -467,7 +407,7 @@ void (empty response body)
 
 ### Authorization
 
-[Bearer](../README.md#Bearer)
+No authorization required
 
 ### HTTP request headers
 
@@ -490,7 +430,6 @@ Verify the validity of short-lived and long-lived channel access tokens
 
 ### Example
 
-* Bearer Authentication (Bearer):
 ```python
 import time
 import os
@@ -505,15 +444,6 @@ configuration = linebot.v3.oauth.Configuration(
     host = "https://api.line.me"
 )
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure Bearer authorization: Bearer
-configuration = linebot.v3.oauth.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
 
 # Enter a context with an instance of the API client
 with linebot.v3.oauth.ApiClient(configuration) as api_client:
@@ -542,7 +472,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Bearer](../README.md#Bearer)
+No authorization required
 
 ### HTTP request headers
 
@@ -565,7 +495,6 @@ You can verify whether a Channel access token with a user-specified expiration (
 
 ### Example
 
-* Bearer Authentication (Bearer):
 ```python
 import time
 import os
@@ -580,15 +509,6 @@ configuration = linebot.v3.oauth.Configuration(
     host = "https://api.line.me"
 )
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure Bearer authorization: Bearer
-configuration = linebot.v3.oauth.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
 
 # Enter a context with an instance of the API client
 with linebot.v3.oauth.ApiClient(configuration) as api_client:
@@ -617,7 +537,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Bearer](../README.md#Bearer)
+No authorization required
 
 ### HTTP request headers
 

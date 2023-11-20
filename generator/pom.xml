@@ -31,7 +31,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.2.1</version>
+                <version>3.2.2</version>
                 <configuration>
                     <systemProperties>
                         <property>
@@ -126,7 +126,7 @@
     </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <openapi-generator-version>7.0.1</openapi-generator-version>
+        <openapi-generator-version>7.1.0</openapi-generator-version>
         <maven-plugin-version>1.0.0</maven-plugin-version>
         <junit-version>4.13.2</junit-version>
     </properties>

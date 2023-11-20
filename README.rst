@@ -378,6 +378,7 @@ Test by using tox. We test against the following versions.
 -  3.9
 -  3.10
 -  3.11
+-  3.12
 
 To run all tests and to run ``flake8`` against all versions, use:
 

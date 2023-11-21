@@ -74,7 +74,7 @@ class ApiClient(object):
         self.default_headers = {}
         if header_name is not None:
             self.default_headers[header_name] = header_value
-        self.default_headers['Authorization'] = 'Basic '
+        self.default_headers['Authorization'] = 'Basic ' + configuration.access_token
         self.cookie = cookie
         # Set default User-Agent.
         self.user_agent = f"line-bot-sdk-python/{__version__}"

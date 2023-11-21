@@ -69,7 +69,10 @@ class ApiClient(object):
             self.default_headers[header_name] = header_value
         {{#authMethods}}
         {{#isBasicBearer}}
-        self.default_headers['Authorization'] = 'Bearer ' + configuration.access_token
+        self.default_headers['Authorization'] = 'Bearer {{access_token}}'
+        {{/isBasicBearer}}
+        {{^isBasicBearer}}
+        self.default_headers['Authorization'] = 'Basic {{access_token}}'
         {{/isBasicBearer}}
         {{/authMethods}}
         self.cookie = cookie

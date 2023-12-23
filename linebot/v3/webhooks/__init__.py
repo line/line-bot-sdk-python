@@ -72,6 +72,8 @@ from linebot.v3.webhooks.models.message_content import MessageContent
 from linebot.v3.webhooks.models.message_event import MessageEvent
 from linebot.v3.webhooks.models.module_content import ModuleContent
 from linebot.v3.webhooks.models.module_event import ModuleEvent
+from linebot.v3.webhooks.models.pnp_delivery import PnpDelivery
+from linebot.v3.webhooks.models.pnp_delivery_completion_event import PnpDeliveryCompletionEvent
 from linebot.v3.webhooks.models.postback_content import PostbackContent
 from linebot.v3.webhooks.models.postback_event import PostbackEvent
 from linebot.v3.webhooks.models.room_source import RoomSource

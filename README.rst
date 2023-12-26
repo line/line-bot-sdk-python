@@ -283,6 +283,44 @@ Thus, you can send a JSON designed with `Flex Message Simulator <https://develop
         )
     )
 
+How to get x-line-request-id header and error message
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You may need to store the ``x-line-request-id`` header obtained as a response from several APIs.
+In this case, please use ``~_with_http_info`` functions. You can get headers and status codes.
+The ``x-line-accepted-request-id`` or ``content-type`` header can also be obtained in the same way.
+
+.. code:: python
+
+    response = line_bot_api.reply_message_with_http_info(
+        ReplyMessageRequest(
+            reply_token=event.reply_token,
+            messages=[TextMessage(text='see application log')]
+        )
+    )
+    app.logger.info("Got response with http status code: " + str(response.status_code))
+    app.logger.info("Got x-line-request-id: " + response.headers['x-line-request-id'])
+    app.logger.info("Got response with http body: " + str(response.data))
+
+You can get error messages from ``ApiException`` when you use ``MessagingApi``. Each client defines its own exception class.
+
+.. code:: python
+
+    from linebot.v3.messaging import ApiException, ErrorResponse
+    try:
+        line_bot_api.reply_message_with_http_info(
+            ReplyMessageRequest(
+                reply_token='invalid-reply-token',
+                messages=[TextMessage(text='see application log')]
+            )
+        )
+    except ApiException as e:
+        app.logger.info("Got response with http status code: " + str(e.status))
+        app.logger.info("Got x-line-request-id: " + e.headers['x-line-request-id'])
+        app.logger.info("Got response with http body: " + str(ErrorResponse.from_json(e.body)))
+
+When you need to get ``x-line-accepted-request-id`` header from error response, you can get it: ``e.headers['x-line-accepted-request-id']``.
+
 
 Help and media
 --------------

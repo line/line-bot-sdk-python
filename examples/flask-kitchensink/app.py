@@ -94,6 +94,7 @@ from linebot.v3.messaging import (
     CameraAction,
     CameraRollAction,
     LocationAction,
+    ErrorResponse
 )
 
 from linebot.v3.insight import (
@@ -698,6 +699,28 @@ def handle_text_message(event):
                     messages=messages
                 )
             )
+        elif text == 'with http info':
+            response = line_bot_api.reply_message_with_http_info(
+                ReplyMessageRequest(
+                    reply_token=event.reply_token,
+                    messages=[TextMessage(text='see application log')]
+                )
+            )
+            app.logger.info("Got response with http status code: " + str(response.status_code))
+            app.logger.info("Got x-line-request-id: " + response.headers['x-line-request-id'])
+            app.logger.info("Got response with http body: " + str(response.data))
+        elif text == 'with http info error':
+            try:
+                line_bot_api.reply_message_with_http_info(
+                    ReplyMessageRequest(
+                        reply_token='invalid-reply-token',
+                        messages=[TextMessage(text='see application log')]
+                    )
+                )
+            except ApiException as e:
+                app.logger.info("Got response with http status code: " + str(e.status))
+                app.logger.info("Got x-line-request-id: " + e.headers['x-line-request-id'])
+                app.logger.info("Got response with http body: " + str(ErrorResponse.from_json(e.body)))
         else:
             line_bot_api.reply_message(
                 ReplyMessageRequest(

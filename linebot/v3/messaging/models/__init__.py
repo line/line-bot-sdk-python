@@ -33,6 +33,8 @@ from linebot.v3.messaging.models.camera_roll_action import CameraRollAction
 from linebot.v3.messaging.models.carousel_column import CarouselColumn
 from linebot.v3.messaging.models.carousel_template import CarouselTemplate
 from linebot.v3.messaging.models.chat_reference import ChatReference
+from linebot.v3.messaging.models.clipboard_action import ClipboardAction
+from linebot.v3.messaging.models.clipboard_imagemap_action import ClipboardImagemapAction
 from linebot.v3.messaging.models.confirm_template import ConfirmTemplate
 from linebot.v3.messaging.models.create_rich_menu_alias_request import CreateRichMenuAliasRequest
 from linebot.v3.messaging.models.datetime_picker_action import DatetimePickerAction

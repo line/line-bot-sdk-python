@@ -43,6 +43,7 @@ class ImagemapAction(BaseModel):
 
     # discriminator mappings
     __discriminator_value_class_map = {
+        'clipboard': 'ClipboardImagemapAction',
         'message': 'MessageImagemapAction',
         'uri': 'URIImagemapAction'
     }
@@ -65,7 +66,7 @@ class ImagemapAction(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Union(MessageImagemapAction, URIImagemapAction):
+    def from_json(cls, json_str: str) -> Union(ClipboardImagemapAction, MessageImagemapAction, URIImagemapAction):
         """Create an instance of ImagemapAction from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -81,7 +82,7 @@ class ImagemapAction(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Union(MessageImagemapAction, URIImagemapAction):
+    def from_dict(cls, obj: dict) -> Union(ClipboardImagemapAction, MessageImagemapAction, URIImagemapAction):
         """Create an instance of ImagemapAction from a dict"""
         # look up the object type based on discriminator mapping
         object_type = cls.get_discriminator_value(obj)

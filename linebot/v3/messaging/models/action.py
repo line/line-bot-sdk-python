@@ -44,6 +44,7 @@ class Action(BaseModel):
     __discriminator_value_class_map = {
         'camera': 'CameraAction',
         'cameraRoll': 'CameraRollAction',
+        'clipboard': 'ClipboardAction',
         'datetimepicker': 'DatetimePickerAction',
         'location': 'LocationAction',
         'message': 'MessageAction',
@@ -70,7 +71,7 @@ class Action(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Union(CameraAction, CameraRollAction, DatetimePickerAction, LocationAction, MessageAction, PostbackAction, RichMenuSwitchAction, URIAction):
+    def from_json(cls, json_str: str) -> Union(CameraAction, CameraRollAction, ClipboardAction, DatetimePickerAction, LocationAction, MessageAction, PostbackAction, RichMenuSwitchAction, URIAction):
         """Create an instance of Action from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -83,7 +84,7 @@ class Action(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Union(CameraAction, CameraRollAction, DatetimePickerAction, LocationAction, MessageAction, PostbackAction, RichMenuSwitchAction, URIAction):
+    def from_dict(cls, obj: dict) -> Union(CameraAction, CameraRollAction, ClipboardAction, DatetimePickerAction, LocationAction, MessageAction, PostbackAction, RichMenuSwitchAction, URIAction):
         """Create an instance of Action from a dict"""
         # look up the object type based on discriminator mapping
         object_type = cls.get_discriminator_value(obj)

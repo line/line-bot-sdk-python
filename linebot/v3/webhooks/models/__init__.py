@@ -34,6 +34,7 @@ from linebot.v3.webhooks.models.emoji import Emoji
 from linebot.v3.webhooks.models.event import Event
 from linebot.v3.webhooks.models.event_mode import EventMode
 from linebot.v3.webhooks.models.file_message_content import FileMessageContent
+from linebot.v3.webhooks.models.follow_detail import FollowDetail
 from linebot.v3.webhooks.models.follow_event import FollowEvent
 from linebot.v3.webhooks.models.group_source import GroupSource
 from linebot.v3.webhooks.models.image_message_content import ImageMessageContent

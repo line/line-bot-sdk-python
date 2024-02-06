@@ -23,6 +23,7 @@ from pydantic.v1 import Field, StrictStr
 from linebot.v3.webhooks.models.delivery_context import DeliveryContext
 from linebot.v3.webhooks.models.event import Event
 from linebot.v3.webhooks.models.event_mode import EventMode
+from linebot.v3.webhooks.models.follow_detail import FollowDetail
 from linebot.v3.webhooks.models.source import Source
 
 class FollowEvent(Event):
@@ -30,9 +31,10 @@ class FollowEvent(Event):
     Event object for when your LINE Official Account is added as a friend (or unblocked). You can reply to follow events.
     """
     reply_token: StrictStr = Field(..., alias="replyToken", description="Reply token used to send reply message to this event")
+    follow: FollowDetail = Field(...)
     type: str = "follow"
 
-    __properties = ["type", "source", "timestamp", "mode", "webhookEventId", "deliveryContext", "replyToken"]
+    __properties = ["type", "source", "timestamp", "mode", "webhookEventId", "deliveryContext", "replyToken", "follow"]
 
     class Config:
         """Pydantic configuration"""
@@ -64,6 +66,9 @@ class FollowEvent(Event):
         # override the default output from pydantic.v1 by calling `to_dict()` of delivery_context
         if self.delivery_context:
             _dict['deliveryContext'] = self.delivery_context.to_dict()
+        # override the default output from pydantic.v1 by calling `to_dict()` of follow
+        if self.follow:
+            _dict['follow'] = self.follow.to_dict()
         return _dict
 
     @classmethod
@@ -82,7 +87,8 @@ class FollowEvent(Event):
             "mode": obj.get("mode"),
             "webhook_event_id": obj.get("webhookEventId"),
             "delivery_context": DeliveryContext.from_dict(obj.get("deliveryContext")) if obj.get("deliveryContext") is not None else None,
-            "reply_token": obj.get("replyToken")
+            "reply_token": obj.get("replyToken"),
+            "follow": FollowDetail.from_dict(obj.get("follow")) if obj.get("follow") is not None else None
         })
         return _obj
 

@@ -21,6 +21,8 @@ Method | HTTP request | Description
 [**get_group_member_profile**](MessagingApi.md#get_group_member_profile) | **GET** /v2/bot/group/{groupId}/member/{userId} | 
 [**get_group_members_ids**](MessagingApi.md#get_group_members_ids) | **GET** /v2/bot/group/{groupId}/members/ids | 
 [**get_group_summary**](MessagingApi.md#get_group_summary) | **GET** /v2/bot/group/{groupId}/summary | 
+[**get_membership_list**](MessagingApi.md#get_membership_list) | **GET** /v2/bot/membership/list | 
+[**get_membership_subscription**](MessagingApi.md#get_membership_subscription) | **GET** /v2/bot/membership/subscription/{userId} | 
 [**get_message_quota**](MessagingApi.md#get_message_quota) | **GET** /v2/bot/message/quota | 
 [**get_message_quota_consumption**](MessagingApi.md#get_message_quota_consumption) | **GET** /v2/bot/message/quota/consumption | 
 [**get_narrowcast_progress**](MessagingApi.md#get_narrowcast_progress) | **GET** /v2/bot/message/progress/narrowcast | 
@@ -1327,6 +1329,155 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_membership_list**
+> MembershipListResponse get_membership_list()
+
+
+
+Get a list of memberships.
+
+### Example
+
+* Bearer Authentication (Bearer):
+```python
+import time
+import os
+import linebot.v3.messaging
+from linebot.v3.messaging.models.membership_list_response import MembershipListResponse
+from linebot.v3.messaging.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.line.me
+# See configuration.py for a list of all supported configuration parameters.
+configuration = linebot.v3.messaging.Configuration(
+    host = "https://api.line.me"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: Bearer
+configuration = linebot.v3.messaging.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with linebot.v3.messaging.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = linebot.v3.messaging.MessagingApi(api_client)
+
+    try:
+        api_response = api_instance.get_membership_list()
+        print("The response of MessagingApi->get_membership_list:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling MessagingApi->get_membership_list: %s\n" % e)
+```
+
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**MembershipListResponse**](MembershipListResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**404** | Unable to get information about the memberships. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_membership_subscription**
+> GetMembershipSubscriptionResponse get_membership_subscription(user_id)
+
+
+
+Get a user's membership subscription.
+
+### Example
+
+* Bearer Authentication (Bearer):
+```python
+import time
+import os
+import linebot.v3.messaging
+from linebot.v3.messaging.models.get_membership_subscription_response import GetMembershipSubscriptionResponse
+from linebot.v3.messaging.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.line.me
+# See configuration.py for a list of all supported configuration parameters.
+configuration = linebot.v3.messaging.Configuration(
+    host = "https://api.line.me"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: Bearer
+configuration = linebot.v3.messaging.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with linebot.v3.messaging.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = linebot.v3.messaging.MessagingApi(api_client)
+    user_id = 'user_id_example' # str | User ID
+
+    try:
+        api_response = api_instance.get_membership_subscription(user_id)
+        print("The response of MessagingApi->get_membership_subscription:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling MessagingApi->get_membership_subscription: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **user_id** | **str**| User ID | 
+
+### Return type
+
+[**GetMembershipSubscriptionResponse**](GetMembershipSubscriptionResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | An invalid user ID is specified. |  -  |
+**404** | Unable to get information about the membership to which the user subscribes. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

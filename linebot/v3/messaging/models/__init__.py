@@ -76,6 +76,7 @@ from linebot.v3.messaging.models.gender_demographic_filter import GenderDemograp
 from linebot.v3.messaging.models.get_aggregation_unit_name_list_response import GetAggregationUnitNameListResponse
 from linebot.v3.messaging.models.get_aggregation_unit_usage_response import GetAggregationUnitUsageResponse
 from linebot.v3.messaging.models.get_followers_response import GetFollowersResponse
+from linebot.v3.messaging.models.get_membership_subscription_response import GetMembershipSubscriptionResponse
 from linebot.v3.messaging.models.get_message_content_transcoding_response import GetMessageContentTranscodingResponse
 from linebot.v3.messaging.models.get_webhook_endpoint_response import GetWebhookEndpointResponse
 from linebot.v3.messaging.models.group_member_count_response import GroupMemberCountResponse
@@ -96,6 +97,8 @@ from linebot.v3.messaging.models.location_action import LocationAction
 from linebot.v3.messaging.models.location_message import LocationMessage
 from linebot.v3.messaging.models.mark_messages_as_read_request import MarkMessagesAsReadRequest
 from linebot.v3.messaging.models.members_ids_response import MembersIdsResponse
+from linebot.v3.messaging.models.membership import Membership
+from linebot.v3.messaging.models.membership_list_response import MembershipListResponse
 from linebot.v3.messaging.models.message import Message
 from linebot.v3.messaging.models.message_action import MessageAction
 from linebot.v3.messaging.models.message_imagemap_action import MessageImagemapAction
@@ -143,6 +146,9 @@ from linebot.v3.messaging.models.sender import Sender
 from linebot.v3.messaging.models.sent_message import SentMessage
 from linebot.v3.messaging.models.set_webhook_endpoint_request import SetWebhookEndpointRequest
 from linebot.v3.messaging.models.sticker_message import StickerMessage
+from linebot.v3.messaging.models.subscribed_membership_plan import SubscribedMembershipPlan
+from linebot.v3.messaging.models.subscribed_membership_user import SubscribedMembershipUser
+from linebot.v3.messaging.models.subscription import Subscription
 from linebot.v3.messaging.models.subscription_period_demographic import SubscriptionPeriodDemographic
 from linebot.v3.messaging.models.subscription_period_demographic_filter import SubscriptionPeriodDemographicFilter
 from linebot.v3.messaging.models.template import Template

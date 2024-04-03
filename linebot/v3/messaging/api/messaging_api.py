@@ -29,6 +29,7 @@ from linebot.v3.messaging.models.create_rich_menu_alias_request import CreateRic
 from linebot.v3.messaging.models.get_aggregation_unit_name_list_response import GetAggregationUnitNameListResponse
 from linebot.v3.messaging.models.get_aggregation_unit_usage_response import GetAggregationUnitUsageResponse
 from linebot.v3.messaging.models.get_followers_response import GetFollowersResponse
+from linebot.v3.messaging.models.get_membership_subscription_response import GetMembershipSubscriptionResponse
 from linebot.v3.messaging.models.get_webhook_endpoint_response import GetWebhookEndpointResponse
 from linebot.v3.messaging.models.group_member_count_response import GroupMemberCountResponse
 from linebot.v3.messaging.models.group_summary_response import GroupSummaryResponse
@@ -36,6 +37,7 @@ from linebot.v3.messaging.models.group_user_profile_response import GroupUserPro
 from linebot.v3.messaging.models.issue_link_token_response import IssueLinkTokenResponse
 from linebot.v3.messaging.models.mark_messages_as_read_request import MarkMessagesAsReadRequest
 from linebot.v3.messaging.models.members_ids_response import MembersIdsResponse
+from linebot.v3.messaging.models.membership_list_response import MembershipListResponse
 from linebot.v3.messaging.models.message_quota_response import MessageQuotaResponse
 from linebot.v3.messaging.models.multicast_request import MulticastRequest
 from linebot.v3.messaging.models.narrowcast_progress_response import NarrowcastProgressResponse
@@ -2452,6 +2454,279 @@ class MessagingApi(object):
 
         return self.api_client.call_api(
             '/v2/bot/group/{groupId}/summary', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def get_membership_list(self, **kwargs) -> MembershipListResponse:  # noqa: E501
+        """get_membership_list  # noqa: E501
+
+        Get a list of memberships.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_membership_list(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: MembershipListResponse
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the get_membership_list_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.get_membership_list_with_http_info(**kwargs)  # noqa: E501
+
+    @validate_arguments
+    def get_membership_list_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
+        """get_membership_list  # noqa: E501
+
+        Get a list of memberships.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_membership_list_with_http_info(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(MembershipListResponse, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_membership_list" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['Bearer']  # noqa: E501
+
+        _response_types_map = {
+            '200': "MembershipListResponse",
+            '404': "ErrorResponse",
+        }
+
+        return self.api_client.call_api(
+            '/v2/bot/membership/list', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def get_membership_subscription(self, user_id : Annotated[StrictStr, Field(..., description="User ID")], **kwargs) -> GetMembershipSubscriptionResponse:  # noqa: E501
+        """get_membership_subscription  # noqa: E501
+
+        Get a user's membership subscription.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_membership_subscription(user_id, async_req=True)
+        >>> result = thread.get()
+
+        :param user_id: User ID (required)
+        :type user_id: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: GetMembershipSubscriptionResponse
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the get_membership_subscription_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.get_membership_subscription_with_http_info(user_id, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def get_membership_subscription_with_http_info(self, user_id : Annotated[StrictStr, Field(..., description="User ID")], **kwargs) -> ApiResponse:  # noqa: E501
+        """get_membership_subscription  # noqa: E501
+
+        Get a user's membership subscription.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_membership_subscription_with_http_info(user_id, async_req=True)
+        >>> result = thread.get()
+
+        :param user_id: User ID (required)
+        :type user_id: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(GetMembershipSubscriptionResponse, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _params = locals()
+
+        _all_params = [
+            'user_id'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_membership_subscription" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['user_id']:
+            _path_params['userId'] = _params['user_id']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['Bearer']  # noqa: E501
+
+        _response_types_map = {
+            '200': "GetMembershipSubscriptionResponse",
+            '400': "ErrorResponse",
+            '404': "ErrorResponse",
+        }
+
+        return self.api_client.call_api(
+            '/v2/bot/membership/subscription/{userId}', 'GET',
             _path_params,
             _query_params,
             _header_params,

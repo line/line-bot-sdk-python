@@ -49,6 +49,8 @@ class AsyncInsight(object):
         if api_client is None:
             api_client = AsyncApiClient.get_default()
         self.api_client = api_client
+        self.line_base_path = "https://api.line.me"
+
 
     @overload
     async def get_friends_demographics(self, **kwargs) -> GetFriendsDemographicsResponse:  # noqa: E501
@@ -123,6 +125,7 @@ class AsyncInsight(object):
         :rtype: tuple(GetFriendsDemographicsResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -188,6 +191,7 @@ class AsyncInsight(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -268,6 +272,7 @@ class AsyncInsight(object):
         :rtype: tuple(GetMessageEventResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -337,6 +342,7 @@ class AsyncInsight(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -417,6 +423,7 @@ class AsyncInsight(object):
         :rtype: tuple(GetNumberOfFollowersResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -486,6 +493,7 @@ class AsyncInsight(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -566,6 +574,7 @@ class AsyncInsight(object):
         :rtype: tuple(GetNumberOfMessageDeliveriesResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -635,6 +644,7 @@ class AsyncInsight(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -723,6 +733,7 @@ class AsyncInsight(object):
         :rtype: tuple(GetStatisticsPerUnitResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -800,5 +811,6 @@ class AsyncInsight(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))

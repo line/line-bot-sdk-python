@@ -45,6 +45,8 @@ class AsyncLineModuleAttach(object):
         if api_client is None:
             api_client = AsyncApiClient.get_default()
         self.api_client = api_client
+        self.line_base_path = "https://manager.line.biz"
+
 
     @overload
     async def attach_module(self, grant_type : Annotated[Optional[StrictStr], Field(description="authorization_code")] = None, code : Annotated[Optional[StrictStr], Field(description="Authorization code received from the LINE Platform.")] = None, redirect_uri : Annotated[Optional[StrictStr], Field(description="Specify the redirect_uri specified in the URL for authentication and authorization.")] = None, code_verifier : Annotated[Optional[StrictStr], Field(description="Specify when using PKCE (Proof Key for Code Exchange) defined in the OAuth 2.0 extension specification as a countermeasure against authorization code interception attacks.")] = None, client_id : Annotated[Optional[StrictStr], Field(description="Instead of using Authorization header, you can use this parameter to specify the channel ID of the module channel. You can find the channel ID of the module channel in the LINE Developers Console. ")] = None, client_secret : Annotated[Optional[StrictStr], Field(description="Instead of using Authorization header, you can use this parameter to specify the channel secret of the module channel. You can find the channel secret of the module channel in the LINE Developers Console. ")] = None, region : Annotated[Optional[StrictStr], Field(description="If you specified a value for region in the URL for authentication and authorization, specify the same value. ")] = None, basic_search_id : Annotated[Optional[StrictStr], Field(description="If you specified a value for basic_search_id in the URL for authentication and authorization, specify the same value.")] = None, scope : Annotated[Optional[StrictStr], Field(description="If you specified a value for scope in the URL for authentication and authorization, specify the same value.")] = None, brand_type : Annotated[Optional[StrictStr], Field(description="If you specified a value for brand_type in the URL for authentication and authorization, specify the same value.")] = None, **kwargs) -> AttachModuleResponse:  # noqa: E501
@@ -159,6 +161,7 @@ class AsyncLineModuleAttach(object):
         :rtype: tuple(AttachModuleResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -271,5 +274,6 @@ class AsyncLineModuleAttach(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))

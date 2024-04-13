@@ -41,6 +41,8 @@ class AsyncDummy(object):
         if api_client is None:
             api_client = AsyncApiClient.get_default()
         self.api_client = api_client
+        self.line_base_path = "https://example.com"
+
 
     @overload
     async def callback(self, callback_request : CallbackRequest, **kwargs) -> str:  # noqa: E501
@@ -119,6 +121,7 @@ class AsyncDummy(object):
         :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -195,5 +198,6 @@ class AsyncDummy(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))

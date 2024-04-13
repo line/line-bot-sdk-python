@@ -43,6 +43,8 @@ class ManageAudienceBlob(object):
         if api_client is None:
             api_client = ApiClient.get_default()
         self.api_client = api_client
+        self.line_base_path = "https://api.line.me"
+
 
     @validate_arguments
     def add_user_ids_to_audience(self, file : Annotated[Union[StrictBytes, StrictStr], Field(..., description="A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000 ")], audience_group_id : Annotated[Optional[StrictInt], Field(description="The audience ID.")] = None, upload_description : Annotated[Optional[StrictStr], Field(description="The description to register with the job")] = None, **kwargs) -> None:  # noqa: E501

@@ -150,7 +150,7 @@ conf = {{{packageName}}}.Configuration(
                  ):
         """Constructor
         """
-        self._base_path = "{{{basePath}}}" if host is None else host
+        self._base_path = host
         """Default Base url
         """
         self.server_index = 0 if server_index is None and host is None else server_index
@@ -526,87 +526,7 @@ conf = {{{packageName}}}.Configuration(
                "SDK Package Version: {__version__}".\
                format(env=sys.platform, pyversion=sys.version, package_version=__version__)
 
-    def get_host_settings(self):
-        """Gets an array of host settings
-
-        :return: An array of host settings
-        """
-        return [
-            {{#servers}}
-            {
-                'url': "{{{url}}}",
-                'description': "{{{description}}}{{^description}}No description provided{{/description}}",
-                {{#variables}}
-                {{#-first}}
-                'variables': {
-                {{/-first}}
-                    '{{{name}}}': {
-                        'description': "{{{description}}}{{^description}}No description provided{{/description}}",
-                        'default_value': "{{{defaultValue}}}",
-                        {{#enumValues}}
-                        {{#-first}}
-                        'enum_values': [
-                        {{/-first}}
-                            "{{{.}}}"{{^-last}},{{/-last}}
-                        {{#-last}}
-                        ]
-                        {{/-last}}
-                        {{/enumValues}}
-                        }{{^-last}},{{/-last}}
-                {{#-last}}
-                    }
-                {{/-last}}
-                {{/variables}}
-            }{{^-last}},{{/-last}}
-            {{/servers}}
-        ]
-
-    def get_host_from_settings(self, index, variables=None, servers=None):
-        """Gets host URL based on the index and variables
-        :param index: array index of the host settings
-        :param variables: hash of variable and the corresponding value
-        :param servers: an array of host settings or None
-        :return: URL based on host settings
-        """
-        if index is None:
-            return self._base_path
-
-        variables = {} if variables is None else variables
-        servers = self.get_host_settings() if servers is None else servers
-
-        try:
-            server = servers[index]
-        except IndexError:
-            raise ValueError(
-                "Invalid index {0} when selecting the host settings. "
-                "Must be less than {1}".format(index, len(servers)))
-
-        url = server['url']
-
-        # go through variables and replace placeholders
-        for variable_name, variable in server.get('variables', {}).items():
-            used_value = variables.get(
-                variable_name, variable['default_value'])
-
-            if 'enum_values' in variable \
-                    and used_value not in variable['enum_values']:
-                raise ValueError(
-                    "The variable `{0}` in the host URL has invalid value "
-                    "{1}. Must be {2}.".format(
-                        variable_name, variables[variable_name],
-                        variable['enum_values']))
-
-            url = url.replace("{" + variable_name + "}", used_value)
-
-        return url
-
     @property
     def host(self):
         """Return generated host."""
-        return self.get_host_from_settings(self.server_index, variables=self.server_variables)
-
-    @host.setter
-    def host(self, value):
-        """Fix base path."""
-        self._base_path = value
-        self.server_index = None
+        return self._base_path

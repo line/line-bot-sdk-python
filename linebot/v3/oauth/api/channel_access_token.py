@@ -47,6 +47,8 @@ class ChannelAccessToken(object):
         if api_client is None:
             api_client = ApiClient.get_default()
         self.api_client = api_client
+        self.line_base_path = "https://api.line.me"
+
 
     @validate_arguments
     def gets_all_valid_channel_access_token_key_ids(self, client_assertion_type : Annotated[StrictStr, Field(..., description="`urn:ietf:params:oauth:client-assertion-type:jwt-bearer`")], client_assertion : Annotated[StrictStr, Field(..., description="A JSON Web Token (JWT) (opens new window)the client needs to create and sign with the private key.")], **kwargs) -> ChannelAccessTokenKeyIdsResponse:  # noqa: E501
@@ -119,6 +121,7 @@ class ChannelAccessToken(object):
         :rtype: tuple(ChannelAccessTokenKeyIdsResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -192,6 +195,7 @@ class ChannelAccessToken(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -270,6 +274,7 @@ class ChannelAccessToken(object):
         :rtype: tuple(IssueShortLivedChannelAccessTokenResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -355,6 +360,7 @@ class ChannelAccessToken(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -433,6 +439,7 @@ class ChannelAccessToken(object):
         :rtype: tuple(IssueChannelAccessTokenResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -517,6 +524,7 @@ class ChannelAccessToken(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -603,6 +611,7 @@ class ChannelAccessToken(object):
         :rtype: tuple(IssueStatelessChannelAccessTokenResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -695,6 +704,7 @@ class ChannelAccessToken(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -765,6 +775,7 @@ class ChannelAccessToken(object):
         :rtype: None
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -835,6 +846,7 @@ class ChannelAccessToken(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -913,6 +925,7 @@ class ChannelAccessToken(object):
         :rtype: None
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -991,6 +1004,7 @@ class ChannelAccessToken(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -1061,6 +1075,7 @@ class ChannelAccessToken(object):
         :rtype: tuple(VerifyChannelAccessTokenResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -1137,6 +1152,7 @@ class ChannelAccessToken(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -1207,6 +1223,7 @@ class ChannelAccessToken(object):
         :rtype: tuple(VerifyChannelAccessTokenResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -1276,5 +1293,6 @@ class ChannelAccessToken(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))

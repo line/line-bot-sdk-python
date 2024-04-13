@@ -34,6 +34,8 @@ class Async{{classname}}(object):
         if api_client is None:
             api_client = AsyncApiClient.get_default()
         self.api_client = api_client
+        self.line_base_path = "{{basePath}}"
+
 {{#operation}}
 
     @overload
@@ -140,6 +142,9 @@ class Async{{classname}}(object):
                     % len(_host)
                 )
             _host = _hosts[_host_index]
+        {{/servers.0}}
+        {{^servers.0}}
+        _host = self.line_base_path
         {{/servers.0}}
         _params = locals()
 
@@ -298,9 +303,7 @@ class Async{{classname}}(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
-            {{#servers.0}}
             _host=_host,
-            {{/servers.0}}
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 {{/operation}}

@@ -195,7 +195,7 @@ class Async{{classname}}(object):
             {{/isDateTime}}
             {{^isDateTime}}
             {{#isDate}}
-            if isinstance(_params['{{paramName}}'], datetime):
+            if isinstance(_params['{{paramName}}'], date):
                 _query_params.append(('{{baseName}}', _params['{{paramName}}'].strftime(self.api_client.configuration.date_format)))
             else:
                 _query_params.append(('{{baseName}}', _params['{{paramName}}']))

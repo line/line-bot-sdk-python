@@ -21,7 +21,6 @@ from {{packageName}}.exceptions import (  # noqa: F401
 )
 
 
-_line_base_path = "{{basePath}}"
 
 {{#operations}}
 class {{classname}}(object):
@@ -35,6 +34,8 @@ class {{classname}}(object):
         if api_client is None:
             api_client = ApiClient.get_default()
         self.api_client = api_client
+        self.line_base_path = "{{basePath}}"
+
 {{#operation}}
 
 {{#asyncio}}
@@ -147,7 +148,7 @@ class {{classname}}(object):
             _host = _hosts[_host_index]
         {{/servers.0}}
         {{^servers.0}}
-        _host = _line_base_path
+        _host = self.line_base_path
         {{/servers.0}}
         _params = locals()
 

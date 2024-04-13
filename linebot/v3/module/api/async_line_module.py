@@ -47,6 +47,8 @@ class AsyncLineModule(object):
         if api_client is None:
             api_client = AsyncApiClient.get_default()
         self.api_client = api_client
+        self.line_base_path = "https://api.line.me"
+
 
     @overload
     async def acquire_chat_control(self, chat_id : Annotated[StrictStr, Field(..., description="The `userId`, `roomId`, or `groupId`")], acquire_chat_control_request : Optional[AcquireChatControlRequest] = None, **kwargs) -> None:  # noqa: E501
@@ -129,6 +131,7 @@ class AsyncLineModule(object):
         :rtype: None
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -203,6 +206,7 @@ class AsyncLineModule(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -283,6 +287,7 @@ class AsyncLineModule(object):
         :rtype: None
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -353,6 +358,7 @@ class AsyncLineModule(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -437,6 +443,7 @@ class AsyncLineModule(object):
         :rtype: tuple(GetModulesResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -510,6 +517,7 @@ class AsyncLineModule(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -590,6 +598,7 @@ class AsyncLineModule(object):
         :rtype: None
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -653,5 +662,6 @@ class AsyncLineModule(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))

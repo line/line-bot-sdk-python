@@ -89,6 +89,8 @@ class AsyncMessagingApi(object):
         if api_client is None:
             api_client = AsyncApiClient.get_default()
         self.api_client = api_client
+        self.line_base_path = "https://api.line.me"
+
 
     @overload
     async def audience_match(self, audience_match_messages_request : AudienceMatchMessagesRequest, **kwargs) -> None:  # noqa: E501
@@ -167,6 +169,7 @@ class AsyncMessagingApi(object):
         :rtype: None
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -237,6 +240,7 @@ class AsyncMessagingApi(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -321,6 +325,7 @@ class AsyncMessagingApi(object):
         :rtype: tuple(object, status_code(int), headers(HTTPHeaderDict))
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -405,6 +410,7 @@ class AsyncMessagingApi(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -481,6 +487,7 @@ class AsyncMessagingApi(object):
         :rtype: None
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -540,6 +547,7 @@ class AsyncMessagingApi(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -620,6 +628,7 @@ class AsyncMessagingApi(object):
         :rtype: tuple(RichMenuIdResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -696,6 +705,7 @@ class AsyncMessagingApi(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -776,6 +786,7 @@ class AsyncMessagingApi(object):
         :rtype: None
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -850,6 +861,7 @@ class AsyncMessagingApi(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -930,6 +942,7 @@ class AsyncMessagingApi(object):
         :rtype: None
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -993,6 +1006,7 @@ class AsyncMessagingApi(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -1073,6 +1087,7 @@ class AsyncMessagingApi(object):
         :rtype: None
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -1140,6 +1155,7 @@ class AsyncMessagingApi(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -1220,6 +1236,7 @@ class AsyncMessagingApi(object):
         :rtype: tuple(NumberOfMessagesResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -1289,6 +1306,7 @@ class AsyncMessagingApi(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -1373,6 +1391,7 @@ class AsyncMessagingApi(object):
         :rtype: tuple(GetAggregationUnitNameListResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -1446,6 +1465,7 @@ class AsyncMessagingApi(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -1522,6 +1542,7 @@ class AsyncMessagingApi(object):
         :rtype: tuple(GetAggregationUnitUsageResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -1587,6 +1608,7 @@ class AsyncMessagingApi(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -1663,6 +1685,7 @@ class AsyncMessagingApi(object):
         :rtype: tuple(BotInfoResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -1728,6 +1751,7 @@ class AsyncMessagingApi(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -1804,6 +1828,7 @@ class AsyncMessagingApi(object):
         :rtype: tuple(RichMenuIdResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -1869,6 +1894,7 @@ class AsyncMessagingApi(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -1953,6 +1979,7 @@ class AsyncMessagingApi(object):
         :rtype: tuple(GetFollowersResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -2026,6 +2053,7 @@ class AsyncMessagingApi(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -2106,6 +2134,7 @@ class AsyncMessagingApi(object):
         :rtype: tuple(GroupMemberCountResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -2175,6 +2204,7 @@ class AsyncMessagingApi(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -2259,6 +2289,7 @@ class AsyncMessagingApi(object):
         :rtype: tuple(GroupUserProfileResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -2332,6 +2363,7 @@ class AsyncMessagingApi(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -2416,6 +2448,7 @@ class AsyncMessagingApi(object):
         :rtype: tuple(MembersIdsResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -2489,6 +2522,7 @@ class AsyncMessagingApi(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -2569,6 +2603,7 @@ class AsyncMessagingApi(object):
         :rtype: tuple(GroupSummaryResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -2638,6 +2673,7 @@ class AsyncMessagingApi(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -2714,6 +2750,7 @@ class AsyncMessagingApi(object):
         :rtype: tuple(MembershipListResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -2780,6 +2817,7 @@ class AsyncMessagingApi(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -2860,6 +2898,7 @@ class AsyncMessagingApi(object):
         :rtype: tuple(GetMembershipSubscriptionResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -2931,6 +2970,7 @@ class AsyncMessagingApi(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -3007,6 +3047,7 @@ class AsyncMessagingApi(object):
         :rtype: tuple(MessageQuotaResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -3072,6 +3113,7 @@ class AsyncMessagingApi(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -3148,6 +3190,7 @@ class AsyncMessagingApi(object):
         :rtype: tuple(QuotaConsumptionResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -3213,6 +3256,7 @@ class AsyncMessagingApi(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -3293,6 +3337,7 @@ class AsyncMessagingApi(object):
         :rtype: tuple(NarrowcastProgressResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -3362,6 +3407,7 @@ class AsyncMessagingApi(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -3442,6 +3488,7 @@ class AsyncMessagingApi(object):
         :rtype: tuple(NumberOfMessagesResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -3511,6 +3558,7 @@ class AsyncMessagingApi(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -3591,6 +3639,7 @@ class AsyncMessagingApi(object):
         :rtype: tuple(NumberOfMessagesResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -3660,6 +3709,7 @@ class AsyncMessagingApi(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -3740,6 +3790,7 @@ class AsyncMessagingApi(object):
         :rtype: tuple(NumberOfMessagesResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -3809,6 +3860,7 @@ class AsyncMessagingApi(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -3889,6 +3941,7 @@ class AsyncMessagingApi(object):
         :rtype: tuple(NumberOfMessagesResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -3958,6 +4011,7 @@ class AsyncMessagingApi(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -4038,6 +4092,7 @@ class AsyncMessagingApi(object):
         :rtype: tuple(NumberOfMessagesResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -4107,6 +4162,7 @@ class AsyncMessagingApi(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -4187,6 +4243,7 @@ class AsyncMessagingApi(object):
         :rtype: tuple(UserProfileResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -4256,6 +4313,7 @@ class AsyncMessagingApi(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -4336,6 +4394,7 @@ class AsyncMessagingApi(object):
         :rtype: tuple(RichMenuResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -4405,6 +4464,7 @@ class AsyncMessagingApi(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -4485,6 +4545,7 @@ class AsyncMessagingApi(object):
         :rtype: tuple(RichMenuAliasResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -4554,6 +4615,7 @@ class AsyncMessagingApi(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -4630,6 +4692,7 @@ class AsyncMessagingApi(object):
         :rtype: tuple(RichMenuAliasListResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -4695,6 +4758,7 @@ class AsyncMessagingApi(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -4775,6 +4839,7 @@ class AsyncMessagingApi(object):
         :rtype: tuple(RichMenuBatchProgressResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -4844,6 +4909,7 @@ class AsyncMessagingApi(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -4924,6 +4990,7 @@ class AsyncMessagingApi(object):
         :rtype: tuple(RichMenuIdResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -4993,6 +5060,7 @@ class AsyncMessagingApi(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -5069,6 +5137,7 @@ class AsyncMessagingApi(object):
         :rtype: tuple(RichMenuListResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -5134,6 +5203,7 @@ class AsyncMessagingApi(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -5214,6 +5284,7 @@ class AsyncMessagingApi(object):
         :rtype: tuple(RoomMemberCountResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -5283,6 +5354,7 @@ class AsyncMessagingApi(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -5367,6 +5439,7 @@ class AsyncMessagingApi(object):
         :rtype: tuple(RoomUserProfileResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -5440,6 +5513,7 @@ class AsyncMessagingApi(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -5524,6 +5598,7 @@ class AsyncMessagingApi(object):
         :rtype: tuple(MembersIdsResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -5597,6 +5672,7 @@ class AsyncMessagingApi(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -5673,6 +5749,7 @@ class AsyncMessagingApi(object):
         :rtype: tuple(GetWebhookEndpointResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -5738,6 +5815,7 @@ class AsyncMessagingApi(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -5818,6 +5896,7 @@ class AsyncMessagingApi(object):
         :rtype: tuple(IssueLinkTokenResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -5887,6 +5966,7 @@ class AsyncMessagingApi(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -5967,6 +6047,7 @@ class AsyncMessagingApi(object):
         :rtype: None
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -6034,6 +6115,7 @@ class AsyncMessagingApi(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -6114,6 +6196,7 @@ class AsyncMessagingApi(object):
         :rtype: None
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -6177,6 +6260,7 @@ class AsyncMessagingApi(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -6261,6 +6345,7 @@ class AsyncMessagingApi(object):
         :rtype: None
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -6328,6 +6413,7 @@ class AsyncMessagingApi(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -6408,6 +6494,7 @@ class AsyncMessagingApi(object):
         :rtype: None
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -6478,6 +6565,7 @@ class AsyncMessagingApi(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -6558,6 +6646,7 @@ class AsyncMessagingApi(object):
         :rtype: None
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -6628,6 +6717,7 @@ class AsyncMessagingApi(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -6712,6 +6802,7 @@ class AsyncMessagingApi(object):
         :rtype: tuple(object, status_code(int), headers(HTTPHeaderDict))
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -6796,6 +6887,7 @@ class AsyncMessagingApi(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -6880,6 +6972,7 @@ class AsyncMessagingApi(object):
         :rtype: tuple(object, status_code(int), headers(HTTPHeaderDict))
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -6964,6 +7057,7 @@ class AsyncMessagingApi(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -7048,6 +7142,7 @@ class AsyncMessagingApi(object):
         :rtype: tuple(PushMessageResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -7132,6 +7227,7 @@ class AsyncMessagingApi(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -7216,6 +7312,7 @@ class AsyncMessagingApi(object):
         :rtype: None
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -7294,6 +7391,7 @@ class AsyncMessagingApi(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -7374,6 +7472,7 @@ class AsyncMessagingApi(object):
         :rtype: tuple(ReplyMessageResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -7452,6 +7551,7 @@ class AsyncMessagingApi(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -7532,6 +7632,7 @@ class AsyncMessagingApi(object):
         :rtype: None
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -7602,6 +7703,7 @@ class AsyncMessagingApi(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -7682,6 +7784,7 @@ class AsyncMessagingApi(object):
         :rtype: None
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -7745,6 +7848,7 @@ class AsyncMessagingApi(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -7825,6 +7929,7 @@ class AsyncMessagingApi(object):
         :rtype: None
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -7895,6 +8000,7 @@ class AsyncMessagingApi(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -7975,6 +8081,7 @@ class AsyncMessagingApi(object):
         :rtype: tuple(TestWebhookEndpointResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -8051,6 +8158,7 @@ class AsyncMessagingApi(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -8131,6 +8239,7 @@ class AsyncMessagingApi(object):
         :rtype: None
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -8194,6 +8303,7 @@ class AsyncMessagingApi(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -8274,6 +8384,7 @@ class AsyncMessagingApi(object):
         :rtype: None
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -8344,6 +8455,7 @@ class AsyncMessagingApi(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -8428,6 +8540,7 @@ class AsyncMessagingApi(object):
         :rtype: None
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -8506,6 +8619,7 @@ class AsyncMessagingApi(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -8586,6 +8700,7 @@ class AsyncMessagingApi(object):
         :rtype: None
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -8656,6 +8771,7 @@ class AsyncMessagingApi(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -8736,6 +8852,7 @@ class AsyncMessagingApi(object):
         :rtype: None
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -8806,6 +8923,7 @@ class AsyncMessagingApi(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -8886,6 +9004,7 @@ class AsyncMessagingApi(object):
         :rtype: None
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -8956,6 +9075,7 @@ class AsyncMessagingApi(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -9036,6 +9156,7 @@ class AsyncMessagingApi(object):
         :rtype: None
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -9106,6 +9227,7 @@ class AsyncMessagingApi(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -9186,6 +9308,7 @@ class AsyncMessagingApi(object):
         :rtype: None
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -9256,6 +9379,7 @@ class AsyncMessagingApi(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -9336,6 +9460,7 @@ class AsyncMessagingApi(object):
         :rtype: None
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -9406,6 +9531,7 @@ class AsyncMessagingApi(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -9486,6 +9612,7 @@ class AsyncMessagingApi(object):
         :rtype: None
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -9556,5 +9683,6 @@ class AsyncMessagingApi(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))

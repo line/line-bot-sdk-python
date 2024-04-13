@@ -45,6 +45,8 @@ class AsyncMessagingApiBlob(object):
         if api_client is None:
             api_client = AsyncApiClient.get_default()
         self.api_client = api_client
+        self.line_base_path = "https://api.line.me"
+
 
     @overload
     async def get_message_content(self, message_id : Annotated[StrictStr, Field(..., description="Message ID of video or audio")], **kwargs) -> bytearray:  # noqa: E501

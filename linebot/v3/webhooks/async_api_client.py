@@ -200,7 +200,7 @@ class AsyncApiClient(object):
             body = self.sanitize_for_serialization(body)
 
         # request url
-        if _host is None:
+        if self.configuration.host is not None:
             url = self.configuration.host + resource_path
         else:
             # use server/host defined in path or operation instead

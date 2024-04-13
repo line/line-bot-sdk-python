@@ -58,6 +58,8 @@ class AsyncManageAudience(object):
         if api_client is None:
             api_client = AsyncApiClient.get_default()
         self.api_client = api_client
+        self.line_base_path = "https://api.line.me"
+
 
     @overload
     async def activate_audience_group(self, audience_group_id : Annotated[StrictInt, Field(..., description="The audience ID.")], **kwargs) -> None:  # noqa: E501
@@ -136,6 +138,7 @@ class AsyncManageAudience(object):
         :rtype: None
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -199,6 +202,7 @@ class AsyncManageAudience(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -279,6 +283,7 @@ class AsyncManageAudience(object):
         :rtype: None
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -349,6 +354,7 @@ class AsyncManageAudience(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -429,6 +435,7 @@ class AsyncManageAudience(object):
         :rtype: tuple(CreateAudienceGroupResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -505,6 +512,7 @@ class AsyncManageAudience(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -585,6 +593,7 @@ class AsyncManageAudience(object):
         :rtype: tuple(CreateClickBasedAudienceGroupResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -661,6 +670,7 @@ class AsyncManageAudience(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -741,6 +751,7 @@ class AsyncManageAudience(object):
         :rtype: tuple(CreateImpBasedAudienceGroupResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -817,6 +828,7 @@ class AsyncManageAudience(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -897,6 +909,7 @@ class AsyncManageAudience(object):
         :rtype: None
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -960,6 +973,7 @@ class AsyncManageAudience(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -1040,6 +1054,7 @@ class AsyncManageAudience(object):
         :rtype: tuple(GetAudienceDataResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -1110,6 +1125,7 @@ class AsyncManageAudience(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -1186,6 +1202,7 @@ class AsyncManageAudience(object):
         :rtype: tuple(GetAudienceGroupAuthorityLevelResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -1251,6 +1268,7 @@ class AsyncManageAudience(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -1351,6 +1369,7 @@ class AsyncManageAudience(object):
         :rtype: tuple(GetAudienceGroupsResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -1440,6 +1459,7 @@ class AsyncManageAudience(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -1520,6 +1540,7 @@ class AsyncManageAudience(object):
         :rtype: None
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -1590,6 +1611,7 @@ class AsyncManageAudience(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
@@ -1674,6 +1696,7 @@ class AsyncManageAudience(object):
         :rtype: None
         """
 
+        _host = self.line_base_path
         _params = locals()
 
         _all_params = [
@@ -1748,5 +1771,6 @@ class AsyncManageAudience(object):
             _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
             _preload_content=_params.get('_preload_content', True),
             _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))

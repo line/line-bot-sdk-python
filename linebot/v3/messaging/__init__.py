@@ -166,6 +166,7 @@ from linebot.v3.messaging.models.room_user_profile_response import RoomUserProfi
 from linebot.v3.messaging.models.sender import Sender
 from linebot.v3.messaging.models.sent_message import SentMessage
 from linebot.v3.messaging.models.set_webhook_endpoint_request import SetWebhookEndpointRequest
+from linebot.v3.messaging.models.show_loading_animation_request import ShowLoadingAnimationRequest
 from linebot.v3.messaging.models.sticker_message import StickerMessage
 from linebot.v3.messaging.models.subscribed_membership_plan import SubscribedMembershipPlan
 from linebot.v3.messaging.models.subscribed_membership_user import SubscribedMembershipUser

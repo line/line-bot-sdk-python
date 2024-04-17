@@ -56,6 +56,7 @@ Method | HTTP request | Description
 [**rich_menu_batch**](MessagingApi.md#rich_menu_batch) | **POST** /v2/bot/richmenu/batch | 
 [**set_default_rich_menu**](MessagingApi.md#set_default_rich_menu) | **POST** /v2/bot/user/all/richmenu/{richMenuId} | 
 [**set_webhook_endpoint**](MessagingApi.md#set_webhook_endpoint) | **PUT** /v2/bot/channel/webhook/endpoint | 
+[**show_loading_animation**](MessagingApi.md#show_loading_animation) | **POST** /v2/bot/chat/loading/start | 
 [**test_webhook_endpoint**](MessagingApi.md#test_webhook_endpoint) | **POST** /v2/bot/channel/webhook/test | 
 [**unlink_rich_menu_id_from_user**](MessagingApi.md#unlink_rich_menu_id_from_user) | **DELETE** /v2/bot/user/{userId}/richmenu | 
 [**unlink_rich_menu_id_from_users**](MessagingApi.md#unlink_rich_menu_id_from_users) | **POST** /v2/bot/richmenu/bulk/unlink | 
@@ -3944,6 +3945,82 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **show_loading_animation**
+> object show_loading_animation(show_loading_animation_request)
+
+
+
+Display a loading animation in one-on-one chats between users and LINE Official Accounts.
+
+### Example
+
+* Bearer Authentication (Bearer):
+```python
+import time
+import os
+import linebot.v3.messaging
+from linebot.v3.messaging.models.show_loading_animation_request import ShowLoadingAnimationRequest
+from linebot.v3.messaging.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.line.me
+# See configuration.py for a list of all supported configuration parameters.
+configuration = linebot.v3.messaging.Configuration(
+    host = "https://api.line.me"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: Bearer
+configuration = linebot.v3.messaging.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with linebot.v3.messaging.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = linebot.v3.messaging.MessagingApi(api_client)
+    show_loading_animation_request = linebot.v3.messaging.ShowLoadingAnimationRequest() # ShowLoadingAnimationRequest | 
+
+    try:
+        api_response = api_instance.show_loading_animation(show_loading_animation_request)
+        print("The response of MessagingApi->show_loading_animation:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling MessagingApi->show_loading_animation: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **show_loading_animation_request** | [**ShowLoadingAnimationRequest**](ShowLoadingAnimationRequest.md)|  | 
+
+### Return type
+
+**object**
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**202** | Accepted |  -  |
+**400** | An invalid chat ID is specified, or the loadingSeconds value is invalid. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

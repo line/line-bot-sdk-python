@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **attach_module**
-> AttachModuleResponse attach_module(grant_type=grant_type, code=code, redirect_uri=redirect_uri, code_verifier=code_verifier, client_id=client_id, client_secret=client_secret, region=region, basic_search_id=basic_search_id, scope=scope, brand_type=brand_type)
+> AttachModuleResponse attach_module(grant_type, code, redirect_uri, code_verifier=code_verifier, client_id=client_id, client_secret=client_secret, region=region, basic_search_id=basic_search_id, scope=scope, brand_type=brand_type)
 
 
 
@@ -46,9 +46,9 @@ configuration = linebot.v3.moduleattach.Configuration(
 with linebot.v3.moduleattach.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = linebot.v3.moduleattach.LineModuleAttach(api_client)
-    grant_type = 'grant_type_example' # str | authorization_code (optional)
-    code = 'code_example' # str | Authorization code received from the LINE Platform. (optional)
-    redirect_uri = 'redirect_uri_example' # str | Specify the redirect_uri specified in the URL for authentication and authorization. (optional)
+    grant_type = 'grant_type_example' # str | authorization_code
+    code = 'code_example' # str | Authorization code received from the LINE Platform.
+    redirect_uri = 'redirect_uri_example' # str | Specify the redirect_uri specified in the URL for authentication and authorization.
     code_verifier = 'code_verifier_example' # str | Specify when using PKCE (Proof Key for Code Exchange) defined in the OAuth 2.0 extension specification as a countermeasure against authorization code interception attacks. (optional)
     client_id = 'client_id_example' # str | Instead of using Authorization header, you can use this parameter to specify the channel ID of the module channel. You can find the channel ID of the module channel in the LINE Developers Console.  (optional)
     client_secret = 'client_secret_example' # str | Instead of using Authorization header, you can use this parameter to specify the channel secret of the module channel. You can find the channel secret of the module channel in the LINE Developers Console.  (optional)
@@ -58,7 +58,7 @@ with linebot.v3.moduleattach.ApiClient(configuration) as api_client:
     brand_type = 'brand_type_example' # str | If you specified a value for brand_type in the URL for authentication and authorization, specify the same value. (optional)
 
     try:
-        api_response = api_instance.attach_module(grant_type=grant_type, code=code, redirect_uri=redirect_uri, code_verifier=code_verifier, client_id=client_id, client_secret=client_secret, region=region, basic_search_id=basic_search_id, scope=scope, brand_type=brand_type)
+        api_response = api_instance.attach_module(grant_type, code, redirect_uri, code_verifier=code_verifier, client_id=client_id, client_secret=client_secret, region=region, basic_search_id=basic_search_id, scope=scope, brand_type=brand_type)
         print("The response of LineModuleAttach->attach_module:\n")
         pprint(api_response)
     except Exception as e:
@@ -70,9 +70,9 @@ with linebot.v3.moduleattach.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **grant_type** | **str**| authorization_code | [optional] 
- **code** | **str**| Authorization code received from the LINE Platform. | [optional] 
- **redirect_uri** | **str**| Specify the redirect_uri specified in the URL for authentication and authorization. | [optional] 
+ **grant_type** | **str**| authorization_code | 
+ **code** | **str**| Authorization code received from the LINE Platform. | 
+ **redirect_uri** | **str**| Specify the redirect_uri specified in the URL for authentication and authorization. | 
  **code_verifier** | **str**| Specify when using PKCE (Proof Key for Code Exchange) defined in the OAuth 2.0 extension specification as a countermeasure against authorization code interception attacks. | [optional] 
  **client_id** | **str**| Instead of using Authorization header, you can use this parameter to specify the channel ID of the module channel. You can find the channel ID of the module channel in the LINE Developers Console.  | [optional] 
  **client_secret** | **str**| Instead of using Authorization header, you can use this parameter to specify the channel secret of the module channel. You can find the channel secret of the module channel in the LINE Developers Console.  | [optional] 

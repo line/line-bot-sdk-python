@@ -59,7 +59,7 @@ class AsyncLiff(object):
 
     @validate_arguments
     def add_liff_app(self, add_liff_app_request : AddLiffAppRequest, async_req: Optional[bool]=None, **kwargs) -> Union[AddLiffAppResponse, Awaitable[AddLiffAppResponse]]:  # noqa: E501
-        """add_liff_app  # noqa: E501
+        """Create LIFF app  # noqa: E501
 
         Adding the LIFF app to a channel  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -90,7 +90,7 @@ class AsyncLiff(object):
 
     @validate_arguments
     def add_liff_app_with_http_info(self, add_liff_app_request : AddLiffAppRequest, **kwargs) -> ApiResponse:  # noqa: E501
-        """add_liff_app  # noqa: E501
+        """Create LIFF app  # noqa: E501
 
         Adding the LIFF app to a channel  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -509,7 +509,7 @@ class AsyncLiff(object):
 
     @validate_arguments
     def update_liff_app(self, liff_id : Annotated[StrictStr, Field(..., description="ID of the LIFF app to be updated")], update_liff_app_request : UpdateLiffAppRequest, async_req: Optional[bool]=None, **kwargs) -> Union[None, Awaitable[None]]:  # noqa: E501
-        """update_liff_app  # noqa: E501
+        """Update LIFF app from a channel  # noqa: E501
 
         Update LIFF app settings  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -542,7 +542,7 @@ class AsyncLiff(object):
 
     @validate_arguments
     def update_liff_app_with_http_info(self, liff_id : Annotated[StrictStr, Field(..., description="ID of the LIFF app to be updated")], update_liff_app_request : UpdateLiffAppRequest, **kwargs) -> ApiResponse:  # noqa: E501
-        """update_liff_app  # noqa: E501
+        """Update LIFF app from a channel  # noqa: E501
 
         Update LIFF app settings  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an

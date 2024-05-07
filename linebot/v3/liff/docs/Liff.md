@@ -4,16 +4,16 @@ All URIs are relative to *https://api.line.me*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**add_liff_app**](Liff.md#add_liff_app) | **POST** /liff/v1/apps | 
+[**add_liff_app**](Liff.md#add_liff_app) | **POST** /liff/v1/apps | Create LIFF app
 [**delete_liff_app**](Liff.md#delete_liff_app) | **DELETE** /liff/v1/apps/{liffId} | Delete LIFF app from a channel
 [**get_all_liff_apps**](Liff.md#get_all_liff_apps) | **GET** /liff/v1/apps | Get all LIFF apps
-[**update_liff_app**](Liff.md#update_liff_app) | **PUT** /liff/v1/apps/{liffId} | 
+[**update_liff_app**](Liff.md#update_liff_app) | **PUT** /liff/v1/apps/{liffId} | Update LIFF app from a channel
 
 
 # **add_liff_app**
 > AddLiffAppResponse add_liff_app(add_liff_app_request)
 
-
+Create LIFF app
 
 Adding the LIFF app to a channel
 
@@ -52,6 +52,7 @@ with linebot.v3.liff.ApiClient(configuration) as api_client:
     add_liff_app_request = linebot.v3.liff.AddLiffAppRequest() # AddLiffAppRequest | 
 
     try:
+        # Create LIFF app
         api_response = api_instance.add_liff_app(add_liff_app_request)
         print("The response of Liff->add_liff_app:\n")
         pprint(api_response)
@@ -83,7 +84,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
-**400** | This status code means one of the following:  - The request contains an invalid value. - The maximum number of LIFF apps that can be added to the channel has been reached.  |  -  |
+**400** | This status code means one of the following: - The request contains an invalid value. - The maximum number of LIFF apps that can be added to the channel has been reached.  |  -  |
 **401** | Authentication failed.   |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -240,7 +241,7 @@ This endpoint does not need any parameter.
 # **update_liff_app**
 > update_liff_app(liff_id, update_liff_app_request)
 
-
+Update LIFF app from a channel
 
 Update LIFF app settings
 
@@ -279,6 +280,7 @@ with linebot.v3.liff.ApiClient(configuration) as api_client:
     update_liff_app_request = linebot.v3.liff.UpdateLiffAppRequest() # UpdateLiffAppRequest | 
 
     try:
+        # Update LIFF app from a channel
         api_instance.update_liff_app(liff_id, update_liff_app_request)
     except Exception as e:
         print("Exception when calling Liff->update_liff_app: %s\n" % e)

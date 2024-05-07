@@ -22,8 +22,6 @@ from typing import overload, Optional, Union, Awaitable
 
 from pydantic.v1 import Field, StrictStr
 
-from typing import Optional
-
 from linebot.v3.oauth.models.channel_access_token_key_ids_response import ChannelAccessTokenKeyIdsResponse
 from linebot.v3.oauth.models.issue_channel_access_token_response import IssueChannelAccessTokenResponse
 from linebot.v3.oauth.models.issue_short_lived_channel_access_token_response import IssueShortLivedChannelAccessTokenResponse
@@ -212,15 +210,15 @@ class AsyncChannelAccessToken(object):
             _request_auth=_params.get('_request_auth'))
 
     @overload
-    async def issue_channel_token(self, grant_type : Annotated[Optional[StrictStr], Field(description="`client_credentials`")] = None, client_id : Annotated[Optional[StrictStr], Field(description="Channel ID.")] = None, client_secret : Annotated[Optional[StrictStr], Field(description="Channel secret.")] = None, **kwargs) -> IssueShortLivedChannelAccessTokenResponse:  # noqa: E501
+    async def issue_channel_token(self, grant_type : Annotated[StrictStr, Field(..., description="`client_credentials`")], client_id : Annotated[StrictStr, Field(..., description="Channel ID.")], client_secret : Annotated[StrictStr, Field(..., description="Channel secret.")], **kwargs) -> IssueShortLivedChannelAccessTokenResponse:  # noqa: E501
         ...
 
     @overload
-    def issue_channel_token(self, grant_type : Annotated[Optional[StrictStr], Field(description="`client_credentials`")] = None, client_id : Annotated[Optional[StrictStr], Field(description="Channel ID.")] = None, client_secret : Annotated[Optional[StrictStr], Field(description="Channel secret.")] = None, async_req: Optional[bool]=True, **kwargs) -> IssueShortLivedChannelAccessTokenResponse:  # noqa: E501
+    def issue_channel_token(self, grant_type : Annotated[StrictStr, Field(..., description="`client_credentials`")], client_id : Annotated[StrictStr, Field(..., description="Channel ID.")], client_secret : Annotated[StrictStr, Field(..., description="Channel secret.")], async_req: Optional[bool]=True, **kwargs) -> IssueShortLivedChannelAccessTokenResponse:  # noqa: E501
         ...
 
     @validate_arguments
-    def issue_channel_token(self, grant_type : Annotated[Optional[StrictStr], Field(description="`client_credentials`")] = None, client_id : Annotated[Optional[StrictStr], Field(description="Channel ID.")] = None, client_secret : Annotated[Optional[StrictStr], Field(description="Channel secret.")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[IssueShortLivedChannelAccessTokenResponse, Awaitable[IssueShortLivedChannelAccessTokenResponse]]:  # noqa: E501
+    def issue_channel_token(self, grant_type : Annotated[StrictStr, Field(..., description="`client_credentials`")], client_id : Annotated[StrictStr, Field(..., description="Channel ID.")], client_secret : Annotated[StrictStr, Field(..., description="Channel secret.")], async_req: Optional[bool]=None, **kwargs) -> Union[IssueShortLivedChannelAccessTokenResponse, Awaitable[IssueShortLivedChannelAccessTokenResponse]]:  # noqa: E501
         """issue_channel_token  # noqa: E501
 
         Issue short-lived channel access token  # noqa: E501
@@ -230,11 +228,11 @@ class AsyncChannelAccessToken(object):
         >>> thread = api.issue_channel_token(grant_type, client_id, client_secret, async_req=True)
         >>> result = thread.get()
 
-        :param grant_type: `client_credentials`
+        :param grant_type: `client_credentials` (required)
         :type grant_type: str
-        :param client_id: Channel ID.
+        :param client_id: Channel ID. (required)
         :type client_id: str
-        :param client_secret: Channel secret.
+        :param client_secret: Channel secret. (required)
         :type client_secret: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -255,7 +253,7 @@ class AsyncChannelAccessToken(object):
         return self.issue_channel_token_with_http_info(grant_type, client_id, client_secret, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def issue_channel_token_with_http_info(self, grant_type : Annotated[Optional[StrictStr], Field(description="`client_credentials`")] = None, client_id : Annotated[Optional[StrictStr], Field(description="Channel ID.")] = None, client_secret : Annotated[Optional[StrictStr], Field(description="Channel secret.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def issue_channel_token_with_http_info(self, grant_type : Annotated[StrictStr, Field(..., description="`client_credentials`")], client_id : Annotated[StrictStr, Field(..., description="Channel ID.")], client_secret : Annotated[StrictStr, Field(..., description="Channel secret.")], **kwargs) -> ApiResponse:  # noqa: E501
         """issue_channel_token  # noqa: E501
 
         Issue short-lived channel access token  # noqa: E501
@@ -265,11 +263,11 @@ class AsyncChannelAccessToken(object):
         >>> thread = api.issue_channel_token_with_http_info(grant_type, client_id, client_secret, async_req=True)
         >>> result = thread.get()
 
-        :param grant_type: `client_credentials`
+        :param grant_type: `client_credentials` (required)
         :type grant_type: str
-        :param client_id: Channel ID.
+        :param client_id: Channel ID. (required)
         :type client_id: str
-        :param client_secret: Channel secret.
+        :param client_secret: Channel secret. (required)
         :type client_secret: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -387,15 +385,15 @@ class AsyncChannelAccessToken(object):
             _request_auth=_params.get('_request_auth'))
 
     @overload
-    async def issue_channel_token_by_jwt(self, grant_type : Annotated[Optional[StrictStr], Field(description="client_credentials")] = None, client_assertion_type : Annotated[Optional[StrictStr], Field(description="urn:ietf:params:oauth:client-assertion-type:jwt-bearer")] = None, client_assertion : Annotated[Optional[StrictStr], Field(description="A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key.")] = None, **kwargs) -> IssueChannelAccessTokenResponse:  # noqa: E501
+    async def issue_channel_token_by_jwt(self, grant_type : Annotated[StrictStr, Field(..., description="client_credentials")], client_assertion_type : Annotated[StrictStr, Field(..., description="urn:ietf:params:oauth:client-assertion-type:jwt-bearer")], client_assertion : Annotated[StrictStr, Field(..., description="A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key.")], **kwargs) -> IssueChannelAccessTokenResponse:  # noqa: E501
         ...
 
     @overload
-    def issue_channel_token_by_jwt(self, grant_type : Annotated[Optional[StrictStr], Field(description="client_credentials")] = None, client_assertion_type : Annotated[Optional[StrictStr], Field(description="urn:ietf:params:oauth:client-assertion-type:jwt-bearer")] = None, client_assertion : Annotated[Optional[StrictStr], Field(description="A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key.")] = None, async_req: Optional[bool]=True, **kwargs) -> IssueChannelAccessTokenResponse:  # noqa: E501
+    def issue_channel_token_by_jwt(self, grant_type : Annotated[StrictStr, Field(..., description="client_credentials")], client_assertion_type : Annotated[StrictStr, Field(..., description="urn:ietf:params:oauth:client-assertion-type:jwt-bearer")], client_assertion : Annotated[StrictStr, Field(..., description="A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key.")], async_req: Optional[bool]=True, **kwargs) -> IssueChannelAccessTokenResponse:  # noqa: E501
         ...
 
     @validate_arguments
-    def issue_channel_token_by_jwt(self, grant_type : Annotated[Optional[StrictStr], Field(description="client_credentials")] = None, client_assertion_type : Annotated[Optional[StrictStr], Field(description="urn:ietf:params:oauth:client-assertion-type:jwt-bearer")] = None, client_assertion : Annotated[Optional[StrictStr], Field(description="A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key.")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[IssueChannelAccessTokenResponse, Awaitable[IssueChannelAccessTokenResponse]]:  # noqa: E501
+    def issue_channel_token_by_jwt(self, grant_type : Annotated[StrictStr, Field(..., description="client_credentials")], client_assertion_type : Annotated[StrictStr, Field(..., description="urn:ietf:params:oauth:client-assertion-type:jwt-bearer")], client_assertion : Annotated[StrictStr, Field(..., description="A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key.")], async_req: Optional[bool]=None, **kwargs) -> Union[IssueChannelAccessTokenResponse, Awaitable[IssueChannelAccessTokenResponse]]:  # noqa: E501
         """issue_channel_token_by_jwt  # noqa: E501
 
         Issues a channel access token that allows you to specify a desired expiration date. This method lets you use JWT assertion for authentication.  # noqa: E501
@@ -405,11 +403,11 @@ class AsyncChannelAccessToken(object):
         >>> thread = api.issue_channel_token_by_jwt(grant_type, client_assertion_type, client_assertion, async_req=True)
         >>> result = thread.get()
 
-        :param grant_type: client_credentials
+        :param grant_type: client_credentials (required)
         :type grant_type: str
-        :param client_assertion_type: urn:ietf:params:oauth:client-assertion-type:jwt-bearer
+        :param client_assertion_type: urn:ietf:params:oauth:client-assertion-type:jwt-bearer (required)
         :type client_assertion_type: str
-        :param client_assertion: A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key.
+        :param client_assertion: A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key. (required)
         :type client_assertion: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -430,7 +428,7 @@ class AsyncChannelAccessToken(object):
         return self.issue_channel_token_by_jwt_with_http_info(grant_type, client_assertion_type, client_assertion, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def issue_channel_token_by_jwt_with_http_info(self, grant_type : Annotated[Optional[StrictStr], Field(description="client_credentials")] = None, client_assertion_type : Annotated[Optional[StrictStr], Field(description="urn:ietf:params:oauth:client-assertion-type:jwt-bearer")] = None, client_assertion : Annotated[Optional[StrictStr], Field(description="A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def issue_channel_token_by_jwt_with_http_info(self, grant_type : Annotated[StrictStr, Field(..., description="client_credentials")], client_assertion_type : Annotated[StrictStr, Field(..., description="urn:ietf:params:oauth:client-assertion-type:jwt-bearer")], client_assertion : Annotated[StrictStr, Field(..., description="A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key.")], **kwargs) -> ApiResponse:  # noqa: E501
         """issue_channel_token_by_jwt  # noqa: E501
 
         Issues a channel access token that allows you to specify a desired expiration date. This method lets you use JWT assertion for authentication.  # noqa: E501
@@ -440,11 +438,11 @@ class AsyncChannelAccessToken(object):
         >>> thread = api.issue_channel_token_by_jwt_with_http_info(grant_type, client_assertion_type, client_assertion, async_req=True)
         >>> result = thread.get()
 
-        :param grant_type: client_credentials
+        :param grant_type: client_credentials (required)
         :type grant_type: str
-        :param client_assertion_type: urn:ietf:params:oauth:client-assertion-type:jwt-bearer
+        :param client_assertion_type: urn:ietf:params:oauth:client-assertion-type:jwt-bearer (required)
         :type client_assertion_type: str
-        :param client_assertion: A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key.
+        :param client_assertion: A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key. (required)
         :type client_assertion: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -751,15 +749,15 @@ class AsyncChannelAccessToken(object):
             _request_auth=_params.get('_request_auth'))
 
     @overload
-    async def revoke_channel_token(self, access_token : Annotated[Optional[StrictStr], Field(description="Channel access token")] = None, **kwargs) -> None:  # noqa: E501
+    async def revoke_channel_token(self, access_token : Annotated[StrictStr, Field(..., description="Channel access token")], **kwargs) -> None:  # noqa: E501
         ...
 
     @overload
-    def revoke_channel_token(self, access_token : Annotated[Optional[StrictStr], Field(description="Channel access token")] = None, async_req: Optional[bool]=True, **kwargs) -> None:  # noqa: E501
+    def revoke_channel_token(self, access_token : Annotated[StrictStr, Field(..., description="Channel access token")], async_req: Optional[bool]=True, **kwargs) -> None:  # noqa: E501
         ...
 
     @validate_arguments
-    def revoke_channel_token(self, access_token : Annotated[Optional[StrictStr], Field(description="Channel access token")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[None, Awaitable[None]]:  # noqa: E501
+    def revoke_channel_token(self, access_token : Annotated[StrictStr, Field(..., description="Channel access token")], async_req: Optional[bool]=None, **kwargs) -> Union[None, Awaitable[None]]:  # noqa: E501
         """revoke_channel_token  # noqa: E501
 
         Revoke short-lived or long-lived channel access token  # noqa: E501
@@ -769,7 +767,7 @@ class AsyncChannelAccessToken(object):
         >>> thread = api.revoke_channel_token(access_token, async_req=True)
         >>> result = thread.get()
 
-        :param access_token: Channel access token
+        :param access_token: Channel access token (required)
         :type access_token: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -790,7 +788,7 @@ class AsyncChannelAccessToken(object):
         return self.revoke_channel_token_with_http_info(access_token, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def revoke_channel_token_with_http_info(self, access_token : Annotated[Optional[StrictStr], Field(description="Channel access token")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def revoke_channel_token_with_http_info(self, access_token : Annotated[StrictStr, Field(..., description="Channel access token")], **kwargs) -> ApiResponse:  # noqa: E501
         """revoke_channel_token  # noqa: E501
 
         Revoke short-lived or long-lived channel access token  # noqa: E501
@@ -800,7 +798,7 @@ class AsyncChannelAccessToken(object):
         >>> thread = api.revoke_channel_token_with_http_info(access_token, async_req=True)
         >>> result = thread.get()
 
-        :param access_token: Channel access token
+        :param access_token: Channel access token (required)
         :type access_token: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -903,15 +901,15 @@ class AsyncChannelAccessToken(object):
             _request_auth=_params.get('_request_auth'))
 
     @overload
-    async def revoke_channel_token_by_jwt(self, client_id : Annotated[Optional[StrictStr], Field(description="Channel ID")] = None, client_secret : Annotated[Optional[StrictStr], Field(description="Channel Secret")] = None, access_token : Annotated[Optional[StrictStr], Field(description="Channel access token")] = None, **kwargs) -> None:  # noqa: E501
+    async def revoke_channel_token_by_jwt(self, client_id : Annotated[StrictStr, Field(..., description="Channel ID")], client_secret : Annotated[StrictStr, Field(..., description="Channel Secret")], access_token : Annotated[StrictStr, Field(..., description="Channel access token")], **kwargs) -> None:  # noqa: E501
         ...
 
     @overload
-    def revoke_channel_token_by_jwt(self, client_id : Annotated[Optional[StrictStr], Field(description="Channel ID")] = None, client_secret : Annotated[Optional[StrictStr], Field(description="Channel Secret")] = None, access_token : Annotated[Optional[StrictStr], Field(description="Channel access token")] = None, async_req: Optional[bool]=True, **kwargs) -> None:  # noqa: E501
+    def revoke_channel_token_by_jwt(self, client_id : Annotated[StrictStr, Field(..., description="Channel ID")], client_secret : Annotated[StrictStr, Field(..., description="Channel Secret")], access_token : Annotated[StrictStr, Field(..., description="Channel access token")], async_req: Optional[bool]=True, **kwargs) -> None:  # noqa: E501
         ...
 
     @validate_arguments
-    def revoke_channel_token_by_jwt(self, client_id : Annotated[Optional[StrictStr], Field(description="Channel ID")] = None, client_secret : Annotated[Optional[StrictStr], Field(description="Channel Secret")] = None, access_token : Annotated[Optional[StrictStr], Field(description="Channel access token")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[None, Awaitable[None]]:  # noqa: E501
+    def revoke_channel_token_by_jwt(self, client_id : Annotated[StrictStr, Field(..., description="Channel ID")], client_secret : Annotated[StrictStr, Field(..., description="Channel Secret")], access_token : Annotated[StrictStr, Field(..., description="Channel access token")], async_req: Optional[bool]=None, **kwargs) -> Union[None, Awaitable[None]]:  # noqa: E501
         """revoke_channel_token_by_jwt  # noqa: E501
 
         Revoke channel access token v2.1  # noqa: E501
@@ -921,11 +919,11 @@ class AsyncChannelAccessToken(object):
         >>> thread = api.revoke_channel_token_by_jwt(client_id, client_secret, access_token, async_req=True)
         >>> result = thread.get()
 
-        :param client_id: Channel ID
+        :param client_id: Channel ID (required)
         :type client_id: str
-        :param client_secret: Channel Secret
+        :param client_secret: Channel Secret (required)
         :type client_secret: str
-        :param access_token: Channel access token
+        :param access_token: Channel access token (required)
         :type access_token: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -946,7 +944,7 @@ class AsyncChannelAccessToken(object):
         return self.revoke_channel_token_by_jwt_with_http_info(client_id, client_secret, access_token, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def revoke_channel_token_by_jwt_with_http_info(self, client_id : Annotated[Optional[StrictStr], Field(description="Channel ID")] = None, client_secret : Annotated[Optional[StrictStr], Field(description="Channel Secret")] = None, access_token : Annotated[Optional[StrictStr], Field(description="Channel access token")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def revoke_channel_token_by_jwt_with_http_info(self, client_id : Annotated[StrictStr, Field(..., description="Channel ID")], client_secret : Annotated[StrictStr, Field(..., description="Channel Secret")], access_token : Annotated[StrictStr, Field(..., description="Channel access token")], **kwargs) -> ApiResponse:  # noqa: E501
         """revoke_channel_token_by_jwt  # noqa: E501
 
         Revoke channel access token v2.1  # noqa: E501
@@ -956,11 +954,11 @@ class AsyncChannelAccessToken(object):
         >>> thread = api.revoke_channel_token_by_jwt_with_http_info(client_id, client_secret, access_token, async_req=True)
         >>> result = thread.get()
 
-        :param client_id: Channel ID
+        :param client_id: Channel ID (required)
         :type client_id: str
-        :param client_secret: Channel Secret
+        :param client_secret: Channel Secret (required)
         :type client_secret: str
-        :param access_token: Channel access token
+        :param access_token: Channel access token (required)
         :type access_token: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1071,15 +1069,15 @@ class AsyncChannelAccessToken(object):
             _request_auth=_params.get('_request_auth'))
 
     @overload
-    async def verify_channel_token(self, access_token : Annotated[Optional[StrictStr], Field(description="A short-lived or long-lived channel access token.")] = None, **kwargs) -> VerifyChannelAccessTokenResponse:  # noqa: E501
+    async def verify_channel_token(self, access_token : Annotated[StrictStr, Field(..., description="A short-lived or long-lived channel access token.")], **kwargs) -> VerifyChannelAccessTokenResponse:  # noqa: E501
         ...
 
     @overload
-    def verify_channel_token(self, access_token : Annotated[Optional[StrictStr], Field(description="A short-lived or long-lived channel access token.")] = None, async_req: Optional[bool]=True, **kwargs) -> VerifyChannelAccessTokenResponse:  # noqa: E501
+    def verify_channel_token(self, access_token : Annotated[StrictStr, Field(..., description="A short-lived or long-lived channel access token.")], async_req: Optional[bool]=True, **kwargs) -> VerifyChannelAccessTokenResponse:  # noqa: E501
         ...
 
     @validate_arguments
-    def verify_channel_token(self, access_token : Annotated[Optional[StrictStr], Field(description="A short-lived or long-lived channel access token.")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[VerifyChannelAccessTokenResponse, Awaitable[VerifyChannelAccessTokenResponse]]:  # noqa: E501
+    def verify_channel_token(self, access_token : Annotated[StrictStr, Field(..., description="A short-lived or long-lived channel access token.")], async_req: Optional[bool]=None, **kwargs) -> Union[VerifyChannelAccessTokenResponse, Awaitable[VerifyChannelAccessTokenResponse]]:  # noqa: E501
         """verify_channel_token  # noqa: E501
 
         Verify the validity of short-lived and long-lived channel access tokens  # noqa: E501
@@ -1089,7 +1087,7 @@ class AsyncChannelAccessToken(object):
         >>> thread = api.verify_channel_token(access_token, async_req=True)
         >>> result = thread.get()
 
-        :param access_token: A short-lived or long-lived channel access token.
+        :param access_token: A short-lived or long-lived channel access token. (required)
         :type access_token: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -1110,7 +1108,7 @@ class AsyncChannelAccessToken(object):
         return self.verify_channel_token_with_http_info(access_token, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def verify_channel_token_with_http_info(self, access_token : Annotated[Optional[StrictStr], Field(description="A short-lived or long-lived channel access token.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def verify_channel_token_with_http_info(self, access_token : Annotated[StrictStr, Field(..., description="A short-lived or long-lived channel access token.")], **kwargs) -> ApiResponse:  # noqa: E501
         """verify_channel_token  # noqa: E501
 
         Verify the validity of short-lived and long-lived channel access tokens  # noqa: E501
@@ -1120,7 +1118,7 @@ class AsyncChannelAccessToken(object):
         >>> thread = api.verify_channel_token_with_http_info(access_token, async_req=True)
         >>> result = thread.get()
 
-        :param access_token: A short-lived or long-lived channel access token.
+        :param access_token: A short-lived or long-lived channel access token. (required)
         :type access_token: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional

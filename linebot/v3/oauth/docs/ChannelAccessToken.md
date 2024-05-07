@@ -82,7 +82,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **issue_channel_token**
-> IssueShortLivedChannelAccessTokenResponse issue_channel_token(grant_type=grant_type, client_id=client_id, client_secret=client_secret)
+> IssueShortLivedChannelAccessTokenResponse issue_channel_token(grant_type, client_id, client_secret)
 
 
 
@@ -109,12 +109,12 @@ configuration = linebot.v3.oauth.Configuration(
 with linebot.v3.oauth.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = linebot.v3.oauth.ChannelAccessToken(api_client)
-    grant_type = 'grant_type_example' # str | `client_credentials` (optional)
-    client_id = 'client_id_example' # str | Channel ID. (optional)
-    client_secret = 'client_secret_example' # str | Channel secret. (optional)
+    grant_type = 'grant_type_example' # str | `client_credentials`
+    client_id = 'client_id_example' # str | Channel ID.
+    client_secret = 'client_secret_example' # str | Channel secret.
 
     try:
-        api_response = api_instance.issue_channel_token(grant_type=grant_type, client_id=client_id, client_secret=client_secret)
+        api_response = api_instance.issue_channel_token(grant_type, client_id, client_secret)
         print("The response of ChannelAccessToken->issue_channel_token:\n")
         pprint(api_response)
     except Exception as e:
@@ -126,9 +126,9 @@ with linebot.v3.oauth.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **grant_type** | **str**| &#x60;client_credentials&#x60; | [optional] 
- **client_id** | **str**| Channel ID. | [optional] 
- **client_secret** | **str**| Channel secret. | [optional] 
+ **grant_type** | **str**| &#x60;client_credentials&#x60; | 
+ **client_id** | **str**| Channel ID. | 
+ **client_secret** | **str**| Channel secret. | 
 
 ### Return type
 
@@ -152,7 +152,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **issue_channel_token_by_jwt**
-> IssueChannelAccessTokenResponse issue_channel_token_by_jwt(grant_type=grant_type, client_assertion_type=client_assertion_type, client_assertion=client_assertion)
+> IssueChannelAccessTokenResponse issue_channel_token_by_jwt(grant_type, client_assertion_type, client_assertion)
 
 
 
@@ -179,12 +179,12 @@ configuration = linebot.v3.oauth.Configuration(
 with linebot.v3.oauth.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = linebot.v3.oauth.ChannelAccessToken(api_client)
-    grant_type = 'grant_type_example' # str | client_credentials (optional)
-    client_assertion_type = 'client_assertion_type_example' # str | urn:ietf:params:oauth:client-assertion-type:jwt-bearer (optional)
-    client_assertion = 'client_assertion_example' # str | A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key. (optional)
+    grant_type = 'grant_type_example' # str | client_credentials
+    client_assertion_type = 'client_assertion_type_example' # str | urn:ietf:params:oauth:client-assertion-type:jwt-bearer
+    client_assertion = 'client_assertion_example' # str | A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key.
 
     try:
-        api_response = api_instance.issue_channel_token_by_jwt(grant_type=grant_type, client_assertion_type=client_assertion_type, client_assertion=client_assertion)
+        api_response = api_instance.issue_channel_token_by_jwt(grant_type, client_assertion_type, client_assertion)
         print("The response of ChannelAccessToken->issue_channel_token_by_jwt:\n")
         pprint(api_response)
     except Exception as e:
@@ -196,9 +196,9 @@ with linebot.v3.oauth.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **grant_type** | **str**| client_credentials | [optional] 
- **client_assertion_type** | **str**| urn:ietf:params:oauth:client-assertion-type:jwt-bearer | [optional] 
- **client_assertion** | **str**| A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key. | [optional] 
+ **grant_type** | **str**| client_credentials | 
+ **client_assertion_type** | **str**| urn:ietf:params:oauth:client-assertion-type:jwt-bearer | 
+ **client_assertion** | **str**| A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key. | 
 
 ### Return type
 
@@ -294,7 +294,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **revoke_channel_token**
-> revoke_channel_token(access_token=access_token)
+> revoke_channel_token(access_token)
 
 
 
@@ -320,10 +320,10 @@ configuration = linebot.v3.oauth.Configuration(
 with linebot.v3.oauth.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = linebot.v3.oauth.ChannelAccessToken(api_client)
-    access_token = 'access_token_example' # str | Channel access token (optional)
+    access_token = 'access_token_example' # str | Channel access token
 
     try:
-        api_instance.revoke_channel_token(access_token=access_token)
+        api_instance.revoke_channel_token(access_token)
     except Exception as e:
         print("Exception when calling ChannelAccessToken->revoke_channel_token: %s\n" % e)
 ```
@@ -333,7 +333,7 @@ with linebot.v3.oauth.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **access_token** | **str**| Channel access token | [optional] 
+ **access_token** | **str**| Channel access token | 
 
 ### Return type
 
@@ -356,7 +356,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **revoke_channel_token_by_jwt**
-> revoke_channel_token_by_jwt(client_id=client_id, client_secret=client_secret, access_token=access_token)
+> revoke_channel_token_by_jwt(client_id, client_secret, access_token)
 
 
 
@@ -382,12 +382,12 @@ configuration = linebot.v3.oauth.Configuration(
 with linebot.v3.oauth.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = linebot.v3.oauth.ChannelAccessToken(api_client)
-    client_id = 'client_id_example' # str | Channel ID (optional)
-    client_secret = 'client_secret_example' # str | Channel Secret (optional)
-    access_token = 'access_token_example' # str | Channel access token (optional)
+    client_id = 'client_id_example' # str | Channel ID
+    client_secret = 'client_secret_example' # str | Channel Secret
+    access_token = 'access_token_example' # str | Channel access token
 
     try:
-        api_instance.revoke_channel_token_by_jwt(client_id=client_id, client_secret=client_secret, access_token=access_token)
+        api_instance.revoke_channel_token_by_jwt(client_id, client_secret, access_token)
     except Exception as e:
         print("Exception when calling ChannelAccessToken->revoke_channel_token_by_jwt: %s\n" % e)
 ```
@@ -397,9 +397,9 @@ with linebot.v3.oauth.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **client_id** | **str**| Channel ID | [optional] 
- **client_secret** | **str**| Channel Secret | [optional] 
- **access_token** | **str**| Channel access token | [optional] 
+ **client_id** | **str**| Channel ID | 
+ **client_secret** | **str**| Channel Secret | 
+ **access_token** | **str**| Channel access token | 
 
 ### Return type
 
@@ -422,7 +422,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **verify_channel_token**
-> VerifyChannelAccessTokenResponse verify_channel_token(access_token=access_token)
+> VerifyChannelAccessTokenResponse verify_channel_token(access_token)
 
 
 
@@ -449,10 +449,10 @@ configuration = linebot.v3.oauth.Configuration(
 with linebot.v3.oauth.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = linebot.v3.oauth.ChannelAccessToken(api_client)
-    access_token = 'access_token_example' # str | A short-lived or long-lived channel access token. (optional)
+    access_token = 'access_token_example' # str | A short-lived or long-lived channel access token.
 
     try:
-        api_response = api_instance.verify_channel_token(access_token=access_token)
+        api_response = api_instance.verify_channel_token(access_token)
         print("The response of ChannelAccessToken->verify_channel_token:\n")
         pprint(api_response)
     except Exception as e:
@@ -464,7 +464,7 @@ with linebot.v3.oauth.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **access_token** | **str**| A short-lived or long-lived channel access token. | [optional] 
+ **access_token** | **str**| A short-lived or long-lived channel access token. | 
 
 ### Return type
 

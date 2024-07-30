@@ -1,6 +1,6 @@
 requests ==2.32.3
 urllib3>=2.0.5,<3
-aiohttp ==3.9.5
+aiohttp ==3.10.0
 future
 pydantic >=2.0.3, <3
 aenum >= 3.1.11

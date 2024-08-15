@@ -1,4 +1,4 @@
-requests ==2.32.3
+requests>=2.32.3,<3
 urllib3>=2.0.5,<3
 aiohttp ==3.10.3
 future

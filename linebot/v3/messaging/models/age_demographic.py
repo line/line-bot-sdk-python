@@ -37,6 +37,10 @@ class AgeDemographic(str, Enum):
     AGE_40 = 'age_40'
     AGE_45 = 'age_45'
     AGE_50 = 'age_50'
+    AGE_55 = 'age_55'
+    AGE_60 = 'age_60'
+    AGE_65 = 'age_65'
+    AGE_70 = 'age_70'
 
     @classmethod
     def from_json(cls, json_str: str) -> AgeDemographic:

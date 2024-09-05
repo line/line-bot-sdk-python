@@ -36,8 +36,8 @@ class AgeTile(BaseModel):
         if value is None:
             return value
 
-        if value not in ('from0to14', 'from15to19', 'from20to24', 'from25to29', 'from30to34', 'from35to39', 'from40to44', 'from45to49', 'from50', 'unknown'):
-            raise ValueError("must be one of enum values ('from0to14', 'from15to19', 'from20to24', 'from25to29', 'from30to34', 'from35to39', 'from40to44', 'from45to49', 'from50', 'unknown')")
+        if value not in ('from0to14', 'from15to19', 'from20to24', 'from25to29', 'from30to34', 'from35to39', 'from40to44', 'from45to49', 'from50', 'from50to54', 'from55to59', 'from60to64', 'from65to69', 'from70', 'unknown'):
+            raise ValueError("must be one of enum values ('from0to14', 'from15to19', 'from20to24', 'from25to29', 'from30to34', 'from35to39', 'from40to44', 'from45to49', 'from50', 'from50to54', 'from55to59', 'from60to64', 'from65to69', 'from70', 'unknown')")
         return value
 
     class Config:

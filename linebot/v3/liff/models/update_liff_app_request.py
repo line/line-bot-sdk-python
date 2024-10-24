@@ -23,14 +23,14 @@ from pydantic.v1 import BaseModel, Field, StrictStr, conlist
 from linebot.v3.liff.models.liff_bot_prompt import LiffBotPrompt
 from linebot.v3.liff.models.liff_features import LiffFeatures
 from linebot.v3.liff.models.liff_scope import LiffScope
-from linebot.v3.liff.models.liff_view import LiffView
+from linebot.v3.liff.models.update_liff_view import UpdateLiffView
 
 class UpdateLiffAppRequest(BaseModel):
     """
     UpdateLiffAppRequest
     https://developers.line.biz/en/reference/liff-server/#add-liff-app
     """
-    view: Optional[LiffView] = None
+    view: Optional[UpdateLiffView] = None
     description: Optional[StrictStr] = Field(None, description="Name of the LIFF app.  The LIFF app name can't include \"LINE\" or similar strings, or inappropriate strings. ")
     features: Optional[LiffFeatures] = None
     permanent_link_pattern: Optional[StrictStr] = Field(None, alias="permanentLinkPattern", description="How additional information in LIFF URLs is handled. Specify `concat`. ")
@@ -81,7 +81,7 @@ class UpdateLiffAppRequest(BaseModel):
             return UpdateLiffAppRequest.parse_obj(obj)
 
         _obj = UpdateLiffAppRequest.parse_obj({
-            "view": LiffView.from_dict(obj.get("view")) if obj.get("view") is not None else None,
+            "view": UpdateLiffView.from_dict(obj.get("view")) if obj.get("view") is not None else None,
             "description": obj.get("description"),
             "features": LiffFeatures.from_dict(obj.get("features")) if obj.get("features") is not None else None,
             "permanent_link_pattern": obj.get("permanentLinkPattern"),

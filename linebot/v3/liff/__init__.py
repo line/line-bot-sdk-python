@@ -42,3 +42,4 @@ from linebot.v3.liff.models.liff_features import LiffFeatures
 from linebot.v3.liff.models.liff_scope import LiffScope
 from linebot.v3.liff.models.liff_view import LiffView
 from linebot.v3.liff.models.update_liff_app_request import UpdateLiffAppRequest
+from linebot.v3.liff.models.update_liff_view import UpdateLiffView

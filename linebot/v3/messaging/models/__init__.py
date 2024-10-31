@@ -17,6 +17,7 @@
 from linebot.v3.messaging.models.action import Action
 from linebot.v3.messaging.models.age_demographic import AgeDemographic
 from linebot.v3.messaging.models.age_demographic_filter import AgeDemographicFilter
+from linebot.v3.messaging.models.all_mention_target import AllMentionTarget
 from linebot.v3.messaging.models.alt_uri import AltUri
 from linebot.v3.messaging.models.app_type_demographic import AppTypeDemographic
 from linebot.v3.messaging.models.app_type_demographic_filter import AppTypeDemographicFilter
@@ -40,6 +41,7 @@ from linebot.v3.messaging.models.create_rich_menu_alias_request import CreateRic
 from linebot.v3.messaging.models.datetime_picker_action import DatetimePickerAction
 from linebot.v3.messaging.models.demographic_filter import DemographicFilter
 from linebot.v3.messaging.models.emoji import Emoji
+from linebot.v3.messaging.models.emoji_substitution_object import EmojiSubstitutionObject
 from linebot.v3.messaging.models.error_detail import ErrorDetail
 from linebot.v3.messaging.models.error_response import ErrorResponse
 from linebot.v3.messaging.models.filter import Filter
@@ -99,6 +101,8 @@ from linebot.v3.messaging.models.mark_messages_as_read_request import MarkMessag
 from linebot.v3.messaging.models.members_ids_response import MembersIdsResponse
 from linebot.v3.messaging.models.membership import Membership
 from linebot.v3.messaging.models.membership_list_response import MembershipListResponse
+from linebot.v3.messaging.models.mention_substitution_object import MentionSubstitutionObject
+from linebot.v3.messaging.models.mention_target import MentionTarget
 from linebot.v3.messaging.models.message import Message
 from linebot.v3.messaging.models.message_action import MessageAction
 from linebot.v3.messaging.models.message_imagemap_action import MessageImagemapAction
@@ -152,6 +156,7 @@ from linebot.v3.messaging.models.subscribed_membership_user import SubscribedMem
 from linebot.v3.messaging.models.subscription import Subscription
 from linebot.v3.messaging.models.subscription_period_demographic import SubscriptionPeriodDemographic
 from linebot.v3.messaging.models.subscription_period_demographic_filter import SubscriptionPeriodDemographicFilter
+from linebot.v3.messaging.models.substitution_object import SubstitutionObject
 from linebot.v3.messaging.models.template import Template
 from linebot.v3.messaging.models.template_image_aspect_ratio import TemplateImageAspectRatio
 from linebot.v3.messaging.models.template_image_size import TemplateImageSize
@@ -159,9 +164,11 @@ from linebot.v3.messaging.models.template_message import TemplateMessage
 from linebot.v3.messaging.models.test_webhook_endpoint_request import TestWebhookEndpointRequest
 from linebot.v3.messaging.models.test_webhook_endpoint_response import TestWebhookEndpointResponse
 from linebot.v3.messaging.models.text_message import TextMessage
+from linebot.v3.messaging.models.text_message_v2 import TextMessageV2
 from linebot.v3.messaging.models.uri_action import URIAction
 from linebot.v3.messaging.models.uri_imagemap_action import URIImagemapAction
 from linebot.v3.messaging.models.update_rich_menu_alias_request import UpdateRichMenuAliasRequest
+from linebot.v3.messaging.models.user_mention_target import UserMentionTarget
 from linebot.v3.messaging.models.user_profile_response import UserProfileResponse
 from linebot.v3.messaging.models.validate_message_request import ValidateMessageRequest
 from linebot.v3.messaging.models.video_message import VideoMessage

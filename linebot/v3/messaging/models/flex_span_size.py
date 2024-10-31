@@ -23,7 +23,7 @@ from aenum import Enum, no_arg
 
 class FlexSpanSize(str, Enum):
     """
-    Font size in the `size` property of the Flex span component. You can specify the size in pixels or with a keyword.  FlexSpanSize just provides only keywords. 
+    Font size in the `size` property of the Flex span component. You can specify the size in pixels or with a keyword. FlexSpanSize just provides only keywords. 
     """
 
     """

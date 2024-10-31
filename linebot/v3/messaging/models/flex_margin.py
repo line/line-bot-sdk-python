@@ -23,7 +23,7 @@ from aenum import Enum, no_arg
 
 class FlexMargin(str, Enum):
     """
-    You can specify the minimum space before a child component with the `margin` property of the child component, in pixels or with a keyword.  FlexMargin just provides only keywords. 
+    You can specify the minimum space before a child component with the `margin` property of the child component, in pixels or with a keyword. FlexMargin just provides only keywords. 
     """
 
     """

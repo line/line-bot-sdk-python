@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic.v1 import Field, StrictStr
+from pydantic.v1 import Field, StrictBool, StrictStr
 from linebot.v3.webhooks.models.mentionee import Mentionee
 
 class UserMentionee(Mentionee):
@@ -27,9 +27,10 @@ class UserMentionee(Mentionee):
     Mentioned target is user
     """
     user_id: Optional[StrictStr] = Field(None, alias="userId", description="User ID of the mentioned user. Only included if mention.mentions[].type is user and the user consents to the LINE Official Account obtaining their user profile information.")
+    is_self: Optional[StrictBool] = Field(None, alias="isSelf", description="Whether the mentioned user is the bot that receives the webhook.")
     type: str = "user"
 
-    __properties = ["type", "index", "length", "userId"]
+    __properties = ["type", "index", "length", "userId", "isSelf"]
 
     class Config:
         """Pydantic configuration"""
@@ -70,7 +71,8 @@ class UserMentionee(Mentionee):
             "type": obj.get("type"),
             "index": obj.get("index"),
             "length": obj.get("length"),
-            "user_id": obj.get("userId")
+            "user_id": obj.get("userId"),
+            "is_self": obj.get("isSelf")
         })
         return _obj
 

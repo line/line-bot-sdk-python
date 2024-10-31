@@ -23,7 +23,7 @@ from aenum import Enum, no_arg
 
 class FlexBoxSpacing(str, Enum):
     """
-    You can specify the minimum space between two components with the `spacing` property of the parent box component, in pixels or with a keyword.  FlexBoxSpacing just provides only keywords. 
+    You can specify the minimum space between two components with the `spacing` property of the parent box component, in pixels or with a keyword. FlexBoxSpacing just provides only keywords. 
     """
 
     """

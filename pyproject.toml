@@ -1,0 +1,41 @@
+[tool.poetry]
+authors = ["Line"]
+description = "LINE Messaging API SDK for Python"
+name = "line-bot-sdk-python"
+package-mode = false
+readme = "README.md"
+version = "0.1.0"
+
+# poetry install --without test --without dev
+[tool.poetry.dependencies]
+Deprecated = "*"
+aenum = ">=3.1.11"
+aiohttp = ">=3.10.9"
+future = "*"
+pydantic = ">=2.0.3,<3"
+python = ">=3.9,<3.12"
+python_dateutil = ">=2.5.3"
+requests = ">=2.32.3,<3"
+urllib3 = ">=2.0.5,<3"
+
+# poetry install --with test --without dev
+[tool.poetry.group.test.dependencies]
+pytest = "*"
+pytest-aiohttp = "*"
+pytest-cov = "*"
+pytest-pep8 = "*"
+responses = "*"
+
+# poetry install --with test --with dev
+[tool.poetry.group.dev.dependencies]
+black = ">=24.10.0"
+pypandoc = "*"
+sphinx = ">=2"
+sphinx_rtd_theme = "*"
+tox = "*"
+twine = "*"
+wheel = "*"
+
+[build-system]
+build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core"]

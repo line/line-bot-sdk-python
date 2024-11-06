@@ -52,7 +52,6 @@ jobs:
     strategy:
       matrix:
         python-version:
-          - '3.8'
           - '3.9'
           - '3.10'
           - '3.11'
@@ -65,6 +64,13 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
+      - name: Update version in linebot/__about__.py
+        run: |
+          VERSION="12.3.0"
+          VERSION=${VERSION#v}
+          sed -i "s/__version__ = '__LINE_BOT_SDK_PYTHON_VERSION__'/__version__ = '$VERSION'/g" linebot/__about__.py
+          cat linebot/__about__.py
+
       - name: Install dependencies & lib
         run: |
           python -m pip install --upgrade pip

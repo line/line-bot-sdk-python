@@ -7,8 +7,8 @@ def import_all_modules(package):
         try:
             importlib.import_module(modname)
             print(f'Successfully imported {modname}')
-        except ImportError as e:
+        except Exception as e:
             print(f'Failed to import {modname}: {e}')
             raise
 
-import_all_modules(my_library_name)
+import_all_modules(linebot)

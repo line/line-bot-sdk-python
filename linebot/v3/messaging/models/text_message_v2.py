@@ -26,8 +26,6 @@ from linebot.v3.messaging.models.quick_reply import QuickReply
 from linebot.v3.messaging.models.sender import Sender
 from linebot.v3.messaging.models.substitution_object import SubstitutionObject
 
-
-
 class TextMessageV2(Message):
     """
     TextMessageV2

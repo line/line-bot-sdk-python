@@ -1246,6 +1246,9 @@ public class PythonNextgenCustomClientGenerator extends AbstractPythonCodegen im
                 pydanticImports.add("validator");
             } else { // typical model
                 codegenProperties = model.vars;
+                if (model.getDiscriminator() != null && model.getDiscriminator().getMappedModels() != null) {
+                    typingImports.add("Union");
+                }
             }
 
             //loop through properties/schemas to set up typing, pydantic
@@ -1323,10 +1326,6 @@ public class PythonNextgenCustomClientGenerator extends AbstractPythonCodegen im
                 }
             }
 
-            if (!model.isEnum) {
-                pydanticImports.add("BaseModel");
-            }
-
             // add parent model to import
             if (!StringUtils.isEmpty(model.parent)) {
                 modelImports.add(model.parent);
@@ -1334,28 +1333,30 @@ public class PythonNextgenCustomClientGenerator extends AbstractPythonCodegen im
                 modelImports.addAll(model.imports);
 
                 String mappedTypeName = mappingName(model.name, model.parentModel.getDiscriminator());
-                model.vendorExtensions.putIfAbsent("x-py-type-name", mappedTypeName);
+                model.vendorExtensions.put("x-py-type-name", mappedTypeName);
+            } else if (!model.isEnum) {
+                pydanticImports.add("BaseModel");
             }
 
             // set enum type in extensions and update `name` in enumVars
             if (model.isEnum) {
                 for (Map<String, Object> enumVars : (List<Map<String, Object>>) model.getAllowableValues().get("enumVars")) {
                     if ((Boolean) enumVars.get("isString")) {
-                        model.vendorExtensions.putIfAbsent("x-py-enum-type", "str");
+                        model.vendorExtensions.put("x-py-enum-type", "str");
                         // update `name`, e.g.
                         enumVars.put("name", toEnumVariableName((String) enumVars.get("value"), "str"));
                     } else {
-                        model.vendorExtensions.putIfAbsent("x-py-enum-type", "int");
+                        model.vendorExtensions.put("x-py-enum-type", "int");
                         enumVars.put("name", toEnumVariableName((String) enumVars.get("value"), "int"));
                     }
                 }
             }
 
             // set the extensions if the key is absent
-            model.getVendorExtensions().putIfAbsent("x-py-typing-imports", typingImports);
-            model.getVendorExtensions().putIfAbsent("x-py-pydantic-imports", pydanticImports);
-            model.getVendorExtensions().putIfAbsent("x-py-datetime-imports", datetimeImports);
-            model.getVendorExtensions().putIfAbsent("x-py-readonly", readOnlyFields);
+            model.getVendorExtensions().put("x-py-typing-imports", typingImports);
+            model.getVendorExtensions().put("x-py-pydantic-imports", pydanticImports);
+            model.getVendorExtensions().put("x-py-datetime-imports", datetimeImports);
+            model.getVendorExtensions().put("x-py-readonly", readOnlyFields);
 
             // import models one by one
             if (!modelImports.isEmpty()) {

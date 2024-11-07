@@ -30,6 +30,7 @@ import linebot.v3.insight.models
 from linebot.v3.insight import async_rest
 from linebot.v3.insight.exceptions import ApiValueError, ApiException
 from linebot.__about__ import __version__
+from linebot.v3.insight.api_client import ApiClient
 
 class AsyncApiClient(object):
     """Generic API client for OpenAPI client library builds.

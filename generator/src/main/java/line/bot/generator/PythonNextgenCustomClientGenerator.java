@@ -1368,7 +1368,7 @@ public class PythonNextgenCustomClientGenerator extends AbstractPythonCodegen im
                     modelsToImport.add("from " + packageName + ".models." + underscore(modelImport) + " import " + modelImport);
                 }
 
-                model.getVendorExtensions().putIfAbsent("x-py-model-imports", modelsToImport);
+                model.getVendorExtensions().put("x-py-model-imports", modelsToImport);
             }
         }
 

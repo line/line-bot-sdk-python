@@ -20,7 +20,6 @@ import json
 
 from typing import Dict, Optional
 from pydantic.v1 import Field, StrictStr
-from linebot.v3.messaging.models.dict[str,_substitution_object] import Dict[str, SubstitutionObject]
 from linebot.v3.messaging.models.message import Message
 from linebot.v3.messaging.models.quick_reply import QuickReply
 from linebot.v3.messaging.models.sender import Sender

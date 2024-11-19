@@ -1,5 +1,5 @@
 [tool.ruff]
-# Exclude a variety of commonly ignored directories.
+# Exclude commonly ignored directories.
 exclude = [
   ".bzr",
   ".direnv",
@@ -29,47 +29,19 @@ exclude = [
   "venv",
 ]
 
-# Same as Black.
-# indent-width = 4
-# line-length = 88
-
-# Assume Python 3.8
-# target-version = "py38"
-
 [tool.ruff.lint]
-# https://github.com/astral-sh/ruff
-ignore = [
-  "E501", # line too long, handled by black
-  "B008", # do not perform function calls in argument defaults
-  "C901", # too complex
-  "W191", # indentation contains tabs
-]
+# Only enable the rule for missing imports.
+ignore = []
 select = [
-  "E", # pycodestyle errors
-  "W", # pycodestyle warnings
-  "F", # pyflakes
-  "I", # isort
-  "C", # flake8-comprehensions
-  "B", # flake8-bugbear
-  "UP", # pyupgrade
+  "F401", # missing imports
 ]
 
-# Allow fix for all enabled rules (when `--fix`) is provided.
-fixable = ["ALL"]
-unfixable = []
-
-# Allow unused variables when underscore-prefixed.
-dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+# Optionally enable fixable support, if you'd like to auto-fix missing imports.
+fixable = ["F401"]
 
 [tool.ruff.format]
-# Like Black, use single or double quotes for strings.
-quote-style = "single"
-
-# Like Black, indent with spaces, rather than tabs.
+# Retain formatting configurations similar to Black.
 indent-style = "space"
-
-# Like Black, respect magic trailing commas.
-skip-magic-trailing-comma = false
-
-# Like Black, automatically detect the appropriate line ending.
 line-ending = "auto"
+quote-style = "single"
+skip-magic-trailing-comma = false

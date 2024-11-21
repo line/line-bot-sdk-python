@@ -48,6 +48,10 @@ def update_and_verify_version(new_version):
 
         print('Git diff verification passed: 1 line added and 1 line deleted.')
 
+        # Show diff
+        diff_result = subprocess.run(['git', 'diff', '--color=always', file_path], capture_output=True, text=True, check=True)
+        print('Git diff output:\n', diff_result.stdout)
+
     except subprocess.CalledProcessError as e:
         print(f"Error during git diff verification: {e}")
         sys.exit(1)

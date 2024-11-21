@@ -28,7 +28,7 @@ jobs:
       run: |
         VERSION=${{ github.event.release.tag_name }}
         VERSION=${VERSION#v}
-        sed -i "s/__version__ = '__LINE_BOT_SDK_PYTHON_VERSION__'/__version__ = '$VERSION'/g" linebot/__about__.py
+        sed -i "s/__version__ = '.*'/__version__ = '$VERSION'/g" linebot/__about__.py
         cat linebot/__about__.py
     - name: Build and publish
       env:

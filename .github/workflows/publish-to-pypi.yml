@@ -6,6 +6,11 @@ name: Upload Python Package
 on:
   release:
     types: [published]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'The version to release'
+        required: true
 
 jobs:
   deploy:
@@ -26,10 +31,14 @@ jobs:
         pip install setuptools wheel twine
     - name: Update version in linebot/__about__.py
       run: |
-        VERSION=${{ github.event.release.tag_name }}
+        if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+          VERSION=${{ github.event.inputs.version }}
+        else
+          VERSION=${{ github.event.release.tag_name }}
+        fi
+
         VERSION=${VERSION#v}
-        sed -i "s/__version__ = '.*'/__version__ = '$VERSION'/g" linebot/__about__.py
-        cat linebot/__about__.py
+        python tools/update_and_verify_version.py $VERSION
     - name: Build and publish
       env:
         TWINE_USERNAME: ${{ secrets.PYPI_API_USER }}

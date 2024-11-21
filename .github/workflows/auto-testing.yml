@@ -44,8 +44,7 @@ jobs:
     - name: Update version in linebot/__about__.py
       run: |
         VERSION="123.456.789"
-        sed -i "s/__version__ = '.*'/__version__ = '$VERSION'/g" linebot/__about__.py
-        cat linebot/__about__.py
+        python tools/update_version.py $VERSION
 
   check-import:
     runs-on: ubuntu-latest

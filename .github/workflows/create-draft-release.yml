@@ -1,0 +1,117 @@
+name: Create Draft Release with Auto-Generated Notes
+
+on:
+  workflow_dispatch:
+    inputs:
+      version_type:
+        description: "Select the version type to increment (major, minor, patch)"
+        required: true
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+      release_title:
+        description: "Enter the title of the release"
+        required: true
+        type: string
+      acknowledge_draft:
+        description: "I understand that I must re-edit and finalize the draft release (Y/N)"
+        required: true
+        type: choice
+        options:
+          - "No"
+          - "Yes"
+
+jobs:
+  validate-input:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate Acknowledgement
+        if: ${{ github.event.inputs.acknowledge_draft != 'Yes' }}
+        run: |
+          echo "You must select 'Yes' to acknowledge your responsibility for finalizing the draft release."
+          exit 1
+      - name: Validate title (no empty)
+        if: ${{ github.event.inputs.release_title == '' }}
+        run: |
+          echo "You must enter a title for the release."
+          exit 1
+
+  create-draft-release:
+    runs-on: ubuntu-latest
+    needs: validate-input
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch Latest Release
+        id: get-latest-release
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const latestRelease = await github.rest.repos.getLatestRelease({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+            }).catch(() => null);
+
+            if (latestRelease) {
+              core.setOutput('latest_tag', latestRelease.data.tag_name);
+            } else {
+              core.setOutput('latest_tag', 'v0.0.0'); // Default for first release
+            }
+
+      - name: Calculate New Version
+        id: calculate-version
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const latestTag = '${{ steps.get-latest-release.outputs.latest_tag }}';
+            const versionType = '${{ github.event.inputs.version_type }}';
+
+            const [major, minor, patch] = latestTag.replace('v', '').split('.').map(Number);
+
+            let newVersion;
+            if (versionType === 'major') {
+              newVersion = `v${major + 1}.0.0`;
+            } else if (versionType === 'minor') {
+              newVersion = `v${major}.${minor + 1}.0`;
+            } else {
+              newVersion = `v${major}.${minor}.${patch + 1}`;
+            }
+
+            core.setOutput('new_version', newVersion);
+
+      - name: Generate Release Notes
+        id: generate-release-notes
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const { data: releaseNotes } = await github.rest.repos.generateReleaseNotes({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              tag_name: "${{ steps.calculate-version.outputs.new_version }}"
+            });
+
+            const actor = context.actor;
+            const noteToAdd = `**@${actor} 👈 TODO: Write detailed release note for this version before release**\n`;
+
+            const footer = `---\nThis release is prepared by @${actor}`;
+
+            const modifiedBody = releaseNotes.body.replace(
+              '## What\'s Changed',
+              `## What's Changed\n\n${noteToAdd}`
+            )
+            .concat(`\n\n${footer}`);
+
+            console.log(`releaseNotes (modified): ${JSON.stringify(modifiedBody, null, 2)}`);
+            core.setOutput("release_body", modifiedBody);
+
+      - name: Create Draft Release
+        run: |
+          gh release create "${{ steps.calculate-version.outputs.new_version }}" \
+            --title "${{ steps.calculate-version.outputs.new_version }} ${{ github.event.inputs.release_title }}" \
+            --notes "${{ steps.generate-release-notes.outputs.release_body }}" \
+            --draft \
+            --repo "${{ github.repository }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

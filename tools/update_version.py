@@ -58,7 +58,7 @@ def update_and_verify_version(new_version):
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        print("Usage: python update_and_verify_version.py <new_version>")
+        print("Usage: python update_version.py <new_version>")
         sys.exit(1)
 
     new_version = sys.argv[1]

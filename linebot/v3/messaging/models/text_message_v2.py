@@ -31,7 +31,7 @@ class TextMessageV2(Message):
     https://developers.line.biz/en/reference/messaging-api/#text-message-v2
     """
     text: StrictStr = Field(...)
-    substitution: Optional[Dict[str, SubstitutionObject]] = Field(None, description="A mapping that specifies substitutions for parts enclosed in {} within the 'text' field.")
+    substitution: Optional[Dict[str, SubstitutionObject]] = Field(None, description="A mapping that specifies substitutions for parts enclosed in {} within the `text` field.")
     quote_token: Optional[StrictStr] = Field(None, alias="quoteToken", description="Quote token of the message you want to quote.")
     type: str = "textV2"
 

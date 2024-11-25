@@ -38,7 +38,7 @@ jobs:
         fi
 
         VERSION=${VERSION#v}
-        python tools/update_and_verify_version.py $VERSION
+        python tools/update_version.py $VERSION
     - name: Build and publish
       env:
         TWINE_USERNAME: ${{ secrets.PYPI_API_USER }}

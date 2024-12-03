@@ -33,11 +33,11 @@ exclude = [
 # Only enable the rule for missing imports.
 ignore = []
 select = [
-  "F401", # missing imports
+  "F821",
 ]
 
-# Optionally enable fixable support, if you'd like to auto-fix missing imports.
-fixable = ["F401"]
+# Optionally enable fixable support.
+# fixable = ["F821"]
 
 [tool.ruff.format]
 # Retain formatting configurations similar to Black.

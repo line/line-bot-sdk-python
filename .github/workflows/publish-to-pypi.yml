@@ -6,6 +6,11 @@ name: Upload Python Package
 on:
   release:
     types: [published]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'The version to release'
+        required: true
 
 jobs:
   deploy:
@@ -26,10 +31,15 @@ jobs:
         pip install setuptools wheel twine
     - name: Update version in linebot/__about__.py
       run: |
-        VERSION=${{ github.event.release.tag_name }}
+        if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+          VERSION=${{ github.event.inputs.version }}
+        else
+          VERSION=${{ github.event.release.tag_name }}
+        fi
+
         VERSION=${VERSION#v}
-        sed -i "s/__version__ = '__LINE_BOT_SDK_PYTHON_VERSION__'/__version__ = '$VERSION'/g" linebot/__about__.py
-        cat linebot/__about__.py
+        echo "VERSION=$VERSION" >> $GITHUB_ENV
+        python tools/update_version.py $VERSION
     - name: Build and publish
       env:
         TWINE_USERNAME: ${{ secrets.PYPI_API_USER }}
@@ -37,3 +47,22 @@ jobs:
       run: |
         python setup.py sdist bdist_wheel
         twine upload dist/*
+
+    - name: Create GitHub Issue on Failure
+      if: failure()
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const { owner, repo } = context.repo;
+          const version = process.env.VERSION;
+          const issueTitle = `Release job for ${version} failed`;
+          const issueBody = `The release job failed. Please check the [workflow run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) for more details.`;
+          const assignees = [context.actor];
+
+          await github.rest.issues.create({
+            owner,
+            repo,
+            title: issueTitle,
+            body: issueBody,
+            assignees
+          });

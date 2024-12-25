@@ -33,6 +33,8 @@ jobs:
       - if: ${{ github.event_name == 'pull_request' && env.DIFF_IS_EMPTY != 'true' && github.actor != 'renovate[bot]' }}
         run: |
           echo "There are changes in the generated codes. Please run 'generate-code.py' and commit the changes." >&2
+          echo "The files with differences are as follows." >&2
+          echo "$(git --no-pager diff --name-only HEAD)" >&2
           exit 1
       ## Run if diff exists and event is not pull request, and make PR
       - if: ${{ github.event_name != 'pull_request' && env.DIFF_IS_EMPTY != 'true' }}

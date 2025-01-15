@@ -50,6 +50,9 @@ jobs:
 
           git push origin $BRANCH_NAME
 
+          CHANGE_TYPE=$(npx zx ./line-openapi/tools/determine-change-type.mjs)
+          echo "Determined change type: $CHANGE_TYPE"
+
           # Determine PR title and body
           if [ "$CHANGE_TYPE" == "submodule-update" ]; then
             # Fetch PR info from submodule

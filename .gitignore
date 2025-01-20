@@ -105,3 +105,6 @@ tmp/
 *.iml
 
 .openapi-generator
+
+# github workflow
+pr_info.json

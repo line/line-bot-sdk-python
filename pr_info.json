@@ -1,5 +1,0 @@
-{
-  "url": "https://github.com/line/line-openapi/pull/80",
-  "title": "Remove obsolete feature: Audience Match",
-  "body": "The Audience Match feature (/bot/ad/multicast/phone) was sunset in October 2023. This change removes it as it's no longer necessary to include it in line-openapi."
-}

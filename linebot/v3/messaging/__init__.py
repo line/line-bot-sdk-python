@@ -44,7 +44,6 @@ from linebot.v3.messaging.models.app_type_demographic import AppTypeDemographic
 from linebot.v3.messaging.models.app_type_demographic_filter import AppTypeDemographicFilter
 from linebot.v3.messaging.models.area_demographic import AreaDemographic
 from linebot.v3.messaging.models.area_demographic_filter import AreaDemographicFilter
-from linebot.v3.messaging.models.audience_match_messages_request import AudienceMatchMessagesRequest
 from linebot.v3.messaging.models.audience_recipient import AudienceRecipient
 from linebot.v3.messaging.models.audio_message import AudioMessage
 from linebot.v3.messaging.models.bot_info_response import BotInfoResponse

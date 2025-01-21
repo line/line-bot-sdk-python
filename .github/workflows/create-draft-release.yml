@@ -106,11 +106,14 @@ jobs:
             console.log(`releaseNotes (modified): ${JSON.stringify(modifiedBody, null, 2)}`);
             core.setOutput("release_body", modifiedBody);
 
+      - name: Write release notes to file
+        run: |
+          echo "${{ steps.generate-release-notes.outputs.release_body }}" > release-notes.txt
       - name: Create Draft Release
         run: |
           gh release create "${{ steps.calculate-version.outputs.new_version }}" \
             --title "${{ steps.calculate-version.outputs.new_version }} ${{ github.event.inputs.release_title }}" \
-            --notes "${{ steps.generate-release-notes.outputs.release_body }}" \
+            --notes-file release-notes.txt \
             --draft \
             --repo "${{ github.repository }}"
         env:

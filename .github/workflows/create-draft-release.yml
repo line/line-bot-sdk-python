@@ -106,11 +106,25 @@ jobs:
             console.log(`releaseNotes (modified): ${JSON.stringify(modifiedBody, null, 2)}`);
             core.setOutput("release_body", modifiedBody);
 
+      - name: Prepare Release Title
+        id: title
+        env:
+          # "vX.Y.Z Release Title"
+          RAW_TITLE: ${{ steps.calculate-version.outputs.new_version }} ${{ github.event.inputs.release_title }}
+        run: |
+          # Print RAW_TITLE safely, then escape double quotes
+          SANITIZED_TITLE="$(printf '%s' "$RAW_TITLE" | sed 's/"/\\"/g')"
+          echo "sanitized_title=$SANITIZED_TITLE" >> "$GITHUB_OUTPUT"
+
+      - name: Write Release Notes to File
+        run: |
+          echo "${{ steps.generate-release-notes.outputs.release_body }}" > release-notes.txt
+
       - name: Create Draft Release
         run: |
           gh release create "${{ steps.calculate-version.outputs.new_version }}" \
-            --title "${{ steps.calculate-version.outputs.new_version }} ${{ github.event.inputs.release_title }}" \
-            --notes "${{ steps.generate-release-notes.outputs.release_body }}" \
+            --title "${{ steps.title.outputs.sanitized_title }}" \
+            --notes-file release-notes.txt \
             --draft \
             --repo "${{ github.repository }}"
         env:

@@ -20,7 +20,7 @@ from linebot import (
 from linebot.aiohttp_async_http_client import AiohttpAsyncHttpClient
 
 
-async def test_get(aiohttp_client, loop):
+async def test_get(aiohttp_client):
     msg = ''.join('Hello, world' for i in range(1000))
 
     async def hello(request):

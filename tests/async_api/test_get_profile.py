@@ -20,7 +20,7 @@ from linebot import (
 from linebot.aiohttp_async_http_client import AiohttpAsyncHttpClient
 
 
-async def test_async_profile(aiohttp_client, loop):
+async def test_async_profile(aiohttp_client):
     expect = {
         'displayName': 'test',
         'userId': 'test',

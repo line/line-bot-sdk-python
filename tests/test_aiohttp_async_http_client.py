@@ -17,7 +17,7 @@ from aiohttp import web
 from linebot.aiohttp_async_http_client import AiohttpAsyncHttpClient
 
 
-async def test_get(aiohttp_client, loop):
+async def test_get(aiohttp_client):
     async def hello(request):
         return web.Response(text='Hello, world')
 
@@ -31,7 +31,7 @@ async def test_get(aiohttp_client, loop):
     assert 'Hello, world' in text
 
 
-async def test_get_json(aiohttp_client, loop):
+async def test_get_json(aiohttp_client):
     async def hello(request):
         return web.json_response({'test': 'Hello, world'})
 
@@ -44,7 +44,7 @@ async def test_get_json(aiohttp_client, loop):
     assert 'Hello, world' == json['test']
 
 
-async def test_get_iter(aiohttp_client, loop):
+async def test_get_iter(aiohttp_client):
     async def hello(request):
         return web.Response(text='Hello, world')
 
@@ -61,7 +61,7 @@ async def test_get_iter(aiohttp_client, loop):
     assert 'Hello, world' in buffer
 
 
-async def test_post(aiohttp_client, loop):
+async def test_post(aiohttp_client):
     async def hello(request):
         return web.Response(text='Hello, world')
 
@@ -75,7 +75,7 @@ async def test_post(aiohttp_client, loop):
     assert 'Hello, world' in text
 
 
-async def test_delete(aiohttp_client, loop):
+async def test_delete(aiohttp_client):
     async def hello(request):
         return web.Response(text='Hello, world')
 
@@ -89,7 +89,7 @@ async def test_delete(aiohttp_client, loop):
     assert 'Hello, world' in text
 
 
-async def test_put(aiohttp_client, loop):
+async def test_put(aiohttp_client):
     async def hello(request):
         return web.Response(text='Hello, world')
 

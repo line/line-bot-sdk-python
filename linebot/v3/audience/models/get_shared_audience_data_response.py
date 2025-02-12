@@ -20,20 +20,20 @@ import json
 
 from typing import List, Optional
 from pydantic.v1 import BaseModel, Field, conlist
-from linebot.v3.audience.models.adaccount import Adaccount
 from linebot.v3.audience.models.audience_group import AudienceGroup
 from linebot.v3.audience.models.audience_group_job import AudienceGroupJob
+from linebot.v3.audience.models.detailed_owner import DetailedOwner
 
-class GetAudienceDataResponse(BaseModel):
+class GetSharedAudienceDataResponse(BaseModel):
     """
     Get audience data
     https://developers.line.biz/en/reference/messaging-api/#get-audience-group
     """
     audience_group: Optional[AudienceGroup] = Field(None, alias="audienceGroup")
     jobs: Optional[conlist(AudienceGroupJob, max_items=50)] = Field(None, description="An array of jobs. This array is used to keep track of each attempt to add new user IDs or IFAs to an audience for uploading user IDs. Empty array is returned for any other type of audience. Max: 50 ")
-    adaccount: Optional[Adaccount] = None
+    owner: Optional[DetailedOwner] = None
 
-    __properties = ["audienceGroup", "jobs", "adaccount"]
+    __properties = ["audienceGroup", "jobs", "owner"]
 
     class Config:
         """Pydantic configuration"""
@@ -49,8 +49,8 @@ class GetAudienceDataResponse(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> GetAudienceDataResponse:
-        """Create an instance of GetAudienceDataResponse from a JSON string"""
+    def from_json(cls, json_str: str) -> GetSharedAudienceDataResponse:
+        """Create an instance of GetSharedAudienceDataResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -69,24 +69,24 @@ class GetAudienceDataResponse(BaseModel):
                 if _item:
                     _items.append(_item.to_dict())
             _dict['jobs'] = _items
-        # override the default output from pydantic.v1 by calling `to_dict()` of adaccount
-        if self.adaccount:
-            _dict['adaccount'] = self.adaccount.to_dict()
+        # override the default output from pydantic.v1 by calling `to_dict()` of owner
+        if self.owner:
+            _dict['owner'] = self.owner.to_dict()
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> GetAudienceDataResponse:
-        """Create an instance of GetAudienceDataResponse from a dict"""
+    def from_dict(cls, obj: dict) -> GetSharedAudienceDataResponse:
+        """Create an instance of GetSharedAudienceDataResponse from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
-            return GetAudienceDataResponse.parse_obj(obj)
+            return GetSharedAudienceDataResponse.parse_obj(obj)
 
-        _obj = GetAudienceDataResponse.parse_obj({
+        _obj = GetSharedAudienceDataResponse.parse_obj({
             "audience_group": AudienceGroup.from_dict(obj.get("audienceGroup")) if obj.get("audienceGroup") is not None else None,
             "jobs": [AudienceGroupJob.from_dict(_item) for _item in obj.get("jobs")] if obj.get("jobs") is not None else None,
-            "adaccount": Adaccount.from_dict(obj.get("adaccount")) if obj.get("adaccount") is not None else None
+            "owner": DetailedOwner.from_dict(obj.get("owner")) if obj.get("owner") is not None else None
         })
         return _obj
 

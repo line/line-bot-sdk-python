@@ -34,6 +34,8 @@ from linebot.v3.audience.models.create_imp_based_audience_group_response import 
 from linebot.v3.audience.models.get_audience_data_response import GetAudienceDataResponse
 from linebot.v3.audience.models.get_audience_group_authority_level_response import GetAudienceGroupAuthorityLevelResponse
 from linebot.v3.audience.models.get_audience_groups_response import GetAudienceGroupsResponse
+from linebot.v3.audience.models.get_shared_audience_data_response import GetSharedAudienceDataResponse
+from linebot.v3.audience.models.get_shared_audience_groups_response import GetSharedAudienceGroupsResponse
 from linebot.v3.audience.models.update_audience_group_authority_level_request import UpdateAudienceGroupAuthorityLevelRequest
 from linebot.v3.audience.models.update_audience_group_description_request import UpdateAudienceGroupDescriptionRequest
 
@@ -1355,6 +1357,321 @@ class ManageAudience(object):
 
         return self.api_client.call_api(
             '/v2/bot/audienceGroup/list', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def get_shared_audience_data(self, audience_group_id : Annotated[StrictInt, Field(..., description="The audience ID.")], **kwargs) -> GetSharedAudienceDataResponse:  # noqa: E501
+        """get_shared_audience_data  # noqa: E501
+
+        Gets audience data.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_shared_audience_data(audience_group_id, async_req=True)
+        >>> result = thread.get()
+
+        :param audience_group_id: The audience ID. (required)
+        :type audience_group_id: int
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: GetSharedAudienceDataResponse
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the get_shared_audience_data_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.get_shared_audience_data_with_http_info(audience_group_id, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def get_shared_audience_data_with_http_info(self, audience_group_id : Annotated[StrictInt, Field(..., description="The audience ID.")], **kwargs) -> ApiResponse:  # noqa: E501
+        """get_shared_audience_data  # noqa: E501
+
+        Gets audience data.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_shared_audience_data_with_http_info(audience_group_id, async_req=True)
+        >>> result = thread.get()
+
+        :param audience_group_id: The audience ID. (required)
+        :type audience_group_id: int
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(GetSharedAudienceDataResponse, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _host = self.line_base_path
+        _params = locals()
+
+        _all_params = [
+            'audience_group_id'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_shared_audience_data" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['audience_group_id']:
+            _path_params['audienceGroupId'] = _params['audience_group_id']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['Bearer']  # noqa: E501
+
+        _response_types_map = {
+            '200': "GetSharedAudienceDataResponse",
+            '400': "ErrorResponse",
+        }
+
+        return self.api_client.call_api(
+            '/v2/bot/audienceGroup/shared/{audienceGroupId}', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def get_shared_audience_groups(self, page : Annotated[conint(strict=True, ge=1), Field(..., description="The page to return when getting (paginated) results. Must be 1 or higher.")], description : Annotated[Optional[StrictStr], Field(description="The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion. ")] = None, status : Annotated[Optional[AudienceGroupStatus], Field(description="The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion. ")] = None, size : Annotated[Optional[conint(strict=True, le=40)], Field(description="The number of audiences per page. Default: 20 Max: 40 ")] = None, create_route : Annotated[Optional[AudienceGroupCreateRoute], Field(description="How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API. ")] = None, **kwargs) -> GetSharedAudienceGroupsResponse:  # noqa: E501
+        """get_shared_audience_groups  # noqa: E501
+
+        Gets data for more than one audience, including those shared by the Business Manager.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_shared_audience_groups(page, description, status, size, create_route, async_req=True)
+        >>> result = thread.get()
+
+        :param page: The page to return when getting (paginated) results. Must be 1 or higher. (required)
+        :type page: int
+        :param description: The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion. 
+        :type description: str
+        :param status: The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion. 
+        :type status: AudienceGroupStatus
+        :param size: The number of audiences per page. Default: 20 Max: 40 
+        :type size: int
+        :param create_route: How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API. 
+        :type create_route: AudienceGroupCreateRoute
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: GetSharedAudienceGroupsResponse
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the get_shared_audience_groups_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.get_shared_audience_groups_with_http_info(page, description, status, size, create_route, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def get_shared_audience_groups_with_http_info(self, page : Annotated[conint(strict=True, ge=1), Field(..., description="The page to return when getting (paginated) results. Must be 1 or higher.")], description : Annotated[Optional[StrictStr], Field(description="The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion. ")] = None, status : Annotated[Optional[AudienceGroupStatus], Field(description="The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion. ")] = None, size : Annotated[Optional[conint(strict=True, le=40)], Field(description="The number of audiences per page. Default: 20 Max: 40 ")] = None, create_route : Annotated[Optional[AudienceGroupCreateRoute], Field(description="How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API. ")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+        """get_shared_audience_groups  # noqa: E501
+
+        Gets data for more than one audience, including those shared by the Business Manager.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_shared_audience_groups_with_http_info(page, description, status, size, create_route, async_req=True)
+        >>> result = thread.get()
+
+        :param page: The page to return when getting (paginated) results. Must be 1 or higher. (required)
+        :type page: int
+        :param description: The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion. 
+        :type description: str
+        :param status: The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion. 
+        :type status: AudienceGroupStatus
+        :param size: The number of audiences per page. Default: 20 Max: 40 
+        :type size: int
+        :param create_route: How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API. 
+        :type create_route: AudienceGroupCreateRoute
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(GetSharedAudienceGroupsResponse, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _host = self.line_base_path
+        _params = locals()
+
+        _all_params = [
+            'page',
+            'description',
+            'status',
+            'size',
+            'create_route'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_shared_audience_groups" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('page') is not None:  # noqa: E501
+            _query_params.append(('page', _params['page']))
+
+        if _params.get('description') is not None:  # noqa: E501
+            _query_params.append(('description', _params['description']))
+
+        if _params.get('status') is not None:  # noqa: E501
+            _query_params.append(('status', _params['status'].value))
+
+        if _params.get('size') is not None:  # noqa: E501
+            _query_params.append(('size', _params['size']))
+
+        if _params.get('create_route') is not None:  # noqa: E501
+            _query_params.append(('createRoute', _params['create_route'].value))
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['Bearer']  # noqa: E501
+
+        _response_types_map = {
+            '200': "GetSharedAudienceGroupsResponse",
+        }
+
+        return self.api_client.call_api(
+            '/v2/bot/audienceGroup/shared/list', 'GET',
             _path_params,
             _query_params,
             _header_params,

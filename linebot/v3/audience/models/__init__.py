@@ -14,6 +14,7 @@
 
 
 # import models into model package
+from linebot.v3.audience.models.adaccount import Adaccount
 from linebot.v3.audience.models.add_audience_to_audience_group_request import AddAudienceToAudienceGroupRequest
 from linebot.v3.audience.models.audience import Audience
 from linebot.v3.audience.models.audience_group import AudienceGroup
@@ -33,10 +34,13 @@ from linebot.v3.audience.models.create_click_based_audience_group_request import
 from linebot.v3.audience.models.create_click_based_audience_group_response import CreateClickBasedAudienceGroupResponse
 from linebot.v3.audience.models.create_imp_based_audience_group_request import CreateImpBasedAudienceGroupRequest
 from linebot.v3.audience.models.create_imp_based_audience_group_response import CreateImpBasedAudienceGroupResponse
+from linebot.v3.audience.models.detailed_owner import DetailedOwner
 from linebot.v3.audience.models.error_detail import ErrorDetail
 from linebot.v3.audience.models.error_response import ErrorResponse
 from linebot.v3.audience.models.get_audience_data_response import GetAudienceDataResponse
 from linebot.v3.audience.models.get_audience_group_authority_level_response import GetAudienceGroupAuthorityLevelResponse
 from linebot.v3.audience.models.get_audience_groups_response import GetAudienceGroupsResponse
+from linebot.v3.audience.models.get_shared_audience_data_response import GetSharedAudienceDataResponse
+from linebot.v3.audience.models.get_shared_audience_groups_response import GetSharedAudienceGroupsResponse
 from linebot.v3.audience.models.update_audience_group_authority_level_request import UpdateAudienceGroupAuthorityLevelRequest
 from linebot.v3.audience.models.update_audience_group_description_request import UpdateAudienceGroupDescriptionRequest

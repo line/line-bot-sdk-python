@@ -13,6 +13,8 @@ Method | HTTP request | Description
 [**get_audience_data**](ManageAudience.md#get_audience_data) | **GET** /v2/bot/audienceGroup/{audienceGroupId} | 
 [**get_audience_group_authority_level**](ManageAudience.md#get_audience_group_authority_level) | **GET** /v2/bot/audienceGroup/authorityLevel | 
 [**get_audience_groups**](ManageAudience.md#get_audience_groups) | **GET** /v2/bot/audienceGroup/list | 
+[**get_shared_audience_data**](ManageAudience.md#get_shared_audience_data) | **GET** /v2/bot/audienceGroup/shared/{audienceGroupId} | 
+[**get_shared_audience_groups**](ManageAudience.md#get_shared_audience_groups) | **GET** /v2/bot/audienceGroup/shared/list | 
 [**update_audience_group_authority_level**](ManageAudience.md#update_audience_group_authority_level) | **PUT** /v2/bot/audienceGroup/authorityLevel | 
 [**update_audience_group_description**](ManageAudience.md#update_audience_group_description) | **PUT** /v2/bot/audienceGroup/{audienceGroupId}/updateDescription | 
 
@@ -679,6 +681,167 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**GetAudienceGroupsResponse**](GetAudienceGroupsResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_shared_audience_data**
+> GetSharedAudienceDataResponse get_shared_audience_data(audience_group_id)
+
+
+
+Gets audience data.
+
+### Example
+
+* Bearer Authentication (Bearer):
+```python
+import time
+import os
+import linebot.v3.audience
+from linebot.v3.audience.models.get_shared_audience_data_response import GetSharedAudienceDataResponse
+from linebot.v3.audience.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.line.me
+# See configuration.py for a list of all supported configuration parameters.
+configuration = linebot.v3.audience.Configuration(
+    host = "https://api.line.me"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: Bearer
+configuration = linebot.v3.audience.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with linebot.v3.audience.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = linebot.v3.audience.ManageAudience(api_client)
+    audience_group_id = 56 # int | The audience ID.
+
+    try:
+        api_response = api_instance.get_shared_audience_data(audience_group_id)
+        print("The response of ManageAudience->get_shared_audience_data:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ManageAudience->get_shared_audience_data: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **audience_group_id** | **int**| The audience ID. | 
+
+### Return type
+
+[**GetSharedAudienceDataResponse**](GetSharedAudienceDataResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_shared_audience_groups**
+> GetSharedAudienceGroupsResponse get_shared_audience_groups(page, description=description, status=status, size=size, create_route=create_route)
+
+
+
+Gets data for more than one audience, including those shared by the Business Manager.
+
+### Example
+
+* Bearer Authentication (Bearer):
+```python
+import time
+import os
+import linebot.v3.audience
+from linebot.v3.audience.models.audience_group_create_route import AudienceGroupCreateRoute
+from linebot.v3.audience.models.audience_group_status import AudienceGroupStatus
+from linebot.v3.audience.models.get_shared_audience_groups_response import GetSharedAudienceGroupsResponse
+from linebot.v3.audience.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.line.me
+# See configuration.py for a list of all supported configuration parameters.
+configuration = linebot.v3.audience.Configuration(
+    host = "https://api.line.me"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: Bearer
+configuration = linebot.v3.audience.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with linebot.v3.audience.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = linebot.v3.audience.ManageAudience(api_client)
+    page = 56 # int | The page to return when getting (paginated) results. Must be 1 or higher.
+    description = 'description_example' # str | The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion.  (optional)
+    status = linebot.v3.audience.AudienceGroupStatus() # AudienceGroupStatus | The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion.  (optional)
+    size = 20 # int | The number of audiences per page. Default: 20 Max: 40  (optional)
+    create_route = linebot.v3.audience.AudienceGroupCreateRoute() # AudienceGroupCreateRoute | How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API.  (optional)
+
+    try:
+        api_response = api_instance.get_shared_audience_groups(page, description=description, status=status, size=size, create_route=create_route)
+        print("The response of ManageAudience->get_shared_audience_groups:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ManageAudience->get_shared_audience_groups: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **page** | **int**| The page to return when getting (paginated) results. Must be 1 or higher. | 
+ **description** | **str**| The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion.  | [optional] 
+ **status** | [**AudienceGroupStatus**](.md)| The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion.  | [optional] 
+ **size** | **int**| The number of audiences per page. Default: 20 Max: 40  | [optional] 
+ **create_route** | [**AudienceGroupCreateRoute**](.md)| How the audience was created. If omitted, all audiences are included.  &#x60;OA_MANAGER&#x60;: Return only audiences created with LINE Official Account Manager (opens new window). &#x60;MESSAGING_API&#x60;: Return only audiences created with Messaging API.  | [optional] 
+
+### Return type
+
+[**GetSharedAudienceGroupsResponse**](GetSharedAudienceGroupsResponse.md)
 
 ### Authorization
 

@@ -60,13 +60,17 @@ from linebot.v3.webhooks.models.image_message_content import ImageMessageContent
 from linebot.v3.webhooks.models.image_set import ImageSet
 from linebot.v3.webhooks.models.join_event import JoinEvent
 from linebot.v3.webhooks.models.joined_members import JoinedMembers
+from linebot.v3.webhooks.models.joined_membership_content import JoinedMembershipContent
 from linebot.v3.webhooks.models.leave_event import LeaveEvent
 from linebot.v3.webhooks.models.left_members import LeftMembers
+from linebot.v3.webhooks.models.left_membership_content import LeftMembershipContent
 from linebot.v3.webhooks.models.link_content import LinkContent
 from linebot.v3.webhooks.models.link_things_content import LinkThingsContent
 from linebot.v3.webhooks.models.location_message_content import LocationMessageContent
 from linebot.v3.webhooks.models.member_joined_event import MemberJoinedEvent
 from linebot.v3.webhooks.models.member_left_event import MemberLeftEvent
+from linebot.v3.webhooks.models.membership_content import MembershipContent
+from linebot.v3.webhooks.models.membership_event import MembershipEvent
 from linebot.v3.webhooks.models.mention import Mention
 from linebot.v3.webhooks.models.mentionee import Mentionee
 from linebot.v3.webhooks.models.message_content import MessageContent
@@ -77,6 +81,7 @@ from linebot.v3.webhooks.models.pnp_delivery import PnpDelivery
 from linebot.v3.webhooks.models.pnp_delivery_completion_event import PnpDeliveryCompletionEvent
 from linebot.v3.webhooks.models.postback_content import PostbackContent
 from linebot.v3.webhooks.models.postback_event import PostbackEvent
+from linebot.v3.webhooks.models.renewed_membership_content import RenewedMembershipContent
 from linebot.v3.webhooks.models.room_source import RoomSource
 from linebot.v3.webhooks.models.scenario_result import ScenarioResult
 from linebot.v3.webhooks.models.scenario_result_things_content import ScenarioResultThingsContent

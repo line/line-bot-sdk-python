@@ -19,6 +19,7 @@ Method | HTTP request | Description
 [**get_group_member_profile**](MessagingApi.md#get_group_member_profile) | **GET** /v2/bot/group/{groupId}/member/{userId} | 
 [**get_group_members_ids**](MessagingApi.md#get_group_members_ids) | **GET** /v2/bot/group/{groupId}/members/ids | 
 [**get_group_summary**](MessagingApi.md#get_group_summary) | **GET** /v2/bot/group/{groupId}/summary | 
+[**get_joined_membership_users**](MessagingApi.md#get_joined_membership_users) | **GET** /v2/bot/membership/{membershipId}/users/ids | 
 [**get_membership_list**](MessagingApi.md#get_membership_list) | **GET** /v2/bot/membership/list | 
 [**get_membership_subscription**](MessagingApi.md#get_membership_subscription) | **GET** /v2/bot/membership/subscription/{userId} | 
 [**get_message_quota**](MessagingApi.md#get_message_quota) | **GET** /v2/bot/message/quota | 
@@ -1180,6 +1181,87 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_joined_membership_users**
+> GetJoinedMembershipUsersResponse get_joined_membership_users(membership_id, start=start, limit=limit)
+
+
+
+Get a list of user IDs who joined the membership.
+
+### Example
+
+* Bearer Authentication (Bearer):
+```python
+import time
+import os
+import linebot.v3.messaging
+from linebot.v3.messaging.models.get_joined_membership_users_response import GetJoinedMembershipUsersResponse
+from linebot.v3.messaging.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.line.me
+# See configuration.py for a list of all supported configuration parameters.
+configuration = linebot.v3.messaging.Configuration(
+    host = "https://api.line.me"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: Bearer
+configuration = linebot.v3.messaging.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with linebot.v3.messaging.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = linebot.v3.messaging.MessagingApi(api_client)
+    membership_id = 56 # int | Membership plan ID.
+    start = 'start_example' # str | A continuation token to get next remaining membership user IDs. Returned only when there are remaining user IDs that weren't returned in the userIds property in the previous request. The continuation token expires in 24 hours (86,400 seconds).  (optional)
+    limit = 300 # int | The max number of items to return for this API call. The value is set to 300 by default, but the max acceptable value is 1000.  (optional) (default to 300)
+
+    try:
+        api_response = api_instance.get_joined_membership_users(membership_id, start=start, limit=limit)
+        print("The response of MessagingApi->get_joined_membership_users:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling MessagingApi->get_joined_membership_users: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **membership_id** | **int**| Membership plan ID. | 
+ **start** | **str**| A continuation token to get next remaining membership user IDs. Returned only when there are remaining user IDs that weren&#39;t returned in the userIds property in the previous request. The continuation token expires in 24 hours (86,400 seconds).  | [optional] 
+ **limit** | **int**| The max number of items to return for this API call. The value is set to 300 by default, but the max acceptable value is 1000.  | [optional] [default to 300]
+
+### Return type
+
+[**GetJoinedMembershipUsersResponse**](GetJoinedMembershipUsersResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | &#x60;start&#x60; is incorrect or expired, or &#x60;limit&#x60; is under 1 or over 1000. |  -  |
+**404** | Membership ID is not owned by the bot or does not exist. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

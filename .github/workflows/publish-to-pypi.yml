@@ -95,8 +95,7 @@ jobs:
         with:
           script: |
             const { owner, repo } = context.repo;
-            const version = process.env.VERSION;
-            const issueTitle = `Release job for ${version} failed`;
+            const issueTitle = `Release job for failed`;
             const issueBody = `The release job failed. Please check the [workflow run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) for more details.`;
             const assignees = [context.actor];
             

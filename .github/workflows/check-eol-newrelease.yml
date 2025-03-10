@@ -1,0 +1,31 @@
+name: "Check EoL & New Releases"
+
+on:
+  schedule:
+    # Every day at 22:00 UTC -> 07:00 JST
+    - cron: '0 22 * * *'
+  workflow_dispatch:
+
+jobs:
+  check-go:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Run EoL & NewRelease check
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const checkEolAndNewReleases = require('.github/scripts/check-eol-newrelease.cjs');
+            await checkEolAndNewReleases({ github, context, core }, {
+              languageName: 'Python',
+              eolJsonUrl: 'https://endoflife.date/api/python.json',
+              eolViewUrl: 'https://endoflife.date/python',
+              eolLookbackDays: 100,
+              newReleaseThresholdDays: 100,
+              ltsOnly: false,
+              retryCount: 3,
+              retryIntervalSec: 30
+            });
+          github-token: ${{ secrets.GITHUB_TOKEN }}

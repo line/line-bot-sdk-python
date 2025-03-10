@@ -497,7 +497,7 @@ class AsyncManageAudience(object):
         _auth_settings = ['Bearer']  # noqa: E501
 
         _response_types_map = {
-            '200': "CreateAudienceGroupResponse",
+            '202': "CreateAudienceGroupResponse",
         }
 
         return self.api_client.call_api(
@@ -655,7 +655,7 @@ class AsyncManageAudience(object):
         _auth_settings = ['Bearer']  # noqa: E501
 
         _response_types_map = {
-            '200': "CreateClickBasedAudienceGroupResponse",
+            '202': "CreateClickBasedAudienceGroupResponse",
         }
 
         return self.api_client.call_api(
@@ -813,7 +813,7 @@ class AsyncManageAudience(object):
         _auth_settings = ['Bearer']  # noqa: E501
 
         _response_types_map = {
-            '200': "CreateImpBasedAudienceGroupResponse",
+            '202': "CreateImpBasedAudienceGroupResponse",
         }
 
         return self.api_client.call_api(

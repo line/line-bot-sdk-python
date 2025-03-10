@@ -158,13 +158,13 @@ module.exports = async function checkEolAndNewReleases(actionCtx, config) {
                 // Check if it reached EoL within the last eolLookbackDays
                 if (eolDate <= now && eolDate >= eolLookbackDate) {
                     if (!release.cycle) return;
-                    const title = `[EoL] ${languageName} ${release.cycle} reached End of Life`;
+                    const title = `${languageName} ${release.cycle} reached End of Life`;
                     const body = dedent(`
                         **EoL date**: ${release.eol}
                         endoflife.date for ${languageName}: ${eolViewUrl}
             
                         This version(${languageName} ${release.cycle}) has reached End of Life.
-                        Please consider drop support or update as needed.
+                        Please drop its support as needed.
                         `);
                     await createIssueIfNotExists(title, body, ['keep']);
                 }
@@ -190,13 +190,13 @@ module.exports = async function checkEolAndNewReleases(actionCtx, config) {
                 if (rDate >= newReleaseSince && rDate <= now) {
                     if (!release.cycle) return;
                     const ltsTag = ltsOnly ? ' (LTS)' : '';
-                    const title = `[New Release] ${languageName} ${release.cycle}${ltsTag} is now available`;
+                    const title = `${languageName} ${release.cycle}${ltsTag} is now available`;
                     const body = dedent(`
                         **Release date**: ${release.releaseDate}
                         endoflife.date for ${languageName}: ${eolViewUrl}
             
                         A new version(${languageName} ${release.cycle}) has been released.
-                        Please consider updating or testing as needed.
+                        Please start to support it.
                         `);
                     await createIssueIfNotExists(title, body, ['keep']);
                 }

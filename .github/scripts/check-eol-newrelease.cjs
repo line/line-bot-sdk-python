@@ -158,13 +158,13 @@ module.exports = async function checkEolAndNewReleases(actionCtx, config) {
                 // Check if it reached EoL within the last eolLookbackDays
                 if (eolDate <= now && eolDate >= eolLookbackDate) {
                     if (!release.cycle) return;
-                    const title = `${languageName} ${release.cycle} reached End of Life`;
+                    const title = `Drop ${languageName} ${release.cycle} support`;
                     const body = dedent(`
-                        **EoL date**: ${release.eol}
-                        endoflife.date for ${languageName}: ${eolViewUrl}
-            
                         This version(${languageName} ${release.cycle}) has reached End of Life.
                         Please drop its support as needed.
+                        
+                        **EoL date**: ${release.eol}
+                        endoflife.date for ${languageName}: ${eolViewUrl}
                         `);
                     await createIssueIfNotExists(title, body, ['keep']);
                 }
@@ -190,13 +190,13 @@ module.exports = async function checkEolAndNewReleases(actionCtx, config) {
                 if (rDate >= newReleaseSince && rDate <= now) {
                     if (!release.cycle) return;
                     const ltsTag = ltsOnly ? ' (LTS)' : '';
-                    const title = `${languageName} ${release.cycle}${ltsTag} is now available`;
+                    const title = `Support ${languageName} ${release.cycle}${ltsTag}`;
                     const body = dedent(`
-                        **Release date**: ${release.releaseDate}
-                        endoflife.date for ${languageName}: ${eolViewUrl}
-            
                         A new version(${languageName} ${release.cycle}) has been released.
                         Please start to support it.
+                        
+                        **Release date**: ${release.releaseDate}
+                        endoflife.date for ${languageName}: ${eolViewUrl}            
                         `);
                     await createIssueIfNotExists(title, body, ['keep']);
                 }

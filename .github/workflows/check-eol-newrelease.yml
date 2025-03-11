@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  check-go:
+  check-eol-newrelease:
     runs-on: ubuntu-latest
     steps:
       - name: Check out code

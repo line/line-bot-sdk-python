@@ -377,7 +377,7 @@ class ManageAudienceBlob(object):
         _auth_settings = ['Bearer']  # noqa: E501
 
         _response_types_map = {
-            '200': "CreateAudienceGroupResponse",
+            '202': "CreateAudienceGroupResponse",
         }
 
         return self.api_client.call_api(

@@ -1,6 +1,6 @@
 -r requirements.txt
 -r requirements-test.txt
-tox==4.24.2
+tox==4.25.0
 wheel==0.45.1
 Sphinx==7.4.7
 sphinx-rtd-theme==3.0.2

@@ -1,6 +1,6 @@
 pytest==8.3.5
 pytest-pep8==1.0.6
-pytest-cov==6.0.0
+pytest-cov==6.1.0
 pytest-aiohttp==1.1.0
 responses==0.25.7
 pytest_httpserver >= 1.1.2

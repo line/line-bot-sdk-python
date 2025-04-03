@@ -292,7 +292,7 @@ class TestLineBotApi(unittest.TestCase):
                 },
                 {
                     'seq': 1,
-                    'url': 'https://www.line-community.me/',
+                    'url': 'https://developers.line.biz/',
                     'click': 20,
                     'uniqueClick': None,
                     'uniqueClickOfRequest': None

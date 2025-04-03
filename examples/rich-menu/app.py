@@ -46,7 +46,7 @@ def rich_menu_object_a_json():
                 },
                 "action": {
                     "type": "uri",
-                    "uri": "https://www.line-community.me/"
+                    "uri": "https://developers.line.biz/"
                 }
             },
             {
@@ -98,7 +98,7 @@ def rich_menu_object_b_json():
                 },
                 "action": {
                     "type": "uri",
-                    "uri": "https://www.line-community.me/"
+                    "uri": "https://developers.line.biz/"
                 }
             }
         ]

@@ -19,7 +19,7 @@ import json
 import linebot.v3.webhooks.models
 
 
-from typing import Optional, Union
+from typing import Union
 from pydantic.v1 import BaseModel, Field, StrictStr
 
 class Source(BaseModel):
@@ -27,7 +27,7 @@ class Source(BaseModel):
     the source of the event.
     https://developers.line.biz/en/reference/messaging-api/#source-user
     """
-    type: Optional[StrictStr] = Field(None, description="source type")
+    type: StrictStr = Field(..., description="source type")
 
     __properties = ["type"]
 

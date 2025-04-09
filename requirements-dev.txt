@@ -2,7 +2,7 @@
 -r requirements-test.txt
 tox==4.25.0
 wheel==0.46.1
-Sphinx==7.4.7
+Sphinx==8.2.3
 sphinx-rtd-theme==3.0.2
 pypandoc==1.15
 twine==6.1.0

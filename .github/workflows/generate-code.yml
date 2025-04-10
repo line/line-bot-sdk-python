@@ -2,6 +2,8 @@ name: Generate code and open pull request
 
 on:
   push:
+    branches:
+      - 'master'
   pull_request:
   merge_group:
   workflow_dispatch:
@@ -31,15 +33,24 @@ jobs:
 
           echo "DIFF_IS_EMPTY=$([[ -z "$diff_excluding_submodule" ]] && echo 'true' || echo 'false')" >> $GITHUB_ENV
           echo "CURRENT_DATETIME=$(date +'%Y%m%d%H%M%S')" >> $GITHUB_ENV
-      ## Run if diff exists and pull request, and make CI status failure (but allow renovate bot)
-      - if: ${{ github.event_name == 'pull_request' && env.DIFF_IS_EMPTY != 'true' && github.actor != 'renovate[bot]' }}
+      ## Run if diff exists and pull request or merge queue, and make CI status failure (but allow renovate bot)
+      - if: >-
+          ${{
+            (github.event_name == 'pull_request' || github.event_name == 'merge_group')
+            && env.DIFF_IS_EMPTY != 'true'
+            && github.actor != 'renovate[bot]'
+          }}
         run: |
           echo "There are changes in the generated codes. Please run 'generate-code.py' and commit the changes." >&2
           echo "The files with differences are as follows." >&2
           echo "$(git --no-pager diff --name-only HEAD)" >&2
           exit 1
-      ## Run if diff exists and event is not pull request, and make PR
-      - if: ${{ github.event_name != 'pull_request' && env.DIFF_IS_EMPTY != 'true' }}
+      ## Run if diff exists and event is push or workflow_dispatch, make PR
+      - if: >-
+          ${{
+              (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+              && env.DIFF_IS_EMPTY != 'true'
+          }}
         run: |
           # Determine Change Type via Submodule Script. This scripts read current uncommited changes.
           CHANGE_TYPE=$(npx zx ./line-openapi/tools/determine-change-type.mjs)

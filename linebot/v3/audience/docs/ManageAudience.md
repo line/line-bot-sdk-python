@@ -4,92 +4,17 @@ All URIs are relative to *https://api.line.me*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**activate_audience_group**](ManageAudience.md#activate_audience_group) | **PUT** /v2/bot/audienceGroup/{audienceGroupId}/activate | 
 [**add_audience_to_audience_group**](ManageAudience.md#add_audience_to_audience_group) | **PUT** /v2/bot/audienceGroup/upload | 
 [**create_audience_group**](ManageAudience.md#create_audience_group) | **POST** /v2/bot/audienceGroup/upload | 
 [**create_click_based_audience_group**](ManageAudience.md#create_click_based_audience_group) | **POST** /v2/bot/audienceGroup/click | 
 [**create_imp_based_audience_group**](ManageAudience.md#create_imp_based_audience_group) | **POST** /v2/bot/audienceGroup/imp | 
 [**delete_audience_group**](ManageAudience.md#delete_audience_group) | **DELETE** /v2/bot/audienceGroup/{audienceGroupId} | 
 [**get_audience_data**](ManageAudience.md#get_audience_data) | **GET** /v2/bot/audienceGroup/{audienceGroupId} | 
-[**get_audience_group_authority_level**](ManageAudience.md#get_audience_group_authority_level) | **GET** /v2/bot/audienceGroup/authorityLevel | 
 [**get_audience_groups**](ManageAudience.md#get_audience_groups) | **GET** /v2/bot/audienceGroup/list | 
 [**get_shared_audience_data**](ManageAudience.md#get_shared_audience_data) | **GET** /v2/bot/audienceGroup/shared/{audienceGroupId} | 
 [**get_shared_audience_groups**](ManageAudience.md#get_shared_audience_groups) | **GET** /v2/bot/audienceGroup/shared/list | 
-[**update_audience_group_authority_level**](ManageAudience.md#update_audience_group_authority_level) | **PUT** /v2/bot/audienceGroup/authorityLevel | 
 [**update_audience_group_description**](ManageAudience.md#update_audience_group_description) | **PUT** /v2/bot/audienceGroup/{audienceGroupId}/updateDescription | 
 
-
-# **activate_audience_group**
-> activate_audience_group(audience_group_id)
-
-
-
-Activate audience
-
-### Example
-
-* Bearer Authentication (Bearer):
-```python
-import time
-import os
-import linebot.v3.audience
-from linebot.v3.audience.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://api.line.me
-# See configuration.py for a list of all supported configuration parameters.
-configuration = linebot.v3.audience.Configuration(
-    host = "https://api.line.me"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure Bearer authorization: Bearer
-configuration = linebot.v3.audience.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
-
-# Enter a context with an instance of the API client
-with linebot.v3.audience.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = linebot.v3.audience.ManageAudience(api_client)
-    audience_group_id = 56 # int | The audience ID.
-
-    try:
-        api_instance.activate_audience_group(audience_group_id)
-    except Exception as e:
-        print("Exception when calling ManageAudience->activate_audience_group: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **audience_group_id** | **int**| The audience ID. | 
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: Not defined
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**202** | Accepted |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **add_audience_to_audience_group**
 > add_audience_to_audience_group(add_audience_to_audience_group_request)
@@ -540,77 +465,6 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_audience_group_authority_level**
-> GetAudienceGroupAuthorityLevelResponse get_audience_group_authority_level()
-
-
-
-Get the authority level of the audience
-
-### Example
-
-* Bearer Authentication (Bearer):
-```python
-import time
-import os
-import linebot.v3.audience
-from linebot.v3.audience.models.get_audience_group_authority_level_response import GetAudienceGroupAuthorityLevelResponse
-from linebot.v3.audience.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://api.line.me
-# See configuration.py for a list of all supported configuration parameters.
-configuration = linebot.v3.audience.Configuration(
-    host = "https://api.line.me"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure Bearer authorization: Bearer
-configuration = linebot.v3.audience.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
-
-# Enter a context with an instance of the API client
-with linebot.v3.audience.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = linebot.v3.audience.ManageAudience(api_client)
-
-    try:
-        api_response = api_instance.get_audience_group_authority_level()
-        print("The response of ManageAudience->get_audience_group_authority_level:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling ManageAudience->get_audience_group_authority_level: %s\n" % e)
-```
-
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**GetAudienceGroupAuthorityLevelResponse**](GetAudienceGroupAuthorityLevelResponse.md)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | OK |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **get_audience_groups**
 > GetAudienceGroupsResponse get_audience_groups(page, description=description, status=status, size=size, includes_external_public_groups=includes_external_public_groups, create_route=create_route)
 
@@ -775,7 +629,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_shared_audience_groups**
-> GetSharedAudienceGroupsResponse get_shared_audience_groups(page, description=description, status=status, size=size, create_route=create_route)
+> GetSharedAudienceGroupsResponse get_shared_audience_groups(page, description=description, status=status, size=size, create_route=create_route, includes_owned_audience_groups=includes_owned_audience_groups)
 
 
 
@@ -819,9 +673,10 @@ with linebot.v3.audience.ApiClient(configuration) as api_client:
     status = linebot.v3.audience.AudienceGroupStatus() # AudienceGroupStatus | The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion.  (optional)
     size = 20 # int | The number of audiences per page. Default: 20 Max: 40  (optional)
     create_route = linebot.v3.audience.AudienceGroupCreateRoute() # AudienceGroupCreateRoute | How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API.  (optional)
+    includes_owned_audience_groups = False # bool | true: Include audienceGroups owned by LINE Official Account Manager false: Respond only audienceGroups shared by Business Manager  (optional) (default to False)
 
     try:
-        api_response = api_instance.get_shared_audience_groups(page, description=description, status=status, size=size, create_route=create_route)
+        api_response = api_instance.get_shared_audience_groups(page, description=description, status=status, size=size, create_route=create_route, includes_owned_audience_groups=includes_owned_audience_groups)
         print("The response of ManageAudience->get_shared_audience_groups:\n")
         pprint(api_response)
     except Exception as e:
@@ -838,6 +693,7 @@ Name | Type | Description  | Notes
  **status** | [**AudienceGroupStatus**](.md)| The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion.  | [optional] 
  **size** | **int**| The number of audiences per page. Default: 20 Max: 40  | [optional] 
  **create_route** | [**AudienceGroupCreateRoute**](.md)| How the audience was created. If omitted, all audiences are included.  &#x60;OA_MANAGER&#x60;: Return only audiences created with LINE Official Account Manager (opens new window). &#x60;MESSAGING_API&#x60;: Return only audiences created with Messaging API.  | [optional] 
+ **includes_owned_audience_groups** | **bool**| true: Include audienceGroups owned by LINE Official Account Manager false: Respond only audienceGroups shared by Business Manager  | [optional] [default to False]
 
 ### Return type
 
@@ -851,79 +707,6 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | OK |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **update_audience_group_authority_level**
-> update_audience_group_authority_level(update_audience_group_authority_level_request)
-
-
-
-Change the authority level of the audience
-
-### Example
-
-* Bearer Authentication (Bearer):
-```python
-import time
-import os
-import linebot.v3.audience
-from linebot.v3.audience.models.update_audience_group_authority_level_request import UpdateAudienceGroupAuthorityLevelRequest
-from linebot.v3.audience.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://api.line.me
-# See configuration.py for a list of all supported configuration parameters.
-configuration = linebot.v3.audience.Configuration(
-    host = "https://api.line.me"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure Bearer authorization: Bearer
-configuration = linebot.v3.audience.Configuration(
-    access_token = os.environ["BEARER_TOKEN"]
-)
-
-# Enter a context with an instance of the API client
-with linebot.v3.audience.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = linebot.v3.audience.ManageAudience(api_client)
-    update_audience_group_authority_level_request = linebot.v3.audience.UpdateAudienceGroupAuthorityLevelRequest() # UpdateAudienceGroupAuthorityLevelRequest | 
-
-    try:
-        api_instance.update_audience_group_authority_level(update_audience_group_authority_level_request)
-    except Exception as e:
-        print("Exception when calling ManageAudience->update_audience_group_authority_level: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **update_audience_group_authority_level_request** | [**UpdateAudienceGroupAuthorityLevelRequest**](UpdateAudienceGroupAuthorityLevelRequest.md)|  | 
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: Not defined
 
 ### HTTP response details
 | Status code | Description | Response headers |

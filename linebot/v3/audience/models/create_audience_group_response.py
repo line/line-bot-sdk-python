@@ -18,8 +18,8 @@ import re  # noqa: F401
 import json
 
 
-from typing import Optional, Union
-from pydantic.v1 import BaseModel, Field, StrictBool, StrictFloat, StrictInt, StrictStr, validator
+from typing import Optional
+from pydantic.v1 import BaseModel, Field, StrictBool, StrictInt, StrictStr, validator
 from linebot.v3.audience.models.audience_group_type import AudienceGroupType
 
 class CreateAudienceGroupResponse(BaseModel):
@@ -33,7 +33,7 @@ class CreateAudienceGroupResponse(BaseModel):
     description: Optional[StrictStr] = Field(None, description="The audience's name.")
     created: Optional[StrictInt] = Field(None, description="When the audience was created (in UNIX time).")
     permission: Optional[StrictStr] = Field(None, description="Audience's update permission. Audiences linked to the same channel will be READ_WRITE.  `READ`: Can use only. `READ_WRITE`: Can use and update. ")
-    expire_timestamp: Optional[Union[StrictFloat, StrictInt]] = Field(None, alias="expireTimestamp", description="Time of audience expiration. Only returned for specific audiences. ")
+    expire_timestamp: Optional[StrictInt] = Field(None, alias="expireTimestamp", description="Time of audience expiration. Only returned for specific audiences. ")
     is_ifa_audience: Optional[StrictBool] = Field(None, alias="isIfaAudience", description="The value indicating the type of account to be sent, as specified when creating the audience for uploading user IDs. One of:  `true`: Accounts are specified with IFAs. `false` (default): Accounts are specified with user IDs. ")
 
     __properties = ["audienceGroupId", "createRoute", "type", "description", "created", "permission", "expireTimestamp", "isIfaAudience"]

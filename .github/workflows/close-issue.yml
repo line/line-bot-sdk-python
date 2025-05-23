@@ -19,7 +19,7 @@ jobs:
           days-before-issue-close: 0
           stale-issue-label: "no-activity"
           close-issue-message: "This issue was closed because it has been inactive for 14 days."
-          exempt-issue-labels: "bug,enhancement,keep"
+          exempt-issue-labels: "bug,enhancement,keep,untriaged"
           days-before-pr-stale: -1
           days-before-pr-close: 14
           stale-pr-label: "no-activity"

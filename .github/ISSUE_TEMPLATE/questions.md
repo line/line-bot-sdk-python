@@ -18,7 +18,7 @@ title: "Question"
 
 ## Have You Checked the Following?
 - [ ] [SDK Document](https://line-bot-sdk-python.readthedocs.io/en/latest/)
-- [ ] [Examples - line-bot-api gem](https://github.com/line/line-bot-sdk-python/tree/master/examples/)
+- [ ] [Examples](https://github.com/line/line-bot-sdk-python/tree/master/examples/)
 - [ ] [Developer Documentation - LINE Developers](https://developers.line.biz/en/docs/)
 - [ ] [FAQ - LINE Developers](https://developers.line.biz/en/faq/tags/messaging-api/)
 

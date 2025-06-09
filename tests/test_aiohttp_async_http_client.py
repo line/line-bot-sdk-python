@@ -12,11 +12,13 @@
 #  License for the specific language governing permissions and limitations
 #  under the License.
 
+import pytest
 from aiohttp import web
 
 from linebot.aiohttp_async_http_client import AiohttpAsyncHttpClient
 
 
+@pytest.mark.asyncio
 async def test_get(aiohttp_client):
     async def hello(request):
         return web.Response(text='Hello, world')
@@ -31,6 +33,7 @@ async def test_get(aiohttp_client):
     assert 'Hello, world' in text
 
 
+@pytest.mark.asyncio
 async def test_get_json(aiohttp_client):
     async def hello(request):
         return web.json_response({'test': 'Hello, world'})
@@ -44,6 +47,7 @@ async def test_get_json(aiohttp_client):
     assert 'Hello, world' == json['test']
 
 
+@pytest.mark.asyncio
 async def test_get_iter(aiohttp_client):
     async def hello(request):
         return web.Response(text='Hello, world')
@@ -61,6 +65,7 @@ async def test_get_iter(aiohttp_client):
     assert 'Hello, world' in buffer
 
 
+@pytest.mark.asyncio
 async def test_post(aiohttp_client):
     async def hello(request):
         return web.Response(text='Hello, world')
@@ -75,6 +80,7 @@ async def test_post(aiohttp_client):
     assert 'Hello, world' in text
 
 
+@pytest.mark.asyncio
 async def test_delete(aiohttp_client):
     async def hello(request):
         return web.Response(text='Hello, world')
@@ -89,6 +95,7 @@ async def test_delete(aiohttp_client):
     assert 'Hello, world' in text
 
 
+@pytest.mark.asyncio
 async def test_put(aiohttp_client):
     async def hello(request):
         return web.Response(text='Hello, world')

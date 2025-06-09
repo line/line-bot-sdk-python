@@ -12,6 +12,8 @@
 #  License for the specific language governing permissions and limitations
 #  under the License.
 
+import pytest
+
 from aiohttp import web
 
 from linebot import (
@@ -20,6 +22,7 @@ from linebot import (
 from linebot.aiohttp_async_http_client import AiohttpAsyncHttpClient
 
 
+@pytest.mark.asyncio
 async def test_get(aiohttp_client):
     msg = ''.join('Hello, world' for i in range(1000))
 

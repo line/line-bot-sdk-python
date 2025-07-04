@@ -112,12 +112,13 @@ class WebhookPayload(object):
 class WebhookParser(object):
     """Webhook Parser."""
 
-    def __init__(self, channel_secret):
+    def __init__(self, channel_secret, skip_signature_verification = lambda: False):
         """__init__ method.
 
         :param str channel_secret: Channel secret (as text)
         """
         self.signature_validator = SignatureValidator(channel_secret)
+        self.skip_signature_verification = skip_signature_verification
 
     def parse(self, body, signature, as_payload=False):
         """Parse webhook request body as text.
@@ -129,7 +130,7 @@ class WebhookParser(object):
             | :py:class:`linebot.v3.webhook.WebhookPayload`
         :return: Events list, or WebhookPayload instance
         """
-        if not self.signature_validator.validate(body, signature):
+        if not self.skip_signature_verification() and not self.signature_validator.validate(body, signature):
             raise InvalidSignatureError(
                 'Invalid signature. signature=' + signature)
 

@@ -89,8 +89,7 @@ class Handler:
 async def main(port=8000):
     async_api_client = AsyncApiClient(configuration)
     line_bot_api = AsyncMessagingApi(async_api_client)
-    # Dummy value is fine to skip webhook signature verification
-    parser = WebhookParser("Dummy Channel Secret", lambda: True)
+    parser = WebhookParser(channel_secret)
 
     handler = Handler(line_bot_api, parser)
 

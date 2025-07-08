@@ -21,6 +21,7 @@ from linebot.v3 import (
 )
 from linebot.v3.exceptions import InvalidSignatureError
 
+
 class TestWebhookParserWithSkipSignatureVerification(unittest.TestCase):
     def setUp(self):
         self.parser = WebhookParser('channel_secret')
@@ -40,6 +41,7 @@ class TestWebhookParserWithSkipSignatureVerification(unittest.TestCase):
         except InvalidSignatureError:
             self.fail("parse() raised InvalidSignatureError unexpectedly!")
 
+
 class TestWebhookHandlerWithSkipSignatureVerification(unittest.TestCase):
     def setUp(self):
         self.handler = WebhookHandler('channel_secret')
@@ -56,7 +58,31 @@ class TestWebhookHandlerWithSkipSignatureVerification(unittest.TestCase):
             self.handler_with_skip_called = True
 
     def test_handle_with_invalid_signature(self):
-        body = '{"events": [{"type": "message", "message": {"type": "text", "id": "123", "text": "test"}, "timestamp": 1462629479859, "source": {"type": "user", "userId": "U123"}, "replyToken": "reply_token", "mode": "active", "webhookEventId": "test_id", "deliveryContext": {"isRedelivery": false}}]}'
+        body = """
+{
+    "events": [
+        {
+            "type": "message",
+            "message": {
+                "type": "text",
+                "id": "123",
+                "text": "test"
+            },
+            "timestamp": 1462629479859,
+            "source": {
+                "type": "user",
+                "userId": "U123"
+            },
+            "replyToken": "reply_token",
+            "mode": "active",
+            "webhookEventId": "test_id",
+            "deliveryContext": {
+                "isRedelivery": false
+            }
+        }
+    ]
+}
+        """
         signature = 'invalid_signature'
 
         # Should raise InvalidSignatureError when skip_signature_verification is False (default)
@@ -76,7 +102,31 @@ class TestWebhookHandlerWithSkipSignatureVerification(unittest.TestCase):
         self.assertTrue(self.handler_with_skip_called)
 
     def test_dynamic_skip_signature_verification(self):
-        body = '{"events": [{"type": "message", "message": {"type": "text", "id": "123", "text": "test"}, "timestamp": 1462629479859, "source": {"type": "user", "userId": "U123"}, "replyToken": "reply_token", "mode": "active", "webhookEventId": "test_id", "deliveryContext": {"isRedelivery": false}}]}'
+        body = """
+{
+    "events": [
+        {
+            "type": "message",
+            "message": {
+                "type": "text",
+                "id": "123",
+                "text": "test"
+            },
+            "timestamp": 1462629479859,
+            "source": {
+                "type": "user",
+                "userId": "U123"
+            },
+            "replyToken": "reply_token",
+            "mode": "active",
+            "webhookEventId": "test_id",
+            "deliveryContext": {
+                "isRedelivery": false
+            }
+        }
+    ]
+}
+        """
         signature = 'invalid_signature'
         skip_flag = [False]
 
@@ -111,6 +161,6 @@ class TestWebhookHandlerWithSkipSignatureVerification(unittest.TestCase):
         # Handler should be called now
         self.assertTrue(dynamic_handler_called[0])
 
+
 if __name__ == '__main__':
     unittest.main()
-

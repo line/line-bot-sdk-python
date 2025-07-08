@@ -111,12 +111,17 @@ WebhookParser
 
 ※ You can use WebhookParser
 
-\_\_init\_\_(self, channel\_secret)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+\_\_init\_\_(self, channel\_secret, skip\_signature\_verification=lambda: False)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code:: python
 
     parser = linebot.v3.WebhookParser('YOUR_CHANNEL_SECRET')
+
+    # or with skip_signature_verification
+    parser = linebot.v3.WebhookParser(
+        'YOUR_CHANNEL_SECRET',
+        skip_signature_verification=lambda: True  # or a function that returns a boolean
 
 parse(self, body, signature, as_payload=False)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -143,12 +148,17 @@ WebhookHandler
 
 ※ You can use WebhookHandler
 
-\_\_init\_\_(self, channel\_secret)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+\_\_init\_\_(self, channel\_secret, skip\_signature\_verification=lambda: False)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code:: python
 
     handler = linebot.v3.WebhookHandler('YOUR_CHANNEL_SECRET')
+
+    # or with skip_signature_verification
+    handler = linebot.v3.WebhookHandler(
+        'YOUR_CHANNEL_SECRET',
+        skip_signature_verification=lambda: True  # or a function that returns a boolean
 
 handle(self, body, signature)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

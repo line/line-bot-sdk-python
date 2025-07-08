@@ -155,12 +155,13 @@ class WebhookHandler(object):
     Please read https://github.com/line/line-bot-sdk-python#webhookhandler
     """
 
-    def __init__(self, channel_secret):
+    def __init__(self, channel_secret, skip_signature_verification = lambda: False):
         """__init__ method.
 
         :param str channel_secret: Channel secret (as text)
+        :param skip_signature_verification: (optional) Function that returns a boolean value whether to skip signature validation
         """
-        self.parser = WebhookParser(channel_secret)
+        self.parser = WebhookParser(channel_secret, skip_signature_verification)
         self._handlers = {}
         self._default = None
 

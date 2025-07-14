@@ -1,8 +1,7 @@
 ---
 name: Feature Request
 about: Suggest an idea for this project
-labels: enhancement
-
+title: 'Feature Request'
 ---
 
 ## Do this before creating an issue

@@ -118,10 +118,10 @@ WebhookParser
 
     parser = linebot.v3.WebhookParser('YOUR_CHANNEL_SECRET')
 
-    # or with skip_signature_verification
+    # or with skip_signature_verification option
     parser = linebot.v3.WebhookParser(
         'YOUR_CHANNEL_SECRET',
-        skip_signature_verification=lambda: True  # or a function that returns a boolean
+        skip_signature_verification=lambda: False
 
 parse(self, body, signature, as_payload=False)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -155,10 +155,10 @@ WebhookHandler
 
     handler = linebot.v3.WebhookHandler('YOUR_CHANNEL_SECRET')
 
-    # or with skip_signature_verification
+    # or with skip_signature_verification option
     handler = linebot.v3.WebhookHandler(
         'YOUR_CHANNEL_SECRET',
-        skip_signature_verification=lambda: True  # or a function that returns a boolean
+        skip_signature_verification=lambda: False
 
 handle(self, body, signature)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

@@ -20,12 +20,15 @@ from pydantic.v1 import validate_arguments, ValidationError
 from typing_extensions import Annotated
 from typing import overload, Optional, Union, Awaitable
 
-from pydantic.v1 import Field, StrictInt, StrictStr, conint, constr, validator
+from pydantic.v1 import Field, StrictInt, StrictStr, conint, conlist, constr, validator
 
 from typing import Any, Dict, Optional
 
 from linebot.v3.messaging.models.bot_info_response import BotInfoResponse
 from linebot.v3.messaging.models.broadcast_request import BroadcastRequest
+from linebot.v3.messaging.models.coupon_create_request import CouponCreateRequest
+from linebot.v3.messaging.models.coupon_create_response import CouponCreateResponse
+from linebot.v3.messaging.models.coupon_response import CouponResponse
 from linebot.v3.messaging.models.create_rich_menu_alias_request import CreateRichMenuAliasRequest
 from linebot.v3.messaging.models.get_aggregation_unit_name_list_response import GetAggregationUnitNameListResponse
 from linebot.v3.messaging.models.get_aggregation_unit_usage_response import GetAggregationUnitUsageResponse
@@ -41,6 +44,7 @@ from linebot.v3.messaging.models.mark_messages_as_read_request import MarkMessag
 from linebot.v3.messaging.models.members_ids_response import MembersIdsResponse
 from linebot.v3.messaging.models.membership_list_response import MembershipListResponse
 from linebot.v3.messaging.models.message_quota_response import MessageQuotaResponse
+from linebot.v3.messaging.models.messaging_api_pager_coupon_list_response import MessagingApiPagerCouponListResponse
 from linebot.v3.messaging.models.multicast_request import MulticastRequest
 from linebot.v3.messaging.models.narrowcast_progress_response import NarrowcastProgressResponse
 from linebot.v3.messaging.models.narrowcast_request import NarrowcastRequest
@@ -384,6 +388,314 @@ class AsyncMessagingApi(object):
 
         return self.api_client.call_api(
             '/v2/bot/user/all/richmenu', 'DELETE',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @overload
+    async def close_coupon(self, coupon_id : StrictStr, **kwargs) -> None:  # noqa: E501
+        ...
+
+    @overload
+    def close_coupon(self, coupon_id : StrictStr, async_req: Optional[bool]=True, **kwargs) -> None:  # noqa: E501
+        ...
+
+    @validate_arguments
+    def close_coupon(self, coupon_id : StrictStr, async_req: Optional[bool]=None, **kwargs) -> Union[None, Awaitable[None]]:  # noqa: E501
+        """close_coupon  # noqa: E501
+
+        Close coupon  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.close_coupon(coupon_id, async_req=True)
+        >>> result = thread.get()
+
+        :param coupon_id: (required)
+        :type coupon_id: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the close_coupon_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        if async_req is not None:
+            kwargs['async_req'] = async_req
+        return self.close_coupon_with_http_info(coupon_id, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def close_coupon_with_http_info(self, coupon_id : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
+        """close_coupon  # noqa: E501
+
+        Close coupon  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.close_coupon_with_http_info(coupon_id, async_req=True)
+        >>> result = thread.get()
+
+        :param coupon_id: (required)
+        :type coupon_id: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: None
+        """
+
+        _host = self.line_base_path
+        _params = locals()
+
+        _all_params = [
+            'coupon_id'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method close_coupon" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['coupon_id']:
+            _path_params['couponId'] = _params['coupon_id']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['Bearer']  # noqa: E501
+
+        _response_types_map = {}
+
+        return self.api_client.call_api(
+            '/v2/bot/coupon/{couponId}/close', 'PUT',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @overload
+    async def create_coupon(self, coupon_create_request : Optional[CouponCreateRequest] = None, **kwargs) -> CouponCreateResponse:  # noqa: E501
+        ...
+
+    @overload
+    def create_coupon(self, coupon_create_request : Optional[CouponCreateRequest] = None, async_req: Optional[bool]=True, **kwargs) -> CouponCreateResponse:  # noqa: E501
+        ...
+
+    @validate_arguments
+    def create_coupon(self, coupon_create_request : Optional[CouponCreateRequest] = None, async_req: Optional[bool]=None, **kwargs) -> Union[CouponCreateResponse, Awaitable[CouponCreateResponse]]:  # noqa: E501
+        """create_coupon  # noqa: E501
+
+        Create a new coupon. Define coupon details such as type, title, and validity period.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.create_coupon(coupon_create_request, async_req=True)
+        >>> result = thread.get()
+
+        :param coupon_create_request:
+        :type coupon_create_request: CouponCreateRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: CouponCreateResponse
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the create_coupon_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        if async_req is not None:
+            kwargs['async_req'] = async_req
+        return self.create_coupon_with_http_info(coupon_create_request, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def create_coupon_with_http_info(self, coupon_create_request : Optional[CouponCreateRequest] = None, **kwargs) -> ApiResponse:  # noqa: E501
+        """create_coupon  # noqa: E501
+
+        Create a new coupon. Define coupon details such as type, title, and validity period.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.create_coupon_with_http_info(coupon_create_request, async_req=True)
+        >>> result = thread.get()
+
+        :param coupon_create_request:
+        :type coupon_create_request: CouponCreateRequest
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(CouponCreateResponse, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _host = self.line_base_path
+        _params = locals()
+
+        _all_params = [
+            'coupon_create_request'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method create_coupon" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        if _params['coupon_create_request'] is not None:
+            _body_params = _params['coupon_create_request']
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # set the HTTP header `Content-Type`
+        _content_types_list = _params.get('_content_type',
+            self.api_client.select_header_content_type(
+                ['application/json']))
+        if _content_types_list:
+                _header_params['Content-Type'] = _content_types_list
+
+        # authentication setting
+        _auth_settings = ['Bearer']  # noqa: E501
+
+        _response_types_map = {
+            '200': "CouponCreateResponse",
+            '400': "ErrorResponse",
+        }
+
+        return self.api_client.call_api(
+            '/v2/bot/coupon', 'POST',
             _path_params,
             _query_params,
             _header_params,
@@ -1437,6 +1749,159 @@ class AsyncMessagingApi(object):
 
         return self.api_client.call_api(
             '/v2/bot/info', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @overload
+    async def get_coupon_detail(self, coupon_id : StrictStr, **kwargs) -> CouponResponse:  # noqa: E501
+        ...
+
+    @overload
+    def get_coupon_detail(self, coupon_id : StrictStr, async_req: Optional[bool]=True, **kwargs) -> CouponResponse:  # noqa: E501
+        ...
+
+    @validate_arguments
+    def get_coupon_detail(self, coupon_id : StrictStr, async_req: Optional[bool]=None, **kwargs) -> Union[CouponResponse, Awaitable[CouponResponse]]:  # noqa: E501
+        """get_coupon_detail  # noqa: E501
+
+        Get coupon detail  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_coupon_detail(coupon_id, async_req=True)
+        >>> result = thread.get()
+
+        :param coupon_id: (required)
+        :type coupon_id: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: CouponResponse
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the get_coupon_detail_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        if async_req is not None:
+            kwargs['async_req'] = async_req
+        return self.get_coupon_detail_with_http_info(coupon_id, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def get_coupon_detail_with_http_info(self, coupon_id : StrictStr, **kwargs) -> ApiResponse:  # noqa: E501
+        """get_coupon_detail  # noqa: E501
+
+        Get coupon detail  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_coupon_detail_with_http_info(coupon_id, async_req=True)
+        >>> result = thread.get()
+
+        :param coupon_id: (required)
+        :type coupon_id: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(CouponResponse, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _host = self.line_base_path
+        _params = locals()
+
+        _all_params = [
+            'coupon_id'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_coupon_detail" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['coupon_id']:
+            _path_params['couponId'] = _params['coupon_id']
+
+
+        # process the query parameters
+        _query_params = []
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['Bearer']  # noqa: E501
+
+        _response_types_map = {
+            '200': "CouponResponse",
+            '400': "ErrorResponse",
+            '404': "ErrorResponse",
+        }
+
+        return self.api_client.call_api(
+            '/v2/bot/coupon/{couponId}', 'GET',
             _path_params,
             _query_params,
             _header_params,
@@ -6420,6 +6885,175 @@ class AsyncMessagingApi(object):
 
         return self.api_client.call_api(
             '/v2/bot/richmenu/bulk/link', 'POST',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @overload
+    async def list_coupon(self, status : Annotated[Optional[conlist(StrictStr, unique_items=True)], Field(description="Filter coupons by their status.")] = None, start : Annotated[Optional[StrictStr], Field(description="Pagination token to retrieve the next page of results.")] = None, limit : Annotated[Optional[conint(strict=True, le=100, ge=1)], Field(description="Maximum number of coupons to return per request.")] = None, **kwargs) -> MessagingApiPagerCouponListResponse:  # noqa: E501
+        ...
+
+    @overload
+    def list_coupon(self, status : Annotated[Optional[conlist(StrictStr, unique_items=True)], Field(description="Filter coupons by their status.")] = None, start : Annotated[Optional[StrictStr], Field(description="Pagination token to retrieve the next page of results.")] = None, limit : Annotated[Optional[conint(strict=True, le=100, ge=1)], Field(description="Maximum number of coupons to return per request.")] = None, async_req: Optional[bool]=True, **kwargs) -> MessagingApiPagerCouponListResponse:  # noqa: E501
+        ...
+
+    @validate_arguments
+    def list_coupon(self, status : Annotated[Optional[conlist(StrictStr, unique_items=True)], Field(description="Filter coupons by their status.")] = None, start : Annotated[Optional[StrictStr], Field(description="Pagination token to retrieve the next page of results.")] = None, limit : Annotated[Optional[conint(strict=True, le=100, ge=1)], Field(description="Maximum number of coupons to return per request.")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[MessagingApiPagerCouponListResponse, Awaitable[MessagingApiPagerCouponListResponse]]:  # noqa: E501
+        """list_coupon  # noqa: E501
+
+        Get a paginated list of coupons.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.list_coupon(status, start, limit, async_req=True)
+        >>> result = thread.get()
+
+        :param status: Filter coupons by their status.
+        :type status: List[str]
+        :param start: Pagination token to retrieve the next page of results.
+        :type start: str
+        :param limit: Maximum number of coupons to return per request.
+        :type limit: int
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: MessagingApiPagerCouponListResponse
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the list_coupon_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        if async_req is not None:
+            kwargs['async_req'] = async_req
+        return self.list_coupon_with_http_info(status, start, limit, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def list_coupon_with_http_info(self, status : Annotated[Optional[conlist(StrictStr, unique_items=True)], Field(description="Filter coupons by their status.")] = None, start : Annotated[Optional[StrictStr], Field(description="Pagination token to retrieve the next page of results.")] = None, limit : Annotated[Optional[conint(strict=True, le=100, ge=1)], Field(description="Maximum number of coupons to return per request.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
+        """list_coupon  # noqa: E501
+
+        Get a paginated list of coupons.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.list_coupon_with_http_info(status, start, limit, async_req=True)
+        >>> result = thread.get()
+
+        :param status: Filter coupons by their status.
+        :type status: List[str]
+        :param start: Pagination token to retrieve the next page of results.
+        :type start: str
+        :param limit: Maximum number of coupons to return per request.
+        :type limit: int
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(MessagingApiPagerCouponListResponse, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _host = self.line_base_path
+        _params = locals()
+
+        _all_params = [
+            'status',
+            'start',
+            'limit'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method list_coupon" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('status') is not None:  # noqa: E501
+            _query_params.append(('status', _params['status']))
+            _collection_formats['status'] = 'multi'
+
+        if _params.get('start') is not None:  # noqa: E501
+            _query_params.append(('start', _params['start']))
+
+        if _params.get('limit') is not None:  # noqa: E501
+            _query_params.append(('limit', _params['limit']))
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['Bearer']  # noqa: E501
+
+        _response_types_map = {
+            '200': "MessagingApiPagerCouponListResponse",
+            '400': "ErrorResponse",
+        }
+
+        return self.api_client.call_api(
+            '/v2/bot/coupon', 'GET',
             _path_params,
             _query_params,
             _header_params,

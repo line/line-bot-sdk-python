@@ -6,6 +6,8 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**broadcast**](MessagingApi.md#broadcast) | **POST** /v2/bot/message/broadcast | 
 [**cancel_default_rich_menu**](MessagingApi.md#cancel_default_rich_menu) | **DELETE** /v2/bot/user/all/richmenu | 
+[**close_coupon**](MessagingApi.md#close_coupon) | **PUT** /v2/bot/coupon/{couponId}/close | 
+[**create_coupon**](MessagingApi.md#create_coupon) | **POST** /v2/bot/coupon | 
 [**create_rich_menu**](MessagingApi.md#create_rich_menu) | **POST** /v2/bot/richmenu | 
 [**create_rich_menu_alias**](MessagingApi.md#create_rich_menu_alias) | **POST** /v2/bot/richmenu/alias | 
 [**delete_rich_menu**](MessagingApi.md#delete_rich_menu) | **DELETE** /v2/bot/richmenu/{richMenuId} | 
@@ -13,6 +15,7 @@ Method | HTTP request | Description
 [**get_aggregation_unit_name_list**](MessagingApi.md#get_aggregation_unit_name_list) | **GET** /v2/bot/message/aggregation/list | 
 [**get_aggregation_unit_usage**](MessagingApi.md#get_aggregation_unit_usage) | **GET** /v2/bot/message/aggregation/info | 
 [**get_bot_info**](MessagingApi.md#get_bot_info) | **GET** /v2/bot/info | 
+[**get_coupon_detail**](MessagingApi.md#get_coupon_detail) | **GET** /v2/bot/coupon/{couponId} | 
 [**get_default_rich_menu_id**](MessagingApi.md#get_default_rich_menu_id) | **GET** /v2/bot/user/all/richmenu | 
 [**get_followers**](MessagingApi.md#get_followers) | **GET** /v2/bot/followers/ids | 
 [**get_group_member_count**](MessagingApi.md#get_group_member_count) | **GET** /v2/bot/group/{groupId}/members/count | 
@@ -46,6 +49,7 @@ Method | HTTP request | Description
 [**leave_room**](MessagingApi.md#leave_room) | **POST** /v2/bot/room/{roomId}/leave | 
 [**link_rich_menu_id_to_user**](MessagingApi.md#link_rich_menu_id_to_user) | **POST** /v2/bot/user/{userId}/richmenu/{richMenuId} | 
 [**link_rich_menu_id_to_users**](MessagingApi.md#link_rich_menu_id_to_users) | **POST** /v2/bot/richmenu/bulk/link | 
+[**list_coupon**](MessagingApi.md#list_coupon) | **GET** /v2/bot/coupon | 
 [**mark_messages_as_read**](MessagingApi.md#mark_messages_as_read) | **POST** /v2/bot/message/markAsRead | 
 [**multicast**](MessagingApi.md#multicast) | **POST** /v2/bot/message/multicast | 
 [**narrowcast**](MessagingApi.md#narrowcast) | **POST** /v2/bot/message/narrowcast | 
@@ -215,6 +219,158 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **close_coupon**
+> close_coupon(coupon_id)
+
+
+
+Close coupon
+
+### Example
+
+* Bearer Authentication (Bearer):
+```python
+import time
+import os
+import linebot.v3.messaging
+from linebot.v3.messaging.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.line.me
+# See configuration.py for a list of all supported configuration parameters.
+configuration = linebot.v3.messaging.Configuration(
+    host = "https://api.line.me"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: Bearer
+configuration = linebot.v3.messaging.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with linebot.v3.messaging.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = linebot.v3.messaging.MessagingApi(api_client)
+    coupon_id = 'coupon_id_example' # str | 
+
+    try:
+        api_instance.close_coupon(coupon_id)
+    except Exception as e:
+        print("Exception when calling MessagingApi->close_coupon: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **coupon_id** | **str**|  | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+**404** | Not Found |  -  |
+**410** | Gone |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **create_coupon**
+> CouponCreateResponse create_coupon(coupon_create_request=coupon_create_request)
+
+
+
+Create a new coupon. Define coupon details such as type, title, and validity period.
+
+### Example
+
+* Bearer Authentication (Bearer):
+```python
+import time
+import os
+import linebot.v3.messaging
+from linebot.v3.messaging.models.coupon_create_request import CouponCreateRequest
+from linebot.v3.messaging.models.coupon_create_response import CouponCreateResponse
+from linebot.v3.messaging.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.line.me
+# See configuration.py for a list of all supported configuration parameters.
+configuration = linebot.v3.messaging.Configuration(
+    host = "https://api.line.me"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: Bearer
+configuration = linebot.v3.messaging.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with linebot.v3.messaging.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = linebot.v3.messaging.MessagingApi(api_client)
+    coupon_create_request = linebot.v3.messaging.CouponCreateRequest() # CouponCreateRequest |  (optional)
+
+    try:
+        api_response = api_instance.create_coupon(coupon_create_request=coupon_create_request)
+        print("The response of MessagingApi->create_coupon:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling MessagingApi->create_coupon: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **coupon_create_request** | [**CouponCreateRequest**](CouponCreateRequest.md)|  | [optional] 
+
+### Return type
+
+[**CouponCreateResponse**](CouponCreateResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -729,6 +885,83 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_coupon_detail**
+> CouponResponse get_coupon_detail(coupon_id)
+
+
+
+Get coupon detail
+
+### Example
+
+* Bearer Authentication (Bearer):
+```python
+import time
+import os
+import linebot.v3.messaging
+from linebot.v3.messaging.models.coupon_response import CouponResponse
+from linebot.v3.messaging.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.line.me
+# See configuration.py for a list of all supported configuration parameters.
+configuration = linebot.v3.messaging.Configuration(
+    host = "https://api.line.me"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: Bearer
+configuration = linebot.v3.messaging.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with linebot.v3.messaging.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = linebot.v3.messaging.MessagingApi(api_client)
+    coupon_id = 'coupon_id_example' # str | 
+
+    try:
+        api_response = api_instance.get_coupon_detail(coupon_id)
+        print("The response of MessagingApi->get_coupon_detail:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling MessagingApi->get_coupon_detail: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **coupon_id** | **str**|  | 
+
+### Return type
+
+[**CouponResponse**](CouponResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+**404** | Not Found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -3188,6 +3421,86 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **202** | Accepted |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **list_coupon**
+> MessagingApiPagerCouponListResponse list_coupon(status=status, start=start, limit=limit)
+
+
+
+Get a paginated list of coupons.
+
+### Example
+
+* Bearer Authentication (Bearer):
+```python
+import time
+import os
+import linebot.v3.messaging
+from linebot.v3.messaging.models.messaging_api_pager_coupon_list_response import MessagingApiPagerCouponListResponse
+from linebot.v3.messaging.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.line.me
+# See configuration.py for a list of all supported configuration parameters.
+configuration = linebot.v3.messaging.Configuration(
+    host = "https://api.line.me"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: Bearer
+configuration = linebot.v3.messaging.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with linebot.v3.messaging.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = linebot.v3.messaging.MessagingApi(api_client)
+    status = ['status_example'] # List[str] | Filter coupons by their status. (optional)
+    start = 'start_example' # str | Pagination token to retrieve the next page of results. (optional)
+    limit = 20 # int | Maximum number of coupons to return per request. (optional) (default to 20)
+
+    try:
+        api_response = api_instance.list_coupon(status=status, start=start, limit=limit)
+        print("The response of MessagingApi->list_coupon:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling MessagingApi->list_coupon: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **status** | [**List[str]**](str.md)| Filter coupons by their status. | [optional] 
+ **start** | **str**| Pagination token to retrieve the next page of results. | [optional] 
+ **limit** | **int**| Maximum number of coupons to return per request. | [optional] [default to 20]
+
+### Return type
+
+[**MessagingApiPagerCouponListResponse**](MessagingApiPagerCouponListResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

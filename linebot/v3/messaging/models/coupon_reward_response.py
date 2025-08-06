@@ -19,21 +19,16 @@ import json
 import linebot.v3.messaging.models
 
 
-from typing import Optional, Union
+from typing import Union
 from pydantic.v1 import BaseModel, Field, StrictStr
-from linebot.v3.messaging.models.quick_reply import QuickReply
-from linebot.v3.messaging.models.sender import Sender
 
-class Message(BaseModel):
+class CouponRewardResponse(BaseModel):
     """
-    Message
-    https://developers.line.biz/en/reference/messaging-api/#message-common-properties
+    CouponRewardResponse
     """
-    type: StrictStr = Field(..., description="Type of message")
-    quick_reply: Optional[QuickReply] = Field(None, alias="quickReply")
-    sender: Optional[Sender] = None
+    type: StrictStr = Field(..., description="Type of coupon. Determines the benefit provided.")
 
-    __properties = ["type", "quickReply", "sender"]
+    __properties = ["type"]
 
     class Config:
         """Pydantic configuration"""
@@ -45,17 +40,11 @@ class Message(BaseModel):
 
     # discriminator mappings
     __discriminator_value_class_map = {
-        'audio': 'AudioMessage',
-        'coupon': 'CouponMessage',
-        'flex': 'FlexMessage',
-        'image': 'ImageMessage',
-        'imagemap': 'ImagemapMessage',
-        'location': 'LocationMessage',
-        'sticker': 'StickerMessage',
-        'template': 'TemplateMessage',
-        'text': 'TextMessage',
-        'textV2': 'TextMessageV2',
-        'video': 'VideoMessage'
+        'cashBack': 'CouponCashBackRewardResponse',
+        'discount': 'CouponDiscountRewardResponse',
+        'free': 'CouponFreeRewardResponse',
+        'gift': 'CouponGiftRewardResponse',
+        'others': 'CouponOthersRewardResponse'
     }
 
     @classmethod
@@ -76,8 +65,8 @@ class Message(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Union(AudioMessage, CouponMessage, FlexMessage, ImageMessage, ImagemapMessage, LocationMessage, StickerMessage, TemplateMessage, TextMessage, TextMessageV2, VideoMessage):
-        """Create an instance of Message from a JSON string"""
+    def from_json(cls, json_str: str) -> Union(CouponCashBackRewardResponse, CouponDiscountRewardResponse, CouponFreeRewardResponse, CouponGiftRewardResponse, CouponOthersRewardResponse):
+        """Create an instance of CouponRewardResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self):
@@ -86,24 +75,18 @@ class Message(BaseModel):
                           exclude={
                           },
                           exclude_none=True)
-        # override the default output from pydantic.v1 by calling `to_dict()` of quick_reply
-        if self.quick_reply:
-            _dict['quickReply'] = self.quick_reply.to_dict()
-        # override the default output from pydantic.v1 by calling `to_dict()` of sender
-        if self.sender:
-            _dict['sender'] = self.sender.to_dict()
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Union(AudioMessage, CouponMessage, FlexMessage, ImageMessage, ImagemapMessage, LocationMessage, StickerMessage, TemplateMessage, TextMessage, TextMessageV2, VideoMessage):
-        """Create an instance of Message from a dict"""
+    def from_dict(cls, obj: dict) -> Union(CouponCashBackRewardResponse, CouponDiscountRewardResponse, CouponFreeRewardResponse, CouponGiftRewardResponse, CouponOthersRewardResponse):
+        """Create an instance of CouponRewardResponse from a dict"""
         # look up the object type based on discriminator mapping
         object_type = cls.get_discriminator_value(obj)
         if object_type:
             klass = getattr(linebot.v3.messaging.models, object_type)
             return klass.from_dict(obj)
         else:
-            raise ValueError("Message failed to lookup discriminator value from " +
+            raise ValueError("CouponRewardResponse failed to lookup discriminator value from " +
                              json.dumps(obj) + ". Discriminator property name: " + cls.__discriminator_property_name +
                              ", mapping: " + json.dumps(cls.__discriminator_value_class_map))
 

@@ -1,6 +1,7 @@
 import json
 import unittest
-from urllib.parse import urlparse, parse_qs
+from collections import Counter
+from urllib.parse import urlparse, parse_qsl
 from pytest_httpserver import HTTPServer
 from linebot.v3.messaging import (
     Configuration,
@@ -157,12 +158,14 @@ class TestCouponAPI(unittest.TestCase):
 
             request, _ = httpserver.log[0]
             parsed_url = urlparse(request.url)
-            query_params = parse_qs(parsed_url.query)
 
-            self.assertIn("status", query_params)
-            self.assertIn("limit", query_params)
-            self.assertEqual(query_params["status"], ["RUNNING", "CLOSED"])
-            self.assertEqual(query_params["limit"], ["10"])
+            actual_params = parse_qsl(parsed_url.query, keep_blank_values=True)
+            expected_params = [
+                ("status", "RUNNING"),
+                ("status", "CLOSED"),
+                ("limit",  "10"),
+            ]
+            self.assertEqual(Counter(actual_params), Counter(expected_params))
 
     def test_get_coupon_detail(self):
         expected_coupon_id = "COUPON123"

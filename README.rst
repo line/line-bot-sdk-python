@@ -332,8 +332,9 @@ Versioning
 ----------
 This project respects semantic versioning
 
-See http://semver.org/
+- See `semver.org <https://semver.org/>`_
 
+However, if a feature that was publicly released is discontinued for business reasons and becomes completely unusable, we will release changes as a patch release.
 
 Version 3.x
 -----------

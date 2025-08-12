@@ -362,24 +362,6 @@
       }
     },
     {
-      "replyToken": "nHuyWiB7yP5Zw52FIkcQobQuGDXCTA",
-      "type": "things",
-      "mode": "active",
-      "timestamp": 1462629479859,
-      "source": {
-        "type": "user",
-        "userId": "U206d25c2ea6bd87c17655609a1c37cb8"
-      },
-      "webhookEventId": "testwebhookeventid",
-      "deliveryContext": {
-        "isRedelivery": false
-      },
-      "things": {
-        "deviceId": "t2c449c9d1",
-        "type": "link"
-      }
-    },
-    {
       "replyToken": "0f3779fba3b349968c5d07db31eabf65",
       "type": "memberJoined",
       "mode": "active",
@@ -432,24 +414,6 @@
     },
     {
       "replyToken": "nHuyWiB7yP5Zw52FIkcQobQuGDXCTA",
-      "type": "things",
-      "mode": "active",
-      "timestamp": 1462629479859,
-      "source": {
-        "type": "user",
-        "userId": "U206d25c2ea6bd87c17655609a1c37cb8"
-      },
-      "webhookEventId": "testwebhookeventid",
-      "deliveryContext": {
-        "isRedelivery": false
-      },
-      "things": {
-        "deviceId": "t2c449c9d1",
-        "type": "unlink"
-      }
-    },
-    {
-      "replyToken": "nHuyWiB7yP5Zw52FIkcQobQuGDXCTA",
       "type": "message",
       "mode": "active",
       "timestamp": 1462629479859,
@@ -466,41 +430,6 @@
         "type": "file",
         "fileName": "file.txt",
         "fileSize": 2138
-      }
-    },
-    {
-      "replyToken": "nHuyWiB7yP5Zw52FIkcQobQuGDXCTA",
-      "type": "things",
-      "mode": "active",
-      "source": {
-        "type": "user",
-        "userId": "U206d25c2ea6bd87c17655609a1c37cb8"
-      },
-      "webhookEventId": "testwebhookeventid",
-      "deliveryContext": {
-        "isRedelivery": false
-      },
-      "timestamp": 1547817848122,
-      "things": {
-        "type": "scenarioResult",
-        "deviceId": "t2c449c9d1",
-        "result": {
-          "scenarioId": "XXX",
-          "revision": 2,
-          "startTime": 1547817845950,
-          "endTime": 1547817845952,
-          "resultCode": "success",
-          "bleNotificationPayload": "AQ==",
-          "actionResults": [
-            {
-              "type": "binary",
-              "data": "/w=="
-            },
-            {
-              "type": "void"
-            }
-          ]
-        }
       }
     },
     {

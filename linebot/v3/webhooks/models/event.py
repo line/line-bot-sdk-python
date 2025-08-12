@@ -64,7 +64,6 @@ class Event(BaseModel):
         'message': 'MessageEvent',
         'module': 'ModuleEvent',
         'postback': 'PostbackEvent',
-        'things': 'ThingsEvent',
         'unfollow': 'UnfollowEvent',
         'unsend': 'UnsendEvent',
         'videoPlayComplete': 'VideoPlayCompleteEvent'
@@ -88,7 +87,7 @@ class Event(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Union(AccountLinkEvent, ActivatedEvent, BeaconEvent, BotResumedEvent, BotSuspendedEvent, DeactivatedEvent, FollowEvent, JoinEvent, LeaveEvent, MemberJoinedEvent, MemberLeftEvent, MembershipEvent, MessageEvent, ModuleEvent, PnpDeliveryCompletionEvent, PostbackEvent, ThingsEvent, UnfollowEvent, UnsendEvent, VideoPlayCompleteEvent):
+    def from_json(cls, json_str: str) -> Union(AccountLinkEvent, ActivatedEvent, BeaconEvent, BotResumedEvent, BotSuspendedEvent, DeactivatedEvent, FollowEvent, JoinEvent, LeaveEvent, MemberJoinedEvent, MemberLeftEvent, MembershipEvent, MessageEvent, ModuleEvent, PnpDeliveryCompletionEvent, PostbackEvent, UnfollowEvent, UnsendEvent, VideoPlayCompleteEvent):
         """Create an instance of Event from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -107,7 +106,7 @@ class Event(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: dict) -> Union(AccountLinkEvent, ActivatedEvent, BeaconEvent, BotResumedEvent, BotSuspendedEvent, DeactivatedEvent, FollowEvent, JoinEvent, LeaveEvent, MemberJoinedEvent, MemberLeftEvent, MembershipEvent, MessageEvent, ModuleEvent, PnpDeliveryCompletionEvent, PostbackEvent, ThingsEvent, UnfollowEvent, UnsendEvent, VideoPlayCompleteEvent):
+    def from_dict(cls, obj: dict) -> Union(AccountLinkEvent, ActivatedEvent, BeaconEvent, BotResumedEvent, BotSuspendedEvent, DeactivatedEvent, FollowEvent, JoinEvent, LeaveEvent, MemberJoinedEvent, MemberLeftEvent, MembershipEvent, MessageEvent, ModuleEvent, PnpDeliveryCompletionEvent, PostbackEvent, UnfollowEvent, UnsendEvent, VideoPlayCompleteEvent):
         """Create an instance of Event from a dict"""
         # look up the object type based on discriminator mapping
         object_type = cls.get_discriminator_value(obj)

@@ -34,7 +34,6 @@ from linebot.v3.webhooks.exceptions import ApiException
 
 # import models into sdk package
 from linebot.v3.webhooks.models.account_link_event import AccountLinkEvent
-from linebot.v3.webhooks.models.action_result import ActionResult
 from linebot.v3.webhooks.models.activated_event import ActivatedEvent
 from linebot.v3.webhooks.models.all_mentionee import AllMentionee
 from linebot.v3.webhooks.models.attached_module_content import AttachedModuleContent
@@ -65,7 +64,6 @@ from linebot.v3.webhooks.models.leave_event import LeaveEvent
 from linebot.v3.webhooks.models.left_members import LeftMembers
 from linebot.v3.webhooks.models.left_membership_content import LeftMembershipContent
 from linebot.v3.webhooks.models.link_content import LinkContent
-from linebot.v3.webhooks.models.link_things_content import LinkThingsContent
 from linebot.v3.webhooks.models.location_message_content import LocationMessageContent
 from linebot.v3.webhooks.models.member_joined_event import MemberJoinedEvent
 from linebot.v3.webhooks.models.member_left_event import MemberLeftEvent
@@ -83,15 +81,10 @@ from linebot.v3.webhooks.models.postback_content import PostbackContent
 from linebot.v3.webhooks.models.postback_event import PostbackEvent
 from linebot.v3.webhooks.models.renewed_membership_content import RenewedMembershipContent
 from linebot.v3.webhooks.models.room_source import RoomSource
-from linebot.v3.webhooks.models.scenario_result import ScenarioResult
-from linebot.v3.webhooks.models.scenario_result_things_content import ScenarioResultThingsContent
 from linebot.v3.webhooks.models.source import Source
 from linebot.v3.webhooks.models.sticker_message_content import StickerMessageContent
 from linebot.v3.webhooks.models.text_message_content import TextMessageContent
-from linebot.v3.webhooks.models.things_content import ThingsContent
-from linebot.v3.webhooks.models.things_event import ThingsEvent
 from linebot.v3.webhooks.models.unfollow_event import UnfollowEvent
-from linebot.v3.webhooks.models.unlink_things_content import UnlinkThingsContent
 from linebot.v3.webhooks.models.unsend_detail import UnsendDetail
 from linebot.v3.webhooks.models.unsend_event import UnsendEvent
 from linebot.v3.webhooks.models.user_mentionee import UserMentionee

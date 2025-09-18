@@ -116,6 +116,13 @@ class WebhookParser(object):
         """__init__ method.
 
         :param str channel_secret: Channel secret (as text)
+        :param skip_signature_verification: (optional) Function that determines
+            whether to skip webhook signature verification.
+
+            If this function returns True, the signature verification step is skipped.
+            This can be useful in scenarios such as when you're in the process of
+            updating the channel secret and need to temporarily bypass verification
+            to avoid disruptions.
         """
         self.signature_validator = SignatureValidator(channel_secret)
         self.skip_signature_verification = skip_signature_verification
@@ -159,7 +166,13 @@ class WebhookHandler(object):
         """__init__ method.
 
         :param str channel_secret: Channel secret (as text)
-        :param skip_signature_verification: (optional) Function that returns a boolean value whether to skip signature validation
+        :param skip_signature_verification: (optional) Function that determines
+            whether to skip webhook signature verification.
+
+            If this function returns True, the signature verification step is skipped.
+            This can be useful in scenarios such as when you're in the process of
+            updating the channel secret and need to temporarily bypass verification
+            to avoid disruptions.
         """
         self.parser = WebhookParser(channel_secret, skip_signature_verification)
         self._handlers = {}

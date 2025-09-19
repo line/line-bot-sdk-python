@@ -34,11 +34,12 @@ jobs:
           echo "DIFF_IS_EMPTY=$([[ -z "$diff_excluding_submodule" ]] && echo 'true' || echo 'false')" >> $GITHUB_ENV
           echo "CURRENT_DATETIME=$(date +'%Y%m%d%H%M%S')" >> $GITHUB_ENV
       ## Run if diff exists and pull request or merge queue, and make CI status failure (but allow renovate bot)
+      ## 29139614 is renovate bot's actor id
       - if: >-
           ${{
             (github.event_name == 'pull_request' || github.event_name == 'merge_group')
             && env.DIFF_IS_EMPTY != 'true'
-            && github.actor != 'renovate[bot]'
+            && github.actor_id != '29139614'
           }}
         run: |
           echo "There are changes in the generated codes. Please run 'generate-code.py' and commit the changes." >&2

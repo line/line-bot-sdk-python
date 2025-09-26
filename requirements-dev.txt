@@ -6,4 +6,4 @@ Sphinx==7.4.7
 sphinx-rtd-theme==3.0.2
 pypandoc==1.15
 twine==6.2.0
-black==25.1.0
+black==25.9.0

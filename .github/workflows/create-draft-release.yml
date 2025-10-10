@@ -106,7 +106,8 @@ jobs:
             .concat(`\n\n${footer}`);
 
             console.log(`releaseNotes (modified): ${JSON.stringify(modifiedBody, null, 2)}`);
-            core.setOutput("release_body", modifiedBody);
+            const fs = require('fs');
+            fs.writeFileSync('release-notes.txt', modifiedBody, { encoding: 'utf8' });
 
       - name: Prepare Release Title
         id: title
@@ -117,10 +118,6 @@ jobs:
           # Print RAW_TITLE safely, then escape double quotes
           SANITIZED_TITLE="$(printf '%s' "$RAW_TITLE" | sed 's/"/\\"/g')"
           echo "sanitized_title=$SANITIZED_TITLE" >> "$GITHUB_OUTPUT"
-
-      - name: Write Release Notes to File
-        run: |
-          echo "${{ steps.generate-release-notes.outputs.release_body }}" > release-notes.txt
 
       - name: Create Draft Release
         run: |

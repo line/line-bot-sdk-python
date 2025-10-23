@@ -28,8 +28,9 @@ class Limit(BaseModel):
     """
     max: Optional[conint(strict=True, ge=1)] = Field(None, description="The maximum number of narrowcast messages to send. Use this parameter to limit the number of narrowcast messages sent. The recipients will be chosen at random. ")
     up_to_remaining_quota: Optional[StrictBool] = Field(False, alias="upToRemainingQuota", description="If true, the message will be sent within the maximum number of deliverable messages. The default value is `false`.  Targets will be selected at random. ")
+    forbid_partial_delivery: Optional[StrictBool] = Field(False, alias="forbidPartialDelivery", description="This option prevents messages from being delivered to only a subset of the target audience. If true, the narrowcast request success but fails asynchronously. You can check whether message delivery was canceled by retrieving the narrowcast message progress.  This property can be set to true only if upToRemainingQuota is set to true. ")
 
-    __properties = ["max", "upToRemainingQuota"]
+    __properties = ["max", "upToRemainingQuota", "forbidPartialDelivery"]
 
     class Config:
         """Pydantic configuration"""
@@ -68,7 +69,8 @@ class Limit(BaseModel):
 
         _obj = Limit.parse_obj({
             "max": obj.get("max"),
-            "up_to_remaining_quota": obj.get("upToRemainingQuota") if obj.get("upToRemainingQuota") is not None else False
+            "up_to_remaining_quota": obj.get("upToRemainingQuota") if obj.get("upToRemainingQuota") is not None else False,
+            "forbid_partial_delivery": obj.get("forbidPartialDelivery") if obj.get("forbidPartialDelivery") is not None else False
         })
         return _obj
 

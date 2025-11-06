@@ -22,7 +22,7 @@ Japanese: https://developers.line.biz/ja/docs/messaging-api/overview/
 Requirements
 ------------
 
--  Python >= 3.9
+-  Python >= 3.10
 
 Installation
 ------------

@@ -51,6 +51,7 @@ Method | HTTP request | Description
 [**link_rich_menu_id_to_users**](MessagingApi.md#link_rich_menu_id_to_users) | **POST** /v2/bot/richmenu/bulk/link | 
 [**list_coupon**](MessagingApi.md#list_coupon) | **GET** /v2/bot/coupon | 
 [**mark_messages_as_read**](MessagingApi.md#mark_messages_as_read) | **POST** /v2/bot/message/markAsRead | 
+[**mark_messages_as_read_by_token**](MessagingApi.md#mark_messages_as_read_by_token) | **POST** /v2/bot/chat/markAsRead | 
 [**multicast**](MessagingApi.md#multicast) | **POST** /v2/bot/message/multicast | 
 [**narrowcast**](MessagingApi.md#narrowcast) | **POST** /v2/bot/message/narrowcast | 
 [**push_message**](MessagingApi.md#push_message) | **POST** /v2/bot/message/push | 
@@ -3574,6 +3575,80 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **mark_messages_as_read_by_token**
+> mark_messages_as_read_by_token(mark_messages_as_read_by_token_request)
+
+
+
+Mark messages from users as read by token
+
+### Example
+
+* Bearer Authentication (Bearer):
+```python
+import time
+import os
+import linebot.v3.messaging
+from linebot.v3.messaging.models.mark_messages_as_read_by_token_request import MarkMessagesAsReadByTokenRequest
+from linebot.v3.messaging.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.line.me
+# See configuration.py for a list of all supported configuration parameters.
+configuration = linebot.v3.messaging.Configuration(
+    host = "https://api.line.me"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: Bearer
+configuration = linebot.v3.messaging.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with linebot.v3.messaging.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = linebot.v3.messaging.MessagingApi(api_client)
+    mark_messages_as_read_by_token_request = {"markAsReadToken":"nz0x74mZT2mRn..."} # MarkMessagesAsReadByTokenRequest | 
+
+    try:
+        api_instance.mark_messages_as_read_by_token(mark_messages_as_read_by_token_request)
+    except Exception as e:
+        print("Exception when calling MessagingApi->mark_messages_as_read_by_token: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **mark_messages_as_read_by_token_request** | [**MarkMessagesAsReadByTokenRequest**](MarkMessagesAsReadByTokenRequest.md)|  | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | An invalid markAsReadToken is specified. Tokens must be used by the bot that received them via Webhook. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

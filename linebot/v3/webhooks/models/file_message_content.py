@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 
-
+from typing import Optional
 from pydantic.v1 import Field, StrictInt, StrictStr
 from linebot.v3.webhooks.models.message_content import MessageContent
 
@@ -28,9 +28,10 @@ class FileMessageContent(MessageContent):
     """
     file_name: StrictStr = Field(..., alias="fileName", description="File name")
     file_size: StrictInt = Field(..., alias="fileSize", description="File size in bytes")
+    mark_as_read_token: Optional[StrictStr] = Field(None, alias="markAsReadToken", description="Token used to mark the message as read. ")
     type: str = "file"
 
-    __properties = ["type", "id", "fileName", "fileSize"]
+    __properties = ["type", "id", "fileName", "fileSize", "markAsReadToken"]
 
     class Config:
         """Pydantic configuration"""
@@ -71,7 +72,8 @@ class FileMessageContent(MessageContent):
             "type": obj.get("type"),
             "id": obj.get("id"),
             "file_name": obj.get("fileName"),
-            "file_size": obj.get("fileSize")
+            "file_size": obj.get("fileSize"),
+            "mark_as_read_token": obj.get("markAsReadToken")
         })
         return _obj
 

@@ -30,9 +30,10 @@ class LocationMessageContent(MessageContent):
     address: Optional[StrictStr] = Field(None, description="Address")
     latitude: Union[StrictFloat, StrictInt] = Field(..., description="Latitude")
     longitude: Union[StrictFloat, StrictInt] = Field(..., description="Longitude")
+    mark_as_read_token: Optional[StrictStr] = Field(None, alias="markAsReadToken", description="Token used to mark the message as read. ")
     type: str = "location"
 
-    __properties = ["type", "id", "title", "address", "latitude", "longitude"]
+    __properties = ["type", "id", "title", "address", "latitude", "longitude", "markAsReadToken"]
 
     class Config:
         """Pydantic configuration"""
@@ -75,7 +76,8 @@ class LocationMessageContent(MessageContent):
             "title": obj.get("title"),
             "address": obj.get("address"),
             "latitude": obj.get("latitude"),
-            "longitude": obj.get("longitude")
+            "longitude": obj.get("longitude"),
+            "mark_as_read_token": obj.get("markAsReadToken")
         })
         return _obj
 

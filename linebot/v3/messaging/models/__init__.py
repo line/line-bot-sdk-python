@@ -132,6 +132,7 @@ from linebot.v3.messaging.models.location_action import LocationAction
 from linebot.v3.messaging.models.location_message import LocationMessage
 from linebot.v3.messaging.models.lottery_acquisition_condition_request import LotteryAcquisitionConditionRequest
 from linebot.v3.messaging.models.lottery_acquisition_condition_response import LotteryAcquisitionConditionResponse
+from linebot.v3.messaging.models.mark_messages_as_read_by_token_request import MarkMessagesAsReadByTokenRequest
 from linebot.v3.messaging.models.mark_messages_as_read_request import MarkMessagesAsReadRequest
 from linebot.v3.messaging.models.members_ids_response import MembersIdsResponse
 from linebot.v3.messaging.models.membership import Membership

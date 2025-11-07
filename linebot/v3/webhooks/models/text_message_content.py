@@ -33,9 +33,10 @@ class TextMessageContent(MessageContent):
     mention: Optional[Mention] = None
     quote_token: StrictStr = Field(..., alias="quoteToken", description="Quote token to quote this message. ")
     quoted_message_id: Optional[StrictStr] = Field(None, alias="quotedMessageId", description="Message ID of a quoted message. Only included when the received message quotes a past message.")
+    mark_as_read_token: Optional[StrictStr] = Field(None, alias="markAsReadToken", description="Token used to mark the message as read. ")
     type: str = "text"
 
-    __properties = ["type", "id", "text", "emojis", "mention", "quoteToken", "quotedMessageId"]
+    __properties = ["type", "id", "text", "emojis", "mention", "quoteToken", "quotedMessageId", "markAsReadToken"]
 
     class Config:
         """Pydantic configuration"""
@@ -89,7 +90,8 @@ class TextMessageContent(MessageContent):
             "emojis": [Emoji.from_dict(_item) for _item in obj.get("emojis")] if obj.get("emojis") is not None else None,
             "mention": Mention.from_dict(obj.get("mention")) if obj.get("mention") is not None else None,
             "quote_token": obj.get("quoteToken"),
-            "quoted_message_id": obj.get("quotedMessageId")
+            "quoted_message_id": obj.get("quotedMessageId"),
+            "mark_as_read_token": obj.get("markAsReadToken")
         })
         return _obj
 

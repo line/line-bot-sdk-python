@@ -33,10 +33,11 @@ class StickerMessageContent(MessageContent):
     keywords: Optional[conlist(StrictStr, max_items=15)] = Field(None, description="Array of up to 15 keywords describing the sticker. If a sticker has 16 or more keywords, a random selection of 15 keywords will be returned. The keyword selection is random for each event, so different keywords may be returned for the same sticker. ")
     text: Optional[constr(strict=True, max_length=100)] = Field(None, description="Any text entered by the user. This property is only included for message stickers. Max character limit: 100 ")
     quote_token: StrictStr = Field(..., alias="quoteToken", description="Quote token to quote this message. ")
-    quoted_message_id: Optional[StrictStr] = Field(None, alias="quotedMessageId", description="Message ID of a quoted message. Only included when the received message quotes a past message.  ")
+    quoted_message_id: Optional[StrictStr] = Field(None, alias="quotedMessageId", description="Message ID of a quoted message. Only included when the received message quotes a past message. ")
+    mark_as_read_token: Optional[StrictStr] = Field(None, alias="markAsReadToken", description="Token used to mark the message as read.  ")
     type: str = "sticker"
 
-    __properties = ["type", "id", "packageId", "stickerId", "stickerResourceType", "keywords", "text", "quoteToken", "quotedMessageId"]
+    __properties = ["type", "id", "packageId", "stickerId", "stickerResourceType", "keywords", "text", "quoteToken", "quotedMessageId", "markAsReadToken"]
 
     @validator('sticker_resource_type')
     def sticker_resource_type_validate_enum(cls, value):
@@ -89,7 +90,8 @@ class StickerMessageContent(MessageContent):
             "keywords": obj.get("keywords"),
             "text": obj.get("text"),
             "quote_token": obj.get("quoteToken"),
-            "quoted_message_id": obj.get("quotedMessageId")
+            "quoted_message_id": obj.get("quotedMessageId"),
+            "mark_as_read_token": obj.get("markAsReadToken")
         })
         return _obj
 

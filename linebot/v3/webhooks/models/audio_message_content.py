@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic.v1 import Field, StrictInt
+from pydantic.v1 import Field, StrictInt, StrictStr
 from linebot.v3.webhooks.models.content_provider import ContentProvider
 from linebot.v3.webhooks.models.message_content import MessageContent
 
@@ -29,9 +29,10 @@ class AudioMessageContent(MessageContent):
     """
     content_provider: ContentProvider = Field(..., alias="contentProvider")
     duration: Optional[StrictInt] = Field(None, description="Length of audio file (milliseconds)")
+    mark_as_read_token: Optional[StrictStr] = Field(None, alias="markAsReadToken", description="Token used to mark the message as read. ")
     type: str = "audio"
 
-    __properties = ["type", "id", "contentProvider", "duration"]
+    __properties = ["type", "id", "contentProvider", "duration", "markAsReadToken"]
 
     class Config:
         """Pydantic configuration"""
@@ -75,7 +76,8 @@ class AudioMessageContent(MessageContent):
             "type": obj.get("type"),
             "id": obj.get("id"),
             "content_provider": ContentProvider.from_dict(obj.get("contentProvider")) if obj.get("contentProvider") is not None else None,
-            "duration": obj.get("duration")
+            "duration": obj.get("duration"),
+            "mark_as_read_token": obj.get("markAsReadToken")
         })
         return _obj
 

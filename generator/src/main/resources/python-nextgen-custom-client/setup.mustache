@@ -12,7 +12,7 @@ from setuptools import setup, find_packages  # noqa: H301
 # http://pypi.python.org/pypi/setuptools
 NAME = "{{{projectName}}}"
 VERSION = "{{packageVersion}}"
-PYTHON_REQUIRES = ">=3.9"
+PYTHON_REQUIRES = ">=3.10"
 {{#apiInfo}}
 {{#apis}}
 {{#-last}}
@@ -27,7 +27,7 @@ REQUIRES = [
 {{/tornado}}
 {{#hasHttpSignatureMethods}}
     "pem>=19.3.0",
-    "pycryptodome>=3.9.0",
+    "pycryptodome>=3.10.0",
 {{/hasHttpSignatureMethods}}
     "pydantic >= 1.10.5, < 2",
     "aenum"

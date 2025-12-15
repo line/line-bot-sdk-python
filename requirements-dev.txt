@@ -3,7 +3,7 @@
 tox==4.32.0 ; python_version >= "3.10"
 tox==4.32.0 ; python_version < "3.10"
 wheel==0.46.1
-Sphinx==7.4.7
+Sphinx==9.0.4
 sphinx-rtd-theme==3.0.2
 pypandoc==1.16.2
 twine==6.2.0

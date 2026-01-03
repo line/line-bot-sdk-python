@@ -79,6 +79,6 @@ jobs:
     steps:
       - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
       - name: Run pinact
-        uses: suzuki-shunsuke/pinact-action@bd070edaef6bf653de2b9ef59fe6bde498152c17 # v1.1.0
+        uses: suzuki-shunsuke/pinact-action@78ea6afd1fd0678ef72a7e07efc834fcc5ee9a21 # v1.2.0
         with:
           skip_push: "true"

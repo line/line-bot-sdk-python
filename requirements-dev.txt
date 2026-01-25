@@ -9,4 +9,4 @@ sphinx-rtd-theme==3.1.0 ; python_version >= "3.11"
 sphinx-rtd-theme==3.1.0 ; python_version < "3.11"
 pypandoc==1.16.2
 twine==6.2.0
-black==25.12.0
+black==26.1.0

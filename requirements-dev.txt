@@ -2,7 +2,7 @@
 -r requirements-test.txt
 tox==4.34.1 ; python_version >= "3.10"
 tox==4.34.1 ; python_version < "3.10"
-wheel==0.46.2
+wheel==0.46.3
 Sphinx==9.0.4 ; python_version >= "3.11"
 Sphinx==7.4.7 ; python_version < "3.11"
 sphinx-rtd-theme==3.1.0 ; python_version >= "3.11"

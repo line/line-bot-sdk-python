@@ -73,7 +73,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[Bearer](../README.md#Bearer)
+Bearer
 
 ### HTTP request headers
 
@@ -148,7 +148,7 @@ void (empty response body)
 
 ### Authorization
 
-[Bearer](../README.md#Bearer)
+Bearer
 
 ### HTTP request headers
 
@@ -222,7 +222,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[Bearer](../README.md#Bearer)
+Bearer
 
 ### HTTP request headers
 
@@ -300,7 +300,7 @@ void (empty response body)
 
 ### Authorization
 
-[Bearer](../README.md#Bearer)
+Bearer
 
 ### HTTP request headers
 

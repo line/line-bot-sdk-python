@@ -7,6 +7,6 @@ Sphinx==9.0.4 ; python_version >= "3.11"
 Sphinx==7.4.7 ; python_version < "3.11"
 sphinx-rtd-theme==3.1.0 ; python_version >= "3.11"
 sphinx-rtd-theme==3.1.0 ; python_version < "3.11"
-pypandoc==1.16.2
+pypandoc==1.17
 twine==6.2.0
 black==26.3.1

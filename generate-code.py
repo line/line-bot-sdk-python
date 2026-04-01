@@ -19,6 +19,31 @@ def run_command(command):
     return proc.stdout.strip()
 
 
+def add_stateless_channel_token_wrappers():
+    for fname in ['channel_access_token.py', 'async_channel_access_token.py']:
+        with open(f'linebot/v3/oauth/api/{fname}', 'a') as fp:
+            fp.write("\n")
+            fp.write("    def issue_stateless_channel_token_by_jwt_assertion(self, client_assertion, **kwargs):\n")
+            fp.write("        return self.issue_stateless_channel_token(\n")
+            fp.write("            grant_type='client_credentials',\n")
+            fp.write("            client_assertion_type='urn:ietf:params:oauth:client-assertion-type:jwt-bearer',\n")
+            fp.write("            client_assertion=client_assertion,\n")
+            fp.write("            client_id='',\n")
+            fp.write("            client_secret='',\n")
+            fp.write("            **kwargs,\n")
+            fp.write("        )\n")
+            fp.write("\n")
+            fp.write("    def issue_stateless_channel_token_by_client_secret(self, client_id, client_secret, **kwargs):\n")
+            fp.write("        return self.issue_stateless_channel_token(\n")
+            fp.write("            grant_type='client_credentials',\n")
+            fp.write("            client_assertion_type='',\n")
+            fp.write("            client_assertion='',\n")
+            fp.write("            client_id=client_id,\n")
+            fp.write("            client_secret=client_secret,\n")
+            fp.write("            **kwargs,\n")
+            fp.write("        )\n")
+
+
 def rewrite_liff_function_name_backward_compats():
     for fname in ['liff.py', 'async_liff.py']:
         with open(f'linebot/v3/liff/api/{fname}', 'a') as fp:
@@ -97,6 +122,8 @@ def main():
               '''
     run_command(command)
 
+
+    add_stateless_channel_token_wrappers()
 
     ## TODO(v4): Delete this workaround in v4. This workaround keeps backward compatibility.
     rewrite_liff_function_name_backward_compats()

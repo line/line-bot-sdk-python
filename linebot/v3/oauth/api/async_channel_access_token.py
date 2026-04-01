@@ -1376,3 +1376,23 @@ class AsyncChannelAccessToken(object):
             _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
+
+    def issue_stateless_channel_token_by_jwt_assertion(self, client_assertion, **kwargs):
+        return self.issue_stateless_channel_token(
+            grant_type='client_credentials',
+            client_assertion_type='urn:ietf:params:oauth:client-assertion-type:jwt-bearer',
+            client_assertion=client_assertion,
+            client_id='',
+            client_secret='',
+            **kwargs,
+        )
+
+    def issue_stateless_channel_token_by_client_secret(self, client_id, client_secret, **kwargs):
+        return self.issue_stateless_channel_token(
+            grant_type='client_credentials',
+            client_assertion_type='',
+            client_assertion='',
+            client_id=client_id,
+            client_secret=client_secret,
+            **kwargs,
+        )

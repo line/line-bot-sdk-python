@@ -1314,3 +1314,23 @@ class ChannelAccessToken(object):
             client_secret=client_secret,
             **kwargs,
         )
+
+    def issue_stateless_channel_token_with_http_info_by_jwt_assertion(self, client_assertion, **kwargs):
+        return self.issue_stateless_channel_token_with_http_info(
+            grant_type='client_credentials',
+            client_assertion_type='urn:ietf:params:oauth:client-assertion-type:jwt-bearer',
+            client_assertion=client_assertion,
+            client_id='',
+            client_secret='',
+            **kwargs,
+        )
+
+    def issue_stateless_channel_token_with_http_info_by_client_secret(self, client_id, client_secret, **kwargs):
+        return self.issue_stateless_channel_token_with_http_info(
+            grant_type='client_credentials',
+            client_assertion_type='',
+            client_assertion='',
+            client_id=client_id,
+            client_secret=client_secret,
+            **kwargs,
+        )

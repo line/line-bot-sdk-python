@@ -530,6 +530,10 @@ class ChannelAccessToken(object):
     def issue_stateless_channel_token(self, grant_type : Annotated[StrictStr, Field(..., description="`client_credentials`")], client_assertion_type : Annotated[StrictStr, Field(..., description="URL-encoded value of `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`")], client_assertion : Annotated[StrictStr, Field(..., description="A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key.")], client_id : Annotated[StrictStr, Field(..., description="Channel ID.")], client_secret : Annotated[StrictStr, Field(..., description="Channel secret.")], **kwargs) -> IssueStatelessChannelAccessTokenResponse:  # noqa: E501
         """issue_stateless_channel_token  # noqa: E501
 
+        .. deprecated::
+            Use :func:`issue_stateless_channel_token_by_jwt_assertion` or
+            :func:`issue_stateless_channel_token_by_client_secret` instead.
+
         Issues a new stateless channel access token, which doesn't have max active token limit unlike the other token types. The newly issued token is only valid for 15 minutes but can not be revoked until it naturally expires.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -566,6 +570,10 @@ class ChannelAccessToken(object):
     @validate_arguments
     def issue_stateless_channel_token_with_http_info(self, grant_type : Annotated[StrictStr, Field(..., description="`client_credentials`")], client_assertion_type : Annotated[StrictStr, Field(..., description="URL-encoded value of `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`")], client_assertion : Annotated[StrictStr, Field(..., description="A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key.")], client_id : Annotated[StrictStr, Field(..., description="Channel ID.")], client_secret : Annotated[StrictStr, Field(..., description="Channel secret.")], **kwargs) -> ApiResponse:  # noqa: E501
         """issue_stateless_channel_token  # noqa: E501
+
+        .. deprecated::
+            Use :func:`issue_stateless_channel_token_with_http_info_by_jwt_assertion` or
+            :func:`issue_stateless_channel_token_with_http_info_by_client_secret` instead.
 
         Issues a new stateless channel access token, which doesn't have max active token limit unlike the other token types. The newly issued token is only valid for 15 minutes but can not be revoked until it naturally expires.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -1294,3 +1302,69 @@ class ChannelAccessToken(object):
             _host=_host,
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
+
+    def issue_stateless_channel_token_by_jwt_assertion(self, client_assertion, **kwargs):
+        """Issue a stateless channel access token using a JSON Web Token (JWT).
+
+        :param str client_assertion: A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key.
+        :return: Returns the result object.
+        :rtype: IssueStatelessChannelAccessTokenResponse
+        """
+        return self.issue_stateless_channel_token(
+            grant_type='client_credentials',
+            client_assertion_type='urn:ietf:params:oauth:client-assertion-type:jwt-bearer',
+            client_assertion=client_assertion,
+            client_id='',
+            client_secret='',
+            **kwargs,
+        )
+
+    def issue_stateless_channel_token_by_client_secret(self, client_id, client_secret, **kwargs):
+        """Issue a stateless channel access token using client ID and client secret.
+
+        :param str client_id: Channel ID.
+        :param str client_secret: Channel secret.
+        :return: Returns the result object.
+        :rtype: IssueStatelessChannelAccessTokenResponse
+        """
+        return self.issue_stateless_channel_token(
+            grant_type='client_credentials',
+            client_assertion_type='',
+            client_assertion='',
+            client_id=client_id,
+            client_secret=client_secret,
+            **kwargs,
+        )
+
+    def issue_stateless_channel_token_with_http_info_by_jwt_assertion(self, client_assertion, **kwargs):
+        """Issue a stateless channel access token using a JSON Web Token (JWT).
+
+        :param str client_assertion: A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key.
+        :return: Returns the result object.
+        :rtype: ApiResponse
+        """
+        return self.issue_stateless_channel_token_with_http_info(
+            grant_type='client_credentials',
+            client_assertion_type='urn:ietf:params:oauth:client-assertion-type:jwt-bearer',
+            client_assertion=client_assertion,
+            client_id='',
+            client_secret='',
+            **kwargs,
+        )
+
+    def issue_stateless_channel_token_with_http_info_by_client_secret(self, client_id, client_secret, **kwargs):
+        """Issue a stateless channel access token using client ID and client secret.
+
+        :param str client_id: Channel ID.
+        :param str client_secret: Channel secret.
+        :return: Returns the result object.
+        :rtype: ApiResponse
+        """
+        return self.issue_stateless_channel_token_with_http_info(
+            grant_type='client_credentials',
+            client_assertion_type='',
+            client_assertion='',
+            client_id=client_id,
+            client_secret=client_secret,
+            **kwargs,
+        )

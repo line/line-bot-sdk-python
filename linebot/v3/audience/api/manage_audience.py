@@ -50,6 +50,9 @@ class ManageAudience(object):
     Ref: https://openapi-generator.tech
 
     Do not edit the class manually.
+
+    Tip: Use :class:`linebot.v3.LineBotClient` for a unified client
+    that combines all LINE API operations into a single instance.
     """
 
     def __init__(self, api_client=None):

@@ -179,6 +179,8 @@ def main():
     ## TODO(v4): Delete this workaround in v4. This workaround keeps backward compatibility.
     rewrite_liff_function_name_backward_compats()
 
+    run_command('python3 tools/generate_unified_client.py')
+
 
 if __name__ == "__main__":
     main()

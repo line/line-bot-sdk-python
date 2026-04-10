@@ -11,6 +11,7 @@ Contents:
 .. toctree::
    :maxdepth: 4
 
+   linebot.v3
    linebot
 
 

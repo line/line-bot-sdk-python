@@ -143,7 +143,6 @@ def main():
                     generate \\
                     -g python-nextgen-custom-client \\
                     -o . \\
-                    --global-property modelDocs=false \\
                     --additional-properties=excludeText=true \\
                     --additional-properties=generateSourceCodeOnly=true \\
                     --package-name {modelPackage} \\
@@ -165,7 +164,7 @@ def main():
                 generate \\
                 -g python-nextgen-custom-client \\
                 -o . \\
-                --global-property modelDocs=false,apiDocs=false \\
+                --global-property apiDocs=false \\
                 --additional-properties=excludeText=true \\
                 --additional-properties=generateSourceCodeOnly=true \\
                 --package-name {modelPackage} \\

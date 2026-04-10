@@ -42,8 +42,8 @@ class AsyncLineModule(object):
 
     Do not edit the class manually.
 
-    Tip: Use :class:`linebot.v3.AsyncLineBotClient` for a unified client
-    that combines all LINE API operations into a single instance.
+    Tip: Use :class:`linebot.v3.AsyncLineBotClient` to call every
+    LINE API method through a single instance.
     """
 
     def __init__(self, api_client=None):

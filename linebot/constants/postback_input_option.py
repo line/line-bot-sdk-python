@@ -12,7 +12,11 @@
 
 """linebot.constants.postback_input_option module."""
 
+from deprecated import deprecated
+from linebot.deprecations import LineBotSdkDeprecatedIn30
 
+
+@deprecated(reason="Use 'from linebot.v3.messaging import PostbackAction' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class PostbackInputOption:
     """Constant class for Postback input option."""
 

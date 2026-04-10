@@ -20,7 +20,11 @@ from abc import ABCMeta, abstractmethod, abstractproperty
 import requests
 from future.utils import with_metaclass
 
+from deprecated import deprecated
+from linebot.deprecations import LineBotSdkDeprecatedIn30
 
+
+@deprecated(reason="Use 'linebot.v3' module instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class HttpClient(with_metaclass(ABCMeta)):
     """Abstract Base Classes of HttpClient."""
 
@@ -109,6 +113,7 @@ class HttpClient(with_metaclass(ABCMeta)):
         raise NotImplementedError
 
 
+@deprecated(reason="Use 'linebot.v3' module instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class RequestsHttpClient(HttpClient):
     """HttpClient implemented by requests."""
 
@@ -217,6 +222,7 @@ class RequestsHttpClient(HttpClient):
         return RequestsHttpResponse(response)
 
 
+@deprecated(reason="Use 'linebot.v3' module instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class HttpResponse(with_metaclass(ABCMeta)):
     """HttpResponse."""
 
@@ -255,6 +261,7 @@ class HttpResponse(with_metaclass(ABCMeta)):
         raise NotImplementedError
 
 
+@deprecated(reason="Use 'linebot.v3' module instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class RequestsHttpResponse(HttpResponse):
     """HttpResponse implemented by requests lib's response."""
 

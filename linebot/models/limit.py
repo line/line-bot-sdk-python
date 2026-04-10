@@ -21,7 +21,11 @@ from future.utils import with_metaclass
 
 from .base import Base
 
+from deprecated import deprecated
+from linebot.deprecations import LineBotSdkDeprecatedIn30
 
+
+@deprecated(reason="Use 'linebot.v3.messaging' module instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class Limit(with_metaclass(ABCMeta, Base)):
     """Limit.
 

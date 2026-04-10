@@ -21,6 +21,9 @@ from future.utils import with_metaclass
 
 from .base import Base
 
+from deprecated import deprecated
+from linebot.deprecations import LineBotSdkDeprecatedIn30
+
 
 def get_action(action):
     """Get action."""
@@ -51,6 +54,7 @@ def get_actions(actions):
     return new_actions
 
 
+@deprecated(reason="Use 'linebot.v3.messaging' module instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class Action(with_metaclass(ABCMeta, Base)):
     """Abstract base class of Action."""
 
@@ -64,6 +68,7 @@ class Action(with_metaclass(ABCMeta, Base)):
         self.type = None
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import PostbackAction' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class PostbackAction(Action):
     """PostbackAction.
 
@@ -105,6 +110,7 @@ class PostbackAction(Action):
         self.fill_in_text = fill_in_text
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import MessageAction' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class MessageAction(Action):
     """MessageAction.
 
@@ -128,6 +134,7 @@ class MessageAction(Action):
         self.text = text
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import URIAction' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class URIAction(Action):
     """URIAction.
 
@@ -155,6 +162,7 @@ class URIAction(Action):
         self.alt_uri = self.get_or_new_from_json_dict(alt_uri, AltUri)
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import AltUri' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class AltUri(with_metaclass(ABCMeta, Base)):
     """AltUri.
 
@@ -177,6 +185,7 @@ class AltUri(with_metaclass(ABCMeta, Base)):
         self.desktop = desktop
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import DatetimePickerAction' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class DatetimePickerAction(Action):
     """DatetimePickerAction.
 
@@ -217,6 +226,7 @@ class DatetimePickerAction(Action):
         self.min = min
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import CameraAction' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class CameraAction(Action):
     """CameraAction.
 
@@ -239,6 +249,7 @@ class CameraAction(Action):
         self.label = label
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import CameraRollAction' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class CameraRollAction(Action):
     """CameraRollAction.
 
@@ -261,6 +272,7 @@ class CameraRollAction(Action):
         self.label = label
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import LocationAction' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class LocationAction(Action):
     """LocationRollAction.
 
@@ -283,6 +295,7 @@ class LocationAction(Action):
         self.label = label
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import RichMenuSwitchAction' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class RichMenuSwitchAction(Action):
     """RichMenuSwitchAction.
 

@@ -21,7 +21,11 @@ from future.utils import with_metaclass
 
 from .base import Base
 
+from deprecated import deprecated
+from linebot.deprecations import LineBotSdkDeprecatedIn30
 
+
+@deprecated(reason="Use 'linebot.v3.messaging' module instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class Operator(with_metaclass(ABCMeta, Base)):
     """Operator.
 
@@ -42,6 +46,7 @@ class Operator(with_metaclass(ABCMeta, Base)):
         self.type = "operator"
 
 
+@deprecated(reason="Use 'linebot.v3.messaging' module instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class And(Operator):
     """And.
 
@@ -60,6 +65,7 @@ class And(Operator):
         setattr(self, 'and', args)
 
 
+@deprecated(reason="Use 'linebot.v3.messaging' module instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class Or(Operator):
     """Or.
 
@@ -78,6 +84,7 @@ class Or(Operator):
         setattr(self, 'or', args)
 
 
+@deprecated(reason="Use 'linebot.v3.messaging' module instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class Not(Operator):
     """Not.
 

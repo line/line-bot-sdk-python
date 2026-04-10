@@ -25,6 +25,7 @@ from .deprecations import (
 )
 
 
+@deprecated(reason="Use 'linebot.v3' module instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class BaseError(with_metaclass(ABCMeta, Exception)):
     """Base Exception class."""
 
@@ -60,6 +61,7 @@ class InvalidSignatureError(BaseError):
         super(InvalidSignatureError, self).__init__(message)
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging.exceptions import ApiException' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class LineBotApiError(BaseError):
     """When LINE Messaging API response error, this error will be raised."""
 

@@ -21,7 +21,11 @@ from future.utils import with_metaclass
 
 from .base import Base
 
+from deprecated import deprecated
+from linebot.deprecations import LineBotSdkDeprecatedIn30
 
+
+@deprecated(reason="Use 'linebot.v3.messaging' module instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class Recipient(with_metaclass(ABCMeta, Base)):
     """Recipient.
 
@@ -41,6 +45,7 @@ class Recipient(with_metaclass(ABCMeta, Base)):
         self.type = None
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import AudienceRecipient' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class AudienceRecipient(Recipient):
     """AudienceRecipient."""
 
@@ -57,6 +62,7 @@ class AudienceRecipient(Recipient):
         self.audience_group_id = group_id
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import RedeliveryRecipient' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class RedeliveryRecipient(Recipient):
     """RedeliveryRecipient."""
 

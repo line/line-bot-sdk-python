@@ -17,10 +17,8 @@
 
 from abc import ABCMeta
 
-from future.utils import with_metaclass
 
-
-class BaseError(with_metaclass(ABCMeta, Exception)):
+class BaseError(Exception, metaclass=ABCMeta):
     """Base Exception class."""
 
     def __init__(self, message='-'):

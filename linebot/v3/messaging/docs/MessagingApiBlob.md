@@ -309,7 +309,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **set_rich_menu_image**
-> set_rich_menu_image(rich_menu_id, body=body)
+> set_rich_menu_image(rich_menu_id, body)
 
 
 
@@ -346,10 +346,10 @@ with linebot.v3.messaging.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = linebot.v3.messaging.MessagingApiBlob(api_client)
     rich_menu_id = 'rich_menu_id_example' # str | The ID of the rich menu to attach the image to
-    body = None # bytearray |  (optional)
+    body = None # bytearray | 
 
     try:
-        api_instance.set_rich_menu_image(rich_menu_id, body=body)
+        api_instance.set_rich_menu_image(rich_menu_id, body)
     except Exception as e:
         print("Exception when calling MessagingApiBlob->set_rich_menu_image: %s\n" % e)
 ```
@@ -360,7 +360,7 @@ with linebot.v3.messaging.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **rich_menu_id** | **str**| The ID of the rich menu to attach the image to | 
- **body** | **bytearray**|  | [optional] 
+ **body** | **bytearray**|  | 
 
 ### Return type
 

@@ -22,7 +22,7 @@ from typing import overload, Optional, Union, Awaitable
 
 from pydantic.v1 import Field, StrictBytes, StrictStr
 
-from typing import Optional, Union
+from typing import Union
 
 from linebot.v3.messaging.models.get_message_content_transcoding_response import GetMessageContentTranscodingResponse
 
@@ -697,15 +697,15 @@ class AsyncMessagingApiBlob(object):
             _request_auth=_params.get('_request_auth'))
 
     @overload
-    async def set_rich_menu_image(self, rich_menu_id : Annotated[StrictStr, Field(..., description="The ID of the rich menu to attach the image to")], body : Optional[Union[StrictBytes, StrictStr]] = None, **kwargs) -> None:  # noqa: E501
+    async def set_rich_menu_image(self, rich_menu_id : Annotated[StrictStr, Field(..., description="The ID of the rich menu to attach the image to")], body : Union[StrictBytes, StrictStr], **kwargs) -> None:  # noqa: E501
         ...
 
     @overload
-    def set_rich_menu_image(self, rich_menu_id : Annotated[StrictStr, Field(..., description="The ID of the rich menu to attach the image to")], body : Optional[Union[StrictBytes, StrictStr]] = None, async_req: Optional[bool]=True, **kwargs) -> None:  # noqa: E501
+    def set_rich_menu_image(self, rich_menu_id : Annotated[StrictStr, Field(..., description="The ID of the rich menu to attach the image to")], body : Union[StrictBytes, StrictStr], async_req: Optional[bool]=True, **kwargs) -> None:  # noqa: E501
         ...
 
     @validate_arguments
-    def set_rich_menu_image(self, rich_menu_id : Annotated[StrictStr, Field(..., description="The ID of the rich menu to attach the image to")], body : Optional[Union[StrictBytes, StrictStr]] = None, async_req: Optional[bool]=None, **kwargs) -> Union[None, Awaitable[None]]:  # noqa: E501
+    def set_rich_menu_image(self, rich_menu_id : Annotated[StrictStr, Field(..., description="The ID of the rich menu to attach the image to")], body : Union[StrictBytes, StrictStr], async_req: Optional[bool]=None, **kwargs) -> Union[None, Awaitable[None]]:  # noqa: E501
         """set_rich_menu_image  # noqa: E501
 
         Upload rich menu image  # noqa: E501
@@ -717,7 +717,7 @@ class AsyncMessagingApiBlob(object):
 
         :param rich_menu_id: The ID of the rich menu to attach the image to (required)
         :type rich_menu_id: str
-        :param body:
+        :param body: (required)
         :type body: bytearray
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -738,7 +738,7 @@ class AsyncMessagingApiBlob(object):
         return self.set_rich_menu_image_with_http_info(rich_menu_id, body, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def set_rich_menu_image_with_http_info(self, rich_menu_id : Annotated[StrictStr, Field(..., description="The ID of the rich menu to attach the image to")], body : Optional[Union[StrictBytes, StrictStr]] = None, **kwargs) -> ApiResponse:  # noqa: E501
+    def set_rich_menu_image_with_http_info(self, rich_menu_id : Annotated[StrictStr, Field(..., description="The ID of the rich menu to attach the image to")], body : Union[StrictBytes, StrictStr], **kwargs) -> ApiResponse:  # noqa: E501
         """set_rich_menu_image  # noqa: E501
 
         Upload rich menu image  # noqa: E501
@@ -750,7 +750,7 @@ class AsyncMessagingApiBlob(object):
 
         :param rich_menu_id: The ID of the rich menu to attach the image to (required)
         :type rich_menu_id: str
-        :param body:
+        :param body: (required)
         :type body: bytearray
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional

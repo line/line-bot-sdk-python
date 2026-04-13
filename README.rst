@@ -118,6 +118,7 @@ WebhookParser
     parser = linebot.v3.WebhookParser(
         'YOUR_CHANNEL_SECRET',
         skip_signature_verification=lambda: False
+    )
 
 parse(self, body, signature, as_payload=False)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -137,7 +138,7 @@ If the signature does NOT match, ``InvalidSignatureError`` is raised.
     payload = parser.parse(body, signature, as_payload=True)
 
     for event in payload.events:
-        do_something(payload.event, payload.destination)
+        do_something(event, payload.destination)
 
 WebhookHandler
 ~~~~~~~~~~~~~~
@@ -155,6 +156,7 @@ WebhookHandler
     handler = linebot.v3.WebhookHandler(
         'YOUR_CHANNEL_SECRET',
         skip_signature_verification=lambda: False
+    )
 
 handle(self, body, signature)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -174,7 +176,7 @@ Add a **handler** method by using this decorator.
 
 .. code:: python
 
-    @handler.add(MessageEvent, message=TextMessage)
+    @handler.add(MessageEvent, message=TextMessageContent)
     def handle_message(event):
         line_bot_client.reply_message(
             ReplyMessageRequest(
@@ -183,7 +185,7 @@ Add a **handler** method by using this decorator.
             )
         )
 
-When the event is an instance of MessageEvent and event.message is an instance of TextMessage,
+When the event is an instance of MessageEvent and event.message is an instance of TextMessageContent,
 this handler method is called.
 
 .. code:: python

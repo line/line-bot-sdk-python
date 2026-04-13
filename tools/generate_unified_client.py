@@ -637,24 +637,10 @@ def generate_async_client(
     lines.append('        await self.close()')
     lines.append('')
 
-    # Sync context manager (AsyncApiClient also supports it)
-    lines.append('    def __enter__(self):')
-    lines.append('        return self')
-    lines.append('')
-    lines.append('    def __exit__(self, exc_type, exc_value, traceback):')
-    lines.append('        self.close_sync()')
-    lines.append('')
-
     lines.append('    async def close(self) -> None:')
     lines.append('        """Close all underlying async API clients."""')
     for mod in unique_modules:
         lines.append(f'        await self._{mod}_api_client.close()')
-    lines.append('')
-
-    lines.append('    def close_sync(self) -> None:')
-    lines.append('        """Synchronously close all underlying async API clients (best-effort)."""')
-    for mod in unique_modules:
-        lines.append(f'        self._{mod}_api_client.__exit__(None, None, None)')
     lines.append('')
 
     # Delegating methods — async client methods are actually ``def`` (not ``async def``).

@@ -201,12 +201,6 @@ class AsyncLineBotClient:
     async def __aexit__(self, exc_type, exc_value, traceback):
         await self.close()
 
-    def __enter__(self):
-        return self
-
-    def __exit__(self, exc_type, exc_value, traceback):
-        self.close_sync()
-
     async def close(self) -> None:
         """Close all underlying async API clients."""
         await self._audience_api_client.close()
@@ -216,16 +210,6 @@ class AsyncLineBotClient:
         await self._module_api_client.close()
         await self._moduleattach_api_client.close()
         await self._shop_api_client.close()
-
-    def close_sync(self) -> None:
-        """Synchronously close all underlying async API clients (best-effort)."""
-        self._audience_api_client.__exit__(None, None, None)
-        self._insight_api_client.__exit__(None, None, None)
-        self._liff_api_client.__exit__(None, None, None)
-        self._messaging_api_client.__exit__(None, None, None)
-        self._module_api_client.__exit__(None, None, None)
-        self._moduleattach_api_client.__exit__(None, None, None)
-        self._shop_api_client.__exit__(None, None, None)
 
     def add_audience_to_audience_group(self, add_audience_to_audience_group_request : AddAudienceToAudienceGroupRequest, async_req : Optional[bool] = None, **kwargs) -> Union[None, Awaitable[None]]:
         """add_audience_to_audience_group  # noqa: E501

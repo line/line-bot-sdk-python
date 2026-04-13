@@ -4,7 +4,8 @@ linebot.v3.liff package
 API
 ---
 
-.. automodule:: linebot.v3.liff.api.liff
+.. autoclass:: linebot.v3.liff.api.liff.Liff
+   :members:
 
 Models
 ------

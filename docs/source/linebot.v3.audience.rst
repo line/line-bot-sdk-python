@@ -4,9 +4,11 @@ linebot.v3.audience package
 API
 ---
 
-.. automodule:: linebot.v3.audience.api.manage_audience
+.. autoclass:: linebot.v3.audience.api.manage_audience.ManageAudience
+   :members:
 
-.. automodule:: linebot.v3.audience.api.manage_audience_blob
+.. autoclass:: linebot.v3.audience.api.manage_audience_blob.ManageAudienceBlob
+   :members:
 
 Models
 ------

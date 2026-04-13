@@ -4,7 +4,8 @@ linebot.v3.shop package
 API
 ---
 
-.. automodule:: linebot.v3.shop.api.shop
+.. autoclass:: linebot.v3.shop.api.shop.Shop
+   :members:
 
 Models
 ------

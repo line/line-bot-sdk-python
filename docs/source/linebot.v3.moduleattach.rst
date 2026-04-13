@@ -4,7 +4,8 @@ linebot.v3.moduleattach package
 API
 ---
 
-.. automodule:: linebot.v3.moduleattach.api.line_module_attach
+.. autoclass:: linebot.v3.moduleattach.api.line_module_attach.LineModuleAttach
+   :members:
 
 Models
 ------

@@ -4,7 +4,8 @@ linebot.v3.insight package
 API
 ---
 
-.. automodule:: linebot.v3.insight.api.insight
+.. autoclass:: linebot.v3.insight.api.insight.Insight
+   :members:
 
 Models
 ------

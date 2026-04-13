@@ -22,6 +22,7 @@ linebot.v3.webhook module
 --------------------------
 
 .. automodule:: linebot.v3.webhook
+   :exclude-members: compare_digest
 
 linebot.v3.exceptions module
 -----------------------------

@@ -160,6 +160,22 @@ def _module_alias(module_name: str) -> str:
     return module_name[0].upper() + module_name[1:]
 
 
+# Display-name overrides for modules whose directory names don't
+# capitalise to a natural form.
+_MODULE_DISPLAY_NAMES: dict[str, str] = {
+    "liff": "LIFF",
+    "moduleattach": "ModuleAttach",
+}
+
+
+def _module_display_name(module_name: str) -> str:
+    """Return a human-readable display name for a module directory name.
+
+    Falls back to ``str.capitalize()`` for modules not in the override map.
+    """
+    return _MODULE_DISPLAY_NAMES.get(module_name, module_name.capitalize())
+
+
 # ---------------------------------------------------------------------------
 # AST Method Extraction
 # ---------------------------------------------------------------------------
@@ -361,54 +377,204 @@ def _extract_call_args_from_params(params_source: str) -> str:
     return ", ".join(parts)
 
 
+def _filter_imports(
+    candidates: dict[str, set[str]],
+    body_text: str,
+) -> dict[str, set[str]]:
+    """Return only the import names from *candidates* that appear in *body_text*."""
+    result: dict[str, set[str]] = {}
+    for mod, names in candidates.items():
+        used = {n for n in names if re.search(rf'\b{re.escape(n)}\b', body_text)}
+        if used:
+            result[mod] = used
+    return result
+
+
 # ---------------------------------------------------------------------------
 # Code Generation
 # ---------------------------------------------------------------------------
 
-def generate_sync_client(
+def _generate_client(
     repo_root: str,
     client_defs: list[ClientDef],
     unique_modules: list[str],
+    *,
+    is_async: bool,
 ) -> None:
-    """Generate ``linebot/v3/line_bot_client.py``."""
+    """Generate a unified client file (sync or async).
 
+    The two variants share the vast majority of their logic; the *is_async*
+    flag controls the handful of differences (class name, context-manager
+    protocol, ``await`` keywords, etc.).
+    """
+    class_name = "AsyncLineBotClient" if is_async else "LineBotClient"
+    output_file = "async_line_bot_client.py" if is_async else "line_bot_client.py"
+    api_client_cls = "AsyncApiClient" if is_async else "ApiClient"
+    api_client_mod = "async_api_client" if is_async else "api_client"
+
+    # --- Collect methods and imports from underlying API files ------------
     all_model_imports: set[str] = set()
     all_typed_imports: dict[str, set[str]] = {}
     all_methods: list[tuple[ClientDef, MethodInfo, str]] = []
 
     for cdef in client_defs:
-        filepath = os.path.join(repo_root, cdef.sync_file)
+        filepath = os.path.join(
+            repo_root, cdef.async_file if is_async else cdef.sync_file
+        )
         all_model_imports.update(collect_model_imports(filepath))
         for mod, names in collect_typed_imports(filepath).items():
             all_typed_imports.setdefault(mod, set()).update(names)
 
-        methods = extract_methods(filepath, cdef.sync_class)
+        target_class = cdef.async_class if is_async else cdef.sync_class
+        methods = extract_methods(filepath, target_class)
         for m in methods:
             call_args = _extract_call_args_from_params(m.params_source)
             all_methods.append((cdef, m, call_args))
 
-    # Check for duplicate method names
-    seen: set[str] = set()
-    for _, m, _ in all_methods:
-        if m.name in seen:
-            print(f"WARNING: Duplicate method name: {m.name}", file=sys.stderr)
-        seen.add(m.name)
+    # Check for duplicate method names (once is enough)
+    if not is_async:
+        seen: set[str] = set()
+        for _, m, _ in all_methods:
+            if m.name in seen:
+                print(f"WARNING: Duplicate method name: {m.name}", file=sys.stderr)
+            seen.add(m.name)
 
+    # --- Build class body lines first (needed for import filtering) -------
+    body: list[str] = []
+    mod_list = ", ".join(f"``{m}``" for m in unique_modules)
+
+    # Class definition + docstring
+    body.append(f'class {class_name}:')
+    if is_async:
+        body.append('    """Async version of :class:`LineBotClient`.')
+        body.append('')
+        body.append('    Wraps all LINE API subpackages into a single async client so that')
+        body.append('    every API method can be called through one instance.')
+        body.append('    See :class:`LineBotClient` for details.')
+    else:
+        body.append('    """A single entry-point client that wraps all LINE API operations.')
+        body.append('')
+        body.append('    The LINE Bot SDK v3 splits API operations across multiple subpackages')
+        body.append('    (messaging, audience, insight, liff, etc.), each with its own')
+        body.append('    ``Configuration``, ``ApiClient``, and API class.')
+        body.append(f'    ``{class_name}`` consolidates them so that you can call every')
+        body.append('    API method through one instance with a single ``channel_access_token``.')
+        body.append('')
+        body.append(f'    Wrapped subpackages: {mod_list}.')
+    body.append('')
+    body.append('    Auto-generated by ``tools/generate_unified_client.py``.')
+    body.append('    Do not edit manually.')
+    body.append('')
+    body.append('    Usage::')
+    body.append('')
+    body.append(f'        from linebot.v3 import {class_name}')
+    body.append('')
+    if is_async:
+        body.append(f'        async with {class_name}(channel_access_token="YOUR_TOKEN") as client:')
+        body.append('            await client.reply_message(...)')
+    else:
+        body.append(f'        with {class_name}(channel_access_token="YOUR_TOKEN") as client:')
+        body.append('            client.reply_message(...)')
+    body.append('    """')
+    body.append('')
+
+    # __init__
+    body.append('    def __init__(self, channel_access_token: str, **kwargs) -> None:')
+    init_doc = "Create a unified async LINE Bot client." if is_async else "Create a unified LINE Bot client."
+    body.append(f'        """{init_doc}')
+    body.append('')
+    body.append('        :param str channel_access_token: Channel access token.')
+    body.append('        :param kwargs: Additional keyword arguments passed to each Configuration.')
+    body.append('        """')
+
+    for mod in unique_modules:
+        alias = _module_alias(mod)
+        body.append(f'        self._{mod}_configuration = {alias}Configuration(')
+        body.append(f'            access_token=channel_access_token, **kwargs')
+        body.append(f'        )')
+        body.append(f'        self._{mod}_api_client = {alias}{api_client_cls}(')
+        body.append(f'            self._{mod}_configuration')
+        body.append(f'        )')
+    body.append('')
+
+    for cdef in client_defs:
+        target_class = cdef.async_class if is_async else cdef.sync_class
+        body.append(
+            f'        self.{cdef.attr_name} = {target_class}(self._{cdef.module}_api_client)'
+        )
+    body.append('')
+
+    # Context manager + close
+    if is_async:
+        body.append('    async def __aenter__(self):')
+        body.append('        return self')
+        body.append('')
+        body.append('    async def __aexit__(self, exc_type, exc_value, traceback):')
+        body.append('        await self.close()')
+        body.append('')
+        body.append('    async def close(self) -> None:')
+        body.append('        """Close all underlying async API clients."""')
+        body.append('        errors: list[BaseException] = []')
+        for mod in unique_modules:
+            body.append(f'        try:')
+            body.append(f'            await self._{mod}_api_client.close()')
+            body.append(f'        except Exception as e:')
+            body.append(f'            errors.append(e)')
+    else:
+        body.append('    def __enter__(self):')
+        body.append('        return self')
+        body.append('')
+        body.append('    def __exit__(self, exc_type, exc_value, traceback):')
+        body.append('        self.close()')
+        body.append('')
+        body.append('    def close(self) -> None:')
+        body.append('        """Close all underlying API clients."""')
+        body.append('        errors: list[BaseException] = []')
+        for mod in unique_modules:
+            body.append(f'        try:')
+            body.append(f'            self._{mod}_api_client.close()')
+            body.append(f'        except Exception as e:')
+            body.append(f'            errors.append(e)')
+    body.append('        if errors:')
+    body.append('            raise errors[0]')
+    body.append('')
+
+    # Delegating methods
+    for cdef, method, call_args in all_methods:
+        ret_part = f' -> {method.return_annotation}' if method.return_annotation else ''
+        if method.params_source:
+            sig = f'    def {method.name}(self, {method.params_source}){ret_part}:'
+        else:
+            sig = f'    def {method.name}(self, **kwargs){ret_part}:'
+        body.append(sig)
+
+        if method.docstring:
+            body.extend(_format_docstring(method.docstring))
+        body.append(f'        return self.{cdef.attr_name}.{method.name}({call_args})')
+        body.append('')
+
+    # --- Filter imports to only those actually used in the body -----------
+    body_text = "\n".join(body)
+    filtered_typed = _filter_imports(all_typed_imports, body_text)
+
+    # --- Assemble final file: header + imports + body --------------------
     lines: list[str] = []
     lines.append('# coding: utf-8')
     lines.append('')
-    lines.append('"""A unified client that wraps all per-domain API clients')
-    lines.append('(Messaging, Audience, Insight, LIFF, Module, ModuleAttach, Shop).')
+
+    # Module docstring (dynamic module list)
+    qualifier = "async " if is_async else ""
+    display_modules = ", ".join(_module_display_name(m) for m in unique_modules)
+    lines.append(f'"""A unified {qualifier}client that wraps all per-domain API clients')
+    lines.append(f'({display_modules}).')
     lines.append('')
     lines.append('Auto-generated by tools/generate_unified_client.py. Do not edit manually.')
     lines.append('"""')
     lines.append('')
 
-    # Typing / pydantic imports
+    # Typing / pydantic imports (filtered to actually used names)
     for mod in ("typing", "typing_extensions", "pydantic.v1"):
-        names = all_typed_imports.get(mod, set())
-        if mod == "typing":
-            names = names | {"Any", "Optional"}
+        names = filtered_typed.get(mod, set())
         if names:
             lines.append(f'from {mod} import {", ".join(sorted(names))}')
     lines.append('')
@@ -420,14 +586,16 @@ def generate_sync_client(
             f'from linebot.v3.{mod}.configuration import Configuration as {alias}Configuration'
         )
         lines.append(
-            f'from linebot.v3.{mod}.api_client import ApiClient as {alias}ApiClient'
+            f'from linebot.v3.{mod}.{api_client_mod} import {api_client_cls} as {alias}{api_client_cls}'
         )
     lines.append('')
 
     # API class imports
     for cdef in client_defs:
-        pkg = cdef.sync_file.replace("/", ".").replace(".py", "")
-        lines.append(f'from {pkg} import {cdef.sync_class}')
+        filepath = cdef.async_file if is_async else cdef.sync_file
+        pkg = filepath.replace("/", ".").replace(".py", "")
+        target_class = cdef.async_class if is_async else cdef.sync_class
+        lines.append(f'from {pkg} import {target_class}')
     # ApiResponse (identical across modules — import from first discovered)
     lines.append(f'from linebot.v3.{unique_modules[0]}.api_response import ApiResponse')
     lines.append('')
@@ -438,239 +606,11 @@ def generate_sync_client(
     lines.append('')
     lines.append('')
 
-    # ---- class body ----
-    lines.append('class LineBotClient:')
-    lines.append('    """A single entry-point client that wraps all LINE API operations.')
-    lines.append('')
-    lines.append('    The LINE Bot SDK v3 splits API operations across multiple subpackages')
-    lines.append('    (messaging, audience, insight, liff, etc.), each with its own')
-    lines.append('    ``Configuration``, ``ApiClient``, and API class.')
-    lines.append('    ``LineBotClient`` consolidates them so that you can call every')
-    lines.append('    API method through one instance with a single ``channel_access_token``.')
-    lines.append('')
-    mod_list = ", ".join(f"``{m}``" for m in unique_modules)
-    lines.append(f'    Wrapped subpackages: {mod_list}.')
-    lines.append('')
-    lines.append('    Auto-generated by ``tools/generate_unified_client.py``.')
-    lines.append('    Do not edit manually.')
-    lines.append('')
-    lines.append('    Usage::')
-    lines.append('')
-    lines.append('        from linebot.v3 import LineBotClient')
-    lines.append('')
-    lines.append('        with LineBotClient(channel_access_token="YOUR_TOKEN") as client:')
-    lines.append('            client.reply_message(...)')
-    lines.append('    """')
-    lines.append('')
+    # Append class body
+    lines.extend(body)
 
-    # __init__
-    lines.append('    def __init__(self, channel_access_token: str, **kwargs) -> None:')
-    lines.append('        """Create a unified LINE Bot client.')
-    lines.append('')
-    lines.append('        :param str channel_access_token: Channel access token.')
-    lines.append('        :param kwargs: Additional keyword arguments passed to each Configuration.')
-    lines.append('        """')
-
-    for mod in unique_modules:
-        alias = _module_alias(mod)
-        lines.append(f'        self._{mod}_configuration = {alias}Configuration(')
-        lines.append(f'            access_token=channel_access_token, **kwargs')
-        lines.append(f'        )')
-        lines.append(f'        self._{mod}_api_client = {alias}ApiClient(')
-        lines.append(f'            self._{mod}_configuration')
-        lines.append(f'        )')
-    lines.append('')
-
-    for cdef in client_defs:
-        lines.append(
-            f'        self.{cdef.attr_name} = {cdef.sync_class}(self._{cdef.module}_api_client)'
-        )
-    lines.append('')
-
-    # Context manager
-    lines.append('    def __enter__(self):')
-    lines.append('        return self')
-    lines.append('')
-    lines.append('    def __exit__(self, exc_type, exc_value, traceback):')
-    lines.append('        self.close()')
-    lines.append('')
-    lines.append('    def close(self) -> None:')
-    lines.append('        """Close all underlying API clients."""')
-    lines.append('        errors: list[BaseException] = []')
-    for mod in unique_modules:
-        lines.append(f'        try:')
-        lines.append(f'            self._{mod}_api_client.close()')
-        lines.append(f'        except Exception as e:')
-        lines.append(f'            errors.append(e)')
-    lines.append('        if errors:')
-    lines.append('            raise errors[0]')
-    lines.append('')
-
-    # Delegating methods
-    for cdef, method, call_args in all_methods:
-        ret_part = f' -> {method.return_annotation}' if method.return_annotation else ''
-        if method.params_source:
-            sig = f'    def {method.name}(self, {method.params_source}){ret_part}:'
-        else:
-            sig = f'    def {method.name}(self, **kwargs){ret_part}:'
-        lines.append(sig)
-
-        if method.docstring:
-            lines.extend(_format_docstring(method.docstring))
-        lines.append(f'        return self.{cdef.attr_name}.{method.name}({call_args})')
-        lines.append('')
-
-    output_path = os.path.join(repo_root, "linebot/v3/line_bot_client.py")
-    with open(output_path, "w") as f:
-        f.write("\n".join(lines) + "\n")
-    print(f"Generated {output_path} ({len(all_methods)} methods)")
-
-
-def generate_async_client(
-    repo_root: str,
-    client_defs: list[ClientDef],
-    unique_modules: list[str],
-) -> None:
-    """Generate ``linebot/v3/async_line_bot_client.py``."""
-
-    all_model_imports: set[str] = set()
-    all_typed_imports: dict[str, set[str]] = {}
-    all_methods: list[tuple[ClientDef, MethodInfo, str]] = []
-
-    for cdef in client_defs:
-        filepath = os.path.join(repo_root, cdef.async_file)
-        all_model_imports.update(collect_model_imports(filepath))
-        for mod, names in collect_typed_imports(filepath).items():
-            all_typed_imports.setdefault(mod, set()).update(names)
-
-        methods = extract_methods(filepath, cdef.async_class)
-        for m in methods:
-            call_args = _extract_call_args_from_params(m.params_source)
-            all_methods.append((cdef, m, call_args))
-
-    lines: list[str] = []
-    lines.append('# coding: utf-8')
-    lines.append('')
-    lines.append('"""A unified async client that wraps all per-domain API clients')
-    lines.append('(Messaging, Audience, Insight, LIFF, Module, ModuleAttach, Shop).')
-    lines.append('')
-    lines.append('Auto-generated by tools/generate_unified_client.py. Do not edit manually.')
-    lines.append('"""')
-    lines.append('')
-
-    # Typing / pydantic imports
-    for mod in ("typing", "typing_extensions", "pydantic.v1"):
-        names = all_typed_imports.get(mod, set())
-        if mod == "typing":
-            names = names | {"Any", "Awaitable", "Optional", "Union"}
-        if names:
-            lines.append(f'from {mod} import {", ".join(sorted(names))}')
-    lines.append('')
-
-    # Configuration and AsyncApiClient imports with aliases
-    for mod in unique_modules:
-        alias = _module_alias(mod)
-        lines.append(
-            f'from linebot.v3.{mod}.configuration import Configuration as {alias}Configuration'
-        )
-        lines.append(
-            f'from linebot.v3.{mod}.async_api_client import AsyncApiClient as {alias}AsyncApiClient'
-        )
-    lines.append('')
-
-    # Async API class imports
-    for cdef in client_defs:
-        pkg = cdef.async_file.replace("/", ".").replace(".py", "")
-        lines.append(f'from {pkg} import {cdef.async_class}')
-    lines.append(f'from linebot.v3.{unique_modules[0]}.api_response import ApiResponse')
-    lines.append('')
-
-    # Model imports
-    for imp in sorted(all_model_imports):
-        lines.append(imp)
-    lines.append('')
-    lines.append('')
-
-    # ---- class body ----
-    lines.append('class AsyncLineBotClient:')
-    lines.append('    """Async version of :class:`LineBotClient`.')
-    lines.append('')
-    lines.append('    Wraps all LINE API subpackages into a single async client so that')
-    lines.append('    every API method can be called through one instance.')
-    lines.append('    See :class:`LineBotClient` for details.')
-    lines.append('')
-    lines.append('    Auto-generated by ``tools/generate_unified_client.py``.')
-    lines.append('    Do not edit manually.')
-    lines.append('')
-    lines.append('    Usage::')
-    lines.append('')
-    lines.append('        from linebot.v3 import AsyncLineBotClient')
-    lines.append('')
-    lines.append('        async with AsyncLineBotClient(channel_access_token="YOUR_TOKEN") as client:')
-    lines.append('            await client.reply_message(...)')
-    lines.append('    """')
-    lines.append('')
-
-    # __init__
-    lines.append('    def __init__(self, channel_access_token: str, **kwargs) -> None:')
-    lines.append('        """Create a unified async LINE Bot client.')
-    lines.append('')
-    lines.append('        :param str channel_access_token: Channel access token.')
-    lines.append('        :param kwargs: Additional keyword arguments passed to each Configuration.')
-    lines.append('        """')
-
-    for mod in unique_modules:
-        alias = _module_alias(mod)
-        lines.append(f'        self._{mod}_configuration = {alias}Configuration(')
-        lines.append(f'            access_token=channel_access_token, **kwargs')
-        lines.append(f'        )')
-        lines.append(f'        self._{mod}_api_client = {alias}AsyncApiClient(')
-        lines.append(f'            self._{mod}_configuration')
-        lines.append(f'        )')
-    lines.append('')
-
-    for cdef in client_defs:
-        lines.append(
-            f'        self.{cdef.attr_name} = {cdef.async_class}(self._{cdef.module}_api_client)'
-        )
-    lines.append('')
-
-    # Async context manager
-    lines.append('    async def __aenter__(self):')
-    lines.append('        return self')
-    lines.append('')
-    lines.append('    async def __aexit__(self, exc_type, exc_value, traceback):')
-    lines.append('        await self.close()')
-    lines.append('')
-
-    lines.append('    async def close(self) -> None:')
-    lines.append('        """Close all underlying async API clients."""')
-    lines.append('        errors: list[BaseException] = []')
-    for mod in unique_modules:
-        lines.append(f'        try:')
-        lines.append(f'            await self._{mod}_api_client.close()')
-        lines.append(f'        except Exception as e:')
-        lines.append(f'            errors.append(e)')
-    lines.append('        if errors:')
-    lines.append('            raise errors[0]')
-    lines.append('')
-
-    # Delegating methods — async client methods are actually ``def`` (not ``async def``).
-    # They return ``Union[T, Awaitable[T]]``.  We delegate as-is.
-    for cdef, method, call_args in all_methods:
-        ret_part = f' -> {method.return_annotation}' if method.return_annotation else ''
-        if method.params_source:
-            sig = f'    def {method.name}(self, {method.params_source}){ret_part}:'
-        else:
-            sig = f'    def {method.name}(self, **kwargs){ret_part}:'
-        lines.append(sig)
-
-        if method.docstring:
-            lines.extend(_format_docstring(method.docstring))
-        lines.append(f'        return self.{cdef.attr_name}.{method.name}({call_args})')
-        lines.append('')
-
-    output_path = os.path.join(repo_root, "linebot/v3/async_line_bot_client.py")
+    # Write output
+    output_path = os.path.join(repo_root, "linebot/v3", output_file)
     with open(output_path, "w") as f:
         f.write("\n".join(lines) + "\n")
     print(f"Generated {output_path} ({len(all_methods)} methods)")
@@ -775,8 +715,8 @@ def main() -> None:
     for cdef in client_defs:
         print(f"  {cdef.module}: {cdef.sync_class} / {cdef.async_class}")
 
-    generate_sync_client(repo_root, client_defs, unique_modules)
-    generate_async_client(repo_root, client_defs, unique_modules)
+    _generate_client(repo_root, client_defs, unique_modules, is_async=False)
+    _generate_client(repo_root, client_defs, unique_modules, is_async=True)
     inject_docstring_references(repo_root, client_defs)
     update_init_file(repo_root)
 

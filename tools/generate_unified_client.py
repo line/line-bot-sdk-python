@@ -180,7 +180,10 @@ def _module_display_name(module_name: str) -> str:
 # AST Method Extraction
 # ---------------------------------------------------------------------------
 
-def _extract_params_source(func: ast.FunctionDef) -> str:
+def _extract_params_source(
+    func: ast.FunctionDef,
+    exclude_params: frozenset[str] | None = None,
+) -> str:
     """Extract parameters source (without ``self``) from a function def."""
     parts: list[str] = []
     args = func.args
@@ -190,6 +193,8 @@ def _extract_params_source(func: ast.FunctionDef) -> str:
     num_args = len(all_args)
 
     for i, arg in enumerate(all_args):
+        if exclude_params and arg.arg in exclude_params:
+            continue
         part = arg.arg
         if arg.annotation:
             part += ": " + ast.unparse(arg.annotation)
@@ -221,8 +226,99 @@ def _is_deprecation_wrapper(func_node: ast.FunctionDef) -> bool:
     return False
 
 
-def extract_methods(filepath: str, class_name: str) -> list[MethodInfo]:
-    """Parse a Python source file and extract public methods from the given class."""
+def _unwrap_awaitable_union(returns: ast.expr) -> str:
+    """Unwrap ``Union[T, Awaitable[T]]`` to ``T`` for async method signatures.
+
+    If the return annotation is ``Union[X, Awaitable[X]]``, returns the
+    unparsed source for ``X``.  Otherwise falls back to ``ast.unparse()``.
+    """
+    if (isinstance(returns, ast.Subscript)
+            and isinstance(returns.value, ast.Name)
+            and returns.value.id == "Union"
+            and isinstance(returns.slice, ast.Tuple)
+            and len(returns.slice.elts) == 2):
+        second = returns.slice.elts[1]
+        if (isinstance(second, ast.Subscript)
+                and isinstance(second.value, ast.Name)
+                and second.value.id == "Awaitable"):
+            return ast.unparse(returns.slice.elts[0])
+    return ast.unparse(returns)
+
+
+# Patterns used by ``_clean_async_docstring`` to strip ``async_req``
+# artefacts inherited from the OpenAPI-generated source docstrings.
+_ASYNC_DOCSTRING_DROP_PATTERNS: list[re.Pattern[str]] = [
+    re.compile(r'This method makes a synchronous HTTP request by default\..*', re.DOTALL),
+    re.compile(r'>>> thread = api\..*async_req.*'),
+    re.compile(r'>>> result = thread\.get\(\)'),
+    re.compile(r':param async_req:.*'),
+    re.compile(r':type async_req:.*'),
+    re.compile(r'If the method is called asynchronously,'),
+    re.compile(r'returns the request thread\.'),
+]
+
+
+def _clean_async_docstring(docstring: str | None) -> str | None:
+    """Remove ``async_req``-related fragments from a docstring."""
+    if not docstring:
+        return docstring
+
+    lines = docstring.split('\n')
+    cleaned: list[str] = []
+    skip_continuation = False
+    for line in lines:
+        stripped = line.strip()
+        if skip_continuation:
+            # The "This method makes a synchronous…" sentence can span
+            # two lines (ending with "…please pass async_req=True").
+            if 'async_req' in stripped:
+                skip_continuation = False
+                continue
+            # Still part of the multi-line sentence
+            if stripped and not stripped.startswith(':') and not stripped.startswith('>>>'):
+                continue
+            skip_continuation = False
+
+        drop = False
+        for pat in _ASYNC_DOCSTRING_DROP_PATTERNS:
+            if pat.search(stripped):
+                if stripped.startswith('This method makes a synchronous'):
+                    skip_continuation = True
+                drop = True
+                break
+        if not drop:
+            cleaned.append(line)
+
+    # Collapse multiple consecutive blank lines
+    result: list[str] = []
+    prev_blank = False
+    for line in cleaned:
+        if line.strip() == '':
+            if prev_blank:
+                continue
+            prev_blank = True
+        else:
+            prev_blank = False
+        result.append(line)
+
+    return '\n'.join(result).strip() or None
+
+
+def extract_methods(
+    filepath: str,
+    class_name: str,
+    *,
+    is_async: bool = False,
+) -> list[MethodInfo]:
+    """Parse a Python source file and extract public methods from the given class.
+
+    When *is_async* is ``True`` the extracted signatures are cleaned up for
+    the async unified client:
+
+    * The ``async_req`` parameter is excluded.
+    * ``Union[T, Awaitable[T]]`` return annotations are unwrapped to ``T``.
+    * Docstring fragments that reference ``async_req`` are removed.
+    """
     with open(filepath, "r") as f:
         source = f.read()
 
@@ -236,6 +332,8 @@ def extract_methods(filepath: str, class_name: str) -> list[MethodInfo]:
 
     if target_class is None:
         raise ValueError(f"Class {class_name} not found in {filepath}")
+
+    exclude = frozenset({"async_req"}) if is_async else None
 
     methods: list[MethodInfo] = []
     for item in target_class.body:
@@ -260,17 +358,24 @@ def extract_methods(filepath: str, class_name: str) -> list[MethodInfo]:
         if _is_deprecation_wrapper(item):
             continue
 
-        params_source = _extract_params_source(item)
+        params_source = _extract_params_source(item, exclude_params=exclude)
 
         ret_ann = ""
         if item.returns:
-            ret_ann = ast.unparse(item.returns)
+            if is_async:
+                ret_ann = _unwrap_awaitable_union(item.returns)
+            else:
+                ret_ann = ast.unparse(item.returns)
+
+        docstring = ast.get_docstring(item)
+        if is_async:
+            docstring = _clean_async_docstring(docstring)
 
         methods.append(MethodInfo(
             name=name,
             params_source=params_source,
             return_annotation=ret_ann,
-            docstring=ast.get_docstring(item),
+            docstring=docstring,
         ))
 
     return methods
@@ -426,7 +531,7 @@ def _generate_client(
             all_typed_imports.setdefault(mod, set()).update(names)
 
         target_class = cdef.async_class if is_async else cdef.sync_class
-        methods = extract_methods(filepath, target_class)
+        methods = extract_methods(filepath, target_class, is_async=is_async)
         for m in methods:
             call_args = _extract_call_args_from_params(m.params_source)
             all_methods.append((cdef, m, call_args))
@@ -540,17 +645,19 @@ def _generate_client(
     body.append('')
 
     # Delegating methods
+    def_kw = "async def" if is_async else "def"
+    await_kw = "return await" if is_async else "return"
     for cdef, method, call_args in all_methods:
         ret_part = f' -> {method.return_annotation}' if method.return_annotation else ''
         if method.params_source:
-            sig = f'    def {method.name}(self, {method.params_source}){ret_part}:'
+            sig = f'    {def_kw} {method.name}(self, {method.params_source}){ret_part}:'
         else:
-            sig = f'    def {method.name}(self, **kwargs){ret_part}:'
+            sig = f'    {def_kw} {method.name}(self, **kwargs){ret_part}:'
         body.append(sig)
 
         if method.docstring:
             body.extend(_format_docstring(method.docstring))
-        body.append(f'        return self.{cdef.attr_name}.{method.name}({call_args})')
+        body.append(f'        {await_kw} self.{cdef.attr_name}.{method.name}({call_args})')
         body.append('')
 
     # --- Filter imports to only those actually used in the body -----------

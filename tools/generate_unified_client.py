@@ -176,7 +176,7 @@ def _extract_params_source(func: ast.FunctionDef) -> str:
     for i, arg in enumerate(all_args):
         part = arg.arg
         if arg.annotation:
-            part += " : " + ast.unparse(arg.annotation)
+            part += ": " + ast.unparse(arg.annotation)
         default_index = i - (num_args - num_defaults)
         if default_index >= 0:
             part += " = " + ast.unparse(args.defaults[default_index])
@@ -496,8 +496,14 @@ def generate_sync_client(
     lines.append('')
     lines.append('    def close(self) -> None:')
     lines.append('        """Close all underlying API clients."""')
+    lines.append('        errors: list[BaseException] = []')
     for mod in unique_modules:
-        lines.append(f'        self._{mod}_api_client.close()')
+        lines.append(f'        try:')
+        lines.append(f'            self._{mod}_api_client.close()')
+        lines.append(f'        except Exception as e:')
+        lines.append(f'            errors.append(e)')
+    lines.append('        if errors:')
+    lines.append('            raise errors[0]')
     lines.append('')
 
     # Delegating methods
@@ -516,7 +522,7 @@ def generate_sync_client(
 
     output_path = os.path.join(repo_root, "linebot/v3/line_bot_client.py")
     with open(output_path, "w") as f:
-        f.write("\n".join(lines))
+        f.write("\n".join(lines) + "\n")
     print(f"Generated {output_path} ({len(all_methods)} methods)")
 
 
@@ -639,8 +645,14 @@ def generate_async_client(
 
     lines.append('    async def close(self) -> None:')
     lines.append('        """Close all underlying async API clients."""')
+    lines.append('        errors: list[BaseException] = []')
     for mod in unique_modules:
-        lines.append(f'        await self._{mod}_api_client.close()')
+        lines.append(f'        try:')
+        lines.append(f'            await self._{mod}_api_client.close()')
+        lines.append(f'        except Exception as e:')
+        lines.append(f'            errors.append(e)')
+    lines.append('        if errors:')
+    lines.append('            raise errors[0]')
     lines.append('')
 
     # Delegating methods — async client methods are actually ``def`` (not ``async def``).
@@ -660,7 +672,7 @@ def generate_async_client(
 
     output_path = os.path.join(repo_root, "linebot/v3/async_line_bot_client.py")
     with open(output_path, "w") as f:
-        f.write("\n".join(lines))
+        f.write("\n".join(lines) + "\n")
     print(f"Generated {output_path} ({len(all_methods)} methods)")
 
 

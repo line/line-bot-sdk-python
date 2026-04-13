@@ -371,6 +371,134 @@ class TestLineBotClientShop(unittest.TestCase):
             self.assertEqual(body["sendPresentMessage"], False)
 
 
+class TestLineBotClientAuthorizationHeader(unittest.TestCase):
+    """Test that the Authorization header is correctly propagated to all domains."""
+
+    def _assert_bearer_token(self, httpserver, uri, method, token):
+        """Helper: call an endpoint and verify the Authorization header."""
+        request, _ = httpserver.log[-1]
+        self.assertEqual(request.headers.get("Authorization"), f"Bearer {token}")
+
+    def test_messaging_api_sends_bearer_token(self):
+        with HTTPServer() as httpserver:
+            httpserver.expect_request(
+                uri="/v2/bot/profile/U123",
+                method="GET",
+            ).respond_with_json(
+                {"displayName": "T", "userId": "U123"}, status=200
+            )
+
+            with LineBotClient(
+                channel_access_token="my-secret-token",
+                host=httpserver.url_for("/")
+            ) as client:
+                client.get_profile(user_id="U123")
+
+            request, _ = httpserver.log[0]
+            self.assertEqual(
+                request.headers.get("Authorization"), "Bearer my-secret-token"
+            )
+
+    def test_insight_api_sends_bearer_token(self):
+        with HTTPServer() as httpserver:
+            httpserver.expect_request(
+                uri="/v2/bot/insight/followers",
+                method="GET",
+            ).respond_with_json(
+                {"status": "ready", "followers": 0, "targetedReaches": 0, "blocks": 0},
+                status=200
+            )
+
+            with LineBotClient(
+                channel_access_token="insight-token",
+                host=httpserver.url_for("/")
+            ) as client:
+                client.get_number_of_followers(var_date="20240101")
+
+            request, _ = httpserver.log[0]
+            self.assertEqual(
+                request.headers.get("Authorization"), "Bearer insight-token"
+            )
+
+    def test_audience_api_sends_bearer_token(self):
+        with HTTPServer() as httpserver:
+            httpserver.expect_request(
+                uri="/v2/bot/audienceGroup/99999",
+                method="DELETE",
+            ).respond_with_json({}, status=200)
+
+            with LineBotClient(
+                channel_access_token="audience-token",
+                host=httpserver.url_for("/")
+            ) as client:
+                client.delete_audience_group(audience_group_id=99999)
+
+            request, _ = httpserver.log[0]
+            self.assertEqual(
+                request.headers.get("Authorization"), "Bearer audience-token"
+            )
+
+    def test_liff_api_sends_bearer_token(self):
+        with HTTPServer() as httpserver:
+            httpserver.expect_request(
+                uri="/liff/v1/apps",
+                method="GET",
+            ).respond_with_json({"apps": []}, status=200)
+
+            with LineBotClient(
+                channel_access_token="liff-token",
+                host=httpserver.url_for("/")
+            ) as client:
+                client.get_all_liff_apps()
+
+            request, _ = httpserver.log[0]
+            self.assertEqual(
+                request.headers.get("Authorization"), "Bearer liff-token"
+            )
+
+    def test_module_api_sends_bearer_token(self):
+        with HTTPServer() as httpserver:
+            httpserver.expect_request(
+                uri="/v2/bot/list",
+                method="GET",
+            ).respond_with_json({"bots": []}, status=200)
+
+            with LineBotClient(
+                channel_access_token="module-token",
+                host=httpserver.url_for("/")
+            ) as client:
+                client.get_modules()
+
+            request, _ = httpserver.log[0]
+            self.assertEqual(
+                request.headers.get("Authorization"), "Bearer module-token"
+            )
+
+    def test_shop_api_sends_bearer_token(self):
+        with HTTPServer() as httpserver:
+            httpserver.expect_request(
+                uri="/shop/v3/mission",
+                method="POST",
+            ).respond_with_json({}, status=200)
+
+            with LineBotClient(
+                channel_access_token="shop-token",
+                host=httpserver.url_for("/")
+            ) as client:
+                req = MissionStickerRequest(
+                    to="U123",
+                    productId="p",
+                    productType="t",
+                    sendPresentMessage=False
+                )
+                client.mission_sticker_v3(mission_sticker_request=req)
+
+            request, _ = httpserver.log[0]
+            self.assertEqual(
+                request.headers.get("Authorization"), "Bearer shop-token"
+            )
+
+
 class TestLineBotClientErrors(unittest.TestCase):
     """Test error handling through LineBotClient."""
 

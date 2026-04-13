@@ -207,15 +207,39 @@ class LineBotClient:
 
     def close(self) -> None:
         """Close all underlying API clients."""
-        self._audience_api_client.close()
-        self._insight_api_client.close()
-        self._liff_api_client.close()
-        self._messaging_api_client.close()
-        self._module_api_client.close()
-        self._moduleattach_api_client.close()
-        self._shop_api_client.close()
+        errors: list[BaseException] = []
+        try:
+            self._audience_api_client.close()
+        except Exception as e:
+            errors.append(e)
+        try:
+            self._insight_api_client.close()
+        except Exception as e:
+            errors.append(e)
+        try:
+            self._liff_api_client.close()
+        except Exception as e:
+            errors.append(e)
+        try:
+            self._messaging_api_client.close()
+        except Exception as e:
+            errors.append(e)
+        try:
+            self._module_api_client.close()
+        except Exception as e:
+            errors.append(e)
+        try:
+            self._moduleattach_api_client.close()
+        except Exception as e:
+            errors.append(e)
+        try:
+            self._shop_api_client.close()
+        except Exception as e:
+            errors.append(e)
+        if errors:
+            raise errors[0]
 
-    def add_audience_to_audience_group(self, add_audience_to_audience_group_request : AddAudienceToAudienceGroupRequest, **kwargs) -> None:
+    def add_audience_to_audience_group(self, add_audience_to_audience_group_request: AddAudienceToAudienceGroupRequest, **kwargs) -> None:
         """add_audience_to_audience_group  # noqa: E501
 
         Add user IDs or Identifiers for Advertisers (IFAs) to an audience for uploading user IDs (by JSON)  # noqa: E501
@@ -240,7 +264,7 @@ class LineBotClient:
         """
         return self._manage_audience.add_audience_to_audience_group(add_audience_to_audience_group_request, **kwargs)
 
-    def add_audience_to_audience_group_with_http_info(self, add_audience_to_audience_group_request : AddAudienceToAudienceGroupRequest, **kwargs) -> ApiResponse:
+    def add_audience_to_audience_group_with_http_info(self, add_audience_to_audience_group_request: AddAudienceToAudienceGroupRequest, **kwargs) -> ApiResponse:
         """add_audience_to_audience_group  # noqa: E501
 
         Add user IDs or Identifiers for Advertisers (IFAs) to an audience for uploading user IDs (by JSON)  # noqa: E501
@@ -278,7 +302,7 @@ class LineBotClient:
         """
         return self._manage_audience.add_audience_to_audience_group_with_http_info(add_audience_to_audience_group_request, **kwargs)
 
-    def create_audience_group(self, create_audience_group_request : CreateAudienceGroupRequest, **kwargs) -> CreateAudienceGroupResponse:
+    def create_audience_group(self, create_audience_group_request: CreateAudienceGroupRequest, **kwargs) -> CreateAudienceGroupResponse:
         """create_audience_group  # noqa: E501
 
         Create audience for uploading user IDs (by JSON)  # noqa: E501
@@ -303,7 +327,7 @@ class LineBotClient:
         """
         return self._manage_audience.create_audience_group(create_audience_group_request, **kwargs)
 
-    def create_audience_group_with_http_info(self, create_audience_group_request : CreateAudienceGroupRequest, **kwargs) -> ApiResponse:
+    def create_audience_group_with_http_info(self, create_audience_group_request: CreateAudienceGroupRequest, **kwargs) -> ApiResponse:
         """create_audience_group  # noqa: E501
 
         Create audience for uploading user IDs (by JSON)  # noqa: E501
@@ -341,7 +365,7 @@ class LineBotClient:
         """
         return self._manage_audience.create_audience_group_with_http_info(create_audience_group_request, **kwargs)
 
-    def create_click_based_audience_group(self, create_click_based_audience_group_request : CreateClickBasedAudienceGroupRequest, **kwargs) -> CreateClickBasedAudienceGroupResponse:
+    def create_click_based_audience_group(self, create_click_based_audience_group_request: CreateClickBasedAudienceGroupRequest, **kwargs) -> CreateClickBasedAudienceGroupResponse:
         """create_click_based_audience_group  # noqa: E501
 
         Create audience for click-based retargeting  # noqa: E501
@@ -366,7 +390,7 @@ class LineBotClient:
         """
         return self._manage_audience.create_click_based_audience_group(create_click_based_audience_group_request, **kwargs)
 
-    def create_click_based_audience_group_with_http_info(self, create_click_based_audience_group_request : CreateClickBasedAudienceGroupRequest, **kwargs) -> ApiResponse:
+    def create_click_based_audience_group_with_http_info(self, create_click_based_audience_group_request: CreateClickBasedAudienceGroupRequest, **kwargs) -> ApiResponse:
         """create_click_based_audience_group  # noqa: E501
 
         Create audience for click-based retargeting  # noqa: E501
@@ -404,7 +428,7 @@ class LineBotClient:
         """
         return self._manage_audience.create_click_based_audience_group_with_http_info(create_click_based_audience_group_request, **kwargs)
 
-    def create_imp_based_audience_group(self, create_imp_based_audience_group_request : CreateImpBasedAudienceGroupRequest, **kwargs) -> CreateImpBasedAudienceGroupResponse:
+    def create_imp_based_audience_group(self, create_imp_based_audience_group_request: CreateImpBasedAudienceGroupRequest, **kwargs) -> CreateImpBasedAudienceGroupResponse:
         """create_imp_based_audience_group  # noqa: E501
 
         Create audience for impression-based retargeting  # noqa: E501
@@ -429,7 +453,7 @@ class LineBotClient:
         """
         return self._manage_audience.create_imp_based_audience_group(create_imp_based_audience_group_request, **kwargs)
 
-    def create_imp_based_audience_group_with_http_info(self, create_imp_based_audience_group_request : CreateImpBasedAudienceGroupRequest, **kwargs) -> ApiResponse:
+    def create_imp_based_audience_group_with_http_info(self, create_imp_based_audience_group_request: CreateImpBasedAudienceGroupRequest, **kwargs) -> ApiResponse:
         """create_imp_based_audience_group  # noqa: E501
 
         Create audience for impression-based retargeting  # noqa: E501
@@ -467,7 +491,7 @@ class LineBotClient:
         """
         return self._manage_audience.create_imp_based_audience_group_with_http_info(create_imp_based_audience_group_request, **kwargs)
 
-    def delete_audience_group(self, audience_group_id : Annotated[StrictInt, Field(..., description='The audience ID.')], **kwargs) -> None:
+    def delete_audience_group(self, audience_group_id: Annotated[StrictInt, Field(..., description='The audience ID.')], **kwargs) -> None:
         """delete_audience_group  # noqa: E501
 
         Delete audience  # noqa: E501
@@ -492,7 +516,7 @@ class LineBotClient:
         """
         return self._manage_audience.delete_audience_group(audience_group_id, **kwargs)
 
-    def delete_audience_group_with_http_info(self, audience_group_id : Annotated[StrictInt, Field(..., description='The audience ID.')], **kwargs) -> ApiResponse:
+    def delete_audience_group_with_http_info(self, audience_group_id: Annotated[StrictInt, Field(..., description='The audience ID.')], **kwargs) -> ApiResponse:
         """delete_audience_group  # noqa: E501
 
         Delete audience  # noqa: E501
@@ -530,7 +554,7 @@ class LineBotClient:
         """
         return self._manage_audience.delete_audience_group_with_http_info(audience_group_id, **kwargs)
 
-    def get_audience_data(self, audience_group_id : Annotated[StrictInt, Field(..., description='The audience ID.')], **kwargs) -> GetAudienceDataResponse:
+    def get_audience_data(self, audience_group_id: Annotated[StrictInt, Field(..., description='The audience ID.')], **kwargs) -> GetAudienceDataResponse:
         """get_audience_data  # noqa: E501
 
         Gets audience data.  # noqa: E501
@@ -555,7 +579,7 @@ class LineBotClient:
         """
         return self._manage_audience.get_audience_data(audience_group_id, **kwargs)
 
-    def get_audience_data_with_http_info(self, audience_group_id : Annotated[StrictInt, Field(..., description='The audience ID.')], **kwargs) -> ApiResponse:
+    def get_audience_data_with_http_info(self, audience_group_id: Annotated[StrictInt, Field(..., description='The audience ID.')], **kwargs) -> ApiResponse:
         """get_audience_data  # noqa: E501
 
         Gets audience data.  # noqa: E501
@@ -593,7 +617,7 @@ class LineBotClient:
         """
         return self._manage_audience.get_audience_data_with_http_info(audience_group_id, **kwargs)
 
-    def get_audience_groups(self, page : Annotated[conint(strict=True, ge=1), Field(..., description='The page to return when getting (paginated) results. Must be 1 or higher.')], description : Annotated[Optional[StrictStr], Field(description='The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion. ')] = None, status : Annotated[Optional[AudienceGroupStatus], Field(description='The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion. ')] = None, size : Annotated[Optional[conint(strict=True, le=40)], Field(description='The number of audiences per page. Default: 20 Max: 40 ')] = None, includes_external_public_groups : Annotated[Optional[StrictBool], Field(description='true (default): Get public audiences created in all channels linked to the same bot. false: Get audiences created in the same channel. ')] = None, create_route : Annotated[Optional[AudienceGroupCreateRoute], Field(description='How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API. ')] = None, **kwargs) -> GetAudienceGroupsResponse:
+    def get_audience_groups(self, page: Annotated[conint(strict=True, ge=1), Field(..., description='The page to return when getting (paginated) results. Must be 1 or higher.')], description: Annotated[Optional[StrictStr], Field(description='The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion. ')] = None, status: Annotated[Optional[AudienceGroupStatus], Field(description='The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion. ')] = None, size: Annotated[Optional[conint(strict=True, le=40)], Field(description='The number of audiences per page. Default: 20 Max: 40 ')] = None, includes_external_public_groups: Annotated[Optional[StrictBool], Field(description='true (default): Get public audiences created in all channels linked to the same bot. false: Get audiences created in the same channel. ')] = None, create_route: Annotated[Optional[AudienceGroupCreateRoute], Field(description='How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API. ')] = None, **kwargs) -> GetAudienceGroupsResponse:
         """get_audience_groups  # noqa: E501
 
         Gets data for more than one audience.  # noqa: E501
@@ -628,7 +652,7 @@ class LineBotClient:
         """
         return self._manage_audience.get_audience_groups(page, description, status, size, includes_external_public_groups, create_route, **kwargs)
 
-    def get_audience_groups_with_http_info(self, page : Annotated[conint(strict=True, ge=1), Field(..., description='The page to return when getting (paginated) results. Must be 1 or higher.')], description : Annotated[Optional[StrictStr], Field(description='The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion. ')] = None, status : Annotated[Optional[AudienceGroupStatus], Field(description='The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion. ')] = None, size : Annotated[Optional[conint(strict=True, le=40)], Field(description='The number of audiences per page. Default: 20 Max: 40 ')] = None, includes_external_public_groups : Annotated[Optional[StrictBool], Field(description='true (default): Get public audiences created in all channels linked to the same bot. false: Get audiences created in the same channel. ')] = None, create_route : Annotated[Optional[AudienceGroupCreateRoute], Field(description='How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API. ')] = None, **kwargs) -> ApiResponse:
+    def get_audience_groups_with_http_info(self, page: Annotated[conint(strict=True, ge=1), Field(..., description='The page to return when getting (paginated) results. Must be 1 or higher.')], description: Annotated[Optional[StrictStr], Field(description='The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion. ')] = None, status: Annotated[Optional[AudienceGroupStatus], Field(description='The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion. ')] = None, size: Annotated[Optional[conint(strict=True, le=40)], Field(description='The number of audiences per page. Default: 20 Max: 40 ')] = None, includes_external_public_groups: Annotated[Optional[StrictBool], Field(description='true (default): Get public audiences created in all channels linked to the same bot. false: Get audiences created in the same channel. ')] = None, create_route: Annotated[Optional[AudienceGroupCreateRoute], Field(description='How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API. ')] = None, **kwargs) -> ApiResponse:
         """get_audience_groups  # noqa: E501
 
         Gets data for more than one audience.  # noqa: E501
@@ -676,7 +700,7 @@ class LineBotClient:
         """
         return self._manage_audience.get_audience_groups_with_http_info(page, description, status, size, includes_external_public_groups, create_route, **kwargs)
 
-    def get_shared_audience_data(self, audience_group_id : Annotated[StrictInt, Field(..., description='The audience ID.')], **kwargs) -> GetSharedAudienceDataResponse:
+    def get_shared_audience_data(self, audience_group_id: Annotated[StrictInt, Field(..., description='The audience ID.')], **kwargs) -> GetSharedAudienceDataResponse:
         """get_shared_audience_data  # noqa: E501
 
         Gets audience data.  # noqa: E501
@@ -701,7 +725,7 @@ class LineBotClient:
         """
         return self._manage_audience.get_shared_audience_data(audience_group_id, **kwargs)
 
-    def get_shared_audience_data_with_http_info(self, audience_group_id : Annotated[StrictInt, Field(..., description='The audience ID.')], **kwargs) -> ApiResponse:
+    def get_shared_audience_data_with_http_info(self, audience_group_id: Annotated[StrictInt, Field(..., description='The audience ID.')], **kwargs) -> ApiResponse:
         """get_shared_audience_data  # noqa: E501
 
         Gets audience data.  # noqa: E501
@@ -739,7 +763,7 @@ class LineBotClient:
         """
         return self._manage_audience.get_shared_audience_data_with_http_info(audience_group_id, **kwargs)
 
-    def get_shared_audience_groups(self, page : Annotated[conint(strict=True, ge=1), Field(..., description='The page to return when getting (paginated) results. Must be 1 or higher.')], description : Annotated[Optional[StrictStr], Field(description='The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion. ')] = None, status : Annotated[Optional[AudienceGroupStatus], Field(description='The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion. ')] = None, size : Annotated[Optional[conint(strict=True, le=40)], Field(description='The number of audiences per page. Default: 20 Max: 40 ')] = None, create_route : Annotated[Optional[AudienceGroupCreateRoute], Field(description='How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API. ')] = None, includes_owned_audience_groups : Annotated[Optional[StrictBool], Field(description='true: Include audienceGroups owned by LINE Official Account Manager false: Respond only audienceGroups shared by Business Manager ')] = None, **kwargs) -> GetSharedAudienceGroupsResponse:
+    def get_shared_audience_groups(self, page: Annotated[conint(strict=True, ge=1), Field(..., description='The page to return when getting (paginated) results. Must be 1 or higher.')], description: Annotated[Optional[StrictStr], Field(description='The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion. ')] = None, status: Annotated[Optional[AudienceGroupStatus], Field(description='The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion. ')] = None, size: Annotated[Optional[conint(strict=True, le=40)], Field(description='The number of audiences per page. Default: 20 Max: 40 ')] = None, create_route: Annotated[Optional[AudienceGroupCreateRoute], Field(description='How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API. ')] = None, includes_owned_audience_groups: Annotated[Optional[StrictBool], Field(description='true: Include audienceGroups owned by LINE Official Account Manager false: Respond only audienceGroups shared by Business Manager ')] = None, **kwargs) -> GetSharedAudienceGroupsResponse:
         """get_shared_audience_groups  # noqa: E501
 
         Gets data for more than one audience, including those shared by the Business Manager.  # noqa: E501
@@ -774,7 +798,7 @@ class LineBotClient:
         """
         return self._manage_audience.get_shared_audience_groups(page, description, status, size, create_route, includes_owned_audience_groups, **kwargs)
 
-    def get_shared_audience_groups_with_http_info(self, page : Annotated[conint(strict=True, ge=1), Field(..., description='The page to return when getting (paginated) results. Must be 1 or higher.')], description : Annotated[Optional[StrictStr], Field(description='The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion. ')] = None, status : Annotated[Optional[AudienceGroupStatus], Field(description='The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion. ')] = None, size : Annotated[Optional[conint(strict=True, le=40)], Field(description='The number of audiences per page. Default: 20 Max: 40 ')] = None, create_route : Annotated[Optional[AudienceGroupCreateRoute], Field(description='How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API. ')] = None, includes_owned_audience_groups : Annotated[Optional[StrictBool], Field(description='true: Include audienceGroups owned by LINE Official Account Manager false: Respond only audienceGroups shared by Business Manager ')] = None, **kwargs) -> ApiResponse:
+    def get_shared_audience_groups_with_http_info(self, page: Annotated[conint(strict=True, ge=1), Field(..., description='The page to return when getting (paginated) results. Must be 1 or higher.')], description: Annotated[Optional[StrictStr], Field(description='The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion. ')] = None, status: Annotated[Optional[AudienceGroupStatus], Field(description='The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion. ')] = None, size: Annotated[Optional[conint(strict=True, le=40)], Field(description='The number of audiences per page. Default: 20 Max: 40 ')] = None, create_route: Annotated[Optional[AudienceGroupCreateRoute], Field(description='How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API. ')] = None, includes_owned_audience_groups: Annotated[Optional[StrictBool], Field(description='true: Include audienceGroups owned by LINE Official Account Manager false: Respond only audienceGroups shared by Business Manager ')] = None, **kwargs) -> ApiResponse:
         """get_shared_audience_groups  # noqa: E501
 
         Gets data for more than one audience, including those shared by the Business Manager.  # noqa: E501
@@ -822,7 +846,7 @@ class LineBotClient:
         """
         return self._manage_audience.get_shared_audience_groups_with_http_info(page, description, status, size, create_route, includes_owned_audience_groups, **kwargs)
 
-    def update_audience_group_description(self, audience_group_id : Annotated[StrictInt, Field(..., description='The audience ID.')], update_audience_group_description_request : UpdateAudienceGroupDescriptionRequest, **kwargs) -> None:
+    def update_audience_group_description(self, audience_group_id: Annotated[StrictInt, Field(..., description='The audience ID.')], update_audience_group_description_request: UpdateAudienceGroupDescriptionRequest, **kwargs) -> None:
         """update_audience_group_description  # noqa: E501
 
         Renames an existing audience.  # noqa: E501
@@ -849,7 +873,7 @@ class LineBotClient:
         """
         return self._manage_audience.update_audience_group_description(audience_group_id, update_audience_group_description_request, **kwargs)
 
-    def update_audience_group_description_with_http_info(self, audience_group_id : Annotated[StrictInt, Field(..., description='The audience ID.')], update_audience_group_description_request : UpdateAudienceGroupDescriptionRequest, **kwargs) -> ApiResponse:
+    def update_audience_group_description_with_http_info(self, audience_group_id: Annotated[StrictInt, Field(..., description='The audience ID.')], update_audience_group_description_request: UpdateAudienceGroupDescriptionRequest, **kwargs) -> ApiResponse:
         """update_audience_group_description  # noqa: E501
 
         Renames an existing audience.  # noqa: E501
@@ -889,7 +913,7 @@ class LineBotClient:
         """
         return self._manage_audience.update_audience_group_description_with_http_info(audience_group_id, update_audience_group_description_request, **kwargs)
 
-    def add_user_ids_to_audience(self, file : Annotated[Union[StrictBytes, StrictStr], Field(..., description='A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000 ')], audience_group_id : Annotated[Optional[StrictInt], Field(description='The audience ID.')] = None, upload_description : Annotated[Optional[StrictStr], Field(description='The description to register with the job')] = None, **kwargs) -> None:
+    def add_user_ids_to_audience(self, file: Annotated[Union[StrictBytes, StrictStr], Field(..., description='A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000 ')], audience_group_id: Annotated[Optional[StrictInt], Field(description='The audience ID.')] = None, upload_description: Annotated[Optional[StrictStr], Field(description='The description to register with the job')] = None, **kwargs) -> None:
         """add_user_ids_to_audience  # noqa: E501
 
         Add user IDs or Identifiers for Advertisers (IFAs) to an audience for uploading user IDs (by file).  # noqa: E501
@@ -918,7 +942,7 @@ class LineBotClient:
         """
         return self._manage_audience_blob.add_user_ids_to_audience(file, audience_group_id, upload_description, **kwargs)
 
-    def add_user_ids_to_audience_with_http_info(self, file : Annotated[Union[StrictBytes, StrictStr], Field(..., description='A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000 ')], audience_group_id : Annotated[Optional[StrictInt], Field(description='The audience ID.')] = None, upload_description : Annotated[Optional[StrictStr], Field(description='The description to register with the job')] = None, **kwargs) -> ApiResponse:
+    def add_user_ids_to_audience_with_http_info(self, file: Annotated[Union[StrictBytes, StrictStr], Field(..., description='A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000 ')], audience_group_id: Annotated[Optional[StrictInt], Field(description='The audience ID.')] = None, upload_description: Annotated[Optional[StrictStr], Field(description='The description to register with the job')] = None, **kwargs) -> ApiResponse:
         """add_user_ids_to_audience  # noqa: E501
 
         Add user IDs or Identifiers for Advertisers (IFAs) to an audience for uploading user IDs (by file).  # noqa: E501
@@ -960,7 +984,7 @@ class LineBotClient:
         """
         return self._manage_audience_blob.add_user_ids_to_audience_with_http_info(file, audience_group_id, upload_description, **kwargs)
 
-    def create_audience_for_uploading_user_ids(self, file : Annotated[Union[StrictBytes, StrictStr], Field(..., description='A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000 ')], description : Annotated[Optional[constr(strict=True, max_length=120)], Field(description="The audience's name. This is case-insensitive, meaning AUDIENCE and audience are considered identical. Max character limit: 120 ")] = None, is_ifa_audience : Annotated[Optional[StrictBool], Field(description='To specify recipients by IFAs: set `true`. To specify recipients by user IDs: set `false` or omit isIfaAudience property. ')] = None, upload_description : Annotated[Optional[StrictStr], Field(description='The description to register for the job (in `jobs[].description`). ')] = None, **kwargs) -> CreateAudienceGroupResponse:
+    def create_audience_for_uploading_user_ids(self, file: Annotated[Union[StrictBytes, StrictStr], Field(..., description='A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000 ')], description: Annotated[Optional[constr(strict=True, max_length=120)], Field(description="The audience's name. This is case-insensitive, meaning AUDIENCE and audience are considered identical. Max character limit: 120 ")] = None, is_ifa_audience: Annotated[Optional[StrictBool], Field(description='To specify recipients by IFAs: set `true`. To specify recipients by user IDs: set `false` or omit isIfaAudience property. ')] = None, upload_description: Annotated[Optional[StrictStr], Field(description='The description to register for the job (in `jobs[].description`). ')] = None, **kwargs) -> CreateAudienceGroupResponse:
         """create_audience_for_uploading_user_ids  # noqa: E501
 
         Create audience for uploading user IDs (by file).  # noqa: E501
@@ -991,7 +1015,7 @@ class LineBotClient:
         """
         return self._manage_audience_blob.create_audience_for_uploading_user_ids(file, description, is_ifa_audience, upload_description, **kwargs)
 
-    def create_audience_for_uploading_user_ids_with_http_info(self, file : Annotated[Union[StrictBytes, StrictStr], Field(..., description='A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000 ')], description : Annotated[Optional[constr(strict=True, max_length=120)], Field(description="The audience's name. This is case-insensitive, meaning AUDIENCE and audience are considered identical. Max character limit: 120 ")] = None, is_ifa_audience : Annotated[Optional[StrictBool], Field(description='To specify recipients by IFAs: set `true`. To specify recipients by user IDs: set `false` or omit isIfaAudience property. ')] = None, upload_description : Annotated[Optional[StrictStr], Field(description='The description to register for the job (in `jobs[].description`). ')] = None, **kwargs) -> ApiResponse:
+    def create_audience_for_uploading_user_ids_with_http_info(self, file: Annotated[Union[StrictBytes, StrictStr], Field(..., description='A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000 ')], description: Annotated[Optional[constr(strict=True, max_length=120)], Field(description="The audience's name. This is case-insensitive, meaning AUDIENCE and audience are considered identical. Max character limit: 120 ")] = None, is_ifa_audience: Annotated[Optional[StrictBool], Field(description='To specify recipients by IFAs: set `true`. To specify recipients by user IDs: set `false` or omit isIfaAudience property. ')] = None, upload_description: Annotated[Optional[StrictStr], Field(description='The description to register for the job (in `jobs[].description`). ')] = None, **kwargs) -> ApiResponse:
         """create_audience_for_uploading_user_ids  # noqa: E501
 
         Create audience for uploading user IDs (by file).  # noqa: E501
@@ -1094,7 +1118,7 @@ class LineBotClient:
         """
         return self._insight.get_friends_demographics_with_http_info(**kwargs)
 
-    def get_message_event(self, request_id : Annotated[constr(strict=True, min_length=1), Field(..., description='Request ID of a narrowcast message or broadcast message. Each Messaging API request has a request ID. ')], **kwargs) -> GetMessageEventResponse:
+    def get_message_event(self, request_id: Annotated[constr(strict=True, min_length=1), Field(..., description='Request ID of a narrowcast message or broadcast message. Each Messaging API request has a request ID. ')], **kwargs) -> GetMessageEventResponse:
         """Get user interaction statistics  # noqa: E501
 
         Returns statistics about how users interact with narrowcast messages or broadcast messages sent from your LINE Official Account.   # noqa: E501
@@ -1119,7 +1143,7 @@ class LineBotClient:
         """
         return self._insight.get_message_event(request_id, **kwargs)
 
-    def get_message_event_with_http_info(self, request_id : Annotated[constr(strict=True, min_length=1), Field(..., description='Request ID of a narrowcast message or broadcast message. Each Messaging API request has a request ID. ')], **kwargs) -> ApiResponse:
+    def get_message_event_with_http_info(self, request_id: Annotated[constr(strict=True, min_length=1), Field(..., description='Request ID of a narrowcast message or broadcast message. Each Messaging API request has a request ID. ')], **kwargs) -> ApiResponse:
         """Get user interaction statistics  # noqa: E501
 
         Returns statistics about how users interact with narrowcast messages or broadcast messages sent from your LINE Official Account.   # noqa: E501
@@ -1157,7 +1181,7 @@ class LineBotClient:
         """
         return self._insight.get_message_event_with_http_info(request_id, **kwargs)
 
-    def get_number_of_followers(self, var_date : Annotated[Optional[constr(strict=True, max_length=8, min_length=8)], Field(description='Date for which to retrieve the number of followers.  Format: yyyyMMdd (e.g. 20191231) Timezone: UTC+9 ')] = None, **kwargs) -> GetNumberOfFollowersResponse:
+    def get_number_of_followers(self, var_date: Annotated[Optional[constr(strict=True, max_length=8, min_length=8)], Field(description='Date for which to retrieve the number of followers.  Format: yyyyMMdd (e.g. 20191231) Timezone: UTC+9 ')] = None, **kwargs) -> GetNumberOfFollowersResponse:
         """Get number of followers  # noqa: E501
 
         Returns the number of users who have added the LINE Official Account on or before a specified date.   # noqa: E501
@@ -1182,7 +1206,7 @@ class LineBotClient:
         """
         return self._insight.get_number_of_followers(var_date, **kwargs)
 
-    def get_number_of_followers_with_http_info(self, var_date : Annotated[Optional[constr(strict=True, max_length=8, min_length=8)], Field(description='Date for which to retrieve the number of followers.  Format: yyyyMMdd (e.g. 20191231) Timezone: UTC+9 ')] = None, **kwargs) -> ApiResponse:
+    def get_number_of_followers_with_http_info(self, var_date: Annotated[Optional[constr(strict=True, max_length=8, min_length=8)], Field(description='Date for which to retrieve the number of followers.  Format: yyyyMMdd (e.g. 20191231) Timezone: UTC+9 ')] = None, **kwargs) -> ApiResponse:
         """Get number of followers  # noqa: E501
 
         Returns the number of users who have added the LINE Official Account on or before a specified date.   # noqa: E501
@@ -1220,7 +1244,7 @@ class LineBotClient:
         """
         return self._insight.get_number_of_followers_with_http_info(var_date, **kwargs)
 
-    def get_number_of_message_deliveries(self, var_date : Annotated[constr(strict=True, max_length=8, min_length=8), Field(..., description='Date for which to retrieve number of sent messages. - Format: yyyyMMdd (e.g. 20191231) - Timezone: UTC+9 ')], **kwargs) -> GetNumberOfMessageDeliveriesResponse:
+    def get_number_of_message_deliveries(self, var_date: Annotated[constr(strict=True, max_length=8, min_length=8), Field(..., description='Date for which to retrieve number of sent messages. - Format: yyyyMMdd (e.g. 20191231) - Timezone: UTC+9 ')], **kwargs) -> GetNumberOfMessageDeliveriesResponse:
         """Get number of message deliveries  # noqa: E501
 
         Returns the number of messages sent from LINE Official Account on a specified day.   # noqa: E501
@@ -1245,7 +1269,7 @@ class LineBotClient:
         """
         return self._insight.get_number_of_message_deliveries(var_date, **kwargs)
 
-    def get_number_of_message_deliveries_with_http_info(self, var_date : Annotated[constr(strict=True, max_length=8, min_length=8), Field(..., description='Date for which to retrieve number of sent messages. - Format: yyyyMMdd (e.g. 20191231) - Timezone: UTC+9 ')], **kwargs) -> ApiResponse:
+    def get_number_of_message_deliveries_with_http_info(self, var_date: Annotated[constr(strict=True, max_length=8, min_length=8), Field(..., description='Date for which to retrieve number of sent messages. - Format: yyyyMMdd (e.g. 20191231) - Timezone: UTC+9 ')], **kwargs) -> ApiResponse:
         """Get number of message deliveries  # noqa: E501
 
         Returns the number of messages sent from LINE Official Account on a specified day.   # noqa: E501
@@ -1283,7 +1307,7 @@ class LineBotClient:
         """
         return self._insight.get_number_of_message_deliveries_with_http_info(var_date, **kwargs)
 
-    def get_statistics_per_unit(self, custom_aggregation_unit : Annotated[constr(strict=True, max_length=30, min_length=1), Field(..., description='Name of aggregation unit specified when sending the message. Case-sensitive. For example, `Promotion_a` and `Promotion_A` are regarded as different unit names. ')], var_from : Annotated[constr(strict=True, max_length=8, min_length=8), Field(..., description='Start date of aggregation period.  Format: yyyyMMdd (e.g. 20210301) Time zone: UTC+9 ')], to : Annotated[constr(strict=True, max_length=8, min_length=8), Field(..., description='End date of aggregation period. The end date can be specified for up to 30 days later. For example, if the start date is 20210301, the latest end date is 20210331.  Format: yyyyMMdd (e.g. 20210301) Time zone: UTC+9 ')], **kwargs) -> GetStatisticsPerUnitResponse:
+    def get_statistics_per_unit(self, custom_aggregation_unit: Annotated[constr(strict=True, max_length=30, min_length=1), Field(..., description='Name of aggregation unit specified when sending the message. Case-sensitive. For example, `Promotion_a` and `Promotion_A` are regarded as different unit names. ')], var_from: Annotated[constr(strict=True, max_length=8, min_length=8), Field(..., description='Start date of aggregation period.  Format: yyyyMMdd (e.g. 20210301) Time zone: UTC+9 ')], to: Annotated[constr(strict=True, max_length=8, min_length=8), Field(..., description='End date of aggregation period. The end date can be specified for up to 30 days later. For example, if the start date is 20210301, the latest end date is 20210331.  Format: yyyyMMdd (e.g. 20210301) Time zone: UTC+9 ')], **kwargs) -> GetStatisticsPerUnitResponse:
         """get_statistics_per_unit  # noqa: E501
 
         You can check the per-unit statistics of how users interact with push messages and multicast messages sent from your LINE Official Account.   # noqa: E501
@@ -1312,7 +1336,7 @@ class LineBotClient:
         """
         return self._insight.get_statistics_per_unit(custom_aggregation_unit, var_from, to, **kwargs)
 
-    def get_statistics_per_unit_with_http_info(self, custom_aggregation_unit : Annotated[constr(strict=True, max_length=30, min_length=1), Field(..., description='Name of aggregation unit specified when sending the message. Case-sensitive. For example, `Promotion_a` and `Promotion_A` are regarded as different unit names. ')], var_from : Annotated[constr(strict=True, max_length=8, min_length=8), Field(..., description='Start date of aggregation period.  Format: yyyyMMdd (e.g. 20210301) Time zone: UTC+9 ')], to : Annotated[constr(strict=True, max_length=8, min_length=8), Field(..., description='End date of aggregation period. The end date can be specified for up to 30 days later. For example, if the start date is 20210301, the latest end date is 20210331.  Format: yyyyMMdd (e.g. 20210301) Time zone: UTC+9 ')], **kwargs) -> ApiResponse:
+    def get_statistics_per_unit_with_http_info(self, custom_aggregation_unit: Annotated[constr(strict=True, max_length=30, min_length=1), Field(..., description='Name of aggregation unit specified when sending the message. Case-sensitive. For example, `Promotion_a` and `Promotion_A` are regarded as different unit names. ')], var_from: Annotated[constr(strict=True, max_length=8, min_length=8), Field(..., description='Start date of aggregation period.  Format: yyyyMMdd (e.g. 20210301) Time zone: UTC+9 ')], to: Annotated[constr(strict=True, max_length=8, min_length=8), Field(..., description='End date of aggregation period. The end date can be specified for up to 30 days later. For example, if the start date is 20210301, the latest end date is 20210331.  Format: yyyyMMdd (e.g. 20210301) Time zone: UTC+9 ')], **kwargs) -> ApiResponse:
         """get_statistics_per_unit  # noqa: E501
 
         You can check the per-unit statistics of how users interact with push messages and multicast messages sent from your LINE Official Account.   # noqa: E501
@@ -1354,7 +1378,7 @@ class LineBotClient:
         """
         return self._insight.get_statistics_per_unit_with_http_info(custom_aggregation_unit, var_from, to, **kwargs)
 
-    def add_liff_app(self, add_liff_app_request : AddLiffAppRequest, **kwargs) -> AddLiffAppResponse:
+    def add_liff_app(self, add_liff_app_request: AddLiffAppRequest, **kwargs) -> AddLiffAppResponse:
         """Create LIFF app  # noqa: E501
 
         Adding the LIFF app to a channel  # noqa: E501
@@ -1379,7 +1403,7 @@ class LineBotClient:
         """
         return self._liff.add_liff_app(add_liff_app_request, **kwargs)
 
-    def add_liff_app_with_http_info(self, add_liff_app_request : AddLiffAppRequest, **kwargs) -> ApiResponse:
+    def add_liff_app_with_http_info(self, add_liff_app_request: AddLiffAppRequest, **kwargs) -> ApiResponse:
         """Create LIFF app  # noqa: E501
 
         Adding the LIFF app to a channel  # noqa: E501
@@ -1417,7 +1441,7 @@ class LineBotClient:
         """
         return self._liff.add_liff_app_with_http_info(add_liff_app_request, **kwargs)
 
-    def delete_liff_app(self, liff_id : Annotated[StrictStr, Field(..., description='ID of the LIFF app to be updated')], **kwargs) -> None:
+    def delete_liff_app(self, liff_id: Annotated[StrictStr, Field(..., description='ID of the LIFF app to be updated')], **kwargs) -> None:
         """Delete LIFF app from a channel  # noqa: E501
 
         Deletes a LIFF app from a channel.   # noqa: E501
@@ -1442,7 +1466,7 @@ class LineBotClient:
         """
         return self._liff.delete_liff_app(liff_id, **kwargs)
 
-    def delete_liff_app_with_http_info(self, liff_id : Annotated[StrictStr, Field(..., description='ID of the LIFF app to be updated')], **kwargs) -> ApiResponse:
+    def delete_liff_app_with_http_info(self, liff_id: Annotated[StrictStr, Field(..., description='ID of the LIFF app to be updated')], **kwargs) -> ApiResponse:
         """Delete LIFF app from a channel  # noqa: E501
 
         Deletes a LIFF app from a channel.   # noqa: E501
@@ -1539,7 +1563,7 @@ class LineBotClient:
         """
         return self._liff.get_all_liff_apps_with_http_info(**kwargs)
 
-    def update_liff_app(self, liff_id : Annotated[StrictStr, Field(..., description='ID of the LIFF app to be updated')], update_liff_app_request : UpdateLiffAppRequest, **kwargs) -> None:
+    def update_liff_app(self, liff_id: Annotated[StrictStr, Field(..., description='ID of the LIFF app to be updated')], update_liff_app_request: UpdateLiffAppRequest, **kwargs) -> None:
         """Update LIFF app from a channel  # noqa: E501
 
         Update LIFF app settings  # noqa: E501
@@ -1566,7 +1590,7 @@ class LineBotClient:
         """
         return self._liff.update_liff_app(liff_id, update_liff_app_request, **kwargs)
 
-    def update_liff_app_with_http_info(self, liff_id : Annotated[StrictStr, Field(..., description='ID of the LIFF app to be updated')], update_liff_app_request : UpdateLiffAppRequest, **kwargs) -> ApiResponse:
+    def update_liff_app_with_http_info(self, liff_id: Annotated[StrictStr, Field(..., description='ID of the LIFF app to be updated')], update_liff_app_request: UpdateLiffAppRequest, **kwargs) -> ApiResponse:
         """Update LIFF app from a channel  # noqa: E501
 
         Update LIFF app settings  # noqa: E501
@@ -1606,7 +1630,7 @@ class LineBotClient:
         """
         return self._liff.update_liff_app_with_http_info(liff_id, update_liff_app_request, **kwargs)
 
-    def broadcast(self, broadcast_request : BroadcastRequest, x_line_retry_key : Annotated[Optional[StrictStr], Field(description="Retry key. Specifies the UUID in hexadecimal format (e.g., `123e4567-e89b-12d3-a456-426614174000`) generated by any method. The retry key isn't generated by LINE. Each developer must generate their own retry key. ")] = None, **kwargs) -> object:
+    def broadcast(self, broadcast_request: BroadcastRequest, x_line_retry_key: Annotated[Optional[StrictStr], Field(description="Retry key. Specifies the UUID in hexadecimal format (e.g., `123e4567-e89b-12d3-a456-426614174000`) generated by any method. The retry key isn't generated by LINE. Each developer must generate their own retry key. ")] = None, **kwargs) -> object:
         """broadcast  # noqa: E501
 
         Sends a message to multiple users at any time.  # noqa: E501
@@ -1633,7 +1657,7 @@ class LineBotClient:
         """
         return self._messaging_api.broadcast(broadcast_request, x_line_retry_key, **kwargs)
 
-    def broadcast_with_http_info(self, broadcast_request : BroadcastRequest, x_line_retry_key : Annotated[Optional[StrictStr], Field(description="Retry key. Specifies the UUID in hexadecimal format (e.g., `123e4567-e89b-12d3-a456-426614174000`) generated by any method. The retry key isn't generated by LINE. Each developer must generate their own retry key. ")] = None, **kwargs) -> ApiResponse:
+    def broadcast_with_http_info(self, broadcast_request: BroadcastRequest, x_line_retry_key: Annotated[Optional[StrictStr], Field(description="Retry key. Specifies the UUID in hexadecimal format (e.g., `123e4567-e89b-12d3-a456-426614174000`) generated by any method. The retry key isn't generated by LINE. Each developer must generate their own retry key. ")] = None, **kwargs) -> ApiResponse:
         """broadcast  # noqa: E501
 
         Sends a message to multiple users at any time.  # noqa: E501
@@ -1732,7 +1756,7 @@ class LineBotClient:
         """
         return self._messaging_api.cancel_default_rich_menu_with_http_info(**kwargs)
 
-    def close_coupon(self, coupon_id : StrictStr, **kwargs) -> None:
+    def close_coupon(self, coupon_id: StrictStr, **kwargs) -> None:
         """close_coupon  # noqa: E501
 
         Close coupon  # noqa: E501
@@ -1757,7 +1781,7 @@ class LineBotClient:
         """
         return self._messaging_api.close_coupon(coupon_id, **kwargs)
 
-    def close_coupon_with_http_info(self, coupon_id : StrictStr, **kwargs) -> ApiResponse:
+    def close_coupon_with_http_info(self, coupon_id: StrictStr, **kwargs) -> ApiResponse:
         """close_coupon  # noqa: E501
 
         Close coupon  # noqa: E501
@@ -1795,7 +1819,7 @@ class LineBotClient:
         """
         return self._messaging_api.close_coupon_with_http_info(coupon_id, **kwargs)
 
-    def create_coupon(self, coupon_create_request : Optional[CouponCreateRequest] = None, **kwargs) -> CouponCreateResponse:
+    def create_coupon(self, coupon_create_request: Optional[CouponCreateRequest] = None, **kwargs) -> CouponCreateResponse:
         """create_coupon  # noqa: E501
 
         Create a new coupon. Define coupon details such as type, title, and validity period.  # noqa: E501
@@ -1820,7 +1844,7 @@ class LineBotClient:
         """
         return self._messaging_api.create_coupon(coupon_create_request, **kwargs)
 
-    def create_coupon_with_http_info(self, coupon_create_request : Optional[CouponCreateRequest] = None, **kwargs) -> ApiResponse:
+    def create_coupon_with_http_info(self, coupon_create_request: Optional[CouponCreateRequest] = None, **kwargs) -> ApiResponse:
         """create_coupon  # noqa: E501
 
         Create a new coupon. Define coupon details such as type, title, and validity period.  # noqa: E501
@@ -1858,7 +1882,7 @@ class LineBotClient:
         """
         return self._messaging_api.create_coupon_with_http_info(coupon_create_request, **kwargs)
 
-    def create_rich_menu(self, rich_menu_request : RichMenuRequest, **kwargs) -> RichMenuIdResponse:
+    def create_rich_menu(self, rich_menu_request: RichMenuRequest, **kwargs) -> RichMenuIdResponse:
         """create_rich_menu  # noqa: E501
 
         Create rich menu  # noqa: E501
@@ -1883,7 +1907,7 @@ class LineBotClient:
         """
         return self._messaging_api.create_rich_menu(rich_menu_request, **kwargs)
 
-    def create_rich_menu_with_http_info(self, rich_menu_request : RichMenuRequest, **kwargs) -> ApiResponse:
+    def create_rich_menu_with_http_info(self, rich_menu_request: RichMenuRequest, **kwargs) -> ApiResponse:
         """create_rich_menu  # noqa: E501
 
         Create rich menu  # noqa: E501
@@ -1921,7 +1945,7 @@ class LineBotClient:
         """
         return self._messaging_api.create_rich_menu_with_http_info(rich_menu_request, **kwargs)
 
-    def create_rich_menu_alias(self, create_rich_menu_alias_request : CreateRichMenuAliasRequest, **kwargs) -> None:
+    def create_rich_menu_alias(self, create_rich_menu_alias_request: CreateRichMenuAliasRequest, **kwargs) -> None:
         """create_rich_menu_alias  # noqa: E501
 
         Create rich menu alias  # noqa: E501
@@ -1946,7 +1970,7 @@ class LineBotClient:
         """
         return self._messaging_api.create_rich_menu_alias(create_rich_menu_alias_request, **kwargs)
 
-    def create_rich_menu_alias_with_http_info(self, create_rich_menu_alias_request : CreateRichMenuAliasRequest, **kwargs) -> ApiResponse:
+    def create_rich_menu_alias_with_http_info(self, create_rich_menu_alias_request: CreateRichMenuAliasRequest, **kwargs) -> ApiResponse:
         """create_rich_menu_alias  # noqa: E501
 
         Create rich menu alias  # noqa: E501
@@ -1984,7 +2008,7 @@ class LineBotClient:
         """
         return self._messaging_api.create_rich_menu_alias_with_http_info(create_rich_menu_alias_request, **kwargs)
 
-    def delete_rich_menu(self, rich_menu_id : Annotated[StrictStr, Field(..., description='ID of a rich menu')], **kwargs) -> None:
+    def delete_rich_menu(self, rich_menu_id: Annotated[StrictStr, Field(..., description='ID of a rich menu')], **kwargs) -> None:
         """delete_rich_menu  # noqa: E501
 
         Deletes a rich menu.  # noqa: E501
@@ -2009,7 +2033,7 @@ class LineBotClient:
         """
         return self._messaging_api.delete_rich_menu(rich_menu_id, **kwargs)
 
-    def delete_rich_menu_with_http_info(self, rich_menu_id : Annotated[StrictStr, Field(..., description='ID of a rich menu')], **kwargs) -> ApiResponse:
+    def delete_rich_menu_with_http_info(self, rich_menu_id: Annotated[StrictStr, Field(..., description='ID of a rich menu')], **kwargs) -> ApiResponse:
         """delete_rich_menu  # noqa: E501
 
         Deletes a rich menu.  # noqa: E501
@@ -2047,7 +2071,7 @@ class LineBotClient:
         """
         return self._messaging_api.delete_rich_menu_with_http_info(rich_menu_id, **kwargs)
 
-    def delete_rich_menu_alias(self, rich_menu_alias_id : Annotated[StrictStr, Field(..., description='Rich menu alias ID that you want to delete.')], **kwargs) -> None:
+    def delete_rich_menu_alias(self, rich_menu_alias_id: Annotated[StrictStr, Field(..., description='Rich menu alias ID that you want to delete.')], **kwargs) -> None:
         """delete_rich_menu_alias  # noqa: E501
 
         Delete rich menu alias  # noqa: E501
@@ -2072,7 +2096,7 @@ class LineBotClient:
         """
         return self._messaging_api.delete_rich_menu_alias(rich_menu_alias_id, **kwargs)
 
-    def delete_rich_menu_alias_with_http_info(self, rich_menu_alias_id : Annotated[StrictStr, Field(..., description='Rich menu alias ID that you want to delete.')], **kwargs) -> ApiResponse:
+    def delete_rich_menu_alias_with_http_info(self, rich_menu_alias_id: Annotated[StrictStr, Field(..., description='Rich menu alias ID that you want to delete.')], **kwargs) -> ApiResponse:
         """delete_rich_menu_alias  # noqa: E501
 
         Delete rich menu alias  # noqa: E501
@@ -2110,7 +2134,7 @@ class LineBotClient:
         """
         return self._messaging_api.delete_rich_menu_alias_with_http_info(rich_menu_alias_id, **kwargs)
 
-    def get_aggregation_unit_name_list(self, limit : Annotated[Optional[StrictStr], Field(description='The maximum number of aggregation units you can get per request. ')] = None, start : Annotated[Optional[StrictStr], Field(description="Value of the continuation token found in the next property of the JSON object returned in the response. If you can't get all the aggregation units in one request, include this parameter to get the remaining array. ")] = None, **kwargs) -> GetAggregationUnitNameListResponse:
+    def get_aggregation_unit_name_list(self, limit: Annotated[Optional[StrictStr], Field(description='The maximum number of aggregation units you can get per request. ')] = None, start: Annotated[Optional[StrictStr], Field(description="Value of the continuation token found in the next property of the JSON object returned in the response. If you can't get all the aggregation units in one request, include this parameter to get the remaining array. ")] = None, **kwargs) -> GetAggregationUnitNameListResponse:
         """get_aggregation_unit_name_list  # noqa: E501
 
         Get name list of units used this month  # noqa: E501
@@ -2137,7 +2161,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_aggregation_unit_name_list(limit, start, **kwargs)
 
-    def get_aggregation_unit_name_list_with_http_info(self, limit : Annotated[Optional[StrictStr], Field(description='The maximum number of aggregation units you can get per request. ')] = None, start : Annotated[Optional[StrictStr], Field(description="Value of the continuation token found in the next property of the JSON object returned in the response. If you can't get all the aggregation units in one request, include this parameter to get the remaining array. ")] = None, **kwargs) -> ApiResponse:
+    def get_aggregation_unit_name_list_with_http_info(self, limit: Annotated[Optional[StrictStr], Field(description='The maximum number of aggregation units you can get per request. ')] = None, start: Annotated[Optional[StrictStr], Field(description="Value of the continuation token found in the next property of the JSON object returned in the response. If you can't get all the aggregation units in one request, include this parameter to get the remaining array. ")] = None, **kwargs) -> ApiResponse:
         """get_aggregation_unit_name_list  # noqa: E501
 
         Get name list of units used this month  # noqa: E501
@@ -2295,7 +2319,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_bot_info_with_http_info(**kwargs)
 
-    def get_coupon_detail(self, coupon_id : StrictStr, **kwargs) -> CouponResponse:
+    def get_coupon_detail(self, coupon_id: StrictStr, **kwargs) -> CouponResponse:
         """get_coupon_detail  # noqa: E501
 
         Get coupon detail  # noqa: E501
@@ -2320,7 +2344,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_coupon_detail(coupon_id, **kwargs)
 
-    def get_coupon_detail_with_http_info(self, coupon_id : StrictStr, **kwargs) -> ApiResponse:
+    def get_coupon_detail_with_http_info(self, coupon_id: StrictStr, **kwargs) -> ApiResponse:
         """get_coupon_detail  # noqa: E501
 
         Get coupon detail  # noqa: E501
@@ -2417,7 +2441,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_default_rich_menu_id_with_http_info(**kwargs)
 
-    def get_followers(self, start : Annotated[Optional[StrictStr], Field(description='Value of the continuation token found in the next property of the JSON object returned in the response. Include this parameter to get the next array of user IDs. ')] = None, limit : Annotated[Optional[conint(strict=True, le=1000)], Field(description='The maximum number of user IDs to retrieve in a single request.')] = None, **kwargs) -> GetFollowersResponse:
+    def get_followers(self, start: Annotated[Optional[StrictStr], Field(description='Value of the continuation token found in the next property of the JSON object returned in the response. Include this parameter to get the next array of user IDs. ')] = None, limit: Annotated[Optional[conint(strict=True, le=1000)], Field(description='The maximum number of user IDs to retrieve in a single request.')] = None, **kwargs) -> GetFollowersResponse:
         """get_followers  # noqa: E501
 
         Get a list of users who added your LINE Official Account as a friend  # noqa: E501
@@ -2444,7 +2468,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_followers(start, limit, **kwargs)
 
-    def get_followers_with_http_info(self, start : Annotated[Optional[StrictStr], Field(description='Value of the continuation token found in the next property of the JSON object returned in the response. Include this parameter to get the next array of user IDs. ')] = None, limit : Annotated[Optional[conint(strict=True, le=1000)], Field(description='The maximum number of user IDs to retrieve in a single request.')] = None, **kwargs) -> ApiResponse:
+    def get_followers_with_http_info(self, start: Annotated[Optional[StrictStr], Field(description='Value of the continuation token found in the next property of the JSON object returned in the response. Include this parameter to get the next array of user IDs. ')] = None, limit: Annotated[Optional[conint(strict=True, le=1000)], Field(description='The maximum number of user IDs to retrieve in a single request.')] = None, **kwargs) -> ApiResponse:
         """get_followers  # noqa: E501
 
         Get a list of users who added your LINE Official Account as a friend  # noqa: E501
@@ -2484,7 +2508,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_followers_with_http_info(start, limit, **kwargs)
 
-    def get_group_member_count(self, group_id : Annotated[StrictStr, Field(..., description='Group ID')], **kwargs) -> GroupMemberCountResponse:
+    def get_group_member_count(self, group_id: Annotated[StrictStr, Field(..., description='Group ID')], **kwargs) -> GroupMemberCountResponse:
         """get_group_member_count  # noqa: E501
 
         Get number of users in a group chat  # noqa: E501
@@ -2509,7 +2533,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_group_member_count(group_id, **kwargs)
 
-    def get_group_member_count_with_http_info(self, group_id : Annotated[StrictStr, Field(..., description='Group ID')], **kwargs) -> ApiResponse:
+    def get_group_member_count_with_http_info(self, group_id: Annotated[StrictStr, Field(..., description='Group ID')], **kwargs) -> ApiResponse:
         """get_group_member_count  # noqa: E501
 
         Get number of users in a group chat  # noqa: E501
@@ -2547,7 +2571,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_group_member_count_with_http_info(group_id, **kwargs)
 
-    def get_group_member_profile(self, group_id : Annotated[StrictStr, Field(..., description='Group ID')], user_id : Annotated[StrictStr, Field(..., description='User ID')], **kwargs) -> GroupUserProfileResponse:
+    def get_group_member_profile(self, group_id: Annotated[StrictStr, Field(..., description='Group ID')], user_id: Annotated[StrictStr, Field(..., description='User ID')], **kwargs) -> GroupUserProfileResponse:
         """get_group_member_profile  # noqa: E501
 
         Get group chat member profile  # noqa: E501
@@ -2574,7 +2598,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_group_member_profile(group_id, user_id, **kwargs)
 
-    def get_group_member_profile_with_http_info(self, group_id : Annotated[StrictStr, Field(..., description='Group ID')], user_id : Annotated[StrictStr, Field(..., description='User ID')], **kwargs) -> ApiResponse:
+    def get_group_member_profile_with_http_info(self, group_id: Annotated[StrictStr, Field(..., description='Group ID')], user_id: Annotated[StrictStr, Field(..., description='User ID')], **kwargs) -> ApiResponse:
         """get_group_member_profile  # noqa: E501
 
         Get group chat member profile  # noqa: E501
@@ -2614,7 +2638,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_group_member_profile_with_http_info(group_id, user_id, **kwargs)
 
-    def get_group_members_ids(self, group_id : Annotated[StrictStr, Field(..., description='Group ID')], start : Annotated[Optional[StrictStr], Field(description='Value of the continuation token found in the `next` property of the JSON object returned in the response. Include this parameter to get the next array of user IDs for the members of the group. ')] = None, **kwargs) -> MembersIdsResponse:
+    def get_group_members_ids(self, group_id: Annotated[StrictStr, Field(..., description='Group ID')], start: Annotated[Optional[StrictStr], Field(description='Value of the continuation token found in the `next` property of the JSON object returned in the response. Include this parameter to get the next array of user IDs for the members of the group. ')] = None, **kwargs) -> MembersIdsResponse:
         """get_group_members_ids  # noqa: E501
 
         Get group chat member user IDs  # noqa: E501
@@ -2641,7 +2665,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_group_members_ids(group_id, start, **kwargs)
 
-    def get_group_members_ids_with_http_info(self, group_id : Annotated[StrictStr, Field(..., description='Group ID')], start : Annotated[Optional[StrictStr], Field(description='Value of the continuation token found in the `next` property of the JSON object returned in the response. Include this parameter to get the next array of user IDs for the members of the group. ')] = None, **kwargs) -> ApiResponse:
+    def get_group_members_ids_with_http_info(self, group_id: Annotated[StrictStr, Field(..., description='Group ID')], start: Annotated[Optional[StrictStr], Field(description='Value of the continuation token found in the `next` property of the JSON object returned in the response. Include this parameter to get the next array of user IDs for the members of the group. ')] = None, **kwargs) -> ApiResponse:
         """get_group_members_ids  # noqa: E501
 
         Get group chat member user IDs  # noqa: E501
@@ -2681,7 +2705,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_group_members_ids_with_http_info(group_id, start, **kwargs)
 
-    def get_group_summary(self, group_id : Annotated[StrictStr, Field(..., description='Group ID')], **kwargs) -> GroupSummaryResponse:
+    def get_group_summary(self, group_id: Annotated[StrictStr, Field(..., description='Group ID')], **kwargs) -> GroupSummaryResponse:
         """get_group_summary  # noqa: E501
 
         Get group chat summary  # noqa: E501
@@ -2706,7 +2730,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_group_summary(group_id, **kwargs)
 
-    def get_group_summary_with_http_info(self, group_id : Annotated[StrictStr, Field(..., description='Group ID')], **kwargs) -> ApiResponse:
+    def get_group_summary_with_http_info(self, group_id: Annotated[StrictStr, Field(..., description='Group ID')], **kwargs) -> ApiResponse:
         """get_group_summary  # noqa: E501
 
         Get group chat summary  # noqa: E501
@@ -2744,7 +2768,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_group_summary_with_http_info(group_id, **kwargs)
 
-    def get_joined_membership_users(self, membership_id : Annotated[StrictInt, Field(..., description='Membership plan ID.')], start : Annotated[Optional[StrictStr], Field(description="A continuation token to get next remaining membership user IDs. Returned only when there are remaining user IDs that weren't returned in the userIds property in the previous request. The continuation token expires in 24 hours (86,400 seconds). ")] = None, limit : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description='The max number of items to return for this API call. The value is set to 300 by default, but the max acceptable value is 1000. ')] = None, **kwargs) -> GetJoinedMembershipUsersResponse:
+    def get_joined_membership_users(self, membership_id: Annotated[StrictInt, Field(..., description='Membership plan ID.')], start: Annotated[Optional[StrictStr], Field(description="A continuation token to get next remaining membership user IDs. Returned only when there are remaining user IDs that weren't returned in the userIds property in the previous request. The continuation token expires in 24 hours (86,400 seconds). ")] = None, limit: Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description='The max number of items to return for this API call. The value is set to 300 by default, but the max acceptable value is 1000. ')] = None, **kwargs) -> GetJoinedMembershipUsersResponse:
         """get_joined_membership_users  # noqa: E501
 
         Get a list of user IDs who joined the membership.  # noqa: E501
@@ -2773,7 +2797,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_joined_membership_users(membership_id, start, limit, **kwargs)
 
-    def get_joined_membership_users_with_http_info(self, membership_id : Annotated[StrictInt, Field(..., description='Membership plan ID.')], start : Annotated[Optional[StrictStr], Field(description="A continuation token to get next remaining membership user IDs. Returned only when there are remaining user IDs that weren't returned in the userIds property in the previous request. The continuation token expires in 24 hours (86,400 seconds). ")] = None, limit : Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description='The max number of items to return for this API call. The value is set to 300 by default, but the max acceptable value is 1000. ')] = None, **kwargs) -> ApiResponse:
+    def get_joined_membership_users_with_http_info(self, membership_id: Annotated[StrictInt, Field(..., description='Membership plan ID.')], start: Annotated[Optional[StrictStr], Field(description="A continuation token to get next remaining membership user IDs. Returned only when there are remaining user IDs that weren't returned in the userIds property in the previous request. The continuation token expires in 24 hours (86,400 seconds). ")] = None, limit: Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description='The max number of items to return for this API call. The value is set to 300 by default, but the max acceptable value is 1000. ')] = None, **kwargs) -> ApiResponse:
         """get_joined_membership_users  # noqa: E501
 
         Get a list of user IDs who joined the membership.  # noqa: E501
@@ -2874,7 +2898,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_membership_list_with_http_info(**kwargs)
 
-    def get_membership_subscription(self, user_id : Annotated[StrictStr, Field(..., description='User ID')], **kwargs) -> GetMembershipSubscriptionResponse:
+    def get_membership_subscription(self, user_id: Annotated[StrictStr, Field(..., description='User ID')], **kwargs) -> GetMembershipSubscriptionResponse:
         """get_membership_subscription  # noqa: E501
 
         Get a user's membership subscription.  # noqa: E501
@@ -2899,7 +2923,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_membership_subscription(user_id, **kwargs)
 
-    def get_membership_subscription_with_http_info(self, user_id : Annotated[StrictStr, Field(..., description='User ID')], **kwargs) -> ApiResponse:
+    def get_membership_subscription_with_http_info(self, user_id: Annotated[StrictStr, Field(..., description='User ID')], **kwargs) -> ApiResponse:
         """get_membership_subscription  # noqa: E501
 
         Get a user's membership subscription.  # noqa: E501
@@ -3055,7 +3079,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_message_quota_consumption_with_http_info(**kwargs)
 
-    def get_narrowcast_progress(self, request_id : Annotated[StrictStr, Field(..., description="The narrowcast message's request ID. Each Messaging API request has a request ID.")], **kwargs) -> NarrowcastProgressResponse:
+    def get_narrowcast_progress(self, request_id: Annotated[StrictStr, Field(..., description="The narrowcast message's request ID. Each Messaging API request has a request ID.")], **kwargs) -> NarrowcastProgressResponse:
         """get_narrowcast_progress  # noqa: E501
 
         Gets the status of a narrowcast message.  # noqa: E501
@@ -3080,7 +3104,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_narrowcast_progress(request_id, **kwargs)
 
-    def get_narrowcast_progress_with_http_info(self, request_id : Annotated[StrictStr, Field(..., description="The narrowcast message's request ID. Each Messaging API request has a request ID.")], **kwargs) -> ApiResponse:
+    def get_narrowcast_progress_with_http_info(self, request_id: Annotated[StrictStr, Field(..., description="The narrowcast message's request ID. Each Messaging API request has a request ID.")], **kwargs) -> ApiResponse:
         """get_narrowcast_progress  # noqa: E501
 
         Gets the status of a narrowcast message.  # noqa: E501
@@ -3118,7 +3142,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_narrowcast_progress_with_http_info(request_id, **kwargs)
 
-    def get_number_of_sent_broadcast_messages(self, var_date : Annotated[StrictStr, Field(..., description='Date the messages were sent  Format: yyyyMMdd (e.g. 20191231) Timezone: UTC+9 ')], **kwargs) -> NumberOfMessagesResponse:
+    def get_number_of_sent_broadcast_messages(self, var_date: Annotated[StrictStr, Field(..., description='Date the messages were sent  Format: yyyyMMdd (e.g. 20191231) Timezone: UTC+9 ')], **kwargs) -> NumberOfMessagesResponse:
         """get_number_of_sent_broadcast_messages  # noqa: E501
 
         Get number of sent broadcast messages  # noqa: E501
@@ -3143,7 +3167,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_number_of_sent_broadcast_messages(var_date, **kwargs)
 
-    def get_number_of_sent_broadcast_messages_with_http_info(self, var_date : Annotated[StrictStr, Field(..., description='Date the messages were sent  Format: yyyyMMdd (e.g. 20191231) Timezone: UTC+9 ')], **kwargs) -> ApiResponse:
+    def get_number_of_sent_broadcast_messages_with_http_info(self, var_date: Annotated[StrictStr, Field(..., description='Date the messages were sent  Format: yyyyMMdd (e.g. 20191231) Timezone: UTC+9 ')], **kwargs) -> ApiResponse:
         """get_number_of_sent_broadcast_messages  # noqa: E501
 
         Get number of sent broadcast messages  # noqa: E501
@@ -3181,7 +3205,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_number_of_sent_broadcast_messages_with_http_info(var_date, **kwargs)
 
-    def get_number_of_sent_multicast_messages(self, var_date : Annotated[StrictStr, Field(..., description='Date the messages were sent  Format: `yyyyMMdd` (e.g. `20191231`) Timezone: UTC+9 ')], **kwargs) -> NumberOfMessagesResponse:
+    def get_number_of_sent_multicast_messages(self, var_date: Annotated[StrictStr, Field(..., description='Date the messages were sent  Format: `yyyyMMdd` (e.g. `20191231`) Timezone: UTC+9 ')], **kwargs) -> NumberOfMessagesResponse:
         """get_number_of_sent_multicast_messages  # noqa: E501
 
         Get number of sent multicast messages  # noqa: E501
@@ -3206,7 +3230,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_number_of_sent_multicast_messages(var_date, **kwargs)
 
-    def get_number_of_sent_multicast_messages_with_http_info(self, var_date : Annotated[StrictStr, Field(..., description='Date the messages were sent  Format: `yyyyMMdd` (e.g. `20191231`) Timezone: UTC+9 ')], **kwargs) -> ApiResponse:
+    def get_number_of_sent_multicast_messages_with_http_info(self, var_date: Annotated[StrictStr, Field(..., description='Date the messages were sent  Format: `yyyyMMdd` (e.g. `20191231`) Timezone: UTC+9 ')], **kwargs) -> ApiResponse:
         """get_number_of_sent_multicast_messages  # noqa: E501
 
         Get number of sent multicast messages  # noqa: E501
@@ -3244,7 +3268,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_number_of_sent_multicast_messages_with_http_info(var_date, **kwargs)
 
-    def get_number_of_sent_push_messages(self, var_date : Annotated[StrictStr, Field(..., description='Date the messages were sent  Format: `yyyyMMdd` (e.g. `20191231`) Timezone: UTC+9 ')], **kwargs) -> NumberOfMessagesResponse:
+    def get_number_of_sent_push_messages(self, var_date: Annotated[StrictStr, Field(..., description='Date the messages were sent  Format: `yyyyMMdd` (e.g. `20191231`) Timezone: UTC+9 ')], **kwargs) -> NumberOfMessagesResponse:
         """get_number_of_sent_push_messages  # noqa: E501
 
         Get number of sent push messages  # noqa: E501
@@ -3269,7 +3293,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_number_of_sent_push_messages(var_date, **kwargs)
 
-    def get_number_of_sent_push_messages_with_http_info(self, var_date : Annotated[StrictStr, Field(..., description='Date the messages were sent  Format: `yyyyMMdd` (e.g. `20191231`) Timezone: UTC+9 ')], **kwargs) -> ApiResponse:
+    def get_number_of_sent_push_messages_with_http_info(self, var_date: Annotated[StrictStr, Field(..., description='Date the messages were sent  Format: `yyyyMMdd` (e.g. `20191231`) Timezone: UTC+9 ')], **kwargs) -> ApiResponse:
         """get_number_of_sent_push_messages  # noqa: E501
 
         Get number of sent push messages  # noqa: E501
@@ -3307,7 +3331,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_number_of_sent_push_messages_with_http_info(var_date, **kwargs)
 
-    def get_number_of_sent_reply_messages(self, var_date : Annotated[StrictStr, Field(..., description='Date the messages were sent  Format: `yyyyMMdd` (e.g. `20191231`) Timezone: UTC+9 ')], **kwargs) -> NumberOfMessagesResponse:
+    def get_number_of_sent_reply_messages(self, var_date: Annotated[StrictStr, Field(..., description='Date the messages were sent  Format: `yyyyMMdd` (e.g. `20191231`) Timezone: UTC+9 ')], **kwargs) -> NumberOfMessagesResponse:
         """get_number_of_sent_reply_messages  # noqa: E501
 
         Get number of sent reply messages  # noqa: E501
@@ -3332,7 +3356,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_number_of_sent_reply_messages(var_date, **kwargs)
 
-    def get_number_of_sent_reply_messages_with_http_info(self, var_date : Annotated[StrictStr, Field(..., description='Date the messages were sent  Format: `yyyyMMdd` (e.g. `20191231`) Timezone: UTC+9 ')], **kwargs) -> ApiResponse:
+    def get_number_of_sent_reply_messages_with_http_info(self, var_date: Annotated[StrictStr, Field(..., description='Date the messages were sent  Format: `yyyyMMdd` (e.g. `20191231`) Timezone: UTC+9 ')], **kwargs) -> ApiResponse:
         """get_number_of_sent_reply_messages  # noqa: E501
 
         Get number of sent reply messages  # noqa: E501
@@ -3370,7 +3394,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_number_of_sent_reply_messages_with_http_info(var_date, **kwargs)
 
-    def get_pnp_message_statistics(self, var_date : Annotated[constr(strict=True), Field(..., description='Date the message was sent  Format: `yyyyMMdd` (Example:`20211231`) Time zone: UTC+9 ')], **kwargs) -> NumberOfMessagesResponse:
+    def get_pnp_message_statistics(self, var_date: Annotated[constr(strict=True), Field(..., description='Date the message was sent  Format: `yyyyMMdd` (Example:`20211231`) Time zone: UTC+9 ')], **kwargs) -> NumberOfMessagesResponse:
         """get_pnp_message_statistics  # noqa: E501
 
         Get number of sent LINE notification messages　  # noqa: E501
@@ -3395,7 +3419,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_pnp_message_statistics(var_date, **kwargs)
 
-    def get_pnp_message_statistics_with_http_info(self, var_date : Annotated[constr(strict=True), Field(..., description='Date the message was sent  Format: `yyyyMMdd` (Example:`20211231`) Time zone: UTC+9 ')], **kwargs) -> ApiResponse:
+    def get_pnp_message_statistics_with_http_info(self, var_date: Annotated[constr(strict=True), Field(..., description='Date the message was sent  Format: `yyyyMMdd` (Example:`20211231`) Time zone: UTC+9 ')], **kwargs) -> ApiResponse:
         """get_pnp_message_statistics  # noqa: E501
 
         Get number of sent LINE notification messages　  # noqa: E501
@@ -3433,7 +3457,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_pnp_message_statistics_with_http_info(var_date, **kwargs)
 
-    def get_profile(self, user_id : Annotated[StrictStr, Field(..., description='User ID')], **kwargs) -> UserProfileResponse:
+    def get_profile(self, user_id: Annotated[StrictStr, Field(..., description='User ID')], **kwargs) -> UserProfileResponse:
         """get_profile  # noqa: E501
 
         Get profile  # noqa: E501
@@ -3458,7 +3482,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_profile(user_id, **kwargs)
 
-    def get_profile_with_http_info(self, user_id : Annotated[StrictStr, Field(..., description='User ID')], **kwargs) -> ApiResponse:
+    def get_profile_with_http_info(self, user_id: Annotated[StrictStr, Field(..., description='User ID')], **kwargs) -> ApiResponse:
         """get_profile  # noqa: E501
 
         Get profile  # noqa: E501
@@ -3496,7 +3520,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_profile_with_http_info(user_id, **kwargs)
 
-    def get_rich_menu(self, rich_menu_id : Annotated[StrictStr, Field(..., description='ID of a rich menu')], **kwargs) -> RichMenuResponse:
+    def get_rich_menu(self, rich_menu_id: Annotated[StrictStr, Field(..., description='ID of a rich menu')], **kwargs) -> RichMenuResponse:
         """get_rich_menu  # noqa: E501
 
         Gets a rich menu via a rich menu ID.  # noqa: E501
@@ -3521,7 +3545,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_rich_menu(rich_menu_id, **kwargs)
 
-    def get_rich_menu_with_http_info(self, rich_menu_id : Annotated[StrictStr, Field(..., description='ID of a rich menu')], **kwargs) -> ApiResponse:
+    def get_rich_menu_with_http_info(self, rich_menu_id: Annotated[StrictStr, Field(..., description='ID of a rich menu')], **kwargs) -> ApiResponse:
         """get_rich_menu  # noqa: E501
 
         Gets a rich menu via a rich menu ID.  # noqa: E501
@@ -3559,7 +3583,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_rich_menu_with_http_info(rich_menu_id, **kwargs)
 
-    def get_rich_menu_alias(self, rich_menu_alias_id : Annotated[StrictStr, Field(..., description='The rich menu alias ID whose information you want to obtain.')], **kwargs) -> RichMenuAliasResponse:
+    def get_rich_menu_alias(self, rich_menu_alias_id: Annotated[StrictStr, Field(..., description='The rich menu alias ID whose information you want to obtain.')], **kwargs) -> RichMenuAliasResponse:
         """get_rich_menu_alias  # noqa: E501
 
         Get rich menu alias information  # noqa: E501
@@ -3584,7 +3608,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_rich_menu_alias(rich_menu_alias_id, **kwargs)
 
-    def get_rich_menu_alias_with_http_info(self, rich_menu_alias_id : Annotated[StrictStr, Field(..., description='The rich menu alias ID whose information you want to obtain.')], **kwargs) -> ApiResponse:
+    def get_rich_menu_alias_with_http_info(self, rich_menu_alias_id: Annotated[StrictStr, Field(..., description='The rich menu alias ID whose information you want to obtain.')], **kwargs) -> ApiResponse:
         """get_rich_menu_alias  # noqa: E501
 
         Get rich menu alias information  # noqa: E501
@@ -3681,7 +3705,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_rich_menu_alias_list_with_http_info(**kwargs)
 
-    def get_rich_menu_batch_progress(self, request_id : Annotated[StrictStr, Field(..., description='A request ID used to batch control the rich menu linked to the user. Each Messaging API request has a request ID.')], **kwargs) -> RichMenuBatchProgressResponse:
+    def get_rich_menu_batch_progress(self, request_id: Annotated[StrictStr, Field(..., description='A request ID used to batch control the rich menu linked to the user. Each Messaging API request has a request ID.')], **kwargs) -> RichMenuBatchProgressResponse:
         """get_rich_menu_batch_progress  # noqa: E501
 
         Get the status of Replace or unlink a linked rich menus in batches.  # noqa: E501
@@ -3706,7 +3730,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_rich_menu_batch_progress(request_id, **kwargs)
 
-    def get_rich_menu_batch_progress_with_http_info(self, request_id : Annotated[StrictStr, Field(..., description='A request ID used to batch control the rich menu linked to the user. Each Messaging API request has a request ID.')], **kwargs) -> ApiResponse:
+    def get_rich_menu_batch_progress_with_http_info(self, request_id: Annotated[StrictStr, Field(..., description='A request ID used to batch control the rich menu linked to the user. Each Messaging API request has a request ID.')], **kwargs) -> ApiResponse:
         """get_rich_menu_batch_progress  # noqa: E501
 
         Get the status of Replace or unlink a linked rich menus in batches.  # noqa: E501
@@ -3744,7 +3768,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_rich_menu_batch_progress_with_http_info(request_id, **kwargs)
 
-    def get_rich_menu_id_of_user(self, user_id : Annotated[StrictStr, Field(..., description='User ID. Found in the `source` object of webhook event objects. Do not use the LINE ID used in LINE.')], **kwargs) -> RichMenuIdResponse:
+    def get_rich_menu_id_of_user(self, user_id: Annotated[StrictStr, Field(..., description='User ID. Found in the `source` object of webhook event objects. Do not use the LINE ID used in LINE.')], **kwargs) -> RichMenuIdResponse:
         """get_rich_menu_id_of_user  # noqa: E501
 
         Get rich menu ID of user  # noqa: E501
@@ -3769,7 +3793,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_rich_menu_id_of_user(user_id, **kwargs)
 
-    def get_rich_menu_id_of_user_with_http_info(self, user_id : Annotated[StrictStr, Field(..., description='User ID. Found in the `source` object of webhook event objects. Do not use the LINE ID used in LINE.')], **kwargs) -> ApiResponse:
+    def get_rich_menu_id_of_user_with_http_info(self, user_id: Annotated[StrictStr, Field(..., description='User ID. Found in the `source` object of webhook event objects. Do not use the LINE ID used in LINE.')], **kwargs) -> ApiResponse:
         """get_rich_menu_id_of_user  # noqa: E501
 
         Get rich menu ID of user  # noqa: E501
@@ -3866,7 +3890,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_rich_menu_list_with_http_info(**kwargs)
 
-    def get_room_member_count(self, room_id : Annotated[StrictStr, Field(..., description='Room ID')], **kwargs) -> RoomMemberCountResponse:
+    def get_room_member_count(self, room_id: Annotated[StrictStr, Field(..., description='Room ID')], **kwargs) -> RoomMemberCountResponse:
         """get_room_member_count  # noqa: E501
 
         Get number of users in a multi-person chat  # noqa: E501
@@ -3891,7 +3915,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_room_member_count(room_id, **kwargs)
 
-    def get_room_member_count_with_http_info(self, room_id : Annotated[StrictStr, Field(..., description='Room ID')], **kwargs) -> ApiResponse:
+    def get_room_member_count_with_http_info(self, room_id: Annotated[StrictStr, Field(..., description='Room ID')], **kwargs) -> ApiResponse:
         """get_room_member_count  # noqa: E501
 
         Get number of users in a multi-person chat  # noqa: E501
@@ -3929,7 +3953,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_room_member_count_with_http_info(room_id, **kwargs)
 
-    def get_room_member_profile(self, room_id : Annotated[StrictStr, Field(..., description='Room ID')], user_id : Annotated[StrictStr, Field(..., description='User ID')], **kwargs) -> RoomUserProfileResponse:
+    def get_room_member_profile(self, room_id: Annotated[StrictStr, Field(..., description='Room ID')], user_id: Annotated[StrictStr, Field(..., description='User ID')], **kwargs) -> RoomUserProfileResponse:
         """get_room_member_profile  # noqa: E501
 
         Get multi-person chat member profile  # noqa: E501
@@ -3956,7 +3980,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_room_member_profile(room_id, user_id, **kwargs)
 
-    def get_room_member_profile_with_http_info(self, room_id : Annotated[StrictStr, Field(..., description='Room ID')], user_id : Annotated[StrictStr, Field(..., description='User ID')], **kwargs) -> ApiResponse:
+    def get_room_member_profile_with_http_info(self, room_id: Annotated[StrictStr, Field(..., description='Room ID')], user_id: Annotated[StrictStr, Field(..., description='User ID')], **kwargs) -> ApiResponse:
         """get_room_member_profile  # noqa: E501
 
         Get multi-person chat member profile  # noqa: E501
@@ -3996,7 +4020,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_room_member_profile_with_http_info(room_id, user_id, **kwargs)
 
-    def get_room_members_ids(self, room_id : Annotated[StrictStr, Field(..., description='Room ID')], start : Annotated[Optional[StrictStr], Field(description='Value of the continuation token found in the `next` property of the JSON object returned in the response. Include this parameter to get the next array of user IDs for the members of the group. ')] = None, **kwargs) -> MembersIdsResponse:
+    def get_room_members_ids(self, room_id: Annotated[StrictStr, Field(..., description='Room ID')], start: Annotated[Optional[StrictStr], Field(description='Value of the continuation token found in the `next` property of the JSON object returned in the response. Include this parameter to get the next array of user IDs for the members of the group. ')] = None, **kwargs) -> MembersIdsResponse:
         """get_room_members_ids  # noqa: E501
 
         Get multi-person chat member user IDs  # noqa: E501
@@ -4023,7 +4047,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_room_members_ids(room_id, start, **kwargs)
 
-    def get_room_members_ids_with_http_info(self, room_id : Annotated[StrictStr, Field(..., description='Room ID')], start : Annotated[Optional[StrictStr], Field(description='Value of the continuation token found in the `next` property of the JSON object returned in the response. Include this parameter to get the next array of user IDs for the members of the group. ')] = None, **kwargs) -> ApiResponse:
+    def get_room_members_ids_with_http_info(self, room_id: Annotated[StrictStr, Field(..., description='Room ID')], start: Annotated[Optional[StrictStr], Field(description='Value of the continuation token found in the `next` property of the JSON object returned in the response. Include this parameter to get the next array of user IDs for the members of the group. ')] = None, **kwargs) -> ApiResponse:
         """get_room_members_ids  # noqa: E501
 
         Get multi-person chat member user IDs  # noqa: E501
@@ -4122,7 +4146,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_webhook_endpoint_with_http_info(**kwargs)
 
-    def issue_link_token(self, user_id : Annotated[StrictStr, Field(..., description='User ID for the LINE account to be linked. Found in the `source` object of account link event objects. Do not use the LINE ID used in LINE. ')], **kwargs) -> IssueLinkTokenResponse:
+    def issue_link_token(self, user_id: Annotated[StrictStr, Field(..., description='User ID for the LINE account to be linked. Found in the `source` object of account link event objects. Do not use the LINE ID used in LINE. ')], **kwargs) -> IssueLinkTokenResponse:
         """issue_link_token  # noqa: E501
 
         Issue link token  # noqa: E501
@@ -4147,7 +4171,7 @@ class LineBotClient:
         """
         return self._messaging_api.issue_link_token(user_id, **kwargs)
 
-    def issue_link_token_with_http_info(self, user_id : Annotated[StrictStr, Field(..., description='User ID for the LINE account to be linked. Found in the `source` object of account link event objects. Do not use the LINE ID used in LINE. ')], **kwargs) -> ApiResponse:
+    def issue_link_token_with_http_info(self, user_id: Annotated[StrictStr, Field(..., description='User ID for the LINE account to be linked. Found in the `source` object of account link event objects. Do not use the LINE ID used in LINE. ')], **kwargs) -> ApiResponse:
         """issue_link_token  # noqa: E501
 
         Issue link token  # noqa: E501
@@ -4185,7 +4209,7 @@ class LineBotClient:
         """
         return self._messaging_api.issue_link_token_with_http_info(user_id, **kwargs)
 
-    def leave_group(self, group_id : Annotated[StrictStr, Field(..., description='Group ID')], **kwargs) -> None:
+    def leave_group(self, group_id: Annotated[StrictStr, Field(..., description='Group ID')], **kwargs) -> None:
         """leave_group  # noqa: E501
 
         Leave group chat  # noqa: E501
@@ -4210,7 +4234,7 @@ class LineBotClient:
         """
         return self._messaging_api.leave_group(group_id, **kwargs)
 
-    def leave_group_with_http_info(self, group_id : Annotated[StrictStr, Field(..., description='Group ID')], **kwargs) -> ApiResponse:
+    def leave_group_with_http_info(self, group_id: Annotated[StrictStr, Field(..., description='Group ID')], **kwargs) -> ApiResponse:
         """leave_group  # noqa: E501
 
         Leave group chat  # noqa: E501
@@ -4248,7 +4272,7 @@ class LineBotClient:
         """
         return self._messaging_api.leave_group_with_http_info(group_id, **kwargs)
 
-    def leave_room(self, room_id : Annotated[StrictStr, Field(..., description='Room ID')], **kwargs) -> None:
+    def leave_room(self, room_id: Annotated[StrictStr, Field(..., description='Room ID')], **kwargs) -> None:
         """leave_room  # noqa: E501
 
         Leave multi-person chat  # noqa: E501
@@ -4273,7 +4297,7 @@ class LineBotClient:
         """
         return self._messaging_api.leave_room(room_id, **kwargs)
 
-    def leave_room_with_http_info(self, room_id : Annotated[StrictStr, Field(..., description='Room ID')], **kwargs) -> ApiResponse:
+    def leave_room_with_http_info(self, room_id: Annotated[StrictStr, Field(..., description='Room ID')], **kwargs) -> ApiResponse:
         """leave_room  # noqa: E501
 
         Leave multi-person chat  # noqa: E501
@@ -4311,7 +4335,7 @@ class LineBotClient:
         """
         return self._messaging_api.leave_room_with_http_info(room_id, **kwargs)
 
-    def link_rich_menu_id_to_user(self, user_id : Annotated[StrictStr, Field(..., description='User ID. Found in the `source` object of webhook event objects. Do not use the LINE ID used in LINE.')], rich_menu_id : Annotated[StrictStr, Field(..., description='ID of a rich menu')], **kwargs) -> None:
+    def link_rich_menu_id_to_user(self, user_id: Annotated[StrictStr, Field(..., description='User ID. Found in the `source` object of webhook event objects. Do not use the LINE ID used in LINE.')], rich_menu_id: Annotated[StrictStr, Field(..., description='ID of a rich menu')], **kwargs) -> None:
         """link_rich_menu_id_to_user  # noqa: E501
 
         Link rich menu to user.  # noqa: E501
@@ -4338,7 +4362,7 @@ class LineBotClient:
         """
         return self._messaging_api.link_rich_menu_id_to_user(user_id, rich_menu_id, **kwargs)
 
-    def link_rich_menu_id_to_user_with_http_info(self, user_id : Annotated[StrictStr, Field(..., description='User ID. Found in the `source` object of webhook event objects. Do not use the LINE ID used in LINE.')], rich_menu_id : Annotated[StrictStr, Field(..., description='ID of a rich menu')], **kwargs) -> ApiResponse:
+    def link_rich_menu_id_to_user_with_http_info(self, user_id: Annotated[StrictStr, Field(..., description='User ID. Found in the `source` object of webhook event objects. Do not use the LINE ID used in LINE.')], rich_menu_id: Annotated[StrictStr, Field(..., description='ID of a rich menu')], **kwargs) -> ApiResponse:
         """link_rich_menu_id_to_user  # noqa: E501
 
         Link rich menu to user.  # noqa: E501
@@ -4378,7 +4402,7 @@ class LineBotClient:
         """
         return self._messaging_api.link_rich_menu_id_to_user_with_http_info(user_id, rich_menu_id, **kwargs)
 
-    def link_rich_menu_id_to_users(self, rich_menu_bulk_link_request : RichMenuBulkLinkRequest, **kwargs) -> None:
+    def link_rich_menu_id_to_users(self, rich_menu_bulk_link_request: RichMenuBulkLinkRequest, **kwargs) -> None:
         """link_rich_menu_id_to_users  # noqa: E501
 
         Link rich menu to multiple users  # noqa: E501
@@ -4403,7 +4427,7 @@ class LineBotClient:
         """
         return self._messaging_api.link_rich_menu_id_to_users(rich_menu_bulk_link_request, **kwargs)
 
-    def link_rich_menu_id_to_users_with_http_info(self, rich_menu_bulk_link_request : RichMenuBulkLinkRequest, **kwargs) -> ApiResponse:
+    def link_rich_menu_id_to_users_with_http_info(self, rich_menu_bulk_link_request: RichMenuBulkLinkRequest, **kwargs) -> ApiResponse:
         """link_rich_menu_id_to_users  # noqa: E501
 
         Link rich menu to multiple users  # noqa: E501
@@ -4441,7 +4465,7 @@ class LineBotClient:
         """
         return self._messaging_api.link_rich_menu_id_to_users_with_http_info(rich_menu_bulk_link_request, **kwargs)
 
-    def list_coupon(self, status : Annotated[Optional[conlist(StrictStr, unique_items=True)], Field(description='Filter coupons by their status.')] = None, start : Annotated[Optional[StrictStr], Field(description='Pagination token to retrieve the next page of results.')] = None, limit : Annotated[Optional[conint(strict=True, le=100, ge=1)], Field(description='Maximum number of coupons to return per request.')] = None, **kwargs) -> MessagingApiPagerCouponListResponse:
+    def list_coupon(self, status: Annotated[Optional[conlist(StrictStr, unique_items=True)], Field(description='Filter coupons by their status.')] = None, start: Annotated[Optional[StrictStr], Field(description='Pagination token to retrieve the next page of results.')] = None, limit: Annotated[Optional[conint(strict=True, le=100, ge=1)], Field(description='Maximum number of coupons to return per request.')] = None, **kwargs) -> MessagingApiPagerCouponListResponse:
         """list_coupon  # noqa: E501
 
         Get a paginated list of coupons.  # noqa: E501
@@ -4470,7 +4494,7 @@ class LineBotClient:
         """
         return self._messaging_api.list_coupon(status, start, limit, **kwargs)
 
-    def list_coupon_with_http_info(self, status : Annotated[Optional[conlist(StrictStr, unique_items=True)], Field(description='Filter coupons by their status.')] = None, start : Annotated[Optional[StrictStr], Field(description='Pagination token to retrieve the next page of results.')] = None, limit : Annotated[Optional[conint(strict=True, le=100, ge=1)], Field(description='Maximum number of coupons to return per request.')] = None, **kwargs) -> ApiResponse:
+    def list_coupon_with_http_info(self, status: Annotated[Optional[conlist(StrictStr, unique_items=True)], Field(description='Filter coupons by their status.')] = None, start: Annotated[Optional[StrictStr], Field(description='Pagination token to retrieve the next page of results.')] = None, limit: Annotated[Optional[conint(strict=True, le=100, ge=1)], Field(description='Maximum number of coupons to return per request.')] = None, **kwargs) -> ApiResponse:
         """list_coupon  # noqa: E501
 
         Get a paginated list of coupons.  # noqa: E501
@@ -4512,7 +4536,7 @@ class LineBotClient:
         """
         return self._messaging_api.list_coupon_with_http_info(status, start, limit, **kwargs)
 
-    def mark_messages_as_read(self, mark_messages_as_read_request : MarkMessagesAsReadRequest, **kwargs) -> None:
+    def mark_messages_as_read(self, mark_messages_as_read_request: MarkMessagesAsReadRequest, **kwargs) -> None:
         """mark_messages_as_read  # noqa: E501
 
         Mark messages from users as read  # noqa: E501
@@ -4537,7 +4561,7 @@ class LineBotClient:
         """
         return self._messaging_api.mark_messages_as_read(mark_messages_as_read_request, **kwargs)
 
-    def mark_messages_as_read_with_http_info(self, mark_messages_as_read_request : MarkMessagesAsReadRequest, **kwargs) -> ApiResponse:
+    def mark_messages_as_read_with_http_info(self, mark_messages_as_read_request: MarkMessagesAsReadRequest, **kwargs) -> ApiResponse:
         """mark_messages_as_read  # noqa: E501
 
         Mark messages from users as read  # noqa: E501
@@ -4575,7 +4599,7 @@ class LineBotClient:
         """
         return self._messaging_api.mark_messages_as_read_with_http_info(mark_messages_as_read_request, **kwargs)
 
-    def mark_messages_as_read_by_token(self, mark_messages_as_read_by_token_request : MarkMessagesAsReadByTokenRequest, **kwargs) -> None:
+    def mark_messages_as_read_by_token(self, mark_messages_as_read_by_token_request: MarkMessagesAsReadByTokenRequest, **kwargs) -> None:
         """mark_messages_as_read_by_token  # noqa: E501
 
         Mark messages from users as read by token  # noqa: E501
@@ -4600,7 +4624,7 @@ class LineBotClient:
         """
         return self._messaging_api.mark_messages_as_read_by_token(mark_messages_as_read_by_token_request, **kwargs)
 
-    def mark_messages_as_read_by_token_with_http_info(self, mark_messages_as_read_by_token_request : MarkMessagesAsReadByTokenRequest, **kwargs) -> ApiResponse:
+    def mark_messages_as_read_by_token_with_http_info(self, mark_messages_as_read_by_token_request: MarkMessagesAsReadByTokenRequest, **kwargs) -> ApiResponse:
         """mark_messages_as_read_by_token  # noqa: E501
 
         Mark messages from users as read by token  # noqa: E501
@@ -4638,7 +4662,7 @@ class LineBotClient:
         """
         return self._messaging_api.mark_messages_as_read_by_token_with_http_info(mark_messages_as_read_by_token_request, **kwargs)
 
-    def multicast(self, multicast_request : MulticastRequest, x_line_retry_key : Annotated[Optional[StrictStr], Field(description="Retry key. Specifies the UUID in hexadecimal format (e.g., `123e4567-e89b-12d3-a456-426614174000`) generated by any method. The retry key isn't generated by LINE. Each developer must generate their own retry key. ")] = None, **kwargs) -> object:
+    def multicast(self, multicast_request: MulticastRequest, x_line_retry_key: Annotated[Optional[StrictStr], Field(description="Retry key. Specifies the UUID in hexadecimal format (e.g., `123e4567-e89b-12d3-a456-426614174000`) generated by any method. The retry key isn't generated by LINE. Each developer must generate their own retry key. ")] = None, **kwargs) -> object:
         """multicast  # noqa: E501
 
         An API that efficiently sends the same message to multiple user IDs. You can't send messages to group chats or multi-person chats.  # noqa: E501
@@ -4665,7 +4689,7 @@ class LineBotClient:
         """
         return self._messaging_api.multicast(multicast_request, x_line_retry_key, **kwargs)
 
-    def multicast_with_http_info(self, multicast_request : MulticastRequest, x_line_retry_key : Annotated[Optional[StrictStr], Field(description="Retry key. Specifies the UUID in hexadecimal format (e.g., `123e4567-e89b-12d3-a456-426614174000`) generated by any method. The retry key isn't generated by LINE. Each developer must generate their own retry key. ")] = None, **kwargs) -> ApiResponse:
+    def multicast_with_http_info(self, multicast_request: MulticastRequest, x_line_retry_key: Annotated[Optional[StrictStr], Field(description="Retry key. Specifies the UUID in hexadecimal format (e.g., `123e4567-e89b-12d3-a456-426614174000`) generated by any method. The retry key isn't generated by LINE. Each developer must generate their own retry key. ")] = None, **kwargs) -> ApiResponse:
         """multicast  # noqa: E501
 
         An API that efficiently sends the same message to multiple user IDs. You can't send messages to group chats or multi-person chats.  # noqa: E501
@@ -4705,7 +4729,7 @@ class LineBotClient:
         """
         return self._messaging_api.multicast_with_http_info(multicast_request, x_line_retry_key, **kwargs)
 
-    def narrowcast(self, narrowcast_request : NarrowcastRequest, x_line_retry_key : Annotated[Optional[StrictStr], Field(description="Retry key. Specifies the UUID in hexadecimal format (e.g., `123e4567-e89b-12d3-a456-426614174000`) generated by any method. The retry key isn't generated by LINE. Each developer must generate their own retry key. ")] = None, **kwargs) -> object:
+    def narrowcast(self, narrowcast_request: NarrowcastRequest, x_line_retry_key: Annotated[Optional[StrictStr], Field(description="Retry key. Specifies the UUID in hexadecimal format (e.g., `123e4567-e89b-12d3-a456-426614174000`) generated by any method. The retry key isn't generated by LINE. Each developer must generate their own retry key. ")] = None, **kwargs) -> object:
         """narrowcast  # noqa: E501
 
         Send narrowcast message  # noqa: E501
@@ -4732,7 +4756,7 @@ class LineBotClient:
         """
         return self._messaging_api.narrowcast(narrowcast_request, x_line_retry_key, **kwargs)
 
-    def narrowcast_with_http_info(self, narrowcast_request : NarrowcastRequest, x_line_retry_key : Annotated[Optional[StrictStr], Field(description="Retry key. Specifies the UUID in hexadecimal format (e.g., `123e4567-e89b-12d3-a456-426614174000`) generated by any method. The retry key isn't generated by LINE. Each developer must generate their own retry key. ")] = None, **kwargs) -> ApiResponse:
+    def narrowcast_with_http_info(self, narrowcast_request: NarrowcastRequest, x_line_retry_key: Annotated[Optional[StrictStr], Field(description="Retry key. Specifies the UUID in hexadecimal format (e.g., `123e4567-e89b-12d3-a456-426614174000`) generated by any method. The retry key isn't generated by LINE. Each developer must generate their own retry key. ")] = None, **kwargs) -> ApiResponse:
         """narrowcast  # noqa: E501
 
         Send narrowcast message  # noqa: E501
@@ -4772,7 +4796,7 @@ class LineBotClient:
         """
         return self._messaging_api.narrowcast_with_http_info(narrowcast_request, x_line_retry_key, **kwargs)
 
-    def push_message(self, push_message_request : PushMessageRequest, x_line_retry_key : Annotated[Optional[StrictStr], Field(description="Retry key. Specifies the UUID in hexadecimal format (e.g., `123e4567-e89b-12d3-a456-426614174000`) generated by any method. The retry key isn't generated by LINE. Each developer must generate their own retry key. ")] = None, **kwargs) -> PushMessageResponse:
+    def push_message(self, push_message_request: PushMessageRequest, x_line_retry_key: Annotated[Optional[StrictStr], Field(description="Retry key. Specifies the UUID in hexadecimal format (e.g., `123e4567-e89b-12d3-a456-426614174000`) generated by any method. The retry key isn't generated by LINE. Each developer must generate their own retry key. ")] = None, **kwargs) -> PushMessageResponse:
         """push_message  # noqa: E501
 
         Sends a message to a user, group chat, or multi-person chat at any time.  # noqa: E501
@@ -4799,7 +4823,7 @@ class LineBotClient:
         """
         return self._messaging_api.push_message(push_message_request, x_line_retry_key, **kwargs)
 
-    def push_message_with_http_info(self, push_message_request : PushMessageRequest, x_line_retry_key : Annotated[Optional[StrictStr], Field(description="Retry key. Specifies the UUID in hexadecimal format (e.g., `123e4567-e89b-12d3-a456-426614174000`) generated by any method. The retry key isn't generated by LINE. Each developer must generate their own retry key. ")] = None, **kwargs) -> ApiResponse:
+    def push_message_with_http_info(self, push_message_request: PushMessageRequest, x_line_retry_key: Annotated[Optional[StrictStr], Field(description="Retry key. Specifies the UUID in hexadecimal format (e.g., `123e4567-e89b-12d3-a456-426614174000`) generated by any method. The retry key isn't generated by LINE. Each developer must generate their own retry key. ")] = None, **kwargs) -> ApiResponse:
         """push_message  # noqa: E501
 
         Sends a message to a user, group chat, or multi-person chat at any time.  # noqa: E501
@@ -4839,7 +4863,7 @@ class LineBotClient:
         """
         return self._messaging_api.push_message_with_http_info(push_message_request, x_line_retry_key, **kwargs)
 
-    def push_messages_by_phone(self, pnp_messages_request : PnpMessagesRequest, x_line_delivery_tag : Annotated[Optional[constr(strict=True, max_length=100, min_length=16)], Field(description='String returned in the delivery.data property of the delivery completion event via Webhook.')] = None, **kwargs) -> None:
+    def push_messages_by_phone(self, pnp_messages_request: PnpMessagesRequest, x_line_delivery_tag: Annotated[Optional[constr(strict=True, max_length=100, min_length=16)], Field(description='String returned in the delivery.data property of the delivery completion event via Webhook.')] = None, **kwargs) -> None:
         """push_messages_by_phone  # noqa: E501
 
         Send LINE notification message  # noqa: E501
@@ -4866,7 +4890,7 @@ class LineBotClient:
         """
         return self._messaging_api.push_messages_by_phone(pnp_messages_request, x_line_delivery_tag, **kwargs)
 
-    def push_messages_by_phone_with_http_info(self, pnp_messages_request : PnpMessagesRequest, x_line_delivery_tag : Annotated[Optional[constr(strict=True, max_length=100, min_length=16)], Field(description='String returned in the delivery.data property of the delivery completion event via Webhook.')] = None, **kwargs) -> ApiResponse:
+    def push_messages_by_phone_with_http_info(self, pnp_messages_request: PnpMessagesRequest, x_line_delivery_tag: Annotated[Optional[constr(strict=True, max_length=100, min_length=16)], Field(description='String returned in the delivery.data property of the delivery completion event via Webhook.')] = None, **kwargs) -> ApiResponse:
         """push_messages_by_phone  # noqa: E501
 
         Send LINE notification message  # noqa: E501
@@ -4906,7 +4930,7 @@ class LineBotClient:
         """
         return self._messaging_api.push_messages_by_phone_with_http_info(pnp_messages_request, x_line_delivery_tag, **kwargs)
 
-    def reply_message(self, reply_message_request : ReplyMessageRequest, **kwargs) -> ReplyMessageResponse:
+    def reply_message(self, reply_message_request: ReplyMessageRequest, **kwargs) -> ReplyMessageResponse:
         """reply_message  # noqa: E501
 
         Send reply message  # noqa: E501
@@ -4931,7 +4955,7 @@ class LineBotClient:
         """
         return self._messaging_api.reply_message(reply_message_request, **kwargs)
 
-    def reply_message_with_http_info(self, reply_message_request : ReplyMessageRequest, **kwargs) -> ApiResponse:
+    def reply_message_with_http_info(self, reply_message_request: ReplyMessageRequest, **kwargs) -> ApiResponse:
         """reply_message  # noqa: E501
 
         Send reply message  # noqa: E501
@@ -4969,7 +4993,7 @@ class LineBotClient:
         """
         return self._messaging_api.reply_message_with_http_info(reply_message_request, **kwargs)
 
-    def rich_menu_batch(self, rich_menu_batch_request : RichMenuBatchRequest, **kwargs) -> None:
+    def rich_menu_batch(self, rich_menu_batch_request: RichMenuBatchRequest, **kwargs) -> None:
         """rich_menu_batch  # noqa: E501
 
         You can use this endpoint to batch control the rich menu linked to the users using the endpoint such as Link rich menu to user. The following operations are available:  1. Replace a rich menu with another rich menu for all users linked to a specific rich menu 2. Unlink a rich menu for all users linked to a specific rich menu 3. Unlink a rich menu for all users linked the rich menu   # noqa: E501
@@ -4994,7 +5018,7 @@ class LineBotClient:
         """
         return self._messaging_api.rich_menu_batch(rich_menu_batch_request, **kwargs)
 
-    def rich_menu_batch_with_http_info(self, rich_menu_batch_request : RichMenuBatchRequest, **kwargs) -> ApiResponse:
+    def rich_menu_batch_with_http_info(self, rich_menu_batch_request: RichMenuBatchRequest, **kwargs) -> ApiResponse:
         """rich_menu_batch  # noqa: E501
 
         You can use this endpoint to batch control the rich menu linked to the users using the endpoint such as Link rich menu to user. The following operations are available:  1. Replace a rich menu with another rich menu for all users linked to a specific rich menu 2. Unlink a rich menu for all users linked to a specific rich menu 3. Unlink a rich menu for all users linked the rich menu   # noqa: E501
@@ -5032,7 +5056,7 @@ class LineBotClient:
         """
         return self._messaging_api.rich_menu_batch_with_http_info(rich_menu_batch_request, **kwargs)
 
-    def set_default_rich_menu(self, rich_menu_id : Annotated[StrictStr, Field(..., description='ID of a rich menu')], **kwargs) -> None:
+    def set_default_rich_menu(self, rich_menu_id: Annotated[StrictStr, Field(..., description='ID of a rich menu')], **kwargs) -> None:
         """set_default_rich_menu  # noqa: E501
 
         Set default rich menu  # noqa: E501
@@ -5057,7 +5081,7 @@ class LineBotClient:
         """
         return self._messaging_api.set_default_rich_menu(rich_menu_id, **kwargs)
 
-    def set_default_rich_menu_with_http_info(self, rich_menu_id : Annotated[StrictStr, Field(..., description='ID of a rich menu')], **kwargs) -> ApiResponse:
+    def set_default_rich_menu_with_http_info(self, rich_menu_id: Annotated[StrictStr, Field(..., description='ID of a rich menu')], **kwargs) -> ApiResponse:
         """set_default_rich_menu  # noqa: E501
 
         Set default rich menu  # noqa: E501
@@ -5095,7 +5119,7 @@ class LineBotClient:
         """
         return self._messaging_api.set_default_rich_menu_with_http_info(rich_menu_id, **kwargs)
 
-    def set_webhook_endpoint(self, set_webhook_endpoint_request : SetWebhookEndpointRequest, **kwargs) -> None:
+    def set_webhook_endpoint(self, set_webhook_endpoint_request: SetWebhookEndpointRequest, **kwargs) -> None:
         """set_webhook_endpoint  # noqa: E501
 
         Set webhook endpoint URL  # noqa: E501
@@ -5120,7 +5144,7 @@ class LineBotClient:
         """
         return self._messaging_api.set_webhook_endpoint(set_webhook_endpoint_request, **kwargs)
 
-    def set_webhook_endpoint_with_http_info(self, set_webhook_endpoint_request : SetWebhookEndpointRequest, **kwargs) -> ApiResponse:
+    def set_webhook_endpoint_with_http_info(self, set_webhook_endpoint_request: SetWebhookEndpointRequest, **kwargs) -> ApiResponse:
         """set_webhook_endpoint  # noqa: E501
 
         Set webhook endpoint URL  # noqa: E501
@@ -5158,7 +5182,7 @@ class LineBotClient:
         """
         return self._messaging_api.set_webhook_endpoint_with_http_info(set_webhook_endpoint_request, **kwargs)
 
-    def show_loading_animation(self, show_loading_animation_request : ShowLoadingAnimationRequest, **kwargs) -> object:
+    def show_loading_animation(self, show_loading_animation_request: ShowLoadingAnimationRequest, **kwargs) -> object:
         """show_loading_animation  # noqa: E501
 
         Display a loading animation in one-on-one chats between users and LINE Official Accounts.  # noqa: E501
@@ -5183,7 +5207,7 @@ class LineBotClient:
         """
         return self._messaging_api.show_loading_animation(show_loading_animation_request, **kwargs)
 
-    def show_loading_animation_with_http_info(self, show_loading_animation_request : ShowLoadingAnimationRequest, **kwargs) -> ApiResponse:
+    def show_loading_animation_with_http_info(self, show_loading_animation_request: ShowLoadingAnimationRequest, **kwargs) -> ApiResponse:
         """show_loading_animation  # noqa: E501
 
         Display a loading animation in one-on-one chats between users and LINE Official Accounts.  # noqa: E501
@@ -5221,7 +5245,7 @@ class LineBotClient:
         """
         return self._messaging_api.show_loading_animation_with_http_info(show_loading_animation_request, **kwargs)
 
-    def test_webhook_endpoint(self, test_webhook_endpoint_request : Optional[TestWebhookEndpointRequest] = None, **kwargs) -> TestWebhookEndpointResponse:
+    def test_webhook_endpoint(self, test_webhook_endpoint_request: Optional[TestWebhookEndpointRequest] = None, **kwargs) -> TestWebhookEndpointResponse:
         """test_webhook_endpoint  # noqa: E501
 
         Test webhook endpoint  # noqa: E501
@@ -5246,7 +5270,7 @@ class LineBotClient:
         """
         return self._messaging_api.test_webhook_endpoint(test_webhook_endpoint_request, **kwargs)
 
-    def test_webhook_endpoint_with_http_info(self, test_webhook_endpoint_request : Optional[TestWebhookEndpointRequest] = None, **kwargs) -> ApiResponse:
+    def test_webhook_endpoint_with_http_info(self, test_webhook_endpoint_request: Optional[TestWebhookEndpointRequest] = None, **kwargs) -> ApiResponse:
         """test_webhook_endpoint  # noqa: E501
 
         Test webhook endpoint  # noqa: E501
@@ -5284,7 +5308,7 @@ class LineBotClient:
         """
         return self._messaging_api.test_webhook_endpoint_with_http_info(test_webhook_endpoint_request, **kwargs)
 
-    def unlink_rich_menu_id_from_user(self, user_id : Annotated[StrictStr, Field(..., description='User ID. Found in the `source` object of webhook event objects. Do not use the LINE ID used in LINE.')], **kwargs) -> None:
+    def unlink_rich_menu_id_from_user(self, user_id: Annotated[StrictStr, Field(..., description='User ID. Found in the `source` object of webhook event objects. Do not use the LINE ID used in LINE.')], **kwargs) -> None:
         """unlink_rich_menu_id_from_user  # noqa: E501
 
         Unlink rich menu from user  # noqa: E501
@@ -5309,7 +5333,7 @@ class LineBotClient:
         """
         return self._messaging_api.unlink_rich_menu_id_from_user(user_id, **kwargs)
 
-    def unlink_rich_menu_id_from_user_with_http_info(self, user_id : Annotated[StrictStr, Field(..., description='User ID. Found in the `source` object of webhook event objects. Do not use the LINE ID used in LINE.')], **kwargs) -> ApiResponse:
+    def unlink_rich_menu_id_from_user_with_http_info(self, user_id: Annotated[StrictStr, Field(..., description='User ID. Found in the `source` object of webhook event objects. Do not use the LINE ID used in LINE.')], **kwargs) -> ApiResponse:
         """unlink_rich_menu_id_from_user  # noqa: E501
 
         Unlink rich menu from user  # noqa: E501
@@ -5347,7 +5371,7 @@ class LineBotClient:
         """
         return self._messaging_api.unlink_rich_menu_id_from_user_with_http_info(user_id, **kwargs)
 
-    def unlink_rich_menu_id_from_users(self, rich_menu_bulk_unlink_request : RichMenuBulkUnlinkRequest, **kwargs) -> None:
+    def unlink_rich_menu_id_from_users(self, rich_menu_bulk_unlink_request: RichMenuBulkUnlinkRequest, **kwargs) -> None:
         """unlink_rich_menu_id_from_users  # noqa: E501
 
         Unlink rich menus from multiple users  # noqa: E501
@@ -5372,7 +5396,7 @@ class LineBotClient:
         """
         return self._messaging_api.unlink_rich_menu_id_from_users(rich_menu_bulk_unlink_request, **kwargs)
 
-    def unlink_rich_menu_id_from_users_with_http_info(self, rich_menu_bulk_unlink_request : RichMenuBulkUnlinkRequest, **kwargs) -> ApiResponse:
+    def unlink_rich_menu_id_from_users_with_http_info(self, rich_menu_bulk_unlink_request: RichMenuBulkUnlinkRequest, **kwargs) -> ApiResponse:
         """unlink_rich_menu_id_from_users  # noqa: E501
 
         Unlink rich menus from multiple users  # noqa: E501
@@ -5410,7 +5434,7 @@ class LineBotClient:
         """
         return self._messaging_api.unlink_rich_menu_id_from_users_with_http_info(rich_menu_bulk_unlink_request, **kwargs)
 
-    def update_rich_menu_alias(self, rich_menu_alias_id : Annotated[StrictStr, Field(..., description='The rich menu alias ID you want to update.')], update_rich_menu_alias_request : UpdateRichMenuAliasRequest, **kwargs) -> None:
+    def update_rich_menu_alias(self, rich_menu_alias_id: Annotated[StrictStr, Field(..., description='The rich menu alias ID you want to update.')], update_rich_menu_alias_request: UpdateRichMenuAliasRequest, **kwargs) -> None:
         """update_rich_menu_alias  # noqa: E501
 
         Update rich menu alias  # noqa: E501
@@ -5437,7 +5461,7 @@ class LineBotClient:
         """
         return self._messaging_api.update_rich_menu_alias(rich_menu_alias_id, update_rich_menu_alias_request, **kwargs)
 
-    def update_rich_menu_alias_with_http_info(self, rich_menu_alias_id : Annotated[StrictStr, Field(..., description='The rich menu alias ID you want to update.')], update_rich_menu_alias_request : UpdateRichMenuAliasRequest, **kwargs) -> ApiResponse:
+    def update_rich_menu_alias_with_http_info(self, rich_menu_alias_id: Annotated[StrictStr, Field(..., description='The rich menu alias ID you want to update.')], update_rich_menu_alias_request: UpdateRichMenuAliasRequest, **kwargs) -> ApiResponse:
         """update_rich_menu_alias  # noqa: E501
 
         Update rich menu alias  # noqa: E501
@@ -5477,7 +5501,7 @@ class LineBotClient:
         """
         return self._messaging_api.update_rich_menu_alias_with_http_info(rich_menu_alias_id, update_rich_menu_alias_request, **kwargs)
 
-    def validate_broadcast(self, validate_message_request : ValidateMessageRequest, **kwargs) -> None:
+    def validate_broadcast(self, validate_message_request: ValidateMessageRequest, **kwargs) -> None:
         """validate_broadcast  # noqa: E501
 
         Validate message objects of a broadcast message  # noqa: E501
@@ -5502,7 +5526,7 @@ class LineBotClient:
         """
         return self._messaging_api.validate_broadcast(validate_message_request, **kwargs)
 
-    def validate_broadcast_with_http_info(self, validate_message_request : ValidateMessageRequest, **kwargs) -> ApiResponse:
+    def validate_broadcast_with_http_info(self, validate_message_request: ValidateMessageRequest, **kwargs) -> ApiResponse:
         """validate_broadcast  # noqa: E501
 
         Validate message objects of a broadcast message  # noqa: E501
@@ -5540,7 +5564,7 @@ class LineBotClient:
         """
         return self._messaging_api.validate_broadcast_with_http_info(validate_message_request, **kwargs)
 
-    def validate_multicast(self, validate_message_request : ValidateMessageRequest, **kwargs) -> None:
+    def validate_multicast(self, validate_message_request: ValidateMessageRequest, **kwargs) -> None:
         """validate_multicast  # noqa: E501
 
         Validate message objects of a multicast message  # noqa: E501
@@ -5565,7 +5589,7 @@ class LineBotClient:
         """
         return self._messaging_api.validate_multicast(validate_message_request, **kwargs)
 
-    def validate_multicast_with_http_info(self, validate_message_request : ValidateMessageRequest, **kwargs) -> ApiResponse:
+    def validate_multicast_with_http_info(self, validate_message_request: ValidateMessageRequest, **kwargs) -> ApiResponse:
         """validate_multicast  # noqa: E501
 
         Validate message objects of a multicast message  # noqa: E501
@@ -5603,7 +5627,7 @@ class LineBotClient:
         """
         return self._messaging_api.validate_multicast_with_http_info(validate_message_request, **kwargs)
 
-    def validate_narrowcast(self, validate_message_request : ValidateMessageRequest, **kwargs) -> None:
+    def validate_narrowcast(self, validate_message_request: ValidateMessageRequest, **kwargs) -> None:
         """validate_narrowcast  # noqa: E501
 
         Validate message objects of a narrowcast message  # noqa: E501
@@ -5628,7 +5652,7 @@ class LineBotClient:
         """
         return self._messaging_api.validate_narrowcast(validate_message_request, **kwargs)
 
-    def validate_narrowcast_with_http_info(self, validate_message_request : ValidateMessageRequest, **kwargs) -> ApiResponse:
+    def validate_narrowcast_with_http_info(self, validate_message_request: ValidateMessageRequest, **kwargs) -> ApiResponse:
         """validate_narrowcast  # noqa: E501
 
         Validate message objects of a narrowcast message  # noqa: E501
@@ -5666,7 +5690,7 @@ class LineBotClient:
         """
         return self._messaging_api.validate_narrowcast_with_http_info(validate_message_request, **kwargs)
 
-    def validate_push(self, validate_message_request : ValidateMessageRequest, **kwargs) -> None:
+    def validate_push(self, validate_message_request: ValidateMessageRequest, **kwargs) -> None:
         """validate_push  # noqa: E501
 
         Validate message objects of a push message  # noqa: E501
@@ -5691,7 +5715,7 @@ class LineBotClient:
         """
         return self._messaging_api.validate_push(validate_message_request, **kwargs)
 
-    def validate_push_with_http_info(self, validate_message_request : ValidateMessageRequest, **kwargs) -> ApiResponse:
+    def validate_push_with_http_info(self, validate_message_request: ValidateMessageRequest, **kwargs) -> ApiResponse:
         """validate_push  # noqa: E501
 
         Validate message objects of a push message  # noqa: E501
@@ -5729,7 +5753,7 @@ class LineBotClient:
         """
         return self._messaging_api.validate_push_with_http_info(validate_message_request, **kwargs)
 
-    def validate_reply(self, validate_message_request : ValidateMessageRequest, **kwargs) -> None:
+    def validate_reply(self, validate_message_request: ValidateMessageRequest, **kwargs) -> None:
         """validate_reply  # noqa: E501
 
         Validate message objects of a reply message  # noqa: E501
@@ -5754,7 +5778,7 @@ class LineBotClient:
         """
         return self._messaging_api.validate_reply(validate_message_request, **kwargs)
 
-    def validate_reply_with_http_info(self, validate_message_request : ValidateMessageRequest, **kwargs) -> ApiResponse:
+    def validate_reply_with_http_info(self, validate_message_request: ValidateMessageRequest, **kwargs) -> ApiResponse:
         """validate_reply  # noqa: E501
 
         Validate message objects of a reply message  # noqa: E501
@@ -5792,7 +5816,7 @@ class LineBotClient:
         """
         return self._messaging_api.validate_reply_with_http_info(validate_message_request, **kwargs)
 
-    def validate_rich_menu_batch_request(self, rich_menu_batch_request : RichMenuBatchRequest, **kwargs) -> None:
+    def validate_rich_menu_batch_request(self, rich_menu_batch_request: RichMenuBatchRequest, **kwargs) -> None:
         """validate_rich_menu_batch_request  # noqa: E501
 
         Validate a request body of the Replace or unlink the linked rich menus in batches endpoint.  # noqa: E501
@@ -5817,7 +5841,7 @@ class LineBotClient:
         """
         return self._messaging_api.validate_rich_menu_batch_request(rich_menu_batch_request, **kwargs)
 
-    def validate_rich_menu_batch_request_with_http_info(self, rich_menu_batch_request : RichMenuBatchRequest, **kwargs) -> ApiResponse:
+    def validate_rich_menu_batch_request_with_http_info(self, rich_menu_batch_request: RichMenuBatchRequest, **kwargs) -> ApiResponse:
         """validate_rich_menu_batch_request  # noqa: E501
 
         Validate a request body of the Replace or unlink the linked rich menus in batches endpoint.  # noqa: E501
@@ -5855,7 +5879,7 @@ class LineBotClient:
         """
         return self._messaging_api.validate_rich_menu_batch_request_with_http_info(rich_menu_batch_request, **kwargs)
 
-    def validate_rich_menu_object(self, rich_menu_request : RichMenuRequest, **kwargs) -> None:
+    def validate_rich_menu_object(self, rich_menu_request: RichMenuRequest, **kwargs) -> None:
         """validate_rich_menu_object  # noqa: E501
 
         Validate rich menu object  # noqa: E501
@@ -5880,7 +5904,7 @@ class LineBotClient:
         """
         return self._messaging_api.validate_rich_menu_object(rich_menu_request, **kwargs)
 
-    def validate_rich_menu_object_with_http_info(self, rich_menu_request : RichMenuRequest, **kwargs) -> ApiResponse:
+    def validate_rich_menu_object_with_http_info(self, rich_menu_request: RichMenuRequest, **kwargs) -> ApiResponse:
         """validate_rich_menu_object  # noqa: E501
 
         Validate rich menu object  # noqa: E501
@@ -5918,7 +5942,7 @@ class LineBotClient:
         """
         return self._messaging_api.validate_rich_menu_object_with_http_info(rich_menu_request, **kwargs)
 
-    def get_message_content(self, message_id : Annotated[StrictStr, Field(..., description='Message ID of video or audio')], **kwargs) -> bytearray:
+    def get_message_content(self, message_id: Annotated[StrictStr, Field(..., description='Message ID of video or audio')], **kwargs) -> bytearray:
         """get_message_content  # noqa: E501
 
         Download image, video, and audio data sent from users.  # noqa: E501
@@ -5943,7 +5967,7 @@ class LineBotClient:
         """
         return self._messaging_api_blob.get_message_content(message_id, **kwargs)
 
-    def get_message_content_with_http_info(self, message_id : Annotated[StrictStr, Field(..., description='Message ID of video or audio')], **kwargs) -> ApiResponse:
+    def get_message_content_with_http_info(self, message_id: Annotated[StrictStr, Field(..., description='Message ID of video or audio')], **kwargs) -> ApiResponse:
         """get_message_content  # noqa: E501
 
         Download image, video, and audio data sent from users.  # noqa: E501
@@ -5981,7 +6005,7 @@ class LineBotClient:
         """
         return self._messaging_api_blob.get_message_content_with_http_info(message_id, **kwargs)
 
-    def get_message_content_preview(self, message_id : Annotated[StrictStr, Field(..., description='Message ID of image or video')], **kwargs) -> bytearray:
+    def get_message_content_preview(self, message_id: Annotated[StrictStr, Field(..., description='Message ID of image or video')], **kwargs) -> bytearray:
         """get_message_content_preview  # noqa: E501
 
         Get a preview image of the image or video  # noqa: E501
@@ -6006,7 +6030,7 @@ class LineBotClient:
         """
         return self._messaging_api_blob.get_message_content_preview(message_id, **kwargs)
 
-    def get_message_content_preview_with_http_info(self, message_id : Annotated[StrictStr, Field(..., description='Message ID of image or video')], **kwargs) -> ApiResponse:
+    def get_message_content_preview_with_http_info(self, message_id: Annotated[StrictStr, Field(..., description='Message ID of image or video')], **kwargs) -> ApiResponse:
         """get_message_content_preview  # noqa: E501
 
         Get a preview image of the image or video  # noqa: E501
@@ -6044,7 +6068,7 @@ class LineBotClient:
         """
         return self._messaging_api_blob.get_message_content_preview_with_http_info(message_id, **kwargs)
 
-    def get_message_content_transcoding_by_message_id(self, message_id : Annotated[StrictStr, Field(..., description='Message ID of video or audio')], **kwargs) -> GetMessageContentTranscodingResponse:
+    def get_message_content_transcoding_by_message_id(self, message_id: Annotated[StrictStr, Field(..., description='Message ID of video or audio')], **kwargs) -> GetMessageContentTranscodingResponse:
         """get_message_content_transcoding_by_message_id  # noqa: E501
 
         Verify the preparation status of a video or audio for getting  # noqa: E501
@@ -6069,7 +6093,7 @@ class LineBotClient:
         """
         return self._messaging_api_blob.get_message_content_transcoding_by_message_id(message_id, **kwargs)
 
-    def get_message_content_transcoding_by_message_id_with_http_info(self, message_id : Annotated[StrictStr, Field(..., description='Message ID of video or audio')], **kwargs) -> ApiResponse:
+    def get_message_content_transcoding_by_message_id_with_http_info(self, message_id: Annotated[StrictStr, Field(..., description='Message ID of video or audio')], **kwargs) -> ApiResponse:
         """get_message_content_transcoding_by_message_id  # noqa: E501
 
         Verify the preparation status of a video or audio for getting  # noqa: E501
@@ -6107,7 +6131,7 @@ class LineBotClient:
         """
         return self._messaging_api_blob.get_message_content_transcoding_by_message_id_with_http_info(message_id, **kwargs)
 
-    def get_rich_menu_image(self, rich_menu_id : Annotated[StrictStr, Field(..., description='ID of the rich menu with the image to be downloaded')], **kwargs) -> bytearray:
+    def get_rich_menu_image(self, rich_menu_id: Annotated[StrictStr, Field(..., description='ID of the rich menu with the image to be downloaded')], **kwargs) -> bytearray:
         """get_rich_menu_image  # noqa: E501
 
         Download rich menu image.  # noqa: E501
@@ -6132,7 +6156,7 @@ class LineBotClient:
         """
         return self._messaging_api_blob.get_rich_menu_image(rich_menu_id, **kwargs)
 
-    def get_rich_menu_image_with_http_info(self, rich_menu_id : Annotated[StrictStr, Field(..., description='ID of the rich menu with the image to be downloaded')], **kwargs) -> ApiResponse:
+    def get_rich_menu_image_with_http_info(self, rich_menu_id: Annotated[StrictStr, Field(..., description='ID of the rich menu with the image to be downloaded')], **kwargs) -> ApiResponse:
         """get_rich_menu_image  # noqa: E501
 
         Download rich menu image.  # noqa: E501
@@ -6170,7 +6194,7 @@ class LineBotClient:
         """
         return self._messaging_api_blob.get_rich_menu_image_with_http_info(rich_menu_id, **kwargs)
 
-    def set_rich_menu_image(self, rich_menu_id : Annotated[StrictStr, Field(..., description='The ID of the rich menu to attach the image to')], body : Optional[Union[StrictBytes, StrictStr]] = None, **kwargs) -> None:
+    def set_rich_menu_image(self, rich_menu_id: Annotated[StrictStr, Field(..., description='The ID of the rich menu to attach the image to')], body: Optional[Union[StrictBytes, StrictStr]] = None, **kwargs) -> None:
         """set_rich_menu_image  # noqa: E501
 
         Upload rich menu image  # noqa: E501
@@ -6197,7 +6221,7 @@ class LineBotClient:
         """
         return self._messaging_api_blob.set_rich_menu_image(rich_menu_id, body, **kwargs)
 
-    def set_rich_menu_image_with_http_info(self, rich_menu_id : Annotated[StrictStr, Field(..., description='The ID of the rich menu to attach the image to')], body : Optional[Union[StrictBytes, StrictStr]] = None, **kwargs) -> ApiResponse:
+    def set_rich_menu_image_with_http_info(self, rich_menu_id: Annotated[StrictStr, Field(..., description='The ID of the rich menu to attach the image to')], body: Optional[Union[StrictBytes, StrictStr]] = None, **kwargs) -> ApiResponse:
         """set_rich_menu_image  # noqa: E501
 
         Upload rich menu image  # noqa: E501
@@ -6237,7 +6261,7 @@ class LineBotClient:
         """
         return self._messaging_api_blob.set_rich_menu_image_with_http_info(rich_menu_id, body, **kwargs)
 
-    def acquire_chat_control(self, chat_id : Annotated[StrictStr, Field(..., description='The `userId`, `roomId`, or `groupId`')], acquire_chat_control_request : Optional[AcquireChatControlRequest] = None, **kwargs) -> None:
+    def acquire_chat_control(self, chat_id: Annotated[StrictStr, Field(..., description='The `userId`, `roomId`, or `groupId`')], acquire_chat_control_request: Optional[AcquireChatControlRequest] = None, **kwargs) -> None:
         """acquire_chat_control  # noqa: E501
 
         If the Standby Channel wants to take the initiative (Chat Control), it calls the Acquire Control API. The channel that was previously an Active Channel will automatically switch to a Standby Channel.   # noqa: E501
@@ -6264,7 +6288,7 @@ class LineBotClient:
         """
         return self._line_module.acquire_chat_control(chat_id, acquire_chat_control_request, **kwargs)
 
-    def acquire_chat_control_with_http_info(self, chat_id : Annotated[StrictStr, Field(..., description='The `userId`, `roomId`, or `groupId`')], acquire_chat_control_request : Optional[AcquireChatControlRequest] = None, **kwargs) -> ApiResponse:
+    def acquire_chat_control_with_http_info(self, chat_id: Annotated[StrictStr, Field(..., description='The `userId`, `roomId`, or `groupId`')], acquire_chat_control_request: Optional[AcquireChatControlRequest] = None, **kwargs) -> ApiResponse:
         """acquire_chat_control  # noqa: E501
 
         If the Standby Channel wants to take the initiative (Chat Control), it calls the Acquire Control API. The channel that was previously an Active Channel will automatically switch to a Standby Channel.   # noqa: E501
@@ -6304,7 +6328,7 @@ class LineBotClient:
         """
         return self._line_module.acquire_chat_control_with_http_info(chat_id, acquire_chat_control_request, **kwargs)
 
-    def detach_module(self, detach_module_request : Optional[DetachModuleRequest] = None, **kwargs) -> None:
+    def detach_module(self, detach_module_request: Optional[DetachModuleRequest] = None, **kwargs) -> None:
         """detach_module  # noqa: E501
 
         The module channel admin calls the Detach API to detach the module channel from a LINE Official Account.  # noqa: E501
@@ -6329,7 +6353,7 @@ class LineBotClient:
         """
         return self._line_module.detach_module(detach_module_request, **kwargs)
 
-    def detach_module_with_http_info(self, detach_module_request : Optional[DetachModuleRequest] = None, **kwargs) -> ApiResponse:
+    def detach_module_with_http_info(self, detach_module_request: Optional[DetachModuleRequest] = None, **kwargs) -> ApiResponse:
         """detach_module  # noqa: E501
 
         The module channel admin calls the Detach API to detach the module channel from a LINE Official Account.  # noqa: E501
@@ -6367,7 +6391,7 @@ class LineBotClient:
         """
         return self._line_module.detach_module_with_http_info(detach_module_request, **kwargs)
 
-    def get_modules(self, start : Annotated[Optional[StrictStr], Field(description="Value of the continuation token found in the next property of the JSON object returned in the response. If you can't get all basic information about the bots in one request, include this parameter to get the remaining array. ")] = None, limit : Annotated[Optional[conint(strict=True, le=100)], Field(description='Specify the maximum number of bots that you get basic information from. The default value is 100. Max value: 100 ')] = None, **kwargs) -> GetModulesResponse:
+    def get_modules(self, start: Annotated[Optional[StrictStr], Field(description="Value of the continuation token found in the next property of the JSON object returned in the response. If you can't get all basic information about the bots in one request, include this parameter to get the remaining array. ")] = None, limit: Annotated[Optional[conint(strict=True, le=100)], Field(description='Specify the maximum number of bots that you get basic information from. The default value is 100. Max value: 100 ')] = None, **kwargs) -> GetModulesResponse:
         """get_modules  # noqa: E501
 
         Gets a list of basic information about the bots of multiple LINE Official Accounts that have attached module channels.  # noqa: E501
@@ -6394,7 +6418,7 @@ class LineBotClient:
         """
         return self._line_module.get_modules(start, limit, **kwargs)
 
-    def get_modules_with_http_info(self, start : Annotated[Optional[StrictStr], Field(description="Value of the continuation token found in the next property of the JSON object returned in the response. If you can't get all basic information about the bots in one request, include this parameter to get the remaining array. ")] = None, limit : Annotated[Optional[conint(strict=True, le=100)], Field(description='Specify the maximum number of bots that you get basic information from. The default value is 100. Max value: 100 ')] = None, **kwargs) -> ApiResponse:
+    def get_modules_with_http_info(self, start: Annotated[Optional[StrictStr], Field(description="Value of the continuation token found in the next property of the JSON object returned in the response. If you can't get all basic information about the bots in one request, include this parameter to get the remaining array. ")] = None, limit: Annotated[Optional[conint(strict=True, le=100)], Field(description='Specify the maximum number of bots that you get basic information from. The default value is 100. Max value: 100 ')] = None, **kwargs) -> ApiResponse:
         """get_modules  # noqa: E501
 
         Gets a list of basic information about the bots of multiple LINE Official Accounts that have attached module channels.  # noqa: E501
@@ -6434,7 +6458,7 @@ class LineBotClient:
         """
         return self._line_module.get_modules_with_http_info(start, limit, **kwargs)
 
-    def release_chat_control(self, chat_id : Annotated[StrictStr, Field(..., description='The `userId`, `roomId`, or `groupId`')], **kwargs) -> None:
+    def release_chat_control(self, chat_id: Annotated[StrictStr, Field(..., description='The `userId`, `roomId`, or `groupId`')], **kwargs) -> None:
         """release_chat_control  # noqa: E501
 
         To return the initiative (Chat Control) of Active Channel to Primary Channel, call the Release Control API.   # noqa: E501
@@ -6459,7 +6483,7 @@ class LineBotClient:
         """
         return self._line_module.release_chat_control(chat_id, **kwargs)
 
-    def release_chat_control_with_http_info(self, chat_id : Annotated[StrictStr, Field(..., description='The `userId`, `roomId`, or `groupId`')], **kwargs) -> ApiResponse:
+    def release_chat_control_with_http_info(self, chat_id: Annotated[StrictStr, Field(..., description='The `userId`, `roomId`, or `groupId`')], **kwargs) -> ApiResponse:
         """release_chat_control  # noqa: E501
 
         To return the initiative (Chat Control) of Active Channel to Primary Channel, call the Release Control API.   # noqa: E501
@@ -6497,7 +6521,7 @@ class LineBotClient:
         """
         return self._line_module.release_chat_control_with_http_info(chat_id, **kwargs)
 
-    def attach_module(self, grant_type : Annotated[StrictStr, Field(..., description='authorization_code')], code : Annotated[StrictStr, Field(..., description='Authorization code received from the LINE Platform.')], redirect_uri : Annotated[StrictStr, Field(..., description='Specify the redirect_uri specified in the URL for authentication and authorization.')], code_verifier : Annotated[Optional[StrictStr], Field(description='Specify when using PKCE (Proof Key for Code Exchange) defined in the OAuth 2.0 extension specification as a countermeasure against authorization code interception attacks.')] = None, client_id : Annotated[Optional[StrictStr], Field(description='Instead of using Authorization header, you can use this parameter to specify the channel ID of the module channel. You can find the channel ID of the module channel in the LINE Developers Console. ')] = None, client_secret : Annotated[Optional[StrictStr], Field(description='Instead of using Authorization header, you can use this parameter to specify the channel secret of the module channel. You can find the channel secret of the module channel in the LINE Developers Console. ')] = None, region : Annotated[Optional[StrictStr], Field(description='If you specified a value for region in the URL for authentication and authorization, specify the same value. ')] = None, basic_search_id : Annotated[Optional[StrictStr], Field(description='If you specified a value for basic_search_id in the URL for authentication and authorization, specify the same value.')] = None, scope : Annotated[Optional[StrictStr], Field(description='If you specified a value for scope in the URL for authentication and authorization, specify the same value.')] = None, brand_type : Annotated[Optional[StrictStr], Field(description='If you specified a value for brand_type in the URL for authentication and authorization, specify the same value.')] = None, **kwargs) -> AttachModuleResponse:
+    def attach_module(self, grant_type: Annotated[StrictStr, Field(..., description='authorization_code')], code: Annotated[StrictStr, Field(..., description='Authorization code received from the LINE Platform.')], redirect_uri: Annotated[StrictStr, Field(..., description='Specify the redirect_uri specified in the URL for authentication and authorization.')], code_verifier: Annotated[Optional[StrictStr], Field(description='Specify when using PKCE (Proof Key for Code Exchange) defined in the OAuth 2.0 extension specification as a countermeasure against authorization code interception attacks.')] = None, client_id: Annotated[Optional[StrictStr], Field(description='Instead of using Authorization header, you can use this parameter to specify the channel ID of the module channel. You can find the channel ID of the module channel in the LINE Developers Console. ')] = None, client_secret: Annotated[Optional[StrictStr], Field(description='Instead of using Authorization header, you can use this parameter to specify the channel secret of the module channel. You can find the channel secret of the module channel in the LINE Developers Console. ')] = None, region: Annotated[Optional[StrictStr], Field(description='If you specified a value for region in the URL for authentication and authorization, specify the same value. ')] = None, basic_search_id: Annotated[Optional[StrictStr], Field(description='If you specified a value for basic_search_id in the URL for authentication and authorization, specify the same value.')] = None, scope: Annotated[Optional[StrictStr], Field(description='If you specified a value for scope in the URL for authentication and authorization, specify the same value.')] = None, brand_type: Annotated[Optional[StrictStr], Field(description='If you specified a value for brand_type in the URL for authentication and authorization, specify the same value.')] = None, **kwargs) -> AttachModuleResponse:
         """attach_module  # noqa: E501
 
         Attach by operation of the module channel provider  # noqa: E501
@@ -6540,7 +6564,7 @@ class LineBotClient:
         """
         return self._line_module_attach.attach_module(grant_type, code, redirect_uri, code_verifier, client_id, client_secret, region, basic_search_id, scope, brand_type, **kwargs)
 
-    def attach_module_with_http_info(self, grant_type : Annotated[StrictStr, Field(..., description='authorization_code')], code : Annotated[StrictStr, Field(..., description='Authorization code received from the LINE Platform.')], redirect_uri : Annotated[StrictStr, Field(..., description='Specify the redirect_uri specified in the URL for authentication and authorization.')], code_verifier : Annotated[Optional[StrictStr], Field(description='Specify when using PKCE (Proof Key for Code Exchange) defined in the OAuth 2.0 extension specification as a countermeasure against authorization code interception attacks.')] = None, client_id : Annotated[Optional[StrictStr], Field(description='Instead of using Authorization header, you can use this parameter to specify the channel ID of the module channel. You can find the channel ID of the module channel in the LINE Developers Console. ')] = None, client_secret : Annotated[Optional[StrictStr], Field(description='Instead of using Authorization header, you can use this parameter to specify the channel secret of the module channel. You can find the channel secret of the module channel in the LINE Developers Console. ')] = None, region : Annotated[Optional[StrictStr], Field(description='If you specified a value for region in the URL for authentication and authorization, specify the same value. ')] = None, basic_search_id : Annotated[Optional[StrictStr], Field(description='If you specified a value for basic_search_id in the URL for authentication and authorization, specify the same value.')] = None, scope : Annotated[Optional[StrictStr], Field(description='If you specified a value for scope in the URL for authentication and authorization, specify the same value.')] = None, brand_type : Annotated[Optional[StrictStr], Field(description='If you specified a value for brand_type in the URL for authentication and authorization, specify the same value.')] = None, **kwargs) -> ApiResponse:
+    def attach_module_with_http_info(self, grant_type: Annotated[StrictStr, Field(..., description='authorization_code')], code: Annotated[StrictStr, Field(..., description='Authorization code received from the LINE Platform.')], redirect_uri: Annotated[StrictStr, Field(..., description='Specify the redirect_uri specified in the URL for authentication and authorization.')], code_verifier: Annotated[Optional[StrictStr], Field(description='Specify when using PKCE (Proof Key for Code Exchange) defined in the OAuth 2.0 extension specification as a countermeasure against authorization code interception attacks.')] = None, client_id: Annotated[Optional[StrictStr], Field(description='Instead of using Authorization header, you can use this parameter to specify the channel ID of the module channel. You can find the channel ID of the module channel in the LINE Developers Console. ')] = None, client_secret: Annotated[Optional[StrictStr], Field(description='Instead of using Authorization header, you can use this parameter to specify the channel secret of the module channel. You can find the channel secret of the module channel in the LINE Developers Console. ')] = None, region: Annotated[Optional[StrictStr], Field(description='If you specified a value for region in the URL for authentication and authorization, specify the same value. ')] = None, basic_search_id: Annotated[Optional[StrictStr], Field(description='If you specified a value for basic_search_id in the URL for authentication and authorization, specify the same value.')] = None, scope: Annotated[Optional[StrictStr], Field(description='If you specified a value for scope in the URL for authentication and authorization, specify the same value.')] = None, brand_type: Annotated[Optional[StrictStr], Field(description='If you specified a value for brand_type in the URL for authentication and authorization, specify the same value.')] = None, **kwargs) -> ApiResponse:
         """attach_module  # noqa: E501
 
         Attach by operation of the module channel provider  # noqa: E501
@@ -6596,7 +6620,7 @@ class LineBotClient:
         """
         return self._line_module_attach.attach_module_with_http_info(grant_type, code, redirect_uri, code_verifier, client_id, client_secret, region, basic_search_id, scope, brand_type, **kwargs)
 
-    def mission_sticker_v3(self, mission_sticker_request : MissionStickerRequest, **kwargs) -> None:
+    def mission_sticker_v3(self, mission_sticker_request: MissionStickerRequest, **kwargs) -> None:
         """mission_sticker_v3  # noqa: E501
 
         Sends a mission sticker.  # noqa: E501
@@ -6621,7 +6645,7 @@ class LineBotClient:
         """
         return self._shop.mission_sticker_v3(mission_sticker_request, **kwargs)
 
-    def mission_sticker_v3_with_http_info(self, mission_sticker_request : MissionStickerRequest, **kwargs) -> ApiResponse:
+    def mission_sticker_v3_with_http_info(self, mission_sticker_request: MissionStickerRequest, **kwargs) -> ApiResponse:
         """mission_sticker_v3  # noqa: E501
 
         Sends a mission sticker.  # noqa: E501
@@ -6658,3 +6682,4 @@ class LineBotClient:
         :rtype: None
         """
         return self._shop.mission_sticker_v3_with_http_info(mission_sticker_request, **kwargs)
+

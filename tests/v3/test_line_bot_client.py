@@ -55,6 +55,24 @@ class TestLineBotClientInit(unittest.TestCase):
         with LineBotClient(channel_access_token="test-token") as client:
             self.assertIsNotNone(client)
 
+    def test_kwargs_forwarded_to_configuration(self):
+        """Verify that extra kwargs (e.g., host) are forwarded to Configuration."""
+        with HTTPServer() as httpserver:
+            httpserver.expect_request(
+                uri="/v2/bot/profile/U123",
+                method="GET",
+            ).respond_with_json(
+                {"displayName": "T", "userId": "U123"}, status=200
+            )
+
+            with LineBotClient(
+                channel_access_token="test-token",
+                host=httpserver.url_for("/")
+            ) as client:
+                response = client.get_profile(user_id="U123")
+
+            self.assertEqual(response.user_id, "U123")
+
 
 class TestLineBotClientMessagingApi(unittest.TestCase):
     """Test MessagingApi delegation through LineBotClient."""
@@ -374,10 +392,11 @@ class TestLineBotClientShop(unittest.TestCase):
 class TestLineBotClientAuthorizationHeader(unittest.TestCase):
     """Test that the Authorization header is correctly propagated to all domains."""
 
-    def _assert_bearer_token(self, httpserver, uri, method, token):
-        """Helper: call an endpoint and verify the Authorization header."""
+    def _assert_bearer_token(self, httpserver, expected_token):
         request, _ = httpserver.log[-1]
-        self.assertEqual(request.headers.get("Authorization"), f"Bearer {token}")
+        self.assertEqual(
+            request.headers.get("Authorization"), f"Bearer {expected_token}"
+        )
 
     def test_messaging_api_sends_bearer_token(self):
         with HTTPServer() as httpserver:
@@ -394,10 +413,7 @@ class TestLineBotClientAuthorizationHeader(unittest.TestCase):
             ) as client:
                 client.get_profile(user_id="U123")
 
-            request, _ = httpserver.log[0]
-            self.assertEqual(
-                request.headers.get("Authorization"), "Bearer my-secret-token"
-            )
+            self._assert_bearer_token(httpserver, "my-secret-token")
 
     def test_insight_api_sends_bearer_token(self):
         with HTTPServer() as httpserver:
@@ -415,10 +431,7 @@ class TestLineBotClientAuthorizationHeader(unittest.TestCase):
             ) as client:
                 client.get_number_of_followers(var_date="20240101")
 
-            request, _ = httpserver.log[0]
-            self.assertEqual(
-                request.headers.get("Authorization"), "Bearer insight-token"
-            )
+            self._assert_bearer_token(httpserver, "insight-token")
 
     def test_audience_api_sends_bearer_token(self):
         with HTTPServer() as httpserver:
@@ -433,10 +446,7 @@ class TestLineBotClientAuthorizationHeader(unittest.TestCase):
             ) as client:
                 client.delete_audience_group(audience_group_id=99999)
 
-            request, _ = httpserver.log[0]
-            self.assertEqual(
-                request.headers.get("Authorization"), "Bearer audience-token"
-            )
+            self._assert_bearer_token(httpserver, "audience-token")
 
     def test_liff_api_sends_bearer_token(self):
         with HTTPServer() as httpserver:
@@ -451,10 +461,7 @@ class TestLineBotClientAuthorizationHeader(unittest.TestCase):
             ) as client:
                 client.get_all_liff_apps()
 
-            request, _ = httpserver.log[0]
-            self.assertEqual(
-                request.headers.get("Authorization"), "Bearer liff-token"
-            )
+            self._assert_bearer_token(httpserver, "liff-token")
 
     def test_module_api_sends_bearer_token(self):
         with HTTPServer() as httpserver:
@@ -469,10 +476,7 @@ class TestLineBotClientAuthorizationHeader(unittest.TestCase):
             ) as client:
                 client.get_modules()
 
-            request, _ = httpserver.log[0]
-            self.assertEqual(
-                request.headers.get("Authorization"), "Bearer module-token"
-            )
+            self._assert_bearer_token(httpserver, "module-token")
 
     def test_shop_api_sends_bearer_token(self):
         with HTTPServer() as httpserver:
@@ -493,10 +497,123 @@ class TestLineBotClientAuthorizationHeader(unittest.TestCase):
                 )
                 client.mission_sticker_v3(mission_sticker_request=req)
 
-            request, _ = httpserver.log[0]
-            self.assertEqual(
-                request.headers.get("Authorization"), "Bearer shop-token"
+            self._assert_bearer_token(httpserver, "shop-token")
+
+
+class TestLineBotClientWithHttpInfo(unittest.TestCase):
+    """Test _with_http_info methods return ApiResponse with status/headers/data."""
+
+    def test_push_message_with_http_info(self):
+        with HTTPServer() as httpserver:
+            httpserver.expect_request(
+                uri="/v2/bot/message/push",
+                method="POST",
+            ).respond_with_json(
+                {"sentMessages": [{"id": "msg001", "quoteToken": "qt001"}]},
+                status=200
             )
+
+            with LineBotClient(
+                channel_access_token="test-token",
+                host=httpserver.url_for("/")
+            ) as client:
+                req = PushMessageRequest(
+                    to="U123",
+                    messages=[TextMessage(text="hello")]
+                )
+                api_response = client.push_message_with_http_info(
+                    push_message_request=req
+                )
+
+            self.assertEqual(api_response.status_code, 200)
+            self.assertIsNotNone(api_response.data)
+            self.assertEqual(api_response.data.sent_messages[0].id, "msg001")
+
+    def test_reply_message_with_http_info(self):
+        with HTTPServer() as httpserver:
+            httpserver.expect_request(
+                uri="/v2/bot/message/reply",
+                method="POST",
+            ).respond_with_json(
+                {"sentMessages": [{"id": "msg002", "quoteToken": "qt002"}]},
+                status=200
+            )
+
+            with LineBotClient(
+                channel_access_token="test-token",
+                host=httpserver.url_for("/")
+            ) as client:
+                req = ReplyMessageRequest(
+                    replyToken="reply-token-xxx",
+                    messages=[TextMessage(text="hi")]
+                )
+                api_response = client.reply_message_with_http_info(
+                    reply_message_request=req
+                )
+
+            self.assertEqual(api_response.status_code, 200)
+            self.assertIsNotNone(api_response.headers)
+
+    def test_get_profile_with_http_info(self):
+        with HTTPServer() as httpserver:
+            httpserver.expect_request(
+                uri="/v2/bot/profile/U123",
+                method="GET",
+            ).respond_with_json(
+                {"displayName": "Test", "userId": "U123"}, status=200
+            )
+
+            with LineBotClient(
+                channel_access_token="test-token",
+                host=httpserver.url_for("/")
+            ) as client:
+                api_response = client.get_profile_with_http_info(user_id="U123")
+
+            self.assertEqual(api_response.status_code, 200)
+            self.assertEqual(api_response.data.user_id, "U123")
+            self.assertEqual(api_response.data.display_name, "Test")
+
+
+class TestLineBotClientBlobApi(unittest.TestCase):
+    """Test MessagingApiBlob delegation through LineBotClient."""
+
+    def test_get_message_content(self):
+        content = b"fake-binary-content"
+        with HTTPServer() as httpserver:
+            httpserver.expect_request(
+                uri="/v2/bot/message/msg123/content",
+                method="GET",
+            ).respond_with_data(content, status=200, content_type="image/jpeg")
+
+            with LineBotClient(
+                channel_access_token="test-token",
+                host=httpserver.url_for("/")
+            ) as client:
+                result = client.get_message_content(message_id="msg123")
+
+            self.assertEqual(result, content)
+            request, _ = httpserver.log[0]
+            self.assertEqual(request.method, "GET")
+            self.assertEqual(request.path, "/v2/bot/message/msg123/content")
+
+    def test_get_message_content_with_http_info(self):
+        content = b"fake-binary-content"
+        with HTTPServer() as httpserver:
+            httpserver.expect_request(
+                uri="/v2/bot/message/msg456/content",
+                method="GET",
+            ).respond_with_data(content, status=200, content_type="video/mp4")
+
+            with LineBotClient(
+                channel_access_token="test-token",
+                host=httpserver.url_for("/")
+            ) as client:
+                api_response = client.get_message_content_with_http_info(
+                    message_id="msg456"
+                )
+
+            self.assertEqual(api_response.status_code, 200)
+            self.assertIsNotNone(api_response.data)
 
 
 class TestLineBotClientErrors(unittest.TestCase):

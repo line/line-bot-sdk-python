@@ -154,6 +154,8 @@ class CodegenCommand(Command):
             )
             async_source = re.sub("stream=(stream|False|True), ", "", async_source)
 
+            async_source = re.sub("LineBotClient'", "AsyncLineBotClient'", async_source)
+            async_source = re.sub("LineBotClient\\(", "AsyncLineBotClient(", async_source)
             async_source = re.sub("MessagingApiBlob'", "AsyncMessagingApiBlob'", async_source)
             async_source = re.sub("MessagingApiBlob\\(", "AsyncMessagingApiBlob(", async_source)
             async_source = re.sub("MessagingApi'", "AsyncMessagingApi'", async_source)

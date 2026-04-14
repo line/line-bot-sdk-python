@@ -4363,7 +4363,7 @@ class AsyncMessagingApi(object):
     def get_pnp_message_statistics(self, var_date : Annotated[constr(strict=True), Field(..., description="Date the message was sent  Format: `yyyyMMdd` (Example:`20211231`) Time zone: UTC+9 ")], async_req: Optional[bool]=None, **kwargs) -> Union[NumberOfMessagesResponse, Awaitable[NumberOfMessagesResponse]]:  # noqa: E501
         """get_pnp_message_statistics  # noqa: E501
 
-        Get number of sent LINE notification messages　  # noqa: E501
+        Get number of sent LINE notification messages  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -4394,7 +4394,7 @@ class AsyncMessagingApi(object):
     def get_pnp_message_statistics_with_http_info(self, var_date : Annotated[constr(strict=True), Field(..., description="Date the message was sent  Format: `yyyyMMdd` (Example:`20211231`) Time zone: UTC+9 ")], **kwargs) -> ApiResponse:  # noqa: E501
         """get_pnp_message_statistics  # noqa: E501
 
-        Get number of sent LINE notification messages　  # noqa: E501
+        Get number of sent LINE notification messages  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 

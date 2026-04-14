@@ -2215,24 +2215,24 @@ class AsyncLineBotClient:
         """
         return await self._messaging_api_blob.get_rich_menu_image_with_http_info(rich_menu_id)
 
-    async def set_rich_menu_image(self, rich_menu_id: Annotated[StrictStr, Field(..., description='The ID of the rich menu to attach the image to')], body: Optional[Union[StrictBytes, StrictStr]] = None) -> None:
+    async def set_rich_menu_image(self, rich_menu_id: Annotated[StrictStr, Field(..., description='The ID of the rich menu to attach the image to')], body: Union[StrictBytes, StrictStr]) -> None:
         """Upload rich menu image
 
         :param rich_menu_id: The ID of the rich menu to attach the image to (required)
         :type rich_menu_id: str
-        :param body:
+        :param body: (required)
         :type body: bytearray
         :return: Returns the result object.
         :rtype: None
         """
         return await self._messaging_api_blob.set_rich_menu_image(rich_menu_id, body)
 
-    async def set_rich_menu_image_with_http_info(self, rich_menu_id: Annotated[StrictStr, Field(..., description='The ID of the rich menu to attach the image to')], body: Optional[Union[StrictBytes, StrictStr]] = None) -> ApiResponse:
+    async def set_rich_menu_image_with_http_info(self, rich_menu_id: Annotated[StrictStr, Field(..., description='The ID of the rich menu to attach the image to')], body: Union[StrictBytes, StrictStr]) -> ApiResponse:
         """Upload rich menu image
 
         :param rich_menu_id: The ID of the rich menu to attach the image to (required)
         :type rich_menu_id: str
-        :param body:
+        :param body: (required)
         :type body: bytearray
         :return: Returns the result object.
         :rtype: None

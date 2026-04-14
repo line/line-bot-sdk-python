@@ -2170,7 +2170,7 @@ Name | Type | Description  | Notes
 
 
 
-Get number of sent LINE notification messages　
+Get number of sent LINE notification messages
 
 ### Example
 

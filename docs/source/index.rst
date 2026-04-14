@@ -12,7 +12,6 @@ Contents:
    :maxdepth: 4
 
    linebot.v3
-   linebot
 
 
 Indices and tables

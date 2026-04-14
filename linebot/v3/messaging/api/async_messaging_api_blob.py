@@ -58,14 +58,9 @@ class AsyncMessagingApiBlob(object):
 
     @validate_arguments
     def get_message_content(self, message_id : Annotated[StrictStr, Field(..., description="Message ID of video or audio")], async_req: Optional[bool]=None, **kwargs) -> Union[bytearray, Awaitable[bytearray]]:  # noqa: E501
-        """get_message_content  # noqa: E501
+        """
 
-        Download image, video, and audio data sent from users.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_message_content(message_id, async_req=True)
-        >>> result = thread.get()
+        Download image, video, and audio data sent from users.
 
         :param message_id: Message ID of video or audio (required)
         :type message_id: str
@@ -76,8 +71,6 @@ class AsyncMessagingApiBlob(object):
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: bytearray
         """
         kwargs['_return_http_data_only'] = True
@@ -89,14 +82,9 @@ class AsyncMessagingApiBlob(object):
 
     @validate_arguments
     def get_message_content_with_http_info(self, message_id : Annotated[StrictStr, Field(..., description="Message ID of video or audio")], **kwargs) -> ApiResponse:  # noqa: E501
-        """get_message_content  # noqa: E501
+        """
 
-        Download image, video, and audio data sent from users.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_message_content_with_http_info(message_id, async_req=True)
-        >>> result = thread.get()
+        Download image, video, and audio data sent from users.
 
         :param message_id: Message ID of video or audio (required)
         :type message_id: str
@@ -120,8 +108,6 @@ class AsyncMessagingApiBlob(object):
         :type _request_auth: dict, optional
         :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(bytearray, status_code(int), headers(HTTPHeaderDict))
         """
 
@@ -220,14 +206,9 @@ class AsyncMessagingApiBlob(object):
 
     @validate_arguments
     def get_message_content_preview(self, message_id : Annotated[StrictStr, Field(..., description="Message ID of image or video")], async_req: Optional[bool]=None, **kwargs) -> Union[bytearray, Awaitable[bytearray]]:  # noqa: E501
-        """get_message_content_preview  # noqa: E501
+        """
 
-        Get a preview image of the image or video  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_message_content_preview(message_id, async_req=True)
-        >>> result = thread.get()
+        Get a preview image of the image or video
 
         :param message_id: Message ID of image or video (required)
         :type message_id: str
@@ -238,8 +219,6 @@ class AsyncMessagingApiBlob(object):
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: bytearray
         """
         kwargs['_return_http_data_only'] = True
@@ -251,14 +230,9 @@ class AsyncMessagingApiBlob(object):
 
     @validate_arguments
     def get_message_content_preview_with_http_info(self, message_id : Annotated[StrictStr, Field(..., description="Message ID of image or video")], **kwargs) -> ApiResponse:  # noqa: E501
-        """get_message_content_preview  # noqa: E501
+        """
 
-        Get a preview image of the image or video  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_message_content_preview_with_http_info(message_id, async_req=True)
-        >>> result = thread.get()
+        Get a preview image of the image or video
 
         :param message_id: Message ID of image or video (required)
         :type message_id: str
@@ -282,8 +256,6 @@ class AsyncMessagingApiBlob(object):
         :type _request_auth: dict, optional
         :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(bytearray, status_code(int), headers(HTTPHeaderDict))
         """
 
@@ -382,14 +354,9 @@ class AsyncMessagingApiBlob(object):
 
     @validate_arguments
     def get_message_content_transcoding_by_message_id(self, message_id : Annotated[StrictStr, Field(..., description="Message ID of video or audio")], async_req: Optional[bool]=None, **kwargs) -> Union[GetMessageContentTranscodingResponse, Awaitable[GetMessageContentTranscodingResponse]]:  # noqa: E501
-        """get_message_content_transcoding_by_message_id  # noqa: E501
+        """
 
-        Verify the preparation status of a video or audio for getting  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_message_content_transcoding_by_message_id(message_id, async_req=True)
-        >>> result = thread.get()
+        Verify the preparation status of a video or audio for getting
 
         :param message_id: Message ID of video or audio (required)
         :type message_id: str
@@ -400,8 +367,6 @@ class AsyncMessagingApiBlob(object):
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: GetMessageContentTranscodingResponse
         """
         kwargs['_return_http_data_only'] = True
@@ -413,14 +378,9 @@ class AsyncMessagingApiBlob(object):
 
     @validate_arguments
     def get_message_content_transcoding_by_message_id_with_http_info(self, message_id : Annotated[StrictStr, Field(..., description="Message ID of video or audio")], **kwargs) -> ApiResponse:  # noqa: E501
-        """get_message_content_transcoding_by_message_id  # noqa: E501
+        """
 
-        Verify the preparation status of a video or audio for getting  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_message_content_transcoding_by_message_id_with_http_info(message_id, async_req=True)
-        >>> result = thread.get()
+        Verify the preparation status of a video or audio for getting
 
         :param message_id: Message ID of video or audio (required)
         :type message_id: str
@@ -444,8 +404,6 @@ class AsyncMessagingApiBlob(object):
         :type _request_auth: dict, optional
         :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(GetMessageContentTranscodingResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
@@ -544,14 +502,9 @@ class AsyncMessagingApiBlob(object):
 
     @validate_arguments
     def get_rich_menu_image(self, rich_menu_id : Annotated[StrictStr, Field(..., description="ID of the rich menu with the image to be downloaded")], async_req: Optional[bool]=None, **kwargs) -> Union[bytearray, Awaitable[bytearray]]:  # noqa: E501
-        """get_rich_menu_image  # noqa: E501
+        """
 
-        Download rich menu image.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_rich_menu_image(rich_menu_id, async_req=True)
-        >>> result = thread.get()
+        Download rich menu image.
 
         :param rich_menu_id: ID of the rich menu with the image to be downloaded (required)
         :type rich_menu_id: str
@@ -562,8 +515,6 @@ class AsyncMessagingApiBlob(object):
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: bytearray
         """
         kwargs['_return_http_data_only'] = True
@@ -575,14 +526,9 @@ class AsyncMessagingApiBlob(object):
 
     @validate_arguments
     def get_rich_menu_image_with_http_info(self, rich_menu_id : Annotated[StrictStr, Field(..., description="ID of the rich menu with the image to be downloaded")], **kwargs) -> ApiResponse:  # noqa: E501
-        """get_rich_menu_image  # noqa: E501
+        """
 
-        Download rich menu image.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_rich_menu_image_with_http_info(rich_menu_id, async_req=True)
-        >>> result = thread.get()
+        Download rich menu image.
 
         :param rich_menu_id: ID of the rich menu with the image to be downloaded (required)
         :type rich_menu_id: str
@@ -606,8 +552,6 @@ class AsyncMessagingApiBlob(object):
         :type _request_auth: dict, optional
         :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(bytearray, status_code(int), headers(HTTPHeaderDict))
         """
 
@@ -706,14 +650,9 @@ class AsyncMessagingApiBlob(object):
 
     @validate_arguments
     def set_rich_menu_image(self, rich_menu_id : Annotated[StrictStr, Field(..., description="The ID of the rich menu to attach the image to")], body : Union[StrictBytes, StrictStr], async_req: Optional[bool]=None, **kwargs) -> Union[None, Awaitable[None]]:  # noqa: E501
-        """set_rich_menu_image  # noqa: E501
+        """
 
-        Upload rich menu image  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.set_rich_menu_image(rich_menu_id, body, async_req=True)
-        >>> result = thread.get()
+        Upload rich menu image
 
         :param rich_menu_id: The ID of the rich menu to attach the image to (required)
         :type rich_menu_id: str
@@ -726,8 +665,6 @@ class AsyncMessagingApiBlob(object):
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
         kwargs['_return_http_data_only'] = True
@@ -739,14 +676,9 @@ class AsyncMessagingApiBlob(object):
 
     @validate_arguments
     def set_rich_menu_image_with_http_info(self, rich_menu_id : Annotated[StrictStr, Field(..., description="The ID of the rich menu to attach the image to")], body : Union[StrictBytes, StrictStr], **kwargs) -> ApiResponse:  # noqa: E501
-        """set_rich_menu_image  # noqa: E501
+        """
 
-        Upload rich menu image  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.set_rich_menu_image_with_http_info(rich_menu_id, body, async_req=True)
-        >>> result = thread.get()
+        Upload rich menu image
 
         :param rich_menu_id: The ID of the rich menu to attach the image to (required)
         :type rich_menu_id: str
@@ -772,8 +704,6 @@ class AsyncMessagingApiBlob(object):
         :type _request_auth: dict, optional
         :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
 

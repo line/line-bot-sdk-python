@@ -61,9 +61,9 @@ class ManageAudience(object):
 
     @validate_arguments
     def add_audience_to_audience_group(self, add_audience_to_audience_group_request : AddAudienceToAudienceGroupRequest, **kwargs) -> None:  # noqa: E501
-        """add_audience_to_audience_group  # noqa: E501
+        """
 
-        Add user IDs or Identifiers for Advertisers (IFAs) to an audience for uploading user IDs (by JSON)  # noqa: E501
+        Add user IDs or Identifiers for Advertisers (IFAs) to an audience for uploading user IDs (by JSON)
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -90,9 +90,9 @@ class ManageAudience(object):
 
     @validate_arguments
     def add_audience_to_audience_group_with_http_info(self, add_audience_to_audience_group_request : AddAudienceToAudienceGroupRequest, **kwargs) -> ApiResponse:  # noqa: E501
-        """add_audience_to_audience_group  # noqa: E501
+        """
 
-        Add user IDs or Identifiers for Advertisers (IFAs) to an audience for uploading user IDs (by JSON)  # noqa: E501
+        Add user IDs or Identifiers for Advertisers (IFAs) to an audience for uploading user IDs (by JSON)
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -203,9 +203,9 @@ class ManageAudience(object):
 
     @validate_arguments
     def create_audience_group(self, create_audience_group_request : CreateAudienceGroupRequest, **kwargs) -> CreateAudienceGroupResponse:  # noqa: E501
-        """create_audience_group  # noqa: E501
+        """
 
-        Create audience for uploading user IDs (by JSON)  # noqa: E501
+        Create audience for uploading user IDs (by JSON)
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -232,9 +232,9 @@ class ManageAudience(object):
 
     @validate_arguments
     def create_audience_group_with_http_info(self, create_audience_group_request : CreateAudienceGroupRequest, **kwargs) -> ApiResponse:  # noqa: E501
-        """create_audience_group  # noqa: E501
+        """
 
-        Create audience for uploading user IDs (by JSON)  # noqa: E501
+        Create audience for uploading user IDs (by JSON)
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -351,9 +351,9 @@ class ManageAudience(object):
 
     @validate_arguments
     def create_click_based_audience_group(self, create_click_based_audience_group_request : CreateClickBasedAudienceGroupRequest, **kwargs) -> CreateClickBasedAudienceGroupResponse:  # noqa: E501
-        """create_click_based_audience_group  # noqa: E501
+        """
 
-        Create audience for click-based retargeting  # noqa: E501
+        Create audience for click-based retargeting
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -380,9 +380,9 @@ class ManageAudience(object):
 
     @validate_arguments
     def create_click_based_audience_group_with_http_info(self, create_click_based_audience_group_request : CreateClickBasedAudienceGroupRequest, **kwargs) -> ApiResponse:  # noqa: E501
-        """create_click_based_audience_group  # noqa: E501
+        """
 
-        Create audience for click-based retargeting  # noqa: E501
+        Create audience for click-based retargeting
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -499,9 +499,9 @@ class ManageAudience(object):
 
     @validate_arguments
     def create_imp_based_audience_group(self, create_imp_based_audience_group_request : CreateImpBasedAudienceGroupRequest, **kwargs) -> CreateImpBasedAudienceGroupResponse:  # noqa: E501
-        """create_imp_based_audience_group  # noqa: E501
+        """
 
-        Create audience for impression-based retargeting  # noqa: E501
+        Create audience for impression-based retargeting
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -528,9 +528,9 @@ class ManageAudience(object):
 
     @validate_arguments
     def create_imp_based_audience_group_with_http_info(self, create_imp_based_audience_group_request : CreateImpBasedAudienceGroupRequest, **kwargs) -> ApiResponse:  # noqa: E501
-        """create_imp_based_audience_group  # noqa: E501
+        """
 
-        Create audience for impression-based retargeting  # noqa: E501
+        Create audience for impression-based retargeting
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -647,9 +647,9 @@ class ManageAudience(object):
 
     @validate_arguments
     def delete_audience_group(self, audience_group_id : Annotated[StrictInt, Field(..., description="The audience ID.")], **kwargs) -> None:  # noqa: E501
-        """delete_audience_group  # noqa: E501
+        """
 
-        Delete audience  # noqa: E501
+        Delete audience
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -676,9 +676,9 @@ class ManageAudience(object):
 
     @validate_arguments
     def delete_audience_group_with_http_info(self, audience_group_id : Annotated[StrictInt, Field(..., description="The audience ID.")], **kwargs) -> ApiResponse:  # noqa: E501
-        """delete_audience_group  # noqa: E501
+        """
 
-        Delete audience  # noqa: E501
+        Delete audience
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -782,9 +782,9 @@ class ManageAudience(object):
 
     @validate_arguments
     def get_audience_data(self, audience_group_id : Annotated[StrictInt, Field(..., description="The audience ID.")], **kwargs) -> GetAudienceDataResponse:  # noqa: E501
-        """get_audience_data  # noqa: E501
+        """
 
-        Gets audience data.  # noqa: E501
+        Gets audience data.
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -811,9 +811,9 @@ class ManageAudience(object):
 
     @validate_arguments
     def get_audience_data_with_http_info(self, audience_group_id : Annotated[StrictInt, Field(..., description="The audience ID.")], **kwargs) -> ApiResponse:  # noqa: E501
-        """get_audience_data  # noqa: E501
+        """
 
-        Gets audience data.  # noqa: E501
+        Gets audience data.
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -924,9 +924,9 @@ class ManageAudience(object):
 
     @validate_arguments
     def get_audience_groups(self, page : Annotated[conint(strict=True, ge=1), Field(..., description="The page to return when getting (paginated) results. Must be 1 or higher.")], description : Annotated[Optional[StrictStr], Field(description="The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion. ")] = None, status : Annotated[Optional[AudienceGroupStatus], Field(description="The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion. ")] = None, size : Annotated[Optional[conint(strict=True, le=40)], Field(description="The number of audiences per page. Default: 20 Max: 40 ")] = None, includes_external_public_groups : Annotated[Optional[StrictBool], Field(description="true (default): Get public audiences created in all channels linked to the same bot. false: Get audiences created in the same channel. ")] = None, create_route : Annotated[Optional[AudienceGroupCreateRoute], Field(description="How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API. ")] = None, **kwargs) -> GetAudienceGroupsResponse:  # noqa: E501
-        """get_audience_groups  # noqa: E501
+        """
 
-        Gets data for more than one audience.  # noqa: E501
+        Gets data for more than one audience.
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -963,9 +963,9 @@ class ManageAudience(object):
 
     @validate_arguments
     def get_audience_groups_with_http_info(self, page : Annotated[conint(strict=True, ge=1), Field(..., description="The page to return when getting (paginated) results. Must be 1 or higher.")], description : Annotated[Optional[StrictStr], Field(description="The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion. ")] = None, status : Annotated[Optional[AudienceGroupStatus], Field(description="The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion. ")] = None, size : Annotated[Optional[conint(strict=True, le=40)], Field(description="The number of audiences per page. Default: 20 Max: 40 ")] = None, includes_external_public_groups : Annotated[Optional[StrictBool], Field(description="true (default): Get public audiences created in all channels linked to the same bot. false: Get audiences created in the same channel. ")] = None, create_route : Annotated[Optional[AudienceGroupCreateRoute], Field(description="How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API. ")] = None, **kwargs) -> ApiResponse:  # noqa: E501
-        """get_audience_groups  # noqa: E501
+        """
 
-        Gets data for more than one audience.  # noqa: E501
+        Gets data for more than one audience.
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1105,9 +1105,9 @@ class ManageAudience(object):
 
     @validate_arguments
     def get_shared_audience_data(self, audience_group_id : Annotated[StrictInt, Field(..., description="The audience ID.")], **kwargs) -> GetSharedAudienceDataResponse:  # noqa: E501
-        """get_shared_audience_data  # noqa: E501
+        """
 
-        Gets audience data.  # noqa: E501
+        Gets audience data.
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1134,9 +1134,9 @@ class ManageAudience(object):
 
     @validate_arguments
     def get_shared_audience_data_with_http_info(self, audience_group_id : Annotated[StrictInt, Field(..., description="The audience ID.")], **kwargs) -> ApiResponse:  # noqa: E501
-        """get_shared_audience_data  # noqa: E501
+        """
 
-        Gets audience data.  # noqa: E501
+        Gets audience data.
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1247,9 +1247,9 @@ class ManageAudience(object):
 
     @validate_arguments
     def get_shared_audience_groups(self, page : Annotated[conint(strict=True, ge=1), Field(..., description="The page to return when getting (paginated) results. Must be 1 or higher.")], description : Annotated[Optional[StrictStr], Field(description="The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion. ")] = None, status : Annotated[Optional[AudienceGroupStatus], Field(description="The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion. ")] = None, size : Annotated[Optional[conint(strict=True, le=40)], Field(description="The number of audiences per page. Default: 20 Max: 40 ")] = None, create_route : Annotated[Optional[AudienceGroupCreateRoute], Field(description="How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API. ")] = None, includes_owned_audience_groups : Annotated[Optional[StrictBool], Field(description="true: Include audienceGroups owned by LINE Official Account Manager false: Respond only audienceGroups shared by Business Manager ")] = None, **kwargs) -> GetSharedAudienceGroupsResponse:  # noqa: E501
-        """get_shared_audience_groups  # noqa: E501
+        """
 
-        Gets data for more than one audience, including those shared by the Business Manager.  # noqa: E501
+        Gets data for more than one audience, including those shared by the Business Manager.
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1286,9 +1286,9 @@ class ManageAudience(object):
 
     @validate_arguments
     def get_shared_audience_groups_with_http_info(self, page : Annotated[conint(strict=True, ge=1), Field(..., description="The page to return when getting (paginated) results. Must be 1 or higher.")], description : Annotated[Optional[StrictStr], Field(description="The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion. ")] = None, status : Annotated[Optional[AudienceGroupStatus], Field(description="The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion. ")] = None, size : Annotated[Optional[conint(strict=True, le=40)], Field(description="The number of audiences per page. Default: 20 Max: 40 ")] = None, create_route : Annotated[Optional[AudienceGroupCreateRoute], Field(description="How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API. ")] = None, includes_owned_audience_groups : Annotated[Optional[StrictBool], Field(description="true: Include audienceGroups owned by LINE Official Account Manager false: Respond only audienceGroups shared by Business Manager ")] = None, **kwargs) -> ApiResponse:  # noqa: E501
-        """get_shared_audience_groups  # noqa: E501
+        """
 
-        Gets data for more than one audience, including those shared by the Business Manager.  # noqa: E501
+        Gets data for more than one audience, including those shared by the Business Manager.
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1428,9 +1428,9 @@ class ManageAudience(object):
 
     @validate_arguments
     def update_audience_group_description(self, audience_group_id : Annotated[StrictInt, Field(..., description="The audience ID.")], update_audience_group_description_request : UpdateAudienceGroupDescriptionRequest, **kwargs) -> None:  # noqa: E501
-        """update_audience_group_description  # noqa: E501
+        """
 
-        Renames an existing audience.  # noqa: E501
+        Renames an existing audience.
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1459,9 +1459,9 @@ class ManageAudience(object):
 
     @validate_arguments
     def update_audience_group_description_with_http_info(self, audience_group_id : Annotated[StrictInt, Field(..., description="The audience ID.")], update_audience_group_description_request : UpdateAudienceGroupDescriptionRequest, **kwargs) -> ApiResponse:  # noqa: E501
-        """update_audience_group_description  # noqa: E501
+        """
 
-        Renames an existing audience.  # noqa: E501
+        Renames an existing audience.
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 

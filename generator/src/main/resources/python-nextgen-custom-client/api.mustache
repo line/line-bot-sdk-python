@@ -49,10 +49,10 @@ class {{classname}}(object):
 {{/asyncio}}
     @validate_arguments
     def {{operationId}}(self, {{#allParams}}{{paramName}} : {{{vendorExtensions.x-py-typing}}}{{^required}} = None{{/required}}, {{/allParams}}{{#asyncio}}async_req: Optional[bool]=None, {{/asyncio}}**kwargs) -> {{#asyncio}}Union[{{{returnType}}}{{^returnType}}None{{/returnType}}, Awaitable[{{{returnType}}}{{^returnType}}None{{/returnType}}]]{{/asyncio}}{{^asyncio}}{{{returnType}}}{{^returnType}}None{{/returnType}}{{/asyncio}}:  # noqa: E501
-        """{{#isDeprecated}}(Deprecated) {{/isDeprecated}}{{{summary}}}{{^summary}}{{operationId}}{{/summary}}  # noqa: E501
+        """{{#isDeprecated}}(Deprecated) {{/isDeprecated}}{{{summary}}}
 
 {{#notes}}
-        {{{.}}}  # noqa: E501
+        {{{.}}}
 {{/notes}}
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -86,10 +86,10 @@ class {{classname}}(object):
 
     @validate_arguments
     def {{operationId}}_with_http_info(self, {{#allParams}}{{paramName}} : {{{vendorExtensions.x-py-typing}}}{{^required}} = None{{/required}}, {{/allParams}}**kwargs) -> ApiResponse:  # noqa: E501
-        """{{#isDeprecated}}(Deprecated) {{/isDeprecated}}{{{summary}}}{{^summary}}{{operationId}}{{/summary}}  # noqa: E501
+        """{{#isDeprecated}}(Deprecated) {{/isDeprecated}}{{{summary}}}
 
 {{#notes}}
-        {{{.}}}  # noqa: E501
+        {{{.}}}
 {{/notes}}
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True

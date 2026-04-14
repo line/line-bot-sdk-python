@@ -50,9 +50,9 @@ class ChannelAccessToken(object):
 
     @validate_arguments
     def gets_all_valid_channel_access_token_key_ids(self, client_assertion_type : Annotated[StrictStr, Field(..., description="`urn:ietf:params:oauth:client-assertion-type:jwt-bearer`")], client_assertion : Annotated[StrictStr, Field(..., description="A JSON Web Token (JWT) (opens new window)the client needs to create and sign with the private key.")], **kwargs) -> ChannelAccessTokenKeyIdsResponse:  # noqa: E501
-        """gets_all_valid_channel_access_token_key_ids  # noqa: E501
+        """
 
-        Gets all valid channel access token key IDs.  # noqa: E501
+        Gets all valid channel access token key IDs.
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -81,9 +81,9 @@ class ChannelAccessToken(object):
 
     @validate_arguments
     def gets_all_valid_channel_access_token_key_ids_with_http_info(self, client_assertion_type : Annotated[StrictStr, Field(..., description="`urn:ietf:params:oauth:client-assertion-type:jwt-bearer`")], client_assertion : Annotated[StrictStr, Field(..., description="A JSON Web Token (JWT) (opens new window)the client needs to create and sign with the private key.")], **kwargs) -> ApiResponse:  # noqa: E501
-        """gets_all_valid_channel_access_token_key_ids  # noqa: E501
+        """
 
-        Gets all valid channel access token key IDs.  # noqa: E501
+        Gets all valid channel access token key IDs.
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -199,9 +199,9 @@ class ChannelAccessToken(object):
 
     @validate_arguments
     def issue_channel_token(self, grant_type : Annotated[StrictStr, Field(..., description="`client_credentials`")], client_id : Annotated[StrictStr, Field(..., description="Channel ID.")], client_secret : Annotated[StrictStr, Field(..., description="Channel secret.")], **kwargs) -> IssueShortLivedChannelAccessTokenResponse:  # noqa: E501
-        """issue_channel_token  # noqa: E501
+        """
 
-        Issue short-lived channel access token  # noqa: E501
+        Issue short-lived channel access token
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -232,9 +232,9 @@ class ChannelAccessToken(object):
 
     @validate_arguments
     def issue_channel_token_with_http_info(self, grant_type : Annotated[StrictStr, Field(..., description="`client_credentials`")], client_id : Annotated[StrictStr, Field(..., description="Channel ID.")], client_secret : Annotated[StrictStr, Field(..., description="Channel secret.")], **kwargs) -> ApiResponse:  # noqa: E501
-        """issue_channel_token  # noqa: E501
+        """
 
-        Issue short-lived channel access token  # noqa: E501
+        Issue short-lived channel access token
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -364,9 +364,9 @@ class ChannelAccessToken(object):
 
     @validate_arguments
     def issue_channel_token_by_jwt(self, grant_type : Annotated[StrictStr, Field(..., description="client_credentials")], client_assertion_type : Annotated[StrictStr, Field(..., description="urn:ietf:params:oauth:client-assertion-type:jwt-bearer")], client_assertion : Annotated[StrictStr, Field(..., description="A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key.")], **kwargs) -> IssueChannelAccessTokenResponse:  # noqa: E501
-        """issue_channel_token_by_jwt  # noqa: E501
+        """
 
-        Issues a channel access token that allows you to specify a desired expiration date. This method lets you use JWT assertion for authentication.  # noqa: E501
+        Issues a channel access token that allows you to specify a desired expiration date. This method lets you use JWT assertion for authentication.
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -397,9 +397,9 @@ class ChannelAccessToken(object):
 
     @validate_arguments
     def issue_channel_token_by_jwt_with_http_info(self, grant_type : Annotated[StrictStr, Field(..., description="client_credentials")], client_assertion_type : Annotated[StrictStr, Field(..., description="urn:ietf:params:oauth:client-assertion-type:jwt-bearer")], client_assertion : Annotated[StrictStr, Field(..., description="A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key.")], **kwargs) -> ApiResponse:  # noqa: E501
-        """issue_channel_token_by_jwt  # noqa: E501
+        """
 
-        Issues a channel access token that allows you to specify a desired expiration date. This method lets you use JWT assertion for authentication.  # noqa: E501
+        Issues a channel access token that allows you to specify a desired expiration date. This method lets you use JWT assertion for authentication.
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -528,13 +528,13 @@ class ChannelAccessToken(object):
 
     @validate_arguments
     def issue_stateless_channel_token(self, grant_type : Annotated[StrictStr, Field(..., description="`client_credentials`")], client_assertion_type : Annotated[StrictStr, Field(..., description="URL-encoded value of `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`")], client_assertion : Annotated[StrictStr, Field(..., description="A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key.")], client_id : Annotated[StrictStr, Field(..., description="Channel ID.")], client_secret : Annotated[StrictStr, Field(..., description="Channel secret.")], **kwargs) -> IssueStatelessChannelAccessTokenResponse:  # noqa: E501
-        """issue_stateless_channel_token  # noqa: E501
+        """
 
         .. deprecated::
             Use :func:`issue_stateless_channel_token_by_jwt_assertion` or
             :func:`issue_stateless_channel_token_by_client_secret` instead.
 
-        Issues a new stateless channel access token, which doesn't have max active token limit unlike the other token types. The newly issued token is only valid for 15 minutes but can not be revoked until it naturally expires.   # noqa: E501
+        Issues a new stateless channel access token, which doesn't have max active token limit unlike the other token types. The newly issued token is only valid for 15 minutes but can not be revoked until it naturally expires. 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -569,13 +569,13 @@ class ChannelAccessToken(object):
 
     @validate_arguments
     def issue_stateless_channel_token_with_http_info(self, grant_type : Annotated[StrictStr, Field(..., description="`client_credentials`")], client_assertion_type : Annotated[StrictStr, Field(..., description="URL-encoded value of `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`")], client_assertion : Annotated[StrictStr, Field(..., description="A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key.")], client_id : Annotated[StrictStr, Field(..., description="Channel ID.")], client_secret : Annotated[StrictStr, Field(..., description="Channel secret.")], **kwargs) -> ApiResponse:  # noqa: E501
-        """issue_stateless_channel_token  # noqa: E501
+        """
 
         .. deprecated::
             Use :func:`issue_stateless_channel_token_with_http_info_by_jwt_assertion` or
             :func:`issue_stateless_channel_token_with_http_info_by_client_secret` instead.
 
-        Issues a new stateless channel access token, which doesn't have max active token limit unlike the other token types. The newly issued token is only valid for 15 minutes but can not be revoked until it naturally expires.   # noqa: E501
+        Issues a new stateless channel access token, which doesn't have max active token limit unlike the other token types. The newly issued token is only valid for 15 minutes but can not be revoked until it naturally expires. 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -716,9 +716,9 @@ class ChannelAccessToken(object):
 
     @validate_arguments
     def revoke_channel_token(self, access_token : Annotated[StrictStr, Field(..., description="Channel access token")], **kwargs) -> None:  # noqa: E501
-        """revoke_channel_token  # noqa: E501
+        """
 
-        Revoke short-lived or long-lived channel access token  # noqa: E501
+        Revoke short-lived or long-lived channel access token
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -745,9 +745,9 @@ class ChannelAccessToken(object):
 
     @validate_arguments
     def revoke_channel_token_with_http_info(self, access_token : Annotated[StrictStr, Field(..., description="Channel access token")], **kwargs) -> ApiResponse:  # noqa: E501
-        """revoke_channel_token  # noqa: E501
+        """
 
-        Revoke short-lived or long-lived channel access token  # noqa: E501
+        Revoke short-lived or long-lived channel access token
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -858,9 +858,9 @@ class ChannelAccessToken(object):
 
     @validate_arguments
     def revoke_channel_token_by_jwt(self, client_id : Annotated[StrictStr, Field(..., description="Channel ID")], client_secret : Annotated[StrictStr, Field(..., description="Channel Secret")], access_token : Annotated[StrictStr, Field(..., description="Channel access token")], **kwargs) -> None:  # noqa: E501
-        """revoke_channel_token_by_jwt  # noqa: E501
+        """
 
-        Revoke channel access token v2.1  # noqa: E501
+        Revoke channel access token v2.1
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -891,9 +891,9 @@ class ChannelAccessToken(object):
 
     @validate_arguments
     def revoke_channel_token_by_jwt_with_http_info(self, client_id : Annotated[StrictStr, Field(..., description="Channel ID")], client_secret : Annotated[StrictStr, Field(..., description="Channel Secret")], access_token : Annotated[StrictStr, Field(..., description="Channel access token")], **kwargs) -> ApiResponse:  # noqa: E501
-        """revoke_channel_token_by_jwt  # noqa: E501
+        """
 
-        Revoke channel access token v2.1  # noqa: E501
+        Revoke channel access token v2.1
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1016,9 +1016,9 @@ class ChannelAccessToken(object):
 
     @validate_arguments
     def verify_channel_token(self, access_token : Annotated[StrictStr, Field(..., description="A short-lived or long-lived channel access token.")], **kwargs) -> VerifyChannelAccessTokenResponse:  # noqa: E501
-        """verify_channel_token  # noqa: E501
+        """
 
-        Verify the validity of short-lived and long-lived channel access tokens  # noqa: E501
+        Verify the validity of short-lived and long-lived channel access tokens
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1045,9 +1045,9 @@ class ChannelAccessToken(object):
 
     @validate_arguments
     def verify_channel_token_with_http_info(self, access_token : Annotated[StrictStr, Field(..., description="A short-lived or long-lived channel access token.")], **kwargs) -> ApiResponse:  # noqa: E501
-        """verify_channel_token  # noqa: E501
+        """
 
-        Verify the validity of short-lived and long-lived channel access tokens  # noqa: E501
+        Verify the validity of short-lived and long-lived channel access tokens
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1164,9 +1164,9 @@ class ChannelAccessToken(object):
 
     @validate_arguments
     def verify_channel_token_by_jwt(self, access_token : Annotated[StrictStr, Field(..., description="Channel access token with a user-specified expiration (Channel Access Token v2.1).")], **kwargs) -> VerifyChannelAccessTokenResponse:  # noqa: E501
-        """verify_channel_token_by_jwt  # noqa: E501
+        """
 
-        You can verify whether a Channel access token with a user-specified expiration (Channel Access Token v2.1) is valid.  # noqa: E501
+        You can verify whether a Channel access token with a user-specified expiration (Channel Access Token v2.1) is valid.
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1193,9 +1193,9 @@ class ChannelAccessToken(object):
 
     @validate_arguments
     def verify_channel_token_by_jwt_with_http_info(self, access_token : Annotated[StrictStr, Field(..., description="Channel access token with a user-specified expiration (Channel Access Token v2.1).")], **kwargs) -> ApiResponse:  # noqa: E501
-        """verify_channel_token_by_jwt  # noqa: E501
+        """
 
-        You can verify whether a Channel access token with a user-specified expiration (Channel Access Token v2.1) is valid.  # noqa: E501
+        You can verify whether a Channel access token with a user-specified expiration (Channel Access Token v2.1) is valid.
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 

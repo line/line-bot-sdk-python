@@ -48,9 +48,9 @@ class LineModuleAttach(object):
 
     @validate_arguments
     def attach_module(self, grant_type : Annotated[StrictStr, Field(..., description="authorization_code")], code : Annotated[StrictStr, Field(..., description="Authorization code received from the LINE Platform.")], redirect_uri : Annotated[StrictStr, Field(..., description="Specify the redirect_uri specified in the URL for authentication and authorization.")], code_verifier : Annotated[Optional[StrictStr], Field(description="Specify when using PKCE (Proof Key for Code Exchange) defined in the OAuth 2.0 extension specification as a countermeasure against authorization code interception attacks.")] = None, client_id : Annotated[Optional[StrictStr], Field(description="Instead of using Authorization header, you can use this parameter to specify the channel ID of the module channel. You can find the channel ID of the module channel in the LINE Developers Console. ")] = None, client_secret : Annotated[Optional[StrictStr], Field(description="Instead of using Authorization header, you can use this parameter to specify the channel secret of the module channel. You can find the channel secret of the module channel in the LINE Developers Console. ")] = None, region : Annotated[Optional[StrictStr], Field(description="If you specified a value for region in the URL for authentication and authorization, specify the same value. ")] = None, basic_search_id : Annotated[Optional[StrictStr], Field(description="If you specified a value for basic_search_id in the URL for authentication and authorization, specify the same value.")] = None, scope : Annotated[Optional[StrictStr], Field(description="If you specified a value for scope in the URL for authentication and authorization, specify the same value.")] = None, brand_type : Annotated[Optional[StrictStr], Field(description="If you specified a value for brand_type in the URL for authentication and authorization, specify the same value.")] = None, **kwargs) -> AttachModuleResponse:  # noqa: E501
-        """attach_module  # noqa: E501
+        """
 
-        Attach by operation of the module channel provider  # noqa: E501
+        Attach by operation of the module channel provider
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -95,9 +95,9 @@ class LineModuleAttach(object):
 
     @validate_arguments
     def attach_module_with_http_info(self, grant_type : Annotated[StrictStr, Field(..., description="authorization_code")], code : Annotated[StrictStr, Field(..., description="Authorization code received from the LINE Platform.")], redirect_uri : Annotated[StrictStr, Field(..., description="Specify the redirect_uri specified in the URL for authentication and authorization.")], code_verifier : Annotated[Optional[StrictStr], Field(description="Specify when using PKCE (Proof Key for Code Exchange) defined in the OAuth 2.0 extension specification as a countermeasure against authorization code interception attacks.")] = None, client_id : Annotated[Optional[StrictStr], Field(description="Instead of using Authorization header, you can use this parameter to specify the channel ID of the module channel. You can find the channel ID of the module channel in the LINE Developers Console. ")] = None, client_secret : Annotated[Optional[StrictStr], Field(description="Instead of using Authorization header, you can use this parameter to specify the channel secret of the module channel. You can find the channel secret of the module channel in the LINE Developers Console. ")] = None, region : Annotated[Optional[StrictStr], Field(description="If you specified a value for region in the URL for authentication and authorization, specify the same value. ")] = None, basic_search_id : Annotated[Optional[StrictStr], Field(description="If you specified a value for basic_search_id in the URL for authentication and authorization, specify the same value.")] = None, scope : Annotated[Optional[StrictStr], Field(description="If you specified a value for scope in the URL for authentication and authorization, specify the same value.")] = None, brand_type : Annotated[Optional[StrictStr], Field(description="If you specified a value for brand_type in the URL for authentication and authorization, specify the same value.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
-        """attach_module  # noqa: E501
+        """
 
-        Attach by operation of the module channel provider  # noqa: E501
+        Attach by operation of the module channel provider
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 

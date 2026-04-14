@@ -239,393 +239,128 @@ class LineBotClient:
         if errors:
             raise errors[0]
 
-    def add_audience_to_audience_group(self, add_audience_to_audience_group_request: AddAudienceToAudienceGroupRequest, **kwargs) -> None:
-        """add_audience_to_audience_group  # noqa: E501
-
-        Add user IDs or Identifiers for Advertisers (IFAs) to an audience for uploading user IDs (by JSON)  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.add_audience_to_audience_group(add_audience_to_audience_group_request, async_req=True)
-        >>> result = thread.get()
+    def add_audience_to_audience_group(self, add_audience_to_audience_group_request: AddAudienceToAudienceGroupRequest) -> None:
+        """Add user IDs or Identifiers for Advertisers (IFAs) to an audience for uploading user IDs (by JSON)
 
         :param add_audience_to_audience_group_request: (required)
         :type add_audience_to_audience_group_request: AddAudienceToAudienceGroupRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._manage_audience.add_audience_to_audience_group(add_audience_to_audience_group_request, **kwargs)
+        return self._manage_audience.add_audience_to_audience_group(add_audience_to_audience_group_request)
 
-    def add_audience_to_audience_group_with_http_info(self, add_audience_to_audience_group_request: AddAudienceToAudienceGroupRequest, **kwargs) -> ApiResponse:
-        """add_audience_to_audience_group  # noqa: E501
-
-        Add user IDs or Identifiers for Advertisers (IFAs) to an audience for uploading user IDs (by JSON)  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.add_audience_to_audience_group_with_http_info(add_audience_to_audience_group_request, async_req=True)
-        >>> result = thread.get()
+    def add_audience_to_audience_group_with_http_info(self, add_audience_to_audience_group_request: AddAudienceToAudienceGroupRequest) -> ApiResponse:
+        """Add user IDs or Identifiers for Advertisers (IFAs) to an audience for uploading user IDs (by JSON)
 
         :param add_audience_to_audience_group_request: (required)
         :type add_audience_to_audience_group_request: AddAudienceToAudienceGroupRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._manage_audience.add_audience_to_audience_group_with_http_info(add_audience_to_audience_group_request, **kwargs)
+        return self._manage_audience.add_audience_to_audience_group_with_http_info(add_audience_to_audience_group_request)
 
-    def create_audience_group(self, create_audience_group_request: CreateAudienceGroupRequest, **kwargs) -> CreateAudienceGroupResponse:
-        """create_audience_group  # noqa: E501
-
-        Create audience for uploading user IDs (by JSON)  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.create_audience_group(create_audience_group_request, async_req=True)
-        >>> result = thread.get()
+    def create_audience_group(self, create_audience_group_request: CreateAudienceGroupRequest) -> CreateAudienceGroupResponse:
+        """Create audience for uploading user IDs (by JSON)
 
         :param create_audience_group_request: (required)
         :type create_audience_group_request: CreateAudienceGroupRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: CreateAudienceGroupResponse
         """
-        return self._manage_audience.create_audience_group(create_audience_group_request, **kwargs)
+        return self._manage_audience.create_audience_group(create_audience_group_request)
 
-    def create_audience_group_with_http_info(self, create_audience_group_request: CreateAudienceGroupRequest, **kwargs) -> ApiResponse:
-        """create_audience_group  # noqa: E501
-
-        Create audience for uploading user IDs (by JSON)  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.create_audience_group_with_http_info(create_audience_group_request, async_req=True)
-        >>> result = thread.get()
+    def create_audience_group_with_http_info(self, create_audience_group_request: CreateAudienceGroupRequest) -> ApiResponse:
+        """Create audience for uploading user IDs (by JSON)
 
         :param create_audience_group_request: (required)
         :type create_audience_group_request: CreateAudienceGroupRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(CreateAudienceGroupResponse, status_code(int), headers(HTTPHeaderDict))
         """
-        return self._manage_audience.create_audience_group_with_http_info(create_audience_group_request, **kwargs)
+        return self._manage_audience.create_audience_group_with_http_info(create_audience_group_request)
 
-    def create_click_based_audience_group(self, create_click_based_audience_group_request: CreateClickBasedAudienceGroupRequest, **kwargs) -> CreateClickBasedAudienceGroupResponse:
-        """create_click_based_audience_group  # noqa: E501
-
-        Create audience for click-based retargeting  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.create_click_based_audience_group(create_click_based_audience_group_request, async_req=True)
-        >>> result = thread.get()
+    def create_click_based_audience_group(self, create_click_based_audience_group_request: CreateClickBasedAudienceGroupRequest) -> CreateClickBasedAudienceGroupResponse:
+        """Create audience for click-based retargeting
 
         :param create_click_based_audience_group_request: (required)
         :type create_click_based_audience_group_request: CreateClickBasedAudienceGroupRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: CreateClickBasedAudienceGroupResponse
         """
-        return self._manage_audience.create_click_based_audience_group(create_click_based_audience_group_request, **kwargs)
+        return self._manage_audience.create_click_based_audience_group(create_click_based_audience_group_request)
 
-    def create_click_based_audience_group_with_http_info(self, create_click_based_audience_group_request: CreateClickBasedAudienceGroupRequest, **kwargs) -> ApiResponse:
-        """create_click_based_audience_group  # noqa: E501
-
-        Create audience for click-based retargeting  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.create_click_based_audience_group_with_http_info(create_click_based_audience_group_request, async_req=True)
-        >>> result = thread.get()
+    def create_click_based_audience_group_with_http_info(self, create_click_based_audience_group_request: CreateClickBasedAudienceGroupRequest) -> ApiResponse:
+        """Create audience for click-based retargeting
 
         :param create_click_based_audience_group_request: (required)
         :type create_click_based_audience_group_request: CreateClickBasedAudienceGroupRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(CreateClickBasedAudienceGroupResponse, status_code(int), headers(HTTPHeaderDict))
         """
-        return self._manage_audience.create_click_based_audience_group_with_http_info(create_click_based_audience_group_request, **kwargs)
+        return self._manage_audience.create_click_based_audience_group_with_http_info(create_click_based_audience_group_request)
 
-    def create_imp_based_audience_group(self, create_imp_based_audience_group_request: CreateImpBasedAudienceGroupRequest, **kwargs) -> CreateImpBasedAudienceGroupResponse:
-        """create_imp_based_audience_group  # noqa: E501
-
-        Create audience for impression-based retargeting  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.create_imp_based_audience_group(create_imp_based_audience_group_request, async_req=True)
-        >>> result = thread.get()
+    def create_imp_based_audience_group(self, create_imp_based_audience_group_request: CreateImpBasedAudienceGroupRequest) -> CreateImpBasedAudienceGroupResponse:
+        """Create audience for impression-based retargeting
 
         :param create_imp_based_audience_group_request: (required)
         :type create_imp_based_audience_group_request: CreateImpBasedAudienceGroupRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: CreateImpBasedAudienceGroupResponse
         """
-        return self._manage_audience.create_imp_based_audience_group(create_imp_based_audience_group_request, **kwargs)
+        return self._manage_audience.create_imp_based_audience_group(create_imp_based_audience_group_request)
 
-    def create_imp_based_audience_group_with_http_info(self, create_imp_based_audience_group_request: CreateImpBasedAudienceGroupRequest, **kwargs) -> ApiResponse:
-        """create_imp_based_audience_group  # noqa: E501
-
-        Create audience for impression-based retargeting  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.create_imp_based_audience_group_with_http_info(create_imp_based_audience_group_request, async_req=True)
-        >>> result = thread.get()
+    def create_imp_based_audience_group_with_http_info(self, create_imp_based_audience_group_request: CreateImpBasedAudienceGroupRequest) -> ApiResponse:
+        """Create audience for impression-based retargeting
 
         :param create_imp_based_audience_group_request: (required)
         :type create_imp_based_audience_group_request: CreateImpBasedAudienceGroupRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(CreateImpBasedAudienceGroupResponse, status_code(int), headers(HTTPHeaderDict))
         """
-        return self._manage_audience.create_imp_based_audience_group_with_http_info(create_imp_based_audience_group_request, **kwargs)
+        return self._manage_audience.create_imp_based_audience_group_with_http_info(create_imp_based_audience_group_request)
 
-    def delete_audience_group(self, audience_group_id: Annotated[StrictInt, Field(..., description='The audience ID.')], **kwargs) -> None:
-        """delete_audience_group  # noqa: E501
-
-        Delete audience  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.delete_audience_group(audience_group_id, async_req=True)
-        >>> result = thread.get()
+    def delete_audience_group(self, audience_group_id: Annotated[StrictInt, Field(..., description='The audience ID.')]) -> None:
+        """Delete audience
 
         :param audience_group_id: The audience ID. (required)
         :type audience_group_id: int
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._manage_audience.delete_audience_group(audience_group_id, **kwargs)
+        return self._manage_audience.delete_audience_group(audience_group_id)
 
-    def delete_audience_group_with_http_info(self, audience_group_id: Annotated[StrictInt, Field(..., description='The audience ID.')], **kwargs) -> ApiResponse:
-        """delete_audience_group  # noqa: E501
-
-        Delete audience  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.delete_audience_group_with_http_info(audience_group_id, async_req=True)
-        >>> result = thread.get()
+    def delete_audience_group_with_http_info(self, audience_group_id: Annotated[StrictInt, Field(..., description='The audience ID.')]) -> ApiResponse:
+        """Delete audience
 
         :param audience_group_id: The audience ID. (required)
         :type audience_group_id: int
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._manage_audience.delete_audience_group_with_http_info(audience_group_id, **kwargs)
+        return self._manage_audience.delete_audience_group_with_http_info(audience_group_id)
 
-    def get_audience_data(self, audience_group_id: Annotated[StrictInt, Field(..., description='The audience ID.')], **kwargs) -> GetAudienceDataResponse:
-        """get_audience_data  # noqa: E501
-
-        Gets audience data.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_audience_data(audience_group_id, async_req=True)
-        >>> result = thread.get()
+    def get_audience_data(self, audience_group_id: Annotated[StrictInt, Field(..., description='The audience ID.')]) -> GetAudienceDataResponse:
+        """Gets audience data.
 
         :param audience_group_id: The audience ID. (required)
         :type audience_group_id: int
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: GetAudienceDataResponse
         """
-        return self._manage_audience.get_audience_data(audience_group_id, **kwargs)
+        return self._manage_audience.get_audience_data(audience_group_id)
 
-    def get_audience_data_with_http_info(self, audience_group_id: Annotated[StrictInt, Field(..., description='The audience ID.')], **kwargs) -> ApiResponse:
-        """get_audience_data  # noqa: E501
-
-        Gets audience data.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_audience_data_with_http_info(audience_group_id, async_req=True)
-        >>> result = thread.get()
+    def get_audience_data_with_http_info(self, audience_group_id: Annotated[StrictInt, Field(..., description='The audience ID.')]) -> ApiResponse:
+        """Gets audience data.
 
         :param audience_group_id: The audience ID. (required)
         :type audience_group_id: int
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(GetAudienceDataResponse, status_code(int), headers(HTTPHeaderDict))
         """
-        return self._manage_audience.get_audience_data_with_http_info(audience_group_id, **kwargs)
+        return self._manage_audience.get_audience_data_with_http_info(audience_group_id)
 
-    def get_audience_groups(self, page: Annotated[conint(strict=True, ge=1), Field(..., description='The page to return when getting (paginated) results. Must be 1 or higher.')], description: Annotated[Optional[StrictStr], Field(description='The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion. ')] = None, status: Annotated[Optional[AudienceGroupStatus], Field(description='The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion. ')] = None, size: Annotated[Optional[conint(strict=True, le=40)], Field(description='The number of audiences per page. Default: 20 Max: 40 ')] = None, includes_external_public_groups: Annotated[Optional[StrictBool], Field(description='true (default): Get public audiences created in all channels linked to the same bot. false: Get audiences created in the same channel. ')] = None, create_route: Annotated[Optional[AudienceGroupCreateRoute], Field(description='How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API. ')] = None, **kwargs) -> GetAudienceGroupsResponse:
-        """get_audience_groups  # noqa: E501
-
-        Gets data for more than one audience.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_audience_groups(page, description, status, size, includes_external_public_groups, create_route, async_req=True)
-        >>> result = thread.get()
+    def get_audience_groups(self, page: Annotated[conint(strict=True, ge=1), Field(..., description='The page to return when getting (paginated) results. Must be 1 or higher.')], description: Annotated[Optional[StrictStr], Field(description='The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion. ')] = None, status: Annotated[Optional[AudienceGroupStatus], Field(description='The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion. ')] = None, size: Annotated[Optional[conint(strict=True, le=40)], Field(description='The number of audiences per page. Default: 20 Max: 40 ')] = None, includes_external_public_groups: Annotated[Optional[StrictBool], Field(description='true (default): Get public audiences created in all channels linked to the same bot. false: Get audiences created in the same channel. ')] = None, create_route: Annotated[Optional[AudienceGroupCreateRoute], Field(description='How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API. ')] = None) -> GetAudienceGroupsResponse:
+        """Gets data for more than one audience.
 
         :param page: The page to return when getting (paginated) results. Must be 1 or higher. (required)
         :type page: int
@@ -639,28 +374,13 @@ class LineBotClient:
         :type includes_external_public_groups: bool
         :param create_route: How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API. 
         :type create_route: AudienceGroupCreateRoute
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: GetAudienceGroupsResponse
         """
-        return self._manage_audience.get_audience_groups(page, description, status, size, includes_external_public_groups, create_route, **kwargs)
+        return self._manage_audience.get_audience_groups(page, description, status, size, includes_external_public_groups, create_route)
 
-    def get_audience_groups_with_http_info(self, page: Annotated[conint(strict=True, ge=1), Field(..., description='The page to return when getting (paginated) results. Must be 1 or higher.')], description: Annotated[Optional[StrictStr], Field(description='The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion. ')] = None, status: Annotated[Optional[AudienceGroupStatus], Field(description='The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion. ')] = None, size: Annotated[Optional[conint(strict=True, le=40)], Field(description='The number of audiences per page. Default: 20 Max: 40 ')] = None, includes_external_public_groups: Annotated[Optional[StrictBool], Field(description='true (default): Get public audiences created in all channels linked to the same bot. false: Get audiences created in the same channel. ')] = None, create_route: Annotated[Optional[AudienceGroupCreateRoute], Field(description='How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API. ')] = None, **kwargs) -> ApiResponse:
-        """get_audience_groups  # noqa: E501
-
-        Gets data for more than one audience.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_audience_groups_with_http_info(page, description, status, size, includes_external_public_groups, create_route, async_req=True)
-        >>> result = thread.get()
+    def get_audience_groups_with_http_info(self, page: Annotated[conint(strict=True, ge=1), Field(..., description='The page to return when getting (paginated) results. Must be 1 or higher.')], description: Annotated[Optional[StrictStr], Field(description='The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion. ')] = None, status: Annotated[Optional[AudienceGroupStatus], Field(description='The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion. ')] = None, size: Annotated[Optional[conint(strict=True, le=40)], Field(description='The number of audiences per page. Default: 20 Max: 40 ')] = None, includes_external_public_groups: Annotated[Optional[StrictBool], Field(description='true (default): Get public audiences created in all channels linked to the same bot. false: Get audiences created in the same channel. ')] = None, create_route: Annotated[Optional[AudienceGroupCreateRoute], Field(description='How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API. ')] = None) -> ApiResponse:
+        """Gets data for more than one audience.
 
         :param page: The page to return when getting (paginated) results. Must be 1 or higher. (required)
         :type page: int
@@ -674,104 +394,33 @@ class LineBotClient:
         :type includes_external_public_groups: bool
         :param create_route: How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API. 
         :type create_route: AudienceGroupCreateRoute
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(GetAudienceGroupsResponse, status_code(int), headers(HTTPHeaderDict))
         """
-        return self._manage_audience.get_audience_groups_with_http_info(page, description, status, size, includes_external_public_groups, create_route, **kwargs)
+        return self._manage_audience.get_audience_groups_with_http_info(page, description, status, size, includes_external_public_groups, create_route)
 
-    def get_shared_audience_data(self, audience_group_id: Annotated[StrictInt, Field(..., description='The audience ID.')], **kwargs) -> GetSharedAudienceDataResponse:
-        """get_shared_audience_data  # noqa: E501
-
-        Gets audience data.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_shared_audience_data(audience_group_id, async_req=True)
-        >>> result = thread.get()
+    def get_shared_audience_data(self, audience_group_id: Annotated[StrictInt, Field(..., description='The audience ID.')]) -> GetSharedAudienceDataResponse:
+        """Gets audience data.
 
         :param audience_group_id: The audience ID. (required)
         :type audience_group_id: int
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: GetSharedAudienceDataResponse
         """
-        return self._manage_audience.get_shared_audience_data(audience_group_id, **kwargs)
+        return self._manage_audience.get_shared_audience_data(audience_group_id)
 
-    def get_shared_audience_data_with_http_info(self, audience_group_id: Annotated[StrictInt, Field(..., description='The audience ID.')], **kwargs) -> ApiResponse:
-        """get_shared_audience_data  # noqa: E501
-
-        Gets audience data.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_shared_audience_data_with_http_info(audience_group_id, async_req=True)
-        >>> result = thread.get()
+    def get_shared_audience_data_with_http_info(self, audience_group_id: Annotated[StrictInt, Field(..., description='The audience ID.')]) -> ApiResponse:
+        """Gets audience data.
 
         :param audience_group_id: The audience ID. (required)
         :type audience_group_id: int
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(GetSharedAudienceDataResponse, status_code(int), headers(HTTPHeaderDict))
         """
-        return self._manage_audience.get_shared_audience_data_with_http_info(audience_group_id, **kwargs)
+        return self._manage_audience.get_shared_audience_data_with_http_info(audience_group_id)
 
-    def get_shared_audience_groups(self, page: Annotated[conint(strict=True, ge=1), Field(..., description='The page to return when getting (paginated) results. Must be 1 or higher.')], description: Annotated[Optional[StrictStr], Field(description='The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion. ')] = None, status: Annotated[Optional[AudienceGroupStatus], Field(description='The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion. ')] = None, size: Annotated[Optional[conint(strict=True, le=40)], Field(description='The number of audiences per page. Default: 20 Max: 40 ')] = None, create_route: Annotated[Optional[AudienceGroupCreateRoute], Field(description='How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API. ')] = None, includes_owned_audience_groups: Annotated[Optional[StrictBool], Field(description='true: Include audienceGroups owned by LINE Official Account Manager false: Respond only audienceGroups shared by Business Manager ')] = None, **kwargs) -> GetSharedAudienceGroupsResponse:
-        """get_shared_audience_groups  # noqa: E501
-
-        Gets data for more than one audience, including those shared by the Business Manager.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_shared_audience_groups(page, description, status, size, create_route, includes_owned_audience_groups, async_req=True)
-        >>> result = thread.get()
+    def get_shared_audience_groups(self, page: Annotated[conint(strict=True, ge=1), Field(..., description='The page to return when getting (paginated) results. Must be 1 or higher.')], description: Annotated[Optional[StrictStr], Field(description='The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion. ')] = None, status: Annotated[Optional[AudienceGroupStatus], Field(description='The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion. ')] = None, size: Annotated[Optional[conint(strict=True, le=40)], Field(description='The number of audiences per page. Default: 20 Max: 40 ')] = None, create_route: Annotated[Optional[AudienceGroupCreateRoute], Field(description='How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API. ')] = None, includes_owned_audience_groups: Annotated[Optional[StrictBool], Field(description='true: Include audienceGroups owned by LINE Official Account Manager false: Respond only audienceGroups shared by Business Manager ')] = None) -> GetSharedAudienceGroupsResponse:
+        """Gets data for more than one audience, including those shared by the Business Manager.
 
         :param page: The page to return when getting (paginated) results. Must be 1 or higher. (required)
         :type page: int
@@ -785,28 +434,13 @@ class LineBotClient:
         :type create_route: AudienceGroupCreateRoute
         :param includes_owned_audience_groups: true: Include audienceGroups owned by LINE Official Account Manager false: Respond only audienceGroups shared by Business Manager 
         :type includes_owned_audience_groups: bool
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: GetSharedAudienceGroupsResponse
         """
-        return self._manage_audience.get_shared_audience_groups(page, description, status, size, create_route, includes_owned_audience_groups, **kwargs)
+        return self._manage_audience.get_shared_audience_groups(page, description, status, size, create_route, includes_owned_audience_groups)
 
-    def get_shared_audience_groups_with_http_info(self, page: Annotated[conint(strict=True, ge=1), Field(..., description='The page to return when getting (paginated) results. Must be 1 or higher.')], description: Annotated[Optional[StrictStr], Field(description='The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion. ')] = None, status: Annotated[Optional[AudienceGroupStatus], Field(description='The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion. ')] = None, size: Annotated[Optional[conint(strict=True, le=40)], Field(description='The number of audiences per page. Default: 20 Max: 40 ')] = None, create_route: Annotated[Optional[AudienceGroupCreateRoute], Field(description='How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API. ')] = None, includes_owned_audience_groups: Annotated[Optional[StrictBool], Field(description='true: Include audienceGroups owned by LINE Official Account Manager false: Respond only audienceGroups shared by Business Manager ')] = None, **kwargs) -> ApiResponse:
-        """get_shared_audience_groups  # noqa: E501
-
-        Gets data for more than one audience, including those shared by the Business Manager.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_shared_audience_groups_with_http_info(page, description, status, size, create_route, includes_owned_audience_groups, async_req=True)
-        >>> result = thread.get()
+    def get_shared_audience_groups_with_http_info(self, page: Annotated[conint(strict=True, ge=1), Field(..., description='The page to return when getting (paginated) results. Must be 1 or higher.')], description: Annotated[Optional[StrictStr], Field(description='The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion. ')] = None, status: Annotated[Optional[AudienceGroupStatus], Field(description='The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion. ')] = None, size: Annotated[Optional[conint(strict=True, le=40)], Field(description='The number of audiences per page. Default: 20 Max: 40 ')] = None, create_route: Annotated[Optional[AudienceGroupCreateRoute], Field(description='How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API. ')] = None, includes_owned_audience_groups: Annotated[Optional[StrictBool], Field(description='true: Include audienceGroups owned by LINE Official Account Manager false: Respond only audienceGroups shared by Business Manager ')] = None) -> ApiResponse:
+        """Gets data for more than one audience, including those shared by the Business Manager.
 
         :param page: The page to return when getting (paginated) results. Must be 1 or higher. (required)
         :type page: int
@@ -820,108 +454,37 @@ class LineBotClient:
         :type create_route: AudienceGroupCreateRoute
         :param includes_owned_audience_groups: true: Include audienceGroups owned by LINE Official Account Manager false: Respond only audienceGroups shared by Business Manager 
         :type includes_owned_audience_groups: bool
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(GetSharedAudienceGroupsResponse, status_code(int), headers(HTTPHeaderDict))
         """
-        return self._manage_audience.get_shared_audience_groups_with_http_info(page, description, status, size, create_route, includes_owned_audience_groups, **kwargs)
+        return self._manage_audience.get_shared_audience_groups_with_http_info(page, description, status, size, create_route, includes_owned_audience_groups)
 
-    def update_audience_group_description(self, audience_group_id: Annotated[StrictInt, Field(..., description='The audience ID.')], update_audience_group_description_request: UpdateAudienceGroupDescriptionRequest, **kwargs) -> None:
-        """update_audience_group_description  # noqa: E501
-
-        Renames an existing audience.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.update_audience_group_description(audience_group_id, update_audience_group_description_request, async_req=True)
-        >>> result = thread.get()
+    def update_audience_group_description(self, audience_group_id: Annotated[StrictInt, Field(..., description='The audience ID.')], update_audience_group_description_request: UpdateAudienceGroupDescriptionRequest) -> None:
+        """Renames an existing audience.
 
         :param audience_group_id: The audience ID. (required)
         :type audience_group_id: int
         :param update_audience_group_description_request: (required)
         :type update_audience_group_description_request: UpdateAudienceGroupDescriptionRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._manage_audience.update_audience_group_description(audience_group_id, update_audience_group_description_request, **kwargs)
+        return self._manage_audience.update_audience_group_description(audience_group_id, update_audience_group_description_request)
 
-    def update_audience_group_description_with_http_info(self, audience_group_id: Annotated[StrictInt, Field(..., description='The audience ID.')], update_audience_group_description_request: UpdateAudienceGroupDescriptionRequest, **kwargs) -> ApiResponse:
-        """update_audience_group_description  # noqa: E501
-
-        Renames an existing audience.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.update_audience_group_description_with_http_info(audience_group_id, update_audience_group_description_request, async_req=True)
-        >>> result = thread.get()
+    def update_audience_group_description_with_http_info(self, audience_group_id: Annotated[StrictInt, Field(..., description='The audience ID.')], update_audience_group_description_request: UpdateAudienceGroupDescriptionRequest) -> ApiResponse:
+        """Renames an existing audience.
 
         :param audience_group_id: The audience ID. (required)
         :type audience_group_id: int
         :param update_audience_group_description_request: (required)
         :type update_audience_group_description_request: UpdateAudienceGroupDescriptionRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._manage_audience.update_audience_group_description_with_http_info(audience_group_id, update_audience_group_description_request, **kwargs)
+        return self._manage_audience.update_audience_group_description_with_http_info(audience_group_id, update_audience_group_description_request)
 
-    def add_user_ids_to_audience(self, file: Annotated[Union[StrictBytes, StrictStr], Field(..., description='A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000 ')], audience_group_id: Annotated[Optional[StrictInt], Field(description='The audience ID.')] = None, upload_description: Annotated[Optional[StrictStr], Field(description='The description to register with the job')] = None, **kwargs) -> None:
-        """add_user_ids_to_audience  # noqa: E501
-
-        Add user IDs or Identifiers for Advertisers (IFAs) to an audience for uploading user IDs (by file).  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.add_user_ids_to_audience(file, audience_group_id, upload_description, async_req=True)
-        >>> result = thread.get()
+    def add_user_ids_to_audience(self, file: Annotated[Union[StrictBytes, StrictStr], Field(..., description='A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000 ')], audience_group_id: Annotated[Optional[StrictInt], Field(description='The audience ID.')] = None, upload_description: Annotated[Optional[StrictStr], Field(description='The description to register with the job')] = None) -> None:
+        """Add user IDs or Identifiers for Advertisers (IFAs) to an audience for uploading user IDs (by file).
 
         :param file: A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000  (required)
         :type file: bytearray
@@ -929,28 +492,13 @@ class LineBotClient:
         :type audience_group_id: int
         :param upload_description: The description to register with the job
         :type upload_description: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._manage_audience_blob.add_user_ids_to_audience(file, audience_group_id, upload_description, **kwargs)
+        return self._manage_audience_blob.add_user_ids_to_audience(file, audience_group_id, upload_description)
 
-    def add_user_ids_to_audience_with_http_info(self, file: Annotated[Union[StrictBytes, StrictStr], Field(..., description='A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000 ')], audience_group_id: Annotated[Optional[StrictInt], Field(description='The audience ID.')] = None, upload_description: Annotated[Optional[StrictStr], Field(description='The description to register with the job')] = None, **kwargs) -> ApiResponse:
-        """add_user_ids_to_audience  # noqa: E501
-
-        Add user IDs or Identifiers for Advertisers (IFAs) to an audience for uploading user IDs (by file).  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.add_user_ids_to_audience_with_http_info(file, audience_group_id, upload_description, async_req=True)
-        >>> result = thread.get()
+    def add_user_ids_to_audience_with_http_info(self, file: Annotated[Union[StrictBytes, StrictStr], Field(..., description='A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000 ')], audience_group_id: Annotated[Optional[StrictInt], Field(description='The audience ID.')] = None, upload_description: Annotated[Optional[StrictStr], Field(description='The description to register with the job')] = None) -> ApiResponse:
+        """Add user IDs or Identifiers for Advertisers (IFAs) to an audience for uploading user IDs (by file).
 
         :param file: A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000  (required)
         :type file: bytearray
@@ -958,41 +506,13 @@ class LineBotClient:
         :type audience_group_id: int
         :param upload_description: The description to register with the job
         :type upload_description: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._manage_audience_blob.add_user_ids_to_audience_with_http_info(file, audience_group_id, upload_description, **kwargs)
+        return self._manage_audience_blob.add_user_ids_to_audience_with_http_info(file, audience_group_id, upload_description)
 
-    def create_audience_for_uploading_user_ids(self, file: Annotated[Union[StrictBytes, StrictStr], Field(..., description='A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000 ')], description: Annotated[Optional[constr(strict=True, max_length=120)], Field(description="The audience's name. This is case-insensitive, meaning AUDIENCE and audience are considered identical. Max character limit: 120 ")] = None, is_ifa_audience: Annotated[Optional[StrictBool], Field(description='To specify recipients by IFAs: set `true`. To specify recipients by user IDs: set `false` or omit isIfaAudience property. ')] = None, upload_description: Annotated[Optional[StrictStr], Field(description='The description to register for the job (in `jobs[].description`). ')] = None, **kwargs) -> CreateAudienceGroupResponse:
-        """create_audience_for_uploading_user_ids  # noqa: E501
-
-        Create audience for uploading user IDs (by file).  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.create_audience_for_uploading_user_ids(file, description, is_ifa_audience, upload_description, async_req=True)
-        >>> result = thread.get()
+    def create_audience_for_uploading_user_ids(self, file: Annotated[Union[StrictBytes, StrictStr], Field(..., description='A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000 ')], description: Annotated[Optional[constr(strict=True, max_length=120)], Field(description="The audience's name. This is case-insensitive, meaning AUDIENCE and audience are considered identical. Max character limit: 120 ")] = None, is_ifa_audience: Annotated[Optional[StrictBool], Field(description='To specify recipients by IFAs: set `true`. To specify recipients by user IDs: set `false` or omit isIfaAudience property. ')] = None, upload_description: Annotated[Optional[StrictStr], Field(description='The description to register for the job (in `jobs[].description`). ')] = None) -> CreateAudienceGroupResponse:
+        """Create audience for uploading user IDs (by file).
 
         :param file: A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000  (required)
         :type file: bytearray
@@ -1002,28 +522,13 @@ class LineBotClient:
         :type is_ifa_audience: bool
         :param upload_description: The description to register for the job (in `jobs[].description`). 
         :type upload_description: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: CreateAudienceGroupResponse
         """
-        return self._manage_audience_blob.create_audience_for_uploading_user_ids(file, description, is_ifa_audience, upload_description, **kwargs)
+        return self._manage_audience_blob.create_audience_for_uploading_user_ids(file, description, is_ifa_audience, upload_description)
 
-    def create_audience_for_uploading_user_ids_with_http_info(self, file: Annotated[Union[StrictBytes, StrictStr], Field(..., description='A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000 ')], description: Annotated[Optional[constr(strict=True, max_length=120)], Field(description="The audience's name. This is case-insensitive, meaning AUDIENCE and audience are considered identical. Max character limit: 120 ")] = None, is_ifa_audience: Annotated[Optional[StrictBool], Field(description='To specify recipients by IFAs: set `true`. To specify recipients by user IDs: set `false` or omit isIfaAudience property. ')] = None, upload_description: Annotated[Optional[StrictStr], Field(description='The description to register for the job (in `jobs[].description`). ')] = None, **kwargs) -> ApiResponse:
-        """create_audience_for_uploading_user_ids  # noqa: E501
-
-        Create audience for uploading user IDs (by file).  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.create_audience_for_uploading_user_ids_with_http_info(file, description, is_ifa_audience, upload_description, async_req=True)
-        >>> result = thread.get()
+    def create_audience_for_uploading_user_ids_with_http_info(self, file: Annotated[Union[StrictBytes, StrictStr], Field(..., description='A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000 ')], description: Annotated[Optional[constr(strict=True, max_length=120)], Field(description="The audience's name. This is case-insensitive, meaning AUDIENCE and audience are considered identical. Max character limit: 120 ")] = None, is_ifa_audience: Annotated[Optional[StrictBool], Field(description='To specify recipients by IFAs: set `true`. To specify recipients by user IDs: set `false` or omit isIfaAudience property. ')] = None, upload_description: Annotated[Optional[StrictStr], Field(description='The description to register for the job (in `jobs[].description`). ')] = None) -> ApiResponse:
+        """Create audience for uploading user IDs (by file).
 
         :param file: A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000  (required)
         :type file: bytearray
@@ -1033,289 +538,101 @@ class LineBotClient:
         :type is_ifa_audience: bool
         :param upload_description: The description to register for the job (in `jobs[].description`). 
         :type upload_description: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(CreateAudienceGroupResponse, status_code(int), headers(HTTPHeaderDict))
         """
-        return self._manage_audience_blob.create_audience_for_uploading_user_ids_with_http_info(file, description, is_ifa_audience, upload_description, **kwargs)
+        return self._manage_audience_blob.create_audience_for_uploading_user_ids_with_http_info(file, description, is_ifa_audience, upload_description)
 
-    def get_friends_demographics(self, **kwargs) -> GetFriendsDemographicsResponse:
-        """get_friends_demographics  # noqa: E501
+    def get_friends_demographics(self) -> GetFriendsDemographicsResponse:
+        """Retrieves the demographic attributes for a LINE Official Account's friends.You can only retrieve information about friends for LINE Official Accounts created by users in Japan (JP), Thailand (TH), Taiwan (TW) and Indonesia (ID).
 
-        Retrieves the demographic attributes for a LINE Official Account's friends.You can only retrieve information about friends for LINE Official Accounts created by users in Japan (JP), Thailand (TH), Taiwan (TW) and Indonesia (ID).   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_friends_demographics(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: GetFriendsDemographicsResponse
         """
-        return self._insight.get_friends_demographics(**kwargs)
+        return self._insight.get_friends_demographics()
 
-    def get_friends_demographics_with_http_info(self, **kwargs) -> ApiResponse:
-        """get_friends_demographics  # noqa: E501
+    def get_friends_demographics_with_http_info(self) -> ApiResponse:
+        """Retrieves the demographic attributes for a LINE Official Account's friends.You can only retrieve information about friends for LINE Official Accounts created by users in Japan (JP), Thailand (TH), Taiwan (TW) and Indonesia (ID).
 
-        Retrieves the demographic attributes for a LINE Official Account's friends.You can only retrieve information about friends for LINE Official Accounts created by users in Japan (JP), Thailand (TH), Taiwan (TW) and Indonesia (ID).   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_friends_demographics_with_http_info(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(GetFriendsDemographicsResponse, status_code(int), headers(HTTPHeaderDict))
         """
-        return self._insight.get_friends_demographics_with_http_info(**kwargs)
+        return self._insight.get_friends_demographics_with_http_info()
 
-    def get_message_event(self, request_id: Annotated[constr(strict=True, min_length=1), Field(..., description='Request ID of a narrowcast message or broadcast message. Each Messaging API request has a request ID. ')], **kwargs) -> GetMessageEventResponse:
-        """Get user interaction statistics  # noqa: E501
+    def get_message_event(self, request_id: Annotated[constr(strict=True, min_length=1), Field(..., description='Request ID of a narrowcast message or broadcast message. Each Messaging API request has a request ID. ')]) -> GetMessageEventResponse:
+        """Get user interaction statistics
 
-        Returns statistics about how users interact with narrowcast messages or broadcast messages sent from your LINE Official Account.   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_message_event(request_id, async_req=True)
-        >>> result = thread.get()
+        Returns statistics about how users interact with narrowcast messages or broadcast messages sent from your LINE Official Account.
 
         :param request_id: Request ID of a narrowcast message or broadcast message. Each Messaging API request has a request ID.  (required)
         :type request_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: GetMessageEventResponse
         """
-        return self._insight.get_message_event(request_id, **kwargs)
+        return self._insight.get_message_event(request_id)
 
-    def get_message_event_with_http_info(self, request_id: Annotated[constr(strict=True, min_length=1), Field(..., description='Request ID of a narrowcast message or broadcast message. Each Messaging API request has a request ID. ')], **kwargs) -> ApiResponse:
-        """Get user interaction statistics  # noqa: E501
+    def get_message_event_with_http_info(self, request_id: Annotated[constr(strict=True, min_length=1), Field(..., description='Request ID of a narrowcast message or broadcast message. Each Messaging API request has a request ID. ')]) -> ApiResponse:
+        """Get user interaction statistics
 
-        Returns statistics about how users interact with narrowcast messages or broadcast messages sent from your LINE Official Account.   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_message_event_with_http_info(request_id, async_req=True)
-        >>> result = thread.get()
+        Returns statistics about how users interact with narrowcast messages or broadcast messages sent from your LINE Official Account.
 
         :param request_id: Request ID of a narrowcast message or broadcast message. Each Messaging API request has a request ID.  (required)
         :type request_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(GetMessageEventResponse, status_code(int), headers(HTTPHeaderDict))
         """
-        return self._insight.get_message_event_with_http_info(request_id, **kwargs)
+        return self._insight.get_message_event_with_http_info(request_id)
 
-    def get_number_of_followers(self, var_date: Annotated[Optional[constr(strict=True, max_length=8, min_length=8)], Field(description='Date for which to retrieve the number of followers.  Format: yyyyMMdd (e.g. 20191231) Timezone: UTC+9 ')] = None, **kwargs) -> GetNumberOfFollowersResponse:
-        """Get number of followers  # noqa: E501
+    def get_number_of_followers(self, var_date: Annotated[Optional[constr(strict=True, max_length=8, min_length=8)], Field(description='Date for which to retrieve the number of followers.  Format: yyyyMMdd (e.g. 20191231) Timezone: UTC+9 ')] = None) -> GetNumberOfFollowersResponse:
+        """Get number of followers
 
-        Returns the number of users who have added the LINE Official Account on or before a specified date.   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_number_of_followers(var_date, async_req=True)
-        >>> result = thread.get()
+        Returns the number of users who have added the LINE Official Account on or before a specified date.
 
         :param var_date: Date for which to retrieve the number of followers.  Format: yyyyMMdd (e.g. 20191231) Timezone: UTC+9 
         :type var_date: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: GetNumberOfFollowersResponse
         """
-        return self._insight.get_number_of_followers(var_date, **kwargs)
+        return self._insight.get_number_of_followers(var_date)
 
-    def get_number_of_followers_with_http_info(self, var_date: Annotated[Optional[constr(strict=True, max_length=8, min_length=8)], Field(description='Date for which to retrieve the number of followers.  Format: yyyyMMdd (e.g. 20191231) Timezone: UTC+9 ')] = None, **kwargs) -> ApiResponse:
-        """Get number of followers  # noqa: E501
+    def get_number_of_followers_with_http_info(self, var_date: Annotated[Optional[constr(strict=True, max_length=8, min_length=8)], Field(description='Date for which to retrieve the number of followers.  Format: yyyyMMdd (e.g. 20191231) Timezone: UTC+9 ')] = None) -> ApiResponse:
+        """Get number of followers
 
-        Returns the number of users who have added the LINE Official Account on or before a specified date.   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_number_of_followers_with_http_info(var_date, async_req=True)
-        >>> result = thread.get()
+        Returns the number of users who have added the LINE Official Account on or before a specified date.
 
         :param var_date: Date for which to retrieve the number of followers.  Format: yyyyMMdd (e.g. 20191231) Timezone: UTC+9 
         :type var_date: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(GetNumberOfFollowersResponse, status_code(int), headers(HTTPHeaderDict))
         """
-        return self._insight.get_number_of_followers_with_http_info(var_date, **kwargs)
+        return self._insight.get_number_of_followers_with_http_info(var_date)
 
-    def get_number_of_message_deliveries(self, var_date: Annotated[constr(strict=True, max_length=8, min_length=8), Field(..., description='Date for which to retrieve number of sent messages. - Format: yyyyMMdd (e.g. 20191231) - Timezone: UTC+9 ')], **kwargs) -> GetNumberOfMessageDeliveriesResponse:
-        """Get number of message deliveries  # noqa: E501
+    def get_number_of_message_deliveries(self, var_date: Annotated[constr(strict=True, max_length=8, min_length=8), Field(..., description='Date for which to retrieve number of sent messages. - Format: yyyyMMdd (e.g. 20191231) - Timezone: UTC+9 ')]) -> GetNumberOfMessageDeliveriesResponse:
+        """Get number of message deliveries
 
-        Returns the number of messages sent from LINE Official Account on a specified day.   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_number_of_message_deliveries(var_date, async_req=True)
-        >>> result = thread.get()
+        Returns the number of messages sent from LINE Official Account on a specified day.
 
         :param var_date: Date for which to retrieve number of sent messages. - Format: yyyyMMdd (e.g. 20191231) - Timezone: UTC+9  (required)
         :type var_date: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: GetNumberOfMessageDeliveriesResponse
         """
-        return self._insight.get_number_of_message_deliveries(var_date, **kwargs)
+        return self._insight.get_number_of_message_deliveries(var_date)
 
-    def get_number_of_message_deliveries_with_http_info(self, var_date: Annotated[constr(strict=True, max_length=8, min_length=8), Field(..., description='Date for which to retrieve number of sent messages. - Format: yyyyMMdd (e.g. 20191231) - Timezone: UTC+9 ')], **kwargs) -> ApiResponse:
-        """Get number of message deliveries  # noqa: E501
+    def get_number_of_message_deliveries_with_http_info(self, var_date: Annotated[constr(strict=True, max_length=8, min_length=8), Field(..., description='Date for which to retrieve number of sent messages. - Format: yyyyMMdd (e.g. 20191231) - Timezone: UTC+9 ')]) -> ApiResponse:
+        """Get number of message deliveries
 
-        Returns the number of messages sent from LINE Official Account on a specified day.   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_number_of_message_deliveries_with_http_info(var_date, async_req=True)
-        >>> result = thread.get()
+        Returns the number of messages sent from LINE Official Account on a specified day.
 
         :param var_date: Date for which to retrieve number of sent messages. - Format: yyyyMMdd (e.g. 20191231) - Timezone: UTC+9  (required)
         :type var_date: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(GetNumberOfMessageDeliveriesResponse, status_code(int), headers(HTTPHeaderDict))
         """
-        return self._insight.get_number_of_message_deliveries_with_http_info(var_date, **kwargs)
+        return self._insight.get_number_of_message_deliveries_with_http_info(var_date)
 
-    def get_statistics_per_unit(self, custom_aggregation_unit: Annotated[constr(strict=True, max_length=30, min_length=1), Field(..., description='Name of aggregation unit specified when sending the message. Case-sensitive. For example, `Promotion_a` and `Promotion_A` are regarded as different unit names. ')], var_from: Annotated[constr(strict=True, max_length=8, min_length=8), Field(..., description='Start date of aggregation period.  Format: yyyyMMdd (e.g. 20210301) Time zone: UTC+9 ')], to: Annotated[constr(strict=True, max_length=8, min_length=8), Field(..., description='End date of aggregation period. The end date can be specified for up to 30 days later. For example, if the start date is 20210301, the latest end date is 20210331.  Format: yyyyMMdd (e.g. 20210301) Time zone: UTC+9 ')], **kwargs) -> GetStatisticsPerUnitResponse:
-        """get_statistics_per_unit  # noqa: E501
-
-        You can check the per-unit statistics of how users interact with push messages and multicast messages sent from your LINE Official Account.   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_statistics_per_unit(custom_aggregation_unit, var_from, to, async_req=True)
-        >>> result = thread.get()
+    def get_statistics_per_unit(self, custom_aggregation_unit: Annotated[constr(strict=True, max_length=30, min_length=1), Field(..., description='Name of aggregation unit specified when sending the message. Case-sensitive. For example, `Promotion_a` and `Promotion_A` are regarded as different unit names. ')], var_from: Annotated[constr(strict=True, max_length=8, min_length=8), Field(..., description='Start date of aggregation period.  Format: yyyyMMdd (e.g. 20210301) Time zone: UTC+9 ')], to: Annotated[constr(strict=True, max_length=8, min_length=8), Field(..., description='End date of aggregation period. The end date can be specified for up to 30 days later. For example, if the start date is 20210301, the latest end date is 20210331.  Format: yyyyMMdd (e.g. 20210301) Time zone: UTC+9 ')]) -> GetStatisticsPerUnitResponse:
+        """You can check the per-unit statistics of how users interact with push messages and multicast messages sent from your LINE Official Account.
 
         :param custom_aggregation_unit: Name of aggregation unit specified when sending the message. Case-sensitive. For example, `Promotion_a` and `Promotion_A` are regarded as different unit names.  (required)
         :type custom_aggregation_unit: str
@@ -1323,28 +640,13 @@ class LineBotClient:
         :type var_from: str
         :param to: End date of aggregation period. The end date can be specified for up to 30 days later. For example, if the start date is 20210301, the latest end date is 20210331.  Format: yyyyMMdd (e.g. 20210301) Time zone: UTC+9  (required)
         :type to: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: GetStatisticsPerUnitResponse
         """
-        return self._insight.get_statistics_per_unit(custom_aggregation_unit, var_from, to, **kwargs)
+        return self._insight.get_statistics_per_unit(custom_aggregation_unit, var_from, to)
 
-    def get_statistics_per_unit_with_http_info(self, custom_aggregation_unit: Annotated[constr(strict=True, max_length=30, min_length=1), Field(..., description='Name of aggregation unit specified when sending the message. Case-sensitive. For example, `Promotion_a` and `Promotion_A` are regarded as different unit names. ')], var_from: Annotated[constr(strict=True, max_length=8, min_length=8), Field(..., description='Start date of aggregation period.  Format: yyyyMMdd (e.g. 20210301) Time zone: UTC+9 ')], to: Annotated[constr(strict=True, max_length=8, min_length=8), Field(..., description='End date of aggregation period. The end date can be specified for up to 30 days later. For example, if the start date is 20210301, the latest end date is 20210331.  Format: yyyyMMdd (e.g. 20210301) Time zone: UTC+9 ')], **kwargs) -> ApiResponse:
-        """get_statistics_per_unit  # noqa: E501
-
-        You can check the per-unit statistics of how users interact with push messages and multicast messages sent from your LINE Official Account.   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_statistics_per_unit_with_http_info(custom_aggregation_unit, var_from, to, async_req=True)
-        >>> result = thread.get()
+    def get_statistics_per_unit_with_http_info(self, custom_aggregation_unit: Annotated[constr(strict=True, max_length=30, min_length=1), Field(..., description='Name of aggregation unit specified when sending the message. Case-sensitive. For example, `Promotion_a` and `Promotion_A` are regarded as different unit names. ')], var_from: Annotated[constr(strict=True, max_length=8, min_length=8), Field(..., description='Start date of aggregation period.  Format: yyyyMMdd (e.g. 20210301) Time zone: UTC+9 ')], to: Annotated[constr(strict=True, max_length=8, min_length=8), Field(..., description='End date of aggregation period. The end date can be specified for up to 30 days later. For example, if the start date is 20210301, the latest end date is 20210331.  Format: yyyyMMdd (e.g. 20210301) Time zone: UTC+9 ')]) -> ApiResponse:
+        """You can check the per-unit statistics of how users interact with push messages and multicast messages sent from your LINE Official Account.
 
         :param custom_aggregation_unit: Name of aggregation unit specified when sending the message. Case-sensitive. For example, `Promotion_a` and `Promotion_A` are regarded as different unit names.  (required)
         :type custom_aggregation_unit: str
@@ -1352,1431 +654,473 @@ class LineBotClient:
         :type var_from: str
         :param to: End date of aggregation period. The end date can be specified for up to 30 days later. For example, if the start date is 20210301, the latest end date is 20210331.  Format: yyyyMMdd (e.g. 20210301) Time zone: UTC+9  (required)
         :type to: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(GetStatisticsPerUnitResponse, status_code(int), headers(HTTPHeaderDict))
         """
-        return self._insight.get_statistics_per_unit_with_http_info(custom_aggregation_unit, var_from, to, **kwargs)
+        return self._insight.get_statistics_per_unit_with_http_info(custom_aggregation_unit, var_from, to)
 
-    def add_liff_app(self, add_liff_app_request: AddLiffAppRequest, **kwargs) -> AddLiffAppResponse:
-        """Create LIFF app  # noqa: E501
+    def add_liff_app(self, add_liff_app_request: AddLiffAppRequest) -> AddLiffAppResponse:
+        """Create LIFF app
 
-        Adding the LIFF app to a channel  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.add_liff_app(add_liff_app_request, async_req=True)
-        >>> result = thread.get()
+        Adding the LIFF app to a channel
 
         :param add_liff_app_request: (required)
         :type add_liff_app_request: AddLiffAppRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: AddLiffAppResponse
         """
-        return self._liff.add_liff_app(add_liff_app_request, **kwargs)
+        return self._liff.add_liff_app(add_liff_app_request)
 
-    def add_liff_app_with_http_info(self, add_liff_app_request: AddLiffAppRequest, **kwargs) -> ApiResponse:
-        """Create LIFF app  # noqa: E501
+    def add_liff_app_with_http_info(self, add_liff_app_request: AddLiffAppRequest) -> ApiResponse:
+        """Create LIFF app
 
-        Adding the LIFF app to a channel  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.add_liff_app_with_http_info(add_liff_app_request, async_req=True)
-        >>> result = thread.get()
+        Adding the LIFF app to a channel
 
         :param add_liff_app_request: (required)
         :type add_liff_app_request: AddLiffAppRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(AddLiffAppResponse, status_code(int), headers(HTTPHeaderDict))
         """
-        return self._liff.add_liff_app_with_http_info(add_liff_app_request, **kwargs)
+        return self._liff.add_liff_app_with_http_info(add_liff_app_request)
 
-    def delete_liff_app(self, liff_id: Annotated[StrictStr, Field(..., description='ID of the LIFF app to be updated')], **kwargs) -> None:
-        """Delete LIFF app from a channel  # noqa: E501
+    def delete_liff_app(self, liff_id: Annotated[StrictStr, Field(..., description='ID of the LIFF app to be updated')]) -> None:
+        """Delete LIFF app from a channel
 
-        Deletes a LIFF app from a channel.   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.delete_liff_app(liff_id, async_req=True)
-        >>> result = thread.get()
+        Deletes a LIFF app from a channel.
 
         :param liff_id: ID of the LIFF app to be updated (required)
         :type liff_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._liff.delete_liff_app(liff_id, **kwargs)
+        return self._liff.delete_liff_app(liff_id)
 
-    def delete_liff_app_with_http_info(self, liff_id: Annotated[StrictStr, Field(..., description='ID of the LIFF app to be updated')], **kwargs) -> ApiResponse:
-        """Delete LIFF app from a channel  # noqa: E501
+    def delete_liff_app_with_http_info(self, liff_id: Annotated[StrictStr, Field(..., description='ID of the LIFF app to be updated')]) -> ApiResponse:
+        """Delete LIFF app from a channel
 
-        Deletes a LIFF app from a channel.   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.delete_liff_app_with_http_info(liff_id, async_req=True)
-        >>> result = thread.get()
+        Deletes a LIFF app from a channel.
 
         :param liff_id: ID of the LIFF app to be updated (required)
         :type liff_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._liff.delete_liff_app_with_http_info(liff_id, **kwargs)
+        return self._liff.delete_liff_app_with_http_info(liff_id)
 
-    def get_all_liff_apps(self, **kwargs) -> GetAllLiffAppsResponse:
-        """Get all LIFF apps  # noqa: E501
+    def get_all_liff_apps(self) -> GetAllLiffAppsResponse:
+        """Get all LIFF apps
 
-        Gets information on all the LIFF apps added to the channel.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
+        Gets information on all the LIFF apps added to the channel.
 
-        >>> thread = api.get_all_liff_apps(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: GetAllLiffAppsResponse
         """
-        return self._liff.get_all_liff_apps(**kwargs)
+        return self._liff.get_all_liff_apps()
 
-    def get_all_liff_apps_with_http_info(self, **kwargs) -> ApiResponse:
-        """Get all LIFF apps  # noqa: E501
+    def get_all_liff_apps_with_http_info(self) -> ApiResponse:
+        """Get all LIFF apps
 
-        Gets information on all the LIFF apps added to the channel.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
+        Gets information on all the LIFF apps added to the channel.
 
-        >>> thread = api.get_all_liff_apps_with_http_info(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(GetAllLiffAppsResponse, status_code(int), headers(HTTPHeaderDict))
         """
-        return self._liff.get_all_liff_apps_with_http_info(**kwargs)
+        return self._liff.get_all_liff_apps_with_http_info()
 
-    def update_liff_app(self, liff_id: Annotated[StrictStr, Field(..., description='ID of the LIFF app to be updated')], update_liff_app_request: UpdateLiffAppRequest, **kwargs) -> None:
-        """Update LIFF app from a channel  # noqa: E501
+    def update_liff_app(self, liff_id: Annotated[StrictStr, Field(..., description='ID of the LIFF app to be updated')], update_liff_app_request: UpdateLiffAppRequest) -> None:
+        """Update LIFF app from a channel
 
-        Update LIFF app settings  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.update_liff_app(liff_id, update_liff_app_request, async_req=True)
-        >>> result = thread.get()
+        Update LIFF app settings
 
         :param liff_id: ID of the LIFF app to be updated (required)
         :type liff_id: str
         :param update_liff_app_request: (required)
         :type update_liff_app_request: UpdateLiffAppRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._liff.update_liff_app(liff_id, update_liff_app_request, **kwargs)
+        return self._liff.update_liff_app(liff_id, update_liff_app_request)
 
-    def update_liff_app_with_http_info(self, liff_id: Annotated[StrictStr, Field(..., description='ID of the LIFF app to be updated')], update_liff_app_request: UpdateLiffAppRequest, **kwargs) -> ApiResponse:
-        """Update LIFF app from a channel  # noqa: E501
+    def update_liff_app_with_http_info(self, liff_id: Annotated[StrictStr, Field(..., description='ID of the LIFF app to be updated')], update_liff_app_request: UpdateLiffAppRequest) -> ApiResponse:
+        """Update LIFF app from a channel
 
-        Update LIFF app settings  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.update_liff_app_with_http_info(liff_id, update_liff_app_request, async_req=True)
-        >>> result = thread.get()
+        Update LIFF app settings
 
         :param liff_id: ID of the LIFF app to be updated (required)
         :type liff_id: str
         :param update_liff_app_request: (required)
         :type update_liff_app_request: UpdateLiffAppRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._liff.update_liff_app_with_http_info(liff_id, update_liff_app_request, **kwargs)
+        return self._liff.update_liff_app_with_http_info(liff_id, update_liff_app_request)
 
-    def broadcast(self, broadcast_request: BroadcastRequest, x_line_retry_key: Annotated[Optional[StrictStr], Field(description="Retry key. Specifies the UUID in hexadecimal format (e.g., `123e4567-e89b-12d3-a456-426614174000`) generated by any method. The retry key isn't generated by LINE. Each developer must generate their own retry key. ")] = None, **kwargs) -> object:
-        """broadcast  # noqa: E501
-
-        Sends a message to multiple users at any time.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.broadcast(broadcast_request, x_line_retry_key, async_req=True)
-        >>> result = thread.get()
+    def broadcast(self, broadcast_request: BroadcastRequest, x_line_retry_key: Annotated[Optional[StrictStr], Field(description="Retry key. Specifies the UUID in hexadecimal format (e.g., `123e4567-e89b-12d3-a456-426614174000`) generated by any method. The retry key isn't generated by LINE. Each developer must generate their own retry key. ")] = None) -> object:
+        """Sends a message to multiple users at any time.
 
         :param broadcast_request: (required)
         :type broadcast_request: BroadcastRequest
         :param x_line_retry_key: Retry key. Specifies the UUID in hexadecimal format (e.g., `123e4567-e89b-12d3-a456-426614174000`) generated by any method. The retry key isn't generated by LINE. Each developer must generate their own retry key. 
         :type x_line_retry_key: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: object
         """
-        return self._messaging_api.broadcast(broadcast_request, x_line_retry_key, **kwargs)
+        return self._messaging_api.broadcast(broadcast_request, x_line_retry_key)
 
-    def broadcast_with_http_info(self, broadcast_request: BroadcastRequest, x_line_retry_key: Annotated[Optional[StrictStr], Field(description="Retry key. Specifies the UUID in hexadecimal format (e.g., `123e4567-e89b-12d3-a456-426614174000`) generated by any method. The retry key isn't generated by LINE. Each developer must generate their own retry key. ")] = None, **kwargs) -> ApiResponse:
-        """broadcast  # noqa: E501
-
-        Sends a message to multiple users at any time.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.broadcast_with_http_info(broadcast_request, x_line_retry_key, async_req=True)
-        >>> result = thread.get()
+    def broadcast_with_http_info(self, broadcast_request: BroadcastRequest, x_line_retry_key: Annotated[Optional[StrictStr], Field(description="Retry key. Specifies the UUID in hexadecimal format (e.g., `123e4567-e89b-12d3-a456-426614174000`) generated by any method. The retry key isn't generated by LINE. Each developer must generate their own retry key. ")] = None) -> ApiResponse:
+        """Sends a message to multiple users at any time.
 
         :param broadcast_request: (required)
         :type broadcast_request: BroadcastRequest
         :param x_line_retry_key: Retry key. Specifies the UUID in hexadecimal format (e.g., `123e4567-e89b-12d3-a456-426614174000`) generated by any method. The retry key isn't generated by LINE. Each developer must generate their own retry key. 
         :type x_line_retry_key: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(object, status_code(int), headers(HTTPHeaderDict))
         """
-        return self._messaging_api.broadcast_with_http_info(broadcast_request, x_line_retry_key, **kwargs)
+        return self._messaging_api.broadcast_with_http_info(broadcast_request, x_line_retry_key)
 
-    def cancel_default_rich_menu(self, **kwargs) -> None:
-        """cancel_default_rich_menu  # noqa: E501
+    def cancel_default_rich_menu(self) -> None:
+        """Cancel default rich menu
 
-        Cancel default rich menu  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.cancel_default_rich_menu(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._messaging_api.cancel_default_rich_menu(**kwargs)
+        return self._messaging_api.cancel_default_rich_menu()
 
-    def cancel_default_rich_menu_with_http_info(self, **kwargs) -> ApiResponse:
-        """cancel_default_rich_menu  # noqa: E501
+    def cancel_default_rich_menu_with_http_info(self) -> ApiResponse:
+        """Cancel default rich menu
 
-        Cancel default rich menu  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.cancel_default_rich_menu_with_http_info(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._messaging_api.cancel_default_rich_menu_with_http_info(**kwargs)
+        return self._messaging_api.cancel_default_rich_menu_with_http_info()
 
-    def close_coupon(self, coupon_id: StrictStr, **kwargs) -> None:
-        """close_coupon  # noqa: E501
-
-        Close coupon  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.close_coupon(coupon_id, async_req=True)
-        >>> result = thread.get()
+    def close_coupon(self, coupon_id: StrictStr) -> None:
+        """Close coupon
 
         :param coupon_id: (required)
         :type coupon_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._messaging_api.close_coupon(coupon_id, **kwargs)
+        return self._messaging_api.close_coupon(coupon_id)
 
-    def close_coupon_with_http_info(self, coupon_id: StrictStr, **kwargs) -> ApiResponse:
-        """close_coupon  # noqa: E501
-
-        Close coupon  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.close_coupon_with_http_info(coupon_id, async_req=True)
-        >>> result = thread.get()
+    def close_coupon_with_http_info(self, coupon_id: StrictStr) -> ApiResponse:
+        """Close coupon
 
         :param coupon_id: (required)
         :type coupon_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._messaging_api.close_coupon_with_http_info(coupon_id, **kwargs)
+        return self._messaging_api.close_coupon_with_http_info(coupon_id)
 
-    def create_coupon(self, coupon_create_request: Optional[CouponCreateRequest] = None, **kwargs) -> CouponCreateResponse:
-        """create_coupon  # noqa: E501
-
-        Create a new coupon. Define coupon details such as type, title, and validity period.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.create_coupon(coupon_create_request, async_req=True)
-        >>> result = thread.get()
+    def create_coupon(self, coupon_create_request: Optional[CouponCreateRequest] = None) -> CouponCreateResponse:
+        """Create a new coupon. Define coupon details such as type, title, and validity period.
 
         :param coupon_create_request:
         :type coupon_create_request: CouponCreateRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: CouponCreateResponse
         """
-        return self._messaging_api.create_coupon(coupon_create_request, **kwargs)
+        return self._messaging_api.create_coupon(coupon_create_request)
 
-    def create_coupon_with_http_info(self, coupon_create_request: Optional[CouponCreateRequest] = None, **kwargs) -> ApiResponse:
-        """create_coupon  # noqa: E501
-
-        Create a new coupon. Define coupon details such as type, title, and validity period.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.create_coupon_with_http_info(coupon_create_request, async_req=True)
-        >>> result = thread.get()
+    def create_coupon_with_http_info(self, coupon_create_request: Optional[CouponCreateRequest] = None) -> ApiResponse:
+        """Create a new coupon. Define coupon details such as type, title, and validity period.
 
         :param coupon_create_request:
         :type coupon_create_request: CouponCreateRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(CouponCreateResponse, status_code(int), headers(HTTPHeaderDict))
         """
-        return self._messaging_api.create_coupon_with_http_info(coupon_create_request, **kwargs)
+        return self._messaging_api.create_coupon_with_http_info(coupon_create_request)
 
-    def create_rich_menu(self, rich_menu_request: RichMenuRequest, **kwargs) -> RichMenuIdResponse:
-        """create_rich_menu  # noqa: E501
-
-        Create rich menu  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.create_rich_menu(rich_menu_request, async_req=True)
-        >>> result = thread.get()
+    def create_rich_menu(self, rich_menu_request: RichMenuRequest) -> RichMenuIdResponse:
+        """Create rich menu
 
         :param rich_menu_request: (required)
         :type rich_menu_request: RichMenuRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: RichMenuIdResponse
         """
-        return self._messaging_api.create_rich_menu(rich_menu_request, **kwargs)
+        return self._messaging_api.create_rich_menu(rich_menu_request)
 
-    def create_rich_menu_with_http_info(self, rich_menu_request: RichMenuRequest, **kwargs) -> ApiResponse:
-        """create_rich_menu  # noqa: E501
-
-        Create rich menu  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.create_rich_menu_with_http_info(rich_menu_request, async_req=True)
-        >>> result = thread.get()
+    def create_rich_menu_with_http_info(self, rich_menu_request: RichMenuRequest) -> ApiResponse:
+        """Create rich menu
 
         :param rich_menu_request: (required)
         :type rich_menu_request: RichMenuRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(RichMenuIdResponse, status_code(int), headers(HTTPHeaderDict))
         """
-        return self._messaging_api.create_rich_menu_with_http_info(rich_menu_request, **kwargs)
+        return self._messaging_api.create_rich_menu_with_http_info(rich_menu_request)
 
-    def create_rich_menu_alias(self, create_rich_menu_alias_request: CreateRichMenuAliasRequest, **kwargs) -> None:
-        """create_rich_menu_alias  # noqa: E501
-
-        Create rich menu alias  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.create_rich_menu_alias(create_rich_menu_alias_request, async_req=True)
-        >>> result = thread.get()
+    def create_rich_menu_alias(self, create_rich_menu_alias_request: CreateRichMenuAliasRequest) -> None:
+        """Create rich menu alias
 
         :param create_rich_menu_alias_request: (required)
         :type create_rich_menu_alias_request: CreateRichMenuAliasRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._messaging_api.create_rich_menu_alias(create_rich_menu_alias_request, **kwargs)
+        return self._messaging_api.create_rich_menu_alias(create_rich_menu_alias_request)
 
-    def create_rich_menu_alias_with_http_info(self, create_rich_menu_alias_request: CreateRichMenuAliasRequest, **kwargs) -> ApiResponse:
-        """create_rich_menu_alias  # noqa: E501
-
-        Create rich menu alias  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.create_rich_menu_alias_with_http_info(create_rich_menu_alias_request, async_req=True)
-        >>> result = thread.get()
+    def create_rich_menu_alias_with_http_info(self, create_rich_menu_alias_request: CreateRichMenuAliasRequest) -> ApiResponse:
+        """Create rich menu alias
 
         :param create_rich_menu_alias_request: (required)
         :type create_rich_menu_alias_request: CreateRichMenuAliasRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._messaging_api.create_rich_menu_alias_with_http_info(create_rich_menu_alias_request, **kwargs)
+        return self._messaging_api.create_rich_menu_alias_with_http_info(create_rich_menu_alias_request)
 
-    def delete_rich_menu(self, rich_menu_id: Annotated[StrictStr, Field(..., description='ID of a rich menu')], **kwargs) -> None:
-        """delete_rich_menu  # noqa: E501
-
-        Deletes a rich menu.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.delete_rich_menu(rich_menu_id, async_req=True)
-        >>> result = thread.get()
+    def delete_rich_menu(self, rich_menu_id: Annotated[StrictStr, Field(..., description='ID of a rich menu')]) -> None:
+        """Deletes a rich menu.
 
         :param rich_menu_id: ID of a rich menu (required)
         :type rich_menu_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._messaging_api.delete_rich_menu(rich_menu_id, **kwargs)
+        return self._messaging_api.delete_rich_menu(rich_menu_id)
 
-    def delete_rich_menu_with_http_info(self, rich_menu_id: Annotated[StrictStr, Field(..., description='ID of a rich menu')], **kwargs) -> ApiResponse:
-        """delete_rich_menu  # noqa: E501
-
-        Deletes a rich menu.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.delete_rich_menu_with_http_info(rich_menu_id, async_req=True)
-        >>> result = thread.get()
+    def delete_rich_menu_with_http_info(self, rich_menu_id: Annotated[StrictStr, Field(..., description='ID of a rich menu')]) -> ApiResponse:
+        """Deletes a rich menu.
 
         :param rich_menu_id: ID of a rich menu (required)
         :type rich_menu_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._messaging_api.delete_rich_menu_with_http_info(rich_menu_id, **kwargs)
+        return self._messaging_api.delete_rich_menu_with_http_info(rich_menu_id)
 
-    def delete_rich_menu_alias(self, rich_menu_alias_id: Annotated[StrictStr, Field(..., description='Rich menu alias ID that you want to delete.')], **kwargs) -> None:
-        """delete_rich_menu_alias  # noqa: E501
-
-        Delete rich menu alias  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.delete_rich_menu_alias(rich_menu_alias_id, async_req=True)
-        >>> result = thread.get()
+    def delete_rich_menu_alias(self, rich_menu_alias_id: Annotated[StrictStr, Field(..., description='Rich menu alias ID that you want to delete.')]) -> None:
+        """Delete rich menu alias
 
         :param rich_menu_alias_id: Rich menu alias ID that you want to delete. (required)
         :type rich_menu_alias_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._messaging_api.delete_rich_menu_alias(rich_menu_alias_id, **kwargs)
+        return self._messaging_api.delete_rich_menu_alias(rich_menu_alias_id)
 
-    def delete_rich_menu_alias_with_http_info(self, rich_menu_alias_id: Annotated[StrictStr, Field(..., description='Rich menu alias ID that you want to delete.')], **kwargs) -> ApiResponse:
-        """delete_rich_menu_alias  # noqa: E501
-
-        Delete rich menu alias  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.delete_rich_menu_alias_with_http_info(rich_menu_alias_id, async_req=True)
-        >>> result = thread.get()
+    def delete_rich_menu_alias_with_http_info(self, rich_menu_alias_id: Annotated[StrictStr, Field(..., description='Rich menu alias ID that you want to delete.')]) -> ApiResponse:
+        """Delete rich menu alias
 
         :param rich_menu_alias_id: Rich menu alias ID that you want to delete. (required)
         :type rich_menu_alias_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._messaging_api.delete_rich_menu_alias_with_http_info(rich_menu_alias_id, **kwargs)
+        return self._messaging_api.delete_rich_menu_alias_with_http_info(rich_menu_alias_id)
 
-    def get_aggregation_unit_name_list(self, limit: Annotated[Optional[StrictStr], Field(description='The maximum number of aggregation units you can get per request. ')] = None, start: Annotated[Optional[StrictStr], Field(description="Value of the continuation token found in the next property of the JSON object returned in the response. If you can't get all the aggregation units in one request, include this parameter to get the remaining array. ")] = None, **kwargs) -> GetAggregationUnitNameListResponse:
-        """get_aggregation_unit_name_list  # noqa: E501
-
-        Get name list of units used this month  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_aggregation_unit_name_list(limit, start, async_req=True)
-        >>> result = thread.get()
+    def get_aggregation_unit_name_list(self, limit: Annotated[Optional[StrictStr], Field(description='The maximum number of aggregation units you can get per request. ')] = None, start: Annotated[Optional[StrictStr], Field(description="Value of the continuation token found in the next property of the JSON object returned in the response. If you can't get all the aggregation units in one request, include this parameter to get the remaining array. ")] = None) -> GetAggregationUnitNameListResponse:
+        """Get name list of units used this month
 
         :param limit: The maximum number of aggregation units you can get per request. 
         :type limit: str
         :param start: Value of the continuation token found in the next property of the JSON object returned in the response. If you can't get all the aggregation units in one request, include this parameter to get the remaining array. 
         :type start: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: GetAggregationUnitNameListResponse
         """
-        return self._messaging_api.get_aggregation_unit_name_list(limit, start, **kwargs)
+        return self._messaging_api.get_aggregation_unit_name_list(limit, start)
 
-    def get_aggregation_unit_name_list_with_http_info(self, limit: Annotated[Optional[StrictStr], Field(description='The maximum number of aggregation units you can get per request. ')] = None, start: Annotated[Optional[StrictStr], Field(description="Value of the continuation token found in the next property of the JSON object returned in the response. If you can't get all the aggregation units in one request, include this parameter to get the remaining array. ")] = None, **kwargs) -> ApiResponse:
-        """get_aggregation_unit_name_list  # noqa: E501
-
-        Get name list of units used this month  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_aggregation_unit_name_list_with_http_info(limit, start, async_req=True)
-        >>> result = thread.get()
+    def get_aggregation_unit_name_list_with_http_info(self, limit: Annotated[Optional[StrictStr], Field(description='The maximum number of aggregation units you can get per request. ')] = None, start: Annotated[Optional[StrictStr], Field(description="Value of the continuation token found in the next property of the JSON object returned in the response. If you can't get all the aggregation units in one request, include this parameter to get the remaining array. ")] = None) -> ApiResponse:
+        """Get name list of units used this month
 
         :param limit: The maximum number of aggregation units you can get per request. 
         :type limit: str
         :param start: Value of the continuation token found in the next property of the JSON object returned in the response. If you can't get all the aggregation units in one request, include this parameter to get the remaining array. 
         :type start: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(GetAggregationUnitNameListResponse, status_code(int), headers(HTTPHeaderDict))
         """
-        return self._messaging_api.get_aggregation_unit_name_list_with_http_info(limit, start, **kwargs)
+        return self._messaging_api.get_aggregation_unit_name_list_with_http_info(limit, start)
 
-    def get_aggregation_unit_usage(self, **kwargs) -> GetAggregationUnitUsageResponse:
-        """get_aggregation_unit_usage  # noqa: E501
+    def get_aggregation_unit_usage(self) -> GetAggregationUnitUsageResponse:
+        """Get number of units used this month
 
-        Get number of units used this month  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_aggregation_unit_usage(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: GetAggregationUnitUsageResponse
         """
-        return self._messaging_api.get_aggregation_unit_usage(**kwargs)
+        return self._messaging_api.get_aggregation_unit_usage()
 
-    def get_aggregation_unit_usage_with_http_info(self, **kwargs) -> ApiResponse:
-        """get_aggregation_unit_usage  # noqa: E501
+    def get_aggregation_unit_usage_with_http_info(self) -> ApiResponse:
+        """Get number of units used this month
 
-        Get number of units used this month  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_aggregation_unit_usage_with_http_info(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(GetAggregationUnitUsageResponse, status_code(int), headers(HTTPHeaderDict))
         """
-        return self._messaging_api.get_aggregation_unit_usage_with_http_info(**kwargs)
+        return self._messaging_api.get_aggregation_unit_usage_with_http_info()
 
-    def get_bot_info(self, **kwargs) -> BotInfoResponse:
-        """get_bot_info  # noqa: E501
+    def get_bot_info(self) -> BotInfoResponse:
+        """Get bot info
 
-        Get bot info  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_bot_info(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: BotInfoResponse
         """
-        return self._messaging_api.get_bot_info(**kwargs)
+        return self._messaging_api.get_bot_info()
 
-    def get_bot_info_with_http_info(self, **kwargs) -> ApiResponse:
-        """get_bot_info  # noqa: E501
+    def get_bot_info_with_http_info(self) -> ApiResponse:
+        """Get bot info
 
-        Get bot info  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_bot_info_with_http_info(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(BotInfoResponse, status_code(int), headers(HTTPHeaderDict))
         """
-        return self._messaging_api.get_bot_info_with_http_info(**kwargs)
+        return self._messaging_api.get_bot_info_with_http_info()
 
-    def get_coupon_detail(self, coupon_id: StrictStr, **kwargs) -> CouponResponse:
-        """get_coupon_detail  # noqa: E501
-
-        Get coupon detail  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_coupon_detail(coupon_id, async_req=True)
-        >>> result = thread.get()
+    def get_coupon_detail(self, coupon_id: StrictStr) -> CouponResponse:
+        """Get coupon detail
 
         :param coupon_id: (required)
         :type coupon_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: CouponResponse
         """
-        return self._messaging_api.get_coupon_detail(coupon_id, **kwargs)
+        return self._messaging_api.get_coupon_detail(coupon_id)
 
-    def get_coupon_detail_with_http_info(self, coupon_id: StrictStr, **kwargs) -> ApiResponse:
-        """get_coupon_detail  # noqa: E501
-
-        Get coupon detail  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_coupon_detail_with_http_info(coupon_id, async_req=True)
-        >>> result = thread.get()
+    def get_coupon_detail_with_http_info(self, coupon_id: StrictStr) -> ApiResponse:
+        """Get coupon detail
 
         :param coupon_id: (required)
         :type coupon_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(CouponResponse, status_code(int), headers(HTTPHeaderDict))
         """
-        return self._messaging_api.get_coupon_detail_with_http_info(coupon_id, **kwargs)
+        return self._messaging_api.get_coupon_detail_with_http_info(coupon_id)
 
-    def get_default_rich_menu_id(self, **kwargs) -> RichMenuIdResponse:
-        """get_default_rich_menu_id  # noqa: E501
+    def get_default_rich_menu_id(self) -> RichMenuIdResponse:
+        """Gets the ID of the default rich menu set with the Messaging API.
 
-        Gets the ID of the default rich menu set with the Messaging API.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_default_rich_menu_id(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: RichMenuIdResponse
         """
-        return self._messaging_api.get_default_rich_menu_id(**kwargs)
+        return self._messaging_api.get_default_rich_menu_id()
 
-    def get_default_rich_menu_id_with_http_info(self, **kwargs) -> ApiResponse:
-        """get_default_rich_menu_id  # noqa: E501
+    def get_default_rich_menu_id_with_http_info(self) -> ApiResponse:
+        """Gets the ID of the default rich menu set with the Messaging API.
 
-        Gets the ID of the default rich menu set with the Messaging API.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_default_rich_menu_id_with_http_info(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(RichMenuIdResponse, status_code(int), headers(HTTPHeaderDict))
         """
-        return self._messaging_api.get_default_rich_menu_id_with_http_info(**kwargs)
+        return self._messaging_api.get_default_rich_menu_id_with_http_info()
 
-    def get_followers(self, start: Annotated[Optional[StrictStr], Field(description='Value of the continuation token found in the next property of the JSON object returned in the response. Include this parameter to get the next array of user IDs. ')] = None, limit: Annotated[Optional[conint(strict=True, le=1000)], Field(description='The maximum number of user IDs to retrieve in a single request.')] = None, **kwargs) -> GetFollowersResponse:
-        """get_followers  # noqa: E501
-
-        Get a list of users who added your LINE Official Account as a friend  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_followers(start, limit, async_req=True)
-        >>> result = thread.get()
+    def get_followers(self, start: Annotated[Optional[StrictStr], Field(description='Value of the continuation token found in the next property of the JSON object returned in the response. Include this parameter to get the next array of user IDs. ')] = None, limit: Annotated[Optional[conint(strict=True, le=1000)], Field(description='The maximum number of user IDs to retrieve in a single request.')] = None) -> GetFollowersResponse:
+        """Get a list of users who added your LINE Official Account as a friend
 
         :param start: Value of the continuation token found in the next property of the JSON object returned in the response. Include this parameter to get the next array of user IDs. 
         :type start: str
         :param limit: The maximum number of user IDs to retrieve in a single request.
         :type limit: int
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: GetFollowersResponse
         """
-        return self._messaging_api.get_followers(start, limit, **kwargs)
+        return self._messaging_api.get_followers(start, limit)
 
-    def get_followers_with_http_info(self, start: Annotated[Optional[StrictStr], Field(description='Value of the continuation token found in the next property of the JSON object returned in the response. Include this parameter to get the next array of user IDs. ')] = None, limit: Annotated[Optional[conint(strict=True, le=1000)], Field(description='The maximum number of user IDs to retrieve in a single request.')] = None, **kwargs) -> ApiResponse:
-        """get_followers  # noqa: E501
-
-        Get a list of users who added your LINE Official Account as a friend  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_followers_with_http_info(start, limit, async_req=True)
-        >>> result = thread.get()
+    def get_followers_with_http_info(self, start: Annotated[Optional[StrictStr], Field(description='Value of the continuation token found in the next property of the JSON object returned in the response. Include this parameter to get the next array of user IDs. ')] = None, limit: Annotated[Optional[conint(strict=True, le=1000)], Field(description='The maximum number of user IDs to retrieve in a single request.')] = None) -> ApiResponse:
+        """Get a list of users who added your LINE Official Account as a friend
 
         :param start: Value of the continuation token found in the next property of the JSON object returned in the response. Include this parameter to get the next array of user IDs. 
         :type start: str
         :param limit: The maximum number of user IDs to retrieve in a single request.
         :type limit: int
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(GetFollowersResponse, status_code(int), headers(HTTPHeaderDict))
         """
-        return self._messaging_api.get_followers_with_http_info(start, limit, **kwargs)
+        return self._messaging_api.get_followers_with_http_info(start, limit)
 
-    def get_group_member_count(self, group_id: Annotated[StrictStr, Field(..., description='Group ID')], **kwargs) -> GroupMemberCountResponse:
-        """get_group_member_count  # noqa: E501
-
-        Get number of users in a group chat  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_group_member_count(group_id, async_req=True)
-        >>> result = thread.get()
+    def get_group_member_count(self, group_id: Annotated[StrictStr, Field(..., description='Group ID')]) -> GroupMemberCountResponse:
+        """Get number of users in a group chat
 
         :param group_id: Group ID (required)
         :type group_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: GroupMemberCountResponse
         """
-        return self._messaging_api.get_group_member_count(group_id, **kwargs)
+        return self._messaging_api.get_group_member_count(group_id)
 
-    def get_group_member_count_with_http_info(self, group_id: Annotated[StrictStr, Field(..., description='Group ID')], **kwargs) -> ApiResponse:
-        """get_group_member_count  # noqa: E501
-
-        Get number of users in a group chat  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_group_member_count_with_http_info(group_id, async_req=True)
-        >>> result = thread.get()
+    def get_group_member_count_with_http_info(self, group_id: Annotated[StrictStr, Field(..., description='Group ID')]) -> ApiResponse:
+        """Get number of users in a group chat
 
         :param group_id: Group ID (required)
         :type group_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(GroupMemberCountResponse, status_code(int), headers(HTTPHeaderDict))
         """
-        return self._messaging_api.get_group_member_count_with_http_info(group_id, **kwargs)
+        return self._messaging_api.get_group_member_count_with_http_info(group_id)
 
-    def get_group_member_profile(self, group_id: Annotated[StrictStr, Field(..., description='Group ID')], user_id: Annotated[StrictStr, Field(..., description='User ID')], **kwargs) -> GroupUserProfileResponse:
-        """get_group_member_profile  # noqa: E501
-
-        Get group chat member profile  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_group_member_profile(group_id, user_id, async_req=True)
-        >>> result = thread.get()
+    def get_group_member_profile(self, group_id: Annotated[StrictStr, Field(..., description='Group ID')], user_id: Annotated[StrictStr, Field(..., description='User ID')]) -> GroupUserProfileResponse:
+        """Get group chat member profile
 
         :param group_id: Group ID (required)
         :type group_id: str
         :param user_id: User ID (required)
         :type user_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: GroupUserProfileResponse
         """
-        return self._messaging_api.get_group_member_profile(group_id, user_id, **kwargs)
+        return self._messaging_api.get_group_member_profile(group_id, user_id)
 
-    def get_group_member_profile_with_http_info(self, group_id: Annotated[StrictStr, Field(..., description='Group ID')], user_id: Annotated[StrictStr, Field(..., description='User ID')], **kwargs) -> ApiResponse:
-        """get_group_member_profile  # noqa: E501
-
-        Get group chat member profile  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_group_member_profile_with_http_info(group_id, user_id, async_req=True)
-        >>> result = thread.get()
+    def get_group_member_profile_with_http_info(self, group_id: Annotated[StrictStr, Field(..., description='Group ID')], user_id: Annotated[StrictStr, Field(..., description='User ID')]) -> ApiResponse:
+        """Get group chat member profile
 
         :param group_id: Group ID (required)
         :type group_id: str
         :param user_id: User ID (required)
         :type user_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(GroupUserProfileResponse, status_code(int), headers(HTTPHeaderDict))
         """
-        return self._messaging_api.get_group_member_profile_with_http_info(group_id, user_id, **kwargs)
+        return self._messaging_api.get_group_member_profile_with_http_info(group_id, user_id)
 
-    def get_group_members_ids(self, group_id: Annotated[StrictStr, Field(..., description='Group ID')], start: Annotated[Optional[StrictStr], Field(description='Value of the continuation token found in the `next` property of the JSON object returned in the response. Include this parameter to get the next array of user IDs for the members of the group. ')] = None, **kwargs) -> MembersIdsResponse:
-        """get_group_members_ids  # noqa: E501
-
-        Get group chat member user IDs  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_group_members_ids(group_id, start, async_req=True)
-        >>> result = thread.get()
+    def get_group_members_ids(self, group_id: Annotated[StrictStr, Field(..., description='Group ID')], start: Annotated[Optional[StrictStr], Field(description='Value of the continuation token found in the `next` property of the JSON object returned in the response. Include this parameter to get the next array of user IDs for the members of the group. ')] = None) -> MembersIdsResponse:
+        """Get group chat member user IDs
 
         :param group_id: Group ID (required)
         :type group_id: str
         :param start: Value of the continuation token found in the `next` property of the JSON object returned in the response. Include this parameter to get the next array of user IDs for the members of the group. 
         :type start: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: MembersIdsResponse
         """
-        return self._messaging_api.get_group_members_ids(group_id, start, **kwargs)
+        return self._messaging_api.get_group_members_ids(group_id, start)
 
-    def get_group_members_ids_with_http_info(self, group_id: Annotated[StrictStr, Field(..., description='Group ID')], start: Annotated[Optional[StrictStr], Field(description='Value of the continuation token found in the `next` property of the JSON object returned in the response. Include this parameter to get the next array of user IDs for the members of the group. ')] = None, **kwargs) -> ApiResponse:
-        """get_group_members_ids  # noqa: E501
-
-        Get group chat member user IDs  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_group_members_ids_with_http_info(group_id, start, async_req=True)
-        >>> result = thread.get()
+    def get_group_members_ids_with_http_info(self, group_id: Annotated[StrictStr, Field(..., description='Group ID')], start: Annotated[Optional[StrictStr], Field(description='Value of the continuation token found in the `next` property of the JSON object returned in the response. Include this parameter to get the next array of user IDs for the members of the group. ')] = None) -> ApiResponse:
+        """Get group chat member user IDs
 
         :param group_id: Group ID (required)
         :type group_id: str
         :param start: Value of the continuation token found in the `next` property of the JSON object returned in the response. Include this parameter to get the next array of user IDs for the members of the group. 
         :type start: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(MembersIdsResponse, status_code(int), headers(HTTPHeaderDict))
         """
-        return self._messaging_api.get_group_members_ids_with_http_info(group_id, start, **kwargs)
+        return self._messaging_api.get_group_members_ids_with_http_info(group_id, start)
 
-    def get_group_summary(self, group_id: Annotated[StrictStr, Field(..., description='Group ID')], **kwargs) -> GroupSummaryResponse:
-        """get_group_summary  # noqa: E501
-
-        Get group chat summary  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_group_summary(group_id, async_req=True)
-        >>> result = thread.get()
+    def get_group_summary(self, group_id: Annotated[StrictStr, Field(..., description='Group ID')]) -> GroupSummaryResponse:
+        """Get group chat summary
 
         :param group_id: Group ID (required)
         :type group_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: GroupSummaryResponse
         """
-        return self._messaging_api.get_group_summary(group_id, **kwargs)
+        return self._messaging_api.get_group_summary(group_id)
 
-    def get_group_summary_with_http_info(self, group_id: Annotated[StrictStr, Field(..., description='Group ID')], **kwargs) -> ApiResponse:
-        """get_group_summary  # noqa: E501
-
-        Get group chat summary  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_group_summary_with_http_info(group_id, async_req=True)
-        >>> result = thread.get()
+    def get_group_summary_with_http_info(self, group_id: Annotated[StrictStr, Field(..., description='Group ID')]) -> ApiResponse:
+        """Get group chat summary
 
         :param group_id: Group ID (required)
         :type group_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(GroupSummaryResponse, status_code(int), headers(HTTPHeaderDict))
         """
-        return self._messaging_api.get_group_summary_with_http_info(group_id, **kwargs)
+        return self._messaging_api.get_group_summary_with_http_info(group_id)
 
-    def get_joined_membership_users(self, membership_id: Annotated[StrictInt, Field(..., description='Membership plan ID.')], start: Annotated[Optional[StrictStr], Field(description="A continuation token to get next remaining membership user IDs. Returned only when there are remaining user IDs that weren't returned in the userIds property in the previous request. The continuation token expires in 24 hours (86,400 seconds). ")] = None, limit: Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description='The max number of items to return for this API call. The value is set to 300 by default, but the max acceptable value is 1000. ')] = None, **kwargs) -> GetJoinedMembershipUsersResponse:
-        """get_joined_membership_users  # noqa: E501
-
-        Get a list of user IDs who joined the membership.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_joined_membership_users(membership_id, start, limit, async_req=True)
-        >>> result = thread.get()
+    def get_joined_membership_users(self, membership_id: Annotated[StrictInt, Field(..., description='Membership plan ID.')], start: Annotated[Optional[StrictStr], Field(description="A continuation token to get next remaining membership user IDs. Returned only when there are remaining user IDs that weren't returned in the userIds property in the previous request. The continuation token expires in 24 hours (86,400 seconds). ")] = None, limit: Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description='The max number of items to return for this API call. The value is set to 300 by default, but the max acceptable value is 1000. ')] = None) -> GetJoinedMembershipUsersResponse:
+        """Get a list of user IDs who joined the membership.
 
         :param membership_id: Membership plan ID. (required)
         :type membership_id: int
@@ -2784,28 +1128,13 @@ class LineBotClient:
         :type start: str
         :param limit: The max number of items to return for this API call. The value is set to 300 by default, but the max acceptable value is 1000. 
         :type limit: int
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: GetJoinedMembershipUsersResponse
         """
-        return self._messaging_api.get_joined_membership_users(membership_id, start, limit, **kwargs)
+        return self._messaging_api.get_joined_membership_users(membership_id, start, limit)
 
-    def get_joined_membership_users_with_http_info(self, membership_id: Annotated[StrictInt, Field(..., description='Membership plan ID.')], start: Annotated[Optional[StrictStr], Field(description="A continuation token to get next remaining membership user IDs. Returned only when there are remaining user IDs that weren't returned in the userIds property in the previous request. The continuation token expires in 24 hours (86,400 seconds). ")] = None, limit: Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description='The max number of items to return for this API call. The value is set to 300 by default, but the max acceptable value is 1000. ')] = None, **kwargs) -> ApiResponse:
-        """get_joined_membership_users  # noqa: E501
-
-        Get a list of user IDs who joined the membership.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_joined_membership_users_with_http_info(membership_id, start, limit, async_req=True)
-        >>> result = thread.get()
+    def get_joined_membership_users_with_http_info(self, membership_id: Annotated[StrictInt, Field(..., description='Membership plan ID.')], start: Annotated[Optional[StrictStr], Field(description="A continuation token to get next remaining membership user IDs. Returned only when there are remaining user IDs that weren't returned in the userIds property in the previous request. The continuation token expires in 24 hours (86,400 seconds). ")] = None, limit: Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description='The max number of items to return for this API call. The value is set to 300 by default, but the max acceptable value is 1000. ')] = None) -> ApiResponse:
+        """Get a list of user IDs who joined the membership.
 
         :param membership_id: Membership plan ID. (required)
         :type membership_id: int
@@ -2813,1667 +1142,521 @@ class LineBotClient:
         :type start: str
         :param limit: The max number of items to return for this API call. The value is set to 300 by default, but the max acceptable value is 1000. 
         :type limit: int
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(GetJoinedMembershipUsersResponse, status_code(int), headers(HTTPHeaderDict))
         """
-        return self._messaging_api.get_joined_membership_users_with_http_info(membership_id, start, limit, **kwargs)
+        return self._messaging_api.get_joined_membership_users_with_http_info(membership_id, start, limit)
 
-    def get_membership_list(self, **kwargs) -> MembershipListResponse:
-        """get_membership_list  # noqa: E501
+    def get_membership_list(self) -> MembershipListResponse:
+        """Get a list of memberships.
 
-        Get a list of memberships.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_membership_list(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: MembershipListResponse
         """
-        return self._messaging_api.get_membership_list(**kwargs)
+        return self._messaging_api.get_membership_list()
 
-    def get_membership_list_with_http_info(self, **kwargs) -> ApiResponse:
-        """get_membership_list  # noqa: E501
+    def get_membership_list_with_http_info(self) -> ApiResponse:
+        """Get a list of memberships.
 
-        Get a list of memberships.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_membership_list_with_http_info(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(MembershipListResponse, status_code(int), headers(HTTPHeaderDict))
         """
-        return self._messaging_api.get_membership_list_with_http_info(**kwargs)
+        return self._messaging_api.get_membership_list_with_http_info()
 
-    def get_membership_subscription(self, user_id: Annotated[StrictStr, Field(..., description='User ID')], **kwargs) -> GetMembershipSubscriptionResponse:
-        """get_membership_subscription  # noqa: E501
-
-        Get a user's membership subscription.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_membership_subscription(user_id, async_req=True)
-        >>> result = thread.get()
+    def get_membership_subscription(self, user_id: Annotated[StrictStr, Field(..., description='User ID')]) -> GetMembershipSubscriptionResponse:
+        """Get a user's membership subscription.
 
         :param user_id: User ID (required)
         :type user_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: GetMembershipSubscriptionResponse
         """
-        return self._messaging_api.get_membership_subscription(user_id, **kwargs)
+        return self._messaging_api.get_membership_subscription(user_id)
 
-    def get_membership_subscription_with_http_info(self, user_id: Annotated[StrictStr, Field(..., description='User ID')], **kwargs) -> ApiResponse:
-        """get_membership_subscription  # noqa: E501
-
-        Get a user's membership subscription.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_membership_subscription_with_http_info(user_id, async_req=True)
-        >>> result = thread.get()
+    def get_membership_subscription_with_http_info(self, user_id: Annotated[StrictStr, Field(..., description='User ID')]) -> ApiResponse:
+        """Get a user's membership subscription.
 
         :param user_id: User ID (required)
         :type user_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(GetMembershipSubscriptionResponse, status_code(int), headers(HTTPHeaderDict))
         """
-        return self._messaging_api.get_membership_subscription_with_http_info(user_id, **kwargs)
+        return self._messaging_api.get_membership_subscription_with_http_info(user_id)
 
-    def get_message_quota(self, **kwargs) -> MessageQuotaResponse:
-        """get_message_quota  # noqa: E501
+    def get_message_quota(self) -> MessageQuotaResponse:
+        """Gets the target limit for sending messages in the current month. The total number of the free messages and the additional messages is returned.
 
-        Gets the target limit for sending messages in the current month. The total number of the free messages and the additional messages is returned.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_message_quota(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: MessageQuotaResponse
         """
-        return self._messaging_api.get_message_quota(**kwargs)
+        return self._messaging_api.get_message_quota()
 
-    def get_message_quota_with_http_info(self, **kwargs) -> ApiResponse:
-        """get_message_quota  # noqa: E501
+    def get_message_quota_with_http_info(self) -> ApiResponse:
+        """Gets the target limit for sending messages in the current month. The total number of the free messages and the additional messages is returned.
 
-        Gets the target limit for sending messages in the current month. The total number of the free messages and the additional messages is returned.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_message_quota_with_http_info(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(MessageQuotaResponse, status_code(int), headers(HTTPHeaderDict))
         """
-        return self._messaging_api.get_message_quota_with_http_info(**kwargs)
+        return self._messaging_api.get_message_quota_with_http_info()
 
-    def get_message_quota_consumption(self, **kwargs) -> QuotaConsumptionResponse:
-        """get_message_quota_consumption  # noqa: E501
+    def get_message_quota_consumption(self) -> QuotaConsumptionResponse:
+        """Gets the number of messages sent in the current month.
 
-        Gets the number of messages sent in the current month.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_message_quota_consumption(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: QuotaConsumptionResponse
         """
-        return self._messaging_api.get_message_quota_consumption(**kwargs)
+        return self._messaging_api.get_message_quota_consumption()
 
-    def get_message_quota_consumption_with_http_info(self, **kwargs) -> ApiResponse:
-        """get_message_quota_consumption  # noqa: E501
+    def get_message_quota_consumption_with_http_info(self) -> ApiResponse:
+        """Gets the number of messages sent in the current month.
 
-        Gets the number of messages sent in the current month.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_message_quota_consumption_with_http_info(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(QuotaConsumptionResponse, status_code(int), headers(HTTPHeaderDict))
         """
-        return self._messaging_api.get_message_quota_consumption_with_http_info(**kwargs)
+        return self._messaging_api.get_message_quota_consumption_with_http_info()
 
-    def get_narrowcast_progress(self, request_id: Annotated[StrictStr, Field(..., description="The narrowcast message's request ID. Each Messaging API request has a request ID.")], **kwargs) -> NarrowcastProgressResponse:
-        """get_narrowcast_progress  # noqa: E501
-
-        Gets the status of a narrowcast message.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_narrowcast_progress(request_id, async_req=True)
-        >>> result = thread.get()
+    def get_narrowcast_progress(self, request_id: Annotated[StrictStr, Field(..., description="The narrowcast message's request ID. Each Messaging API request has a request ID.")]) -> NarrowcastProgressResponse:
+        """Gets the status of a narrowcast message.
 
         :param request_id: The narrowcast message's request ID. Each Messaging API request has a request ID. (required)
         :type request_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: NarrowcastProgressResponse
         """
-        return self._messaging_api.get_narrowcast_progress(request_id, **kwargs)
+        return self._messaging_api.get_narrowcast_progress(request_id)
 
-    def get_narrowcast_progress_with_http_info(self, request_id: Annotated[StrictStr, Field(..., description="The narrowcast message's request ID. Each Messaging API request has a request ID.")], **kwargs) -> ApiResponse:
-        """get_narrowcast_progress  # noqa: E501
-
-        Gets the status of a narrowcast message.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_narrowcast_progress_with_http_info(request_id, async_req=True)
-        >>> result = thread.get()
+    def get_narrowcast_progress_with_http_info(self, request_id: Annotated[StrictStr, Field(..., description="The narrowcast message's request ID. Each Messaging API request has a request ID.")]) -> ApiResponse:
+        """Gets the status of a narrowcast message.
 
         :param request_id: The narrowcast message's request ID. Each Messaging API request has a request ID. (required)
         :type request_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(NarrowcastProgressResponse, status_code(int), headers(HTTPHeaderDict))
         """
-        return self._messaging_api.get_narrowcast_progress_with_http_info(request_id, **kwargs)
+        return self._messaging_api.get_narrowcast_progress_with_http_info(request_id)
 
-    def get_number_of_sent_broadcast_messages(self, var_date: Annotated[StrictStr, Field(..., description='Date the messages were sent  Format: yyyyMMdd (e.g. 20191231) Timezone: UTC+9 ')], **kwargs) -> NumberOfMessagesResponse:
-        """get_number_of_sent_broadcast_messages  # noqa: E501
-
-        Get number of sent broadcast messages  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_number_of_sent_broadcast_messages(var_date, async_req=True)
-        >>> result = thread.get()
+    def get_number_of_sent_broadcast_messages(self, var_date: Annotated[StrictStr, Field(..., description='Date the messages were sent  Format: yyyyMMdd (e.g. 20191231) Timezone: UTC+9 ')]) -> NumberOfMessagesResponse:
+        """Get number of sent broadcast messages
 
         :param var_date: Date the messages were sent  Format: yyyyMMdd (e.g. 20191231) Timezone: UTC+9  (required)
         :type var_date: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: NumberOfMessagesResponse
         """
-        return self._messaging_api.get_number_of_sent_broadcast_messages(var_date, **kwargs)
+        return self._messaging_api.get_number_of_sent_broadcast_messages(var_date)
 
-    def get_number_of_sent_broadcast_messages_with_http_info(self, var_date: Annotated[StrictStr, Field(..., description='Date the messages were sent  Format: yyyyMMdd (e.g. 20191231) Timezone: UTC+9 ')], **kwargs) -> ApiResponse:
-        """get_number_of_sent_broadcast_messages  # noqa: E501
-
-        Get number of sent broadcast messages  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_number_of_sent_broadcast_messages_with_http_info(var_date, async_req=True)
-        >>> result = thread.get()
+    def get_number_of_sent_broadcast_messages_with_http_info(self, var_date: Annotated[StrictStr, Field(..., description='Date the messages were sent  Format: yyyyMMdd (e.g. 20191231) Timezone: UTC+9 ')]) -> ApiResponse:
+        """Get number of sent broadcast messages
 
         :param var_date: Date the messages were sent  Format: yyyyMMdd (e.g. 20191231) Timezone: UTC+9  (required)
         :type var_date: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(NumberOfMessagesResponse, status_code(int), headers(HTTPHeaderDict))
         """
-        return self._messaging_api.get_number_of_sent_broadcast_messages_with_http_info(var_date, **kwargs)
+        return self._messaging_api.get_number_of_sent_broadcast_messages_with_http_info(var_date)
 
-    def get_number_of_sent_multicast_messages(self, var_date: Annotated[StrictStr, Field(..., description='Date the messages were sent  Format: `yyyyMMdd` (e.g. `20191231`) Timezone: UTC+9 ')], **kwargs) -> NumberOfMessagesResponse:
-        """get_number_of_sent_multicast_messages  # noqa: E501
-
-        Get number of sent multicast messages  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_number_of_sent_multicast_messages(var_date, async_req=True)
-        >>> result = thread.get()
+    def get_number_of_sent_multicast_messages(self, var_date: Annotated[StrictStr, Field(..., description='Date the messages were sent  Format: `yyyyMMdd` (e.g. `20191231`) Timezone: UTC+9 ')]) -> NumberOfMessagesResponse:
+        """Get number of sent multicast messages
 
         :param var_date: Date the messages were sent  Format: `yyyyMMdd` (e.g. `20191231`) Timezone: UTC+9  (required)
         :type var_date: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: NumberOfMessagesResponse
         """
-        return self._messaging_api.get_number_of_sent_multicast_messages(var_date, **kwargs)
+        return self._messaging_api.get_number_of_sent_multicast_messages(var_date)
 
-    def get_number_of_sent_multicast_messages_with_http_info(self, var_date: Annotated[StrictStr, Field(..., description='Date the messages were sent  Format: `yyyyMMdd` (e.g. `20191231`) Timezone: UTC+9 ')], **kwargs) -> ApiResponse:
-        """get_number_of_sent_multicast_messages  # noqa: E501
-
-        Get number of sent multicast messages  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_number_of_sent_multicast_messages_with_http_info(var_date, async_req=True)
-        >>> result = thread.get()
+    def get_number_of_sent_multicast_messages_with_http_info(self, var_date: Annotated[StrictStr, Field(..., description='Date the messages were sent  Format: `yyyyMMdd` (e.g. `20191231`) Timezone: UTC+9 ')]) -> ApiResponse:
+        """Get number of sent multicast messages
 
         :param var_date: Date the messages were sent  Format: `yyyyMMdd` (e.g. `20191231`) Timezone: UTC+9  (required)
         :type var_date: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(NumberOfMessagesResponse, status_code(int), headers(HTTPHeaderDict))
         """
-        return self._messaging_api.get_number_of_sent_multicast_messages_with_http_info(var_date, **kwargs)
+        return self._messaging_api.get_number_of_sent_multicast_messages_with_http_info(var_date)
 
-    def get_number_of_sent_push_messages(self, var_date: Annotated[StrictStr, Field(..., description='Date the messages were sent  Format: `yyyyMMdd` (e.g. `20191231`) Timezone: UTC+9 ')], **kwargs) -> NumberOfMessagesResponse:
-        """get_number_of_sent_push_messages  # noqa: E501
-
-        Get number of sent push messages  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_number_of_sent_push_messages(var_date, async_req=True)
-        >>> result = thread.get()
+    def get_number_of_sent_push_messages(self, var_date: Annotated[StrictStr, Field(..., description='Date the messages were sent  Format: `yyyyMMdd` (e.g. `20191231`) Timezone: UTC+9 ')]) -> NumberOfMessagesResponse:
+        """Get number of sent push messages
 
         :param var_date: Date the messages were sent  Format: `yyyyMMdd` (e.g. `20191231`) Timezone: UTC+9  (required)
         :type var_date: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: NumberOfMessagesResponse
         """
-        return self._messaging_api.get_number_of_sent_push_messages(var_date, **kwargs)
+        return self._messaging_api.get_number_of_sent_push_messages(var_date)
 
-    def get_number_of_sent_push_messages_with_http_info(self, var_date: Annotated[StrictStr, Field(..., description='Date the messages were sent  Format: `yyyyMMdd` (e.g. `20191231`) Timezone: UTC+9 ')], **kwargs) -> ApiResponse:
-        """get_number_of_sent_push_messages  # noqa: E501
-
-        Get number of sent push messages  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_number_of_sent_push_messages_with_http_info(var_date, async_req=True)
-        >>> result = thread.get()
+    def get_number_of_sent_push_messages_with_http_info(self, var_date: Annotated[StrictStr, Field(..., description='Date the messages were sent  Format: `yyyyMMdd` (e.g. `20191231`) Timezone: UTC+9 ')]) -> ApiResponse:
+        """Get number of sent push messages
 
         :param var_date: Date the messages were sent  Format: `yyyyMMdd` (e.g. `20191231`) Timezone: UTC+9  (required)
         :type var_date: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(NumberOfMessagesResponse, status_code(int), headers(HTTPHeaderDict))
         """
-        return self._messaging_api.get_number_of_sent_push_messages_with_http_info(var_date, **kwargs)
+        return self._messaging_api.get_number_of_sent_push_messages_with_http_info(var_date)
 
-    def get_number_of_sent_reply_messages(self, var_date: Annotated[StrictStr, Field(..., description='Date the messages were sent  Format: `yyyyMMdd` (e.g. `20191231`) Timezone: UTC+9 ')], **kwargs) -> NumberOfMessagesResponse:
-        """get_number_of_sent_reply_messages  # noqa: E501
-
-        Get number of sent reply messages  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_number_of_sent_reply_messages(var_date, async_req=True)
-        >>> result = thread.get()
+    def get_number_of_sent_reply_messages(self, var_date: Annotated[StrictStr, Field(..., description='Date the messages were sent  Format: `yyyyMMdd` (e.g. `20191231`) Timezone: UTC+9 ')]) -> NumberOfMessagesResponse:
+        """Get number of sent reply messages
 
         :param var_date: Date the messages were sent  Format: `yyyyMMdd` (e.g. `20191231`) Timezone: UTC+9  (required)
         :type var_date: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: NumberOfMessagesResponse
         """
-        return self._messaging_api.get_number_of_sent_reply_messages(var_date, **kwargs)
+        return self._messaging_api.get_number_of_sent_reply_messages(var_date)
 
-    def get_number_of_sent_reply_messages_with_http_info(self, var_date: Annotated[StrictStr, Field(..., description='Date the messages were sent  Format: `yyyyMMdd` (e.g. `20191231`) Timezone: UTC+9 ')], **kwargs) -> ApiResponse:
-        """get_number_of_sent_reply_messages  # noqa: E501
-
-        Get number of sent reply messages  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_number_of_sent_reply_messages_with_http_info(var_date, async_req=True)
-        >>> result = thread.get()
+    def get_number_of_sent_reply_messages_with_http_info(self, var_date: Annotated[StrictStr, Field(..., description='Date the messages were sent  Format: `yyyyMMdd` (e.g. `20191231`) Timezone: UTC+9 ')]) -> ApiResponse:
+        """Get number of sent reply messages
 
         :param var_date: Date the messages were sent  Format: `yyyyMMdd` (e.g. `20191231`) Timezone: UTC+9  (required)
         :type var_date: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(NumberOfMessagesResponse, status_code(int), headers(HTTPHeaderDict))
         """
-        return self._messaging_api.get_number_of_sent_reply_messages_with_http_info(var_date, **kwargs)
+        return self._messaging_api.get_number_of_sent_reply_messages_with_http_info(var_date)
 
-    def get_pnp_message_statistics(self, var_date: Annotated[constr(strict=True), Field(..., description='Date the message was sent  Format: `yyyyMMdd` (Example:`20211231`) Time zone: UTC+9 ')], **kwargs) -> NumberOfMessagesResponse:
-        """get_pnp_message_statistics  # noqa: E501
-
-        Get number of sent LINE notification messages　  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_pnp_message_statistics(var_date, async_req=True)
-        >>> result = thread.get()
+    def get_pnp_message_statistics(self, var_date: Annotated[constr(strict=True), Field(..., description='Date the message was sent  Format: `yyyyMMdd` (Example:`20211231`) Time zone: UTC+9 ')]) -> NumberOfMessagesResponse:
+        """Get number of sent LINE notification messages
 
         :param var_date: Date the message was sent  Format: `yyyyMMdd` (Example:`20211231`) Time zone: UTC+9  (required)
         :type var_date: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: NumberOfMessagesResponse
         """
-        return self._messaging_api.get_pnp_message_statistics(var_date, **kwargs)
+        return self._messaging_api.get_pnp_message_statistics(var_date)
 
-    def get_pnp_message_statistics_with_http_info(self, var_date: Annotated[constr(strict=True), Field(..., description='Date the message was sent  Format: `yyyyMMdd` (Example:`20211231`) Time zone: UTC+9 ')], **kwargs) -> ApiResponse:
-        """get_pnp_message_statistics  # noqa: E501
-
-        Get number of sent LINE notification messages　  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_pnp_message_statistics_with_http_info(var_date, async_req=True)
-        >>> result = thread.get()
+    def get_pnp_message_statistics_with_http_info(self, var_date: Annotated[constr(strict=True), Field(..., description='Date the message was sent  Format: `yyyyMMdd` (Example:`20211231`) Time zone: UTC+9 ')]) -> ApiResponse:
+        """Get number of sent LINE notification messages
 
         :param var_date: Date the message was sent  Format: `yyyyMMdd` (Example:`20211231`) Time zone: UTC+9  (required)
         :type var_date: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(NumberOfMessagesResponse, status_code(int), headers(HTTPHeaderDict))
         """
-        return self._messaging_api.get_pnp_message_statistics_with_http_info(var_date, **kwargs)
+        return self._messaging_api.get_pnp_message_statistics_with_http_info(var_date)
 
-    def get_profile(self, user_id: Annotated[StrictStr, Field(..., description='User ID')], **kwargs) -> UserProfileResponse:
-        """get_profile  # noqa: E501
-
-        Get profile  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_profile(user_id, async_req=True)
-        >>> result = thread.get()
+    def get_profile(self, user_id: Annotated[StrictStr, Field(..., description='User ID')]) -> UserProfileResponse:
+        """Get profile
 
         :param user_id: User ID (required)
         :type user_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: UserProfileResponse
         """
-        return self._messaging_api.get_profile(user_id, **kwargs)
+        return self._messaging_api.get_profile(user_id)
 
-    def get_profile_with_http_info(self, user_id: Annotated[StrictStr, Field(..., description='User ID')], **kwargs) -> ApiResponse:
-        """get_profile  # noqa: E501
-
-        Get profile  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_profile_with_http_info(user_id, async_req=True)
-        >>> result = thread.get()
+    def get_profile_with_http_info(self, user_id: Annotated[StrictStr, Field(..., description='User ID')]) -> ApiResponse:
+        """Get profile
 
         :param user_id: User ID (required)
         :type user_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(UserProfileResponse, status_code(int), headers(HTTPHeaderDict))
         """
-        return self._messaging_api.get_profile_with_http_info(user_id, **kwargs)
+        return self._messaging_api.get_profile_with_http_info(user_id)
 
-    def get_rich_menu(self, rich_menu_id: Annotated[StrictStr, Field(..., description='ID of a rich menu')], **kwargs) -> RichMenuResponse:
-        """get_rich_menu  # noqa: E501
-
-        Gets a rich menu via a rich menu ID.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_rich_menu(rich_menu_id, async_req=True)
-        >>> result = thread.get()
+    def get_rich_menu(self, rich_menu_id: Annotated[StrictStr, Field(..., description='ID of a rich menu')]) -> RichMenuResponse:
+        """Gets a rich menu via a rich menu ID.
 
         :param rich_menu_id: ID of a rich menu (required)
         :type rich_menu_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: RichMenuResponse
         """
-        return self._messaging_api.get_rich_menu(rich_menu_id, **kwargs)
+        return self._messaging_api.get_rich_menu(rich_menu_id)
 
-    def get_rich_menu_with_http_info(self, rich_menu_id: Annotated[StrictStr, Field(..., description='ID of a rich menu')], **kwargs) -> ApiResponse:
-        """get_rich_menu  # noqa: E501
-
-        Gets a rich menu via a rich menu ID.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_rich_menu_with_http_info(rich_menu_id, async_req=True)
-        >>> result = thread.get()
+    def get_rich_menu_with_http_info(self, rich_menu_id: Annotated[StrictStr, Field(..., description='ID of a rich menu')]) -> ApiResponse:
+        """Gets a rich menu via a rich menu ID.
 
         :param rich_menu_id: ID of a rich menu (required)
         :type rich_menu_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(RichMenuResponse, status_code(int), headers(HTTPHeaderDict))
         """
-        return self._messaging_api.get_rich_menu_with_http_info(rich_menu_id, **kwargs)
+        return self._messaging_api.get_rich_menu_with_http_info(rich_menu_id)
 
-    def get_rich_menu_alias(self, rich_menu_alias_id: Annotated[StrictStr, Field(..., description='The rich menu alias ID whose information you want to obtain.')], **kwargs) -> RichMenuAliasResponse:
-        """get_rich_menu_alias  # noqa: E501
-
-        Get rich menu alias information  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_rich_menu_alias(rich_menu_alias_id, async_req=True)
-        >>> result = thread.get()
+    def get_rich_menu_alias(self, rich_menu_alias_id: Annotated[StrictStr, Field(..., description='The rich menu alias ID whose information you want to obtain.')]) -> RichMenuAliasResponse:
+        """Get rich menu alias information
 
         :param rich_menu_alias_id: The rich menu alias ID whose information you want to obtain. (required)
         :type rich_menu_alias_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: RichMenuAliasResponse
         """
-        return self._messaging_api.get_rich_menu_alias(rich_menu_alias_id, **kwargs)
+        return self._messaging_api.get_rich_menu_alias(rich_menu_alias_id)
 
-    def get_rich_menu_alias_with_http_info(self, rich_menu_alias_id: Annotated[StrictStr, Field(..., description='The rich menu alias ID whose information you want to obtain.')], **kwargs) -> ApiResponse:
-        """get_rich_menu_alias  # noqa: E501
-
-        Get rich menu alias information  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_rich_menu_alias_with_http_info(rich_menu_alias_id, async_req=True)
-        >>> result = thread.get()
+    def get_rich_menu_alias_with_http_info(self, rich_menu_alias_id: Annotated[StrictStr, Field(..., description='The rich menu alias ID whose information you want to obtain.')]) -> ApiResponse:
+        """Get rich menu alias information
 
         :param rich_menu_alias_id: The rich menu alias ID whose information you want to obtain. (required)
         :type rich_menu_alias_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(RichMenuAliasResponse, status_code(int), headers(HTTPHeaderDict))
         """
-        return self._messaging_api.get_rich_menu_alias_with_http_info(rich_menu_alias_id, **kwargs)
+        return self._messaging_api.get_rich_menu_alias_with_http_info(rich_menu_alias_id)
 
-    def get_rich_menu_alias_list(self, **kwargs) -> RichMenuAliasListResponse:
-        """get_rich_menu_alias_list  # noqa: E501
+    def get_rich_menu_alias_list(self) -> RichMenuAliasListResponse:
+        """Get list of rich menu alias
 
-        Get list of rich menu alias  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_rich_menu_alias_list(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: RichMenuAliasListResponse
         """
-        return self._messaging_api.get_rich_menu_alias_list(**kwargs)
+        return self._messaging_api.get_rich_menu_alias_list()
 
-    def get_rich_menu_alias_list_with_http_info(self, **kwargs) -> ApiResponse:
-        """get_rich_menu_alias_list  # noqa: E501
+    def get_rich_menu_alias_list_with_http_info(self) -> ApiResponse:
+        """Get list of rich menu alias
 
-        Get list of rich menu alias  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_rich_menu_alias_list_with_http_info(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(RichMenuAliasListResponse, status_code(int), headers(HTTPHeaderDict))
         """
-        return self._messaging_api.get_rich_menu_alias_list_with_http_info(**kwargs)
+        return self._messaging_api.get_rich_menu_alias_list_with_http_info()
 
-    def get_rich_menu_batch_progress(self, request_id: Annotated[StrictStr, Field(..., description='A request ID used to batch control the rich menu linked to the user. Each Messaging API request has a request ID.')], **kwargs) -> RichMenuBatchProgressResponse:
-        """get_rich_menu_batch_progress  # noqa: E501
-
-        Get the status of Replace or unlink a linked rich menus in batches.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_rich_menu_batch_progress(request_id, async_req=True)
-        >>> result = thread.get()
+    def get_rich_menu_batch_progress(self, request_id: Annotated[StrictStr, Field(..., description='A request ID used to batch control the rich menu linked to the user. Each Messaging API request has a request ID.')]) -> RichMenuBatchProgressResponse:
+        """Get the status of Replace or unlink a linked rich menus in batches.
 
         :param request_id: A request ID used to batch control the rich menu linked to the user. Each Messaging API request has a request ID. (required)
         :type request_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: RichMenuBatchProgressResponse
         """
-        return self._messaging_api.get_rich_menu_batch_progress(request_id, **kwargs)
+        return self._messaging_api.get_rich_menu_batch_progress(request_id)
 
-    def get_rich_menu_batch_progress_with_http_info(self, request_id: Annotated[StrictStr, Field(..., description='A request ID used to batch control the rich menu linked to the user. Each Messaging API request has a request ID.')], **kwargs) -> ApiResponse:
-        """get_rich_menu_batch_progress  # noqa: E501
-
-        Get the status of Replace or unlink a linked rich menus in batches.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_rich_menu_batch_progress_with_http_info(request_id, async_req=True)
-        >>> result = thread.get()
+    def get_rich_menu_batch_progress_with_http_info(self, request_id: Annotated[StrictStr, Field(..., description='A request ID used to batch control the rich menu linked to the user. Each Messaging API request has a request ID.')]) -> ApiResponse:
+        """Get the status of Replace or unlink a linked rich menus in batches.
 
         :param request_id: A request ID used to batch control the rich menu linked to the user. Each Messaging API request has a request ID. (required)
         :type request_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(RichMenuBatchProgressResponse, status_code(int), headers(HTTPHeaderDict))
         """
-        return self._messaging_api.get_rich_menu_batch_progress_with_http_info(request_id, **kwargs)
+        return self._messaging_api.get_rich_menu_batch_progress_with_http_info(request_id)
 
-    def get_rich_menu_id_of_user(self, user_id: Annotated[StrictStr, Field(..., description='User ID. Found in the `source` object of webhook event objects. Do not use the LINE ID used in LINE.')], **kwargs) -> RichMenuIdResponse:
-        """get_rich_menu_id_of_user  # noqa: E501
-
-        Get rich menu ID of user  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_rich_menu_id_of_user(user_id, async_req=True)
-        >>> result = thread.get()
+    def get_rich_menu_id_of_user(self, user_id: Annotated[StrictStr, Field(..., description='User ID. Found in the `source` object of webhook event objects. Do not use the LINE ID used in LINE.')]) -> RichMenuIdResponse:
+        """Get rich menu ID of user
 
         :param user_id: User ID. Found in the `source` object of webhook event objects. Do not use the LINE ID used in LINE. (required)
         :type user_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: RichMenuIdResponse
         """
-        return self._messaging_api.get_rich_menu_id_of_user(user_id, **kwargs)
+        return self._messaging_api.get_rich_menu_id_of_user(user_id)
 
-    def get_rich_menu_id_of_user_with_http_info(self, user_id: Annotated[StrictStr, Field(..., description='User ID. Found in the `source` object of webhook event objects. Do not use the LINE ID used in LINE.')], **kwargs) -> ApiResponse:
-        """get_rich_menu_id_of_user  # noqa: E501
-
-        Get rich menu ID of user  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_rich_menu_id_of_user_with_http_info(user_id, async_req=True)
-        >>> result = thread.get()
+    def get_rich_menu_id_of_user_with_http_info(self, user_id: Annotated[StrictStr, Field(..., description='User ID. Found in the `source` object of webhook event objects. Do not use the LINE ID used in LINE.')]) -> ApiResponse:
+        """Get rich menu ID of user
 
         :param user_id: User ID. Found in the `source` object of webhook event objects. Do not use the LINE ID used in LINE. (required)
         :type user_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(RichMenuIdResponse, status_code(int), headers(HTTPHeaderDict))
         """
-        return self._messaging_api.get_rich_menu_id_of_user_with_http_info(user_id, **kwargs)
+        return self._messaging_api.get_rich_menu_id_of_user_with_http_info(user_id)
 
-    def get_rich_menu_list(self, **kwargs) -> RichMenuListResponse:
-        """get_rich_menu_list  # noqa: E501
+    def get_rich_menu_list(self) -> RichMenuListResponse:
+        """Get rich menu list
 
-        Get rich menu list  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_rich_menu_list(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: RichMenuListResponse
         """
-        return self._messaging_api.get_rich_menu_list(**kwargs)
+        return self._messaging_api.get_rich_menu_list()
 
-    def get_rich_menu_list_with_http_info(self, **kwargs) -> ApiResponse:
-        """get_rich_menu_list  # noqa: E501
+    def get_rich_menu_list_with_http_info(self) -> ApiResponse:
+        """Get rich menu list
 
-        Get rich menu list  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_rich_menu_list_with_http_info(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(RichMenuListResponse, status_code(int), headers(HTTPHeaderDict))
         """
-        return self._messaging_api.get_rich_menu_list_with_http_info(**kwargs)
+        return self._messaging_api.get_rich_menu_list_with_http_info()
 
-    def get_room_member_count(self, room_id: Annotated[StrictStr, Field(..., description='Room ID')], **kwargs) -> RoomMemberCountResponse:
-        """get_room_member_count  # noqa: E501
-
-        Get number of users in a multi-person chat  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_room_member_count(room_id, async_req=True)
-        >>> result = thread.get()
+    def get_room_member_count(self, room_id: Annotated[StrictStr, Field(..., description='Room ID')]) -> RoomMemberCountResponse:
+        """Get number of users in a multi-person chat
 
         :param room_id: Room ID (required)
         :type room_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: RoomMemberCountResponse
         """
-        return self._messaging_api.get_room_member_count(room_id, **kwargs)
+        return self._messaging_api.get_room_member_count(room_id)
 
-    def get_room_member_count_with_http_info(self, room_id: Annotated[StrictStr, Field(..., description='Room ID')], **kwargs) -> ApiResponse:
-        """get_room_member_count  # noqa: E501
-
-        Get number of users in a multi-person chat  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_room_member_count_with_http_info(room_id, async_req=True)
-        >>> result = thread.get()
+    def get_room_member_count_with_http_info(self, room_id: Annotated[StrictStr, Field(..., description='Room ID')]) -> ApiResponse:
+        """Get number of users in a multi-person chat
 
         :param room_id: Room ID (required)
         :type room_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(RoomMemberCountResponse, status_code(int), headers(HTTPHeaderDict))
         """
-        return self._messaging_api.get_room_member_count_with_http_info(room_id, **kwargs)
+        return self._messaging_api.get_room_member_count_with_http_info(room_id)
 
-    def get_room_member_profile(self, room_id: Annotated[StrictStr, Field(..., description='Room ID')], user_id: Annotated[StrictStr, Field(..., description='User ID')], **kwargs) -> RoomUserProfileResponse:
-        """get_room_member_profile  # noqa: E501
-
-        Get multi-person chat member profile  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_room_member_profile(room_id, user_id, async_req=True)
-        >>> result = thread.get()
+    def get_room_member_profile(self, room_id: Annotated[StrictStr, Field(..., description='Room ID')], user_id: Annotated[StrictStr, Field(..., description='User ID')]) -> RoomUserProfileResponse:
+        """Get multi-person chat member profile
 
         :param room_id: Room ID (required)
         :type room_id: str
         :param user_id: User ID (required)
         :type user_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: RoomUserProfileResponse
         """
-        return self._messaging_api.get_room_member_profile(room_id, user_id, **kwargs)
+        return self._messaging_api.get_room_member_profile(room_id, user_id)
 
-    def get_room_member_profile_with_http_info(self, room_id: Annotated[StrictStr, Field(..., description='Room ID')], user_id: Annotated[StrictStr, Field(..., description='User ID')], **kwargs) -> ApiResponse:
-        """get_room_member_profile  # noqa: E501
-
-        Get multi-person chat member profile  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_room_member_profile_with_http_info(room_id, user_id, async_req=True)
-        >>> result = thread.get()
+    def get_room_member_profile_with_http_info(self, room_id: Annotated[StrictStr, Field(..., description='Room ID')], user_id: Annotated[StrictStr, Field(..., description='User ID')]) -> ApiResponse:
+        """Get multi-person chat member profile
 
         :param room_id: Room ID (required)
         :type room_id: str
         :param user_id: User ID (required)
         :type user_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(RoomUserProfileResponse, status_code(int), headers(HTTPHeaderDict))
         """
-        return self._messaging_api.get_room_member_profile_with_http_info(room_id, user_id, **kwargs)
+        return self._messaging_api.get_room_member_profile_with_http_info(room_id, user_id)
 
-    def get_room_members_ids(self, room_id: Annotated[StrictStr, Field(..., description='Room ID')], start: Annotated[Optional[StrictStr], Field(description='Value of the continuation token found in the `next` property of the JSON object returned in the response. Include this parameter to get the next array of user IDs for the members of the group. ')] = None, **kwargs) -> MembersIdsResponse:
-        """get_room_members_ids  # noqa: E501
-
-        Get multi-person chat member user IDs  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_room_members_ids(room_id, start, async_req=True)
-        >>> result = thread.get()
+    def get_room_members_ids(self, room_id: Annotated[StrictStr, Field(..., description='Room ID')], start: Annotated[Optional[StrictStr], Field(description='Value of the continuation token found in the `next` property of the JSON object returned in the response. Include this parameter to get the next array of user IDs for the members of the group. ')] = None) -> MembersIdsResponse:
+        """Get multi-person chat member user IDs
 
         :param room_id: Room ID (required)
         :type room_id: str
         :param start: Value of the continuation token found in the `next` property of the JSON object returned in the response. Include this parameter to get the next array of user IDs for the members of the group. 
         :type start: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: MembersIdsResponse
         """
-        return self._messaging_api.get_room_members_ids(room_id, start, **kwargs)
+        return self._messaging_api.get_room_members_ids(room_id, start)
 
-    def get_room_members_ids_with_http_info(self, room_id: Annotated[StrictStr, Field(..., description='Room ID')], start: Annotated[Optional[StrictStr], Field(description='Value of the continuation token found in the `next` property of the JSON object returned in the response. Include this parameter to get the next array of user IDs for the members of the group. ')] = None, **kwargs) -> ApiResponse:
-        """get_room_members_ids  # noqa: E501
-
-        Get multi-person chat member user IDs  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_room_members_ids_with_http_info(room_id, start, async_req=True)
-        >>> result = thread.get()
+    def get_room_members_ids_with_http_info(self, room_id: Annotated[StrictStr, Field(..., description='Room ID')], start: Annotated[Optional[StrictStr], Field(description='Value of the continuation token found in the `next` property of the JSON object returned in the response. Include this parameter to get the next array of user IDs for the members of the group. ')] = None) -> ApiResponse:
+        """Get multi-person chat member user IDs
 
         :param room_id: Room ID (required)
         :type room_id: str
         :param start: Value of the continuation token found in the `next` property of the JSON object returned in the response. Include this parameter to get the next array of user IDs for the members of the group. 
         :type start: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(MembersIdsResponse, status_code(int), headers(HTTPHeaderDict))
         """
-        return self._messaging_api.get_room_members_ids_with_http_info(room_id, start, **kwargs)
+        return self._messaging_api.get_room_members_ids_with_http_info(room_id, start)
 
-    def get_webhook_endpoint(self, **kwargs) -> GetWebhookEndpointResponse:
-        """get_webhook_endpoint  # noqa: E501
+    def get_webhook_endpoint(self) -> GetWebhookEndpointResponse:
+        """Get webhook endpoint information
 
-        Get webhook endpoint information  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_webhook_endpoint(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: GetWebhookEndpointResponse
         """
-        return self._messaging_api.get_webhook_endpoint(**kwargs)
+        return self._messaging_api.get_webhook_endpoint()
 
-    def get_webhook_endpoint_with_http_info(self, **kwargs) -> ApiResponse:
-        """get_webhook_endpoint  # noqa: E501
+    def get_webhook_endpoint_with_http_info(self) -> ApiResponse:
+        """Get webhook endpoint information
 
-        Get webhook endpoint information  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_webhook_endpoint_with_http_info(async_req=True)
-        >>> result = thread.get()
-
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(GetWebhookEndpointResponse, status_code(int), headers(HTTPHeaderDict))
         """
-        return self._messaging_api.get_webhook_endpoint_with_http_info(**kwargs)
+        return self._messaging_api.get_webhook_endpoint_with_http_info()
 
-    def issue_link_token(self, user_id: Annotated[StrictStr, Field(..., description='User ID for the LINE account to be linked. Found in the `source` object of account link event objects. Do not use the LINE ID used in LINE. ')], **kwargs) -> IssueLinkTokenResponse:
-        """issue_link_token  # noqa: E501
-
-        Issue link token  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.issue_link_token(user_id, async_req=True)
-        >>> result = thread.get()
+    def issue_link_token(self, user_id: Annotated[StrictStr, Field(..., description='User ID for the LINE account to be linked. Found in the `source` object of account link event objects. Do not use the LINE ID used in LINE. ')]) -> IssueLinkTokenResponse:
+        """Issue link token
 
         :param user_id: User ID for the LINE account to be linked. Found in the `source` object of account link event objects. Do not use the LINE ID used in LINE.  (required)
         :type user_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: IssueLinkTokenResponse
         """
-        return self._messaging_api.issue_link_token(user_id, **kwargs)
+        return self._messaging_api.issue_link_token(user_id)
 
-    def issue_link_token_with_http_info(self, user_id: Annotated[StrictStr, Field(..., description='User ID for the LINE account to be linked. Found in the `source` object of account link event objects. Do not use the LINE ID used in LINE. ')], **kwargs) -> ApiResponse:
-        """issue_link_token  # noqa: E501
-
-        Issue link token  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.issue_link_token_with_http_info(user_id, async_req=True)
-        >>> result = thread.get()
+    def issue_link_token_with_http_info(self, user_id: Annotated[StrictStr, Field(..., description='User ID for the LINE account to be linked. Found in the `source` object of account link event objects. Do not use the LINE ID used in LINE. ')]) -> ApiResponse:
+        """Issue link token
 
         :param user_id: User ID for the LINE account to be linked. Found in the `source` object of account link event objects. Do not use the LINE ID used in LINE.  (required)
         :type user_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(IssueLinkTokenResponse, status_code(int), headers(HTTPHeaderDict))
         """
-        return self._messaging_api.issue_link_token_with_http_info(user_id, **kwargs)
+        return self._messaging_api.issue_link_token_with_http_info(user_id)
 
-    def leave_group(self, group_id: Annotated[StrictStr, Field(..., description='Group ID')], **kwargs) -> None:
-        """leave_group  # noqa: E501
-
-        Leave group chat  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.leave_group(group_id, async_req=True)
-        >>> result = thread.get()
+    def leave_group(self, group_id: Annotated[StrictStr, Field(..., description='Group ID')]) -> None:
+        """Leave group chat
 
         :param group_id: Group ID (required)
         :type group_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._messaging_api.leave_group(group_id, **kwargs)
+        return self._messaging_api.leave_group(group_id)
 
-    def leave_group_with_http_info(self, group_id: Annotated[StrictStr, Field(..., description='Group ID')], **kwargs) -> ApiResponse:
-        """leave_group  # noqa: E501
-
-        Leave group chat  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.leave_group_with_http_info(group_id, async_req=True)
-        >>> result = thread.get()
+    def leave_group_with_http_info(self, group_id: Annotated[StrictStr, Field(..., description='Group ID')]) -> ApiResponse:
+        """Leave group chat
 
         :param group_id: Group ID (required)
         :type group_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._messaging_api.leave_group_with_http_info(group_id, **kwargs)
+        return self._messaging_api.leave_group_with_http_info(group_id)
 
-    def leave_room(self, room_id: Annotated[StrictStr, Field(..., description='Room ID')], **kwargs) -> None:
-        """leave_room  # noqa: E501
-
-        Leave multi-person chat  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.leave_room(room_id, async_req=True)
-        >>> result = thread.get()
+    def leave_room(self, room_id: Annotated[StrictStr, Field(..., description='Room ID')]) -> None:
+        """Leave multi-person chat
 
         :param room_id: Room ID (required)
         :type room_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._messaging_api.leave_room(room_id, **kwargs)
+        return self._messaging_api.leave_room(room_id)
 
-    def leave_room_with_http_info(self, room_id: Annotated[StrictStr, Field(..., description='Room ID')], **kwargs) -> ApiResponse:
-        """leave_room  # noqa: E501
-
-        Leave multi-person chat  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.leave_room_with_http_info(room_id, async_req=True)
-        >>> result = thread.get()
+    def leave_room_with_http_info(self, room_id: Annotated[StrictStr, Field(..., description='Room ID')]) -> ApiResponse:
+        """Leave multi-person chat
 
         :param room_id: Room ID (required)
         :type room_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._messaging_api.leave_room_with_http_info(room_id, **kwargs)
+        return self._messaging_api.leave_room_with_http_info(room_id)
 
-    def link_rich_menu_id_to_user(self, user_id: Annotated[StrictStr, Field(..., description='User ID. Found in the `source` object of webhook event objects. Do not use the LINE ID used in LINE.')], rich_menu_id: Annotated[StrictStr, Field(..., description='ID of a rich menu')], **kwargs) -> None:
-        """link_rich_menu_id_to_user  # noqa: E501
-
-        Link rich menu to user.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.link_rich_menu_id_to_user(user_id, rich_menu_id, async_req=True)
-        >>> result = thread.get()
+    def link_rich_menu_id_to_user(self, user_id: Annotated[StrictStr, Field(..., description='User ID. Found in the `source` object of webhook event objects. Do not use the LINE ID used in LINE.')], rich_menu_id: Annotated[StrictStr, Field(..., description='ID of a rich menu')]) -> None:
+        """Link rich menu to user.
 
         :param user_id: User ID. Found in the `source` object of webhook event objects. Do not use the LINE ID used in LINE. (required)
         :type user_id: str
         :param rich_menu_id: ID of a rich menu (required)
         :type rich_menu_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._messaging_api.link_rich_menu_id_to_user(user_id, rich_menu_id, **kwargs)
+        return self._messaging_api.link_rich_menu_id_to_user(user_id, rich_menu_id)
 
-    def link_rich_menu_id_to_user_with_http_info(self, user_id: Annotated[StrictStr, Field(..., description='User ID. Found in the `source` object of webhook event objects. Do not use the LINE ID used in LINE.')], rich_menu_id: Annotated[StrictStr, Field(..., description='ID of a rich menu')], **kwargs) -> ApiResponse:
-        """link_rich_menu_id_to_user  # noqa: E501
-
-        Link rich menu to user.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.link_rich_menu_id_to_user_with_http_info(user_id, rich_menu_id, async_req=True)
-        >>> result = thread.get()
+    def link_rich_menu_id_to_user_with_http_info(self, user_id: Annotated[StrictStr, Field(..., description='User ID. Found in the `source` object of webhook event objects. Do not use the LINE ID used in LINE.')], rich_menu_id: Annotated[StrictStr, Field(..., description='ID of a rich menu')]) -> ApiResponse:
+        """Link rich menu to user.
 
         :param user_id: User ID. Found in the `source` object of webhook event objects. Do not use the LINE ID used in LINE. (required)
         :type user_id: str
         :param rich_menu_id: ID of a rich menu (required)
         :type rich_menu_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._messaging_api.link_rich_menu_id_to_user_with_http_info(user_id, rich_menu_id, **kwargs)
+        return self._messaging_api.link_rich_menu_id_to_user_with_http_info(user_id, rich_menu_id)
 
-    def link_rich_menu_id_to_users(self, rich_menu_bulk_link_request: RichMenuBulkLinkRequest, **kwargs) -> None:
-        """link_rich_menu_id_to_users  # noqa: E501
-
-        Link rich menu to multiple users  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.link_rich_menu_id_to_users(rich_menu_bulk_link_request, async_req=True)
-        >>> result = thread.get()
+    def link_rich_menu_id_to_users(self, rich_menu_bulk_link_request: RichMenuBulkLinkRequest) -> None:
+        """Link rich menu to multiple users
 
         :param rich_menu_bulk_link_request: (required)
         :type rich_menu_bulk_link_request: RichMenuBulkLinkRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._messaging_api.link_rich_menu_id_to_users(rich_menu_bulk_link_request, **kwargs)
+        return self._messaging_api.link_rich_menu_id_to_users(rich_menu_bulk_link_request)
 
-    def link_rich_menu_id_to_users_with_http_info(self, rich_menu_bulk_link_request: RichMenuBulkLinkRequest, **kwargs) -> ApiResponse:
-        """link_rich_menu_id_to_users  # noqa: E501
-
-        Link rich menu to multiple users  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.link_rich_menu_id_to_users_with_http_info(rich_menu_bulk_link_request, async_req=True)
-        >>> result = thread.get()
+    def link_rich_menu_id_to_users_with_http_info(self, rich_menu_bulk_link_request: RichMenuBulkLinkRequest) -> ApiResponse:
+        """Link rich menu to multiple users
 
         :param rich_menu_bulk_link_request: (required)
         :type rich_menu_bulk_link_request: RichMenuBulkLinkRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._messaging_api.link_rich_menu_id_to_users_with_http_info(rich_menu_bulk_link_request, **kwargs)
+        return self._messaging_api.link_rich_menu_id_to_users_with_http_info(rich_menu_bulk_link_request)
 
-    def list_coupon(self, status: Annotated[Optional[conlist(StrictStr, unique_items=True)], Field(description='Filter coupons by their status.')] = None, start: Annotated[Optional[StrictStr], Field(description='Pagination token to retrieve the next page of results.')] = None, limit: Annotated[Optional[conint(strict=True, le=100, ge=1)], Field(description='Maximum number of coupons to return per request.')] = None, **kwargs) -> MessagingApiPagerCouponListResponse:
-        """list_coupon  # noqa: E501
-
-        Get a paginated list of coupons.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.list_coupon(status, start, limit, async_req=True)
-        >>> result = thread.get()
+    def list_coupon(self, status: Annotated[Optional[conlist(StrictStr, unique_items=True)], Field(description='Filter coupons by their status.')] = None, start: Annotated[Optional[StrictStr], Field(description='Pagination token to retrieve the next page of results.')] = None, limit: Annotated[Optional[conint(strict=True, le=100, ge=1)], Field(description='Maximum number of coupons to return per request.')] = None) -> MessagingApiPagerCouponListResponse:
+        """Get a paginated list of coupons.
 
         :param status: Filter coupons by their status.
         :type status: List[str]
@@ -4481,28 +1664,13 @@ class LineBotClient:
         :type start: str
         :param limit: Maximum number of coupons to return per request.
         :type limit: int
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: MessagingApiPagerCouponListResponse
         """
-        return self._messaging_api.list_coupon(status, start, limit, **kwargs)
+        return self._messaging_api.list_coupon(status, start, limit)
 
-    def list_coupon_with_http_info(self, status: Annotated[Optional[conlist(StrictStr, unique_items=True)], Field(description='Filter coupons by their status.')] = None, start: Annotated[Optional[StrictStr], Field(description='Pagination token to retrieve the next page of results.')] = None, limit: Annotated[Optional[conint(strict=True, le=100, ge=1)], Field(description='Maximum number of coupons to return per request.')] = None, **kwargs) -> ApiResponse:
-        """list_coupon  # noqa: E501
-
-        Get a paginated list of coupons.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.list_coupon_with_http_info(status, start, limit, async_req=True)
-        >>> result = thread.get()
+    def list_coupon_with_http_info(self, status: Annotated[Optional[conlist(StrictStr, unique_items=True)], Field(description='Filter coupons by their status.')] = None, start: Annotated[Optional[StrictStr], Field(description='Pagination token to retrieve the next page of results.')] = None, limit: Annotated[Optional[conint(strict=True, le=100, ge=1)], Field(description='Maximum number of coupons to return per request.')] = None) -> ApiResponse:
+        """Get a paginated list of coupons.
 
         :param status: Filter coupons by their status.
         :type status: List[str]
@@ -4510,2026 +1678,665 @@ class LineBotClient:
         :type start: str
         :param limit: Maximum number of coupons to return per request.
         :type limit: int
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(MessagingApiPagerCouponListResponse, status_code(int), headers(HTTPHeaderDict))
         """
-        return self._messaging_api.list_coupon_with_http_info(status, start, limit, **kwargs)
+        return self._messaging_api.list_coupon_with_http_info(status, start, limit)
 
-    def mark_messages_as_read(self, mark_messages_as_read_request: MarkMessagesAsReadRequest, **kwargs) -> None:
-        """mark_messages_as_read  # noqa: E501
-
-        Mark messages from users as read  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.mark_messages_as_read(mark_messages_as_read_request, async_req=True)
-        >>> result = thread.get()
+    def mark_messages_as_read(self, mark_messages_as_read_request: MarkMessagesAsReadRequest) -> None:
+        """Mark messages from users as read
 
         :param mark_messages_as_read_request: (required)
         :type mark_messages_as_read_request: MarkMessagesAsReadRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._messaging_api.mark_messages_as_read(mark_messages_as_read_request, **kwargs)
+        return self._messaging_api.mark_messages_as_read(mark_messages_as_read_request)
 
-    def mark_messages_as_read_with_http_info(self, mark_messages_as_read_request: MarkMessagesAsReadRequest, **kwargs) -> ApiResponse:
-        """mark_messages_as_read  # noqa: E501
-
-        Mark messages from users as read  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.mark_messages_as_read_with_http_info(mark_messages_as_read_request, async_req=True)
-        >>> result = thread.get()
+    def mark_messages_as_read_with_http_info(self, mark_messages_as_read_request: MarkMessagesAsReadRequest) -> ApiResponse:
+        """Mark messages from users as read
 
         :param mark_messages_as_read_request: (required)
         :type mark_messages_as_read_request: MarkMessagesAsReadRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._messaging_api.mark_messages_as_read_with_http_info(mark_messages_as_read_request, **kwargs)
+        return self._messaging_api.mark_messages_as_read_with_http_info(mark_messages_as_read_request)
 
-    def mark_messages_as_read_by_token(self, mark_messages_as_read_by_token_request: MarkMessagesAsReadByTokenRequest, **kwargs) -> None:
-        """mark_messages_as_read_by_token  # noqa: E501
-
-        Mark messages from users as read by token  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.mark_messages_as_read_by_token(mark_messages_as_read_by_token_request, async_req=True)
-        >>> result = thread.get()
+    def mark_messages_as_read_by_token(self, mark_messages_as_read_by_token_request: MarkMessagesAsReadByTokenRequest) -> None:
+        """Mark messages from users as read by token
 
         :param mark_messages_as_read_by_token_request: (required)
         :type mark_messages_as_read_by_token_request: MarkMessagesAsReadByTokenRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._messaging_api.mark_messages_as_read_by_token(mark_messages_as_read_by_token_request, **kwargs)
+        return self._messaging_api.mark_messages_as_read_by_token(mark_messages_as_read_by_token_request)
 
-    def mark_messages_as_read_by_token_with_http_info(self, mark_messages_as_read_by_token_request: MarkMessagesAsReadByTokenRequest, **kwargs) -> ApiResponse:
-        """mark_messages_as_read_by_token  # noqa: E501
-
-        Mark messages from users as read by token  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.mark_messages_as_read_by_token_with_http_info(mark_messages_as_read_by_token_request, async_req=True)
-        >>> result = thread.get()
+    def mark_messages_as_read_by_token_with_http_info(self, mark_messages_as_read_by_token_request: MarkMessagesAsReadByTokenRequest) -> ApiResponse:
+        """Mark messages from users as read by token
 
         :param mark_messages_as_read_by_token_request: (required)
         :type mark_messages_as_read_by_token_request: MarkMessagesAsReadByTokenRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._messaging_api.mark_messages_as_read_by_token_with_http_info(mark_messages_as_read_by_token_request, **kwargs)
+        return self._messaging_api.mark_messages_as_read_by_token_with_http_info(mark_messages_as_read_by_token_request)
 
-    def multicast(self, multicast_request: MulticastRequest, x_line_retry_key: Annotated[Optional[StrictStr], Field(description="Retry key. Specifies the UUID in hexadecimal format (e.g., `123e4567-e89b-12d3-a456-426614174000`) generated by any method. The retry key isn't generated by LINE. Each developer must generate their own retry key. ")] = None, **kwargs) -> object:
-        """multicast  # noqa: E501
-
-        An API that efficiently sends the same message to multiple user IDs. You can't send messages to group chats or multi-person chats.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.multicast(multicast_request, x_line_retry_key, async_req=True)
-        >>> result = thread.get()
+    def multicast(self, multicast_request: MulticastRequest, x_line_retry_key: Annotated[Optional[StrictStr], Field(description="Retry key. Specifies the UUID in hexadecimal format (e.g., `123e4567-e89b-12d3-a456-426614174000`) generated by any method. The retry key isn't generated by LINE. Each developer must generate their own retry key. ")] = None) -> object:
+        """An API that efficiently sends the same message to multiple user IDs. You can't send messages to group chats or multi-person chats.
 
         :param multicast_request: (required)
         :type multicast_request: MulticastRequest
         :param x_line_retry_key: Retry key. Specifies the UUID in hexadecimal format (e.g., `123e4567-e89b-12d3-a456-426614174000`) generated by any method. The retry key isn't generated by LINE. Each developer must generate their own retry key. 
         :type x_line_retry_key: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: object
         """
-        return self._messaging_api.multicast(multicast_request, x_line_retry_key, **kwargs)
+        return self._messaging_api.multicast(multicast_request, x_line_retry_key)
 
-    def multicast_with_http_info(self, multicast_request: MulticastRequest, x_line_retry_key: Annotated[Optional[StrictStr], Field(description="Retry key. Specifies the UUID in hexadecimal format (e.g., `123e4567-e89b-12d3-a456-426614174000`) generated by any method. The retry key isn't generated by LINE. Each developer must generate their own retry key. ")] = None, **kwargs) -> ApiResponse:
-        """multicast  # noqa: E501
-
-        An API that efficiently sends the same message to multiple user IDs. You can't send messages to group chats or multi-person chats.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.multicast_with_http_info(multicast_request, x_line_retry_key, async_req=True)
-        >>> result = thread.get()
+    def multicast_with_http_info(self, multicast_request: MulticastRequest, x_line_retry_key: Annotated[Optional[StrictStr], Field(description="Retry key. Specifies the UUID in hexadecimal format (e.g., `123e4567-e89b-12d3-a456-426614174000`) generated by any method. The retry key isn't generated by LINE. Each developer must generate their own retry key. ")] = None) -> ApiResponse:
+        """An API that efficiently sends the same message to multiple user IDs. You can't send messages to group chats or multi-person chats.
 
         :param multicast_request: (required)
         :type multicast_request: MulticastRequest
         :param x_line_retry_key: Retry key. Specifies the UUID in hexadecimal format (e.g., `123e4567-e89b-12d3-a456-426614174000`) generated by any method. The retry key isn't generated by LINE. Each developer must generate their own retry key. 
         :type x_line_retry_key: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(object, status_code(int), headers(HTTPHeaderDict))
         """
-        return self._messaging_api.multicast_with_http_info(multicast_request, x_line_retry_key, **kwargs)
+        return self._messaging_api.multicast_with_http_info(multicast_request, x_line_retry_key)
 
-    def narrowcast(self, narrowcast_request: NarrowcastRequest, x_line_retry_key: Annotated[Optional[StrictStr], Field(description="Retry key. Specifies the UUID in hexadecimal format (e.g., `123e4567-e89b-12d3-a456-426614174000`) generated by any method. The retry key isn't generated by LINE. Each developer must generate their own retry key. ")] = None, **kwargs) -> object:
-        """narrowcast  # noqa: E501
-
-        Send narrowcast message  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.narrowcast(narrowcast_request, x_line_retry_key, async_req=True)
-        >>> result = thread.get()
+    def narrowcast(self, narrowcast_request: NarrowcastRequest, x_line_retry_key: Annotated[Optional[StrictStr], Field(description="Retry key. Specifies the UUID in hexadecimal format (e.g., `123e4567-e89b-12d3-a456-426614174000`) generated by any method. The retry key isn't generated by LINE. Each developer must generate their own retry key. ")] = None) -> object:
+        """Send narrowcast message
 
         :param narrowcast_request: (required)
         :type narrowcast_request: NarrowcastRequest
         :param x_line_retry_key: Retry key. Specifies the UUID in hexadecimal format (e.g., `123e4567-e89b-12d3-a456-426614174000`) generated by any method. The retry key isn't generated by LINE. Each developer must generate their own retry key. 
         :type x_line_retry_key: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: object
         """
-        return self._messaging_api.narrowcast(narrowcast_request, x_line_retry_key, **kwargs)
+        return self._messaging_api.narrowcast(narrowcast_request, x_line_retry_key)
 
-    def narrowcast_with_http_info(self, narrowcast_request: NarrowcastRequest, x_line_retry_key: Annotated[Optional[StrictStr], Field(description="Retry key. Specifies the UUID in hexadecimal format (e.g., `123e4567-e89b-12d3-a456-426614174000`) generated by any method. The retry key isn't generated by LINE. Each developer must generate their own retry key. ")] = None, **kwargs) -> ApiResponse:
-        """narrowcast  # noqa: E501
-
-        Send narrowcast message  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.narrowcast_with_http_info(narrowcast_request, x_line_retry_key, async_req=True)
-        >>> result = thread.get()
+    def narrowcast_with_http_info(self, narrowcast_request: NarrowcastRequest, x_line_retry_key: Annotated[Optional[StrictStr], Field(description="Retry key. Specifies the UUID in hexadecimal format (e.g., `123e4567-e89b-12d3-a456-426614174000`) generated by any method. The retry key isn't generated by LINE. Each developer must generate their own retry key. ")] = None) -> ApiResponse:
+        """Send narrowcast message
 
         :param narrowcast_request: (required)
         :type narrowcast_request: NarrowcastRequest
         :param x_line_retry_key: Retry key. Specifies the UUID in hexadecimal format (e.g., `123e4567-e89b-12d3-a456-426614174000`) generated by any method. The retry key isn't generated by LINE. Each developer must generate their own retry key. 
         :type x_line_retry_key: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(object, status_code(int), headers(HTTPHeaderDict))
         """
-        return self._messaging_api.narrowcast_with_http_info(narrowcast_request, x_line_retry_key, **kwargs)
+        return self._messaging_api.narrowcast_with_http_info(narrowcast_request, x_line_retry_key)
 
-    def push_message(self, push_message_request: PushMessageRequest, x_line_retry_key: Annotated[Optional[StrictStr], Field(description="Retry key. Specifies the UUID in hexadecimal format (e.g., `123e4567-e89b-12d3-a456-426614174000`) generated by any method. The retry key isn't generated by LINE. Each developer must generate their own retry key. ")] = None, **kwargs) -> PushMessageResponse:
-        """push_message  # noqa: E501
-
-        Sends a message to a user, group chat, or multi-person chat at any time.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.push_message(push_message_request, x_line_retry_key, async_req=True)
-        >>> result = thread.get()
+    def push_message(self, push_message_request: PushMessageRequest, x_line_retry_key: Annotated[Optional[StrictStr], Field(description="Retry key. Specifies the UUID in hexadecimal format (e.g., `123e4567-e89b-12d3-a456-426614174000`) generated by any method. The retry key isn't generated by LINE. Each developer must generate their own retry key. ")] = None) -> PushMessageResponse:
+        """Sends a message to a user, group chat, or multi-person chat at any time.
 
         :param push_message_request: (required)
         :type push_message_request: PushMessageRequest
         :param x_line_retry_key: Retry key. Specifies the UUID in hexadecimal format (e.g., `123e4567-e89b-12d3-a456-426614174000`) generated by any method. The retry key isn't generated by LINE. Each developer must generate their own retry key. 
         :type x_line_retry_key: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: PushMessageResponse
         """
-        return self._messaging_api.push_message(push_message_request, x_line_retry_key, **kwargs)
+        return self._messaging_api.push_message(push_message_request, x_line_retry_key)
 
-    def push_message_with_http_info(self, push_message_request: PushMessageRequest, x_line_retry_key: Annotated[Optional[StrictStr], Field(description="Retry key. Specifies the UUID in hexadecimal format (e.g., `123e4567-e89b-12d3-a456-426614174000`) generated by any method. The retry key isn't generated by LINE. Each developer must generate their own retry key. ")] = None, **kwargs) -> ApiResponse:
-        """push_message  # noqa: E501
-
-        Sends a message to a user, group chat, or multi-person chat at any time.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.push_message_with_http_info(push_message_request, x_line_retry_key, async_req=True)
-        >>> result = thread.get()
+    def push_message_with_http_info(self, push_message_request: PushMessageRequest, x_line_retry_key: Annotated[Optional[StrictStr], Field(description="Retry key. Specifies the UUID in hexadecimal format (e.g., `123e4567-e89b-12d3-a456-426614174000`) generated by any method. The retry key isn't generated by LINE. Each developer must generate their own retry key. ")] = None) -> ApiResponse:
+        """Sends a message to a user, group chat, or multi-person chat at any time.
 
         :param push_message_request: (required)
         :type push_message_request: PushMessageRequest
         :param x_line_retry_key: Retry key. Specifies the UUID in hexadecimal format (e.g., `123e4567-e89b-12d3-a456-426614174000`) generated by any method. The retry key isn't generated by LINE. Each developer must generate their own retry key. 
         :type x_line_retry_key: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(PushMessageResponse, status_code(int), headers(HTTPHeaderDict))
         """
-        return self._messaging_api.push_message_with_http_info(push_message_request, x_line_retry_key, **kwargs)
+        return self._messaging_api.push_message_with_http_info(push_message_request, x_line_retry_key)
 
-    def push_messages_by_phone(self, pnp_messages_request: PnpMessagesRequest, x_line_delivery_tag: Annotated[Optional[constr(strict=True, max_length=100, min_length=16)], Field(description='String returned in the delivery.data property of the delivery completion event via Webhook.')] = None, **kwargs) -> None:
-        """push_messages_by_phone  # noqa: E501
-
-        Send LINE notification message  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.push_messages_by_phone(pnp_messages_request, x_line_delivery_tag, async_req=True)
-        >>> result = thread.get()
+    def push_messages_by_phone(self, pnp_messages_request: PnpMessagesRequest, x_line_delivery_tag: Annotated[Optional[constr(strict=True, max_length=100, min_length=16)], Field(description='String returned in the delivery.data property of the delivery completion event via Webhook.')] = None) -> None:
+        """Send LINE notification message
 
         :param pnp_messages_request: (required)
         :type pnp_messages_request: PnpMessagesRequest
         :param x_line_delivery_tag: String returned in the delivery.data property of the delivery completion event via Webhook.
         :type x_line_delivery_tag: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._messaging_api.push_messages_by_phone(pnp_messages_request, x_line_delivery_tag, **kwargs)
+        return self._messaging_api.push_messages_by_phone(pnp_messages_request, x_line_delivery_tag)
 
-    def push_messages_by_phone_with_http_info(self, pnp_messages_request: PnpMessagesRequest, x_line_delivery_tag: Annotated[Optional[constr(strict=True, max_length=100, min_length=16)], Field(description='String returned in the delivery.data property of the delivery completion event via Webhook.')] = None, **kwargs) -> ApiResponse:
-        """push_messages_by_phone  # noqa: E501
-
-        Send LINE notification message  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.push_messages_by_phone_with_http_info(pnp_messages_request, x_line_delivery_tag, async_req=True)
-        >>> result = thread.get()
+    def push_messages_by_phone_with_http_info(self, pnp_messages_request: PnpMessagesRequest, x_line_delivery_tag: Annotated[Optional[constr(strict=True, max_length=100, min_length=16)], Field(description='String returned in the delivery.data property of the delivery completion event via Webhook.')] = None) -> ApiResponse:
+        """Send LINE notification message
 
         :param pnp_messages_request: (required)
         :type pnp_messages_request: PnpMessagesRequest
         :param x_line_delivery_tag: String returned in the delivery.data property of the delivery completion event via Webhook.
         :type x_line_delivery_tag: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._messaging_api.push_messages_by_phone_with_http_info(pnp_messages_request, x_line_delivery_tag, **kwargs)
+        return self._messaging_api.push_messages_by_phone_with_http_info(pnp_messages_request, x_line_delivery_tag)
 
-    def reply_message(self, reply_message_request: ReplyMessageRequest, **kwargs) -> ReplyMessageResponse:
-        """reply_message  # noqa: E501
-
-        Send reply message  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.reply_message(reply_message_request, async_req=True)
-        >>> result = thread.get()
+    def reply_message(self, reply_message_request: ReplyMessageRequest) -> ReplyMessageResponse:
+        """Send reply message
 
         :param reply_message_request: (required)
         :type reply_message_request: ReplyMessageRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: ReplyMessageResponse
         """
-        return self._messaging_api.reply_message(reply_message_request, **kwargs)
+        return self._messaging_api.reply_message(reply_message_request)
 
-    def reply_message_with_http_info(self, reply_message_request: ReplyMessageRequest, **kwargs) -> ApiResponse:
-        """reply_message  # noqa: E501
-
-        Send reply message  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.reply_message_with_http_info(reply_message_request, async_req=True)
-        >>> result = thread.get()
+    def reply_message_with_http_info(self, reply_message_request: ReplyMessageRequest) -> ApiResponse:
+        """Send reply message
 
         :param reply_message_request: (required)
         :type reply_message_request: ReplyMessageRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(ReplyMessageResponse, status_code(int), headers(HTTPHeaderDict))
         """
-        return self._messaging_api.reply_message_with_http_info(reply_message_request, **kwargs)
+        return self._messaging_api.reply_message_with_http_info(reply_message_request)
 
-    def rich_menu_batch(self, rich_menu_batch_request: RichMenuBatchRequest, **kwargs) -> None:
-        """rich_menu_batch  # noqa: E501
-
-        You can use this endpoint to batch control the rich menu linked to the users using the endpoint such as Link rich menu to user. The following operations are available:  1. Replace a rich menu with another rich menu for all users linked to a specific rich menu 2. Unlink a rich menu for all users linked to a specific rich menu 3. Unlink a rich menu for all users linked the rich menu   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.rich_menu_batch(rich_menu_batch_request, async_req=True)
-        >>> result = thread.get()
+    def rich_menu_batch(self, rich_menu_batch_request: RichMenuBatchRequest) -> None:
+        """You can use this endpoint to batch control the rich menu linked to the users using the endpoint such as Link rich menu to user. The following operations are available:  1. Replace a rich menu with another rich menu for all users linked to a specific rich menu 2. Unlink a rich menu for all users linked to a specific rich menu 3. Unlink a rich menu for all users linked the rich menu
 
         :param rich_menu_batch_request: (required)
         :type rich_menu_batch_request: RichMenuBatchRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._messaging_api.rich_menu_batch(rich_menu_batch_request, **kwargs)
+        return self._messaging_api.rich_menu_batch(rich_menu_batch_request)
 
-    def rich_menu_batch_with_http_info(self, rich_menu_batch_request: RichMenuBatchRequest, **kwargs) -> ApiResponse:
-        """rich_menu_batch  # noqa: E501
-
-        You can use this endpoint to batch control the rich menu linked to the users using the endpoint such as Link rich menu to user. The following operations are available:  1. Replace a rich menu with another rich menu for all users linked to a specific rich menu 2. Unlink a rich menu for all users linked to a specific rich menu 3. Unlink a rich menu for all users linked the rich menu   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.rich_menu_batch_with_http_info(rich_menu_batch_request, async_req=True)
-        >>> result = thread.get()
+    def rich_menu_batch_with_http_info(self, rich_menu_batch_request: RichMenuBatchRequest) -> ApiResponse:
+        """You can use this endpoint to batch control the rich menu linked to the users using the endpoint such as Link rich menu to user. The following operations are available:  1. Replace a rich menu with another rich menu for all users linked to a specific rich menu 2. Unlink a rich menu for all users linked to a specific rich menu 3. Unlink a rich menu for all users linked the rich menu
 
         :param rich_menu_batch_request: (required)
         :type rich_menu_batch_request: RichMenuBatchRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._messaging_api.rich_menu_batch_with_http_info(rich_menu_batch_request, **kwargs)
+        return self._messaging_api.rich_menu_batch_with_http_info(rich_menu_batch_request)
 
-    def set_default_rich_menu(self, rich_menu_id: Annotated[StrictStr, Field(..., description='ID of a rich menu')], **kwargs) -> None:
-        """set_default_rich_menu  # noqa: E501
-
-        Set default rich menu  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.set_default_rich_menu(rich_menu_id, async_req=True)
-        >>> result = thread.get()
+    def set_default_rich_menu(self, rich_menu_id: Annotated[StrictStr, Field(..., description='ID of a rich menu')]) -> None:
+        """Set default rich menu
 
         :param rich_menu_id: ID of a rich menu (required)
         :type rich_menu_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._messaging_api.set_default_rich_menu(rich_menu_id, **kwargs)
+        return self._messaging_api.set_default_rich_menu(rich_menu_id)
 
-    def set_default_rich_menu_with_http_info(self, rich_menu_id: Annotated[StrictStr, Field(..., description='ID of a rich menu')], **kwargs) -> ApiResponse:
-        """set_default_rich_menu  # noqa: E501
-
-        Set default rich menu  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.set_default_rich_menu_with_http_info(rich_menu_id, async_req=True)
-        >>> result = thread.get()
+    def set_default_rich_menu_with_http_info(self, rich_menu_id: Annotated[StrictStr, Field(..., description='ID of a rich menu')]) -> ApiResponse:
+        """Set default rich menu
 
         :param rich_menu_id: ID of a rich menu (required)
         :type rich_menu_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._messaging_api.set_default_rich_menu_with_http_info(rich_menu_id, **kwargs)
+        return self._messaging_api.set_default_rich_menu_with_http_info(rich_menu_id)
 
-    def set_webhook_endpoint(self, set_webhook_endpoint_request: SetWebhookEndpointRequest, **kwargs) -> None:
-        """set_webhook_endpoint  # noqa: E501
-
-        Set webhook endpoint URL  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.set_webhook_endpoint(set_webhook_endpoint_request, async_req=True)
-        >>> result = thread.get()
+    def set_webhook_endpoint(self, set_webhook_endpoint_request: SetWebhookEndpointRequest) -> None:
+        """Set webhook endpoint URL
 
         :param set_webhook_endpoint_request: (required)
         :type set_webhook_endpoint_request: SetWebhookEndpointRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._messaging_api.set_webhook_endpoint(set_webhook_endpoint_request, **kwargs)
+        return self._messaging_api.set_webhook_endpoint(set_webhook_endpoint_request)
 
-    def set_webhook_endpoint_with_http_info(self, set_webhook_endpoint_request: SetWebhookEndpointRequest, **kwargs) -> ApiResponse:
-        """set_webhook_endpoint  # noqa: E501
-
-        Set webhook endpoint URL  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.set_webhook_endpoint_with_http_info(set_webhook_endpoint_request, async_req=True)
-        >>> result = thread.get()
+    def set_webhook_endpoint_with_http_info(self, set_webhook_endpoint_request: SetWebhookEndpointRequest) -> ApiResponse:
+        """Set webhook endpoint URL
 
         :param set_webhook_endpoint_request: (required)
         :type set_webhook_endpoint_request: SetWebhookEndpointRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._messaging_api.set_webhook_endpoint_with_http_info(set_webhook_endpoint_request, **kwargs)
+        return self._messaging_api.set_webhook_endpoint_with_http_info(set_webhook_endpoint_request)
 
-    def show_loading_animation(self, show_loading_animation_request: ShowLoadingAnimationRequest, **kwargs) -> object:
-        """show_loading_animation  # noqa: E501
-
-        Display a loading animation in one-on-one chats between users and LINE Official Accounts.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.show_loading_animation(show_loading_animation_request, async_req=True)
-        >>> result = thread.get()
+    def show_loading_animation(self, show_loading_animation_request: ShowLoadingAnimationRequest) -> object:
+        """Display a loading animation in one-on-one chats between users and LINE Official Accounts.
 
         :param show_loading_animation_request: (required)
         :type show_loading_animation_request: ShowLoadingAnimationRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: object
         """
-        return self._messaging_api.show_loading_animation(show_loading_animation_request, **kwargs)
+        return self._messaging_api.show_loading_animation(show_loading_animation_request)
 
-    def show_loading_animation_with_http_info(self, show_loading_animation_request: ShowLoadingAnimationRequest, **kwargs) -> ApiResponse:
-        """show_loading_animation  # noqa: E501
-
-        Display a loading animation in one-on-one chats between users and LINE Official Accounts.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.show_loading_animation_with_http_info(show_loading_animation_request, async_req=True)
-        >>> result = thread.get()
+    def show_loading_animation_with_http_info(self, show_loading_animation_request: ShowLoadingAnimationRequest) -> ApiResponse:
+        """Display a loading animation in one-on-one chats between users and LINE Official Accounts.
 
         :param show_loading_animation_request: (required)
         :type show_loading_animation_request: ShowLoadingAnimationRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(object, status_code(int), headers(HTTPHeaderDict))
         """
-        return self._messaging_api.show_loading_animation_with_http_info(show_loading_animation_request, **kwargs)
+        return self._messaging_api.show_loading_animation_with_http_info(show_loading_animation_request)
 
-    def test_webhook_endpoint(self, test_webhook_endpoint_request: Optional[TestWebhookEndpointRequest] = None, **kwargs) -> TestWebhookEndpointResponse:
-        """test_webhook_endpoint  # noqa: E501
-
-        Test webhook endpoint  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.test_webhook_endpoint(test_webhook_endpoint_request, async_req=True)
-        >>> result = thread.get()
+    def test_webhook_endpoint(self, test_webhook_endpoint_request: Optional[TestWebhookEndpointRequest] = None) -> TestWebhookEndpointResponse:
+        """Test webhook endpoint
 
         :param test_webhook_endpoint_request:
         :type test_webhook_endpoint_request: TestWebhookEndpointRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: TestWebhookEndpointResponse
         """
-        return self._messaging_api.test_webhook_endpoint(test_webhook_endpoint_request, **kwargs)
+        return self._messaging_api.test_webhook_endpoint(test_webhook_endpoint_request)
 
-    def test_webhook_endpoint_with_http_info(self, test_webhook_endpoint_request: Optional[TestWebhookEndpointRequest] = None, **kwargs) -> ApiResponse:
-        """test_webhook_endpoint  # noqa: E501
-
-        Test webhook endpoint  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.test_webhook_endpoint_with_http_info(test_webhook_endpoint_request, async_req=True)
-        >>> result = thread.get()
+    def test_webhook_endpoint_with_http_info(self, test_webhook_endpoint_request: Optional[TestWebhookEndpointRequest] = None) -> ApiResponse:
+        """Test webhook endpoint
 
         :param test_webhook_endpoint_request:
         :type test_webhook_endpoint_request: TestWebhookEndpointRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(TestWebhookEndpointResponse, status_code(int), headers(HTTPHeaderDict))
         """
-        return self._messaging_api.test_webhook_endpoint_with_http_info(test_webhook_endpoint_request, **kwargs)
+        return self._messaging_api.test_webhook_endpoint_with_http_info(test_webhook_endpoint_request)
 
-    def unlink_rich_menu_id_from_user(self, user_id: Annotated[StrictStr, Field(..., description='User ID. Found in the `source` object of webhook event objects. Do not use the LINE ID used in LINE.')], **kwargs) -> None:
-        """unlink_rich_menu_id_from_user  # noqa: E501
-
-        Unlink rich menu from user  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.unlink_rich_menu_id_from_user(user_id, async_req=True)
-        >>> result = thread.get()
+    def unlink_rich_menu_id_from_user(self, user_id: Annotated[StrictStr, Field(..., description='User ID. Found in the `source` object of webhook event objects. Do not use the LINE ID used in LINE.')]) -> None:
+        """Unlink rich menu from user
 
         :param user_id: User ID. Found in the `source` object of webhook event objects. Do not use the LINE ID used in LINE. (required)
         :type user_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._messaging_api.unlink_rich_menu_id_from_user(user_id, **kwargs)
+        return self._messaging_api.unlink_rich_menu_id_from_user(user_id)
 
-    def unlink_rich_menu_id_from_user_with_http_info(self, user_id: Annotated[StrictStr, Field(..., description='User ID. Found in the `source` object of webhook event objects. Do not use the LINE ID used in LINE.')], **kwargs) -> ApiResponse:
-        """unlink_rich_menu_id_from_user  # noqa: E501
-
-        Unlink rich menu from user  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.unlink_rich_menu_id_from_user_with_http_info(user_id, async_req=True)
-        >>> result = thread.get()
+    def unlink_rich_menu_id_from_user_with_http_info(self, user_id: Annotated[StrictStr, Field(..., description='User ID. Found in the `source` object of webhook event objects. Do not use the LINE ID used in LINE.')]) -> ApiResponse:
+        """Unlink rich menu from user
 
         :param user_id: User ID. Found in the `source` object of webhook event objects. Do not use the LINE ID used in LINE. (required)
         :type user_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._messaging_api.unlink_rich_menu_id_from_user_with_http_info(user_id, **kwargs)
+        return self._messaging_api.unlink_rich_menu_id_from_user_with_http_info(user_id)
 
-    def unlink_rich_menu_id_from_users(self, rich_menu_bulk_unlink_request: RichMenuBulkUnlinkRequest, **kwargs) -> None:
-        """unlink_rich_menu_id_from_users  # noqa: E501
-
-        Unlink rich menus from multiple users  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.unlink_rich_menu_id_from_users(rich_menu_bulk_unlink_request, async_req=True)
-        >>> result = thread.get()
+    def unlink_rich_menu_id_from_users(self, rich_menu_bulk_unlink_request: RichMenuBulkUnlinkRequest) -> None:
+        """Unlink rich menus from multiple users
 
         :param rich_menu_bulk_unlink_request: (required)
         :type rich_menu_bulk_unlink_request: RichMenuBulkUnlinkRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._messaging_api.unlink_rich_menu_id_from_users(rich_menu_bulk_unlink_request, **kwargs)
+        return self._messaging_api.unlink_rich_menu_id_from_users(rich_menu_bulk_unlink_request)
 
-    def unlink_rich_menu_id_from_users_with_http_info(self, rich_menu_bulk_unlink_request: RichMenuBulkUnlinkRequest, **kwargs) -> ApiResponse:
-        """unlink_rich_menu_id_from_users  # noqa: E501
-
-        Unlink rich menus from multiple users  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.unlink_rich_menu_id_from_users_with_http_info(rich_menu_bulk_unlink_request, async_req=True)
-        >>> result = thread.get()
+    def unlink_rich_menu_id_from_users_with_http_info(self, rich_menu_bulk_unlink_request: RichMenuBulkUnlinkRequest) -> ApiResponse:
+        """Unlink rich menus from multiple users
 
         :param rich_menu_bulk_unlink_request: (required)
         :type rich_menu_bulk_unlink_request: RichMenuBulkUnlinkRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._messaging_api.unlink_rich_menu_id_from_users_with_http_info(rich_menu_bulk_unlink_request, **kwargs)
+        return self._messaging_api.unlink_rich_menu_id_from_users_with_http_info(rich_menu_bulk_unlink_request)
 
-    def update_rich_menu_alias(self, rich_menu_alias_id: Annotated[StrictStr, Field(..., description='The rich menu alias ID you want to update.')], update_rich_menu_alias_request: UpdateRichMenuAliasRequest, **kwargs) -> None:
-        """update_rich_menu_alias  # noqa: E501
-
-        Update rich menu alias  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.update_rich_menu_alias(rich_menu_alias_id, update_rich_menu_alias_request, async_req=True)
-        >>> result = thread.get()
+    def update_rich_menu_alias(self, rich_menu_alias_id: Annotated[StrictStr, Field(..., description='The rich menu alias ID you want to update.')], update_rich_menu_alias_request: UpdateRichMenuAliasRequest) -> None:
+        """Update rich menu alias
 
         :param rich_menu_alias_id: The rich menu alias ID you want to update. (required)
         :type rich_menu_alias_id: str
         :param update_rich_menu_alias_request: (required)
         :type update_rich_menu_alias_request: UpdateRichMenuAliasRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._messaging_api.update_rich_menu_alias(rich_menu_alias_id, update_rich_menu_alias_request, **kwargs)
+        return self._messaging_api.update_rich_menu_alias(rich_menu_alias_id, update_rich_menu_alias_request)
 
-    def update_rich_menu_alias_with_http_info(self, rich_menu_alias_id: Annotated[StrictStr, Field(..., description='The rich menu alias ID you want to update.')], update_rich_menu_alias_request: UpdateRichMenuAliasRequest, **kwargs) -> ApiResponse:
-        """update_rich_menu_alias  # noqa: E501
-
-        Update rich menu alias  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.update_rich_menu_alias_with_http_info(rich_menu_alias_id, update_rich_menu_alias_request, async_req=True)
-        >>> result = thread.get()
+    def update_rich_menu_alias_with_http_info(self, rich_menu_alias_id: Annotated[StrictStr, Field(..., description='The rich menu alias ID you want to update.')], update_rich_menu_alias_request: UpdateRichMenuAliasRequest) -> ApiResponse:
+        """Update rich menu alias
 
         :param rich_menu_alias_id: The rich menu alias ID you want to update. (required)
         :type rich_menu_alias_id: str
         :param update_rich_menu_alias_request: (required)
         :type update_rich_menu_alias_request: UpdateRichMenuAliasRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._messaging_api.update_rich_menu_alias_with_http_info(rich_menu_alias_id, update_rich_menu_alias_request, **kwargs)
+        return self._messaging_api.update_rich_menu_alias_with_http_info(rich_menu_alias_id, update_rich_menu_alias_request)
 
-    def validate_broadcast(self, validate_message_request: ValidateMessageRequest, **kwargs) -> None:
-        """validate_broadcast  # noqa: E501
-
-        Validate message objects of a broadcast message  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.validate_broadcast(validate_message_request, async_req=True)
-        >>> result = thread.get()
+    def validate_broadcast(self, validate_message_request: ValidateMessageRequest) -> None:
+        """Validate message objects of a broadcast message
 
         :param validate_message_request: (required)
         :type validate_message_request: ValidateMessageRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._messaging_api.validate_broadcast(validate_message_request, **kwargs)
+        return self._messaging_api.validate_broadcast(validate_message_request)
 
-    def validate_broadcast_with_http_info(self, validate_message_request: ValidateMessageRequest, **kwargs) -> ApiResponse:
-        """validate_broadcast  # noqa: E501
-
-        Validate message objects of a broadcast message  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.validate_broadcast_with_http_info(validate_message_request, async_req=True)
-        >>> result = thread.get()
+    def validate_broadcast_with_http_info(self, validate_message_request: ValidateMessageRequest) -> ApiResponse:
+        """Validate message objects of a broadcast message
 
         :param validate_message_request: (required)
         :type validate_message_request: ValidateMessageRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._messaging_api.validate_broadcast_with_http_info(validate_message_request, **kwargs)
+        return self._messaging_api.validate_broadcast_with_http_info(validate_message_request)
 
-    def validate_multicast(self, validate_message_request: ValidateMessageRequest, **kwargs) -> None:
-        """validate_multicast  # noqa: E501
-
-        Validate message objects of a multicast message  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.validate_multicast(validate_message_request, async_req=True)
-        >>> result = thread.get()
+    def validate_multicast(self, validate_message_request: ValidateMessageRequest) -> None:
+        """Validate message objects of a multicast message
 
         :param validate_message_request: (required)
         :type validate_message_request: ValidateMessageRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._messaging_api.validate_multicast(validate_message_request, **kwargs)
+        return self._messaging_api.validate_multicast(validate_message_request)
 
-    def validate_multicast_with_http_info(self, validate_message_request: ValidateMessageRequest, **kwargs) -> ApiResponse:
-        """validate_multicast  # noqa: E501
-
-        Validate message objects of a multicast message  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.validate_multicast_with_http_info(validate_message_request, async_req=True)
-        >>> result = thread.get()
+    def validate_multicast_with_http_info(self, validate_message_request: ValidateMessageRequest) -> ApiResponse:
+        """Validate message objects of a multicast message
 
         :param validate_message_request: (required)
         :type validate_message_request: ValidateMessageRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._messaging_api.validate_multicast_with_http_info(validate_message_request, **kwargs)
+        return self._messaging_api.validate_multicast_with_http_info(validate_message_request)
 
-    def validate_narrowcast(self, validate_message_request: ValidateMessageRequest, **kwargs) -> None:
-        """validate_narrowcast  # noqa: E501
-
-        Validate message objects of a narrowcast message  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.validate_narrowcast(validate_message_request, async_req=True)
-        >>> result = thread.get()
+    def validate_narrowcast(self, validate_message_request: ValidateMessageRequest) -> None:
+        """Validate message objects of a narrowcast message
 
         :param validate_message_request: (required)
         :type validate_message_request: ValidateMessageRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._messaging_api.validate_narrowcast(validate_message_request, **kwargs)
+        return self._messaging_api.validate_narrowcast(validate_message_request)
 
-    def validate_narrowcast_with_http_info(self, validate_message_request: ValidateMessageRequest, **kwargs) -> ApiResponse:
-        """validate_narrowcast  # noqa: E501
-
-        Validate message objects of a narrowcast message  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.validate_narrowcast_with_http_info(validate_message_request, async_req=True)
-        >>> result = thread.get()
+    def validate_narrowcast_with_http_info(self, validate_message_request: ValidateMessageRequest) -> ApiResponse:
+        """Validate message objects of a narrowcast message
 
         :param validate_message_request: (required)
         :type validate_message_request: ValidateMessageRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._messaging_api.validate_narrowcast_with_http_info(validate_message_request, **kwargs)
+        return self._messaging_api.validate_narrowcast_with_http_info(validate_message_request)
 
-    def validate_push(self, validate_message_request: ValidateMessageRequest, **kwargs) -> None:
-        """validate_push  # noqa: E501
-
-        Validate message objects of a push message  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.validate_push(validate_message_request, async_req=True)
-        >>> result = thread.get()
+    def validate_push(self, validate_message_request: ValidateMessageRequest) -> None:
+        """Validate message objects of a push message
 
         :param validate_message_request: (required)
         :type validate_message_request: ValidateMessageRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._messaging_api.validate_push(validate_message_request, **kwargs)
+        return self._messaging_api.validate_push(validate_message_request)
 
-    def validate_push_with_http_info(self, validate_message_request: ValidateMessageRequest, **kwargs) -> ApiResponse:
-        """validate_push  # noqa: E501
-
-        Validate message objects of a push message  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.validate_push_with_http_info(validate_message_request, async_req=True)
-        >>> result = thread.get()
+    def validate_push_with_http_info(self, validate_message_request: ValidateMessageRequest) -> ApiResponse:
+        """Validate message objects of a push message
 
         :param validate_message_request: (required)
         :type validate_message_request: ValidateMessageRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._messaging_api.validate_push_with_http_info(validate_message_request, **kwargs)
+        return self._messaging_api.validate_push_with_http_info(validate_message_request)
 
-    def validate_reply(self, validate_message_request: ValidateMessageRequest, **kwargs) -> None:
-        """validate_reply  # noqa: E501
-
-        Validate message objects of a reply message  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.validate_reply(validate_message_request, async_req=True)
-        >>> result = thread.get()
+    def validate_reply(self, validate_message_request: ValidateMessageRequest) -> None:
+        """Validate message objects of a reply message
 
         :param validate_message_request: (required)
         :type validate_message_request: ValidateMessageRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._messaging_api.validate_reply(validate_message_request, **kwargs)
+        return self._messaging_api.validate_reply(validate_message_request)
 
-    def validate_reply_with_http_info(self, validate_message_request: ValidateMessageRequest, **kwargs) -> ApiResponse:
-        """validate_reply  # noqa: E501
-
-        Validate message objects of a reply message  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.validate_reply_with_http_info(validate_message_request, async_req=True)
-        >>> result = thread.get()
+    def validate_reply_with_http_info(self, validate_message_request: ValidateMessageRequest) -> ApiResponse:
+        """Validate message objects of a reply message
 
         :param validate_message_request: (required)
         :type validate_message_request: ValidateMessageRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._messaging_api.validate_reply_with_http_info(validate_message_request, **kwargs)
+        return self._messaging_api.validate_reply_with_http_info(validate_message_request)
 
-    def validate_rich_menu_batch_request(self, rich_menu_batch_request: RichMenuBatchRequest, **kwargs) -> None:
-        """validate_rich_menu_batch_request  # noqa: E501
-
-        Validate a request body of the Replace or unlink the linked rich menus in batches endpoint.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.validate_rich_menu_batch_request(rich_menu_batch_request, async_req=True)
-        >>> result = thread.get()
+    def validate_rich_menu_batch_request(self, rich_menu_batch_request: RichMenuBatchRequest) -> None:
+        """Validate a request body of the Replace or unlink the linked rich menus in batches endpoint.
 
         :param rich_menu_batch_request: (required)
         :type rich_menu_batch_request: RichMenuBatchRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._messaging_api.validate_rich_menu_batch_request(rich_menu_batch_request, **kwargs)
+        return self._messaging_api.validate_rich_menu_batch_request(rich_menu_batch_request)
 
-    def validate_rich_menu_batch_request_with_http_info(self, rich_menu_batch_request: RichMenuBatchRequest, **kwargs) -> ApiResponse:
-        """validate_rich_menu_batch_request  # noqa: E501
-
-        Validate a request body of the Replace or unlink the linked rich menus in batches endpoint.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.validate_rich_menu_batch_request_with_http_info(rich_menu_batch_request, async_req=True)
-        >>> result = thread.get()
+    def validate_rich_menu_batch_request_with_http_info(self, rich_menu_batch_request: RichMenuBatchRequest) -> ApiResponse:
+        """Validate a request body of the Replace or unlink the linked rich menus in batches endpoint.
 
         :param rich_menu_batch_request: (required)
         :type rich_menu_batch_request: RichMenuBatchRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._messaging_api.validate_rich_menu_batch_request_with_http_info(rich_menu_batch_request, **kwargs)
+        return self._messaging_api.validate_rich_menu_batch_request_with_http_info(rich_menu_batch_request)
 
-    def validate_rich_menu_object(self, rich_menu_request: RichMenuRequest, **kwargs) -> None:
-        """validate_rich_menu_object  # noqa: E501
-
-        Validate rich menu object  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.validate_rich_menu_object(rich_menu_request, async_req=True)
-        >>> result = thread.get()
+    def validate_rich_menu_object(self, rich_menu_request: RichMenuRequest) -> None:
+        """Validate rich menu object
 
         :param rich_menu_request: (required)
         :type rich_menu_request: RichMenuRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._messaging_api.validate_rich_menu_object(rich_menu_request, **kwargs)
+        return self._messaging_api.validate_rich_menu_object(rich_menu_request)
 
-    def validate_rich_menu_object_with_http_info(self, rich_menu_request: RichMenuRequest, **kwargs) -> ApiResponse:
-        """validate_rich_menu_object  # noqa: E501
-
-        Validate rich menu object  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.validate_rich_menu_object_with_http_info(rich_menu_request, async_req=True)
-        >>> result = thread.get()
+    def validate_rich_menu_object_with_http_info(self, rich_menu_request: RichMenuRequest) -> ApiResponse:
+        """Validate rich menu object
 
         :param rich_menu_request: (required)
         :type rich_menu_request: RichMenuRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._messaging_api.validate_rich_menu_object_with_http_info(rich_menu_request, **kwargs)
+        return self._messaging_api.validate_rich_menu_object_with_http_info(rich_menu_request)
 
-    def get_message_content(self, message_id: Annotated[StrictStr, Field(..., description='Message ID of video or audio')], **kwargs) -> bytearray:
-        """get_message_content  # noqa: E501
-
-        Download image, video, and audio data sent from users.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_message_content(message_id, async_req=True)
-        >>> result = thread.get()
+    def get_message_content(self, message_id: Annotated[StrictStr, Field(..., description='Message ID of video or audio')]) -> bytearray:
+        """Download image, video, and audio data sent from users.
 
         :param message_id: Message ID of video or audio (required)
         :type message_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: bytearray
         """
-        return self._messaging_api_blob.get_message_content(message_id, **kwargs)
+        return self._messaging_api_blob.get_message_content(message_id)
 
-    def get_message_content_with_http_info(self, message_id: Annotated[StrictStr, Field(..., description='Message ID of video or audio')], **kwargs) -> ApiResponse:
-        """get_message_content  # noqa: E501
-
-        Download image, video, and audio data sent from users.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_message_content_with_http_info(message_id, async_req=True)
-        >>> result = thread.get()
+    def get_message_content_with_http_info(self, message_id: Annotated[StrictStr, Field(..., description='Message ID of video or audio')]) -> ApiResponse:
+        """Download image, video, and audio data sent from users.
 
         :param message_id: Message ID of video or audio (required)
         :type message_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(bytearray, status_code(int), headers(HTTPHeaderDict))
         """
-        return self._messaging_api_blob.get_message_content_with_http_info(message_id, **kwargs)
+        return self._messaging_api_blob.get_message_content_with_http_info(message_id)
 
-    def get_message_content_preview(self, message_id: Annotated[StrictStr, Field(..., description='Message ID of image or video')], **kwargs) -> bytearray:
-        """get_message_content_preview  # noqa: E501
-
-        Get a preview image of the image or video  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_message_content_preview(message_id, async_req=True)
-        >>> result = thread.get()
+    def get_message_content_preview(self, message_id: Annotated[StrictStr, Field(..., description='Message ID of image or video')]) -> bytearray:
+        """Get a preview image of the image or video
 
         :param message_id: Message ID of image or video (required)
         :type message_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: bytearray
         """
-        return self._messaging_api_blob.get_message_content_preview(message_id, **kwargs)
+        return self._messaging_api_blob.get_message_content_preview(message_id)
 
-    def get_message_content_preview_with_http_info(self, message_id: Annotated[StrictStr, Field(..., description='Message ID of image or video')], **kwargs) -> ApiResponse:
-        """get_message_content_preview  # noqa: E501
-
-        Get a preview image of the image or video  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_message_content_preview_with_http_info(message_id, async_req=True)
-        >>> result = thread.get()
+    def get_message_content_preview_with_http_info(self, message_id: Annotated[StrictStr, Field(..., description='Message ID of image or video')]) -> ApiResponse:
+        """Get a preview image of the image or video
 
         :param message_id: Message ID of image or video (required)
         :type message_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(bytearray, status_code(int), headers(HTTPHeaderDict))
         """
-        return self._messaging_api_blob.get_message_content_preview_with_http_info(message_id, **kwargs)
+        return self._messaging_api_blob.get_message_content_preview_with_http_info(message_id)
 
-    def get_message_content_transcoding_by_message_id(self, message_id: Annotated[StrictStr, Field(..., description='Message ID of video or audio')], **kwargs) -> GetMessageContentTranscodingResponse:
-        """get_message_content_transcoding_by_message_id  # noqa: E501
-
-        Verify the preparation status of a video or audio for getting  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_message_content_transcoding_by_message_id(message_id, async_req=True)
-        >>> result = thread.get()
+    def get_message_content_transcoding_by_message_id(self, message_id: Annotated[StrictStr, Field(..., description='Message ID of video or audio')]) -> GetMessageContentTranscodingResponse:
+        """Verify the preparation status of a video or audio for getting
 
         :param message_id: Message ID of video or audio (required)
         :type message_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: GetMessageContentTranscodingResponse
         """
-        return self._messaging_api_blob.get_message_content_transcoding_by_message_id(message_id, **kwargs)
+        return self._messaging_api_blob.get_message_content_transcoding_by_message_id(message_id)
 
-    def get_message_content_transcoding_by_message_id_with_http_info(self, message_id: Annotated[StrictStr, Field(..., description='Message ID of video or audio')], **kwargs) -> ApiResponse:
-        """get_message_content_transcoding_by_message_id  # noqa: E501
-
-        Verify the preparation status of a video or audio for getting  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_message_content_transcoding_by_message_id_with_http_info(message_id, async_req=True)
-        >>> result = thread.get()
+    def get_message_content_transcoding_by_message_id_with_http_info(self, message_id: Annotated[StrictStr, Field(..., description='Message ID of video or audio')]) -> ApiResponse:
+        """Verify the preparation status of a video or audio for getting
 
         :param message_id: Message ID of video or audio (required)
         :type message_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(GetMessageContentTranscodingResponse, status_code(int), headers(HTTPHeaderDict))
         """
-        return self._messaging_api_blob.get_message_content_transcoding_by_message_id_with_http_info(message_id, **kwargs)
+        return self._messaging_api_blob.get_message_content_transcoding_by_message_id_with_http_info(message_id)
 
-    def get_rich_menu_image(self, rich_menu_id: Annotated[StrictStr, Field(..., description='ID of the rich menu with the image to be downloaded')], **kwargs) -> bytearray:
-        """get_rich_menu_image  # noqa: E501
-
-        Download rich menu image.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_rich_menu_image(rich_menu_id, async_req=True)
-        >>> result = thread.get()
+    def get_rich_menu_image(self, rich_menu_id: Annotated[StrictStr, Field(..., description='ID of the rich menu with the image to be downloaded')]) -> bytearray:
+        """Download rich menu image.
 
         :param rich_menu_id: ID of the rich menu with the image to be downloaded (required)
         :type rich_menu_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: bytearray
         """
-        return self._messaging_api_blob.get_rich_menu_image(rich_menu_id, **kwargs)
+        return self._messaging_api_blob.get_rich_menu_image(rich_menu_id)
 
-    def get_rich_menu_image_with_http_info(self, rich_menu_id: Annotated[StrictStr, Field(..., description='ID of the rich menu with the image to be downloaded')], **kwargs) -> ApiResponse:
-        """get_rich_menu_image  # noqa: E501
-
-        Download rich menu image.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_rich_menu_image_with_http_info(rich_menu_id, async_req=True)
-        >>> result = thread.get()
+    def get_rich_menu_image_with_http_info(self, rich_menu_id: Annotated[StrictStr, Field(..., description='ID of the rich menu with the image to be downloaded')]) -> ApiResponse:
+        """Download rich menu image.
 
         :param rich_menu_id: ID of the rich menu with the image to be downloaded (required)
         :type rich_menu_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(bytearray, status_code(int), headers(HTTPHeaderDict))
         """
-        return self._messaging_api_blob.get_rich_menu_image_with_http_info(rich_menu_id, **kwargs)
+        return self._messaging_api_blob.get_rich_menu_image_with_http_info(rich_menu_id)
 
-    def set_rich_menu_image(self, rich_menu_id: Annotated[StrictStr, Field(..., description='The ID of the rich menu to attach the image to')], body: Optional[Union[StrictBytes, StrictStr]] = None, **kwargs) -> None:
-        """set_rich_menu_image  # noqa: E501
-
-        Upload rich menu image  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.set_rich_menu_image(rich_menu_id, body, async_req=True)
-        >>> result = thread.get()
+    def set_rich_menu_image(self, rich_menu_id: Annotated[StrictStr, Field(..., description='The ID of the rich menu to attach the image to')], body: Optional[Union[StrictBytes, StrictStr]] = None) -> None:
+        """Upload rich menu image
 
         :param rich_menu_id: The ID of the rich menu to attach the image to (required)
         :type rich_menu_id: str
         :param body:
         :type body: bytearray
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._messaging_api_blob.set_rich_menu_image(rich_menu_id, body, **kwargs)
+        return self._messaging_api_blob.set_rich_menu_image(rich_menu_id, body)
 
-    def set_rich_menu_image_with_http_info(self, rich_menu_id: Annotated[StrictStr, Field(..., description='The ID of the rich menu to attach the image to')], body: Optional[Union[StrictBytes, StrictStr]] = None, **kwargs) -> ApiResponse:
-        """set_rich_menu_image  # noqa: E501
-
-        Upload rich menu image  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.set_rich_menu_image_with_http_info(rich_menu_id, body, async_req=True)
-        >>> result = thread.get()
+    def set_rich_menu_image_with_http_info(self, rich_menu_id: Annotated[StrictStr, Field(..., description='The ID of the rich menu to attach the image to')], body: Optional[Union[StrictBytes, StrictStr]] = None) -> ApiResponse:
+        """Upload rich menu image
 
         :param rich_menu_id: The ID of the rich menu to attach the image to (required)
         :type rich_menu_id: str
         :param body:
         :type body: bytearray
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._messaging_api_blob.set_rich_menu_image_with_http_info(rich_menu_id, body, **kwargs)
+        return self._messaging_api_blob.set_rich_menu_image_with_http_info(rich_menu_id, body)
 
-    def acquire_chat_control(self, chat_id: Annotated[StrictStr, Field(..., description='The `userId`, `roomId`, or `groupId`')], acquire_chat_control_request: Optional[AcquireChatControlRequest] = None, **kwargs) -> None:
-        """acquire_chat_control  # noqa: E501
-
-        If the Standby Channel wants to take the initiative (Chat Control), it calls the Acquire Control API. The channel that was previously an Active Channel will automatically switch to a Standby Channel.   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.acquire_chat_control(chat_id, acquire_chat_control_request, async_req=True)
-        >>> result = thread.get()
+    def acquire_chat_control(self, chat_id: Annotated[StrictStr, Field(..., description='The `userId`, `roomId`, or `groupId`')], acquire_chat_control_request: Optional[AcquireChatControlRequest] = None) -> None:
+        """If the Standby Channel wants to take the initiative (Chat Control), it calls the Acquire Control API. The channel that was previously an Active Channel will automatically switch to a Standby Channel.
 
         :param chat_id: The `userId`, `roomId`, or `groupId` (required)
         :type chat_id: str
         :param acquire_chat_control_request:
         :type acquire_chat_control_request: AcquireChatControlRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._line_module.acquire_chat_control(chat_id, acquire_chat_control_request, **kwargs)
+        return self._line_module.acquire_chat_control(chat_id, acquire_chat_control_request)
 
-    def acquire_chat_control_with_http_info(self, chat_id: Annotated[StrictStr, Field(..., description='The `userId`, `roomId`, or `groupId`')], acquire_chat_control_request: Optional[AcquireChatControlRequest] = None, **kwargs) -> ApiResponse:
-        """acquire_chat_control  # noqa: E501
-
-        If the Standby Channel wants to take the initiative (Chat Control), it calls the Acquire Control API. The channel that was previously an Active Channel will automatically switch to a Standby Channel.   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.acquire_chat_control_with_http_info(chat_id, acquire_chat_control_request, async_req=True)
-        >>> result = thread.get()
+    def acquire_chat_control_with_http_info(self, chat_id: Annotated[StrictStr, Field(..., description='The `userId`, `roomId`, or `groupId`')], acquire_chat_control_request: Optional[AcquireChatControlRequest] = None) -> ApiResponse:
+        """If the Standby Channel wants to take the initiative (Chat Control), it calls the Acquire Control API. The channel that was previously an Active Channel will automatically switch to a Standby Channel.
 
         :param chat_id: The `userId`, `roomId`, or `groupId` (required)
         :type chat_id: str
         :param acquire_chat_control_request:
         :type acquire_chat_control_request: AcquireChatControlRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._line_module.acquire_chat_control_with_http_info(chat_id, acquire_chat_control_request, **kwargs)
+        return self._line_module.acquire_chat_control_with_http_info(chat_id, acquire_chat_control_request)
 
-    def detach_module(self, detach_module_request: Optional[DetachModuleRequest] = None, **kwargs) -> None:
-        """detach_module  # noqa: E501
-
-        The module channel admin calls the Detach API to detach the module channel from a LINE Official Account.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.detach_module(detach_module_request, async_req=True)
-        >>> result = thread.get()
+    def detach_module(self, detach_module_request: Optional[DetachModuleRequest] = None) -> None:
+        """The module channel admin calls the Detach API to detach the module channel from a LINE Official Account.
 
         :param detach_module_request:
         :type detach_module_request: DetachModuleRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._line_module.detach_module(detach_module_request, **kwargs)
+        return self._line_module.detach_module(detach_module_request)
 
-    def detach_module_with_http_info(self, detach_module_request: Optional[DetachModuleRequest] = None, **kwargs) -> ApiResponse:
-        """detach_module  # noqa: E501
-
-        The module channel admin calls the Detach API to detach the module channel from a LINE Official Account.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.detach_module_with_http_info(detach_module_request, async_req=True)
-        >>> result = thread.get()
+    def detach_module_with_http_info(self, detach_module_request: Optional[DetachModuleRequest] = None) -> ApiResponse:
+        """The module channel admin calls the Detach API to detach the module channel from a LINE Official Account.
 
         :param detach_module_request:
         :type detach_module_request: DetachModuleRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._line_module.detach_module_with_http_info(detach_module_request, **kwargs)
+        return self._line_module.detach_module_with_http_info(detach_module_request)
 
-    def get_modules(self, start: Annotated[Optional[StrictStr], Field(description="Value of the continuation token found in the next property of the JSON object returned in the response. If you can't get all basic information about the bots in one request, include this parameter to get the remaining array. ")] = None, limit: Annotated[Optional[conint(strict=True, le=100)], Field(description='Specify the maximum number of bots that you get basic information from. The default value is 100. Max value: 100 ')] = None, **kwargs) -> GetModulesResponse:
-        """get_modules  # noqa: E501
-
-        Gets a list of basic information about the bots of multiple LINE Official Accounts that have attached module channels.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_modules(start, limit, async_req=True)
-        >>> result = thread.get()
+    def get_modules(self, start: Annotated[Optional[StrictStr], Field(description="Value of the continuation token found in the next property of the JSON object returned in the response. If you can't get all basic information about the bots in one request, include this parameter to get the remaining array. ")] = None, limit: Annotated[Optional[conint(strict=True, le=100)], Field(description='Specify the maximum number of bots that you get basic information from. The default value is 100. Max value: 100 ')] = None) -> GetModulesResponse:
+        """Gets a list of basic information about the bots of multiple LINE Official Accounts that have attached module channels.
 
         :param start: Value of the continuation token found in the next property of the JSON object returned in the response. If you can't get all basic information about the bots in one request, include this parameter to get the remaining array. 
         :type start: str
         :param limit: Specify the maximum number of bots that you get basic information from. The default value is 100. Max value: 100 
         :type limit: int
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: GetModulesResponse
         """
-        return self._line_module.get_modules(start, limit, **kwargs)
+        return self._line_module.get_modules(start, limit)
 
-    def get_modules_with_http_info(self, start: Annotated[Optional[StrictStr], Field(description="Value of the continuation token found in the next property of the JSON object returned in the response. If you can't get all basic information about the bots in one request, include this parameter to get the remaining array. ")] = None, limit: Annotated[Optional[conint(strict=True, le=100)], Field(description='Specify the maximum number of bots that you get basic information from. The default value is 100. Max value: 100 ')] = None, **kwargs) -> ApiResponse:
-        """get_modules  # noqa: E501
-
-        Gets a list of basic information about the bots of multiple LINE Official Accounts that have attached module channels.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_modules_with_http_info(start, limit, async_req=True)
-        >>> result = thread.get()
+    def get_modules_with_http_info(self, start: Annotated[Optional[StrictStr], Field(description="Value of the continuation token found in the next property of the JSON object returned in the response. If you can't get all basic information about the bots in one request, include this parameter to get the remaining array. ")] = None, limit: Annotated[Optional[conint(strict=True, le=100)], Field(description='Specify the maximum number of bots that you get basic information from. The default value is 100. Max value: 100 ')] = None) -> ApiResponse:
+        """Gets a list of basic information about the bots of multiple LINE Official Accounts that have attached module channels.
 
         :param start: Value of the continuation token found in the next property of the JSON object returned in the response. If you can't get all basic information about the bots in one request, include this parameter to get the remaining array. 
         :type start: str
         :param limit: Specify the maximum number of bots that you get basic information from. The default value is 100. Max value: 100 
         :type limit: int
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(GetModulesResponse, status_code(int), headers(HTTPHeaderDict))
         """
-        return self._line_module.get_modules_with_http_info(start, limit, **kwargs)
+        return self._line_module.get_modules_with_http_info(start, limit)
 
-    def release_chat_control(self, chat_id: Annotated[StrictStr, Field(..., description='The `userId`, `roomId`, or `groupId`')], **kwargs) -> None:
-        """release_chat_control  # noqa: E501
-
-        To return the initiative (Chat Control) of Active Channel to Primary Channel, call the Release Control API.   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.release_chat_control(chat_id, async_req=True)
-        >>> result = thread.get()
+    def release_chat_control(self, chat_id: Annotated[StrictStr, Field(..., description='The `userId`, `roomId`, or `groupId`')]) -> None:
+        """To return the initiative (Chat Control) of Active Channel to Primary Channel, call the Release Control API.
 
         :param chat_id: The `userId`, `roomId`, or `groupId` (required)
         :type chat_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._line_module.release_chat_control(chat_id, **kwargs)
+        return self._line_module.release_chat_control(chat_id)
 
-    def release_chat_control_with_http_info(self, chat_id: Annotated[StrictStr, Field(..., description='The `userId`, `roomId`, or `groupId`')], **kwargs) -> ApiResponse:
-        """release_chat_control  # noqa: E501
-
-        To return the initiative (Chat Control) of Active Channel to Primary Channel, call the Release Control API.   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.release_chat_control_with_http_info(chat_id, async_req=True)
-        >>> result = thread.get()
+    def release_chat_control_with_http_info(self, chat_id: Annotated[StrictStr, Field(..., description='The `userId`, `roomId`, or `groupId`')]) -> ApiResponse:
+        """To return the initiative (Chat Control) of Active Channel to Primary Channel, call the Release Control API.
 
         :param chat_id: The `userId`, `roomId`, or `groupId` (required)
         :type chat_id: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._line_module.release_chat_control_with_http_info(chat_id, **kwargs)
+        return self._line_module.release_chat_control_with_http_info(chat_id)
 
-    def attach_module(self, grant_type: Annotated[StrictStr, Field(..., description='authorization_code')], code: Annotated[StrictStr, Field(..., description='Authorization code received from the LINE Platform.')], redirect_uri: Annotated[StrictStr, Field(..., description='Specify the redirect_uri specified in the URL for authentication and authorization.')], code_verifier: Annotated[Optional[StrictStr], Field(description='Specify when using PKCE (Proof Key for Code Exchange) defined in the OAuth 2.0 extension specification as a countermeasure against authorization code interception attacks.')] = None, client_id: Annotated[Optional[StrictStr], Field(description='Instead of using Authorization header, you can use this parameter to specify the channel ID of the module channel. You can find the channel ID of the module channel in the LINE Developers Console. ')] = None, client_secret: Annotated[Optional[StrictStr], Field(description='Instead of using Authorization header, you can use this parameter to specify the channel secret of the module channel. You can find the channel secret of the module channel in the LINE Developers Console. ')] = None, region: Annotated[Optional[StrictStr], Field(description='If you specified a value for region in the URL for authentication and authorization, specify the same value. ')] = None, basic_search_id: Annotated[Optional[StrictStr], Field(description='If you specified a value for basic_search_id in the URL for authentication and authorization, specify the same value.')] = None, scope: Annotated[Optional[StrictStr], Field(description='If you specified a value for scope in the URL for authentication and authorization, specify the same value.')] = None, brand_type: Annotated[Optional[StrictStr], Field(description='If you specified a value for brand_type in the URL for authentication and authorization, specify the same value.')] = None, **kwargs) -> AttachModuleResponse:
-        """attach_module  # noqa: E501
-
-        Attach by operation of the module channel provider  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.attach_module(grant_type, code, redirect_uri, code_verifier, client_id, client_secret, region, basic_search_id, scope, brand_type, async_req=True)
-        >>> result = thread.get()
+    def attach_module(self, grant_type: Annotated[StrictStr, Field(..., description='authorization_code')], code: Annotated[StrictStr, Field(..., description='Authorization code received from the LINE Platform.')], redirect_uri: Annotated[StrictStr, Field(..., description='Specify the redirect_uri specified in the URL for authentication and authorization.')], code_verifier: Annotated[Optional[StrictStr], Field(description='Specify when using PKCE (Proof Key for Code Exchange) defined in the OAuth 2.0 extension specification as a countermeasure against authorization code interception attacks.')] = None, client_id: Annotated[Optional[StrictStr], Field(description='Instead of using Authorization header, you can use this parameter to specify the channel ID of the module channel. You can find the channel ID of the module channel in the LINE Developers Console. ')] = None, client_secret: Annotated[Optional[StrictStr], Field(description='Instead of using Authorization header, you can use this parameter to specify the channel secret of the module channel. You can find the channel secret of the module channel in the LINE Developers Console. ')] = None, region: Annotated[Optional[StrictStr], Field(description='If you specified a value for region in the URL for authentication and authorization, specify the same value. ')] = None, basic_search_id: Annotated[Optional[StrictStr], Field(description='If you specified a value for basic_search_id in the URL for authentication and authorization, specify the same value.')] = None, scope: Annotated[Optional[StrictStr], Field(description='If you specified a value for scope in the URL for authentication and authorization, specify the same value.')] = None, brand_type: Annotated[Optional[StrictStr], Field(description='If you specified a value for brand_type in the URL for authentication and authorization, specify the same value.')] = None) -> AttachModuleResponse:
+        """Attach by operation of the module channel provider
 
         :param grant_type: authorization_code (required)
         :type grant_type: str
@@ -6551,28 +2358,13 @@ class LineBotClient:
         :type scope: str
         :param brand_type: If you specified a value for brand_type in the URL for authentication and authorization, specify the same value.
         :type brand_type: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: AttachModuleResponse
         """
-        return self._line_module_attach.attach_module(grant_type, code, redirect_uri, code_verifier, client_id, client_secret, region, basic_search_id, scope, brand_type, **kwargs)
+        return self._line_module_attach.attach_module(grant_type, code, redirect_uri, code_verifier, client_id, client_secret, region, basic_search_id, scope, brand_type)
 
-    def attach_module_with_http_info(self, grant_type: Annotated[StrictStr, Field(..., description='authorization_code')], code: Annotated[StrictStr, Field(..., description='Authorization code received from the LINE Platform.')], redirect_uri: Annotated[StrictStr, Field(..., description='Specify the redirect_uri specified in the URL for authentication and authorization.')], code_verifier: Annotated[Optional[StrictStr], Field(description='Specify when using PKCE (Proof Key for Code Exchange) defined in the OAuth 2.0 extension specification as a countermeasure against authorization code interception attacks.')] = None, client_id: Annotated[Optional[StrictStr], Field(description='Instead of using Authorization header, you can use this parameter to specify the channel ID of the module channel. You can find the channel ID of the module channel in the LINE Developers Console. ')] = None, client_secret: Annotated[Optional[StrictStr], Field(description='Instead of using Authorization header, you can use this parameter to specify the channel secret of the module channel. You can find the channel secret of the module channel in the LINE Developers Console. ')] = None, region: Annotated[Optional[StrictStr], Field(description='If you specified a value for region in the URL for authentication and authorization, specify the same value. ')] = None, basic_search_id: Annotated[Optional[StrictStr], Field(description='If you specified a value for basic_search_id in the URL for authentication and authorization, specify the same value.')] = None, scope: Annotated[Optional[StrictStr], Field(description='If you specified a value for scope in the URL for authentication and authorization, specify the same value.')] = None, brand_type: Annotated[Optional[StrictStr], Field(description='If you specified a value for brand_type in the URL for authentication and authorization, specify the same value.')] = None, **kwargs) -> ApiResponse:
-        """attach_module  # noqa: E501
-
-        Attach by operation of the module channel provider  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.attach_module_with_http_info(grant_type, code, redirect_uri, code_verifier, client_id, client_secret, region, basic_search_id, scope, brand_type, async_req=True)
-        >>> result = thread.get()
+    def attach_module_with_http_info(self, grant_type: Annotated[StrictStr, Field(..., description='authorization_code')], code: Annotated[StrictStr, Field(..., description='Authorization code received from the LINE Platform.')], redirect_uri: Annotated[StrictStr, Field(..., description='Specify the redirect_uri specified in the URL for authentication and authorization.')], code_verifier: Annotated[Optional[StrictStr], Field(description='Specify when using PKCE (Proof Key for Code Exchange) defined in the OAuth 2.0 extension specification as a countermeasure against authorization code interception attacks.')] = None, client_id: Annotated[Optional[StrictStr], Field(description='Instead of using Authorization header, you can use this parameter to specify the channel ID of the module channel. You can find the channel ID of the module channel in the LINE Developers Console. ')] = None, client_secret: Annotated[Optional[StrictStr], Field(description='Instead of using Authorization header, you can use this parameter to specify the channel secret of the module channel. You can find the channel secret of the module channel in the LINE Developers Console. ')] = None, region: Annotated[Optional[StrictStr], Field(description='If you specified a value for region in the URL for authentication and authorization, specify the same value. ')] = None, basic_search_id: Annotated[Optional[StrictStr], Field(description='If you specified a value for basic_search_id in the URL for authentication and authorization, specify the same value.')] = None, scope: Annotated[Optional[StrictStr], Field(description='If you specified a value for scope in the URL for authentication and authorization, specify the same value.')] = None, brand_type: Annotated[Optional[StrictStr], Field(description='If you specified a value for brand_type in the URL for authentication and authorization, specify the same value.')] = None) -> ApiResponse:
+        """Attach by operation of the module channel provider
 
         :param grant_type: authorization_code (required)
         :type grant_type: str
@@ -6594,92 +2386,28 @@ class LineBotClient:
         :type scope: str
         :param brand_type: If you specified a value for brand_type in the URL for authentication and authorization, specify the same value.
         :type brand_type: str
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(AttachModuleResponse, status_code(int), headers(HTTPHeaderDict))
         """
-        return self._line_module_attach.attach_module_with_http_info(grant_type, code, redirect_uri, code_verifier, client_id, client_secret, region, basic_search_id, scope, brand_type, **kwargs)
+        return self._line_module_attach.attach_module_with_http_info(grant_type, code, redirect_uri, code_verifier, client_id, client_secret, region, basic_search_id, scope, brand_type)
 
-    def mission_sticker_v3(self, mission_sticker_request: MissionStickerRequest, **kwargs) -> None:
-        """mission_sticker_v3  # noqa: E501
-
-        Sends a mission sticker.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.mission_sticker_v3(mission_sticker_request, async_req=True)
-        >>> result = thread.get()
+    def mission_sticker_v3(self, mission_sticker_request: MissionStickerRequest) -> None:
+        """Sends a mission sticker.
 
         :param mission_sticker_request: (required)
         :type mission_sticker_request: MissionStickerRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._shop.mission_sticker_v3(mission_sticker_request, **kwargs)
+        return self._shop.mission_sticker_v3(mission_sticker_request)
 
-    def mission_sticker_v3_with_http_info(self, mission_sticker_request: MissionStickerRequest, **kwargs) -> ApiResponse:
-        """mission_sticker_v3  # noqa: E501
-
-        Sends a mission sticker.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.mission_sticker_v3_with_http_info(mission_sticker_request, async_req=True)
-        >>> result = thread.get()
+    def mission_sticker_v3_with_http_info(self, mission_sticker_request: MissionStickerRequest) -> ApiResponse:
+        """Sends a mission sticker.
 
         :param mission_sticker_request: (required)
         :type mission_sticker_request: MissionStickerRequest
-        :param async_req: Whether to execute the request asynchronously.
-        :type async_req: bool, optional
-        :param _preload_content: if False, the ApiResponse.data will
-                                 be set to none and raw_data will store the
-                                 HTTP response body without reading/decoding.
-                                 Default is True.
-        :type _preload_content: bool, optional
-        :param _return_http_data_only: response data instead of ApiResponse
-                                       object with status code, headers, etc
-        :type _return_http_data_only: bool, optional
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :param _request_auth: set to override the auth_settings for an a single
-                              request; this effectively ignores the authentication
-                              in the spec for a single request.
-        :type _request_auth: dict, optional
-        :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
-        return self._shop.mission_sticker_v3_with_http_info(mission_sticker_request, **kwargs)
+        return self._shop.mission_sticker_v3_with_http_info(mission_sticker_request)
 

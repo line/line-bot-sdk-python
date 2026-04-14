@@ -203,11 +203,6 @@ def _extract_params_source(
             part += " = " + ast.unparse(args.defaults[default_index])
         parts.append(part)
 
-    if args.vararg:
-        parts.append("*" + args.vararg.arg)
-    if args.kwarg:
-        parts.append("**" + args.kwarg.arg)
-
     return ", ".join(parts)
 
 
@@ -245,49 +240,90 @@ def _unwrap_awaitable_union(returns: ast.expr) -> str:
     return ast.unparse(returns)
 
 
-# Patterns used by ``_clean_async_docstring`` to strip ``async_req``
-# artefacts inherited from the OpenAPI-generated source docstrings.
-_ASYNC_DOCSTRING_DROP_PATTERNS: list[re.Pattern[str]] = [
-    re.compile(r'This method makes a synchronous HTTP request by default\..*', re.DOTALL),
-    re.compile(r'>>> thread = api\..*async_req.*'),
+# Regex for ``# noqa: ...`` suffixes.
+_NOQA_RE = re.compile(r'\s*#\s*noqa\b.*')
+
+# Lines that match any of these patterns are dropped entirely.
+_DROP_LINE_PATTERNS: list[re.Pattern[str]] = [
+    re.compile(r'>>> thread = api\.'),
     re.compile(r'>>> result = thread\.get\(\)'),
-    re.compile(r':param async_req:.*'),
-    re.compile(r':type async_req:.*'),
+    re.compile(r':param async_req:'),
+    re.compile(r':type async_req:'),
+    re.compile(r':param _request_timeout:'),
+    re.compile(r':param _preload_content:'),
+    re.compile(r':type _preload_content:'),
+    re.compile(r':param _return_http_data_only:'),
+    re.compile(r':type _return_http_data_only:'),
+    re.compile(r':param _request_auth:'),
+    re.compile(r':type _request_auth:'),
+    re.compile(r':type _content_type:'),
     re.compile(r'If the method is called asynchronously,'),
     re.compile(r'returns the request thread\.'),
 ]
 
 
-def _clean_async_docstring(docstring: str | None) -> str | None:
-    """Remove ``async_req``-related fragments from a docstring."""
+def _clean_docstring_for_unified(
+    docstring: str | None,
+    method_name: str,
+) -> str | None:
+    """Clean up a docstring for the unified client.
+
+    Removes fragments that are not relevant to the unified client wrapper:
+
+    * Redundant operationId first line (just repeats the method name).
+    * ``# noqa: E501`` suffixes.
+    * ``async_req``-related boilerplate (examples, param docs).
+    * ``_``-prefixed internal parameter docs (``_request_timeout``, etc.).
+    * "This method makes a synchronous HTTP request…" block.
+    * Multi-line continuation of ``_request_timeout`` description.
+    """
     if not docstring:
         return docstring
 
     lines = docstring.split('\n')
     cleaned: list[str] = []
-    skip_continuation = False
+    skip_block = False
+
     for line in lines:
         stripped = line.strip()
-        if skip_continuation:
-            # The "This method makes a synchronous…" sentence can span
-            # two lines (ending with "…please pass async_req=True").
-            if 'async_req' in stripped:
-                skip_continuation = False
-                continue
-            # Still part of the multi-line sentence
-            if stripped and not stripped.startswith(':') and not stripped.startswith('>>>'):
-                continue
-            skip_continuation = False
 
+        # --- Skip multi-line continuations of a dropped block ----
+        if skip_block:
+            # Continuation lines are indented non-`:` text.  A new
+            # ``:param`` / ``:type`` / ``:return`` / ``:rtype`` or a
+            # blank line ends the block.
+            if stripped and not stripped.startswith(':'):
+                continue
+            skip_block = False
+
+        # --- Drop the first line if it's just the operationId ----
+        if not cleaned:
+            bare = _NOQA_RE.sub('', stripped)
+            # operationId matches method_name or its _with_http_info base
+            if bare == method_name or bare == method_name.removesuffix('_with_http_info'):
+                continue
+
+        # --- "This method makes a synchronous HTTP request…" block ---
+        if stripped.startswith('This method makes a synchronous'):
+            # May span 2 lines; skip until we see a blank or `:`
+            skip_block = True
+            continue
+
+        # --- Pattern-based line drops ---
         drop = False
-        for pat in _ASYNC_DOCSTRING_DROP_PATTERNS:
+        for pat in _DROP_LINE_PATTERNS:
             if pat.search(stripped):
-                if stripped.startswith('This method makes a synchronous'):
-                    skip_continuation = True
+                # :param / :type descriptions can span multiple lines
+                if stripped.startswith(':param') or stripped.startswith(':type'):
+                    skip_block = True
                 drop = True
                 break
-        if not drop:
-            cleaned.append(line)
+        if drop:
+            continue
+
+        # --- Strip ``# noqa`` suffixes ---
+        line = _NOQA_RE.sub('', line)
+        cleaned.append(line)
 
     # Collapse multiple consecutive blank lines
     result: list[str] = []
@@ -301,6 +337,10 @@ def _clean_async_docstring(docstring: str | None) -> str | None:
             prev_blank = False
         result.append(line)
 
+    # Strip trailing blank lines
+    while result and result[-1].strip() == '':
+        result.pop()
+
     return '\n'.join(result).strip() or None
 
 
@@ -312,12 +352,13 @@ def extract_methods(
 ) -> list[MethodInfo]:
     """Parse a Python source file and extract public methods from the given class.
 
-    When *is_async* is ``True`` the extracted signatures are cleaned up for
-    the async unified client:
+    When *is_async* is ``True`` the extracted signatures are additionally
+    cleaned up for the async unified client:
 
     * The ``async_req`` parameter is excluded.
     * ``Union[T, Awaitable[T]]`` return annotations are unwrapped to ``T``.
-    * Docstring fragments that reference ``async_req`` are removed.
+
+    Docstrings are always cleaned for the unified client (both sync and async).
     """
     with open(filepath, "r") as f:
         source = f.read()
@@ -368,8 +409,7 @@ def extract_methods(
                 ret_ann = ast.unparse(item.returns)
 
         docstring = ast.get_docstring(item)
-        if is_async:
-            docstring = _clean_async_docstring(docstring)
+        docstring = _clean_docstring_for_unified(docstring, name)
 
         methods.append(MethodInfo(
             name=name,
@@ -468,10 +508,8 @@ def _extract_call_args_from_params(params_source: str) -> str:
         elif ch == "," and depth == 0:
             param = current.strip()
             if param:
-                if param.startswith("**"):
-                    parts.append(param.split()[0])
-                elif param.startswith("*"):
-                    parts.append(param.split()[0])
+                if param.startswith("**") or param.startswith("*"):
+                    pass  # skip *args / **kwargs
                 else:
                     name = param.split(":")[0].split("=")[0].strip()
                     parts.append(name)
@@ -652,7 +690,7 @@ def _generate_client(
         if method.params_source:
             sig = f'    {def_kw} {method.name}(self, {method.params_source}){ret_part}:'
         else:
-            sig = f'    {def_kw} {method.name}(self, **kwargs){ret_part}:'
+            sig = f'    {def_kw} {method.name}(self){ret_part}:'
         body.append(sig)
 
         if method.docstring:

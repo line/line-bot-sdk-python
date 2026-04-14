@@ -39,6 +39,9 @@ class AsyncLineModuleAttach(object):
     Ref: https://openapi-generator.tech
 
     Do not edit the class manually.
+
+    Tip: Use :class:`linebot.v3.AsyncLineBotClient` to call every
+    LINE API method through a single instance.
     """
 
     def __init__(self, api_client=None):

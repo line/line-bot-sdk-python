@@ -3,6 +3,15 @@ linebot.v3 package
 
 .. automodule:: linebot.v3
 
+Client
+------
+
+.. autoclass:: linebot.v3.line_bot_client.LineBotClient
+   :members:
+
+.. autoclass:: linebot.v3.async_line_bot_client.AsyncLineBotClient
+   :members:
+
 linebot.v3.webhook module
 --------------------------
 

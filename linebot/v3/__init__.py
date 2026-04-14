@@ -20,3 +20,6 @@ from .webhook import (  # noqa
     WebhookHandler,
     WebhookPayload,
 )
+
+from .line_bot_client import LineBotClient  # noqa
+from .async_line_bot_client import AsyncLineBotClient  # noqa

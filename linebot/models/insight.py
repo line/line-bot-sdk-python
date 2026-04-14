@@ -21,7 +21,11 @@ from future.utils import with_metaclass
 
 from .base import Base
 
+from deprecated import deprecated
+from linebot.deprecations import LineBotSdkDeprecatedIn30
 
+
+@deprecated(reason="Use 'linebot.v3.insight' module instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class DemographicInsight(with_metaclass(ABCMeta, Base)):
     """Abstract Base Class of DemographicInsight."""
 
@@ -35,6 +39,7 @@ class DemographicInsight(with_metaclass(ABCMeta, Base)):
         self.percentage = percentage
 
 
+@deprecated(reason="Use 'linebot.v3.insight' module instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class GenderInsight(DemographicInsight):
     """GenderInsight."""
 
@@ -50,6 +55,7 @@ class GenderInsight(DemographicInsight):
         self.gender = gender
 
 
+@deprecated(reason="Use 'linebot.v3.insight' module instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class AgeInsight(DemographicInsight):
     """AgeInsight."""
 
@@ -65,6 +71,7 @@ class AgeInsight(DemographicInsight):
         self.age = age
 
 
+@deprecated(reason="Use 'linebot.v3.insight' module instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class AreaInsight(DemographicInsight):
     """AreaInsight."""
 
@@ -80,6 +87,7 @@ class AreaInsight(DemographicInsight):
         self.area = area
 
 
+@deprecated(reason="Use 'linebot.v3.insight' module instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class AppTypeInsight(DemographicInsight):
     """AppTypeInsight."""
 
@@ -95,6 +103,7 @@ class AppTypeInsight(DemographicInsight):
         self.app_type = app_type
 
 
+@deprecated(reason="Use 'linebot.v3.insight' module instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class SubscriptionPeriodInsight(DemographicInsight):
     """SubscriptionPeriodInsight."""
 
@@ -110,6 +119,7 @@ class SubscriptionPeriodInsight(DemographicInsight):
         self.subscription_period = subscription_period
 
 
+@deprecated(reason="Use 'linebot.v3.insight' module instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class MessageStatistics(Base):
     """MessageStatistics."""
 
@@ -141,6 +151,7 @@ class MessageStatistics(Base):
         self.unique_media_played_100_percent = unique_media_played_100_percent
 
 
+@deprecated(reason="Use 'linebot.v3.insight' module instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class MessageStatisticsOfCustomAggregationUnit(Base):
     """MessageStatisticsOfCustomAggregationUnit."""
 
@@ -164,6 +175,7 @@ class MessageStatisticsOfCustomAggregationUnit(Base):
         self.unique_media_played_100_percent = unique_media_played_100_percent
 
 
+@deprecated(reason="Use 'linebot.v3.insight' module instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class MessageInsight(Base):
     """MessageInsight."""
 
@@ -213,6 +225,7 @@ class MessageInsight(Base):
         self.unique_media_played_100_percent = unique_media_played_100_percent
 
 
+@deprecated(reason="Use 'linebot.v3.insight' module instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class ClickInsight(Base):
     """ClickInsight."""
 
@@ -236,6 +249,7 @@ class ClickInsight(Base):
         self.unique_click_of_request = unique_click_of_request
 
 
+@deprecated(reason="Use 'linebot.v3.insight' module instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class JobInsight(Base):
     """ClickInsight."""
 

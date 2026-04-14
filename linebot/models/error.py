@@ -17,7 +17,11 @@
 
 from .base import Base
 
+from deprecated import deprecated
+from linebot.deprecations import LineBotSdkDeprecatedIn30
 
+
+@deprecated(reason="Use 'from linebot.v3.messaging import ErrorResponse' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class Error(Base):
     """Error response of LINE messaging API.
 
@@ -45,6 +49,7 @@ class Error(Base):
         self.details = new_details
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import ErrorDetail' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class ErrorDetail(Base):
     """ErrorDetail response of LINE messaging API."""
 

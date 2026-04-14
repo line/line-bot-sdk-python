@@ -22,7 +22,11 @@ from future.utils import with_metaclass
 from .base import Base
 from .send_messages import SendMessage
 
+from deprecated import deprecated
+from linebot.deprecations import LineBotSdkDeprecatedIn30
 
+
+@deprecated(reason="Use 'from linebot.v3.messaging import ImagemapMessage' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class ImagemapSendMessage(SendMessage):
     """ImagemapSendMessage.
 
@@ -73,6 +77,7 @@ class ImagemapSendMessage(SendMessage):
         self.actions = new_actions
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import ImagemapBaseSize' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class BaseSize(Base):
     """BaseSize.
 
@@ -93,6 +98,7 @@ class BaseSize(Base):
         self.height = height
 
 
+@deprecated(reason="Use 'linebot.v3.messaging' module instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class ImagemapAction(with_metaclass(ABCMeta, Base)):
     """ImagemapAction.
 
@@ -109,6 +115,7 @@ class ImagemapAction(with_metaclass(ABCMeta, Base)):
         self.type = None
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import URIImagemapAction' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class URIImagemapAction(ImagemapAction):
     """URIImagemapAction.
 
@@ -130,6 +137,7 @@ class URIImagemapAction(ImagemapAction):
         self.area = self.get_or_new_from_json_dict(area, ImagemapArea)
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import MessageImagemapAction' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class MessageImagemapAction(ImagemapAction):
     """MessageImagemapAction.
 
@@ -151,6 +159,7 @@ class MessageImagemapAction(ImagemapAction):
         self.area = self.get_or_new_from_json_dict(area, ImagemapArea)
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import ImagemapArea' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class ImagemapArea(Base):
     """ImagemapArea.
 
@@ -177,6 +186,7 @@ class ImagemapArea(Base):
         self.height = height
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import ImagemapVideo' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class Video(Base):
     """Video.
 
@@ -205,6 +215,7 @@ class Video(Base):
         self.external_link = self.get_or_new_from_json_dict(external_link, ExternalLink)
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import ImagemapExternalLink' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class ExternalLink(Base):
     """ExternalLink.
 

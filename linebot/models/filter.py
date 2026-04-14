@@ -21,7 +21,11 @@ from future.utils import with_metaclass
 
 from .base import Base
 
+from deprecated import deprecated
+from linebot.deprecations import LineBotSdkDeprecatedIn30
 
+
+@deprecated(reason="Use 'linebot.v3.messaging' module instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class Filter(with_metaclass(ABCMeta, Base)):
     """Filter.
 
@@ -44,6 +48,7 @@ class Filter(with_metaclass(ABCMeta, Base)):
         self.demographic = demographic
 
 
+@deprecated(reason="Use 'linebot.v3.messaging' module instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class DemographicFilter(Filter):
     """DemographicFilter.
 
@@ -65,6 +70,7 @@ class DemographicFilter(Filter):
         self.type = None
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import GenderDemographicFilter' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class GenderFilter(DemographicFilter):
     """GenderFilter."""
 
@@ -85,6 +91,7 @@ class GenderFilter(DemographicFilter):
         self.one_of = one_of
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import AppTypeDemographicFilter' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class AppTypeFilter(DemographicFilter):
     """AppTypeFilter."""
 
@@ -105,6 +112,7 @@ class AppTypeFilter(DemographicFilter):
         self.one_of = one_of
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import AreaDemographicFilter' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class AreaFilter(DemographicFilter):
     """AreaFilter."""
 
@@ -123,6 +131,7 @@ class AreaFilter(DemographicFilter):
         self.one_of = one_of
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import AgeDemographicFilter' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class AgeFilter(DemographicFilter):
     """AgeFilter.
 
@@ -147,6 +156,7 @@ class AgeFilter(DemographicFilter):
         self.lt = lt
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import SubscriptionPeriodDemographicFilter' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class SubscriptionPeriodFilter(DemographicFilter):
     """SubscriptionPeriodFilter.
 

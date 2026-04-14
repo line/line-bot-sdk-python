@@ -22,7 +22,11 @@ from future.utils import with_metaclass
 from .actions import get_action
 from .base import Base
 
+from deprecated import deprecated
+from linebot.deprecations import LineBotSdkDeprecatedIn30
 
+
+@deprecated(reason="Use 'from linebot.v3.messaging import RichMenuRequest' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class RichMenu(with_metaclass(ABCMeta, Base)):
     """RichMenu.
 
@@ -62,6 +66,7 @@ class RichMenu(with_metaclass(ABCMeta, Base)):
         self.areas = new_areas
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import RichMenuSize' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class RichMenuSize(with_metaclass(ABCMeta, Base)):
     """RichMenuSize.
 
@@ -81,6 +86,7 @@ class RichMenuSize(with_metaclass(ABCMeta, Base)):
         self.height = height
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import RichMenuArea' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class RichMenuArea(with_metaclass(ABCMeta, Base)):
     """RichMenuArea.
 
@@ -102,6 +108,7 @@ class RichMenuArea(with_metaclass(ABCMeta, Base)):
         self.action = get_action(action)
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import RichMenuBounds' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class RichMenuBounds(with_metaclass(ABCMeta, Base)):
     """RichMenuBounds.
 
@@ -125,6 +132,7 @@ class RichMenuBounds(with_metaclass(ABCMeta, Base)):
         self.height = height
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import RichMenuAliasResponse' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class RichMenuAlias(with_metaclass(ABCMeta, Base)):
     """RichMenuAlias.
 

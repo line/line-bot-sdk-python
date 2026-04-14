@@ -16,7 +16,11 @@
 
 from linebot import AsyncHttpClient, AsyncHttpResponse
 
+from deprecated import deprecated
+from linebot.deprecations import LineBotSdkDeprecatedIn30
 
+
+@deprecated(reason="Use 'linebot.v3' module instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class AiohttpAsyncHttpClient(AsyncHttpClient):
     """HttpClient implemented by requests."""
 
@@ -113,6 +117,7 @@ class AiohttpAsyncHttpClient(AsyncHttpClient):
         return AiohttpAsyncHttpResponse(response)
 
 
+@deprecated(reason="Use 'linebot.v3' module instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class AiohttpAsyncHttpResponse(AsyncHttpResponse):
     """AsyncHttpResponse implemented by aiohttp's response."""
 

@@ -17,11 +17,8 @@ import sys
 
 from fastapi import Request, FastAPI, HTTPException
 
-from linebot.v3.webhook import WebhookParser
+from linebot.v3 import WebhookParser, AsyncLineBotClient
 from linebot.v3.messaging import (
-    AsyncApiClient,
-    AsyncMessagingApi,
-    Configuration,
     ReplyMessageRequest,
     TextMessage
 )
@@ -44,13 +41,8 @@ if channel_access_token is None:
     print('Specify LINE_CHANNEL_ACCESS_TOKEN as environment variable.')
     sys.exit(1)
 
-configuration = Configuration(
-    access_token=channel_access_token
-)
-
 app = FastAPI()
-async_api_client = AsyncApiClient(configuration)
-line_bot_api = AsyncMessagingApi(async_api_client)
+line_bot_api = AsyncLineBotClient(channel_access_token=channel_access_token)
 parser = WebhookParser(channel_secret)
 
 

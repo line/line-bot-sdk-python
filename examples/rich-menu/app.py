@@ -3,11 +3,8 @@
 import os
 import sys
 
+from linebot.v3 import LineBotClient
 from linebot.v3.messaging import (
-    Configuration,
-    ApiClient,
-    MessagingApi,
-    MessagingApiBlob,
     RichMenuRequest,
     RichMenuArea,
     RichMenuSize,
@@ -21,10 +18,6 @@ channel_access_token = os.getenv('LINE_CHANNEL_ACCESS_TOKEN', None)
 if channel_access_token is None:
     print('Specify LINE_CHANNEL_ACCESS_TOKEN as environment variable.')
     sys.exit(1)
-
-configuration = Configuration(
-    access_token=channel_access_token
-)
 
 
 def rich_menu_object_a_json():
@@ -116,10 +109,7 @@ def create_action(action):
 
 
 def main():
-    with ApiClient(configuration) as api_client:
-        line_bot_api = MessagingApi(api_client)
-        line_bot_blob_api = MessagingApiBlob(api_client)
-
+    with LineBotClient(channel_access_token=channel_access_token) as client:
         # 2. Create rich menu A (richmenu-a)
         rich_menu_object_a = rich_menu_object_a_json()
         areas = [
@@ -143,13 +133,13 @@ def main():
             areas=areas
         )
 
-        rich_menu_a_id = line_bot_api.create_rich_menu(
+        rich_menu_a_id = client.create_rich_menu(
             rich_menu_request=rich_menu_to_a_create
         ).rich_menu_id
 
         # 3. Upload image to rich menu A
         with open('./public/richmenu-a.png', 'rb') as image:
-            line_bot_blob_api.set_rich_menu_image(
+            client.set_rich_menu_image(
                 rich_menu_id=rich_menu_a_id,
                 body=bytearray(image.read()),
                 _headers={'Content-Type': 'image/png'}
@@ -178,34 +168,34 @@ def main():
             areas=areas
         )
 
-        rich_menu_b_id = line_bot_api.create_rich_menu(
+        rich_menu_b_id = client.create_rich_menu(
             rich_menu_request=rich_menu_to_b_create
         ).rich_menu_id
 
         # 5. Upload image to rich menu B
         with open('./public/richmenu-b.png', 'rb') as image:
-            line_bot_blob_api.set_rich_menu_image(
+            client.set_rich_menu_image(
                 rich_menu_id=rich_menu_b_id,
                 body=bytearray(image.read()),
                 _headers={'Content-Type': 'image/png'}
             )
 
         # 6. Set rich menu A as the default rich menu
-        line_bot_api.set_default_rich_menu(rich_menu_id=rich_menu_a_id)
+        client.set_default_rich_menu(rich_menu_id=rich_menu_a_id)
 
         # 7. Create rich menu alias A
         alias_a = CreateRichMenuAliasRequest(
             rich_menu_alias_id='richmenu-alias-a',
             rich_menu_id=rich_menu_a_id
         )
-        line_bot_api.create_rich_menu_alias(alias_a)
+        client.create_rich_menu_alias(alias_a)
 
         # 8. Create rich menu alias B
         alias_b = CreateRichMenuAliasRequest(
             rich_menu_alias_id='richmenu-alias-b',
             rich_menu_id=rich_menu_b_id
         )
-        line_bot_api.create_rich_menu_alias(alias_b)
+        client.create_rich_menu_alias(alias_b)
         print('success')
 
 

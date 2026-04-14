@@ -3,8 +3,8 @@ linebot.v3 package
 
 .. automodule:: linebot.v3
 
-LineBotClient
---------------
+API
+---
 
 .. automodule:: linebot.v3.line_bot_client
    :members:

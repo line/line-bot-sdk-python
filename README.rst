@@ -41,15 +41,13 @@ Usage:
     from flask import Flask, request, abort
 
     from linebot.v3 import (
+        LineBotClient,
         WebhookHandler
     )
     from linebot.v3.exceptions import (
         InvalidSignatureError
     )
     from linebot.v3.messaging import (
-        Configuration,
-        ApiClient,
-        MessagingApi,
         ReplyMessageRequest,
         TextMessage
     )
@@ -60,7 +58,7 @@ Usage:
 
     app = Flask(__name__)
 
-    configuration = Configuration(access_token='YOUR_CHANNEL_ACCESS_TOKEN')
+    line_bot_client = LineBotClient(channel_access_token='YOUR_CHANNEL_ACCESS_TOKEN')
     handler = WebhookHandler('YOUR_CHANNEL_SECRET')
 
 
@@ -85,14 +83,12 @@ Usage:
 
     @handler.add(MessageEvent, message=TextMessageContent)
     def handle_message(event):
-        with ApiClient(configuration) as api_client:
-            line_bot_api = MessagingApi(api_client)
-            line_bot_api.reply_message_with_http_info(
-                ReplyMessageRequest(
-                    reply_token=event.reply_token,
-                    messages=[TextMessage(text=event.message.text)]
-                )
+        line_bot_client.reply_message(
+            ReplyMessageRequest(
+                reply_token=event.reply_token,
+                messages=[TextMessage(text=event.message.text)]
             )
+        )
 
     if __name__ == "__main__":
         app.run()
@@ -122,6 +118,7 @@ WebhookParser
     parser = linebot.v3.WebhookParser(
         'YOUR_CHANNEL_SECRET',
         skip_signature_verification=lambda: False
+    )
 
 parse(self, body, signature, as_payload=False)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -141,7 +138,7 @@ If the signature does NOT match, ``InvalidSignatureError`` is raised.
     payload = parser.parse(body, signature, as_payload=True)
 
     for event in payload.events:
-        do_something(payload.event, payload.destination)
+        do_something(event, payload.destination)
 
 WebhookHandler
 ~~~~~~~~~~~~~~
@@ -159,6 +156,7 @@ WebhookHandler
     handler = linebot.v3.WebhookHandler(
         'YOUR_CHANNEL_SECRET',
         skip_signature_verification=lambda: False
+    )
 
 handle(self, body, signature)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -178,16 +176,16 @@ Add a **handler** method by using this decorator.
 
 .. code:: python
 
-    @handler.add(MessageEvent, message=TextMessage)
+    @handler.add(MessageEvent, message=TextMessageContent)
     def handle_message(event):
-        line_bot_api.reply_message(
+        line_bot_client.reply_message(
             ReplyMessageRequest(
                 reply_token=event.reply_token,
                 messages=[TextMessage(text=event.message.text)]
             )
         )
 
-When the event is an instance of MessageEvent and event.message is an instance of TextMessage,
+When the event is an instance of MessageEvent and event.message is an instance of TextMessageContent,
 this handler method is called.
 
 .. code:: python
@@ -286,7 +284,7 @@ Thus, you can send a JSON designed with `Flex Message Simulator <https://develop
 
     bubble_string = """{ type:"bubble", ... }"""
     message = FlexMessage(alt_text="hello", contents=FlexContainer.from_json(bubble_string))
-    line_bot_api.reply_message(
+    line_bot_client.reply_message(
         ReplyMessageRequest(
             reply_token=event.reply_token,
             messages=[message]
@@ -302,7 +300,7 @@ The ``x-line-accepted-request-id`` or ``content-type`` header can also be obtain
 
 .. code:: python
 
-    response = line_bot_api.reply_message_with_http_info(
+    response = line_bot_client.reply_message_with_http_info(
         ReplyMessageRequest(
             reply_token=event.reply_token,
             messages=[TextMessage(text='see application log')]
@@ -312,13 +310,13 @@ The ``x-line-accepted-request-id`` or ``content-type`` header can also be obtain
     app.logger.info("Got x-line-request-id: " + response.headers['x-line-request-id'])
     app.logger.info("Got response with http body: " + str(response.data))
 
-You can get error messages from ``ApiException`` when you use ``MessagingApi``. Each client defines its own exception class.
+You can get error messages from ``ApiException`` when you use ``LineBotClient``. Each underlying client defines its own exception class.
 
 .. code:: python
 
     from linebot.v3.messaging import ApiException, ErrorResponse
     try:
-        line_bot_api.reply_message_with_http_info(
+        line_bot_client.reply_message_with_http_info(
             ReplyMessageRequest(
                 reply_token='invalid-reply-token',
                 messages=[TextMessage(text='see application log')]
@@ -365,7 +363,7 @@ If you keep using old line-bot-sdk library (``version < 3.x``) but use ``3.x``, 
 
 ::
 
-  LineBotSdkDeprecatedIn30: Call to deprecated method get_bot_info. (Use 'from linebot.v3.messaging import MessagingApi' and 'MessagingApi(...).get_bot_info(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.) -- Deprecated since version 3.0.0.
+  LineBotSdkDeprecatedIn30: Call to deprecated method get_bot_info. (Use 'from linebot.v3 import LineBotClient' and 'LineBotClient(...).get_bot_info(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.) -- Deprecated since version 3.0.0.
 
 
 If it's noisy, you can suppress this warning as follows.

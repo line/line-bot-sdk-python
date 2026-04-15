@@ -19,7 +19,8 @@ from argparse import ArgumentParser
 
 from builtins import bytes
 from linebot.v3 import (
-    WebhookParser
+    WebhookParser,
+    LineBotClient,
 )
 from linebot.v3.exceptions import (
     InvalidSignatureError
@@ -29,9 +30,6 @@ from linebot.v3.webhooks import (
     TextMessageContent,
 )
 from linebot.v3.messaging import (
-    Configuration,
-    ApiClient,
-    MessagingApi,
     ReplyMessageRequest,
     TextMessage
 )
@@ -48,10 +46,7 @@ if channel_access_token is None:
     sys.exit(1)
 
 parser = WebhookParser(channel_secret)
-
-configuration = Configuration(
-    access_token=channel_access_token
-)
+line_bot_api = LineBotClient(channel_access_token=channel_access_token)
 
 
 def application(environ, start_response):
@@ -87,14 +82,12 @@ def application(environ, start_response):
         if not isinstance(event.message, TextMessageContent):
             continue
 
-        with ApiClient(configuration) as api_client:
-            line_bot_api = MessagingApi(api_client)
-            line_bot_api.reply_message_with_http_info(
-                ReplyMessageRequest(
-                    reply_token=event.reply_token,
-                    messages=[TextMessage(text=event.message.text)]
-                )
+        line_bot_api.reply_message_with_http_info(
+            ReplyMessageRequest(
+                reply_token=event.reply_token,
+                messages=[TextMessage(text=event.message.text)]
             )
+        )
 
     start_response('200 OK', [])
     return create_body('OK')

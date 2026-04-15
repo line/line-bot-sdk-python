@@ -24,12 +24,10 @@ import logging
 from aiohttp.web_runner import TCPSite
 
 from linebot.v3 import (
-    WebhookParser
+    WebhookParser,
+    AsyncLineBotClient,
 )
 from linebot.v3.messaging import (
-    Configuration,
-    AsyncApiClient,
-    AsyncMessagingApi,
     TextMessage,
     ReplyMessageRequest
 )
@@ -52,13 +50,9 @@ if channel_access_token is None:
     print('Specify LINE_CHANNEL_ACCESS_TOKEN as environment variable.')
     sys.exit(1)
 
-configuration = Configuration(
-    access_token=channel_access_token
-)
-
 
 class Handler:
-    def __init__(self, line_bot_api: AsyncMessagingApi, parser: WebhookParser):
+    def __init__(self, line_bot_api: AsyncLineBotClient, parser: WebhookParser):
         self.line_bot_api = line_bot_api
         self.parser = parser
 
@@ -87,8 +81,7 @@ class Handler:
 
 
 async def main(port=8000):
-    async_api_client = AsyncApiClient(configuration)
-    line_bot_api = AsyncMessagingApi(async_api_client)
+    line_bot_api = AsyncLineBotClient(channel_access_token=channel_access_token)
     parser = WebhookParser(channel_secret)
 
     handler = Handler(line_bot_api, parser)

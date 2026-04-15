@@ -83,7 +83,7 @@ from deprecated import deprecated
 
 
 @deprecated(
-    reason="Use v3 class; linebot.v3.<feature>. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+    reason="Use 'from linebot.v3 import AsyncLineBotClient'. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
     version="3.0.0",
     category=LineBotSdkDeprecatedIn30,
 )  # noqa: E501
@@ -105,6 +105,7 @@ class AsyncLineBotApi(object):
         :param str channel_access_token: Your channel access token
         :param str endpoint: (optional) Default is https://api.line.me
         :param str data_endpoint: (optional) Default is https://api-data.line.me
+
         """
         self.data_endpoint = data_endpoint
         self.endpoint = endpoint
@@ -116,7 +117,7 @@ class AsyncLineBotApi(object):
         self.async_http_client = async_http_client
 
     @deprecated(
-        reason="Use 'from linebot.v3.messaging import AsyncMessagingApi' and 'AsyncMessagingApi(...).reply_message(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).reply_message(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -164,7 +165,7 @@ class AsyncLineBotApi(object):
         )
 
     @deprecated(
-        reason="Use 'from linebot.v3.messaging import AsyncMessagingApi' and 'AsyncMessagingApi(...).push_message(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).push_message(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -222,7 +223,7 @@ class AsyncLineBotApi(object):
         await self._post("/v2/bot/message/push", data=json.dumps(data), timeout=timeout)
 
     @deprecated(
-        reason="Use 'from linebot.v3.messaging import AsyncMessagingApi' and 'AsyncMessagingApi(...).multicast(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).multicast(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -285,7 +286,7 @@ class AsyncLineBotApi(object):
         )
 
     @deprecated(
-        reason="Use 'from linebot.v3.messaging import AsyncMessagingApi' and 'AsyncMessagingApi(...).broadcast(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).broadcast(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -330,7 +331,7 @@ class AsyncLineBotApi(object):
         return BroadcastResponse(request_id=response.headers.get("X-Line-Request-Id"))
 
     @deprecated(
-        reason="Use 'from linebot.v3.messaging import AsyncMessagingApi' and 'AsyncMessagingApi(...).narrowcast(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).narrowcast(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -392,7 +393,7 @@ class AsyncLineBotApi(object):
         return NarrowcastResponse(request_id=response.headers.get("X-Line-Request-Id"))
 
     @deprecated(
-        reason="Use 'from linebot.v3.messaging import AsyncMessagingApi' and 'AsyncMessagingApi(...).get_narrowcast_progress(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).get_narrowcast_progress(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -423,7 +424,7 @@ class AsyncLineBotApi(object):
         )
 
     @deprecated(
-        reason="Use 'from linebot.v3.messaging import AsyncMessagingApi' and 'AsyncMessagingApi(...).validate_reply(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).validate_reply(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -462,7 +463,7 @@ class AsyncLineBotApi(object):
         )
 
     @deprecated(
-        reason="Use 'from linebot.v3.messaging import AsyncMessagingApi' and 'AsyncMessagingApi(...).validate_push(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).validate_push(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -501,7 +502,7 @@ class AsyncLineBotApi(object):
         )
 
     @deprecated(
-        reason="Use 'from linebot.v3.messaging import AsyncMessagingApi' and 'AsyncMessagingApi(...).validate_multicast(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).validate_multicast(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -540,7 +541,7 @@ class AsyncLineBotApi(object):
         )
 
     @deprecated(
-        reason="Use 'from linebot.v3.messaging import AsyncMessagingApi' and 'AsyncMessagingApi(...).validate_broadcast(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).validate_broadcast(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -579,7 +580,7 @@ class AsyncLineBotApi(object):
         )
 
     @deprecated(
-        reason="Use 'from linebot.v3.messaging import AsyncMessagingApi' and 'AsyncMessagingApi(...).validate_narrowcast(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).validate_narrowcast(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -620,7 +621,7 @@ class AsyncLineBotApi(object):
         )
 
     @deprecated(
-        reason="Use 'from linebot.v3.messaging import AsyncMessagingApi' and 'AsyncMessagingApi(...).get_number_of_sent_broadcast_messages(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).get_number_of_sent_broadcast_messages(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -649,7 +650,7 @@ class AsyncLineBotApi(object):
         )
 
     @deprecated(
-        reason="Use 'from linebot.v3.messaging import AsyncMessagingApi' and 'AsyncMessagingApi(...).get_number_of_sent_reply_messages(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).get_number_of_sent_reply_messages(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -676,7 +677,7 @@ class AsyncLineBotApi(object):
         return MessageDeliveryReplyResponse.new_from_json_dict((await response.json))
 
     @deprecated(
-        reason="Use 'from linebot.v3.messaging import AsyncMessagingApi' and 'AsyncMessagingApi(...).get_number_of_sent_push_messages(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).get_number_of_sent_push_messages(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -703,7 +704,7 @@ class AsyncLineBotApi(object):
         return MessageDeliveryPushResponse.new_from_json_dict((await response.json))
 
     @deprecated(
-        reason="Use 'from linebot.v3.messaging import AsyncMessagingApi' and 'AsyncMessagingApi(...).get_number_of_sent_multicast_messages(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).get_number_of_sent_multicast_messages(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -732,7 +733,7 @@ class AsyncLineBotApi(object):
         )
 
     @deprecated(
-        reason="Use 'from linebot.v3.messaging import AsyncMessagingApi' and 'AsyncMessagingApi(...).get_profile(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).get_profile(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -759,7 +760,7 @@ class AsyncLineBotApi(object):
         return Profile.new_from_json_dict((await response.json))
 
     @deprecated(
-        reason="Use 'from linebot.v3.messaging import AsyncMessagingApi' and 'AsyncMessagingApi(...).get_group_summary(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).get_group_summary(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -788,7 +789,7 @@ class AsyncLineBotApi(object):
         return Group.new_from_json_dict((await response.json))
 
     @deprecated(
-        reason="Use 'from linebot.v3.messaging import AsyncMessagingApi' and 'AsyncMessagingApi(...).get_group_member_count(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).get_group_member_count(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -816,7 +817,7 @@ class AsyncLineBotApi(object):
         return (await response.json).get("count")
 
     @deprecated(
-        reason="Use 'from linebot.v3.messaging import AsyncMessagingApi' and 'AsyncMessagingApi(...).get_room_member_count(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).get_room_member_count(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -844,7 +845,7 @@ class AsyncLineBotApi(object):
         return (await response.json).get("count")
 
     @deprecated(
-        reason="Use 'from linebot.v3.messaging import AsyncMessagingApi' and 'AsyncMessagingApi(...).get_group_member_profile(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).get_group_member_profile(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -877,7 +878,7 @@ class AsyncLineBotApi(object):
         return Profile.new_from_json_dict((await response.json))
 
     @deprecated(
-        reason="Use 'from linebot.v3.messaging import AsyncMessagingApi' and 'AsyncMessagingApi(...).get_room_member_profile(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).get_room_member_profile(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -910,7 +911,7 @@ class AsyncLineBotApi(object):
         return Profile.new_from_json_dict((await response.json))
 
     @deprecated(
-        reason="Use 'from linebot.v3.messaging import AsyncMessagingApi' and 'AsyncMessagingApi(...).get_group_members_ids(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).get_group_members_ids(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -944,7 +945,7 @@ class AsyncLineBotApi(object):
         return MemberIds.new_from_json_dict((await response.json))
 
     @deprecated(
-        reason="Use 'from linebot.v3.messaging import AsyncMessagingApi' and 'AsyncMessagingApi(...).get_room_members_ids(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).get_room_members_ids(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -978,7 +979,7 @@ class AsyncLineBotApi(object):
         return MemberIds.new_from_json_dict((await response.json))
 
     @deprecated(
-        reason="Use 'from linebot.v3.messaging import AsyncMessagingApiBlob' and 'AsyncMessagingApiBlob(...).get_message_content(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).get_message_content(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -1007,7 +1008,7 @@ class AsyncLineBotApi(object):
         return Content(response)
 
     @deprecated(
-        reason="Use 'from linebot.v3.messaging import AsyncMessagingApi' and 'AsyncMessagingApi(...).leave_group(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).leave_group(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -1030,7 +1031,7 @@ class AsyncLineBotApi(object):
         )
 
     @deprecated(
-        reason="Use 'from linebot.v3.messaging import AsyncMessagingApi' and 'AsyncMessagingApi(...).leave_room(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).leave_room(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -1053,7 +1054,7 @@ class AsyncLineBotApi(object):
         )
 
     @deprecated(
-        reason="Use 'from linebot.v3.messaging import AsyncMessagingApi' and 'AsyncMessagingApi(...).get_rich_menu(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).get_rich_menu(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -1079,7 +1080,7 @@ class AsyncLineBotApi(object):
         return RichMenuResponse.new_from_json_dict((await response.json))
 
     @deprecated(
-        reason="Use 'from linebot.v3.messaging import AsyncMessagingApi' and 'AsyncMessagingApi(...).get_rich_menu_alias(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).get_rich_menu_alias(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -1106,7 +1107,7 @@ class AsyncLineBotApi(object):
         return RichMenuAliasResponse.new_from_json_dict((await response.json))
 
     @deprecated(
-        reason="Use 'from linebot.v3.messaging import AsyncMessagingApi' and 'AsyncMessagingApi(...).get_rich_menu_alias_list(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).get_rich_menu_alias_list(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -1127,7 +1128,7 @@ class AsyncLineBotApi(object):
         return RichMenuAliasListResponse.new_from_json_dict((await response.json))
 
     @deprecated(
-        reason="Use 'from linebot.v3.messaging import AsyncMessagingApi' and 'AsyncMessagingApi(...).validate_rich_menu_object(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).validate_rich_menu_object(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -1151,7 +1152,7 @@ class AsyncLineBotApi(object):
         )
 
     @deprecated(
-        reason="Use 'from linebot.v3.messaging import AsyncMessagingApi' and 'AsyncMessagingApi(...).create_rich_menu(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).create_rich_menu(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -1177,7 +1178,7 @@ class AsyncLineBotApi(object):
         return (await response.json).get("richMenuId")
 
     @deprecated(
-        reason="Use 'from linebot.v3.messaging import AsyncMessagingApi' and 'AsyncMessagingApi(...).create_rich_menu_alias(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).create_rich_menu_alias(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -1203,7 +1204,7 @@ class AsyncLineBotApi(object):
         )
 
     @deprecated(
-        reason="Use 'from linebot.v3.messaging import AsyncMessagingApi' and 'AsyncMessagingApi(...).update_rich_menu_alias(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).update_rich_menu_alias(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -1234,7 +1235,7 @@ class AsyncLineBotApi(object):
         )
 
     @deprecated(
-        reason="Use 'from linebot.v3.messaging import AsyncMessagingApi' and 'AsyncMessagingApi(...).delete_rich_menu(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).delete_rich_menu(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -1256,7 +1257,7 @@ class AsyncLineBotApi(object):
         )
 
     @deprecated(
-        reason="Use 'from linebot.v3.messaging import AsyncMessagingApi' and 'AsyncMessagingApi(...).delete_rich_menu_alias(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).delete_rich_menu_alias(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -1280,7 +1281,7 @@ class AsyncLineBotApi(object):
         )
 
     @deprecated(
-        reason="Use 'from linebot.v3.messaging import AsyncMessagingApi' and 'AsyncMessagingApi(...).get_rich_menu_id_of_user(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).get_rich_menu_id_of_user(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -1305,7 +1306,7 @@ class AsyncLineBotApi(object):
         return (await response.json).get("richMenuId")
 
     @deprecated(
-        reason="Use 'from linebot.v3.messaging import AsyncMessagingApi' and 'AsyncMessagingApi(...).link_rich_menu_id_to_user(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).link_rich_menu_id_to_user(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -1330,7 +1331,7 @@ class AsyncLineBotApi(object):
         )
 
     @deprecated(
-        reason="Use 'from linebot.v3.messaging import AsyncMessagingApi' and 'AsyncMessagingApi(...).link_rich_menu_id_to_users(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).link_rich_menu_id_to_users(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -1361,7 +1362,7 @@ class AsyncLineBotApi(object):
         )
 
     @deprecated(
-        reason="Use 'from linebot.v3.messaging import AsyncMessagingApi' and 'AsyncMessagingApi(...).unlink_rich_menu_id_from_user(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).unlink_rich_menu_id_from_user(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -1382,7 +1383,7 @@ class AsyncLineBotApi(object):
         )
 
     @deprecated(
-        reason="Use 'from linebot.v3.messaging import AsyncMessagingApi' and 'AsyncMessagingApi(...).unlink_rich_menu_id_from_users(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).unlink_rich_menu_id_from_users(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -1411,7 +1412,7 @@ class AsyncLineBotApi(object):
         )
 
     @deprecated(
-        reason="Use 'from linebot.v3.messaging import AsyncMessagingApiBlob' and 'MessagingApiBlob.get_rich_menu_image(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).get_rich_menu_image(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -1438,7 +1439,7 @@ class AsyncLineBotApi(object):
         return Content(response)
 
     @deprecated(
-        reason="Use 'from linebot.v3.messaging import AsyncMessagingApiBlob' and 'MessagingApiBlob.set_rich_menu_image(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).set_rich_menu_image(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -1469,7 +1470,7 @@ class AsyncLineBotApi(object):
         )
 
     @deprecated(
-        reason="Use 'from linebot.v3.messaging import AsyncMessagingApi' and 'AsyncMessagingApi(...).get_rich_menu_list(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).get_rich_menu_list(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -1495,7 +1496,7 @@ class AsyncLineBotApi(object):
         return result
 
     @deprecated(
-        reason="Use 'from linebot.v3.messaging import AsyncMessagingApi' and 'AsyncMessagingApi(...).set_default_rich_menu(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).set_default_rich_menu(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -1519,7 +1520,7 @@ class AsyncLineBotApi(object):
         )
 
     @deprecated(
-        reason="Use 'from linebot.v3.messaging import AsyncMessagingApi' and 'AsyncMessagingApi(...).get_default_rich_menu_id(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).get_default_rich_menu_id(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -1539,7 +1540,7 @@ class AsyncLineBotApi(object):
         return (await response.json).get("richMenuId")
 
     @deprecated(
-        reason="Use 'from linebot.v3.messaging import AsyncMessagingApi' and 'AsyncMessagingApi(...).cancel_default_rich_menu(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).cancel_default_rich_menu(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -1557,7 +1558,7 @@ class AsyncLineBotApi(object):
         await self._delete("/v2/bot/user/all/richmenu", timeout=timeout)
 
     @deprecated(
-        reason="Use 'from linebot.v3.messaging import AsyncMessagingApi' and 'AsyncMessagingApi(...).get_message_quota(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).get_message_quota(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -1579,7 +1580,7 @@ class AsyncLineBotApi(object):
         return MessageQuotaResponse.new_from_json_dict((await response.json))
 
     @deprecated(
-        reason="Use 'from linebot.v3.messaging import AsyncMessagingApi' and 'AsyncMessagingApi(...).get_message_quota_consumption(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).get_message_quota_consumption(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -1601,7 +1602,7 @@ class AsyncLineBotApi(object):
         return MessageQuotaConsumptionResponse.new_from_json_dict((await response.json))
 
     @deprecated(
-        reason="Use 'from linebot.v3.messaging import AsyncMessagingApi' and 'AsyncMessagingApi(...).issue_link_token(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).issue_link_token(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -1686,7 +1687,7 @@ class AsyncLineBotApi(object):
         )
 
     @deprecated(
-        reason="Use 'from linebot.v3.insight import AsyncInsight' and 'AsyncInsight(...).get_number_of_message_deliveries(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).get_number_of_message_deliveries(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -1711,7 +1712,7 @@ class AsyncLineBotApi(object):
         return InsightMessageDeliveryResponse.new_from_json_dict((await response.json))
 
     @deprecated(
-        reason="Use 'from linebot.v3.insight import AsyncInsight' and 'AsyncInsight(...).get_insight_followers(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).get_insight_followers(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -1735,7 +1736,7 @@ class AsyncLineBotApi(object):
         return InsightFollowersResponse.new_from_json_dict((await response.json))
 
     @deprecated(
-        reason="Use 'from linebot.v3.insight import AsyncInsight' and 'AsyncInsight(...).get_friends_demographics(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).get_friends_demographics(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -1756,7 +1757,7 @@ class AsyncLineBotApi(object):
         return InsightDemographicResponse.new_from_json_dict((await response.json))
 
     @deprecated(
-        reason="Use 'from linebot.v3.insight import AsyncInsight' and 'AsyncInsight(...).get_message_event(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).get_message_event(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -1783,7 +1784,7 @@ class AsyncLineBotApi(object):
         return InsightMessageEventResponse.new_from_json_dict((await response.json))
 
     @deprecated(
-        reason="Use 'from linebot.v3.messaging import AsyncMessagingApi' and 'AsyncMessagingApi(...).get_bot_info(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).get_bot_info(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -1804,7 +1805,7 @@ class AsyncLineBotApi(object):
         return BotInfo.new_from_json_dict((await response.json))
 
     @deprecated(
-        reason="Use 'from linebot.v3.audience import AsyncManageAudience' and 'AsyncManageAudience(...).create_audience_group(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).create_audience_group(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -1842,7 +1843,7 @@ class AsyncLineBotApi(object):
         return CreateAudienceGroup.new_from_json_dict((await response.json))
 
     @deprecated(
-        reason="Use 'from linebot.v3.audience import AsyncManageAudience' and 'AsyncManageAudience(...).get_audience_data(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).get_audience_data(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -1869,7 +1870,7 @@ class AsyncLineBotApi(object):
         return AudienceGroup.new_from_json_dict((await response.json))
 
     @deprecated(
-        reason="Use 'from linebot.v3.audience import AsyncManageAudience' and 'AsyncManageAudience(...).get_audience_groups(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).get_audience_groups(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -1928,7 +1929,7 @@ class AsyncLineBotApi(object):
         return result
 
     @deprecated(
-        reason="Use 'from linebot.v3.audience import AsyncManageAudience' and 'AsyncManageAudience(...).delete_audience_group(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).delete_audience_group(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -1949,7 +1950,7 @@ class AsyncLineBotApi(object):
         )
 
     @deprecated(
-        reason="Use 'from linebot.v3.audience import AsyncManageAudience' and 'AsyncManageAudience(...).update_audience_group_description(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).update_audience_group_description(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -1981,7 +1982,7 @@ class AsyncLineBotApi(object):
         return ""
 
     @deprecated(
-        reason="Use 'from linebot.v3.audience import AsyncManageAudience' and 'AsyncManageAudience(...).add_audience_to_audience_group(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).add_audience_to_audience_group(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -2022,7 +2023,7 @@ class AsyncLineBotApi(object):
         return await response.json
 
     @deprecated(
-        reason="Use 'from linebot.v3.audience import AsyncManageAudience' and 'AsyncManageAudience(...).get_audience_group_authority_level(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).get_audience_group_authority_level(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -2045,7 +2046,7 @@ class AsyncLineBotApi(object):
         return GetAuthorityLevel.new_from_json_dict((await response.json))
 
     @deprecated(
-        reason="Use 'from linebot.v3.audience import AsyncManageAudience' and 'AsyncManageAudience(...).update_audience_group_authority_level(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).update_audience_group_authority_level(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -2071,7 +2072,7 @@ class AsyncLineBotApi(object):
         return ""
 
     @deprecated(
-        reason="Use 'from linebot.v3.audience import AsyncManageAudience' and 'AsyncManageAudience(...).create_click_based_audience_group(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).create_click_based_audience_group(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -2108,7 +2109,7 @@ class AsyncLineBotApi(object):
         return ClickAudienceGroup.new_from_json_dict((await response.json))
 
     @deprecated(
-        reason="Use 'from linebot.v3.audience import AsyncManageAudience' and 'AsyncManageAudience(...).create_imp_based_audience_group(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).create_imp_based_audience_group(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -2140,7 +2141,7 @@ class AsyncLineBotApi(object):
         return ImpAudienceGroup.new_from_json_dict((await response.json))
 
     @deprecated(
-        reason="Use 'from linebot.v3.messaging import AsyncMessagingApi' and 'AsyncMessagingApi(...).set_webhook_endpoint(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).set_webhook_endpoint(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -2169,7 +2170,7 @@ class AsyncLineBotApi(object):
         return await response.json
 
     @deprecated(
-        reason="Use 'from linebot.v3.messaging import AsyncMessagingApi' and 'AsyncMessagingApi(...).get_webhook_endpoint(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).get_webhook_endpoint(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -2190,7 +2191,7 @@ class AsyncLineBotApi(object):
         return GetWebhookResponse.new_from_json_dict((await response.json))
 
     @deprecated(
-        reason="Use 'from linebot.v3.messaging import AsyncMessagingApi' and 'AsyncMessagingApi(...).test_webhook_endpoint(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).test_webhook_endpoint(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -2223,7 +2224,7 @@ class AsyncLineBotApi(object):
         return TestWebhookResponse.new_from_json_dict((await response.json))
 
     @deprecated(
-        reason="Use 'from linebot.v3.messaging import AsyncMessagingApi' and 'AsyncMessagingApi(...).get_followers(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).get_followers(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -2409,7 +2410,7 @@ class AsyncLineBotApi(object):
         return ValidAccessTokenKeyIDsResponse.new_from_json_dict((await response.json))
 
     @deprecated(
-        reason="Use 'from linebot.v3.insight import AsyncInsight' and 'AsyncInsight(...).get_statistics_per_unit(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).get_statistics_per_unit(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -2450,7 +2451,7 @@ class AsyncLineBotApi(object):
         )
 
     @deprecated(
-        reason="Use 'from linebot.v3.messaging import AsyncMessagingApi' and 'AsyncMessagingApi(...).get_aggregation_unit_usage(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).get_aggregation_unit_usage(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501
@@ -2470,7 +2471,7 @@ class AsyncLineBotApi(object):
         return AggregationInfoResponse.new_from_json_dict((await response.json))
 
     @deprecated(
-        reason="Use 'from linebot.v3.messaging import AsyncMessagingApi' and 'AsyncMessagingApi(...).get_aggregation_unit_name_list(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
+        reason="Use 'from linebot.v3 import AsyncLineBotClient' and 'AsyncLineBotClient(...).get_aggregation_unit_name_list(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.",
         version="3.0.0",
         category=LineBotSdkDeprecatedIn30,
     )  # noqa: E501

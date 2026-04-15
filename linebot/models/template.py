@@ -23,7 +23,11 @@ from .actions import get_action, get_actions
 from .base import Base
 from .send_messages import SendMessage
 
+from deprecated import deprecated
+from linebot.deprecations import LineBotSdkDeprecatedIn30
 
+
+@deprecated(reason="Use 'from linebot.v3.messaging import TemplateMessage' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class TemplateSendMessage(SendMessage):
     """TemplateSendMessage.
 
@@ -56,6 +60,7 @@ class TemplateSendMessage(SendMessage):
         )
 
 
+@deprecated(reason="Use 'linebot.v3.messaging' module instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class Template(with_metaclass(ABCMeta, Base)):
     """Abstract Base Class of Template."""
 
@@ -69,6 +74,7 @@ class Template(with_metaclass(ABCMeta, Base)):
         self.type = None
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import ButtonsTemplate' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class ButtonsTemplate(Template):
     """ButtonsTemplate.
 
@@ -122,6 +128,7 @@ class ButtonsTemplate(Template):
         self.default_action = get_action(default_action)
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import ConfirmTemplate' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class ConfirmTemplate(Template):
     """ConfirmTemplate.
 
@@ -147,6 +154,7 @@ class ConfirmTemplate(Template):
         self.actions = get_actions(actions)
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import CarouselTemplate' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class CarouselTemplate(Template):
     """CarouselTemplate.
 
@@ -182,6 +190,7 @@ class CarouselTemplate(Template):
         self.image_size = image_size
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import ImageCarouselTemplate' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class ImageCarouselTemplate(Template):
     """ImageCarouselTemplate.
 
@@ -211,6 +220,7 @@ class ImageCarouselTemplate(Template):
         self.columns = new_columns
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import CarouselColumn' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class CarouselColumn(Base):
     """CarouselColumn.
 
@@ -249,6 +259,7 @@ class CarouselColumn(Base):
         self.default_action = get_action(default_action)
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import ImageCarouselColumn' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class ImageCarouselColumn(Base):
     """ImageCarouselColumn.
 

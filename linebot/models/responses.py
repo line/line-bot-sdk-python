@@ -22,7 +22,11 @@ from .insight import (
 )
 from .rich_menu import RichMenuSize, RichMenuArea, RichMenuAlias
 
+from deprecated import deprecated
+from linebot.deprecations import LineBotSdkDeprecatedIn30
 
+
+@deprecated(reason="Use 'linebot.v3.messaging' module instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class BroadcastResponse(object):
     """BroadcastResponse.
 
@@ -37,6 +41,7 @@ class BroadcastResponse(object):
         self.request_id = request_id
 
 
+@deprecated(reason="Use 'linebot.v3.messaging' module instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class ValidateReplyMessageObjectsResponse(object):
     """ValidateReplyMessageObjectsResponse.
 
@@ -51,6 +56,7 @@ class ValidateReplyMessageObjectsResponse(object):
         self.request_id = request_id
 
 
+@deprecated(reason="Use 'linebot.v3.messaging' module instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class ValidatePushMessageObjectsResponse(object):
     """ValidatePushMessageObjectsResponse.
 
@@ -65,6 +71,7 @@ class ValidatePushMessageObjectsResponse(object):
         self.request_id = request_id
 
 
+@deprecated(reason="Use 'linebot.v3.messaging' module instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class ValidateMulticastMessageObjectsResponse(object):
     """ValidateMulticastMessageObjectsResponse.
 
@@ -79,6 +86,7 @@ class ValidateMulticastMessageObjectsResponse(object):
         self.request_id = request_id
 
 
+@deprecated(reason="Use 'linebot.v3.messaging' module instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class ValidateNarrowcastMessageObjectsResponse(object):
     """ValidateNarrowcastMessageObjectsResponse.
 
@@ -93,6 +101,7 @@ class ValidateNarrowcastMessageObjectsResponse(object):
         self.request_id = request_id
 
 
+@deprecated(reason="Use 'linebot.v3.messaging' module instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class ValidateBroadcastMessageObjectsResponse(object):
     """ValidateBroadcastMessageObjectsResponse.
 
@@ -107,6 +116,7 @@ class ValidateBroadcastMessageObjectsResponse(object):
         self.request_id = request_id
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import UserProfileResponse' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class Profile(Base):
     """Profile.
 
@@ -133,6 +143,7 @@ class Profile(Base):
         self.language = language
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import GroupSummaryResponse' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class Group(Base):
     """Group.
 
@@ -154,6 +165,7 @@ class Group(Base):
         self.picture_url = picture_url
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import MembersIdsResponse' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class MemberIds(Base):
     """MemberIds.
 
@@ -177,6 +189,7 @@ class MemberIds(Base):
         self.next = next
 
 
+@deprecated(reason="Use 'linebot.v3.messaging' module instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class Content(object):
     """MessageContent.
 
@@ -221,6 +234,7 @@ class Content(object):
         return self.response.iter_content(chunk_size=chunk_size)
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import RichMenuResponse' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class RichMenuResponse(Base):
     """RichMenuResponse.
 
@@ -262,6 +276,7 @@ class RichMenuResponse(Base):
         self.areas = new_areas
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import RichMenuAliasResponse' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class RichMenuAliasResponse(Base):
     """RichMenuAliasResponse.
 
@@ -281,6 +296,7 @@ class RichMenuAliasResponse(Base):
         self.rich_menu_id = rich_menu_id
 
 
+@deprecated(reason="Use 'linebot.v3.messaging' module instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class RichMenuAliasListResponse(Base):
     """RichMenuAliasListResponse.
 
@@ -304,6 +320,7 @@ class RichMenuAliasListResponse(Base):
         self.aliases = new_aliases
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import MessageQuotaResponse' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class MessageQuotaResponse(Base):
     """MessageQuotaResponse.
 
@@ -324,6 +341,7 @@ class MessageQuotaResponse(Base):
         self.value = value
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import QuotaConsumptionResponse' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class MessageQuotaConsumptionResponse(Base):
     """MessageQuotaConsumptionResponse.
 
@@ -341,6 +359,7 @@ class MessageQuotaConsumptionResponse(Base):
         self.total_usage = total_usage
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import NumberOfMessagesResponse' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class MessageDeliveryBroadcastResponse(Base):
     """MessageDeliveryBroadcastResponse."""
 
@@ -358,6 +377,7 @@ class MessageDeliveryBroadcastResponse(Base):
         self.success = success
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import NumberOfMessagesResponse' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class MessageDeliveryReplyResponse(Base):
     """MessageDeliveryReplyResponse."""
 
@@ -375,6 +395,7 @@ class MessageDeliveryReplyResponse(Base):
         self.success = success
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import NumberOfMessagesResponse' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class MessageDeliveryPushResponse(Base):
     """MessageDeliveryPushResponse."""
 
@@ -392,6 +413,7 @@ class MessageDeliveryPushResponse(Base):
         self.success = success
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import NumberOfMessagesResponse' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class MessageDeliveryMulticastResponse(Base):
     """MessageDeliveryMulticastResponse."""
 
@@ -409,6 +431,7 @@ class MessageDeliveryMulticastResponse(Base):
         self.success = success
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import NarrowcastProgressResponse' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class MessageProgressNarrowcastResponse(Base):
     """MessageProgressNarrowcastResponse."""
 
@@ -443,6 +466,7 @@ class MessageProgressNarrowcastResponse(Base):
         self.completed_time = completed_time
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import IssueLinkTokenResponse' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class IssueLinkTokenResponse(Base):
     """IssueLinkTokenResponse.
 
@@ -460,6 +484,7 @@ class IssueLinkTokenResponse(Base):
         self.link_token = link_token
 
 
+@deprecated(reason="Use 'linebot.v3.oauth' module instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class IssueChannelTokenResponse(Base):
     """IssueAccessTokenResponse.
 
@@ -482,6 +507,7 @@ class IssueChannelTokenResponse(Base):
         self.token_type = token_type
 
 
+@deprecated(reason="Use 'from linebot.v3.insight import GetNumberOfMessageDeliveriesResponse' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class InsightMessageDeliveryResponse(Base):
     """InsightMessageDeliveryResponse."""
 
@@ -522,6 +548,7 @@ class InsightMessageDeliveryResponse(Base):
         self.api_reply = api_reply
 
 
+@deprecated(reason="Use 'from linebot.v3.insight import GetNumberOfFollowersResponse' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class InsightFollowersResponse(Base):
     """InsightFollowersResponse."""
 
@@ -545,6 +572,7 @@ class InsightFollowersResponse(Base):
         self.blocks = blocks
 
 
+@deprecated(reason="Use 'from linebot.v3.insight import GetFriendsDemographicsResponse' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class InsightDemographicResponse(Base):
     """InsightDemographicResponse."""
 
@@ -576,6 +604,7 @@ class InsightDemographicResponse(Base):
                                      for it in subscription_periods]
 
 
+@deprecated(reason="Use 'from linebot.v3.insight import GetMessageEventResponse' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class InsightMessageEventResponse(Base):
     """InsightMessageEventResponse."""
 
@@ -597,6 +626,7 @@ class InsightMessageEventResponse(Base):
         self.clicks = [self.get_or_new_from_json_dict(it, ClickInsight) for it in clicks]
 
 
+@deprecated(reason="Use 'linebot.v3.insight' module instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class InsightMessageEventOfCustomAggregationUnitResponse(Base):
     """InsightMessageEventResponse."""
 
@@ -619,6 +649,7 @@ class InsightMessageEventOfCustomAggregationUnitResponse(Base):
         self.clicks = [self.get_or_new_from_json_dict(it, ClickInsight) for it in clicks]
 
 
+@deprecated(reason="Use 'linebot.v3.messaging' module instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class AggregationInfoResponse(Base):
     """The number of aggregation units used this month.
 
@@ -636,6 +667,7 @@ class AggregationInfoResponse(Base):
         self.num_of_custom_aggregation_units = num_of_custom_aggregation_units
 
 
+@deprecated(reason="Use 'linebot.v3.messaging' module instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class AggregationNameListResponse(Base):
     """The name list of units used this month for statistics aggregation.
 
@@ -658,6 +690,7 @@ class AggregationNameListResponse(Base):
         self.next = next
 
 
+@deprecated(reason="Use 'linebot.v3.messaging' module instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class NarrowcastResponse(Base):
     """NarrowcastResponse.
 
@@ -675,6 +708,7 @@ class NarrowcastResponse(Base):
         self.request_id = request_id
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import BotInfoResponse' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class BotInfo(Base):
     """Response of `linebot.get_bot_info()` .
 
@@ -699,6 +733,7 @@ class BotInfo(Base):
         self.mark_as_read_mode = mark_as_read_mode
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import GetWebhookEndpointResponse' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class GetWebhookResponse(Base):
     """Response of `get_webhook_endpoint()` .
 
@@ -718,6 +753,7 @@ class GetWebhookResponse(Base):
         self.active = active
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import TestWebhookEndpointResponse' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class TestWebhookResponse(Base):
     """Response of `test_webhook_endpoint()` .
 
@@ -745,6 +781,7 @@ class TestWebhookResponse(Base):
         self.detail = detail
 
 
+@deprecated(reason="Use 'linebot.v3.audience' module instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class AudienceGroup(Base):
     """AudienceGroups.
 
@@ -798,6 +835,7 @@ class AudienceGroup(Base):
             self.jobs = [self.get_or_new_from_json_dict(job, JobInsight) for job in jobs]
 
 
+@deprecated(reason="Use 'linebot.v3.audience' module instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class ClickAudienceGroup(Base):
     """ClickAudienceGroup.
 
@@ -841,6 +879,7 @@ class ClickAudienceGroup(Base):
         self.click_url = click_url
 
 
+@deprecated(reason="Use 'linebot.v3.audience' module instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class CreateAudienceGroup(Base):
     """ClickAudienceGroup.
 
@@ -879,6 +918,7 @@ class CreateAudienceGroup(Base):
         self.is_ifa_audience = is_ifa_audience
 
 
+@deprecated(reason="Use 'linebot.v3.audience' module instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class ImpAudienceGroup(Base):
     """ImpAudienceGroup.
 
@@ -919,6 +959,7 @@ class ImpAudienceGroup(Base):
         self.request_id = request_id
 
 
+@deprecated(reason="Use 'linebot.v3.audience' module instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class GetAuthorityLevel(Base):
     """GetAuthorityLevel.
 
@@ -936,6 +977,7 @@ class GetAuthorityLevel(Base):
         self.authority_level = authority_level
 
 
+@deprecated(reason="Use 'linebot.v3.audience' module instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class Audience(Base):
     """Audience.
 
@@ -952,6 +994,7 @@ class Audience(Base):
         self.id = id
 
 
+@deprecated(reason="Use 'linebot.v3.messaging' module instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class UserIds(Base):
     """UserIds.
 
@@ -975,6 +1018,7 @@ class UserIds(Base):
         self.next = next
 
 
+@deprecated(reason="Use 'linebot.v3.oauth' module instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class IssueChannelTokenResponseV2(Base):
     """IssueAccessTokenResponseV2.
 
@@ -999,6 +1043,7 @@ class IssueChannelTokenResponseV2(Base):
         self.key_id = key_id
 
 
+@deprecated(reason="Use 'linebot.v3.oauth' module instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class ChannelAccessTokens(Base):
     """ChannelAccessTokens.
 
@@ -1018,6 +1063,7 @@ class ChannelAccessTokens(Base):
         self.access_tokens = access_tokens
 
 
+@deprecated(reason="Use 'linebot.v3.oauth' module instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class VerifyChannelTokenResponseV2(Base):
     """VerifyChannelTokenResponseV2.
 
@@ -1041,6 +1087,7 @@ class VerifyChannelTokenResponseV2(Base):
         self.scope = scope
 
 
+@deprecated(reason="Use 'linebot.v3.oauth' module instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class ValidAccessTokenKeyIDsResponse(Base):
     """ValidAccessTokenKeyIDsResponse.
 

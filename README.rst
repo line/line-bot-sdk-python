@@ -356,6 +356,8 @@ To utilize the latest features, we recommend you gradually transition to ``lineb
 While we won't update ``linebot`` modules anymore, users can still continue to use the version 2.x ``linebot`` modules.
 We also welcome pull requests for the version ``2.x`` and ``3.x`` modules.
 
+For a step-by-step migration guide with before/after examples, see `MIGRATION.md <MIGRATION.md>`__.
+
 
 How to suppress deprecation warnings
 ------------------------------------

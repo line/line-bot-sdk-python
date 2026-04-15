@@ -24,7 +24,11 @@ from .actions import get_action
 from .base import Base
 from .send_messages import SendMessage
 
+from deprecated import deprecated
+from linebot.deprecations import LineBotSdkDeprecatedIn30
 
+
+@deprecated(reason="Use 'from linebot.v3.messaging import FlexMessage' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class FlexSendMessage(SendMessage):
     """FlexSendMessage.
 
@@ -54,6 +58,7 @@ class FlexSendMessage(SendMessage):
         )
 
 
+@deprecated(reason="Use 'linebot.v3.messaging' module instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class FlexContainer(with_metaclass(ABCMeta, Base)):
     """FlexContainer.
 
@@ -72,6 +77,7 @@ class FlexContainer(with_metaclass(ABCMeta, Base)):
         self.type = None
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import FlexBubble' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class BubbleContainer(FlexContainer):
     """BubbleContainer.
 
@@ -123,6 +129,7 @@ class BubbleContainer(FlexContainer):
         self.action = get_action(action)
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import FlexBubbleStyles' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class BubbleStyle(with_metaclass(ABCMeta, Base)):
     """BubbleStyle.
 
@@ -150,6 +157,7 @@ class BubbleStyle(with_metaclass(ABCMeta, Base)):
         self.footer = self.get_or_new_from_json_dict(footer, BlockStyle)
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import FlexBlockStyle' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class BlockStyle(with_metaclass(ABCMeta, Base)):
     """BlockStyle.
 
@@ -173,6 +181,7 @@ class BlockStyle(with_metaclass(ABCMeta, Base)):
         self.separator_color = separator_color
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import FlexCarousel' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class CarouselContainer(FlexContainer):
     """CarouselContainer.
 
@@ -202,6 +211,7 @@ class CarouselContainer(FlexContainer):
         self.contents = new_contents
 
 
+@deprecated(reason="Use 'linebot.v3.messaging' module instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class FlexComponent(with_metaclass(ABCMeta, Base)):
     """FlexComponent.
 
@@ -220,6 +230,7 @@ class FlexComponent(with_metaclass(ABCMeta, Base)):
         self.type = None
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import FlexBox' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class BoxComponent(FlexComponent):
     """BoxComponent.
 
@@ -349,6 +360,7 @@ class BoxComponent(FlexComponent):
         self.contents = new_contents
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import FlexButton' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class ButtonComponent(FlexComponent):
     """ButtonComponent.
 
@@ -411,6 +423,7 @@ class ButtonComponent(FlexComponent):
         self.adjust_mode = adjust_mode
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import FlexFiller' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class FillerComponent(FlexComponent):
     """FillerComponent.
 
@@ -429,6 +442,7 @@ class FillerComponent(FlexComponent):
         self.flex = flex
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import FlexIcon' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class IconComponent(FlexComponent):
     """IconComponent.
 
@@ -477,6 +491,7 @@ class IconComponent(FlexComponent):
         self.aspect_ratio = aspect_ratio
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import FlexImage' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class ImageComponent(FlexComponent):
     """ImageComponent.
 
@@ -547,6 +562,7 @@ class ImageComponent(FlexComponent):
         self.animated = animated
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import FlexSeparator' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class SeparatorComponent(FlexComponent):
     """SeparatorComponent.
 
@@ -569,6 +585,7 @@ class SeparatorComponent(FlexComponent):
         self.color = color
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import FlexSpan' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class SpanComponent(FlexComponent):
     """SpanComponent.
 
@@ -605,6 +622,7 @@ class SpanComponent(FlexComponent):
         self.decoration = decoration
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import FlexText' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class TextComponent(FlexComponent):
     """TextComponent.
 
@@ -691,6 +709,7 @@ class TextComponent(FlexComponent):
             self.contents = None
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import FlexVideo' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class VideoComponent(FlexComponent):
     """VideoComponent.
 

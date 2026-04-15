@@ -23,7 +23,11 @@ from .emojis import Emojis
 from .actions import get_action
 from .base import Base
 
+from deprecated import deprecated
+from linebot.deprecations import LineBotSdkDeprecatedIn30
 
+
+@deprecated(reason="Use 'linebot.v3.messaging' module instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class SendMessage(with_metaclass(ABCMeta, Base)):
     """Abstract Base Class of SendMessage."""
 
@@ -43,6 +47,7 @@ class SendMessage(with_metaclass(ABCMeta, Base)):
         self.sender = self.get_or_new_from_json_dict(sender, Sender)
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import TextMessage' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class TextSendMessage(SendMessage):
     """TextSendMessage.
 
@@ -75,6 +80,7 @@ class TextSendMessage(SendMessage):
             self.emojis = emojis
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import ImageMessage' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class ImageSendMessage(SendMessage):
     """ImageSendMessage.
 
@@ -107,6 +113,7 @@ class ImageSendMessage(SendMessage):
         self.preview_image_url = preview_image_url
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import VideoMessage' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class VideoSendMessage(SendMessage):
     """VideoSendMessage.
 
@@ -137,6 +144,7 @@ class VideoSendMessage(SendMessage):
         self.tracking_id = tracking_id
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import AudioMessage' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class AudioSendMessage(SendMessage):
     """AudioSendMessage.
 
@@ -162,6 +170,7 @@ class AudioSendMessage(SendMessage):
         self.duration = duration
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import LocationMessage' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class LocationSendMessage(SendMessage):
     """LocationSendMessage.
 
@@ -190,6 +199,7 @@ class LocationSendMessage(SendMessage):
         self.longitude = longitude
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import StickerMessage' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class StickerSendMessage(SendMessage):
     """StickerSendMessage.
 
@@ -213,6 +223,7 @@ class StickerSendMessage(SendMessage):
         self.sticker_id = sticker_id
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import QuickReply' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class QuickReply(with_metaclass(ABCMeta, Base)):
     """QuickReply.
 
@@ -237,6 +248,7 @@ class QuickReply(with_metaclass(ABCMeta, Base)):
         self.items = new_items
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import QuickReplyItem' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class QuickReplyButton(with_metaclass(ABCMeta, Base)):
     """QuickReplyButton.
 
@@ -259,6 +271,7 @@ class QuickReplyButton(with_metaclass(ABCMeta, Base)):
         self.action = get_action(action)
 
 
+@deprecated(reason="Use 'from linebot.v3.messaging import Sender' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.", version='3.0.0', category=LineBotSdkDeprecatedIn30)  # noqa: E501
 class Sender(with_metaclass(ABCMeta, Base)):
     """Sender.
 

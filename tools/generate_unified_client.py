@@ -670,7 +670,13 @@ def _generate_client(
     def_kw = "async def" if is_async else "def"
     await_kw = "return await" if is_async else "return"
     for cdef, method, call_args in all_methods:
-        ret_part = f' -> {method.return_annotation}' if method.return_annotation else ''
+        # Replace bare ``ApiResponse`` with the module-specific alias so the
+        # return annotation matches the type actually returned at runtime.
+        ret_ann = method.return_annotation
+        if ret_ann:
+            module_alias = _module_alias(cdef.module)
+            ret_ann = re.sub(r'\bApiResponse\b', f'{module_alias}ApiResponse', ret_ann)
+        ret_part = f' -> {ret_ann}' if ret_ann else ''
         if method.params_source:
             sig = f'    {def_kw} {method.name}(self, {method.params_source}){ret_part}:'
         else:
@@ -719,8 +725,14 @@ def _generate_client(
         pkg = filepath.replace("/", ".").replace(".py", "")
         target_class = cdef.async_class if is_async else cdef.sync_class
         lines.append(f'from {pkg} import {target_class}')
-    # ApiResponse (identical across modules — import from first discovered)
-    lines.append(f'from linebot.v3.{unique_modules[0]}.api_response import ApiResponse')
+    # ApiResponse — each subpackage defines its own distinct class; import
+    # each with a module-specific alias so _with_http_info wrappers annotate
+    # the correct runtime type.
+    for mod in unique_modules:
+        alias = _module_alias(mod)
+        lines.append(
+            f'from linebot.v3.{mod}.api_response import ApiResponse as {alias}ApiResponse'
+        )
     lines.append('')
 
     # Model imports (sorted, deduplicated)

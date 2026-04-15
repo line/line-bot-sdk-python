@@ -30,7 +30,13 @@ from linebot.v3.messaging.api.messaging_api_blob import MessagingApiBlob
 from linebot.v3.module.api.line_module import LineModule
 from linebot.v3.moduleattach.api.line_module_attach import LineModuleAttach
 from linebot.v3.shop.api.shop import Shop
-from linebot.v3.audience.api_response import ApiResponse
+from linebot.v3.audience.api_response import ApiResponse as AudienceApiResponse
+from linebot.v3.insight.api_response import ApiResponse as InsightApiResponse
+from linebot.v3.liff.api_response import ApiResponse as LiffApiResponse
+from linebot.v3.messaging.api_response import ApiResponse as MessagingApiResponse
+from linebot.v3.module.api_response import ApiResponse as ModuleApiResponse
+from linebot.v3.moduleattach.api_response import ApiResponse as ModuleattachApiResponse
+from linebot.v3.shop.api_response import ApiResponse as ShopApiResponse
 
 from linebot.v3.audience.models.add_audience_to_audience_group_request import AddAudienceToAudienceGroupRequest
 from linebot.v3.audience.models.audience_group_create_route import AudienceGroupCreateRoute
@@ -245,7 +251,7 @@ class LineBotClient:
         """
         return self._manage_audience.add_audience_to_audience_group(add_audience_to_audience_group_request)
 
-    def add_audience_to_audience_group_with_http_info(self, add_audience_to_audience_group_request: AddAudienceToAudienceGroupRequest) -> ApiResponse:
+    def add_audience_to_audience_group_with_http_info(self, add_audience_to_audience_group_request: AddAudienceToAudienceGroupRequest) -> AudienceApiResponse:
         """Add user IDs or Identifiers for Advertisers (IFAs) to an audience for uploading user IDs (by JSON)
 
         :param add_audience_to_audience_group_request: (required)
@@ -265,7 +271,7 @@ class LineBotClient:
         """
         return self._manage_audience.create_audience_group(create_audience_group_request)
 
-    def create_audience_group_with_http_info(self, create_audience_group_request: CreateAudienceGroupRequest) -> ApiResponse:
+    def create_audience_group_with_http_info(self, create_audience_group_request: CreateAudienceGroupRequest) -> AudienceApiResponse:
         """Create audience for uploading user IDs (by JSON)
 
         :param create_audience_group_request: (required)
@@ -285,7 +291,7 @@ class LineBotClient:
         """
         return self._manage_audience.create_click_based_audience_group(create_click_based_audience_group_request)
 
-    def create_click_based_audience_group_with_http_info(self, create_click_based_audience_group_request: CreateClickBasedAudienceGroupRequest) -> ApiResponse:
+    def create_click_based_audience_group_with_http_info(self, create_click_based_audience_group_request: CreateClickBasedAudienceGroupRequest) -> AudienceApiResponse:
         """Create audience for click-based retargeting
 
         :param create_click_based_audience_group_request: (required)
@@ -305,7 +311,7 @@ class LineBotClient:
         """
         return self._manage_audience.create_imp_based_audience_group(create_imp_based_audience_group_request)
 
-    def create_imp_based_audience_group_with_http_info(self, create_imp_based_audience_group_request: CreateImpBasedAudienceGroupRequest) -> ApiResponse:
+    def create_imp_based_audience_group_with_http_info(self, create_imp_based_audience_group_request: CreateImpBasedAudienceGroupRequest) -> AudienceApiResponse:
         """Create audience for impression-based retargeting
 
         :param create_imp_based_audience_group_request: (required)
@@ -325,7 +331,7 @@ class LineBotClient:
         """
         return self._manage_audience.delete_audience_group(audience_group_id)
 
-    def delete_audience_group_with_http_info(self, audience_group_id: Annotated[StrictInt, Field(..., description='The audience ID.')]) -> ApiResponse:
+    def delete_audience_group_with_http_info(self, audience_group_id: Annotated[StrictInt, Field(..., description='The audience ID.')]) -> AudienceApiResponse:
         """Delete audience
 
         :param audience_group_id: The audience ID. (required)
@@ -345,7 +351,7 @@ class LineBotClient:
         """
         return self._manage_audience.get_audience_data(audience_group_id)
 
-    def get_audience_data_with_http_info(self, audience_group_id: Annotated[StrictInt, Field(..., description='The audience ID.')]) -> ApiResponse:
+    def get_audience_data_with_http_info(self, audience_group_id: Annotated[StrictInt, Field(..., description='The audience ID.')]) -> AudienceApiResponse:
         """Gets audience data.
 
         :param audience_group_id: The audience ID. (required)
@@ -375,7 +381,7 @@ class LineBotClient:
         """
         return self._manage_audience.get_audience_groups(page, description, status, size, includes_external_public_groups, create_route)
 
-    def get_audience_groups_with_http_info(self, page: Annotated[conint(strict=True, ge=1), Field(..., description='The page to return when getting (paginated) results. Must be 1 or higher.')], description: Annotated[Optional[StrictStr], Field(description='The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion. ')] = None, status: Annotated[Optional[AudienceGroupStatus], Field(description='The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion. ')] = None, size: Annotated[Optional[conint(strict=True, le=40)], Field(description='The number of audiences per page. Default: 20 Max: 40 ')] = None, includes_external_public_groups: Annotated[Optional[StrictBool], Field(description='true (default): Get public audiences created in all channels linked to the same bot. false: Get audiences created in the same channel. ')] = None, create_route: Annotated[Optional[AudienceGroupCreateRoute], Field(description='How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API. ')] = None) -> ApiResponse:
+    def get_audience_groups_with_http_info(self, page: Annotated[conint(strict=True, ge=1), Field(..., description='The page to return when getting (paginated) results. Must be 1 or higher.')], description: Annotated[Optional[StrictStr], Field(description='The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion. ')] = None, status: Annotated[Optional[AudienceGroupStatus], Field(description='The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion. ')] = None, size: Annotated[Optional[conint(strict=True, le=40)], Field(description='The number of audiences per page. Default: 20 Max: 40 ')] = None, includes_external_public_groups: Annotated[Optional[StrictBool], Field(description='true (default): Get public audiences created in all channels linked to the same bot. false: Get audiences created in the same channel. ')] = None, create_route: Annotated[Optional[AudienceGroupCreateRoute], Field(description='How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API. ')] = None) -> AudienceApiResponse:
         """Gets data for more than one audience.
 
         :param page: The page to return when getting (paginated) results. Must be 1 or higher. (required)
@@ -405,7 +411,7 @@ class LineBotClient:
         """
         return self._manage_audience.get_shared_audience_data(audience_group_id)
 
-    def get_shared_audience_data_with_http_info(self, audience_group_id: Annotated[StrictInt, Field(..., description='The audience ID.')]) -> ApiResponse:
+    def get_shared_audience_data_with_http_info(self, audience_group_id: Annotated[StrictInt, Field(..., description='The audience ID.')]) -> AudienceApiResponse:
         """Gets audience data.
 
         :param audience_group_id: The audience ID. (required)
@@ -435,7 +441,7 @@ class LineBotClient:
         """
         return self._manage_audience.get_shared_audience_groups(page, description, status, size, create_route, includes_owned_audience_groups)
 
-    def get_shared_audience_groups_with_http_info(self, page: Annotated[conint(strict=True, ge=1), Field(..., description='The page to return when getting (paginated) results. Must be 1 or higher.')], description: Annotated[Optional[StrictStr], Field(description='The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion. ')] = None, status: Annotated[Optional[AudienceGroupStatus], Field(description='The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion. ')] = None, size: Annotated[Optional[conint(strict=True, le=40)], Field(description='The number of audiences per page. Default: 20 Max: 40 ')] = None, create_route: Annotated[Optional[AudienceGroupCreateRoute], Field(description='How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API. ')] = None, includes_owned_audience_groups: Annotated[Optional[StrictBool], Field(description='true: Include audienceGroups owned by LINE Official Account Manager false: Respond only audienceGroups shared by Business Manager ')] = None) -> ApiResponse:
+    def get_shared_audience_groups_with_http_info(self, page: Annotated[conint(strict=True, ge=1), Field(..., description='The page to return when getting (paginated) results. Must be 1 or higher.')], description: Annotated[Optional[StrictStr], Field(description='The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion. ')] = None, status: Annotated[Optional[AudienceGroupStatus], Field(description='The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion. ')] = None, size: Annotated[Optional[conint(strict=True, le=40)], Field(description='The number of audiences per page. Default: 20 Max: 40 ')] = None, create_route: Annotated[Optional[AudienceGroupCreateRoute], Field(description='How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API. ')] = None, includes_owned_audience_groups: Annotated[Optional[StrictBool], Field(description='true: Include audienceGroups owned by LINE Official Account Manager false: Respond only audienceGroups shared by Business Manager ')] = None) -> AudienceApiResponse:
         """Gets data for more than one audience, including those shared by the Business Manager.
 
         :param page: The page to return when getting (paginated) results. Must be 1 or higher. (required)
@@ -467,7 +473,7 @@ class LineBotClient:
         """
         return self._manage_audience.update_audience_group_description(audience_group_id, update_audience_group_description_request)
 
-    def update_audience_group_description_with_http_info(self, audience_group_id: Annotated[StrictInt, Field(..., description='The audience ID.')], update_audience_group_description_request: UpdateAudienceGroupDescriptionRequest) -> ApiResponse:
+    def update_audience_group_description_with_http_info(self, audience_group_id: Annotated[StrictInt, Field(..., description='The audience ID.')], update_audience_group_description_request: UpdateAudienceGroupDescriptionRequest) -> AudienceApiResponse:
         """Renames an existing audience.
 
         :param audience_group_id: The audience ID. (required)
@@ -493,7 +499,7 @@ class LineBotClient:
         """
         return self._manage_audience_blob.add_user_ids_to_audience(file, audience_group_id, upload_description)
 
-    def add_user_ids_to_audience_with_http_info(self, file: Annotated[Union[StrictBytes, StrictStr], Field(..., description='A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000 ')], audience_group_id: Annotated[Optional[StrictInt], Field(description='The audience ID.')] = None, upload_description: Annotated[Optional[StrictStr], Field(description='The description to register with the job')] = None) -> ApiResponse:
+    def add_user_ids_to_audience_with_http_info(self, file: Annotated[Union[StrictBytes, StrictStr], Field(..., description='A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000 ')], audience_group_id: Annotated[Optional[StrictInt], Field(description='The audience ID.')] = None, upload_description: Annotated[Optional[StrictStr], Field(description='The description to register with the job')] = None) -> AudienceApiResponse:
         """Add user IDs or Identifiers for Advertisers (IFAs) to an audience for uploading user IDs (by file).
 
         :param file: A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000  (required)
@@ -523,7 +529,7 @@ class LineBotClient:
         """
         return self._manage_audience_blob.create_audience_for_uploading_user_ids(file, description, is_ifa_audience, upload_description)
 
-    def create_audience_for_uploading_user_ids_with_http_info(self, file: Annotated[Union[StrictBytes, StrictStr], Field(..., description='A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000 ')], description: Annotated[Optional[constr(strict=True, max_length=120)], Field(description="The audience's name. This is case-insensitive, meaning AUDIENCE and audience are considered identical. Max character limit: 120 ")] = None, is_ifa_audience: Annotated[Optional[StrictBool], Field(description='To specify recipients by IFAs: set `true`. To specify recipients by user IDs: set `false` or omit isIfaAudience property. ')] = None, upload_description: Annotated[Optional[StrictStr], Field(description='The description to register for the job (in `jobs[].description`). ')] = None) -> ApiResponse:
+    def create_audience_for_uploading_user_ids_with_http_info(self, file: Annotated[Union[StrictBytes, StrictStr], Field(..., description='A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000 ')], description: Annotated[Optional[constr(strict=True, max_length=120)], Field(description="The audience's name. This is case-insensitive, meaning AUDIENCE and audience are considered identical. Max character limit: 120 ")] = None, is_ifa_audience: Annotated[Optional[StrictBool], Field(description='To specify recipients by IFAs: set `true`. To specify recipients by user IDs: set `false` or omit isIfaAudience property. ')] = None, upload_description: Annotated[Optional[StrictStr], Field(description='The description to register for the job (in `jobs[].description`). ')] = None) -> AudienceApiResponse:
         """Create audience for uploading user IDs (by file).
 
         :param file: A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000  (required)
@@ -547,7 +553,7 @@ class LineBotClient:
         """
         return self._insight.get_friends_demographics()
 
-    def get_friends_demographics_with_http_info(self) -> ApiResponse:
+    def get_friends_demographics_with_http_info(self) -> InsightApiResponse:
         """Retrieves the demographic attributes for a LINE Official Account's friends.You can only retrieve information about friends for LINE Official Accounts created by users in Japan (JP), Thailand (TH), Taiwan (TW) and Indonesia (ID). 
 
         :return: Returns the result object.
@@ -567,7 +573,7 @@ class LineBotClient:
         """
         return self._insight.get_message_event(request_id)
 
-    def get_message_event_with_http_info(self, request_id: Annotated[constr(strict=True, min_length=1), Field(..., description='Request ID of a narrowcast message or broadcast message. Each Messaging API request has a request ID. ')]) -> ApiResponse:
+    def get_message_event_with_http_info(self, request_id: Annotated[constr(strict=True, min_length=1), Field(..., description='Request ID of a narrowcast message or broadcast message. Each Messaging API request has a request ID. ')]) -> InsightApiResponse:
         """Get user interaction statistics
 
         Returns statistics about how users interact with narrowcast messages or broadcast messages sent from your LINE Official Account. 
@@ -591,7 +597,7 @@ class LineBotClient:
         """
         return self._insight.get_number_of_followers(var_date)
 
-    def get_number_of_followers_with_http_info(self, var_date: Annotated[Optional[constr(strict=True, max_length=8, min_length=8)], Field(description='Date for which to retrieve the number of followers.  Format: yyyyMMdd (e.g. 20191231) Timezone: UTC+9 ')] = None) -> ApiResponse:
+    def get_number_of_followers_with_http_info(self, var_date: Annotated[Optional[constr(strict=True, max_length=8, min_length=8)], Field(description='Date for which to retrieve the number of followers.  Format: yyyyMMdd (e.g. 20191231) Timezone: UTC+9 ')] = None) -> InsightApiResponse:
         """Get number of followers
 
         Returns the number of users who have added the LINE Official Account on or before a specified date. 
@@ -615,7 +621,7 @@ class LineBotClient:
         """
         return self._insight.get_number_of_message_deliveries(var_date)
 
-    def get_number_of_message_deliveries_with_http_info(self, var_date: Annotated[constr(strict=True, max_length=8, min_length=8), Field(..., description='Date for which to retrieve number of sent messages. - Format: yyyyMMdd (e.g. 20191231) - Timezone: UTC+9 ')]) -> ApiResponse:
+    def get_number_of_message_deliveries_with_http_info(self, var_date: Annotated[constr(strict=True, max_length=8, min_length=8), Field(..., description='Date for which to retrieve number of sent messages. - Format: yyyyMMdd (e.g. 20191231) - Timezone: UTC+9 ')]) -> InsightApiResponse:
         """Get number of message deliveries
 
         Returns the number of messages sent from LINE Official Account on a specified day. 
@@ -641,7 +647,7 @@ class LineBotClient:
         """
         return self._insight.get_statistics_per_unit(custom_aggregation_unit, var_from, to)
 
-    def get_statistics_per_unit_with_http_info(self, custom_aggregation_unit: Annotated[constr(strict=True, max_length=30, min_length=1), Field(..., description='Name of aggregation unit specified when sending the message. Case-sensitive. For example, `Promotion_a` and `Promotion_A` are regarded as different unit names. ')], var_from: Annotated[constr(strict=True, max_length=8, min_length=8), Field(..., description='Start date of aggregation period.  Format: yyyyMMdd (e.g. 20210301) Time zone: UTC+9 ')], to: Annotated[constr(strict=True, max_length=8, min_length=8), Field(..., description='End date of aggregation period. The end date can be specified for up to 30 days later. For example, if the start date is 20210301, the latest end date is 20210331.  Format: yyyyMMdd (e.g. 20210301) Time zone: UTC+9 ')]) -> ApiResponse:
+    def get_statistics_per_unit_with_http_info(self, custom_aggregation_unit: Annotated[constr(strict=True, max_length=30, min_length=1), Field(..., description='Name of aggregation unit specified when sending the message. Case-sensitive. For example, `Promotion_a` and `Promotion_A` are regarded as different unit names. ')], var_from: Annotated[constr(strict=True, max_length=8, min_length=8), Field(..., description='Start date of aggregation period.  Format: yyyyMMdd (e.g. 20210301) Time zone: UTC+9 ')], to: Annotated[constr(strict=True, max_length=8, min_length=8), Field(..., description='End date of aggregation period. The end date can be specified for up to 30 days later. For example, if the start date is 20210301, the latest end date is 20210331.  Format: yyyyMMdd (e.g. 20210301) Time zone: UTC+9 ')]) -> InsightApiResponse:
         """You can check the per-unit statistics of how users interact with push messages and multicast messages sent from your LINE Official Account. 
 
         :param custom_aggregation_unit: Name of aggregation unit specified when sending the message. Case-sensitive. For example, `Promotion_a` and `Promotion_A` are regarded as different unit names.  (required)
@@ -667,7 +673,7 @@ class LineBotClient:
         """
         return self._liff.add_liff_app(add_liff_app_request)
 
-    def add_liff_app_with_http_info(self, add_liff_app_request: AddLiffAppRequest) -> ApiResponse:
+    def add_liff_app_with_http_info(self, add_liff_app_request: AddLiffAppRequest) -> LiffApiResponse:
         """Create LIFF app
 
         Adding the LIFF app to a channel
@@ -691,7 +697,7 @@ class LineBotClient:
         """
         return self._liff.delete_liff_app(liff_id)
 
-    def delete_liff_app_with_http_info(self, liff_id: Annotated[StrictStr, Field(..., description='ID of the LIFF app to be updated')]) -> ApiResponse:
+    def delete_liff_app_with_http_info(self, liff_id: Annotated[StrictStr, Field(..., description='ID of the LIFF app to be updated')]) -> LiffApiResponse:
         """Delete LIFF app from a channel
 
         Deletes a LIFF app from a channel. 
@@ -713,7 +719,7 @@ class LineBotClient:
         """
         return self._liff.get_all_liff_apps()
 
-    def get_all_liff_apps_with_http_info(self) -> ApiResponse:
+    def get_all_liff_apps_with_http_info(self) -> LiffApiResponse:
         """Get all LIFF apps
 
         Gets information on all the LIFF apps added to the channel.
@@ -737,7 +743,7 @@ class LineBotClient:
         """
         return self._liff.update_liff_app(liff_id, update_liff_app_request)
 
-    def update_liff_app_with_http_info(self, liff_id: Annotated[StrictStr, Field(..., description='ID of the LIFF app to be updated')], update_liff_app_request: UpdateLiffAppRequest) -> ApiResponse:
+    def update_liff_app_with_http_info(self, liff_id: Annotated[StrictStr, Field(..., description='ID of the LIFF app to be updated')], update_liff_app_request: UpdateLiffAppRequest) -> LiffApiResponse:
         """Update LIFF app from a channel
 
         Update LIFF app settings
@@ -763,7 +769,7 @@ class LineBotClient:
         """
         return self._messaging_api.broadcast(broadcast_request, x_line_retry_key)
 
-    def broadcast_with_http_info(self, broadcast_request: BroadcastRequest, x_line_retry_key: Annotated[Optional[StrictStr], Field(description="Retry key. Specifies the UUID in hexadecimal format (e.g., `123e4567-e89b-12d3-a456-426614174000`) generated by any method. The retry key isn't generated by LINE. Each developer must generate their own retry key. ")] = None) -> ApiResponse:
+    def broadcast_with_http_info(self, broadcast_request: BroadcastRequest, x_line_retry_key: Annotated[Optional[StrictStr], Field(description="Retry key. Specifies the UUID in hexadecimal format (e.g., `123e4567-e89b-12d3-a456-426614174000`) generated by any method. The retry key isn't generated by LINE. Each developer must generate their own retry key. ")] = None) -> MessagingApiResponse:
         """Sends a message to multiple users at any time.
 
         :param broadcast_request: (required)
@@ -783,7 +789,7 @@ class LineBotClient:
         """
         return self._messaging_api.cancel_default_rich_menu()
 
-    def cancel_default_rich_menu_with_http_info(self) -> ApiResponse:
+    def cancel_default_rich_menu_with_http_info(self) -> MessagingApiResponse:
         """Cancel default rich menu
 
         :return: Returns the result object.
@@ -801,7 +807,7 @@ class LineBotClient:
         """
         return self._messaging_api.close_coupon(coupon_id)
 
-    def close_coupon_with_http_info(self, coupon_id: StrictStr) -> ApiResponse:
+    def close_coupon_with_http_info(self, coupon_id: StrictStr) -> MessagingApiResponse:
         """Close coupon
 
         :param coupon_id: (required)
@@ -821,7 +827,7 @@ class LineBotClient:
         """
         return self._messaging_api.create_coupon(coupon_create_request)
 
-    def create_coupon_with_http_info(self, coupon_create_request: Optional[CouponCreateRequest] = None) -> ApiResponse:
+    def create_coupon_with_http_info(self, coupon_create_request: Optional[CouponCreateRequest] = None) -> MessagingApiResponse:
         """Create a new coupon. Define coupon details such as type, title, and validity period.
 
         :param coupon_create_request:
@@ -841,7 +847,7 @@ class LineBotClient:
         """
         return self._messaging_api.create_rich_menu(rich_menu_request)
 
-    def create_rich_menu_with_http_info(self, rich_menu_request: RichMenuRequest) -> ApiResponse:
+    def create_rich_menu_with_http_info(self, rich_menu_request: RichMenuRequest) -> MessagingApiResponse:
         """Create rich menu
 
         :param rich_menu_request: (required)
@@ -861,7 +867,7 @@ class LineBotClient:
         """
         return self._messaging_api.create_rich_menu_alias(create_rich_menu_alias_request)
 
-    def create_rich_menu_alias_with_http_info(self, create_rich_menu_alias_request: CreateRichMenuAliasRequest) -> ApiResponse:
+    def create_rich_menu_alias_with_http_info(self, create_rich_menu_alias_request: CreateRichMenuAliasRequest) -> MessagingApiResponse:
         """Create rich menu alias
 
         :param create_rich_menu_alias_request: (required)
@@ -881,7 +887,7 @@ class LineBotClient:
         """
         return self._messaging_api.delete_rich_menu(rich_menu_id)
 
-    def delete_rich_menu_with_http_info(self, rich_menu_id: Annotated[StrictStr, Field(..., description='ID of a rich menu')]) -> ApiResponse:
+    def delete_rich_menu_with_http_info(self, rich_menu_id: Annotated[StrictStr, Field(..., description='ID of a rich menu')]) -> MessagingApiResponse:
         """Deletes a rich menu.
 
         :param rich_menu_id: ID of a rich menu (required)
@@ -901,7 +907,7 @@ class LineBotClient:
         """
         return self._messaging_api.delete_rich_menu_alias(rich_menu_alias_id)
 
-    def delete_rich_menu_alias_with_http_info(self, rich_menu_alias_id: Annotated[StrictStr, Field(..., description='Rich menu alias ID that you want to delete.')]) -> ApiResponse:
+    def delete_rich_menu_alias_with_http_info(self, rich_menu_alias_id: Annotated[StrictStr, Field(..., description='Rich menu alias ID that you want to delete.')]) -> MessagingApiResponse:
         """Delete rich menu alias
 
         :param rich_menu_alias_id: Rich menu alias ID that you want to delete. (required)
@@ -923,7 +929,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_aggregation_unit_name_list(limit, start)
 
-    def get_aggregation_unit_name_list_with_http_info(self, limit: Annotated[Optional[StrictStr], Field(description='The maximum number of aggregation units you can get per request. ')] = None, start: Annotated[Optional[StrictStr], Field(description="Value of the continuation token found in the next property of the JSON object returned in the response. If you can't get all the aggregation units in one request, include this parameter to get the remaining array. ")] = None) -> ApiResponse:
+    def get_aggregation_unit_name_list_with_http_info(self, limit: Annotated[Optional[StrictStr], Field(description='The maximum number of aggregation units you can get per request. ')] = None, start: Annotated[Optional[StrictStr], Field(description="Value of the continuation token found in the next property of the JSON object returned in the response. If you can't get all the aggregation units in one request, include this parameter to get the remaining array. ")] = None) -> MessagingApiResponse:
         """Get name list of units used this month
 
         :param limit: The maximum number of aggregation units you can get per request. 
@@ -943,7 +949,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_aggregation_unit_usage()
 
-    def get_aggregation_unit_usage_with_http_info(self) -> ApiResponse:
+    def get_aggregation_unit_usage_with_http_info(self) -> MessagingApiResponse:
         """Get number of units used this month
 
         :return: Returns the result object.
@@ -959,7 +965,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_bot_info()
 
-    def get_bot_info_with_http_info(self) -> ApiResponse:
+    def get_bot_info_with_http_info(self) -> MessagingApiResponse:
         """Get bot info
 
         :return: Returns the result object.
@@ -977,7 +983,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_coupon_detail(coupon_id)
 
-    def get_coupon_detail_with_http_info(self, coupon_id: StrictStr) -> ApiResponse:
+    def get_coupon_detail_with_http_info(self, coupon_id: StrictStr) -> MessagingApiResponse:
         """Get coupon detail
 
         :param coupon_id: (required)
@@ -995,7 +1001,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_default_rich_menu_id()
 
-    def get_default_rich_menu_id_with_http_info(self) -> ApiResponse:
+    def get_default_rich_menu_id_with_http_info(self) -> MessagingApiResponse:
         """Gets the ID of the default rich menu set with the Messaging API.
 
         :return: Returns the result object.
@@ -1015,7 +1021,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_followers(start, limit)
 
-    def get_followers_with_http_info(self, start: Annotated[Optional[StrictStr], Field(description='Value of the continuation token found in the next property of the JSON object returned in the response. Include this parameter to get the next array of user IDs. ')] = None, limit: Annotated[Optional[conint(strict=True, le=1000)], Field(description='The maximum number of user IDs to retrieve in a single request.')] = None) -> ApiResponse:
+    def get_followers_with_http_info(self, start: Annotated[Optional[StrictStr], Field(description='Value of the continuation token found in the next property of the JSON object returned in the response. Include this parameter to get the next array of user IDs. ')] = None, limit: Annotated[Optional[conint(strict=True, le=1000)], Field(description='The maximum number of user IDs to retrieve in a single request.')] = None) -> MessagingApiResponse:
         """Get a list of users who added your LINE Official Account as a friend
 
         :param start: Value of the continuation token found in the next property of the JSON object returned in the response. Include this parameter to get the next array of user IDs. 
@@ -1037,7 +1043,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_group_member_count(group_id)
 
-    def get_group_member_count_with_http_info(self, group_id: Annotated[StrictStr, Field(..., description='Group ID')]) -> ApiResponse:
+    def get_group_member_count_with_http_info(self, group_id: Annotated[StrictStr, Field(..., description='Group ID')]) -> MessagingApiResponse:
         """Get number of users in a group chat
 
         :param group_id: Group ID (required)
@@ -1059,7 +1065,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_group_member_profile(group_id, user_id)
 
-    def get_group_member_profile_with_http_info(self, group_id: Annotated[StrictStr, Field(..., description='Group ID')], user_id: Annotated[StrictStr, Field(..., description='User ID')]) -> ApiResponse:
+    def get_group_member_profile_with_http_info(self, group_id: Annotated[StrictStr, Field(..., description='Group ID')], user_id: Annotated[StrictStr, Field(..., description='User ID')]) -> MessagingApiResponse:
         """Get group chat member profile
 
         :param group_id: Group ID (required)
@@ -1083,7 +1089,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_group_members_ids(group_id, start)
 
-    def get_group_members_ids_with_http_info(self, group_id: Annotated[StrictStr, Field(..., description='Group ID')], start: Annotated[Optional[StrictStr], Field(description='Value of the continuation token found in the `next` property of the JSON object returned in the response. Include this parameter to get the next array of user IDs for the members of the group. ')] = None) -> ApiResponse:
+    def get_group_members_ids_with_http_info(self, group_id: Annotated[StrictStr, Field(..., description='Group ID')], start: Annotated[Optional[StrictStr], Field(description='Value of the continuation token found in the `next` property of the JSON object returned in the response. Include this parameter to get the next array of user IDs for the members of the group. ')] = None) -> MessagingApiResponse:
         """Get group chat member user IDs
 
         :param group_id: Group ID (required)
@@ -1105,7 +1111,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_group_summary(group_id)
 
-    def get_group_summary_with_http_info(self, group_id: Annotated[StrictStr, Field(..., description='Group ID')]) -> ApiResponse:
+    def get_group_summary_with_http_info(self, group_id: Annotated[StrictStr, Field(..., description='Group ID')]) -> MessagingApiResponse:
         """Get group chat summary
 
         :param group_id: Group ID (required)
@@ -1129,7 +1135,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_joined_membership_users(membership_id, start, limit)
 
-    def get_joined_membership_users_with_http_info(self, membership_id: Annotated[StrictInt, Field(..., description='Membership plan ID.')], start: Annotated[Optional[StrictStr], Field(description="A continuation token to get next remaining membership user IDs. Returned only when there are remaining user IDs that weren't returned in the userIds property in the previous request. The continuation token expires in 24 hours (86,400 seconds). ")] = None, limit: Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description='The max number of items to return for this API call. The value is set to 300 by default, but the max acceptable value is 1000. ')] = None) -> ApiResponse:
+    def get_joined_membership_users_with_http_info(self, membership_id: Annotated[StrictInt, Field(..., description='Membership plan ID.')], start: Annotated[Optional[StrictStr], Field(description="A continuation token to get next remaining membership user IDs. Returned only when there are remaining user IDs that weren't returned in the userIds property in the previous request. The continuation token expires in 24 hours (86,400 seconds). ")] = None, limit: Annotated[Optional[conint(strict=True, le=1000, ge=1)], Field(description='The max number of items to return for this API call. The value is set to 300 by default, but the max acceptable value is 1000. ')] = None) -> MessagingApiResponse:
         """Get a list of user IDs who joined the membership.
 
         :param membership_id: Membership plan ID. (required)
@@ -1151,7 +1157,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_membership_list()
 
-    def get_membership_list_with_http_info(self) -> ApiResponse:
+    def get_membership_list_with_http_info(self) -> MessagingApiResponse:
         """Get a list of memberships.
 
         :return: Returns the result object.
@@ -1169,7 +1175,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_membership_subscription(user_id)
 
-    def get_membership_subscription_with_http_info(self, user_id: Annotated[StrictStr, Field(..., description='User ID')]) -> ApiResponse:
+    def get_membership_subscription_with_http_info(self, user_id: Annotated[StrictStr, Field(..., description='User ID')]) -> MessagingApiResponse:
         """Get a user's membership subscription.
 
         :param user_id: User ID (required)
@@ -1187,7 +1193,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_message_quota()
 
-    def get_message_quota_with_http_info(self) -> ApiResponse:
+    def get_message_quota_with_http_info(self) -> MessagingApiResponse:
         """Gets the target limit for sending messages in the current month. The total number of the free messages and the additional messages is returned.
 
         :return: Returns the result object.
@@ -1203,7 +1209,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_message_quota_consumption()
 
-    def get_message_quota_consumption_with_http_info(self) -> ApiResponse:
+    def get_message_quota_consumption_with_http_info(self) -> MessagingApiResponse:
         """Gets the number of messages sent in the current month.
 
         :return: Returns the result object.
@@ -1221,7 +1227,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_narrowcast_progress(request_id)
 
-    def get_narrowcast_progress_with_http_info(self, request_id: Annotated[StrictStr, Field(..., description="The narrowcast message's request ID. Each Messaging API request has a request ID.")]) -> ApiResponse:
+    def get_narrowcast_progress_with_http_info(self, request_id: Annotated[StrictStr, Field(..., description="The narrowcast message's request ID. Each Messaging API request has a request ID.")]) -> MessagingApiResponse:
         """Gets the status of a narrowcast message.
 
         :param request_id: The narrowcast message's request ID. Each Messaging API request has a request ID. (required)
@@ -1241,7 +1247,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_number_of_sent_broadcast_messages(var_date)
 
-    def get_number_of_sent_broadcast_messages_with_http_info(self, var_date: Annotated[StrictStr, Field(..., description='Date the messages were sent  Format: yyyyMMdd (e.g. 20191231) Timezone: UTC+9 ')]) -> ApiResponse:
+    def get_number_of_sent_broadcast_messages_with_http_info(self, var_date: Annotated[StrictStr, Field(..., description='Date the messages were sent  Format: yyyyMMdd (e.g. 20191231) Timezone: UTC+9 ')]) -> MessagingApiResponse:
         """Get number of sent broadcast messages
 
         :param var_date: Date the messages were sent  Format: yyyyMMdd (e.g. 20191231) Timezone: UTC+9  (required)
@@ -1261,7 +1267,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_number_of_sent_multicast_messages(var_date)
 
-    def get_number_of_sent_multicast_messages_with_http_info(self, var_date: Annotated[StrictStr, Field(..., description='Date the messages were sent  Format: `yyyyMMdd` (e.g. `20191231`) Timezone: UTC+9 ')]) -> ApiResponse:
+    def get_number_of_sent_multicast_messages_with_http_info(self, var_date: Annotated[StrictStr, Field(..., description='Date the messages were sent  Format: `yyyyMMdd` (e.g. `20191231`) Timezone: UTC+9 ')]) -> MessagingApiResponse:
         """Get number of sent multicast messages
 
         :param var_date: Date the messages were sent  Format: `yyyyMMdd` (e.g. `20191231`) Timezone: UTC+9  (required)
@@ -1281,7 +1287,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_number_of_sent_push_messages(var_date)
 
-    def get_number_of_sent_push_messages_with_http_info(self, var_date: Annotated[StrictStr, Field(..., description='Date the messages were sent  Format: `yyyyMMdd` (e.g. `20191231`) Timezone: UTC+9 ')]) -> ApiResponse:
+    def get_number_of_sent_push_messages_with_http_info(self, var_date: Annotated[StrictStr, Field(..., description='Date the messages were sent  Format: `yyyyMMdd` (e.g. `20191231`) Timezone: UTC+9 ')]) -> MessagingApiResponse:
         """Get number of sent push messages
 
         :param var_date: Date the messages were sent  Format: `yyyyMMdd` (e.g. `20191231`) Timezone: UTC+9  (required)
@@ -1301,7 +1307,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_number_of_sent_reply_messages(var_date)
 
-    def get_number_of_sent_reply_messages_with_http_info(self, var_date: Annotated[StrictStr, Field(..., description='Date the messages were sent  Format: `yyyyMMdd` (e.g. `20191231`) Timezone: UTC+9 ')]) -> ApiResponse:
+    def get_number_of_sent_reply_messages_with_http_info(self, var_date: Annotated[StrictStr, Field(..., description='Date the messages were sent  Format: `yyyyMMdd` (e.g. `20191231`) Timezone: UTC+9 ')]) -> MessagingApiResponse:
         """Get number of sent reply messages
 
         :param var_date: Date the messages were sent  Format: `yyyyMMdd` (e.g. `20191231`) Timezone: UTC+9  (required)
@@ -1321,7 +1327,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_pnp_message_statistics(var_date)
 
-    def get_pnp_message_statistics_with_http_info(self, var_date: Annotated[constr(strict=True), Field(..., description='Date the message was sent  Format: `yyyyMMdd` (Example:`20211231`) Time zone: UTC+9 ')]) -> ApiResponse:
+    def get_pnp_message_statistics_with_http_info(self, var_date: Annotated[constr(strict=True), Field(..., description='Date the message was sent  Format: `yyyyMMdd` (Example:`20211231`) Time zone: UTC+9 ')]) -> MessagingApiResponse:
         """Get number of sent LINE notification messages
 
         :param var_date: Date the message was sent  Format: `yyyyMMdd` (Example:`20211231`) Time zone: UTC+9  (required)
@@ -1341,7 +1347,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_profile(user_id)
 
-    def get_profile_with_http_info(self, user_id: Annotated[StrictStr, Field(..., description='User ID')]) -> ApiResponse:
+    def get_profile_with_http_info(self, user_id: Annotated[StrictStr, Field(..., description='User ID')]) -> MessagingApiResponse:
         """Get profile
 
         :param user_id: User ID (required)
@@ -1361,7 +1367,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_rich_menu(rich_menu_id)
 
-    def get_rich_menu_with_http_info(self, rich_menu_id: Annotated[StrictStr, Field(..., description='ID of a rich menu')]) -> ApiResponse:
+    def get_rich_menu_with_http_info(self, rich_menu_id: Annotated[StrictStr, Field(..., description='ID of a rich menu')]) -> MessagingApiResponse:
         """Gets a rich menu via a rich menu ID.
 
         :param rich_menu_id: ID of a rich menu (required)
@@ -1381,7 +1387,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_rich_menu_alias(rich_menu_alias_id)
 
-    def get_rich_menu_alias_with_http_info(self, rich_menu_alias_id: Annotated[StrictStr, Field(..., description='The rich menu alias ID whose information you want to obtain.')]) -> ApiResponse:
+    def get_rich_menu_alias_with_http_info(self, rich_menu_alias_id: Annotated[StrictStr, Field(..., description='The rich menu alias ID whose information you want to obtain.')]) -> MessagingApiResponse:
         """Get rich menu alias information
 
         :param rich_menu_alias_id: The rich menu alias ID whose information you want to obtain. (required)
@@ -1399,7 +1405,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_rich_menu_alias_list()
 
-    def get_rich_menu_alias_list_with_http_info(self) -> ApiResponse:
+    def get_rich_menu_alias_list_with_http_info(self) -> MessagingApiResponse:
         """Get list of rich menu alias
 
         :return: Returns the result object.
@@ -1417,7 +1423,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_rich_menu_batch_progress(request_id)
 
-    def get_rich_menu_batch_progress_with_http_info(self, request_id: Annotated[StrictStr, Field(..., description='A request ID used to batch control the rich menu linked to the user. Each Messaging API request has a request ID.')]) -> ApiResponse:
+    def get_rich_menu_batch_progress_with_http_info(self, request_id: Annotated[StrictStr, Field(..., description='A request ID used to batch control the rich menu linked to the user. Each Messaging API request has a request ID.')]) -> MessagingApiResponse:
         """Get the status of Replace or unlink a linked rich menus in batches.
 
         :param request_id: A request ID used to batch control the rich menu linked to the user. Each Messaging API request has a request ID. (required)
@@ -1437,7 +1443,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_rich_menu_id_of_user(user_id)
 
-    def get_rich_menu_id_of_user_with_http_info(self, user_id: Annotated[StrictStr, Field(..., description='User ID. Found in the `source` object of webhook event objects. Do not use the LINE ID used in LINE.')]) -> ApiResponse:
+    def get_rich_menu_id_of_user_with_http_info(self, user_id: Annotated[StrictStr, Field(..., description='User ID. Found in the `source` object of webhook event objects. Do not use the LINE ID used in LINE.')]) -> MessagingApiResponse:
         """Get rich menu ID of user
 
         :param user_id: User ID. Found in the `source` object of webhook event objects. Do not use the LINE ID used in LINE. (required)
@@ -1455,7 +1461,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_rich_menu_list()
 
-    def get_rich_menu_list_with_http_info(self) -> ApiResponse:
+    def get_rich_menu_list_with_http_info(self) -> MessagingApiResponse:
         """Get rich menu list
 
         :return: Returns the result object.
@@ -1473,7 +1479,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_room_member_count(room_id)
 
-    def get_room_member_count_with_http_info(self, room_id: Annotated[StrictStr, Field(..., description='Room ID')]) -> ApiResponse:
+    def get_room_member_count_with_http_info(self, room_id: Annotated[StrictStr, Field(..., description='Room ID')]) -> MessagingApiResponse:
         """Get number of users in a multi-person chat
 
         :param room_id: Room ID (required)
@@ -1495,7 +1501,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_room_member_profile(room_id, user_id)
 
-    def get_room_member_profile_with_http_info(self, room_id: Annotated[StrictStr, Field(..., description='Room ID')], user_id: Annotated[StrictStr, Field(..., description='User ID')]) -> ApiResponse:
+    def get_room_member_profile_with_http_info(self, room_id: Annotated[StrictStr, Field(..., description='Room ID')], user_id: Annotated[StrictStr, Field(..., description='User ID')]) -> MessagingApiResponse:
         """Get multi-person chat member profile
 
         :param room_id: Room ID (required)
@@ -1519,7 +1525,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_room_members_ids(room_id, start)
 
-    def get_room_members_ids_with_http_info(self, room_id: Annotated[StrictStr, Field(..., description='Room ID')], start: Annotated[Optional[StrictStr], Field(description='Value of the continuation token found in the `next` property of the JSON object returned in the response. Include this parameter to get the next array of user IDs for the members of the group. ')] = None) -> ApiResponse:
+    def get_room_members_ids_with_http_info(self, room_id: Annotated[StrictStr, Field(..., description='Room ID')], start: Annotated[Optional[StrictStr], Field(description='Value of the continuation token found in the `next` property of the JSON object returned in the response. Include this parameter to get the next array of user IDs for the members of the group. ')] = None) -> MessagingApiResponse:
         """Get multi-person chat member user IDs
 
         :param room_id: Room ID (required)
@@ -1539,7 +1545,7 @@ class LineBotClient:
         """
         return self._messaging_api.get_webhook_endpoint()
 
-    def get_webhook_endpoint_with_http_info(self) -> ApiResponse:
+    def get_webhook_endpoint_with_http_info(self) -> MessagingApiResponse:
         """Get webhook endpoint information
 
         :return: Returns the result object.
@@ -1557,7 +1563,7 @@ class LineBotClient:
         """
         return self._messaging_api.issue_link_token(user_id)
 
-    def issue_link_token_with_http_info(self, user_id: Annotated[StrictStr, Field(..., description='User ID for the LINE account to be linked. Found in the `source` object of account link event objects. Do not use the LINE ID used in LINE. ')]) -> ApiResponse:
+    def issue_link_token_with_http_info(self, user_id: Annotated[StrictStr, Field(..., description='User ID for the LINE account to be linked. Found in the `source` object of account link event objects. Do not use the LINE ID used in LINE. ')]) -> MessagingApiResponse:
         """Issue link token
 
         :param user_id: User ID for the LINE account to be linked. Found in the `source` object of account link event objects. Do not use the LINE ID used in LINE.  (required)
@@ -1577,7 +1583,7 @@ class LineBotClient:
         """
         return self._messaging_api.leave_group(group_id)
 
-    def leave_group_with_http_info(self, group_id: Annotated[StrictStr, Field(..., description='Group ID')]) -> ApiResponse:
+    def leave_group_with_http_info(self, group_id: Annotated[StrictStr, Field(..., description='Group ID')]) -> MessagingApiResponse:
         """Leave group chat
 
         :param group_id: Group ID (required)
@@ -1597,7 +1603,7 @@ class LineBotClient:
         """
         return self._messaging_api.leave_room(room_id)
 
-    def leave_room_with_http_info(self, room_id: Annotated[StrictStr, Field(..., description='Room ID')]) -> ApiResponse:
+    def leave_room_with_http_info(self, room_id: Annotated[StrictStr, Field(..., description='Room ID')]) -> MessagingApiResponse:
         """Leave multi-person chat
 
         :param room_id: Room ID (required)
@@ -1619,7 +1625,7 @@ class LineBotClient:
         """
         return self._messaging_api.link_rich_menu_id_to_user(user_id, rich_menu_id)
 
-    def link_rich_menu_id_to_user_with_http_info(self, user_id: Annotated[StrictStr, Field(..., description='User ID. Found in the `source` object of webhook event objects. Do not use the LINE ID used in LINE.')], rich_menu_id: Annotated[StrictStr, Field(..., description='ID of a rich menu')]) -> ApiResponse:
+    def link_rich_menu_id_to_user_with_http_info(self, user_id: Annotated[StrictStr, Field(..., description='User ID. Found in the `source` object of webhook event objects. Do not use the LINE ID used in LINE.')], rich_menu_id: Annotated[StrictStr, Field(..., description='ID of a rich menu')]) -> MessagingApiResponse:
         """Link rich menu to user.
 
         :param user_id: User ID. Found in the `source` object of webhook event objects. Do not use the LINE ID used in LINE. (required)
@@ -1641,7 +1647,7 @@ class LineBotClient:
         """
         return self._messaging_api.link_rich_menu_id_to_users(rich_menu_bulk_link_request)
 
-    def link_rich_menu_id_to_users_with_http_info(self, rich_menu_bulk_link_request: RichMenuBulkLinkRequest) -> ApiResponse:
+    def link_rich_menu_id_to_users_with_http_info(self, rich_menu_bulk_link_request: RichMenuBulkLinkRequest) -> MessagingApiResponse:
         """Link rich menu to multiple users
 
         :param rich_menu_bulk_link_request: (required)
@@ -1665,7 +1671,7 @@ class LineBotClient:
         """
         return self._messaging_api.list_coupon(status, start, limit)
 
-    def list_coupon_with_http_info(self, status: Annotated[Optional[conlist(StrictStr, unique_items=True)], Field(description='Filter coupons by their status.')] = None, start: Annotated[Optional[StrictStr], Field(description='Pagination token to retrieve the next page of results.')] = None, limit: Annotated[Optional[conint(strict=True, le=100, ge=1)], Field(description='Maximum number of coupons to return per request.')] = None) -> ApiResponse:
+    def list_coupon_with_http_info(self, status: Annotated[Optional[conlist(StrictStr, unique_items=True)], Field(description='Filter coupons by their status.')] = None, start: Annotated[Optional[StrictStr], Field(description='Pagination token to retrieve the next page of results.')] = None, limit: Annotated[Optional[conint(strict=True, le=100, ge=1)], Field(description='Maximum number of coupons to return per request.')] = None) -> MessagingApiResponse:
         """Get a paginated list of coupons.
 
         :param status: Filter coupons by their status.
@@ -1689,7 +1695,7 @@ class LineBotClient:
         """
         return self._messaging_api.mark_messages_as_read(mark_messages_as_read_request)
 
-    def mark_messages_as_read_with_http_info(self, mark_messages_as_read_request: MarkMessagesAsReadRequest) -> ApiResponse:
+    def mark_messages_as_read_with_http_info(self, mark_messages_as_read_request: MarkMessagesAsReadRequest) -> MessagingApiResponse:
         """Mark messages from users as read
 
         :param mark_messages_as_read_request: (required)
@@ -1709,7 +1715,7 @@ class LineBotClient:
         """
         return self._messaging_api.mark_messages_as_read_by_token(mark_messages_as_read_by_token_request)
 
-    def mark_messages_as_read_by_token_with_http_info(self, mark_messages_as_read_by_token_request: MarkMessagesAsReadByTokenRequest) -> ApiResponse:
+    def mark_messages_as_read_by_token_with_http_info(self, mark_messages_as_read_by_token_request: MarkMessagesAsReadByTokenRequest) -> MessagingApiResponse:
         """Mark messages from users as read by token
 
         :param mark_messages_as_read_by_token_request: (required)
@@ -1731,7 +1737,7 @@ class LineBotClient:
         """
         return self._messaging_api.multicast(multicast_request, x_line_retry_key)
 
-    def multicast_with_http_info(self, multicast_request: MulticastRequest, x_line_retry_key: Annotated[Optional[StrictStr], Field(description="Retry key. Specifies the UUID in hexadecimal format (e.g., `123e4567-e89b-12d3-a456-426614174000`) generated by any method. The retry key isn't generated by LINE. Each developer must generate their own retry key. ")] = None) -> ApiResponse:
+    def multicast_with_http_info(self, multicast_request: MulticastRequest, x_line_retry_key: Annotated[Optional[StrictStr], Field(description="Retry key. Specifies the UUID in hexadecimal format (e.g., `123e4567-e89b-12d3-a456-426614174000`) generated by any method. The retry key isn't generated by LINE. Each developer must generate their own retry key. ")] = None) -> MessagingApiResponse:
         """An API that efficiently sends the same message to multiple user IDs. You can't send messages to group chats or multi-person chats.
 
         :param multicast_request: (required)
@@ -1755,7 +1761,7 @@ class LineBotClient:
         """
         return self._messaging_api.narrowcast(narrowcast_request, x_line_retry_key)
 
-    def narrowcast_with_http_info(self, narrowcast_request: NarrowcastRequest, x_line_retry_key: Annotated[Optional[StrictStr], Field(description="Retry key. Specifies the UUID in hexadecimal format (e.g., `123e4567-e89b-12d3-a456-426614174000`) generated by any method. The retry key isn't generated by LINE. Each developer must generate their own retry key. ")] = None) -> ApiResponse:
+    def narrowcast_with_http_info(self, narrowcast_request: NarrowcastRequest, x_line_retry_key: Annotated[Optional[StrictStr], Field(description="Retry key. Specifies the UUID in hexadecimal format (e.g., `123e4567-e89b-12d3-a456-426614174000`) generated by any method. The retry key isn't generated by LINE. Each developer must generate their own retry key. ")] = None) -> MessagingApiResponse:
         """Send narrowcast message
 
         :param narrowcast_request: (required)
@@ -1779,7 +1785,7 @@ class LineBotClient:
         """
         return self._messaging_api.push_message(push_message_request, x_line_retry_key)
 
-    def push_message_with_http_info(self, push_message_request: PushMessageRequest, x_line_retry_key: Annotated[Optional[StrictStr], Field(description="Retry key. Specifies the UUID in hexadecimal format (e.g., `123e4567-e89b-12d3-a456-426614174000`) generated by any method. The retry key isn't generated by LINE. Each developer must generate their own retry key. ")] = None) -> ApiResponse:
+    def push_message_with_http_info(self, push_message_request: PushMessageRequest, x_line_retry_key: Annotated[Optional[StrictStr], Field(description="Retry key. Specifies the UUID in hexadecimal format (e.g., `123e4567-e89b-12d3-a456-426614174000`) generated by any method. The retry key isn't generated by LINE. Each developer must generate their own retry key. ")] = None) -> MessagingApiResponse:
         """Sends a message to a user, group chat, or multi-person chat at any time.
 
         :param push_message_request: (required)
@@ -1803,7 +1809,7 @@ class LineBotClient:
         """
         return self._messaging_api.push_messages_by_phone(pnp_messages_request, x_line_delivery_tag)
 
-    def push_messages_by_phone_with_http_info(self, pnp_messages_request: PnpMessagesRequest, x_line_delivery_tag: Annotated[Optional[constr(strict=True, max_length=100, min_length=16)], Field(description='String returned in the delivery.data property of the delivery completion event via Webhook.')] = None) -> ApiResponse:
+    def push_messages_by_phone_with_http_info(self, pnp_messages_request: PnpMessagesRequest, x_line_delivery_tag: Annotated[Optional[constr(strict=True, max_length=100, min_length=16)], Field(description='String returned in the delivery.data property of the delivery completion event via Webhook.')] = None) -> MessagingApiResponse:
         """Send LINE notification message
 
         :param pnp_messages_request: (required)
@@ -1825,7 +1831,7 @@ class LineBotClient:
         """
         return self._messaging_api.reply_message(reply_message_request)
 
-    def reply_message_with_http_info(self, reply_message_request: ReplyMessageRequest) -> ApiResponse:
+    def reply_message_with_http_info(self, reply_message_request: ReplyMessageRequest) -> MessagingApiResponse:
         """Send reply message
 
         :param reply_message_request: (required)
@@ -1845,7 +1851,7 @@ class LineBotClient:
         """
         return self._messaging_api.rich_menu_batch(rich_menu_batch_request)
 
-    def rich_menu_batch_with_http_info(self, rich_menu_batch_request: RichMenuBatchRequest) -> ApiResponse:
+    def rich_menu_batch_with_http_info(self, rich_menu_batch_request: RichMenuBatchRequest) -> MessagingApiResponse:
         """You can use this endpoint to batch control the rich menu linked to the users using the endpoint such as Link rich menu to user. The following operations are available:  1. Replace a rich menu with another rich menu for all users linked to a specific rich menu 2. Unlink a rich menu for all users linked to a specific rich menu 3. Unlink a rich menu for all users linked the rich menu 
 
         :param rich_menu_batch_request: (required)
@@ -1865,7 +1871,7 @@ class LineBotClient:
         """
         return self._messaging_api.set_default_rich_menu(rich_menu_id)
 
-    def set_default_rich_menu_with_http_info(self, rich_menu_id: Annotated[StrictStr, Field(..., description='ID of a rich menu')]) -> ApiResponse:
+    def set_default_rich_menu_with_http_info(self, rich_menu_id: Annotated[StrictStr, Field(..., description='ID of a rich menu')]) -> MessagingApiResponse:
         """Set default rich menu
 
         :param rich_menu_id: ID of a rich menu (required)
@@ -1885,7 +1891,7 @@ class LineBotClient:
         """
         return self._messaging_api.set_webhook_endpoint(set_webhook_endpoint_request)
 
-    def set_webhook_endpoint_with_http_info(self, set_webhook_endpoint_request: SetWebhookEndpointRequest) -> ApiResponse:
+    def set_webhook_endpoint_with_http_info(self, set_webhook_endpoint_request: SetWebhookEndpointRequest) -> MessagingApiResponse:
         """Set webhook endpoint URL
 
         :param set_webhook_endpoint_request: (required)
@@ -1905,7 +1911,7 @@ class LineBotClient:
         """
         return self._messaging_api.show_loading_animation(show_loading_animation_request)
 
-    def show_loading_animation_with_http_info(self, show_loading_animation_request: ShowLoadingAnimationRequest) -> ApiResponse:
+    def show_loading_animation_with_http_info(self, show_loading_animation_request: ShowLoadingAnimationRequest) -> MessagingApiResponse:
         """Display a loading animation in one-on-one chats between users and LINE Official Accounts.
 
         :param show_loading_animation_request: (required)
@@ -1925,7 +1931,7 @@ class LineBotClient:
         """
         return self._messaging_api.test_webhook_endpoint(test_webhook_endpoint_request)
 
-    def test_webhook_endpoint_with_http_info(self, test_webhook_endpoint_request: Optional[TestWebhookEndpointRequest] = None) -> ApiResponse:
+    def test_webhook_endpoint_with_http_info(self, test_webhook_endpoint_request: Optional[TestWebhookEndpointRequest] = None) -> MessagingApiResponse:
         """Test webhook endpoint
 
         :param test_webhook_endpoint_request:
@@ -1945,7 +1951,7 @@ class LineBotClient:
         """
         return self._messaging_api.unlink_rich_menu_id_from_user(user_id)
 
-    def unlink_rich_menu_id_from_user_with_http_info(self, user_id: Annotated[StrictStr, Field(..., description='User ID. Found in the `source` object of webhook event objects. Do not use the LINE ID used in LINE.')]) -> ApiResponse:
+    def unlink_rich_menu_id_from_user_with_http_info(self, user_id: Annotated[StrictStr, Field(..., description='User ID. Found in the `source` object of webhook event objects. Do not use the LINE ID used in LINE.')]) -> MessagingApiResponse:
         """Unlink rich menu from user
 
         :param user_id: User ID. Found in the `source` object of webhook event objects. Do not use the LINE ID used in LINE. (required)
@@ -1965,7 +1971,7 @@ class LineBotClient:
         """
         return self._messaging_api.unlink_rich_menu_id_from_users(rich_menu_bulk_unlink_request)
 
-    def unlink_rich_menu_id_from_users_with_http_info(self, rich_menu_bulk_unlink_request: RichMenuBulkUnlinkRequest) -> ApiResponse:
+    def unlink_rich_menu_id_from_users_with_http_info(self, rich_menu_bulk_unlink_request: RichMenuBulkUnlinkRequest) -> MessagingApiResponse:
         """Unlink rich menus from multiple users
 
         :param rich_menu_bulk_unlink_request: (required)
@@ -1987,7 +1993,7 @@ class LineBotClient:
         """
         return self._messaging_api.update_rich_menu_alias(rich_menu_alias_id, update_rich_menu_alias_request)
 
-    def update_rich_menu_alias_with_http_info(self, rich_menu_alias_id: Annotated[StrictStr, Field(..., description='The rich menu alias ID you want to update.')], update_rich_menu_alias_request: UpdateRichMenuAliasRequest) -> ApiResponse:
+    def update_rich_menu_alias_with_http_info(self, rich_menu_alias_id: Annotated[StrictStr, Field(..., description='The rich menu alias ID you want to update.')], update_rich_menu_alias_request: UpdateRichMenuAliasRequest) -> MessagingApiResponse:
         """Update rich menu alias
 
         :param rich_menu_alias_id: The rich menu alias ID you want to update. (required)
@@ -2009,7 +2015,7 @@ class LineBotClient:
         """
         return self._messaging_api.validate_broadcast(validate_message_request)
 
-    def validate_broadcast_with_http_info(self, validate_message_request: ValidateMessageRequest) -> ApiResponse:
+    def validate_broadcast_with_http_info(self, validate_message_request: ValidateMessageRequest) -> MessagingApiResponse:
         """Validate message objects of a broadcast message
 
         :param validate_message_request: (required)
@@ -2029,7 +2035,7 @@ class LineBotClient:
         """
         return self._messaging_api.validate_multicast(validate_message_request)
 
-    def validate_multicast_with_http_info(self, validate_message_request: ValidateMessageRequest) -> ApiResponse:
+    def validate_multicast_with_http_info(self, validate_message_request: ValidateMessageRequest) -> MessagingApiResponse:
         """Validate message objects of a multicast message
 
         :param validate_message_request: (required)
@@ -2049,7 +2055,7 @@ class LineBotClient:
         """
         return self._messaging_api.validate_narrowcast(validate_message_request)
 
-    def validate_narrowcast_with_http_info(self, validate_message_request: ValidateMessageRequest) -> ApiResponse:
+    def validate_narrowcast_with_http_info(self, validate_message_request: ValidateMessageRequest) -> MessagingApiResponse:
         """Validate message objects of a narrowcast message
 
         :param validate_message_request: (required)
@@ -2069,7 +2075,7 @@ class LineBotClient:
         """
         return self._messaging_api.validate_push(validate_message_request)
 
-    def validate_push_with_http_info(self, validate_message_request: ValidateMessageRequest) -> ApiResponse:
+    def validate_push_with_http_info(self, validate_message_request: ValidateMessageRequest) -> MessagingApiResponse:
         """Validate message objects of a push message
 
         :param validate_message_request: (required)
@@ -2089,7 +2095,7 @@ class LineBotClient:
         """
         return self._messaging_api.validate_reply(validate_message_request)
 
-    def validate_reply_with_http_info(self, validate_message_request: ValidateMessageRequest) -> ApiResponse:
+    def validate_reply_with_http_info(self, validate_message_request: ValidateMessageRequest) -> MessagingApiResponse:
         """Validate message objects of a reply message
 
         :param validate_message_request: (required)
@@ -2109,7 +2115,7 @@ class LineBotClient:
         """
         return self._messaging_api.validate_rich_menu_batch_request(rich_menu_batch_request)
 
-    def validate_rich_menu_batch_request_with_http_info(self, rich_menu_batch_request: RichMenuBatchRequest) -> ApiResponse:
+    def validate_rich_menu_batch_request_with_http_info(self, rich_menu_batch_request: RichMenuBatchRequest) -> MessagingApiResponse:
         """Validate a request body of the Replace or unlink the linked rich menus in batches endpoint.
 
         :param rich_menu_batch_request: (required)
@@ -2129,7 +2135,7 @@ class LineBotClient:
         """
         return self._messaging_api.validate_rich_menu_object(rich_menu_request)
 
-    def validate_rich_menu_object_with_http_info(self, rich_menu_request: RichMenuRequest) -> ApiResponse:
+    def validate_rich_menu_object_with_http_info(self, rich_menu_request: RichMenuRequest) -> MessagingApiResponse:
         """Validate rich menu object
 
         :param rich_menu_request: (required)
@@ -2149,7 +2155,7 @@ class LineBotClient:
         """
         return self._messaging_api_blob.get_message_content(message_id)
 
-    def get_message_content_with_http_info(self, message_id: Annotated[StrictStr, Field(..., description='Message ID of video or audio')]) -> ApiResponse:
+    def get_message_content_with_http_info(self, message_id: Annotated[StrictStr, Field(..., description='Message ID of video or audio')]) -> MessagingApiResponse:
         """Download image, video, and audio data sent from users.
 
         :param message_id: Message ID of video or audio (required)
@@ -2169,7 +2175,7 @@ class LineBotClient:
         """
         return self._messaging_api_blob.get_message_content_preview(message_id)
 
-    def get_message_content_preview_with_http_info(self, message_id: Annotated[StrictStr, Field(..., description='Message ID of image or video')]) -> ApiResponse:
+    def get_message_content_preview_with_http_info(self, message_id: Annotated[StrictStr, Field(..., description='Message ID of image or video')]) -> MessagingApiResponse:
         """Get a preview image of the image or video
 
         :param message_id: Message ID of image or video (required)
@@ -2189,7 +2195,7 @@ class LineBotClient:
         """
         return self._messaging_api_blob.get_message_content_transcoding_by_message_id(message_id)
 
-    def get_message_content_transcoding_by_message_id_with_http_info(self, message_id: Annotated[StrictStr, Field(..., description='Message ID of video or audio')]) -> ApiResponse:
+    def get_message_content_transcoding_by_message_id_with_http_info(self, message_id: Annotated[StrictStr, Field(..., description='Message ID of video or audio')]) -> MessagingApiResponse:
         """Verify the preparation status of a video or audio for getting
 
         :param message_id: Message ID of video or audio (required)
@@ -2209,7 +2215,7 @@ class LineBotClient:
         """
         return self._messaging_api_blob.get_rich_menu_image(rich_menu_id)
 
-    def get_rich_menu_image_with_http_info(self, rich_menu_id: Annotated[StrictStr, Field(..., description='ID of the rich menu with the image to be downloaded')]) -> ApiResponse:
+    def get_rich_menu_image_with_http_info(self, rich_menu_id: Annotated[StrictStr, Field(..., description='ID of the rich menu with the image to be downloaded')]) -> MessagingApiResponse:
         """Download rich menu image.
 
         :param rich_menu_id: ID of the rich menu with the image to be downloaded (required)
@@ -2231,7 +2237,7 @@ class LineBotClient:
         """
         return self._messaging_api_blob.set_rich_menu_image(rich_menu_id, body)
 
-    def set_rich_menu_image_with_http_info(self, rich_menu_id: Annotated[StrictStr, Field(..., description='The ID of the rich menu to attach the image to')], body: Union[StrictBytes, StrictStr]) -> ApiResponse:
+    def set_rich_menu_image_with_http_info(self, rich_menu_id: Annotated[StrictStr, Field(..., description='The ID of the rich menu to attach the image to')], body: Union[StrictBytes, StrictStr]) -> MessagingApiResponse:
         """Upload rich menu image
 
         :param rich_menu_id: The ID of the rich menu to attach the image to (required)
@@ -2255,7 +2261,7 @@ class LineBotClient:
         """
         return self._line_module.acquire_chat_control(chat_id, acquire_chat_control_request)
 
-    def acquire_chat_control_with_http_info(self, chat_id: Annotated[StrictStr, Field(..., description='The `userId`, `roomId`, or `groupId`')], acquire_chat_control_request: Optional[AcquireChatControlRequest] = None) -> ApiResponse:
+    def acquire_chat_control_with_http_info(self, chat_id: Annotated[StrictStr, Field(..., description='The `userId`, `roomId`, or `groupId`')], acquire_chat_control_request: Optional[AcquireChatControlRequest] = None) -> ModuleApiResponse:
         """If the Standby Channel wants to take the initiative (Chat Control), it calls the Acquire Control API. The channel that was previously an Active Channel will automatically switch to a Standby Channel. 
 
         :param chat_id: The `userId`, `roomId`, or `groupId` (required)
@@ -2277,7 +2283,7 @@ class LineBotClient:
         """
         return self._line_module.detach_module(detach_module_request)
 
-    def detach_module_with_http_info(self, detach_module_request: Optional[DetachModuleRequest] = None) -> ApiResponse:
+    def detach_module_with_http_info(self, detach_module_request: Optional[DetachModuleRequest] = None) -> ModuleApiResponse:
         """The module channel admin calls the Detach API to detach the module channel from a LINE Official Account.
 
         :param detach_module_request:
@@ -2299,7 +2305,7 @@ class LineBotClient:
         """
         return self._line_module.get_modules(start, limit)
 
-    def get_modules_with_http_info(self, start: Annotated[Optional[StrictStr], Field(description="Value of the continuation token found in the next property of the JSON object returned in the response. If you can't get all basic information about the bots in one request, include this parameter to get the remaining array. ")] = None, limit: Annotated[Optional[conint(strict=True, le=100)], Field(description='Specify the maximum number of bots that you get basic information from. The default value is 100. Max value: 100 ')] = None) -> ApiResponse:
+    def get_modules_with_http_info(self, start: Annotated[Optional[StrictStr], Field(description="Value of the continuation token found in the next property of the JSON object returned in the response. If you can't get all basic information about the bots in one request, include this parameter to get the remaining array. ")] = None, limit: Annotated[Optional[conint(strict=True, le=100)], Field(description='Specify the maximum number of bots that you get basic information from. The default value is 100. Max value: 100 ')] = None) -> ModuleApiResponse:
         """Gets a list of basic information about the bots of multiple LINE Official Accounts that have attached module channels.
 
         :param start: Value of the continuation token found in the next property of the JSON object returned in the response. If you can't get all basic information about the bots in one request, include this parameter to get the remaining array. 
@@ -2321,7 +2327,7 @@ class LineBotClient:
         """
         return self._line_module.release_chat_control(chat_id)
 
-    def release_chat_control_with_http_info(self, chat_id: Annotated[StrictStr, Field(..., description='The `userId`, `roomId`, or `groupId`')]) -> ApiResponse:
+    def release_chat_control_with_http_info(self, chat_id: Annotated[StrictStr, Field(..., description='The `userId`, `roomId`, or `groupId`')]) -> ModuleApiResponse:
         """To return the initiative (Chat Control) of Active Channel to Primary Channel, call the Release Control API. 
 
         :param chat_id: The `userId`, `roomId`, or `groupId` (required)
@@ -2359,7 +2365,7 @@ class LineBotClient:
         """
         return self._line_module_attach.attach_module(grant_type, code, redirect_uri, code_verifier, client_id, client_secret, region, basic_search_id, scope, brand_type)
 
-    def attach_module_with_http_info(self, grant_type: Annotated[StrictStr, Field(..., description='authorization_code')], code: Annotated[StrictStr, Field(..., description='Authorization code received from the LINE Platform.')], redirect_uri: Annotated[StrictStr, Field(..., description='Specify the redirect_uri specified in the URL for authentication and authorization.')], code_verifier: Annotated[Optional[StrictStr], Field(description='Specify when using PKCE (Proof Key for Code Exchange) defined in the OAuth 2.0 extension specification as a countermeasure against authorization code interception attacks.')] = None, client_id: Annotated[Optional[StrictStr], Field(description='Instead of using Authorization header, you can use this parameter to specify the channel ID of the module channel. You can find the channel ID of the module channel in the LINE Developers Console. ')] = None, client_secret: Annotated[Optional[StrictStr], Field(description='Instead of using Authorization header, you can use this parameter to specify the channel secret of the module channel. You can find the channel secret of the module channel in the LINE Developers Console. ')] = None, region: Annotated[Optional[StrictStr], Field(description='If you specified a value for region in the URL for authentication and authorization, specify the same value. ')] = None, basic_search_id: Annotated[Optional[StrictStr], Field(description='If you specified a value for basic_search_id in the URL for authentication and authorization, specify the same value.')] = None, scope: Annotated[Optional[StrictStr], Field(description='If you specified a value for scope in the URL for authentication and authorization, specify the same value.')] = None, brand_type: Annotated[Optional[StrictStr], Field(description='If you specified a value for brand_type in the URL for authentication and authorization, specify the same value.')] = None) -> ApiResponse:
+    def attach_module_with_http_info(self, grant_type: Annotated[StrictStr, Field(..., description='authorization_code')], code: Annotated[StrictStr, Field(..., description='Authorization code received from the LINE Platform.')], redirect_uri: Annotated[StrictStr, Field(..., description='Specify the redirect_uri specified in the URL for authentication and authorization.')], code_verifier: Annotated[Optional[StrictStr], Field(description='Specify when using PKCE (Proof Key for Code Exchange) defined in the OAuth 2.0 extension specification as a countermeasure against authorization code interception attacks.')] = None, client_id: Annotated[Optional[StrictStr], Field(description='Instead of using Authorization header, you can use this parameter to specify the channel ID of the module channel. You can find the channel ID of the module channel in the LINE Developers Console. ')] = None, client_secret: Annotated[Optional[StrictStr], Field(description='Instead of using Authorization header, you can use this parameter to specify the channel secret of the module channel. You can find the channel secret of the module channel in the LINE Developers Console. ')] = None, region: Annotated[Optional[StrictStr], Field(description='If you specified a value for region in the URL for authentication and authorization, specify the same value. ')] = None, basic_search_id: Annotated[Optional[StrictStr], Field(description='If you specified a value for basic_search_id in the URL for authentication and authorization, specify the same value.')] = None, scope: Annotated[Optional[StrictStr], Field(description='If you specified a value for scope in the URL for authentication and authorization, specify the same value.')] = None, brand_type: Annotated[Optional[StrictStr], Field(description='If you specified a value for brand_type in the URL for authentication and authorization, specify the same value.')] = None) -> ModuleattachApiResponse:
         """Attach by operation of the module channel provider
 
         :param grant_type: authorization_code (required)
@@ -2397,7 +2403,7 @@ class LineBotClient:
         """
         return self._shop.mission_sticker_v3(mission_sticker_request)
 
-    def mission_sticker_v3_with_http_info(self, mission_sticker_request: MissionStickerRequest) -> ApiResponse:
+    def mission_sticker_v3_with_http_info(self, mission_sticker_request: MissionStickerRequest) -> ShopApiResponse:
         """Sends a mission sticker.
 
         :param mission_sticker_request: (required)

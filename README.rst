@@ -350,37 +350,9 @@ LINE's SDK developer team decided to generate SDK code based on OpenAPI spec. ht
 
 As a result, LINE bot sdk 3.x is not compatible with 2.x. It can follow the future API changes very quickly.
 
-We will be maintaining only ``linebot.v3`` going forward.
-To utilize the latest features, we recommend you gradually transition to ``linebot.v3`` modules in your application, although you can still continue to use the 2.x ``linebot`` modules.
-
-While we won't update ``linebot`` modules anymore, users can still continue to use the version 2.x ``linebot`` modules.
-We also welcome pull requests for the version ``2.x`` and ``3.x`` modules.
+The legacy ``linebot`` (v2) modules have been removed. Only ``linebot.v3`` is supported.
 
 For a step-by-step migration guide with before/after examples, see `MIGRATION.md <MIGRATION.md>`__.
-
-
-How to suppress deprecation warnings
-------------------------------------
-If you keep using old line-bot-sdk library (``version < 3.x``) but use ``3.x``, you'll get
-
-::
-
-  LineBotSdkDeprecatedIn30: Call to deprecated method get_bot_info. (Use 'from linebot.v3 import LineBotClient' and 'LineBotClient(...).get_bot_info(...)' instead. See https://github.com/line/line-bot-sdk-python/blob/master/README.rst for more details.) -- Deprecated since version 3.0.0.
-
-
-If it's noisy, you can suppress this warning as follows.
-
-
-.. code:: python
-
-    import warnings
-    from linebot import LineBotSdkDeprecatedIn30
-
-    ## your code here
-    ...
-
-    if __name__ == '__main__':
-        warnings.filterwarnings("ignore", category=LineBotSdkDeprecatedIn30)
 
 
 Contributing

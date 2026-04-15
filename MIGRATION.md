@@ -2,9 +2,9 @@
 
 Starting with version 3.x, the LINE Bot SDK for Python provides a new set of modules under `linebot.v3`. These modules are auto-generated from the [LINE OpenAPI spec](https://github.com/line/line-openapi), making it easy to keep up with future API changes.
 
-The v3 modules are **not backward-compatible** with the previous `linebot` modules, but both coexist in the same package. This means you can migrate your code incrementally — one file or one endpoint at a time.
+The v3 modules are **not backward-compatible** with the previous `linebot` modules. The legacy (v2) modules have been removed — only `linebot.v3` is available.
 
-> **Note:** Only `linebot.v3` will be maintained going forward. The previous `linebot` modules (v2) will not receive updates.
+> **Note:** If you are still using v2 imports such as `from linebot import LineBotApi`, you must migrate them before upgrading. This guide walks through the migration step by step.
 
 ## Table of Contents
 
@@ -22,7 +22,6 @@ The v3 modules are **not backward-compatible** with the previous `linebot` modul
 - [Method mapping](#method-mapping)
 - [Error handling](#error-handling)
 - [Response headers / x-line-request-id](#response-headers--x-line-request-id)
-- [Suppressing deprecation warnings](#suppressing-deprecation-warnings)
 
 ---
 
@@ -34,7 +33,7 @@ The v3 modules are **not backward-compatible** with the previous `linebot` modul
 pip install line-bot-sdk>=3.0
 ```
 
-Both the deprecated `linebot` modules and the new `linebot.v3` modules are included — no need to install a separate package.
+The legacy `linebot` modules have been removed. Only the `linebot.v3` modules are included in the package.
 
 ### 2. Replace client construction
 
@@ -734,18 +733,3 @@ response = line_bot_api.reply_message_with_http_info(
 print(response.status_code)                     # HTTP status code
 print(response.headers.get('x-line-request-id')) # Request ID
 ```
-
----
-
-## Suppressing deprecation warnings
-
-During migration, you may see deprecation warnings when using the old `linebot` modules. To suppress them:
-
-```python
-import warnings
-from linebot import LineBotSdkDeprecatedIn30
-
-warnings.filterwarnings("ignore", category=LineBotSdkDeprecatedIn30)
-```
-
-> **Tip:** Only suppress these warnings temporarily. Once your migration is complete, remove both the warning filter and the deprecated imports.

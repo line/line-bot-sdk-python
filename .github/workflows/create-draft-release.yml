@@ -48,7 +48,7 @@ jobs:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       - name: Fetch Latest Release
         id: get-latest-release
-        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8.0.0
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         with:
           script: |
             const latestRelease = await github.rest.repos.getLatestRelease({
@@ -64,7 +64,7 @@ jobs:
 
       - name: Calculate New Version
         id: calculate-version
-        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8.0.0
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         with:
           script: |
             const latestTag = '${{ steps.get-latest-release.outputs.latest_tag }}';
@@ -85,7 +85,7 @@ jobs:
 
       - name: Generate Release Notes
         id: generate-release-notes
-        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8.0.0
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         with:
           script: |
             const { data: releaseNotes } = await github.rest.repos.generateReleaseNotes({

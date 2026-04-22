@@ -44,9 +44,9 @@ class Dummy(object):
 
     @validate_arguments
     def callback(self, callback_request : CallbackRequest, **kwargs) -> str:  # noqa: E501
-        """callback  # noqa: E501
+        """
 
-        This is the dummy endpoint to generate the model classes  # noqa: E501
+        This is the dummy endpoint to generate the model classes
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -73,9 +73,9 @@ class Dummy(object):
 
     @validate_arguments
     def callback_with_http_info(self, callback_request : CallbackRequest, **kwargs) -> ApiResponse:  # noqa: E501
-        """callback  # noqa: E501
+        """
 
-        This is the dummy endpoint to generate the model classes  # noqa: E501
+        This is the dummy endpoint to generate the model classes
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 

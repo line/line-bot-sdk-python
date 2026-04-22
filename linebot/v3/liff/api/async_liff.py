@@ -59,14 +59,9 @@ class AsyncLiff(object):
 
     @validate_arguments
     def add_liff_app(self, add_liff_app_request : AddLiffAppRequest, async_req: Optional[bool]=None, **kwargs) -> Union[AddLiffAppResponse, Awaitable[AddLiffAppResponse]]:  # noqa: E501
-        """Create LIFF app  # noqa: E501
+        """Create LIFF app
 
-        Adding the LIFF app to a channel  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.add_liff_app(add_liff_app_request, async_req=True)
-        >>> result = thread.get()
+        Adding the LIFF app to a channel
 
         :param add_liff_app_request: (required)
         :type add_liff_app_request: AddLiffAppRequest
@@ -77,8 +72,6 @@ class AsyncLiff(object):
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: AddLiffAppResponse
         """
         kwargs['_return_http_data_only'] = True
@@ -90,14 +83,9 @@ class AsyncLiff(object):
 
     @validate_arguments
     def add_liff_app_with_http_info(self, add_liff_app_request : AddLiffAppRequest, **kwargs) -> ApiResponse:  # noqa: E501
-        """Create LIFF app  # noqa: E501
+        """Create LIFF app
 
-        Adding the LIFF app to a channel  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.add_liff_app_with_http_info(add_liff_app_request, async_req=True)
-        >>> result = thread.get()
+        Adding the LIFF app to a channel
 
         :param add_liff_app_request: (required)
         :type add_liff_app_request: AddLiffAppRequest
@@ -121,8 +109,6 @@ class AsyncLiff(object):
         :type _request_auth: dict, optional
         :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(AddLiffAppResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
@@ -219,14 +205,9 @@ class AsyncLiff(object):
 
     @validate_arguments
     def delete_liff_app(self, liff_id : Annotated[StrictStr, Field(..., description="ID of the LIFF app to be updated")], async_req: Optional[bool]=None, **kwargs) -> Union[None, Awaitable[None]]:  # noqa: E501
-        """Delete LIFF app from a channel  # noqa: E501
+        """Delete LIFF app from a channel
 
-        Deletes a LIFF app from a channel.   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.delete_liff_app(liff_id, async_req=True)
-        >>> result = thread.get()
+        Deletes a LIFF app from a channel. 
 
         :param liff_id: ID of the LIFF app to be updated (required)
         :type liff_id: str
@@ -237,8 +218,6 @@ class AsyncLiff(object):
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
         kwargs['_return_http_data_only'] = True
@@ -250,14 +229,9 @@ class AsyncLiff(object):
 
     @validate_arguments
     def delete_liff_app_with_http_info(self, liff_id : Annotated[StrictStr, Field(..., description="ID of the LIFF app to be updated")], **kwargs) -> ApiResponse:  # noqa: E501
-        """Delete LIFF app from a channel  # noqa: E501
+        """Delete LIFF app from a channel
 
-        Deletes a LIFF app from a channel.   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.delete_liff_app_with_http_info(liff_id, async_req=True)
-        >>> result = thread.get()
+        Deletes a LIFF app from a channel. 
 
         :param liff_id: ID of the LIFF app to be updated (required)
         :type liff_id: str
@@ -281,8 +255,6 @@ class AsyncLiff(object):
         :type _request_auth: dict, optional
         :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
 
@@ -364,14 +336,9 @@ class AsyncLiff(object):
 
     @validate_arguments
     def get_all_liff_apps(self, async_req: Optional[bool]=None, **kwargs) -> Union[GetAllLiffAppsResponse, Awaitable[GetAllLiffAppsResponse]]:  # noqa: E501
-        """Get all LIFF apps  # noqa: E501
+        """Get all LIFF apps
 
-        Gets information on all the LIFF apps added to the channel.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_all_liff_apps(async_req=True)
-        >>> result = thread.get()
+        Gets information on all the LIFF apps added to the channel.
 
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -380,8 +347,6 @@ class AsyncLiff(object):
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: GetAllLiffAppsResponse
         """
         kwargs['_return_http_data_only'] = True
@@ -393,14 +358,9 @@ class AsyncLiff(object):
 
     @validate_arguments
     def get_all_liff_apps_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
-        """Get all LIFF apps  # noqa: E501
+        """Get all LIFF apps
 
-        Gets information on all the LIFF apps added to the channel.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_all_liff_apps_with_http_info(async_req=True)
-        >>> result = thread.get()
+        Gets information on all the LIFF apps added to the channel.
 
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -422,8 +382,6 @@ class AsyncLiff(object):
         :type _request_auth: dict, optional
         :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(GetAllLiffAppsResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
@@ -509,14 +467,9 @@ class AsyncLiff(object):
 
     @validate_arguments
     def update_liff_app(self, liff_id : Annotated[StrictStr, Field(..., description="ID of the LIFF app to be updated")], update_liff_app_request : UpdateLiffAppRequest, async_req: Optional[bool]=None, **kwargs) -> Union[None, Awaitable[None]]:  # noqa: E501
-        """Update LIFF app from a channel  # noqa: E501
+        """Update LIFF app from a channel
 
-        Update LIFF app settings  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.update_liff_app(liff_id, update_liff_app_request, async_req=True)
-        >>> result = thread.get()
+        Update LIFF app settings
 
         :param liff_id: ID of the LIFF app to be updated (required)
         :type liff_id: str
@@ -529,8 +482,6 @@ class AsyncLiff(object):
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
         kwargs['_return_http_data_only'] = True
@@ -542,14 +493,9 @@ class AsyncLiff(object):
 
     @validate_arguments
     def update_liff_app_with_http_info(self, liff_id : Annotated[StrictStr, Field(..., description="ID of the LIFF app to be updated")], update_liff_app_request : UpdateLiffAppRequest, **kwargs) -> ApiResponse:  # noqa: E501
-        """Update LIFF app from a channel  # noqa: E501
+        """Update LIFF app from a channel
 
-        Update LIFF app settings  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.update_liff_app_with_http_info(liff_id, update_liff_app_request, async_req=True)
-        >>> result = thread.get()
+        Update LIFF app settings
 
         :param liff_id: ID of the LIFF app to be updated (required)
         :type liff_id: str
@@ -575,8 +521,6 @@ class AsyncLiff(object):
         :type _request_auth: dict, optional
         :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
 

@@ -62,14 +62,9 @@ class AsyncInsight(object):
 
     @validate_arguments
     def get_friends_demographics(self, async_req: Optional[bool]=None, **kwargs) -> Union[GetFriendsDemographicsResponse, Awaitable[GetFriendsDemographicsResponse]]:  # noqa: E501
-        """get_friends_demographics  # noqa: E501
+        """
 
-        Retrieves the demographic attributes for a LINE Official Account's friends.You can only retrieve information about friends for LINE Official Accounts created by users in Japan (JP), Thailand (TH), Taiwan (TW) and Indonesia (ID).   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_friends_demographics(async_req=True)
-        >>> result = thread.get()
+        Retrieves the demographic attributes for a LINE Official Account's friends.You can only retrieve information about friends for LINE Official Accounts created by users in Japan (JP), Thailand (TH), Taiwan (TW) and Indonesia (ID). 
 
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -78,8 +73,6 @@ class AsyncInsight(object):
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: GetFriendsDemographicsResponse
         """
         kwargs['_return_http_data_only'] = True
@@ -91,14 +84,9 @@ class AsyncInsight(object):
 
     @validate_arguments
     def get_friends_demographics_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
-        """get_friends_demographics  # noqa: E501
+        """
 
-        Retrieves the demographic attributes for a LINE Official Account's friends.You can only retrieve information about friends for LINE Official Accounts created by users in Japan (JP), Thailand (TH), Taiwan (TW) and Indonesia (ID).   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_friends_demographics_with_http_info(async_req=True)
-        >>> result = thread.get()
+        Retrieves the demographic attributes for a LINE Official Account's friends.You can only retrieve information about friends for LINE Official Accounts created by users in Japan (JP), Thailand (TH), Taiwan (TW) and Indonesia (ID). 
 
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -120,8 +108,6 @@ class AsyncInsight(object):
         :type _request_auth: dict, optional
         :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(GetFriendsDemographicsResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
@@ -205,14 +191,9 @@ class AsyncInsight(object):
 
     @validate_arguments
     def get_message_event(self, request_id : Annotated[constr(strict=True, min_length=1), Field(..., description="Request ID of a narrowcast message or broadcast message. Each Messaging API request has a request ID. ")], async_req: Optional[bool]=None, **kwargs) -> Union[GetMessageEventResponse, Awaitable[GetMessageEventResponse]]:  # noqa: E501
-        """Get user interaction statistics  # noqa: E501
+        """Get user interaction statistics
 
-        Returns statistics about how users interact with narrowcast messages or broadcast messages sent from your LINE Official Account.   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_message_event(request_id, async_req=True)
-        >>> result = thread.get()
+        Returns statistics about how users interact with narrowcast messages or broadcast messages sent from your LINE Official Account. 
 
         :param request_id: Request ID of a narrowcast message or broadcast message. Each Messaging API request has a request ID.  (required)
         :type request_id: str
@@ -223,8 +204,6 @@ class AsyncInsight(object):
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: GetMessageEventResponse
         """
         kwargs['_return_http_data_only'] = True
@@ -236,14 +215,9 @@ class AsyncInsight(object):
 
     @validate_arguments
     def get_message_event_with_http_info(self, request_id : Annotated[constr(strict=True, min_length=1), Field(..., description="Request ID of a narrowcast message or broadcast message. Each Messaging API request has a request ID. ")], **kwargs) -> ApiResponse:  # noqa: E501
-        """Get user interaction statistics  # noqa: E501
+        """Get user interaction statistics
 
-        Returns statistics about how users interact with narrowcast messages or broadcast messages sent from your LINE Official Account.   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_message_event_with_http_info(request_id, async_req=True)
-        >>> result = thread.get()
+        Returns statistics about how users interact with narrowcast messages or broadcast messages sent from your LINE Official Account. 
 
         :param request_id: Request ID of a narrowcast message or broadcast message. Each Messaging API request has a request ID.  (required)
         :type request_id: str
@@ -267,8 +241,6 @@ class AsyncInsight(object):
         :type _request_auth: dict, optional
         :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(GetMessageEventResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
@@ -356,14 +328,9 @@ class AsyncInsight(object):
 
     @validate_arguments
     def get_number_of_followers(self, var_date : Annotated[Optional[constr(strict=True, max_length=8, min_length=8)], Field(description="Date for which to retrieve the number of followers.  Format: yyyyMMdd (e.g. 20191231) Timezone: UTC+9 ")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[GetNumberOfFollowersResponse, Awaitable[GetNumberOfFollowersResponse]]:  # noqa: E501
-        """Get number of followers  # noqa: E501
+        """Get number of followers
 
-        Returns the number of users who have added the LINE Official Account on or before a specified date.   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_number_of_followers(var_date, async_req=True)
-        >>> result = thread.get()
+        Returns the number of users who have added the LINE Official Account on or before a specified date. 
 
         :param var_date: Date for which to retrieve the number of followers.  Format: yyyyMMdd (e.g. 20191231) Timezone: UTC+9 
         :type var_date: str
@@ -374,8 +341,6 @@ class AsyncInsight(object):
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: GetNumberOfFollowersResponse
         """
         kwargs['_return_http_data_only'] = True
@@ -387,14 +352,9 @@ class AsyncInsight(object):
 
     @validate_arguments
     def get_number_of_followers_with_http_info(self, var_date : Annotated[Optional[constr(strict=True, max_length=8, min_length=8)], Field(description="Date for which to retrieve the number of followers.  Format: yyyyMMdd (e.g. 20191231) Timezone: UTC+9 ")] = None, **kwargs) -> ApiResponse:  # noqa: E501
-        """Get number of followers  # noqa: E501
+        """Get number of followers
 
-        Returns the number of users who have added the LINE Official Account on or before a specified date.   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_number_of_followers_with_http_info(var_date, async_req=True)
-        >>> result = thread.get()
+        Returns the number of users who have added the LINE Official Account on or before a specified date. 
 
         :param var_date: Date for which to retrieve the number of followers.  Format: yyyyMMdd (e.g. 20191231) Timezone: UTC+9 
         :type var_date: str
@@ -418,8 +378,6 @@ class AsyncInsight(object):
         :type _request_auth: dict, optional
         :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(GetNumberOfFollowersResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
@@ -507,14 +465,9 @@ class AsyncInsight(object):
 
     @validate_arguments
     def get_number_of_message_deliveries(self, var_date : Annotated[constr(strict=True, max_length=8, min_length=8), Field(..., description="Date for which to retrieve number of sent messages. - Format: yyyyMMdd (e.g. 20191231) - Timezone: UTC+9 ")], async_req: Optional[bool]=None, **kwargs) -> Union[GetNumberOfMessageDeliveriesResponse, Awaitable[GetNumberOfMessageDeliveriesResponse]]:  # noqa: E501
-        """Get number of message deliveries  # noqa: E501
+        """Get number of message deliveries
 
-        Returns the number of messages sent from LINE Official Account on a specified day.   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_number_of_message_deliveries(var_date, async_req=True)
-        >>> result = thread.get()
+        Returns the number of messages sent from LINE Official Account on a specified day. 
 
         :param var_date: Date for which to retrieve number of sent messages. - Format: yyyyMMdd (e.g. 20191231) - Timezone: UTC+9  (required)
         :type var_date: str
@@ -525,8 +478,6 @@ class AsyncInsight(object):
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: GetNumberOfMessageDeliveriesResponse
         """
         kwargs['_return_http_data_only'] = True
@@ -538,14 +489,9 @@ class AsyncInsight(object):
 
     @validate_arguments
     def get_number_of_message_deliveries_with_http_info(self, var_date : Annotated[constr(strict=True, max_length=8, min_length=8), Field(..., description="Date for which to retrieve number of sent messages. - Format: yyyyMMdd (e.g. 20191231) - Timezone: UTC+9 ")], **kwargs) -> ApiResponse:  # noqa: E501
-        """Get number of message deliveries  # noqa: E501
+        """Get number of message deliveries
 
-        Returns the number of messages sent from LINE Official Account on a specified day.   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_number_of_message_deliveries_with_http_info(var_date, async_req=True)
-        >>> result = thread.get()
+        Returns the number of messages sent from LINE Official Account on a specified day. 
 
         :param var_date: Date for which to retrieve number of sent messages. - Format: yyyyMMdd (e.g. 20191231) - Timezone: UTC+9  (required)
         :type var_date: str
@@ -569,8 +515,6 @@ class AsyncInsight(object):
         :type _request_auth: dict, optional
         :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(GetNumberOfMessageDeliveriesResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
@@ -658,14 +602,9 @@ class AsyncInsight(object):
 
     @validate_arguments
     def get_statistics_per_unit(self, custom_aggregation_unit : Annotated[constr(strict=True, max_length=30, min_length=1), Field(..., description="Name of aggregation unit specified when sending the message. Case-sensitive. For example, `Promotion_a` and `Promotion_A` are regarded as different unit names. ")], var_from : Annotated[constr(strict=True, max_length=8, min_length=8), Field(..., description="Start date of aggregation period.  Format: yyyyMMdd (e.g. 20210301) Time zone: UTC+9 ")], to : Annotated[constr(strict=True, max_length=8, min_length=8), Field(..., description="End date of aggregation period. The end date can be specified for up to 30 days later. For example, if the start date is 20210301, the latest end date is 20210331.  Format: yyyyMMdd (e.g. 20210301) Time zone: UTC+9 ")], async_req: Optional[bool]=None, **kwargs) -> Union[GetStatisticsPerUnitResponse, Awaitable[GetStatisticsPerUnitResponse]]:  # noqa: E501
-        """get_statistics_per_unit  # noqa: E501
+        """
 
-        You can check the per-unit statistics of how users interact with push messages and multicast messages sent from your LINE Official Account.   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_statistics_per_unit(custom_aggregation_unit, var_from, to, async_req=True)
-        >>> result = thread.get()
+        You can check the per-unit statistics of how users interact with push messages and multicast messages sent from your LINE Official Account. 
 
         :param custom_aggregation_unit: Name of aggregation unit specified when sending the message. Case-sensitive. For example, `Promotion_a` and `Promotion_A` are regarded as different unit names.  (required)
         :type custom_aggregation_unit: str
@@ -680,8 +619,6 @@ class AsyncInsight(object):
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: GetStatisticsPerUnitResponse
         """
         kwargs['_return_http_data_only'] = True
@@ -693,14 +630,9 @@ class AsyncInsight(object):
 
     @validate_arguments
     def get_statistics_per_unit_with_http_info(self, custom_aggregation_unit : Annotated[constr(strict=True, max_length=30, min_length=1), Field(..., description="Name of aggregation unit specified when sending the message. Case-sensitive. For example, `Promotion_a` and `Promotion_A` are regarded as different unit names. ")], var_from : Annotated[constr(strict=True, max_length=8, min_length=8), Field(..., description="Start date of aggregation period.  Format: yyyyMMdd (e.g. 20210301) Time zone: UTC+9 ")], to : Annotated[constr(strict=True, max_length=8, min_length=8), Field(..., description="End date of aggregation period. The end date can be specified for up to 30 days later. For example, if the start date is 20210301, the latest end date is 20210331.  Format: yyyyMMdd (e.g. 20210301) Time zone: UTC+9 ")], **kwargs) -> ApiResponse:  # noqa: E501
-        """get_statistics_per_unit  # noqa: E501
+        """
 
-        You can check the per-unit statistics of how users interact with push messages and multicast messages sent from your LINE Official Account.   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_statistics_per_unit_with_http_info(custom_aggregation_unit, var_from, to, async_req=True)
-        >>> result = thread.get()
+        You can check the per-unit statistics of how users interact with push messages and multicast messages sent from your LINE Official Account. 
 
         :param custom_aggregation_unit: Name of aggregation unit specified when sending the message. Case-sensitive. For example, `Promotion_a` and `Promotion_A` are regarded as different unit names.  (required)
         :type custom_aggregation_unit: str
@@ -728,8 +660,6 @@ class AsyncInsight(object):
         :type _request_auth: dict, optional
         :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(GetStatisticsPerUnitResponse, status_code(int), headers(HTTPHeaderDict))
         """
 

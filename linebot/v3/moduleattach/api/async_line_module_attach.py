@@ -58,14 +58,9 @@ class AsyncLineModuleAttach(object):
 
     @validate_arguments
     def attach_module(self, grant_type : Annotated[StrictStr, Field(..., description="authorization_code")], code : Annotated[StrictStr, Field(..., description="Authorization code received from the LINE Platform.")], redirect_uri : Annotated[StrictStr, Field(..., description="Specify the redirect_uri specified in the URL for authentication and authorization.")], code_verifier : Annotated[Optional[StrictStr], Field(description="Specify when using PKCE (Proof Key for Code Exchange) defined in the OAuth 2.0 extension specification as a countermeasure against authorization code interception attacks.")] = None, client_id : Annotated[Optional[StrictStr], Field(description="Instead of using Authorization header, you can use this parameter to specify the channel ID of the module channel. You can find the channel ID of the module channel in the LINE Developers Console. ")] = None, client_secret : Annotated[Optional[StrictStr], Field(description="Instead of using Authorization header, you can use this parameter to specify the channel secret of the module channel. You can find the channel secret of the module channel in the LINE Developers Console. ")] = None, region : Annotated[Optional[StrictStr], Field(description="If you specified a value for region in the URL for authentication and authorization, specify the same value. ")] = None, basic_search_id : Annotated[Optional[StrictStr], Field(description="If you specified a value for basic_search_id in the URL for authentication and authorization, specify the same value.")] = None, scope : Annotated[Optional[StrictStr], Field(description="If you specified a value for scope in the URL for authentication and authorization, specify the same value.")] = None, brand_type : Annotated[Optional[StrictStr], Field(description="If you specified a value for brand_type in the URL for authentication and authorization, specify the same value.")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[AttachModuleResponse, Awaitable[AttachModuleResponse]]:  # noqa: E501
-        """attach_module  # noqa: E501
+        """
 
-        Attach by operation of the module channel provider  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.attach_module(grant_type, code, redirect_uri, code_verifier, client_id, client_secret, region, basic_search_id, scope, brand_type, async_req=True)
-        >>> result = thread.get()
+        Attach by operation of the module channel provider
 
         :param grant_type: authorization_code (required)
         :type grant_type: str
@@ -94,8 +89,6 @@ class AsyncLineModuleAttach(object):
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: AttachModuleResponse
         """
         kwargs['_return_http_data_only'] = True
@@ -107,14 +100,9 @@ class AsyncLineModuleAttach(object):
 
     @validate_arguments
     def attach_module_with_http_info(self, grant_type : Annotated[StrictStr, Field(..., description="authorization_code")], code : Annotated[StrictStr, Field(..., description="Authorization code received from the LINE Platform.")], redirect_uri : Annotated[StrictStr, Field(..., description="Specify the redirect_uri specified in the URL for authentication and authorization.")], code_verifier : Annotated[Optional[StrictStr], Field(description="Specify when using PKCE (Proof Key for Code Exchange) defined in the OAuth 2.0 extension specification as a countermeasure against authorization code interception attacks.")] = None, client_id : Annotated[Optional[StrictStr], Field(description="Instead of using Authorization header, you can use this parameter to specify the channel ID of the module channel. You can find the channel ID of the module channel in the LINE Developers Console. ")] = None, client_secret : Annotated[Optional[StrictStr], Field(description="Instead of using Authorization header, you can use this parameter to specify the channel secret of the module channel. You can find the channel secret of the module channel in the LINE Developers Console. ")] = None, region : Annotated[Optional[StrictStr], Field(description="If you specified a value for region in the URL for authentication and authorization, specify the same value. ")] = None, basic_search_id : Annotated[Optional[StrictStr], Field(description="If you specified a value for basic_search_id in the URL for authentication and authorization, specify the same value.")] = None, scope : Annotated[Optional[StrictStr], Field(description="If you specified a value for scope in the URL for authentication and authorization, specify the same value.")] = None, brand_type : Annotated[Optional[StrictStr], Field(description="If you specified a value for brand_type in the URL for authentication and authorization, specify the same value.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
-        """attach_module  # noqa: E501
+        """
 
-        Attach by operation of the module channel provider  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.attach_module_with_http_info(grant_type, code, redirect_uri, code_verifier, client_id, client_secret, region, basic_search_id, scope, brand_type, async_req=True)
-        >>> result = thread.get()
+        Attach by operation of the module channel provider
 
         :param grant_type: authorization_code (required)
         :type grant_type: str
@@ -156,8 +144,6 @@ class AsyncLineModuleAttach(object):
         :type _request_auth: dict, optional
         :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(AttachModuleResponse, status_code(int), headers(HTTPHeaderDict))
         """
 

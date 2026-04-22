@@ -50,9 +50,9 @@ class LineModule(object):
 
     @validate_arguments
     def acquire_chat_control(self, chat_id : Annotated[StrictStr, Field(..., description="The `userId`, `roomId`, or `groupId`")], acquire_chat_control_request : Optional[AcquireChatControlRequest] = None, **kwargs) -> None:  # noqa: E501
-        """acquire_chat_control  # noqa: E501
+        """
 
-        If the Standby Channel wants to take the initiative (Chat Control), it calls the Acquire Control API. The channel that was previously an Active Channel will automatically switch to a Standby Channel.   # noqa: E501
+        If the Standby Channel wants to take the initiative (Chat Control), it calls the Acquire Control API. The channel that was previously an Active Channel will automatically switch to a Standby Channel. 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -81,9 +81,9 @@ class LineModule(object):
 
     @validate_arguments
     def acquire_chat_control_with_http_info(self, chat_id : Annotated[StrictStr, Field(..., description="The `userId`, `roomId`, or `groupId`")], acquire_chat_control_request : Optional[AcquireChatControlRequest] = None, **kwargs) -> ApiResponse:  # noqa: E501
-        """acquire_chat_control  # noqa: E501
+        """
 
-        If the Standby Channel wants to take the initiative (Chat Control), it calls the Acquire Control API. The channel that was previously an Active Channel will automatically switch to a Standby Channel.   # noqa: E501
+        If the Standby Channel wants to take the initiative (Chat Control), it calls the Acquire Control API. The channel that was previously an Active Channel will automatically switch to a Standby Channel. 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -200,9 +200,9 @@ class LineModule(object):
 
     @validate_arguments
     def detach_module(self, detach_module_request : Optional[DetachModuleRequest] = None, **kwargs) -> None:  # noqa: E501
-        """detach_module  # noqa: E501
+        """
 
-        The module channel admin calls the Detach API to detach the module channel from a LINE Official Account.  # noqa: E501
+        The module channel admin calls the Detach API to detach the module channel from a LINE Official Account.
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -229,9 +229,9 @@ class LineModule(object):
 
     @validate_arguments
     def detach_module_with_http_info(self, detach_module_request : Optional[DetachModuleRequest] = None, **kwargs) -> ApiResponse:  # noqa: E501
-        """detach_module  # noqa: E501
+        """
 
-        The module channel admin calls the Detach API to detach the module channel from a LINE Official Account.  # noqa: E501
+        The module channel admin calls the Detach API to detach the module channel from a LINE Official Account.
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -342,9 +342,9 @@ class LineModule(object):
 
     @validate_arguments
     def get_modules(self, start : Annotated[Optional[StrictStr], Field(description="Value of the continuation token found in the next property of the JSON object returned in the response. If you can't get all basic information about the bots in one request, include this parameter to get the remaining array. ")] = None, limit : Annotated[Optional[conint(strict=True, le=100)], Field(description="Specify the maximum number of bots that you get basic information from. The default value is 100. Max value: 100 ")] = None, **kwargs) -> GetModulesResponse:  # noqa: E501
-        """get_modules  # noqa: E501
+        """
 
-        Gets a list of basic information about the bots of multiple LINE Official Accounts that have attached module channels.  # noqa: E501
+        Gets a list of basic information about the bots of multiple LINE Official Accounts that have attached module channels.
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -373,9 +373,9 @@ class LineModule(object):
 
     @validate_arguments
     def get_modules_with_http_info(self, start : Annotated[Optional[StrictStr], Field(description="Value of the continuation token found in the next property of the JSON object returned in the response. If you can't get all basic information about the bots in one request, include this parameter to get the remaining array. ")] = None, limit : Annotated[Optional[conint(strict=True, le=100)], Field(description="Specify the maximum number of bots that you get basic information from. The default value is 100. Max value: 100 ")] = None, **kwargs) -> ApiResponse:  # noqa: E501
-        """get_modules  # noqa: E501
+        """
 
-        Gets a list of basic information about the bots of multiple LINE Official Accounts that have attached module channels.  # noqa: E501
+        Gets a list of basic information about the bots of multiple LINE Official Accounts that have attached module channels.
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -491,9 +491,9 @@ class LineModule(object):
 
     @validate_arguments
     def release_chat_control(self, chat_id : Annotated[StrictStr, Field(..., description="The `userId`, `roomId`, or `groupId`")], **kwargs) -> None:  # noqa: E501
-        """release_chat_control  # noqa: E501
+        """
 
-        To return the initiative (Chat Control) of Active Channel to Primary Channel, call the Release Control API.   # noqa: E501
+        To return the initiative (Chat Control) of Active Channel to Primary Channel, call the Release Control API. 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -520,9 +520,9 @@ class LineModule(object):
 
     @validate_arguments
     def release_chat_control_with_http_info(self, chat_id : Annotated[StrictStr, Field(..., description="The `userId`, `roomId`, or `groupId`")], **kwargs) -> ApiResponse:  # noqa: E501
-        """release_chat_control  # noqa: E501
+        """
 
-        To return the initiative (Chat Control) of Active Channel to Primary Channel, call the Release Control API.   # noqa: E501
+        To return the initiative (Chat Control) of Active Channel to Primary Channel, call the Release Control API. 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 

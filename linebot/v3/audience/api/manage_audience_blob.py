@@ -48,9 +48,9 @@ class ManageAudienceBlob(object):
 
     @validate_arguments
     def add_user_ids_to_audience(self, file : Annotated[Union[StrictBytes, StrictStr], Field(..., description="A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000 ")], audience_group_id : Annotated[Optional[StrictInt], Field(description="The audience ID.")] = None, upload_description : Annotated[Optional[StrictStr], Field(description="The description to register with the job")] = None, **kwargs) -> None:  # noqa: E501
-        """add_user_ids_to_audience  # noqa: E501
+        """
 
-        Add user IDs or Identifiers for Advertisers (IFAs) to an audience for uploading user IDs (by file).  # noqa: E501
+        Add user IDs or Identifiers for Advertisers (IFAs) to an audience for uploading user IDs (by file).
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -81,9 +81,9 @@ class ManageAudienceBlob(object):
 
     @validate_arguments
     def add_user_ids_to_audience_with_http_info(self, file : Annotated[Union[StrictBytes, StrictStr], Field(..., description="A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000 ")], audience_group_id : Annotated[Optional[StrictInt], Field(description="The audience ID.")] = None, upload_description : Annotated[Optional[StrictStr], Field(description="The description to register with the job")] = None, **kwargs) -> ApiResponse:  # noqa: E501
-        """add_user_ids_to_audience  # noqa: E501
+        """
 
-        Add user IDs or Identifiers for Advertisers (IFAs) to an audience for uploading user IDs (by file).  # noqa: E501
+        Add user IDs or Identifiers for Advertisers (IFAs) to an audience for uploading user IDs (by file).
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -217,9 +217,9 @@ class ManageAudienceBlob(object):
 
     @validate_arguments
     def create_audience_for_uploading_user_ids(self, file : Annotated[Union[StrictBytes, StrictStr], Field(..., description="A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000 ")], description : Annotated[Optional[constr(strict=True, max_length=120)], Field(description="The audience's name. This is case-insensitive, meaning AUDIENCE and audience are considered identical. Max character limit: 120 ")] = None, is_ifa_audience : Annotated[Optional[StrictBool], Field(description="To specify recipients by IFAs: set `true`. To specify recipients by user IDs: set `false` or omit isIfaAudience property. ")] = None, upload_description : Annotated[Optional[StrictStr], Field(description="The description to register for the job (in `jobs[].description`). ")] = None, **kwargs) -> CreateAudienceGroupResponse:  # noqa: E501
-        """create_audience_for_uploading_user_ids  # noqa: E501
+        """
 
-        Create audience for uploading user IDs (by file).  # noqa: E501
+        Create audience for uploading user IDs (by file).
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -252,9 +252,9 @@ class ManageAudienceBlob(object):
 
     @validate_arguments
     def create_audience_for_uploading_user_ids_with_http_info(self, file : Annotated[Union[StrictBytes, StrictStr], Field(..., description="A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000 ")], description : Annotated[Optional[constr(strict=True, max_length=120)], Field(description="The audience's name. This is case-insensitive, meaning AUDIENCE and audience are considered identical. Max character limit: 120 ")] = None, is_ifa_audience : Annotated[Optional[StrictBool], Field(description="To specify recipients by IFAs: set `true`. To specify recipients by user IDs: set `false` or omit isIfaAudience property. ")] = None, upload_description : Annotated[Optional[StrictStr], Field(description="The description to register for the job (in `jobs[].description`). ")] = None, **kwargs) -> ApiResponse:  # noqa: E501
-        """create_audience_for_uploading_user_ids  # noqa: E501
+        """
 
-        Create audience for uploading user IDs (by file).  # noqa: E501
+        Create audience for uploading user IDs (by file).
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 

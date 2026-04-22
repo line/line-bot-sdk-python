@@ -58,14 +58,9 @@ class AsyncManageAudienceBlob(object):
 
     @validate_arguments
     def add_user_ids_to_audience(self, file : Annotated[Union[StrictBytes, StrictStr], Field(..., description="A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000 ")], audience_group_id : Annotated[Optional[StrictInt], Field(description="The audience ID.")] = None, upload_description : Annotated[Optional[StrictStr], Field(description="The description to register with the job")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[None, Awaitable[None]]:  # noqa: E501
-        """add_user_ids_to_audience  # noqa: E501
+        """
 
-        Add user IDs or Identifiers for Advertisers (IFAs) to an audience for uploading user IDs (by file).  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.add_user_ids_to_audience(file, audience_group_id, upload_description, async_req=True)
-        >>> result = thread.get()
+        Add user IDs or Identifiers for Advertisers (IFAs) to an audience for uploading user IDs (by file).
 
         :param file: A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000  (required)
         :type file: bytearray
@@ -80,8 +75,6 @@ class AsyncManageAudienceBlob(object):
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
         kwargs['_return_http_data_only'] = True
@@ -93,14 +86,9 @@ class AsyncManageAudienceBlob(object):
 
     @validate_arguments
     def add_user_ids_to_audience_with_http_info(self, file : Annotated[Union[StrictBytes, StrictStr], Field(..., description="A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000 ")], audience_group_id : Annotated[Optional[StrictInt], Field(description="The audience ID.")] = None, upload_description : Annotated[Optional[StrictStr], Field(description="The description to register with the job")] = None, **kwargs) -> ApiResponse:  # noqa: E501
-        """add_user_ids_to_audience  # noqa: E501
+        """
 
-        Add user IDs or Identifiers for Advertisers (IFAs) to an audience for uploading user IDs (by file).  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.add_user_ids_to_audience_with_http_info(file, audience_group_id, upload_description, async_req=True)
-        >>> result = thread.get()
+        Add user IDs or Identifiers for Advertisers (IFAs) to an audience for uploading user IDs (by file).
 
         :param file: A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000  (required)
         :type file: bytearray
@@ -128,8 +116,6 @@ class AsyncManageAudienceBlob(object):
         :type _request_auth: dict, optional
         :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
 
@@ -237,14 +223,9 @@ class AsyncManageAudienceBlob(object):
 
     @validate_arguments
     def create_audience_for_uploading_user_ids(self, file : Annotated[Union[StrictBytes, StrictStr], Field(..., description="A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000 ")], description : Annotated[Optional[constr(strict=True, max_length=120)], Field(description="The audience's name. This is case-insensitive, meaning AUDIENCE and audience are considered identical. Max character limit: 120 ")] = None, is_ifa_audience : Annotated[Optional[StrictBool], Field(description="To specify recipients by IFAs: set `true`. To specify recipients by user IDs: set `false` or omit isIfaAudience property. ")] = None, upload_description : Annotated[Optional[StrictStr], Field(description="The description to register for the job (in `jobs[].description`). ")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[CreateAudienceGroupResponse, Awaitable[CreateAudienceGroupResponse]]:  # noqa: E501
-        """create_audience_for_uploading_user_ids  # noqa: E501
+        """
 
-        Create audience for uploading user IDs (by file).  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.create_audience_for_uploading_user_ids(file, description, is_ifa_audience, upload_description, async_req=True)
-        >>> result = thread.get()
+        Create audience for uploading user IDs (by file).
 
         :param file: A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000  (required)
         :type file: bytearray
@@ -261,8 +242,6 @@ class AsyncManageAudienceBlob(object):
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: CreateAudienceGroupResponse
         """
         kwargs['_return_http_data_only'] = True
@@ -274,14 +253,9 @@ class AsyncManageAudienceBlob(object):
 
     @validate_arguments
     def create_audience_for_uploading_user_ids_with_http_info(self, file : Annotated[Union[StrictBytes, StrictStr], Field(..., description="A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000 ")], description : Annotated[Optional[constr(strict=True, max_length=120)], Field(description="The audience's name. This is case-insensitive, meaning AUDIENCE and audience are considered identical. Max character limit: 120 ")] = None, is_ifa_audience : Annotated[Optional[StrictBool], Field(description="To specify recipients by IFAs: set `true`. To specify recipients by user IDs: set `false` or omit isIfaAudience property. ")] = None, upload_description : Annotated[Optional[StrictStr], Field(description="The description to register for the job (in `jobs[].description`). ")] = None, **kwargs) -> ApiResponse:  # noqa: E501
-        """create_audience_for_uploading_user_ids  # noqa: E501
+        """
 
-        Create audience for uploading user IDs (by file).  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.create_audience_for_uploading_user_ids_with_http_info(file, description, is_ifa_audience, upload_description, async_req=True)
-        >>> result = thread.get()
+        Create audience for uploading user IDs (by file).
 
         :param file: A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000  (required)
         :type file: bytearray
@@ -311,8 +285,6 @@ class AsyncManageAudienceBlob(object):
         :type _request_auth: dict, optional
         :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(CreateAudienceGroupResponse, status_code(int), headers(HTTPHeaderDict))
         """
 

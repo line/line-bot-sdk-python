@@ -60,14 +60,9 @@ class AsyncChannelAccessToken(object):
 
     @validate_arguments
     def gets_all_valid_channel_access_token_key_ids(self, client_assertion_type : Annotated[StrictStr, Field(..., description="`urn:ietf:params:oauth:client-assertion-type:jwt-bearer`")], client_assertion : Annotated[StrictStr, Field(..., description="A JSON Web Token (JWT) (opens new window)the client needs to create and sign with the private key.")], async_req: Optional[bool]=None, **kwargs) -> Union[ChannelAccessTokenKeyIdsResponse, Awaitable[ChannelAccessTokenKeyIdsResponse]]:  # noqa: E501
-        """gets_all_valid_channel_access_token_key_ids  # noqa: E501
+        """
 
-        Gets all valid channel access token key IDs.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.gets_all_valid_channel_access_token_key_ids(client_assertion_type, client_assertion, async_req=True)
-        >>> result = thread.get()
+        Gets all valid channel access token key IDs.
 
         :param client_assertion_type: `urn:ietf:params:oauth:client-assertion-type:jwt-bearer` (required)
         :type client_assertion_type: str
@@ -80,8 +75,6 @@ class AsyncChannelAccessToken(object):
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: ChannelAccessTokenKeyIdsResponse
         """
         kwargs['_return_http_data_only'] = True
@@ -93,14 +86,9 @@ class AsyncChannelAccessToken(object):
 
     @validate_arguments
     def gets_all_valid_channel_access_token_key_ids_with_http_info(self, client_assertion_type : Annotated[StrictStr, Field(..., description="`urn:ietf:params:oauth:client-assertion-type:jwt-bearer`")], client_assertion : Annotated[StrictStr, Field(..., description="A JSON Web Token (JWT) (opens new window)the client needs to create and sign with the private key.")], **kwargs) -> ApiResponse:  # noqa: E501
-        """gets_all_valid_channel_access_token_key_ids  # noqa: E501
+        """
 
-        Gets all valid channel access token key IDs.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.gets_all_valid_channel_access_token_key_ids_with_http_info(client_assertion_type, client_assertion, async_req=True)
-        >>> result = thread.get()
+        Gets all valid channel access token key IDs.
 
         :param client_assertion_type: `urn:ietf:params:oauth:client-assertion-type:jwt-bearer` (required)
         :type client_assertion_type: str
@@ -126,8 +114,6 @@ class AsyncChannelAccessToken(object):
         :type _request_auth: dict, optional
         :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(ChannelAccessTokenKeyIdsResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
@@ -219,14 +205,9 @@ class AsyncChannelAccessToken(object):
 
     @validate_arguments
     def issue_channel_token(self, grant_type : Annotated[StrictStr, Field(..., description="`client_credentials`")], client_id : Annotated[StrictStr, Field(..., description="Channel ID.")], client_secret : Annotated[StrictStr, Field(..., description="Channel secret.")], async_req: Optional[bool]=None, **kwargs) -> Union[IssueShortLivedChannelAccessTokenResponse, Awaitable[IssueShortLivedChannelAccessTokenResponse]]:  # noqa: E501
-        """issue_channel_token  # noqa: E501
+        """
 
-        Issue short-lived channel access token  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.issue_channel_token(grant_type, client_id, client_secret, async_req=True)
-        >>> result = thread.get()
+        Issue short-lived channel access token
 
         :param grant_type: `client_credentials` (required)
         :type grant_type: str
@@ -241,8 +222,6 @@ class AsyncChannelAccessToken(object):
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: IssueShortLivedChannelAccessTokenResponse
         """
         kwargs['_return_http_data_only'] = True
@@ -254,14 +233,9 @@ class AsyncChannelAccessToken(object):
 
     @validate_arguments
     def issue_channel_token_with_http_info(self, grant_type : Annotated[StrictStr, Field(..., description="`client_credentials`")], client_id : Annotated[StrictStr, Field(..., description="Channel ID.")], client_secret : Annotated[StrictStr, Field(..., description="Channel secret.")], **kwargs) -> ApiResponse:  # noqa: E501
-        """issue_channel_token  # noqa: E501
+        """
 
-        Issue short-lived channel access token  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.issue_channel_token_with_http_info(grant_type, client_id, client_secret, async_req=True)
-        >>> result = thread.get()
+        Issue short-lived channel access token
 
         :param grant_type: `client_credentials` (required)
         :type grant_type: str
@@ -289,8 +263,6 @@ class AsyncChannelAccessToken(object):
         :type _request_auth: dict, optional
         :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(IssueShortLivedChannelAccessTokenResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
@@ -394,14 +366,9 @@ class AsyncChannelAccessToken(object):
 
     @validate_arguments
     def issue_channel_token_by_jwt(self, grant_type : Annotated[StrictStr, Field(..., description="client_credentials")], client_assertion_type : Annotated[StrictStr, Field(..., description="urn:ietf:params:oauth:client-assertion-type:jwt-bearer")], client_assertion : Annotated[StrictStr, Field(..., description="A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key.")], async_req: Optional[bool]=None, **kwargs) -> Union[IssueChannelAccessTokenResponse, Awaitable[IssueChannelAccessTokenResponse]]:  # noqa: E501
-        """issue_channel_token_by_jwt  # noqa: E501
+        """
 
-        Issues a channel access token that allows you to specify a desired expiration date. This method lets you use JWT assertion for authentication.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.issue_channel_token_by_jwt(grant_type, client_assertion_type, client_assertion, async_req=True)
-        >>> result = thread.get()
+        Issues a channel access token that allows you to specify a desired expiration date. This method lets you use JWT assertion for authentication.
 
         :param grant_type: client_credentials (required)
         :type grant_type: str
@@ -416,8 +383,6 @@ class AsyncChannelAccessToken(object):
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: IssueChannelAccessTokenResponse
         """
         kwargs['_return_http_data_only'] = True
@@ -429,14 +394,9 @@ class AsyncChannelAccessToken(object):
 
     @validate_arguments
     def issue_channel_token_by_jwt_with_http_info(self, grant_type : Annotated[StrictStr, Field(..., description="client_credentials")], client_assertion_type : Annotated[StrictStr, Field(..., description="urn:ietf:params:oauth:client-assertion-type:jwt-bearer")], client_assertion : Annotated[StrictStr, Field(..., description="A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key.")], **kwargs) -> ApiResponse:  # noqa: E501
-        """issue_channel_token_by_jwt  # noqa: E501
+        """
 
-        Issues a channel access token that allows you to specify a desired expiration date. This method lets you use JWT assertion for authentication.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.issue_channel_token_by_jwt_with_http_info(grant_type, client_assertion_type, client_assertion, async_req=True)
-        >>> result = thread.get()
+        Issues a channel access token that allows you to specify a desired expiration date. This method lets you use JWT assertion for authentication.
 
         :param grant_type: client_credentials (required)
         :type grant_type: str
@@ -464,8 +424,6 @@ class AsyncChannelAccessToken(object):
         :type _request_auth: dict, optional
         :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(IssueChannelAccessTokenResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
@@ -568,18 +526,13 @@ class AsyncChannelAccessToken(object):
 
     @validate_arguments
     def issue_stateless_channel_token(self, grant_type : Annotated[StrictStr, Field(..., description="`client_credentials`")], client_assertion_type : Annotated[StrictStr, Field(..., description="URL-encoded value of `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`")], client_assertion : Annotated[StrictStr, Field(..., description="A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key.")], client_id : Annotated[StrictStr, Field(..., description="Channel ID.")], client_secret : Annotated[StrictStr, Field(..., description="Channel secret.")], async_req: Optional[bool]=None, **kwargs) -> Union[IssueStatelessChannelAccessTokenResponse, Awaitable[IssueStatelessChannelAccessTokenResponse]]:  # noqa: E501
-        """issue_stateless_channel_token  # noqa: E501
+        """
 
         .. deprecated::
             Use :func:`issue_stateless_channel_token_by_jwt_assertion` or
             :func:`issue_stateless_channel_token_by_client_secret` instead.
 
-        Issues a new stateless channel access token, which doesn't have max active token limit unlike the other token types. The newly issued token is only valid for 15 minutes but can not be revoked until it naturally expires.   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.issue_stateless_channel_token(grant_type, client_assertion_type, client_assertion, client_id, client_secret, async_req=True)
-        >>> result = thread.get()
+        Issues a new stateless channel access token, which doesn't have max active token limit unlike the other token types. The newly issued token is only valid for 15 minutes but can not be revoked until it naturally expires. 
 
         :param grant_type: `client_credentials` (required)
         :type grant_type: str
@@ -598,8 +551,6 @@ class AsyncChannelAccessToken(object):
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: IssueStatelessChannelAccessTokenResponse
         """
         kwargs['_return_http_data_only'] = True
@@ -611,18 +562,13 @@ class AsyncChannelAccessToken(object):
 
     @validate_arguments
     def issue_stateless_channel_token_with_http_info(self, grant_type : Annotated[StrictStr, Field(..., description="`client_credentials`")], client_assertion_type : Annotated[StrictStr, Field(..., description="URL-encoded value of `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`")], client_assertion : Annotated[StrictStr, Field(..., description="A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key.")], client_id : Annotated[StrictStr, Field(..., description="Channel ID.")], client_secret : Annotated[StrictStr, Field(..., description="Channel secret.")], **kwargs) -> ApiResponse:  # noqa: E501
-        """issue_stateless_channel_token  # noqa: E501
+        """
 
         .. deprecated::
             Use :func:`issue_stateless_channel_token_with_http_info_by_jwt_assertion` or
             :func:`issue_stateless_channel_token_with_http_info_by_client_secret` instead.
 
-        Issues a new stateless channel access token, which doesn't have max active token limit unlike the other token types. The newly issued token is only valid for 15 minutes but can not be revoked until it naturally expires.   # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.issue_stateless_channel_token_with_http_info(grant_type, client_assertion_type, client_assertion, client_id, client_secret, async_req=True)
-        >>> result = thread.get()
+        Issues a new stateless channel access token, which doesn't have max active token limit unlike the other token types. The newly issued token is only valid for 15 minutes but can not be revoked until it naturally expires. 
 
         :param grant_type: `client_credentials` (required)
         :type grant_type: str
@@ -654,8 +600,6 @@ class AsyncChannelAccessToken(object):
         :type _request_auth: dict, optional
         :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(IssueStatelessChannelAccessTokenResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
@@ -766,14 +710,9 @@ class AsyncChannelAccessToken(object):
 
     @validate_arguments
     def revoke_channel_token(self, access_token : Annotated[StrictStr, Field(..., description="Channel access token")], async_req: Optional[bool]=None, **kwargs) -> Union[None, Awaitable[None]]:  # noqa: E501
-        """revoke_channel_token  # noqa: E501
+        """
 
-        Revoke short-lived or long-lived channel access token  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.revoke_channel_token(access_token, async_req=True)
-        >>> result = thread.get()
+        Revoke short-lived or long-lived channel access token
 
         :param access_token: Channel access token (required)
         :type access_token: str
@@ -784,8 +723,6 @@ class AsyncChannelAccessToken(object):
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
         kwargs['_return_http_data_only'] = True
@@ -797,14 +734,9 @@ class AsyncChannelAccessToken(object):
 
     @validate_arguments
     def revoke_channel_token_with_http_info(self, access_token : Annotated[StrictStr, Field(..., description="Channel access token")], **kwargs) -> ApiResponse:  # noqa: E501
-        """revoke_channel_token  # noqa: E501
+        """
 
-        Revoke short-lived or long-lived channel access token  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.revoke_channel_token_with_http_info(access_token, async_req=True)
-        >>> result = thread.get()
+        Revoke short-lived or long-lived channel access token
 
         :param access_token: Channel access token (required)
         :type access_token: str
@@ -828,8 +760,6 @@ class AsyncChannelAccessToken(object):
         :type _request_auth: dict, optional
         :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
 
@@ -918,14 +848,9 @@ class AsyncChannelAccessToken(object):
 
     @validate_arguments
     def revoke_channel_token_by_jwt(self, client_id : Annotated[StrictStr, Field(..., description="Channel ID")], client_secret : Annotated[StrictStr, Field(..., description="Channel Secret")], access_token : Annotated[StrictStr, Field(..., description="Channel access token")], async_req: Optional[bool]=None, **kwargs) -> Union[None, Awaitable[None]]:  # noqa: E501
-        """revoke_channel_token_by_jwt  # noqa: E501
+        """
 
-        Revoke channel access token v2.1  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.revoke_channel_token_by_jwt(client_id, client_secret, access_token, async_req=True)
-        >>> result = thread.get()
+        Revoke channel access token v2.1
 
         :param client_id: Channel ID (required)
         :type client_id: str
@@ -940,8 +865,6 @@ class AsyncChannelAccessToken(object):
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
         kwargs['_return_http_data_only'] = True
@@ -953,14 +876,9 @@ class AsyncChannelAccessToken(object):
 
     @validate_arguments
     def revoke_channel_token_by_jwt_with_http_info(self, client_id : Annotated[StrictStr, Field(..., description="Channel ID")], client_secret : Annotated[StrictStr, Field(..., description="Channel Secret")], access_token : Annotated[StrictStr, Field(..., description="Channel access token")], **kwargs) -> ApiResponse:  # noqa: E501
-        """revoke_channel_token_by_jwt  # noqa: E501
+        """
 
-        Revoke channel access token v2.1  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.revoke_channel_token_by_jwt_with_http_info(client_id, client_secret, access_token, async_req=True)
-        >>> result = thread.get()
+        Revoke channel access token v2.1
 
         :param client_id: Channel ID (required)
         :type client_id: str
@@ -988,8 +906,6 @@ class AsyncChannelAccessToken(object):
         :type _request_auth: dict, optional
         :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
 
@@ -1086,14 +1002,9 @@ class AsyncChannelAccessToken(object):
 
     @validate_arguments
     def verify_channel_token(self, access_token : Annotated[StrictStr, Field(..., description="A short-lived or long-lived channel access token.")], async_req: Optional[bool]=None, **kwargs) -> Union[VerifyChannelAccessTokenResponse, Awaitable[VerifyChannelAccessTokenResponse]]:  # noqa: E501
-        """verify_channel_token  # noqa: E501
+        """
 
-        Verify the validity of short-lived and long-lived channel access tokens  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.verify_channel_token(access_token, async_req=True)
-        >>> result = thread.get()
+        Verify the validity of short-lived and long-lived channel access tokens
 
         :param access_token: A short-lived or long-lived channel access token. (required)
         :type access_token: str
@@ -1104,8 +1015,6 @@ class AsyncChannelAccessToken(object):
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: VerifyChannelAccessTokenResponse
         """
         kwargs['_return_http_data_only'] = True
@@ -1117,14 +1026,9 @@ class AsyncChannelAccessToken(object):
 
     @validate_arguments
     def verify_channel_token_with_http_info(self, access_token : Annotated[StrictStr, Field(..., description="A short-lived or long-lived channel access token.")], **kwargs) -> ApiResponse:  # noqa: E501
-        """verify_channel_token  # noqa: E501
+        """
 
-        Verify the validity of short-lived and long-lived channel access tokens  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.verify_channel_token_with_http_info(access_token, async_req=True)
-        >>> result = thread.get()
+        Verify the validity of short-lived and long-lived channel access tokens
 
         :param access_token: A short-lived or long-lived channel access token. (required)
         :type access_token: str
@@ -1148,8 +1052,6 @@ class AsyncChannelAccessToken(object):
         :type _request_auth: dict, optional
         :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(VerifyChannelAccessTokenResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
@@ -1244,14 +1146,9 @@ class AsyncChannelAccessToken(object):
 
     @validate_arguments
     def verify_channel_token_by_jwt(self, access_token : Annotated[StrictStr, Field(..., description="Channel access token with a user-specified expiration (Channel Access Token v2.1).")], async_req: Optional[bool]=None, **kwargs) -> Union[VerifyChannelAccessTokenResponse, Awaitable[VerifyChannelAccessTokenResponse]]:  # noqa: E501
-        """verify_channel_token_by_jwt  # noqa: E501
+        """
 
-        You can verify whether a Channel access token with a user-specified expiration (Channel Access Token v2.1) is valid.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.verify_channel_token_by_jwt(access_token, async_req=True)
-        >>> result = thread.get()
+        You can verify whether a Channel access token with a user-specified expiration (Channel Access Token v2.1) is valid.
 
         :param access_token: Channel access token with a user-specified expiration (Channel Access Token v2.1). (required)
         :type access_token: str
@@ -1262,8 +1159,6 @@ class AsyncChannelAccessToken(object):
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: VerifyChannelAccessTokenResponse
         """
         kwargs['_return_http_data_only'] = True
@@ -1275,14 +1170,9 @@ class AsyncChannelAccessToken(object):
 
     @validate_arguments
     def verify_channel_token_by_jwt_with_http_info(self, access_token : Annotated[StrictStr, Field(..., description="Channel access token with a user-specified expiration (Channel Access Token v2.1).")], **kwargs) -> ApiResponse:  # noqa: E501
-        """verify_channel_token_by_jwt  # noqa: E501
+        """
 
-        You can verify whether a Channel access token with a user-specified expiration (Channel Access Token v2.1) is valid.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.verify_channel_token_by_jwt_with_http_info(access_token, async_req=True)
-        >>> result = thread.get()
+        You can verify whether a Channel access token with a user-specified expiration (Channel Access Token v2.1) is valid.
 
         :param access_token: Channel access token with a user-specified expiration (Channel Access Token v2.1). (required)
         :type access_token: str
@@ -1306,8 +1196,6 @@ class AsyncChannelAccessToken(object):
         :type _request_auth: dict, optional
         :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(VerifyChannelAccessTokenResponse, status_code(int), headers(HTTPHeaderDict))
         """
 

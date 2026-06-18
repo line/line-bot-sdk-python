@@ -52,9 +52,9 @@ class Insight(object):
 
     @validate_arguments
     def get_friends_demographics(self, **kwargs) -> GetFriendsDemographicsResponse:  # noqa: E501
-        """get_friends_demographics  # noqa: E501
+        """
 
-        Retrieves the demographic attributes for a LINE Official Account's friends.You can only retrieve information about friends for LINE Official Accounts created by users in Japan (JP), Thailand (TH), Taiwan (TW) and Indonesia (ID).   # noqa: E501
+        Retrieves the demographic attributes for a LINE Official Account's friends.You can only retrieve information about friends for LINE Official Accounts created by users in Japan (JP), Thailand (TH), Taiwan (TW) and Indonesia (ID). 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -79,9 +79,9 @@ class Insight(object):
 
     @validate_arguments
     def get_friends_demographics_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
-        """get_friends_demographics  # noqa: E501
+        """
 
-        Retrieves the demographic attributes for a LINE Official Account's friends.You can only retrieve information about friends for LINE Official Accounts created by users in Japan (JP), Thailand (TH), Taiwan (TW) and Indonesia (ID).   # noqa: E501
+        Retrieves the demographic attributes for a LINE Official Account's friends.You can only retrieve information about friends for LINE Official Accounts created by users in Japan (JP), Thailand (TH), Taiwan (TW) and Indonesia (ID). 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -185,9 +185,9 @@ class Insight(object):
 
     @validate_arguments
     def get_message_event(self, request_id : Annotated[constr(strict=True, min_length=1), Field(..., description="Request ID of a narrowcast message or broadcast message. Each Messaging API request has a request ID. ")], **kwargs) -> GetMessageEventResponse:  # noqa: E501
-        """Get user interaction statistics  # noqa: E501
+        """Get user interaction statistics
 
-        Returns statistics about how users interact with narrowcast messages or broadcast messages sent from your LINE Official Account.   # noqa: E501
+        Returns statistics about how users interact with narrowcast messages or broadcast messages sent from your LINE Official Account. 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -214,9 +214,9 @@ class Insight(object):
 
     @validate_arguments
     def get_message_event_with_http_info(self, request_id : Annotated[constr(strict=True, min_length=1), Field(..., description="Request ID of a narrowcast message or broadcast message. Each Messaging API request has a request ID. ")], **kwargs) -> ApiResponse:  # noqa: E501
-        """Get user interaction statistics  # noqa: E501
+        """Get user interaction statistics
 
-        Returns statistics about how users interact with narrowcast messages or broadcast messages sent from your LINE Official Account.   # noqa: E501
+        Returns statistics about how users interact with narrowcast messages or broadcast messages sent from your LINE Official Account. 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -326,9 +326,9 @@ class Insight(object):
 
     @validate_arguments
     def get_number_of_followers(self, var_date : Annotated[Optional[constr(strict=True, max_length=8, min_length=8)], Field(description="Date for which to retrieve the number of followers.  Format: yyyyMMdd (e.g. 20191231) Timezone: UTC+9 ")] = None, **kwargs) -> GetNumberOfFollowersResponse:  # noqa: E501
-        """Get number of followers  # noqa: E501
+        """Get number of followers
 
-        Returns the number of users who have added the LINE Official Account on or before a specified date.   # noqa: E501
+        Returns the number of users who have added the LINE Official Account on or before a specified date. 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -355,9 +355,9 @@ class Insight(object):
 
     @validate_arguments
     def get_number_of_followers_with_http_info(self, var_date : Annotated[Optional[constr(strict=True, max_length=8, min_length=8)], Field(description="Date for which to retrieve the number of followers.  Format: yyyyMMdd (e.g. 20191231) Timezone: UTC+9 ")] = None, **kwargs) -> ApiResponse:  # noqa: E501
-        """Get number of followers  # noqa: E501
+        """Get number of followers
 
-        Returns the number of users who have added the LINE Official Account on or before a specified date.   # noqa: E501
+        Returns the number of users who have added the LINE Official Account on or before a specified date. 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -467,9 +467,9 @@ class Insight(object):
 
     @validate_arguments
     def get_number_of_message_deliveries(self, var_date : Annotated[constr(strict=True, max_length=8, min_length=8), Field(..., description="Date for which to retrieve number of sent messages. - Format: yyyyMMdd (e.g. 20191231) - Timezone: UTC+9 ")], **kwargs) -> GetNumberOfMessageDeliveriesResponse:  # noqa: E501
-        """Get number of message deliveries  # noqa: E501
+        """Get number of message deliveries
 
-        Returns the number of messages sent from LINE Official Account on a specified day.   # noqa: E501
+        Returns the number of messages sent from LINE Official Account on a specified day. 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -496,9 +496,9 @@ class Insight(object):
 
     @validate_arguments
     def get_number_of_message_deliveries_with_http_info(self, var_date : Annotated[constr(strict=True, max_length=8, min_length=8), Field(..., description="Date for which to retrieve number of sent messages. - Format: yyyyMMdd (e.g. 20191231) - Timezone: UTC+9 ")], **kwargs) -> ApiResponse:  # noqa: E501
-        """Get number of message deliveries  # noqa: E501
+        """Get number of message deliveries
 
-        Returns the number of messages sent from LINE Official Account on a specified day.   # noqa: E501
+        Returns the number of messages sent from LINE Official Account on a specified day. 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -608,9 +608,9 @@ class Insight(object):
 
     @validate_arguments
     def get_statistics_per_unit(self, custom_aggregation_unit : Annotated[constr(strict=True, max_length=30, min_length=1), Field(..., description="Name of aggregation unit specified when sending the message. Case-sensitive. For example, `Promotion_a` and `Promotion_A` are regarded as different unit names. ")], var_from : Annotated[constr(strict=True, max_length=8, min_length=8), Field(..., description="Start date of aggregation period.  Format: yyyyMMdd (e.g. 20210301) Time zone: UTC+9 ")], to : Annotated[constr(strict=True, max_length=8, min_length=8), Field(..., description="End date of aggregation period. The end date can be specified for up to 30 days later. For example, if the start date is 20210301, the latest end date is 20210331.  Format: yyyyMMdd (e.g. 20210301) Time zone: UTC+9 ")], **kwargs) -> GetStatisticsPerUnitResponse:  # noqa: E501
-        """get_statistics_per_unit  # noqa: E501
+        """
 
-        You can check the per-unit statistics of how users interact with push messages and multicast messages sent from your LINE Official Account.   # noqa: E501
+        You can check the per-unit statistics of how users interact with push messages and multicast messages sent from your LINE Official Account. 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -641,9 +641,9 @@ class Insight(object):
 
     @validate_arguments
     def get_statistics_per_unit_with_http_info(self, custom_aggregation_unit : Annotated[constr(strict=True, max_length=30, min_length=1), Field(..., description="Name of aggregation unit specified when sending the message. Case-sensitive. For example, `Promotion_a` and `Promotion_A` are regarded as different unit names. ")], var_from : Annotated[constr(strict=True, max_length=8, min_length=8), Field(..., description="Start date of aggregation period.  Format: yyyyMMdd (e.g. 20210301) Time zone: UTC+9 ")], to : Annotated[constr(strict=True, max_length=8, min_length=8), Field(..., description="End date of aggregation period. The end date can be specified for up to 30 days later. For example, if the start date is 20210301, the latest end date is 20210331.  Format: yyyyMMdd (e.g. 20210301) Time zone: UTC+9 ")], **kwargs) -> ApiResponse:  # noqa: E501
-        """get_statistics_per_unit  # noqa: E501
+        """
 
-        You can check the per-unit statistics of how users interact with push messages and multicast messages sent from your LINE Official Account.   # noqa: E501
+        You can check the per-unit statistics of how users interact with push messages and multicast messages sent from your LINE Official Account. 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 

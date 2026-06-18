@@ -54,14 +54,9 @@ class AsyncShop(object):
 
     @validate_arguments
     def mission_sticker_v3(self, mission_sticker_request : MissionStickerRequest, async_req: Optional[bool]=None, **kwargs) -> Union[None, Awaitable[None]]:  # noqa: E501
-        """mission_sticker_v3  # noqa: E501
+        """
 
-        Sends a mission sticker.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.mission_sticker_v3(mission_sticker_request, async_req=True)
-        >>> result = thread.get()
+        Sends a mission sticker.
 
         :param mission_sticker_request: (required)
         :type mission_sticker_request: MissionStickerRequest
@@ -72,8 +67,6 @@ class AsyncShop(object):
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
         kwargs['_return_http_data_only'] = True
@@ -85,14 +78,9 @@ class AsyncShop(object):
 
     @validate_arguments
     def mission_sticker_v3_with_http_info(self, mission_sticker_request : MissionStickerRequest, **kwargs) -> ApiResponse:  # noqa: E501
-        """mission_sticker_v3  # noqa: E501
+        """
 
-        Sends a mission sticker.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.mission_sticker_v3_with_http_info(mission_sticker_request, async_req=True)
-        >>> result = thread.get()
+        Sends a mission sticker.
 
         :param mission_sticker_request: (required)
         :type mission_sticker_request: MissionStickerRequest
@@ -116,8 +104,6 @@ class AsyncShop(object):
         :type _request_auth: dict, optional
         :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
 

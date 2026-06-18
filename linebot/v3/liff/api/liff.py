@@ -49,9 +49,9 @@ class Liff(object):
 
     @validate_arguments
     def add_liff_app(self, add_liff_app_request : AddLiffAppRequest, **kwargs) -> AddLiffAppResponse:  # noqa: E501
-        """Create LIFF app  # noqa: E501
+        """Create LIFF app
 
-        Adding the LIFF app to a channel  # noqa: E501
+        Adding the LIFF app to a channel
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -78,9 +78,9 @@ class Liff(object):
 
     @validate_arguments
     def add_liff_app_with_http_info(self, add_liff_app_request : AddLiffAppRequest, **kwargs) -> ApiResponse:  # noqa: E501
-        """Create LIFF app  # noqa: E501
+        """Create LIFF app
 
-        Adding the LIFF app to a channel  # noqa: E501
+        Adding the LIFF app to a channel
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -199,9 +199,9 @@ class Liff(object):
 
     @validate_arguments
     def delete_liff_app(self, liff_id : Annotated[StrictStr, Field(..., description="ID of the LIFF app to be updated")], **kwargs) -> None:  # noqa: E501
-        """Delete LIFF app from a channel  # noqa: E501
+        """Delete LIFF app from a channel
 
-        Deletes a LIFF app from a channel.   # noqa: E501
+        Deletes a LIFF app from a channel. 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -228,9 +228,9 @@ class Liff(object):
 
     @validate_arguments
     def delete_liff_app_with_http_info(self, liff_id : Annotated[StrictStr, Field(..., description="ID of the LIFF app to be updated")], **kwargs) -> ApiResponse:  # noqa: E501
-        """Delete LIFF app from a channel  # noqa: E501
+        """Delete LIFF app from a channel
 
-        Deletes a LIFF app from a channel.   # noqa: E501
+        Deletes a LIFF app from a channel. 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -334,9 +334,9 @@ class Liff(object):
 
     @validate_arguments
     def get_all_liff_apps(self, **kwargs) -> GetAllLiffAppsResponse:  # noqa: E501
-        """Get all LIFF apps  # noqa: E501
+        """Get all LIFF apps
 
-        Gets information on all the LIFF apps added to the channel.  # noqa: E501
+        Gets information on all the LIFF apps added to the channel.
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -361,9 +361,9 @@ class Liff(object):
 
     @validate_arguments
     def get_all_liff_apps_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
-        """Get all LIFF apps  # noqa: E501
+        """Get all LIFF apps
 
-        Gets information on all the LIFF apps added to the channel.  # noqa: E501
+        Gets information on all the LIFF apps added to the channel.
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -469,9 +469,9 @@ class Liff(object):
 
     @validate_arguments
     def update_liff_app(self, liff_id : Annotated[StrictStr, Field(..., description="ID of the LIFF app to be updated")], update_liff_app_request : UpdateLiffAppRequest, **kwargs) -> None:  # noqa: E501
-        """Update LIFF app from a channel  # noqa: E501
+        """Update LIFF app from a channel
 
-        Update LIFF app settings  # noqa: E501
+        Update LIFF app settings
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -500,9 +500,9 @@ class Liff(object):
 
     @validate_arguments
     def update_liff_app_with_http_info(self, liff_id : Annotated[StrictStr, Field(..., description="ID of the LIFF app to be updated")], update_liff_app_request : UpdateLiffAppRequest, **kwargs) -> ApiResponse:  # noqa: E501
-        """Update LIFF app from a channel  # noqa: E501
+        """Update LIFF app from a channel
 
-        Update LIFF app settings  # noqa: E501
+        Update LIFF app settings
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 

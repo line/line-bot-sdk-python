@@ -71,14 +71,9 @@ class AsyncManageAudience(object):
 
     @validate_arguments
     def add_audience_to_audience_group(self, add_audience_to_audience_group_request : AddAudienceToAudienceGroupRequest, async_req: Optional[bool]=None, **kwargs) -> Union[None, Awaitable[None]]:  # noqa: E501
-        """add_audience_to_audience_group  # noqa: E501
+        """
 
-        Add user IDs or Identifiers for Advertisers (IFAs) to an audience for uploading user IDs (by JSON)  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.add_audience_to_audience_group(add_audience_to_audience_group_request, async_req=True)
-        >>> result = thread.get()
+        Add user IDs or Identifiers for Advertisers (IFAs) to an audience for uploading user IDs (by JSON)
 
         :param add_audience_to_audience_group_request: (required)
         :type add_audience_to_audience_group_request: AddAudienceToAudienceGroupRequest
@@ -89,8 +84,6 @@ class AsyncManageAudience(object):
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
         kwargs['_return_http_data_only'] = True
@@ -102,14 +95,9 @@ class AsyncManageAudience(object):
 
     @validate_arguments
     def add_audience_to_audience_group_with_http_info(self, add_audience_to_audience_group_request : AddAudienceToAudienceGroupRequest, **kwargs) -> ApiResponse:  # noqa: E501
-        """add_audience_to_audience_group  # noqa: E501
+        """
 
-        Add user IDs or Identifiers for Advertisers (IFAs) to an audience for uploading user IDs (by JSON)  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.add_audience_to_audience_group_with_http_info(add_audience_to_audience_group_request, async_req=True)
-        >>> result = thread.get()
+        Add user IDs or Identifiers for Advertisers (IFAs) to an audience for uploading user IDs (by JSON)
 
         :param add_audience_to_audience_group_request: (required)
         :type add_audience_to_audience_group_request: AddAudienceToAudienceGroupRequest
@@ -133,8 +121,6 @@ class AsyncManageAudience(object):
         :type _request_auth: dict, optional
         :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
 
@@ -223,14 +209,9 @@ class AsyncManageAudience(object):
 
     @validate_arguments
     def create_audience_group(self, create_audience_group_request : CreateAudienceGroupRequest, async_req: Optional[bool]=None, **kwargs) -> Union[CreateAudienceGroupResponse, Awaitable[CreateAudienceGroupResponse]]:  # noqa: E501
-        """create_audience_group  # noqa: E501
+        """
 
-        Create audience for uploading user IDs (by JSON)  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.create_audience_group(create_audience_group_request, async_req=True)
-        >>> result = thread.get()
+        Create audience for uploading user IDs (by JSON)
 
         :param create_audience_group_request: (required)
         :type create_audience_group_request: CreateAudienceGroupRequest
@@ -241,8 +222,6 @@ class AsyncManageAudience(object):
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: CreateAudienceGroupResponse
         """
         kwargs['_return_http_data_only'] = True
@@ -254,14 +233,9 @@ class AsyncManageAudience(object):
 
     @validate_arguments
     def create_audience_group_with_http_info(self, create_audience_group_request : CreateAudienceGroupRequest, **kwargs) -> ApiResponse:  # noqa: E501
-        """create_audience_group  # noqa: E501
+        """
 
-        Create audience for uploading user IDs (by JSON)  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.create_audience_group_with_http_info(create_audience_group_request, async_req=True)
-        >>> result = thread.get()
+        Create audience for uploading user IDs (by JSON)
 
         :param create_audience_group_request: (required)
         :type create_audience_group_request: CreateAudienceGroupRequest
@@ -285,8 +259,6 @@ class AsyncManageAudience(object):
         :type _request_auth: dict, optional
         :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(CreateAudienceGroupResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
@@ -381,14 +353,9 @@ class AsyncManageAudience(object):
 
     @validate_arguments
     def create_click_based_audience_group(self, create_click_based_audience_group_request : CreateClickBasedAudienceGroupRequest, async_req: Optional[bool]=None, **kwargs) -> Union[CreateClickBasedAudienceGroupResponse, Awaitable[CreateClickBasedAudienceGroupResponse]]:  # noqa: E501
-        """create_click_based_audience_group  # noqa: E501
+        """
 
-        Create audience for click-based retargeting  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.create_click_based_audience_group(create_click_based_audience_group_request, async_req=True)
-        >>> result = thread.get()
+        Create audience for click-based retargeting
 
         :param create_click_based_audience_group_request: (required)
         :type create_click_based_audience_group_request: CreateClickBasedAudienceGroupRequest
@@ -399,8 +366,6 @@ class AsyncManageAudience(object):
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: CreateClickBasedAudienceGroupResponse
         """
         kwargs['_return_http_data_only'] = True
@@ -412,14 +377,9 @@ class AsyncManageAudience(object):
 
     @validate_arguments
     def create_click_based_audience_group_with_http_info(self, create_click_based_audience_group_request : CreateClickBasedAudienceGroupRequest, **kwargs) -> ApiResponse:  # noqa: E501
-        """create_click_based_audience_group  # noqa: E501
+        """
 
-        Create audience for click-based retargeting  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.create_click_based_audience_group_with_http_info(create_click_based_audience_group_request, async_req=True)
-        >>> result = thread.get()
+        Create audience for click-based retargeting
 
         :param create_click_based_audience_group_request: (required)
         :type create_click_based_audience_group_request: CreateClickBasedAudienceGroupRequest
@@ -443,8 +403,6 @@ class AsyncManageAudience(object):
         :type _request_auth: dict, optional
         :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(CreateClickBasedAudienceGroupResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
@@ -539,14 +497,9 @@ class AsyncManageAudience(object):
 
     @validate_arguments
     def create_imp_based_audience_group(self, create_imp_based_audience_group_request : CreateImpBasedAudienceGroupRequest, async_req: Optional[bool]=None, **kwargs) -> Union[CreateImpBasedAudienceGroupResponse, Awaitable[CreateImpBasedAudienceGroupResponse]]:  # noqa: E501
-        """create_imp_based_audience_group  # noqa: E501
+        """
 
-        Create audience for impression-based retargeting  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.create_imp_based_audience_group(create_imp_based_audience_group_request, async_req=True)
-        >>> result = thread.get()
+        Create audience for impression-based retargeting
 
         :param create_imp_based_audience_group_request: (required)
         :type create_imp_based_audience_group_request: CreateImpBasedAudienceGroupRequest
@@ -557,8 +510,6 @@ class AsyncManageAudience(object):
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: CreateImpBasedAudienceGroupResponse
         """
         kwargs['_return_http_data_only'] = True
@@ -570,14 +521,9 @@ class AsyncManageAudience(object):
 
     @validate_arguments
     def create_imp_based_audience_group_with_http_info(self, create_imp_based_audience_group_request : CreateImpBasedAudienceGroupRequest, **kwargs) -> ApiResponse:  # noqa: E501
-        """create_imp_based_audience_group  # noqa: E501
+        """
 
-        Create audience for impression-based retargeting  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.create_imp_based_audience_group_with_http_info(create_imp_based_audience_group_request, async_req=True)
-        >>> result = thread.get()
+        Create audience for impression-based retargeting
 
         :param create_imp_based_audience_group_request: (required)
         :type create_imp_based_audience_group_request: CreateImpBasedAudienceGroupRequest
@@ -601,8 +547,6 @@ class AsyncManageAudience(object):
         :type _request_auth: dict, optional
         :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(CreateImpBasedAudienceGroupResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
@@ -697,14 +641,9 @@ class AsyncManageAudience(object):
 
     @validate_arguments
     def delete_audience_group(self, audience_group_id : Annotated[StrictInt, Field(..., description="The audience ID.")], async_req: Optional[bool]=None, **kwargs) -> Union[None, Awaitable[None]]:  # noqa: E501
-        """delete_audience_group  # noqa: E501
+        """
 
-        Delete audience  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.delete_audience_group(audience_group_id, async_req=True)
-        >>> result = thread.get()
+        Delete audience
 
         :param audience_group_id: The audience ID. (required)
         :type audience_group_id: int
@@ -715,8 +654,6 @@ class AsyncManageAudience(object):
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
         kwargs['_return_http_data_only'] = True
@@ -728,14 +665,9 @@ class AsyncManageAudience(object):
 
     @validate_arguments
     def delete_audience_group_with_http_info(self, audience_group_id : Annotated[StrictInt, Field(..., description="The audience ID.")], **kwargs) -> ApiResponse:  # noqa: E501
-        """delete_audience_group  # noqa: E501
+        """
 
-        Delete audience  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.delete_audience_group_with_http_info(audience_group_id, async_req=True)
-        >>> result = thread.get()
+        Delete audience
 
         :param audience_group_id: The audience ID. (required)
         :type audience_group_id: int
@@ -759,8 +691,6 @@ class AsyncManageAudience(object):
         :type _request_auth: dict, optional
         :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
 
@@ -842,14 +772,9 @@ class AsyncManageAudience(object):
 
     @validate_arguments
     def get_audience_data(self, audience_group_id : Annotated[StrictInt, Field(..., description="The audience ID.")], async_req: Optional[bool]=None, **kwargs) -> Union[GetAudienceDataResponse, Awaitable[GetAudienceDataResponse]]:  # noqa: E501
-        """get_audience_data  # noqa: E501
+        """
 
-        Gets audience data.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_audience_data(audience_group_id, async_req=True)
-        >>> result = thread.get()
+        Gets audience data.
 
         :param audience_group_id: The audience ID. (required)
         :type audience_group_id: int
@@ -860,8 +785,6 @@ class AsyncManageAudience(object):
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: GetAudienceDataResponse
         """
         kwargs['_return_http_data_only'] = True
@@ -873,14 +796,9 @@ class AsyncManageAudience(object):
 
     @validate_arguments
     def get_audience_data_with_http_info(self, audience_group_id : Annotated[StrictInt, Field(..., description="The audience ID.")], **kwargs) -> ApiResponse:  # noqa: E501
-        """get_audience_data  # noqa: E501
+        """
 
-        Gets audience data.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_audience_data_with_http_info(audience_group_id, async_req=True)
-        >>> result = thread.get()
+        Gets audience data.
 
         :param audience_group_id: The audience ID. (required)
         :type audience_group_id: int
@@ -904,8 +822,6 @@ class AsyncManageAudience(object):
         :type _request_auth: dict, optional
         :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(GetAudienceDataResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
@@ -994,14 +910,9 @@ class AsyncManageAudience(object):
 
     @validate_arguments
     def get_audience_groups(self, page : Annotated[conint(strict=True, ge=1), Field(..., description="The page to return when getting (paginated) results. Must be 1 or higher.")], description : Annotated[Optional[StrictStr], Field(description="The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion. ")] = None, status : Annotated[Optional[AudienceGroupStatus], Field(description="The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion. ")] = None, size : Annotated[Optional[conint(strict=True, le=40)], Field(description="The number of audiences per page. Default: 20 Max: 40 ")] = None, includes_external_public_groups : Annotated[Optional[StrictBool], Field(description="true (default): Get public audiences created in all channels linked to the same bot. false: Get audiences created in the same channel. ")] = None, create_route : Annotated[Optional[AudienceGroupCreateRoute], Field(description="How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API. ")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[GetAudienceGroupsResponse, Awaitable[GetAudienceGroupsResponse]]:  # noqa: E501
-        """get_audience_groups  # noqa: E501
+        """
 
-        Gets data for more than one audience.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_audience_groups(page, description, status, size, includes_external_public_groups, create_route, async_req=True)
-        >>> result = thread.get()
+        Gets data for more than one audience.
 
         :param page: The page to return when getting (paginated) results. Must be 1 or higher. (required)
         :type page: int
@@ -1022,8 +933,6 @@ class AsyncManageAudience(object):
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: GetAudienceGroupsResponse
         """
         kwargs['_return_http_data_only'] = True
@@ -1035,14 +944,9 @@ class AsyncManageAudience(object):
 
     @validate_arguments
     def get_audience_groups_with_http_info(self, page : Annotated[conint(strict=True, ge=1), Field(..., description="The page to return when getting (paginated) results. Must be 1 or higher.")], description : Annotated[Optional[StrictStr], Field(description="The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion. ")] = None, status : Annotated[Optional[AudienceGroupStatus], Field(description="The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion. ")] = None, size : Annotated[Optional[conint(strict=True, le=40)], Field(description="The number of audiences per page. Default: 20 Max: 40 ")] = None, includes_external_public_groups : Annotated[Optional[StrictBool], Field(description="true (default): Get public audiences created in all channels linked to the same bot. false: Get audiences created in the same channel. ")] = None, create_route : Annotated[Optional[AudienceGroupCreateRoute], Field(description="How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API. ")] = None, **kwargs) -> ApiResponse:  # noqa: E501
-        """get_audience_groups  # noqa: E501
+        """
 
-        Gets data for more than one audience.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_audience_groups_with_http_info(page, description, status, size, includes_external_public_groups, create_route, async_req=True)
-        >>> result = thread.get()
+        Gets data for more than one audience.
 
         :param page: The page to return when getting (paginated) results. Must be 1 or higher. (required)
         :type page: int
@@ -1076,8 +980,6 @@ class AsyncManageAudience(object):
         :type _request_auth: dict, optional
         :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(GetAudienceGroupsResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
@@ -1185,14 +1087,9 @@ class AsyncManageAudience(object):
 
     @validate_arguments
     def get_shared_audience_data(self, audience_group_id : Annotated[StrictInt, Field(..., description="The audience ID.")], async_req: Optional[bool]=None, **kwargs) -> Union[GetSharedAudienceDataResponse, Awaitable[GetSharedAudienceDataResponse]]:  # noqa: E501
-        """get_shared_audience_data  # noqa: E501
+        """
 
-        Gets audience data.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_shared_audience_data(audience_group_id, async_req=True)
-        >>> result = thread.get()
+        Gets audience data.
 
         :param audience_group_id: The audience ID. (required)
         :type audience_group_id: int
@@ -1203,8 +1100,6 @@ class AsyncManageAudience(object):
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: GetSharedAudienceDataResponse
         """
         kwargs['_return_http_data_only'] = True
@@ -1216,14 +1111,9 @@ class AsyncManageAudience(object):
 
     @validate_arguments
     def get_shared_audience_data_with_http_info(self, audience_group_id : Annotated[StrictInt, Field(..., description="The audience ID.")], **kwargs) -> ApiResponse:  # noqa: E501
-        """get_shared_audience_data  # noqa: E501
+        """
 
-        Gets audience data.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_shared_audience_data_with_http_info(audience_group_id, async_req=True)
-        >>> result = thread.get()
+        Gets audience data.
 
         :param audience_group_id: The audience ID. (required)
         :type audience_group_id: int
@@ -1247,8 +1137,6 @@ class AsyncManageAudience(object):
         :type _request_auth: dict, optional
         :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(GetSharedAudienceDataResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
@@ -1337,14 +1225,9 @@ class AsyncManageAudience(object):
 
     @validate_arguments
     def get_shared_audience_groups(self, page : Annotated[conint(strict=True, ge=1), Field(..., description="The page to return when getting (paginated) results. Must be 1 or higher.")], description : Annotated[Optional[StrictStr], Field(description="The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion. ")] = None, status : Annotated[Optional[AudienceGroupStatus], Field(description="The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion. ")] = None, size : Annotated[Optional[conint(strict=True, le=40)], Field(description="The number of audiences per page. Default: 20 Max: 40 ")] = None, create_route : Annotated[Optional[AudienceGroupCreateRoute], Field(description="How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API. ")] = None, includes_owned_audience_groups : Annotated[Optional[StrictBool], Field(description="true: Include audienceGroups owned by LINE Official Account Manager false: Respond only audienceGroups shared by Business Manager ")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[GetSharedAudienceGroupsResponse, Awaitable[GetSharedAudienceGroupsResponse]]:  # noqa: E501
-        """get_shared_audience_groups  # noqa: E501
+        """
 
-        Gets data for more than one audience, including those shared by the Business Manager.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_shared_audience_groups(page, description, status, size, create_route, includes_owned_audience_groups, async_req=True)
-        >>> result = thread.get()
+        Gets data for more than one audience, including those shared by the Business Manager.
 
         :param page: The page to return when getting (paginated) results. Must be 1 or higher. (required)
         :type page: int
@@ -1365,8 +1248,6 @@ class AsyncManageAudience(object):
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: GetSharedAudienceGroupsResponse
         """
         kwargs['_return_http_data_only'] = True
@@ -1378,14 +1259,9 @@ class AsyncManageAudience(object):
 
     @validate_arguments
     def get_shared_audience_groups_with_http_info(self, page : Annotated[conint(strict=True, ge=1), Field(..., description="The page to return when getting (paginated) results. Must be 1 or higher.")], description : Annotated[Optional[StrictStr], Field(description="The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion. ")] = None, status : Annotated[Optional[AudienceGroupStatus], Field(description="The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion. ")] = None, size : Annotated[Optional[conint(strict=True, le=40)], Field(description="The number of audiences per page. Default: 20 Max: 40 ")] = None, create_route : Annotated[Optional[AudienceGroupCreateRoute], Field(description="How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API. ")] = None, includes_owned_audience_groups : Annotated[Optional[StrictBool], Field(description="true: Include audienceGroups owned by LINE Official Account Manager false: Respond only audienceGroups shared by Business Manager ")] = None, **kwargs) -> ApiResponse:  # noqa: E501
-        """get_shared_audience_groups  # noqa: E501
+        """
 
-        Gets data for more than one audience, including those shared by the Business Manager.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_shared_audience_groups_with_http_info(page, description, status, size, create_route, includes_owned_audience_groups, async_req=True)
-        >>> result = thread.get()
+        Gets data for more than one audience, including those shared by the Business Manager.
 
         :param page: The page to return when getting (paginated) results. Must be 1 or higher. (required)
         :type page: int
@@ -1419,8 +1295,6 @@ class AsyncManageAudience(object):
         :type _request_auth: dict, optional
         :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(GetSharedAudienceGroupsResponse, status_code(int), headers(HTTPHeaderDict))
         """
 
@@ -1528,14 +1402,9 @@ class AsyncManageAudience(object):
 
     @validate_arguments
     def update_audience_group_description(self, audience_group_id : Annotated[StrictInt, Field(..., description="The audience ID.")], update_audience_group_description_request : UpdateAudienceGroupDescriptionRequest, async_req: Optional[bool]=None, **kwargs) -> Union[None, Awaitable[None]]:  # noqa: E501
-        """update_audience_group_description  # noqa: E501
+        """
 
-        Renames an existing audience.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.update_audience_group_description(audience_group_id, update_audience_group_description_request, async_req=True)
-        >>> result = thread.get()
+        Renames an existing audience.
 
         :param audience_group_id: The audience ID. (required)
         :type audience_group_id: int
@@ -1548,8 +1417,6 @@ class AsyncManageAudience(object):
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
         kwargs['_return_http_data_only'] = True
@@ -1561,14 +1428,9 @@ class AsyncManageAudience(object):
 
     @validate_arguments
     def update_audience_group_description_with_http_info(self, audience_group_id : Annotated[StrictInt, Field(..., description="The audience ID.")], update_audience_group_description_request : UpdateAudienceGroupDescriptionRequest, **kwargs) -> ApiResponse:  # noqa: E501
-        """update_audience_group_description  # noqa: E501
+        """
 
-        Renames an existing audience.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.update_audience_group_description_with_http_info(audience_group_id, update_audience_group_description_request, async_req=True)
-        >>> result = thread.get()
+        Renames an existing audience.
 
         :param audience_group_id: The audience ID. (required)
         :type audience_group_id: int
@@ -1594,8 +1456,6 @@ class AsyncManageAudience(object):
         :type _request_auth: dict, optional
         :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: None
         """
 

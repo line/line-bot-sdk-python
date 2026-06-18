@@ -54,14 +54,9 @@ class AsyncDummy(object):
 
     @validate_arguments
     def callback(self, callback_request : CallbackRequest, async_req: Optional[bool]=None, **kwargs) -> Union[str, Awaitable[str]]:  # noqa: E501
-        """callback  # noqa: E501
+        """
 
-        This is the dummy endpoint to generate the model classes  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.callback(callback_request, async_req=True)
-        >>> result = thread.get()
+        This is the dummy endpoint to generate the model classes
 
         :param callback_request: (required)
         :type callback_request: CallbackRequest
@@ -72,8 +67,6 @@ class AsyncDummy(object):
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: str
         """
         kwargs['_return_http_data_only'] = True
@@ -85,14 +78,9 @@ class AsyncDummy(object):
 
     @validate_arguments
     def callback_with_http_info(self, callback_request : CallbackRequest, **kwargs) -> ApiResponse:  # noqa: E501
-        """callback  # noqa: E501
+        """
 
-        This is the dummy endpoint to generate the model classes  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.callback_with_http_info(callback_request, async_req=True)
-        >>> result = thread.get()
+        This is the dummy endpoint to generate the model classes
 
         :param callback_request: (required)
         :type callback_request: CallbackRequest
@@ -116,8 +104,6 @@ class AsyncDummy(object):
         :type _request_auth: dict, optional
         :type _content_type: string, optional: force content-type for the request
         :return: Returns the result object.
-                 If the method is called asynchronously,
-                 returns the request thread.
         :rtype: tuple(str, status_code(int), headers(HTTPHeaderDict))
         """
 

@@ -48,9 +48,9 @@ class MessagingApiBlob(object):
 
     @validate_arguments
     def get_message_content(self, message_id : Annotated[StrictStr, Field(..., description="Message ID of video or audio")], **kwargs) -> bytearray:  # noqa: E501
-        """get_message_content  # noqa: E501
+        """
 
-        Download image, video, and audio data sent from users.  # noqa: E501
+        Download image, video, and audio data sent from users.
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -77,9 +77,9 @@ class MessagingApiBlob(object):
 
     @validate_arguments
     def get_message_content_with_http_info(self, message_id : Annotated[StrictStr, Field(..., description="Message ID of video or audio")], **kwargs) -> ApiResponse:  # noqa: E501
-        """get_message_content  # noqa: E501
+        """
 
-        Download image, video, and audio data sent from users.  # noqa: E501
+        Download image, video, and audio data sent from users.
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -200,9 +200,9 @@ class MessagingApiBlob(object):
 
     @validate_arguments
     def get_message_content_preview(self, message_id : Annotated[StrictStr, Field(..., description="Message ID of image or video")], **kwargs) -> bytearray:  # noqa: E501
-        """get_message_content_preview  # noqa: E501
+        """
 
-        Get a preview image of the image or video  # noqa: E501
+        Get a preview image of the image or video
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -229,9 +229,9 @@ class MessagingApiBlob(object):
 
     @validate_arguments
     def get_message_content_preview_with_http_info(self, message_id : Annotated[StrictStr, Field(..., description="Message ID of image or video")], **kwargs) -> ApiResponse:  # noqa: E501
-        """get_message_content_preview  # noqa: E501
+        """
 
-        Get a preview image of the image or video  # noqa: E501
+        Get a preview image of the image or video
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -352,9 +352,9 @@ class MessagingApiBlob(object):
 
     @validate_arguments
     def get_message_content_transcoding_by_message_id(self, message_id : Annotated[StrictStr, Field(..., description="Message ID of video or audio")], **kwargs) -> GetMessageContentTranscodingResponse:  # noqa: E501
-        """get_message_content_transcoding_by_message_id  # noqa: E501
+        """
 
-        Verify the preparation status of a video or audio for getting  # noqa: E501
+        Verify the preparation status of a video or audio for getting
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -381,9 +381,9 @@ class MessagingApiBlob(object):
 
     @validate_arguments
     def get_message_content_transcoding_by_message_id_with_http_info(self, message_id : Annotated[StrictStr, Field(..., description="Message ID of video or audio")], **kwargs) -> ApiResponse:  # noqa: E501
-        """get_message_content_transcoding_by_message_id  # noqa: E501
+        """
 
-        Verify the preparation status of a video or audio for getting  # noqa: E501
+        Verify the preparation status of a video or audio for getting
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -504,9 +504,9 @@ class MessagingApiBlob(object):
 
     @validate_arguments
     def get_rich_menu_image(self, rich_menu_id : Annotated[StrictStr, Field(..., description="ID of the rich menu with the image to be downloaded")], **kwargs) -> bytearray:  # noqa: E501
-        """get_rich_menu_image  # noqa: E501
+        """
 
-        Download rich menu image.  # noqa: E501
+        Download rich menu image.
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -533,9 +533,9 @@ class MessagingApiBlob(object):
 
     @validate_arguments
     def get_rich_menu_image_with_http_info(self, rich_menu_id : Annotated[StrictStr, Field(..., description="ID of the rich menu with the image to be downloaded")], **kwargs) -> ApiResponse:  # noqa: E501
-        """get_rich_menu_image  # noqa: E501
+        """
 
-        Download rich menu image.  # noqa: E501
+        Download rich menu image.
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -656,9 +656,9 @@ class MessagingApiBlob(object):
 
     @validate_arguments
     def set_rich_menu_image(self, rich_menu_id : Annotated[StrictStr, Field(..., description="The ID of the rich menu to attach the image to")], body : Union[StrictBytes, StrictStr], **kwargs) -> None:  # noqa: E501
-        """set_rich_menu_image  # noqa: E501
+        """
 
-        Upload rich menu image  # noqa: E501
+        Upload rich menu image
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -687,9 +687,9 @@ class MessagingApiBlob(object):
 
     @validate_arguments
     def set_rich_menu_image_with_http_info(self, rich_menu_id : Annotated[StrictStr, Field(..., description="The ID of the rich menu to attach the image to")], body : Union[StrictBytes, StrictStr], **kwargs) -> ApiResponse:  # noqa: E501
-        """set_rich_menu_image  # noqa: E501
+        """
 
-        Upload rich menu image  # noqa: E501
+        Upload rich menu image
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 

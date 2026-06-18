@@ -44,9 +44,9 @@ class Shop(object):
 
     @validate_arguments
     def mission_sticker_v3(self, mission_sticker_request : MissionStickerRequest, **kwargs) -> None:  # noqa: E501
-        """mission_sticker_v3  # noqa: E501
+        """
 
-        Sends a mission sticker.  # noqa: E501
+        Sends a mission sticker.
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -73,9 +73,9 @@ class Shop(object):
 
     @validate_arguments
     def mission_sticker_v3_with_http_info(self, mission_sticker_request : MissionStickerRequest, **kwargs) -> ApiResponse:  # noqa: E501
-        """mission_sticker_v3  # noqa: E501
+        """
 
-        Sends a mission sticker.  # noqa: E501
+        Sends a mission sticker.
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 

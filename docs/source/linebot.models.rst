@@ -1,5 +1,9 @@
-linebot.models package
-======================
+linebot.models package (deprecated)
+====================================
+
+.. warning::
+
+   **Deprecated.** Use :doc:`linebot.v3 <linebot.v3>` instead.
 
 linebot.models.actions module
 ------------------------------

@@ -24,6 +24,7 @@ from pydantic.v1 import BaseModel, Field, StrictFloat, StrictInt, StrictStr, val
 class SubscriptionPeriodTile(BaseModel):
     """
     SubscriptionPeriodTile
+    https://developers.line.biz/en/reference/messaging-api/#get-demographic
     """
     subscription_period: Optional[StrictStr] = Field(None, alias="subscriptionPeriod", description="Subscription period. Possible values: `within7days`, `within90days`, `unknown` etc.")
     percentage: Optional[Union[StrictFloat, StrictInt]] = Field(None, description="Percentage. Possible values: [0.0,100.0] e.g. 0, 2.9, 37.6.")

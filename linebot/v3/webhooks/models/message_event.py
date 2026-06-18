@@ -29,6 +29,7 @@ from linebot.v3.webhooks.models.source import Source
 class MessageEvent(Event):
     """
     Webhook event object which contains the sent message.
+    https://developers.line.biz/en/reference/messaging-api/#message-event
     """
     reply_token: Optional[StrictStr] = Field(None, alias="replyToken")
     message: MessageContent = Field(...)

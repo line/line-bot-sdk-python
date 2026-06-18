@@ -24,6 +24,7 @@ from pydantic.v1 import BaseModel, Field, StrictStr
 class UnsendDetail(BaseModel):
     """
     UnsendDetail
+    https://developers.line.biz/en/reference/messaging-api/#unsend-event
     """
     message_id: StrictStr = Field(..., alias="messageId", description="The message ID of the unsent message")
 

@@ -27,6 +27,7 @@ from linebot.v3.webhooks.models.message_content import MessageContent
 class TextMessageContent(MessageContent):
     """
     TextMessageContent
+    https://developers.line.biz/en/reference/messaging-api/#wh-text
     """
     text: StrictStr = Field(..., description="Message text.")
     emojis: Optional[conlist(Emoji)] = Field(None, description="Array of one or more LINE emoji objects. Only included in the message event when the text property contains a LINE emoji.")

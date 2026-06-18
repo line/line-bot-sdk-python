@@ -26,6 +26,7 @@ from linebot.v3.webhooks.models.message_content import MessageContent
 class VideoMessageContent(MessageContent):
     """
     VideoMessageContent
+    https://developers.line.biz/en/reference/messaging-api/#wh-video
     """
     duration: Optional[StrictInt] = Field(None, description="Length of video file (milliseconds)")
     content_provider: ContentProvider = Field(..., alias="contentProvider")

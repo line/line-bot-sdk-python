@@ -24,6 +24,7 @@ from pydantic.v1 import BaseModel, Field, StrictStr
 class PnpDelivery(BaseModel):
     """
     A delivery object containing a hashed phone number string or a string specified by `X-Line-Delivery-Tag` header
+    https://developers.line.biz/en/docs/partner-docs/line-notification-messages/message-sending-complete-webhook-event/#overview-delivery-webhook-event
     """
     data: StrictStr = Field(..., description="A hashed phone number string or a string specified by `X-Line-Delivery-Tag` header")
 

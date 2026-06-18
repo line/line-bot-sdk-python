@@ -29,6 +29,7 @@ from linebot.v3.webhooks.models.source import Source
 class MemberJoinedEvent(Event):
     """
     Event object for when a user joins a group chat or multi-person chat that the LINE Official Account is in.
+    https://developers.line.biz/en/reference/messaging-api/#member-joined-event
     """
     reply_token: StrictStr = Field(..., alias="replyToken", description="Reply token used to send reply message to this event")
     joined: JoinedMembers = Field(...)

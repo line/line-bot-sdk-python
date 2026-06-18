@@ -27,6 +27,7 @@ from linebot.v3.webhooks.models.message_content import MessageContent
 class ImageMessageContent(MessageContent):
     """
     ImageMessageContent
+    https://developers.line.biz/en/reference/messaging-api/#wh-image
     """
     content_provider: ContentProvider = Field(..., alias="contentProvider")
     image_set: Optional[ImageSet] = Field(None, alias="imageSet")

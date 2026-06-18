@@ -24,6 +24,7 @@ from pydantic.v1 import BaseModel, Field, StrictInt, StrictStr
 class GetMessageEventResponseOverview(BaseModel):
     """
     Summary of message statistics.
+    https://developers.line.biz/en/reference/messaging-api/#get-insight-message-event-response
     """
     request_id: Optional[StrictStr] = Field(None, alias="requestId", description="Request ID.")
     timestamp: Optional[StrictInt] = Field(None, description="UNIX timestamp for message delivery time in seconds.")

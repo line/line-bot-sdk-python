@@ -24,6 +24,7 @@ from pydantic.v1 import BaseModel, Field, StrictBool
 class LiffFeatures(BaseModel):
     """
     LiffFeatures
+    https://developers.line.biz/en/reference/liff-server/#get-all-liff-apps
     """
     ble: Optional[StrictBool] = Field(None, description="`true` if the LIFF app supports Bluetooth® Low Energy for LINE Things. `false` otherwise. ")
     qr_code: Optional[StrictBool] = Field(False, alias="qrCode", description="`true` to use the 2D code reader in the LIFF app. false otherwise. The default value is `false`. ")

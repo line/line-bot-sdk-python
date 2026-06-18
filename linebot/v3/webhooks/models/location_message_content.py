@@ -25,6 +25,7 @@ from linebot.v3.webhooks.models.message_content import MessageContent
 class LocationMessageContent(MessageContent):
     """
     LocationMessageContent
+    https://developers.line.biz/en/reference/messaging-api/#wh-location
     """
     title: Optional[StrictStr] = Field(None, description="Title")
     address: Optional[StrictStr] = Field(None, description="Address")

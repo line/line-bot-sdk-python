@@ -24,6 +24,7 @@ from pydantic.v1 import BaseModel, Field, StrictStr
 class VideoPlayComplete(BaseModel):
     """
     VideoPlayComplete
+    https://developers.line.biz/en/reference/messaging-api/#video-viewing-complete
     """
     tracking_id: StrictStr = Field(..., alias="trackingId", description="ID used to identify a video. Returns the same value as the trackingId assigned to the video message.")
 

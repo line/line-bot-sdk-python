@@ -29,6 +29,7 @@ from linebot.v3.webhooks.models.source import Source
 class AccountLinkEvent(Event):
     """
     Event object for when a user has linked their LINE account with a provider's service account. You can reply to account link events.
+    https://developers.line.biz/en/reference/messaging-api/#account-link-event
     """
     reply_token: Optional[StrictStr] = Field(None, alias="replyToken", description="Reply token used to send reply message to this event. This property won't be included if linking the account has failed.")
     link: LinkContent = Field(...)

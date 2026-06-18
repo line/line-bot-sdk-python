@@ -24,6 +24,7 @@ from pydantic.v1 import BaseModel, Field, StrictInt, StrictStr
 class GetMessageEventResponseClick(BaseModel):
     """
     GetMessageEventResponseClick
+    https://developers.line.biz/en/reference/messaging-api/#get-insight-message-event-response
     """
     seq: Optional[StrictInt] = Field(None, description="The URL's serial number.")
     url: Optional[StrictStr] = Field(None, description="URL.")

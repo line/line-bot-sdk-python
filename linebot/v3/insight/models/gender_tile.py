@@ -24,6 +24,7 @@ from pydantic.v1 import BaseModel, Field, StrictFloat, StrictInt, StrictStr, val
 class GenderTile(BaseModel):
     """
     GenderTile
+    https://developers.line.biz/en/reference/messaging-api/#get-demographic
     """
     gender: Optional[StrictStr] = Field(None, description="users' gender")
     percentage: Optional[Union[StrictFloat, StrictInt]] = Field(None, description="Percentage")

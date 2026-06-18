@@ -29,6 +29,7 @@ from linebot.v3.webhooks.models.source import Source
 class ModuleEvent(Event):
     """
     This event indicates that the module channel has been attached to the LINE Official Account. Sent to the webhook URL server of the module channel.
+    https://developers.line.biz/en/reference/partner-docs/#module-channel-specific-webhook-events
     """
     module: ModuleContent = Field(...)
     type: str = "module"

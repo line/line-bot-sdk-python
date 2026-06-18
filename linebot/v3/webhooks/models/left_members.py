@@ -25,6 +25,7 @@ from linebot.v3.webhooks.models.user_source import UserSource
 class LeftMembers(BaseModel):
     """
     LeftMembers
+    https://developers.line.biz/en/reference/messaging-api/#member-left-event
     """
     members: conlist(UserSource) = Field(..., description="Users who left. Array of source user objects.")
 

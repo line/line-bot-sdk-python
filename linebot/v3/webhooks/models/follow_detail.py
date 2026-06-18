@@ -24,6 +24,7 @@ from pydantic.v1 import BaseModel, Field, StrictBool
 class FollowDetail(BaseModel):
     """
     FollowDetail
+    https://developers.line.biz/en/reference/messaging-api/#follow-event
     """
     is_unblocked: StrictBool = Field(..., alias="isUnblocked", description="Whether a user has added your LINE Official Account as a friend or unblocked.")
 

@@ -28,6 +28,7 @@ from linebot.v3.webhooks.models.source import Source
 class DeactivatedEvent(Event):
     """
     This event indicates that the module channel has been switched to Standby Channel by calling Acquire Control API or Release Control API. Sent to the webhook URL server of the module channel.
+    https://developers.line.biz/en/reference/partner-docs/#deactivated-event
     """
     type: str = "deactivated"
 

@@ -29,6 +29,7 @@ from linebot.v3.webhooks.models.source import Source
 class FollowEvent(Event):
     """
     Event object for when your LINE Official Account is added as a friend (or unblocked). You can reply to follow events.
+    https://developers.line.biz/en/reference/messaging-api/#follow-event
     """
     reply_token: StrictStr = Field(..., alias="replyToken", description="Reply token used to send reply message to this event")
     follow: FollowDetail = Field(...)

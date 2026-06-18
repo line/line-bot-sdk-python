@@ -24,6 +24,7 @@ from pydantic.v1 import BaseModel, Field, StrictStr
 class ErrorResponse(BaseModel):
     """
     Error response of the Channel access token
+    https://developers.line.biz/en/reference/messaging-api/#error-responses
     """
     error: Optional[StrictStr] = Field(None, description="Error summary")
     error_description: Optional[StrictStr] = Field(None, description="Details of the error. Not returned in certain situations.")

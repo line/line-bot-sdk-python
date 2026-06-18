@@ -28,6 +28,7 @@ from linebot.v3.webhooks.models.source import Source
 class BotResumedEvent(Event):
     """
     This event indicates that the LINE Official Account has returned from the suspended state. Sent to the webhook URL server of the module channel.
+    https://developers.line.biz/en/reference/partner-docs/#botresumed-event
     """
     type: str = "botResumed"
 

@@ -29,6 +29,7 @@ from linebot.v3.webhooks.models.source import Source
 class MemberLeftEvent(Event):
     """
     Event object for when a user leaves a group chat or multi-person chat that the LINE Official Account is in.
+    https://developers.line.biz/en/reference/messaging-api/#member-left-event
     """
     left: LeftMembers = Field(...)
     type: str = "memberLeft"

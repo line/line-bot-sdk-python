@@ -29,6 +29,7 @@ from linebot.v3.webhooks.models.unsend_detail import UnsendDetail
 class UnsendEvent(Event):
     """
     Event object for when the user unsends a message.
+    https://developers.line.biz/en/reference/messaging-api/#unsend-event
     """
     unsend: UnsendDetail = Field(...)
     type: str = "unsend"

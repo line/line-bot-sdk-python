@@ -29,6 +29,7 @@ from linebot.v3.webhooks.models.source import Source
 class PostbackEvent(Event):
     """
     Event object for when a user performs a postback action which initiates a postback. You can reply to postback events.
+    https://developers.line.biz/en/reference/messaging-api/#postback-event
     """
     reply_token: Optional[StrictStr] = Field(None, alias="replyToken", description="Reply token used to send reply message to this event")
     postback: PostbackContent = Field(...)

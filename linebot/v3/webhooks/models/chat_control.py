@@ -24,6 +24,7 @@ from pydantic.v1 import BaseModel, Field, StrictInt
 class ChatControl(BaseModel):
     """
     ChatControl
+    https://developers.line.biz/en/reference/partner-docs/#activated-event
     """
     expire_at: StrictInt = Field(..., alias="expireAt")
 

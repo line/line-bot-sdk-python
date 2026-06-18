@@ -25,6 +25,7 @@ from linebot.v3.webhooks.models.module_content import ModuleContent
 class DetachedModuleContent(ModuleContent):
     """
     DetachedModuleContent
+    https://developers.line.biz/en/reference/partner-docs/#detached-event
     """
     bot_id: StrictStr = Field(..., alias="botId", description="Detached LINE Official Account bot user ID")
     reason: StrictStr = Field(..., description="Reason for detaching")

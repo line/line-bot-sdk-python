@@ -24,6 +24,7 @@ from pydantic.v1 import BaseModel, Field, StrictStr
 class ErrorDetail(BaseModel):
     """
     ErrorDetail
+    https://developers.line.biz/en/reference/messaging-api/#error-responses
     """
     message: Optional[StrictStr] = Field(None, description="Details of the error. Not included in the response under certain situations.")
     var_property: Optional[StrictStr] = Field(None, alias="property", description="Location of where the error occurred. Returns the JSON field name or query parameter name of the request. Not included in the response under certain situations.")

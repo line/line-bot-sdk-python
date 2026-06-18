@@ -24,6 +24,7 @@ from pydantic.v1 import BaseModel, Field, StrictStr, validator
 class BeaconContent(BaseModel):
     """
     BeaconContent
+    https://developers.line.biz/en/reference/messaging-api/#beacon-event
     """
     hwid: StrictStr = Field(..., description="Hardware ID of the beacon that was detected")
     type: StrictStr = Field(..., description="Type of beacon event.")

@@ -24,6 +24,7 @@ from pydantic.v1 import BaseModel, Field, StrictStr
 class AddLiffAppResponse(BaseModel):
     """
     AddLiffAppResponse
+    https://developers.line.biz/en/reference/liff-server/#add-liff-app
     """
     liff_id: StrictStr = Field(..., alias="liffId")
 

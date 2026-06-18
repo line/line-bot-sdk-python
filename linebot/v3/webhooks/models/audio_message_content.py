@@ -26,6 +26,7 @@ from linebot.v3.webhooks.models.message_content import MessageContent
 class AudioMessageContent(MessageContent):
     """
     AudioMessageContent
+    https://developers.line.biz/en/reference/messaging-api/#wh-audio
     """
     content_provider: ContentProvider = Field(..., alias="contentProvider")
     duration: Optional[StrictInt] = Field(None, description="Length of audio file (milliseconds)")

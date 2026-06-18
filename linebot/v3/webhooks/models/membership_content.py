@@ -25,6 +25,7 @@ from pydantic.v1 import BaseModel, Field, StrictStr
 class MembershipContent(BaseModel):
     """
     Content of the membership event.
+    https://developers.line.biz/en/reference/messaging-api/#membership-event
     """
     type: StrictStr = Field(..., description="Type of membership event.")
 

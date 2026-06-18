@@ -28,6 +28,7 @@ from linebot.v3.liff.models.liff_view import LiffView
 class LiffApp(BaseModel):
     """
     LiffApp
+    https://developers.line.biz/en/reference/liff-server/#get-all-liff-apps
     """
     liff_id: Optional[StrictStr] = Field(None, alias="liffId", description="LIFF app ID")
     view: Optional[LiffView] = None

@@ -29,6 +29,7 @@ from linebot.v3.webhooks.models.video_play_complete import VideoPlayComplete
 class VideoPlayCompleteEvent(Event):
     """
     Event for when a user finishes viewing a video at least once with the specified trackingId sent by the LINE Official Account.
+    https://developers.line.biz/en/reference/messaging-api/#video-viewing-complete
     """
     reply_token: StrictStr = Field(..., alias="replyToken", description="Reply token used to send reply message to this event")
     video_play_complete: VideoPlayComplete = Field(..., alias="videoPlayComplete")

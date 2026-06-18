@@ -24,6 +24,7 @@ from pydantic.v1 import BaseModel, Field, StrictFloat, StrictInt, StrictStr, val
 class AppTypeTile(BaseModel):
     """
     AppTypeTile
+    https://developers.line.biz/en/reference/messaging-api/#get-demographic
     """
     app_type: Optional[StrictStr] = Field(None, alias="appType", description="users' OS")
     percentage: Optional[Union[StrictFloat, StrictInt]] = Field(None, description="Percentage")

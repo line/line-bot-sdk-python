@@ -24,6 +24,7 @@ from pydantic.v1 import BaseModel, Field, StrictInt, StrictStr
 class VerifyChannelAccessTokenResponse(BaseModel):
     """
     Verification result
+    https://developers.line.biz/en/reference/messaging-api/#verify-channel-access-token-v2-1
     """
     client_id: StrictStr = Field(..., description="The channel ID for which the channel access token was issued.")
     expires_in: StrictInt = Field(..., description="Number of seconds before the channel access token expires.")

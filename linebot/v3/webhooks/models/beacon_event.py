@@ -29,6 +29,7 @@ from linebot.v3.webhooks.models.source import Source
 class BeaconEvent(Event):
     """
     Event object for when a user enters the range of a LINE Beacon. You can reply to beacon events.
+    https://developers.line.biz/en/reference/messaging-api/#beacon-event
     """
     reply_token: StrictStr = Field(..., alias="replyToken", description="Reply token used to send reply message to this event")
     beacon: BeaconContent = Field(...)

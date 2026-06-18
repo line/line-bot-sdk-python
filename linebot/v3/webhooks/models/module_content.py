@@ -25,6 +25,7 @@ from pydantic.v1 import BaseModel, Field, StrictStr
 class ModuleContent(BaseModel):
     """
     ModuleContent
+    https://developers.line.biz/en/reference/partner-docs/#module-channel-specific-webhook-events
     """
     type: StrictStr = Field(..., description="Type")
 

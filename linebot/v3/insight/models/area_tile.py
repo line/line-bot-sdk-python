@@ -24,6 +24,7 @@ from pydantic.v1 import BaseModel, Field, StrictFloat, StrictInt, StrictStr
 class AreaTile(BaseModel):
     """
     AreaTile
+    https://developers.line.biz/en/reference/messaging-api/#get-demographic
     """
     area: Optional[StrictStr] = Field(None, description="users' country and region")
     percentage: Optional[Union[StrictFloat, StrictInt]] = Field(None, description="Percentage")

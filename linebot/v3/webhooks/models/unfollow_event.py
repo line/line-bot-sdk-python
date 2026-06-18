@@ -28,6 +28,7 @@ from linebot.v3.webhooks.models.source import Source
 class UnfollowEvent(Event):
     """
     Event object for when your LINE Official Account is blocked.
+    https://developers.line.biz/en/reference/messaging-api/#unfollow-event
     """
     type: str = "unfollow"
 

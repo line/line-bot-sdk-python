@@ -24,6 +24,7 @@ from pydantic.v1 import BaseModel, Field, StrictStr, validator
 class LinkContent(BaseModel):
     """
     Content of the account link event.
+    https://developers.line.biz/en/reference/messaging-api/#account-link-event
     """
     result: StrictStr = Field(..., description="One of the following values to indicate whether linking the account was successful or not")
     nonce: StrictStr = Field(..., description="Specified nonce (number used once) when verifying the user ID.")

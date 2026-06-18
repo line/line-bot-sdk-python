@@ -25,6 +25,7 @@ from linebot.v3.liff.models.liff_app import LiffApp
 class GetAllLiffAppsResponse(BaseModel):
     """
     GetAllLiffAppsResponse
+    https://developers.line.biz/en/reference/liff-server/#get-all-liff-apps
     """
     apps: Optional[conlist(LiffApp)] = None
 

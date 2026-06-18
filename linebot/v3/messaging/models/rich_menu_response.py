@@ -26,6 +26,7 @@ from linebot.v3.messaging.models.rich_menu_size import RichMenuSize
 class RichMenuResponse(BaseModel):
     """
     RichMenuResponse
+    https://developers.line.biz/en/reference/messaging-api/#rich-menu-response-object
     """
     rich_menu_id: StrictStr = Field(..., alias="richMenuId", description="ID of a rich menu")
     size: RichMenuSize = Field(...)

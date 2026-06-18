@@ -24,6 +24,7 @@ from pydantic.v1 import BaseModel, Field, StrictStr, conlist
 class AttachModuleResponse(BaseModel):
     """
     Attach by operation of the module channel provider
+    https://developers.line.biz/en/reference/partner-docs/#link-attach-by-operation-module-channel-provider
     """
     bot_id: StrictStr = Field(..., description="User ID of the bot on the LINE Official Account.")
     scopes: conlist(StrictStr) = Field(..., description="Permissions (scope) granted by the LINE Official Account admin.")

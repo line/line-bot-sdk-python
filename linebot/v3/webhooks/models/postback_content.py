@@ -24,6 +24,7 @@ from pydantic.v1 import BaseModel, Field, StrictStr
 class PostbackContent(BaseModel):
     """
     PostbackContent
+    https://developers.line.biz/en/reference/messaging-api/#postback-event
     """
     data: StrictStr = Field(..., description="Postback data")
     params: Optional[Dict[str, StrictStr]] = None

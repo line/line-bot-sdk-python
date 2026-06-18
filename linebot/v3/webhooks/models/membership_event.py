@@ -29,6 +29,7 @@ from linebot.v3.webhooks.models.source import Source
 class MembershipEvent(Event):
     """
     This event indicates that a user has subscribed (joined), unsubscribed (left), or renewed the bot's membership.
+    https://developers.line.biz/en/reference/messaging-api/#membership-event
     """
     reply_token: StrictStr = Field(..., alias="replyToken", description="Reply token used to send reply message to this event")
     membership: MembershipContent = Field(...)

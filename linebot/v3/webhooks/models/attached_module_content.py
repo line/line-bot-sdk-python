@@ -25,6 +25,7 @@ from linebot.v3.webhooks.models.module_content import ModuleContent
 class AttachedModuleContent(ModuleContent):
     """
     AttachedModuleContent
+    https://developers.line.biz/en/reference/partner-docs/#attached-event
     """
     bot_id: StrictStr = Field(..., alias="botId", description="User ID of the bot on the attached LINE Official Account")
     scopes: conlist(StrictStr) = Field(..., description="An array of strings indicating the scope permitted by the admin of the LINE Official Account.")

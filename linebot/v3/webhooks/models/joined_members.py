@@ -25,6 +25,7 @@ from linebot.v3.webhooks.models.user_source import UserSource
 class JoinedMembers(BaseModel):
     """
     JoinedMembers
+    https://developers.line.biz/en/reference/messaging-api/#member-joined-event
     """
     members: conlist(UserSource) = Field(..., description="Users who joined. Array of source user objects.")
 

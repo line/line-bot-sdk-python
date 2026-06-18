@@ -28,6 +28,7 @@ from linebot.v3.webhooks.models.source import Source
 class JoinEvent(Event):
     """
     Event object for when your LINE Official Account joins a group chat or multi-person chat. You can reply to join events.
+    https://developers.line.biz/en/reference/messaging-api/#join-event
     """
     reply_token: StrictStr = Field(..., alias="replyToken", description="Reply token used to send reply message to this event")
     type: str = "join"

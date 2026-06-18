@@ -25,6 +25,7 @@ from linebot.v3.webhooks.models.message_content import MessageContent
 class FileMessageContent(MessageContent):
     """
     FileMessageContent
+    https://developers.line.biz/en/reference/messaging-api/#wh-file
     """
     file_name: StrictStr = Field(..., alias="fileName", description="File name")
     file_size: StrictInt = Field(..., alias="fileSize", description="File size in bytes")

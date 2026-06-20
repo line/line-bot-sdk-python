@@ -1,0 +1,29 @@
+# Defining the host is optional and defaults to {{ basePath }}
+# See configuration.py for a list of all supported configuration parameters.
+configuration = {{ packageName }}.Configuration(
+    host = "{{ basePath }}"
+)
+
+{% if operation.hasAuthMethods %}# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+{% for authMethod in operation.authMethods %}{% if authMethod.isBasic %}{% if authMethod.isBasicBasic %}
+# Configure HTTP basic authorization: {{ authMethod.name }}
+configuration = {{ packageName }}.Configuration(
+    username = os.environ["USERNAME"],
+    password = os.environ["PASSWORD"]
+)
+{% endif %}{% if authMethod.isBasicBearer %}
+# Configure Bearer authorization{% if authMethod.bearerFormat %} ({{ authMethod.bearerFormat }}){% endif %}: {{ authMethod.name }}
+configuration = {{ packageName }}.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+){% endif %}{% endif %}{% if authMethod.isApiKey %}
+# Configure API key authorization: {{ authMethod.name }}
+configuration.api_key['{{ authMethod.name }}'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['{{ authMethod.name }}'] = 'Bearer'
+{% endif %}{% if authMethod.isOAuth %}
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+{% endif %}{% endfor %}{% endif %}

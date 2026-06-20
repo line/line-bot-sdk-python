@@ -1,0 +1,32 @@
+# coding: utf-8
+
+# flake8: noqa
+
+{% include "partial_header.pebble" %}
+
+# import apis into sdk package
+{% for api in apiInfo.apis %}from {{ apiPackage }}.{{ api.classFilename }} import {{ api.classname }}
+{% endfor %}
+{% for api in apiInfo.apis %}from {{ apiPackage }}.async_{{ api.classFilename }} import Async{{ api.classname }}
+{% endfor %}
+
+# import ApiClient
+from {{ packageName }}.api_response import ApiResponse
+from {{ packageName }}.api_client import ApiClient
+from {{ packageName }}.async_api_client import AsyncApiClient
+from {{ packageName }}.configuration import Configuration
+from {{ packageName }}.exceptions import OpenApiException
+from {{ packageName }}.exceptions import ApiTypeError
+from {{ packageName }}.exceptions import ApiValueError
+from {{ packageName }}.exceptions import ApiKeyError
+from {{ packageName }}.exceptions import ApiAttributeError
+from {{ packageName }}.exceptions import ApiException
+
+# import models into sdk package
+{% for modelEntry in models %}from {{ modelPackage }}.{{ modelEntry.model.classFilename }} import {{ modelEntry.model.classname }}
+{% endfor -%}
+{% if recursionLimit %}
+
+__import__('sys').setrecursionlimit({{ recursionLimit }})
+{% endif -%}
+

@@ -1,0 +1,52 @@
+# {{ packageName }}.{{ classname }}{% if description %}
+{{ description }}{% endif %}
+
+All URIs are relative to *{{ basePath }}*
+
+Method | HTTP request | Description
+------------- | ------------- | -------------
+{% for operation in operations.operation %}[**{{ operation.operationId }}**]({{ operations.classname }}.md#{{ operation.operationId }}) | **{{ operation.httpMethod }}** {{ operation.path }} | {{ operation.summary }}
+{% endfor %}
+
+{% for operation in operations.operation %}# **{{ operation.operationId }}**
+> {% if operation.returnType %}{{ operation.returnType }} {% endif %}{{ operation.operationId }}({% for param in operation.allParams %}{% if param.required %}{{ param.paramName }}{% else %}{{ param.paramName }}={{ param.paramName }}{% endif %}{% if not loop.last %}, {% endif %}{% endfor %})
+
+{{ operation.summary }}{% if operation.notes %}
+
+{{ operation.notes }}{% endif %}
+
+### Example
+
+{% if operation.hasAuthMethods %}{% for authMethod in operation.authMethods %}{% if authMethod.isBasic %}{% if authMethod.isBasicBasic %}* Basic Authentication ({{ authMethod.name }}):
+{% endif %}{% if authMethod.isBasicBearer %}* Bearer{% if authMethod.bearerFormat %} ({{ authMethod.bearerFormat }}){% endif %} Authentication ({{ authMethod.name }}):
+{% endif %}{% endif %}{% if authMethod.isApiKey %}* Api Key Authentication ({{ authMethod.name }}):
+{% endif %}{% if authMethod.isOAuth %}* OAuth Authentication ({{ authMethod.name }}):
+{% endif %}{% endfor %}{% endif %}{% include "api_doc_example.pebble" %}
+
+### Parameters
+{% if operation.allParams is empty %}This endpoint does not need any parameter.{% endif %}{% for param in operation.allParams %}{% if loop.last %}
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------{% endif %}{% endfor %}
+{% for param in operation.allParams %} **{{ param.paramName }}** | {% if param.isFile %}**{{ param.dataType }}**{% endif %}{% if not param.isFile %}{% if param.isPrimitiveType %}**{{ param.dataType }}**{% endif %}{% if not param.isPrimitiveType %}[**{{ param.dataType }}**]({{ param.baseType }}.md){% endif %}{% endif %}| {{ param.description }} | {% if not param.required %}[optional] {% endif %}{% if param.defaultValue %}[default to {{ param.defaultValue }}]{% endif %}
+{% endfor %}
+### Return type
+
+{% if operation.returnType %}{% if operation.returnTypeIsPrimitive %}**{{ operation.returnType }}**{% else %}[**{{ operation.returnType }}**]({{ operation.returnBaseType }}.md){% endif %}{% else %}void (empty response body){% endif %}
+
+### Authorization
+
+{% if operation.authMethods is empty %}No authorization required{% endif %}{% for authMethod in operation.authMethods %}[{{ authMethod.name }}](../README.md#{{ authMethod.name }}){% if not loop.last %}, {% endif %}{% endfor %}
+
+### HTTP request headers
+
+ - **Content-Type**: {% for cons in operation.consumes %}{{ cons.mediaType }}{% if not loop.last %}, {% endif %}{% endfor %}{% if operation.consumes is empty %}Not defined{% endif %}
+ - **Accept**: {% for prod in operation.produces %}{{ prod.mediaType }}{% if not loop.last %}, {% endif %}{% endfor %}{% if operation.produces is empty %}Not defined{% endif %}
+
+{% if operation.responses is not empty %}### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+{% for resp in operation.responses %}**{{ resp.code }}** | {{ resp.message }} | {% for header in resp.headers %} * {{ header.baseName }} - {{ header.description }} <br> {% endfor %}{% if resp.headers is empty %} - {% endif %} |
+{% endfor %}
+{% endif %}[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+{% endfor %}

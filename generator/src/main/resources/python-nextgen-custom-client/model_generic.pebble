@@ -1,0 +1,192 @@
+from __future__ import annotations
+import pprint
+import re  # noqa: F401
+import json
+{% if model.hasChildren %}{% if model.discriminator is not null %}import {{ modelPackage }}
+{% endif %}{% endif %}
+{% if model.vendorExtensions['x-py-datetime-imports'] is not empty %}{% for imp in model.vendorExtensions['x-py-datetime-imports'] %}{% if loop.first %}from datetime import{% endif %} {{ imp }}{% if not loop.last %},{% endif %}{% endfor %}{% endif %}
+{% if model.vendorExtensions['x-py-typing-imports'] is not empty %}{% for imp in model.vendorExtensions['x-py-typing-imports'] %}{% if loop.first %}from typing import{% endif %} {{ imp }}{% if not loop.last %},{% endif %}{% endfor %}{% endif %}
+{% if model.vendorExtensions['x-py-pydantic-imports'] is not empty %}{% for imp in model.vendorExtensions['x-py-pydantic-imports'] %}{% if loop.first %}from pydantic.v1 import{% endif %} {{ imp }}{% if not loop.last %},{% endif %}{% endfor %}{% endif %}
+{% for imp in model.vendorExtensions['x-py-model-imports'] %}{{ imp }}
+{% endfor %}
+class {{ model.classname }}({% if model.parent %}{{ model.parent }}{% else %}BaseModel{% endif %}):
+    """
+    {% if model.description %}{{ model.description }}{% else %}{{ model.classname }}{% endif %}
+{% if model.externalDocumentation.url %}    {{ model.externalDocumentation.url }}
+{% endif %}    """
+{% for var in model.vars %}    {{ var.name }}: {{ var.vendorExtensions['x-py-typing'] }}
+{% endfor %}{% if model.vendorExtensions['x-py-type-name'] %}    {{ model.discriminator.propertyBaseName }}: str = "{{ model.vendorExtensions['x-py-type-name'] }}"
+{% endif %}
+{% if model.isAdditionalPropertiesTrue %}    additional_properties: Dict[str, Any] = {}
+{% endif %}    __properties = [{% for var in model.allVars %}"{{ var.baseName }}"{% if not loop.last %}, {% endif %}{% endfor %}]
+{% for var in model.vars %}{% if var.vendorExtensions['x-regex'] %}
+    @validator('{{ var.name }}')
+    def {{ var.name }}_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+{% if not var.required %}        if value is None:
+            return value
+
+{% endif %}{% if var.required %}{% if var.isNullable %}        if value is None:
+            return value
+
+{% endif %}{% endif %}        if not re.match(r"{{ var.vendorExtensions['x-regex'] }}", value{% for mod in var.vendorExtensions['x-modifiers'] %} ,re.{{ mod }}{% endfor %}):
+            raise ValueError(r"must validate the regular expression {{ var.vendorExtensions['x-pattern'] }}")
+        return value
+{% endif %}{% if var.isEnum %}
+    @validator('{{ var.name }}')
+    def {{ var.name }}_validate_enum(cls, value):
+        """Validates the enum"""
+{% if not var.required %}        if value is None:
+            return value
+
+{% endif %}{% if var.required %}{% if var.isNullable %}        if value is None:
+            return value
+
+{% endif %}{% endif %}{% if var.isArray %}        for i in value:
+            if i not in ({% for ev in var.allowableValues.enumVars %}{{ ev.value }}{% if not loop.last %}, {% endif %}{% endfor %}):
+                raise ValueError("each list item must be one of ({% for ev in var.allowableValues.enumVars %}{{ ev.value }}{% if not loop.last %}, {% endif %}{% endfor %})")
+{% endif %}{% if not var.isArray %}        if value not in ({% for ev in var.allowableValues.enumVars %}{{ ev.value }}{% if not loop.last %}, {% endif %}{% endfor %}):
+            raise ValueError("must be one of enum values ({% for ev in var.allowableValues.enumVars %}{{ ev.value }}{% if not loop.last %}, {% endif %}{% endfor %})")
+{% endif %}        return value
+{% endif %}{% endfor %}
+    class Config:
+        """Pydantic configuration"""
+        allow_population_by_field_name = True
+        validate_assignment = True
+
+{% if model.hasChildren %}{% if model.discriminator is not null %}    # JSON field name that stores the object type
+    __discriminator_property_name = '{{ model.discriminator.propertyBaseName }}'
+
+{% for mapped in model.discriminator.mappedModels %}{% if loop.first %}    # discriminator mappings
+    __discriminator_value_class_map = {
+{% endif %}        '{{ mapped.mappingName }}': '{{ mapped.modelName }}'{% if not loop.last %},{% endif %}
+{% if loop.last %}    }
+
+    @classmethod
+    def get_discriminator_value(cls, obj: dict) -> str:
+        """Returns the discriminator value (object type) of the data"""
+        discriminator_value = obj[cls.__discriminator_property_name]
+        if discriminator_value:
+            return cls.__discriminator_value_class_map.get(discriminator_value)
+        else:
+            return None
+{% endif %}{% endfor %}
+{% endif %}{% endif %}    def to_str(self) -> str:
+        """Returns the string representation of the model using alias"""
+        return pprint.pformat(self.dict(by_alias=True))
+
+    def to_json(self) -> str:
+        """Returns the JSON representation of the model using alias"""
+        return json.dumps(self.to_dict())
+
+    @classmethod
+    def from_json(cls, json_str: str) -> {% if not model.hasChildren %}{{ model.classname }}{% endif %}{% if model.hasChildren %}{% if model.discriminator is not null %}Union({% for child in model.children %}{{ child.classname }}{% if not loop.last %}, {% endif %}{% endfor %}){% else %}{{ model.classname }}{% endif %}{% endif %}:
+        """Create an instance of {{ model.classname }} from a JSON string"""
+        return cls.from_dict(json.loads(json_str))
+
+    def to_dict(self):
+        """Returns the dictionary representation of the model using alias"""
+        _dict = self.dict(by_alias=True,
+                          exclude={
+{% for ro in model.vendorExtensions['x-py-readonly'] %}                            "{{ ro }}",
+{% endfor %}{% if model.isAdditionalPropertiesTrue %}                            "additional_properties"
+{% endif %}                          },
+                          exclude_none=True)
+{% for var in model.allVars %}{% if var.isContainer %}{% if var.isArray %}{% if not var.items.isPrimitiveType %}{% if not var.items.isEnumOrRef %}        # override the default output from pydantic.v1 by calling `to_dict()` of each item in {{ var.name }} (list)
+        _items = []
+        if self.{{ var.name }}:
+            for _item in self.{{ var.name }}:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict['{{ var.baseName }}'] = _items
+{% endif %}{% endif %}{% endif %}{% if var.isMap %}{% if not var.items.isPrimitiveType %}{% if not var.items.isEnumOrRef %}        # override the default output from pydantic.v1 by calling `to_dict()` of each value in {{ var.name }} (dict)
+        _field_dict = {}
+        if self.{{ var.name }}:
+            for _key in self.{{ var.name }}:
+                if self.{{ var.name }}[_key]:
+                    _field_dict[_key] = self.{{ var.name }}[_key].to_dict()
+            _dict['{{ var.baseName }}'] = _field_dict
+{% endif %}{% endif %}{% endif %}{% endif %}{% if not var.isContainer %}{% if not var.isPrimitiveType %}{% if not var.isEnumOrRef %}        # override the default output from pydantic.v1 by calling `to_dict()` of {{ var.name }}
+        if self.{{ var.name }}:
+            _dict['{{ var.baseName }}'] = self.{{ var.name }}.to_dict()
+{% endif %}{% endif %}{% endif %}{% endfor %}{% if model.isAdditionalPropertiesTrue %}        # puts key-value pairs in additional_properties in the top level
+        if self.additional_properties is not None:
+            for _key, _value in self.additional_properties.items():
+                _dict[_key] = _value
+
+{% endif %}{% for var in model.allVars %}{% if var.isNullable %}        # set to None if {{ var.name }} (nullable) is None
+        # and __fields_set__ contains the field
+        if self.{{ var.name }} is None and "{{ var.name }}" in self.__fields_set__:
+            _dict['{{ var.baseName }}'] = None
+
+{% endif %}{% endfor %}        return _dict
+
+    @classmethod
+    def from_dict(cls, obj: dict) -> {% if not model.hasChildren %}{{ model.classname }}{% endif %}{% if model.hasChildren %}{% if model.discriminator is not null %}Union({% for child in model.children %}{{ child.classname }}{% if not loop.last %}, {% endif %}{% endfor %}){% else %}{{ model.classname }}{% endif %}{% endif %}:
+        """Create an instance of {{ model.classname }} from a dict"""
+{% if model.hasChildren %}{% if model.discriminator is not null %}        # look up the object type based on discriminator mapping
+        object_type = cls.get_discriminator_value(obj)
+        if object_type:
+            klass = getattr({{ modelPackage }}, object_type)
+            return klass.from_dict(obj)
+        else:
+            raise ValueError("{{ model.classname }} failed to lookup discriminator value from " +
+                             json.dumps(obj) + ". Discriminator property name: " + cls.__discriminator_property_name +
+                             ", mapping: " + json.dumps(cls.__discriminator_value_class_map))
+{% endif %}{% endif %}{% if not model.hasChildren %}        if obj is None:
+            return None
+
+        if not isinstance(obj, dict):
+            return {{ model.classname }}.parse_obj(obj)
+
+{% if disallowAdditionalPropertiesIfNotPresent %}{% if not model.isAdditionalPropertiesTrue %}        # raise errors for additional fields in the input
+        for _key in obj.keys():
+            if _key not in cls.__properties:
+                raise ValueError("Error due to additional fields (not defined in {{ model.classname }}) in the input: " + obj)
+
+{% endif %}{% endif %}        _obj = {{ model.classname }}.parse_obj({
+{% for var in model.allVars %}{% if var.isContainer %}{% if var.isArray %}{% if not var.items.isPrimitiveType %}{% if var.items.isEnumOrRef %}            "{{ var.name }}": obj.get("{{ var.baseName }}"){% if not loop.last %},{% endif %}
+{% endif %}{% if not var.items.isEnumOrRef %}            "{{ var.name }}": [{{ var.items.dataType }}.from_dict(_item) for _item in obj.get("{{ var.baseName }}")] if obj.get("{{ var.baseName }}") is not None else None{% if not loop.last %},{% endif %}
+{% endif %}{% endif %}{% if var.items.isPrimitiveType %}            "{{ var.name }}": obj.get("{{ var.baseName }}"){% if not loop.last %},{% endif %}
+{% endif %}{% endif %}{% if var.isMap %}{% if not var.items.isPrimitiveType %}{% if not var.items.isEnumOrRef %}{% if var.items.isContainer %}{% if var.items.isMap %}            "{{ var.name }}": dict(
+                (_k, dict(
+                    (_ik, {{ var.items.items.dataType }}.from_dict(_iv))
+                        for _ik, _iv in _v.items()
+                    )
+                    if _v is not None
+                    else None
+                )
+                for _k, _v in obj.get("{{ var.baseName }}").items()
+            )
+            if obj.get("{{ var.baseName }}") is not None
+            else None{% if not loop.last %},{% endif %}
+{% endif %}{% if var.items.isArray %}            "{{ var.name }}": dict(
+                (_k, [(_ik, {{ var.items.items.dataType }}.from_dict(_iv))]
+                    for _ik, _iv in _v.items()
+                    if _v is not None
+                    else None
+                )
+                for _k, _v in obj.get("{{ var.baseName }}").items()
+            )
+            if obj.get("{{ var.baseName }}") is not None
+            else None{% if not loop.last %},{% endif %}
+{% endif %}{% endif %}{% if not var.items.isContainer %}            "{{ var.name }}": dict(
+                (_k, {{ var.items.dataType }}.from_dict(_v))
+                for _k, _v in obj.get("{{ var.baseName }}").items()
+            )
+            if obj.get("{{ var.baseName }}") is not None
+            else None{% if not loop.last %},{% endif %}
+{% endif %}{% endif %}{% if var.items.isEnumOrRef %}            "{{ var.name }}": dict((_k, _v) for _k, _v in obj.get("{{ var.baseName }}").items()){% if not loop.last %},{% endif %}
+{% endif %}{% endif %}{% if var.items.isPrimitiveType %}            "{{ var.name }}": obj.get("{{ var.baseName }}"){% if not loop.last %},{% endif %}
+{% endif %}{% endif %}{% endif %}{% if not var.isContainer %}{% if not var.isPrimitiveType %}{% if not var.isEnumOrRef %}            "{{ var.name }}": {{ var.dataType }}.from_dict(obj.get("{{ var.baseName }}")) if obj.get("{{ var.baseName }}") is not None else None{% if not loop.last %},{% endif %}
+{% endif %}{% if var.isEnumOrRef %}            "{{ var.name }}": obj.get("{{ var.baseName }}"){% if not loop.last %},{% endif %}
+{% endif %}{% endif %}{% if var.isPrimitiveType %}{% if var.defaultValue %}            "{{ var.name }}": obj.get("{{ var.baseName }}") if obj.get("{{ var.baseName }}") is not None else {{ var.defaultValue }}{% if not loop.last %},{% endif %}
+{% endif %}{% if not var.defaultValue %}            "{{ var.name }}": obj.get("{{ var.baseName }}"){% if not loop.last %},{% endif %}
+{% endif %}{% endif %}{% endif %}{% endfor %}        })
+{% if model.isAdditionalPropertiesTrue %}        # store additional fields in additional_properties
+        for _key in obj.keys():
+            if _key not in cls.__properties:
+                _obj.additional_properties[_key] = obj.get(_key)
+
+{% endif %}        return _obj
+{% endif %}

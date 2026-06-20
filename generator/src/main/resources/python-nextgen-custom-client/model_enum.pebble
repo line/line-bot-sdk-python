@@ -1,0 +1,31 @@
+import json
+import pprint
+import re  # noqa: F401
+from aenum import Enum, no_arg
+{% if model.vendorExtensions['x-py-datetime-imports'] is not empty %}{% for imp in model.vendorExtensions['x-py-datetime-imports'] %}{% if loop.first %}from datetime import{% endif %} {{ imp }}{% if not loop.last %},{% endif %}{% endfor %}{% endif %}
+{% if model.vendorExtensions['x-py-typing-imports'] is not empty %}{% for imp in model.vendorExtensions['x-py-typing-imports'] %}{% if loop.first %}from typing import{% endif %} {{ imp }}{% if not loop.last %},{% endif %}{% endfor %}{% endif %}
+{% if model.vendorExtensions['x-py-pydantic-imports'] is not empty %}{% for imp in model.vendorExtensions['x-py-pydantic-imports'] %}{% if loop.first %}from pydantic.v1 import{% endif %} {{ imp }}{% if not loop.last %},{% endif %}{% endfor %}{% endif %}
+
+
+class {{ model.classname }}({{ model.vendorExtensions['x-py-enum-type'] }}, Enum):
+    """
+    {% if model.description %}{{ model.description }}{% else %}{{ model.classname }}{% endif %}
+    """
+
+    """
+    allowed enum values
+    """
+{% for enumVar in model.allowableValues.enumVars %}    {{ enumVar.name }} = {{ enumVar.value }}
+{% endfor %}
+    @classmethod
+    def from_json(cls, json_str: str) -> {{ model.classname }}:
+        """Create an instance of {{ model.classname }} from a JSON string"""
+        return {{ model.classname }}(json.loads(json_str))
+
+{% if model.defaultValue %}
+    #
+    @classmethod
+    def _missing_value_(cls, value):
+        if value is no_arg:
+            return cls.{{ model.defaultValue }}
+{% endif %}

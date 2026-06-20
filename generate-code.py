@@ -138,9 +138,10 @@ def main():
         run_command(f'rm -rf {modelPackagePath}/')
 
         command = f'''java \\
-                    -cp ./tools/openapi-generator-cli.jar:./generator/target/python-nextgen-custom-client-openapi-generator-1.0.0.jar \\
+                    -cp ./generator/target/python-nextgen-custom-client-openapi-generator-1.0.0.jar \\
                     org.openapitools.codegen.OpenAPIGenerator \\
                     generate \\
+                    -e pebble \\
                     -g python-nextgen-custom-client \\
                     -o . \\
                     --global-property modelDocs=false \\
@@ -160,9 +161,10 @@ def main():
     run_command(f'rm -rf {modelPackagePath}/')
 
     command = f'''java \\
-                -cp ./tools/openapi-generator-cli.jar:./generator/target/python-nextgen-custom-client-openapi-generator-1.0.0.jar \\
+                -cp ./generator/target/python-nextgen-custom-client-openapi-generator-1.0.0.jar \\
                 org.openapitools.codegen.OpenAPIGenerator \\
                 generate \\
+                -e pebble \\
                 -g python-nextgen-custom-client \\
                 -o . \\
                 --global-property modelDocs=false,apiDocs=false \\

@@ -1,0 +1,5 @@
+# coding: utf-8
+
+{% include "partial_header.pebble" %}
+
+{% for modelEntry in models %}{% set model = modelEntry.model %}{% if model.isEnum %}{% include "model_enum.pebble" %}{% endif %}{% if not model.isEnum %}{% if model.oneOf is not empty %}{% include "model_oneof.pebble" %}{% else %}{% if model.anyOf is not empty %}{% include "model_anyof.pebble" %}{% else %}{% include "model_generic.pebble" %}{% endif %}{% endif %}{% endif %}{% endfor -%}

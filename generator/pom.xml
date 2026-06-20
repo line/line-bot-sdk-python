@@ -103,6 +103,25 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.6.2</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <transformers>
+                                <transformer
+                                        implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
+                            </transformers>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
     <dependencies>
@@ -111,6 +130,16 @@
             <artifactId>openapi-generator</artifactId>
             <version>${openapi-generator-version}</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.openapitools</groupId>
+            <artifactId>openapi-generator-cli</artifactId>
+            <version>${openapi-generator-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.pebbletemplates</groupId>
+            <artifactId>pebble</artifactId>
+            <version>4.1.2</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>

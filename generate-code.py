@@ -3,7 +3,12 @@ import subprocess
 import sys
 
 def run_command(command):
+    print(command)
     proc = subprocess.run(command, shell=True, text=True, capture_output=True)
+
+    if len(proc.stdout) != 0:
+        print("\n\nSTDOUT:\n\n")
+        print(proc.stdout)
 
     if len(proc.stderr) != 0:
         print("\n\nSTDERR:\n\n")
@@ -11,8 +16,6 @@ def run_command(command):
         print("\n\n")
 
     if proc.returncode != 0:
-        print("\n\nSTDOUT:\n\n")
-        print(proc.stdout)
         print(f"\n\nCommand '{command}' returned non-zero exit status {proc.returncode}.")
         sys.exit(1)
 

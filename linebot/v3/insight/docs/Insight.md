@@ -365,7 +365,7 @@ with linebot.v3.insight.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **custom_aggregation_unit** | **str**| Name of aggregation unit specified when sending the message. Case-sensitive. For example, &#x60;Promotion_a&#x60; and &#x60;Promotion_A&#x60; are regarded as different unit names.  | 
+ **custom_aggregation_unit** | **str**| Name of aggregation unit specified when sending the message. Case-sensitive. For example, `Promotion_a` and `Promotion_A` are regarded as different unit names.  | 
  **var_from** | **str**| Start date of aggregation period.  Format: yyyyMMdd (e.g. 20210301) Time zone: UTC+9  | 
  **to** | **str**| End date of aggregation period. The end date can be specified for up to 30 days later. For example, if the start date is 20210301, the latest end date is 20210331.  Format: yyyyMMdd (e.g. 20210301) Time zone: UTC+9  | 
 
@@ -388,4 +388,5 @@ Name | Type | Description  | Notes
 **200** | OK |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 

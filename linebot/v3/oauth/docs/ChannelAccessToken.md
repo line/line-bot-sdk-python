@@ -38,6 +38,7 @@ configuration = linebot.v3.oauth.Configuration(
 )
 
 
+
 # Enter a context with an instance of the API client
 with linebot.v3.oauth.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -58,7 +59,7 @@ with linebot.v3.oauth.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **client_assertion_type** | **str**| &#x60;urn:ietf:params:oauth:client-assertion-type:jwt-bearer&#x60; | 
+ **client_assertion_type** | **str**| `urn:ietf:params:oauth:client-assertion-type:jwt-bearer` | 
  **client_assertion** | **str**| A JSON Web Token (JWT) (opens new window)the client needs to create and sign with the private key. | 
 
 ### Return type
@@ -105,6 +106,7 @@ configuration = linebot.v3.oauth.Configuration(
 )
 
 
+
 # Enter a context with an instance of the API client
 with linebot.v3.oauth.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -126,7 +128,7 @@ with linebot.v3.oauth.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **grant_type** | **str**| &#x60;client_credentials&#x60; | 
+ **grant_type** | **str**| `client_credentials` | 
  **client_id** | **str**| Channel ID. | 
  **client_secret** | **str**| Channel secret. | 
 
@@ -175,6 +177,7 @@ configuration = linebot.v3.oauth.Configuration(
 )
 
 
+
 # Enter a context with an instance of the API client
 with linebot.v3.oauth.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -221,7 +224,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **issue_stateless_channel_token**
-> IssueStatelessChannelAccessTokenResponse issue_stateless_channel_token(grant_type, client_assertion_type, client_assertion, client_id, client_secret)
+> IssueStatelessChannelAccessTokenResponse issue_stateless_channel_token(grant_type=grant_type, client_assertion_type=client_assertion_type, client_assertion=client_assertion, client_id=client_id, client_secret=client_secret)
 
 
 
@@ -244,18 +247,19 @@ configuration = linebot.v3.oauth.Configuration(
 )
 
 
+
 # Enter a context with an instance of the API client
 with linebot.v3.oauth.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = linebot.v3.oauth.ChannelAccessToken(api_client)
-    grant_type = 'grant_type_example' # str | `client_credentials`
-    client_assertion_type = 'client_assertion_type_example' # str | URL-encoded value of `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`
-    client_assertion = 'client_assertion_example' # str | A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key.
-    client_id = 'client_id_example' # str | Channel ID.
-    client_secret = 'client_secret_example' # str | Channel secret.
+    grant_type = 'grant_type_example' # str | `client_credentials` (optional)
+    client_assertion_type = 'client_assertion_type_example' # str | URL-encoded value of `urn:ietf:params:oauth:client-assertion-type:jwt-bearer` (optional)
+    client_assertion = 'client_assertion_example' # str | A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key. (optional)
+    client_id = 'client_id_example' # str | Channel ID. (optional)
+    client_secret = 'client_secret_example' # str | Channel secret. (optional)
 
     try:
-        api_response = api_instance.issue_stateless_channel_token(grant_type, client_assertion_type, client_assertion, client_id, client_secret)
+        api_response = api_instance.issue_stateless_channel_token(grant_type=grant_type, client_assertion_type=client_assertion_type, client_assertion=client_assertion, client_id=client_id, client_secret=client_secret)
         print("The response of ChannelAccessToken->issue_stateless_channel_token:\n")
         pprint(api_response)
     except Exception as e:
@@ -267,11 +271,11 @@ with linebot.v3.oauth.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **grant_type** | **str**| &#x60;client_credentials&#x60; | 
- **client_assertion_type** | **str**| URL-encoded value of &#x60;urn:ietf:params:oauth:client-assertion-type:jwt-bearer&#x60; | 
- **client_assertion** | **str**| A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key. | 
- **client_id** | **str**| Channel ID. | 
- **client_secret** | **str**| Channel secret. | 
+ **grant_type** | **str**| `client_credentials` | [optional] 
+ **client_assertion_type** | **str**| URL-encoded value of `urn:ietf:params:oauth:client-assertion-type:jwt-bearer` | [optional] 
+ **client_assertion** | **str**| A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key. | [optional] 
+ **client_id** | **str**| Channel ID. | [optional] 
+ **client_secret** | **str**| Channel secret. | [optional] 
 
 ### Return type
 
@@ -314,6 +318,7 @@ from pprint import pprint
 configuration = linebot.v3.oauth.Configuration(
     host = "https://api.line.me"
 )
+
 
 
 # Enter a context with an instance of the API client
@@ -376,6 +381,7 @@ from pprint import pprint
 configuration = linebot.v3.oauth.Configuration(
     host = "https://api.line.me"
 )
+
 
 
 # Enter a context with an instance of the API client
@@ -445,6 +451,7 @@ configuration = linebot.v3.oauth.Configuration(
 )
 
 
+
 # Enter a context with an instance of the API client
 with linebot.v3.oauth.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -510,6 +517,7 @@ configuration = linebot.v3.oauth.Configuration(
 )
 
 
+
 # Enter a context with an instance of the API client
 with linebot.v3.oauth.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -550,4 +558,5 @@ No authorization required
 **200** | OK |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 

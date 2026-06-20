@@ -22,6 +22,8 @@ from typing import overload, Optional, Union, Awaitable
 
 from pydantic.v1 import Field, StrictStr
 
+from typing import Optional
+
 from linebot.v3.oauth.models.channel_access_token_key_ids_response import ChannelAccessTokenKeyIdsResponse
 from linebot.v3.oauth.models.issue_channel_access_token_response import IssueChannelAccessTokenResponse
 from linebot.v3.oauth.models.issue_short_lived_channel_access_token_response import IssueShortLivedChannelAccessTokenResponse
@@ -559,15 +561,15 @@ class AsyncChannelAccessToken(object):
             _request_auth=_params.get('_request_auth'))
 
     @overload
-    async def issue_stateless_channel_token(self, grant_type : Annotated[StrictStr, Field(..., description="`client_credentials`")], client_assertion_type : Annotated[StrictStr, Field(..., description="URL-encoded value of `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`")], client_assertion : Annotated[StrictStr, Field(..., description="A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key.")], client_id : Annotated[StrictStr, Field(..., description="Channel ID.")], client_secret : Annotated[StrictStr, Field(..., description="Channel secret.")], **kwargs) -> IssueStatelessChannelAccessTokenResponse:  # noqa: E501
+    async def issue_stateless_channel_token(self, grant_type : Annotated[Optional[StrictStr], Field(description="`client_credentials`")] = None, client_assertion_type : Annotated[Optional[StrictStr], Field(description="URL-encoded value of `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`")] = None, client_assertion : Annotated[Optional[StrictStr], Field(description="A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key.")] = None, client_id : Annotated[Optional[StrictStr], Field(description="Channel ID.")] = None, client_secret : Annotated[Optional[StrictStr], Field(description="Channel secret.")] = None, **kwargs) -> IssueStatelessChannelAccessTokenResponse:  # noqa: E501
         ...
 
     @overload
-    def issue_stateless_channel_token(self, grant_type : Annotated[StrictStr, Field(..., description="`client_credentials`")], client_assertion_type : Annotated[StrictStr, Field(..., description="URL-encoded value of `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`")], client_assertion : Annotated[StrictStr, Field(..., description="A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key.")], client_id : Annotated[StrictStr, Field(..., description="Channel ID.")], client_secret : Annotated[StrictStr, Field(..., description="Channel secret.")], async_req: Optional[bool]=True, **kwargs) -> IssueStatelessChannelAccessTokenResponse:  # noqa: E501
+    def issue_stateless_channel_token(self, grant_type : Annotated[Optional[StrictStr], Field(description="`client_credentials`")] = None, client_assertion_type : Annotated[Optional[StrictStr], Field(description="URL-encoded value of `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`")] = None, client_assertion : Annotated[Optional[StrictStr], Field(description="A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key.")] = None, client_id : Annotated[Optional[StrictStr], Field(description="Channel ID.")] = None, client_secret : Annotated[Optional[StrictStr], Field(description="Channel secret.")] = None, async_req: Optional[bool]=True, **kwargs) -> IssueStatelessChannelAccessTokenResponse:  # noqa: E501
         ...
 
     @validate_arguments
-    def issue_stateless_channel_token(self, grant_type : Annotated[StrictStr, Field(..., description="`client_credentials`")], client_assertion_type : Annotated[StrictStr, Field(..., description="URL-encoded value of `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`")], client_assertion : Annotated[StrictStr, Field(..., description="A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key.")], client_id : Annotated[StrictStr, Field(..., description="Channel ID.")], client_secret : Annotated[StrictStr, Field(..., description="Channel secret.")], async_req: Optional[bool]=None, **kwargs) -> Union[IssueStatelessChannelAccessTokenResponse, Awaitable[IssueStatelessChannelAccessTokenResponse]]:  # noqa: E501
+    def issue_stateless_channel_token(self, grant_type : Annotated[Optional[StrictStr], Field(description="`client_credentials`")] = None, client_assertion_type : Annotated[Optional[StrictStr], Field(description="URL-encoded value of `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`")] = None, client_assertion : Annotated[Optional[StrictStr], Field(description="A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key.")] = None, client_id : Annotated[Optional[StrictStr], Field(description="Channel ID.")] = None, client_secret : Annotated[Optional[StrictStr], Field(description="Channel secret.")] = None, async_req: Optional[bool]=None, **kwargs) -> Union[IssueStatelessChannelAccessTokenResponse, Awaitable[IssueStatelessChannelAccessTokenResponse]]:  # noqa: E501
         """issue_stateless_channel_token  # noqa: E501
 
         .. deprecated::
@@ -581,15 +583,15 @@ class AsyncChannelAccessToken(object):
         >>> thread = api.issue_stateless_channel_token(grant_type, client_assertion_type, client_assertion, client_id, client_secret, async_req=True)
         >>> result = thread.get()
 
-        :param grant_type: `client_credentials` (required)
+        :param grant_type: `client_credentials`
         :type grant_type: str
-        :param client_assertion_type: URL-encoded value of `urn:ietf:params:oauth:client-assertion-type:jwt-bearer` (required)
+        :param client_assertion_type: URL-encoded value of `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`
         :type client_assertion_type: str
-        :param client_assertion: A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key. (required)
+        :param client_assertion: A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key.
         :type client_assertion: str
-        :param client_id: Channel ID. (required)
+        :param client_id: Channel ID.
         :type client_id: str
-        :param client_secret: Channel secret. (required)
+        :param client_secret: Channel secret.
         :type client_secret: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -610,7 +612,7 @@ class AsyncChannelAccessToken(object):
         return self.issue_stateless_channel_token_with_http_info(grant_type, client_assertion_type, client_assertion, client_id, client_secret, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def issue_stateless_channel_token_with_http_info(self, grant_type : Annotated[StrictStr, Field(..., description="`client_credentials`")], client_assertion_type : Annotated[StrictStr, Field(..., description="URL-encoded value of `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`")], client_assertion : Annotated[StrictStr, Field(..., description="A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key.")], client_id : Annotated[StrictStr, Field(..., description="Channel ID.")], client_secret : Annotated[StrictStr, Field(..., description="Channel secret.")], **kwargs) -> ApiResponse:  # noqa: E501
+    def issue_stateless_channel_token_with_http_info(self, grant_type : Annotated[Optional[StrictStr], Field(description="`client_credentials`")] = None, client_assertion_type : Annotated[Optional[StrictStr], Field(description="URL-encoded value of `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`")] = None, client_assertion : Annotated[Optional[StrictStr], Field(description="A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key.")] = None, client_id : Annotated[Optional[StrictStr], Field(description="Channel ID.")] = None, client_secret : Annotated[Optional[StrictStr], Field(description="Channel secret.")] = None, **kwargs) -> ApiResponse:  # noqa: E501
         """issue_stateless_channel_token  # noqa: E501
 
         .. deprecated::
@@ -624,15 +626,15 @@ class AsyncChannelAccessToken(object):
         >>> thread = api.issue_stateless_channel_token_with_http_info(grant_type, client_assertion_type, client_assertion, client_id, client_secret, async_req=True)
         >>> result = thread.get()
 
-        :param grant_type: `client_credentials` (required)
+        :param grant_type: `client_credentials`
         :type grant_type: str
-        :param client_assertion_type: URL-encoded value of `urn:ietf:params:oauth:client-assertion-type:jwt-bearer` (required)
+        :param client_assertion_type: URL-encoded value of `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`
         :type client_assertion_type: str
-        :param client_assertion: A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key. (required)
+        :param client_assertion: A JSON Web Token the client needs to create and sign with the private key of the Assertion Signing Key.
         :type client_assertion: str
-        :param client_id: Channel ID. (required)
+        :param client_id: Channel ID.
         :type client_id: str
-        :param client_secret: Channel secret. (required)
+        :param client_secret: Channel secret.
         :type client_secret: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional

@@ -1,0 +1,8 @@
+# coding: utf-8
+
+# flake8: noqa
+{% include "partial_header.pebble" %}
+
+# import models into model package
+{% for modelEntry in models %}from {{ modelPackage }}.{{ modelEntry.model.classFilename }} import {{ modelEntry.model.classname }}
+{% endfor -%}

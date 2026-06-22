@@ -1,0 +1,160 @@
+from __future__ import annotations
+from inspect import getfullargspec
+import json
+import pprint
+import re  # noqa: F401
+{% if model.vendorExtensions['x-py-datetime-imports'] is not empty %}from datetime import {% for imp in model.vendorExtensions['x-py-datetime-imports'] %}{{ imp }}{% if not loop.last %},{% endif %}{% endfor %}{% endif %}
+{% if model.vendorExtensions['x-py-typing-imports'] is not empty %}from typing import {% for imp in model.vendorExtensions['x-py-typing-imports'] %}{{ imp }}{% if not loop.last %},{% endif %}{% endfor %}{% endif %}
+{% if model.vendorExtensions['x-py-pydantic-imports'] is not empty %}from pydantic.v1 import {% for imp in model.vendorExtensions['x-py-pydantic-imports'] %}{{ imp }}{% if not loop.last %},{% endif %}{% endfor %}{% endif %}
+{% for imp in model.vendorExtensions['x-py-model-imports'] %}
+{{ imp }}
+{% endfor %}
+from typing import Any, List
+from pydantic.v1 import StrictStr, Field
+
+{{ model.classname | upper }}_ANY_OF_SCHEMAS = [{% for any in model.anyOf %}"{{ any }}"{% if not loop.last %}, {% endif %}{% endfor %}]
+
+class {{ model.classname }}({% if model.parent %}{{ model.parent }}{% else %}BaseModel{% endif %}):
+    """
+    {% if model.description %}{{ model.description }}{% else %}{{ model.classname }}{% endif %}
+    """
+
+{% for any in model.composedSchemas.anyOf %}
+    # data type: {{ any.dataType }}
+    {{ any.vendorExtensions['x-py-name'] }}: {{ any.vendorExtensions['x-py-typing'] }}
+{% endfor %}
+    actual_instance: Any
+    any_of_schemas: List[str] = Field({{ model.classname | upper }}_ANY_OF_SCHEMAS, const=True)
+
+    class Config:
+        validate_assignment = True
+{% if model.discriminator is not null %}
+
+    discriminator_value_class_map = {
+{% for child in model.discriminator.children %}
+        '{% if not child.vendorExtensions['x-discriminator-value'] %}{{ child.name }}{% else %}{{ child.vendorExtensions['x-discriminator-value'] }}{% endif %}': '{{ child.classname }}'{% if not loop.last %},{% endif %}
+{% endfor %}
+    }
+{% endif %}
+
+    @validator('actual_instance')
+    def actual_instance_must_validate_anyof(cls, v):
+        {% if model.isNullable %}
+        if v is None:
+            return v
+
+        {% endif %}
+        instance = cls()
+        error_messages = []
+        {% for any in model.composedSchemas.anyOf %}
+        # validate data type: {{ any.dataType }}
+        {% if any.isContainer %}
+        try:
+            instance.{{ any.vendorExtensions['x-py-name'] }} = v
+            return v
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
+        {% endif %}
+        {% if not any.isContainer %}
+        {% if any.isPrimitiveType %}
+        try:
+            instance.{{ any.vendorExtensions['x-py-name'] }} = v
+            return v
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
+        {% endif %}
+        {% if not any.isPrimitiveType %}
+        if not isinstance(v, {{ any.dataType }}):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `{{ any.dataType }}`")
+        else:
+            return v
+
+        {% endif %}
+        {% endif %}
+        {% endfor %}
+        if error_messages:
+            # no match
+            raise ValueError("No match found when deserializing the JSON string into {{ model.classname }} with anyOf schemas: {% for any in model.anyOf %}{{ any }}{% if not loop.last %}, {% endif %}{% endfor %}. Details: " + ", ".join(error_messages))
+        else:
+            return v
+
+    @classmethod
+    def from_dict(cls, obj: dict) -> {{ model.classname }}:
+        return cls.from_json(json.dumps(obj))
+
+    @classmethod
+    def from_json(cls, json_str: str) -> {{ model.classname }}:
+        """Returns the object represented by the json string"""
+        instance = cls()
+        {% if model.isNullable %}
+        if json_str is None:
+            return instance
+
+        {% endif %}
+        error_messages = []
+        {% for any in model.composedSchemas.anyOf %}
+        {% if any.isContainer %}
+        # deserialize data into {{ any.dataType }}
+        try:
+            # validation
+            instance.{{ any.vendorExtensions['x-py-name'] }} = json.loads(json_str)
+            # assign value to actual_instance
+            instance.actual_instance = instance.{{ any.vendorExtensions['x-py-name'] }}
+            return instance
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
+        {% endif %}
+        {% if not any.isContainer %}
+        {% if any.isPrimitiveType %}
+        # deserialize data into {{ any.dataType }}
+        try:
+            # validation
+            instance.{{ any.vendorExtensions['x-py-name'] }} = json.loads(json_str)
+            # assign value to actual_instance
+            instance.actual_instance = instance.{{ any.vendorExtensions['x-py-name'] }}
+            return instance
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
+        {% endif %}
+        {% if not any.isPrimitiveType %}
+        # {{ any.vendorExtensions['x-py-name'] }}: {{ any.vendorExtensions['x-py-typing'] }}
+        try:
+            instance.actual_instance = {{ any.dataType }}.from_json(json_str)
+            return instance
+        except (ValidationError, ValueError) as e:
+             error_messages.append(str(e))
+        {% endif %}
+        {% endif %}
+        {% endfor %}
+
+        if error_messages:
+            # no match
+            raise ValueError("No match found when deserializing the JSON string into {{ model.classname }} with anyOf schemas: {% for any in model.anyOf %}{{ any }}{% if not loop.last %}, {% endif %}{% endfor %}. Details: " + ", ".join(error_messages))
+        else:
+            return instance
+
+    def to_json(self) -> str:
+        """Returns the JSON representation of the actual instance"""
+        if self.actual_instance is None:
+            return "null"
+
+        to_json = getattr(self.actual_instance, "to_json", None)
+        if callable(to_json):
+            return self.actual_instance.to_json()
+        else:
+            return json.dumps(self.actual_instance)
+
+    def to_dict(self) -> dict:
+        """Returns the dict representation of the actual instance"""
+        if self.actual_instance is None:
+            return "null"
+
+        to_json = getattr(self.actual_instance, "to_json", None)
+        if callable(to_json):
+            return self.actual_instance.to_dict()
+        else:
+            return json.dumps(self.actual_instance)
+
+    def to_str(self) -> str:
+        """Returns the string representation of the actual instance"""
+        return pprint.pformat(self.dict())

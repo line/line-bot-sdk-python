@@ -45,16 +45,16 @@
                 </configuration>
             </plugin>
 
-            <!-- attach test jar -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>3.5.0</version>
                 <executions>
                     <execution>
-                        <goals>
-                            <goal>test-jar</goal>
-                        </goals>
+                      <id>default-jar</id>
+                      <goals>
+                        <goal>jar</goal>
+                      </goals>
                     </execution>
                 </executions>
                 <configuration>
@@ -75,7 +75,8 @@
                         <configuration>
                             <sources>
                                 <source>
-                                src/main/java</source>
+                                    src/main/java
+                                </source>
                             </sources>
                         </configuration>
                     </execution>
@@ -88,7 +89,8 @@
                         <configuration>
                             <sources>
                                 <source>
-                                src/test/java</source>
+                                    src/test/java
+                                </source>
                             </sources>
                         </configuration>
                     </execution>
@@ -103,6 +105,19 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.6.2</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
     <dependencies>
@@ -113,20 +128,31 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit-version}</version>
+            <groupId>org.openapitools</groupId>
+            <artifactId>openapi-generator-cli</artifactId>
+            <version>${openapi-generator-version}</version>
         </dependency>
         <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>1.5.34</version>
+            <groupId>io.pebbletemplates</groupId>
+            <artifactId>pebble</artifactId>
+            <version>4.1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>6.1.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>6.1.0</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <openapi-generator-version>7.23.0</openapi-generator-version>
         <maven-plugin-version>1.0.0</maven-plugin-version>
-        <junit-version>4.13.2</junit-version>
     </properties>
 </project>

@@ -141,9 +141,9 @@ with linebot.v3.audience.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **file** | **bytearray**| A text file with one user ID or IFA entered per line. Specify text/plain as Content-Type. Max file number: 1 Max number: 1,500,000  | 
- **description** | **str**| The audience&#39;s name. This is case-insensitive, meaning AUDIENCE and audience are considered identical. Max character limit: 120  | [optional] 
- **is_ifa_audience** | **bool**| To specify recipients by IFAs: set &#x60;true&#x60;. To specify recipients by user IDs: set &#x60;false&#x60; or omit isIfaAudience property.  | [optional] 
- **upload_description** | **str**| The description to register for the job (in &#x60;jobs[].description&#x60;).  | [optional] 
+ **description** | **str**| The audience's name. This is case-insensitive, meaning AUDIENCE and audience are considered identical. Max character limit: 120  | [optional] 
+ **is_ifa_audience** | **bool**| To specify recipients by IFAs: set `true`. To specify recipients by user IDs: set `false` or omit isIfaAudience property.  | [optional] 
+ **upload_description** | **str**| The description to register for the job (in `jobs[].description`).  | [optional] 
 
 ### Return type
 
@@ -164,4 +164,5 @@ Name | Type | Description  | Notes
 **202** | OK |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 

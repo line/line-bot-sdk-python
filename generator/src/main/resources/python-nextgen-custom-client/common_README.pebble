@@ -1,0 +1,81 @@
+```python
+import time
+import {{ packageName }}
+from {{ packageName }}.rest import ApiException
+from pprint import pprint
+{% for api in apiInfo.apis %}{% if loop.first %}{% for opsEntry in api.operations %}{% for operation in opsEntry.operation %}{% if loop.first %}
+{% include "python_doc_auth_partial.pebble" %}
+
+# Enter a context with an instance of the API client
+{% if asyncio %}async {% endif %}with {{ packageName }}.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = {{ packageName }}.{{ opsEntry.classname }}(api_client)
+    {% for param in operation.allParams %}
+    {{ param.paramName }} = {{ param.example }} # {{ param.dataType }} | {{ param.description }}{% if not param.required %} (optional){% endif %}{% if param.defaultValue %} (default to {{ param.defaultValue }}){% endif %}
+    {% endfor %}
+
+    try:
+        {% if operation.summary %}
+        # {{ operation.summary }}
+        {% endif %}
+        {% if operation.returnType %}api_response = {% endif %}{% if asyncio %}await {% endif %}api_instance.{{ operation.operationId }}({% for param in operation.allParams %}{% if param.required %}{{ param.paramName }}{% else %}{{ param.paramName }}={{ param.paramName }}{% endif %}{% if not loop.last %}, {% endif %}{% endfor %})
+        {% if operation.returnType %}
+        print("The response of {{ opsEntry.classname }}->{{ operation.operationId }}:\n")
+        pprint(api_response)
+        {% endif %}
+    except ApiException as e:
+        print("Exception when calling {{ opsEntry.classname }}->{{ operation.operationId }}: %s\n" % e)
+{% endif %}{% endfor %}{% endfor %}{% endif %}{% endfor %}
+```
+
+## Documentation for API Endpoints
+
+All URIs are relative to *{{ basePath }}*
+
+Class | Method | HTTP request | Description
+------------ | ------------- | ------------- | -------------
+{% for api in apiInfo.apis %}{% for opsEntry in api.operations %}{% for operation in opsEntry.operation %}*{{ opsEntry.classname }}* | [**{{ operation.operationId }}**]({{ apiDocPath }}{{ opsEntry.classname }}.md#{{ operation.operationIdLowerCase }}) | **{{ operation.httpMethod }}** {{ operation.path }} | {{ operation.summary }}
+{% endfor %}{% endfor %}{% endfor %}
+
+## Documentation For Models
+
+{% for modelEntry in models %} - [{{ modelEntry.model.classname }}]({{ modelDocPath }}{{ modelEntry.model.classname }}.md)
+{% endfor %}
+
+## Documentation For Authorization
+
+{% if authMethods is empty %}
+ All endpoints do not require authorization.
+{% endif %}
+{% for authMethod in authMethods %}
+{% if loop.last %} Authentication schemes defined for the API:{% endif %}
+## {{ authMethod.name }}
+
+{% if authMethod.isApiKey %}
+- **Type**: API key
+- **API key parameter name**: {{ authMethod.keyParamName }}
+- **Location**: {% if authMethod.isKeyInQuery %}URL query string{% endif %}{% if authMethod.isKeyInHeader %}HTTP header{% endif %}
+{% endif %}
+{% if authMethod.isBasic %}
+{% if authMethod.isBasicBasic %}
+- **Type**: HTTP basic authentication
+{% endif %}
+{% if authMethod.isBasicBearer %}
+- **Type**: Bearer authentication{% if authMethod.bearerFormat %} ({{ authMethod.bearerFormat }}){% endif %}
+{% endif %}
+{% endif %}
+{% if authMethod.isOAuth %}
+- **Type**: OAuth
+- **Flow**: {{ authMethod.flow }}
+- **Authorization URL**: {{ authMethod.authorizationUrl }}
+- **Scopes**: {% if authMethod.scopes is empty %}N/A{% endif %}
+{% for scope in authMethod.scopes %} - **{{ scope.scope }}**: {{ scope.description }}
+{% endfor %}
+{% endif %}
+
+{% endfor %}
+
+## Author
+
+{% for api in apiInfo.apis %}{% if loop.last %}{{ api.infoEmail }}
+{% endif %}{% endfor %}

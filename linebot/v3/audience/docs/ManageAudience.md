@@ -530,7 +530,7 @@ Name | Type | Description  | Notes
  **status** | [**AudienceGroupStatus**](.md)| The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion.  | [optional] 
  **size** | **int**| The number of audiences per page. Default: 20 Max: 40  | [optional] 
  **includes_external_public_groups** | **bool**| true (default): Get public audiences created in all channels linked to the same bot. false: Get audiences created in the same channel.  | [optional] 
- **create_route** | [**AudienceGroupCreateRoute**](.md)| How the audience was created. If omitted, all audiences are included.  &#x60;OA_MANAGER&#x60;: Return only audiences created with LINE Official Account Manager (opens new window). &#x60;MESSAGING_API&#x60;: Return only audiences created with Messaging API.  | [optional] 
+ **create_route** | [**AudienceGroupCreateRoute**](.md)| How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API.  | [optional] 
 
 ### Return type
 
@@ -692,7 +692,7 @@ Name | Type | Description  | Notes
  **description** | **str**| The name of the audience(s) to return. You can search for partial matches. This is case-insensitive, meaning AUDIENCE and audience are considered identical. If omitted, the name of the audience(s) will not be used as a search criterion.  | [optional] 
  **status** | [**AudienceGroupStatus**](.md)| The status of the audience(s) to return. If omitted, the status of the audience(s) will not be used as a search criterion.  | [optional] 
  **size** | **int**| The number of audiences per page. Default: 20 Max: 40  | [optional] 
- **create_route** | [**AudienceGroupCreateRoute**](.md)| How the audience was created. If omitted, all audiences are included.  &#x60;OA_MANAGER&#x60;: Return only audiences created with LINE Official Account Manager (opens new window). &#x60;MESSAGING_API&#x60;: Return only audiences created with Messaging API.  | [optional] 
+ **create_route** | [**AudienceGroupCreateRoute**](.md)| How the audience was created. If omitted, all audiences are included.  `OA_MANAGER`: Return only audiences created with LINE Official Account Manager (opens new window). `MESSAGING_API`: Return only audiences created with Messaging API.  | [optional] 
  **includes_owned_audience_groups** | **bool**| true: Include audienceGroups owned by LINE Official Account Manager false: Respond only audienceGroups shared by Business Manager  | [optional] [default to False]
 
 ### Return type
@@ -789,4 +789,5 @@ void (empty response body)
 **200** | OK |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 

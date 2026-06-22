@@ -1,0 +1,23 @@
+```python
+import time
+import os
+import {{ packageName }}
+{% for imp in operation.vendorExtensions['x-py-example-import'] %}{{ imp }}
+{% endfor %}from {{ packageName }}.rest import ApiException
+from pprint import pprint
+
+{% include "python_doc_auth_partial.pebble" %}
+# Enter a context with an instance of the API client
+{% if asyncio %}async {% endif %}with {{ packageName }}.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = {{ packageName }}.{{ operations.classname }}(api_client)
+{% for param in operation.allParams %}    {{ param.paramName }} = {{ param.example }} # {{ param.dataType }} | {{ param.description }}{% if not param.required %} (optional){% endif %}{% if param.defaultValue %} (default to {{ param.defaultValue }}){% endif %}
+{% endfor %}
+    try:
+{% if operation.summary %}        # {{ operation.summary }}
+{% endif %}        {% if operation.returnType %}api_response = {% endif %}{% if asyncio %}await {% endif %}api_instance.{{ operation.operationId }}({% for param in operation.allParams %}{% if param.required %}{{ param.paramName }}{% else %}{{ param.paramName }}={{ param.paramName }}{% endif %}{% if not loop.last %}, {% endif %}{% endfor %})
+{% if operation.returnType %}        print("The response of {{ operations.classname }}->{{ operation.operationId }}:\n")
+        pprint(api_response)
+{% endif %}    except Exception as e:
+        print("Exception when calling {{ operations.classname }}->{{ operation.operationId }}: %s\n" % e)
+```

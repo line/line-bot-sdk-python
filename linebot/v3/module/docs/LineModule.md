@@ -62,7 +62,7 @@ with linebot.v3.module.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **chat_id** | **str**| The &#x60;userId&#x60;, &#x60;roomId&#x60;, or &#x60;groupId&#x60; | 
+ **chat_id** | **str**| The `userId`, `roomId`, or `groupId` | 
  **acquire_chat_control_request** | [**AcquireChatControlRequest**](AcquireChatControlRequest.md)|  | [optional] 
 
 ### Return type
@@ -212,7 +212,7 @@ with linebot.v3.module.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **start** | **str**| Value of the continuation token found in the next property of the JSON object returned in the response. If you can&#39;t get all basic information about the bots in one request, include this parameter to get the remaining array.  | [optional] 
+ **start** | **str**| Value of the continuation token found in the next property of the JSON object returned in the response. If you can't get all basic information about the bots in one request, include this parameter to get the remaining array.  | [optional] 
  **limit** | **int**| Specify the maximum number of bots that you get basic information from. The default value is 100. Max value: 100  | [optional] [default to 100]
 
 ### Return type
@@ -285,7 +285,7 @@ with linebot.v3.module.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **chat_id** | **str**| The &#x60;userId&#x60;, &#x60;roomId&#x60;, or &#x60;groupId&#x60; | 
+ **chat_id** | **str**| The `userId`, `roomId`, or `groupId` | 
 
 ### Return type
 
@@ -306,4 +306,5 @@ void (empty response body)
 **200** | OK |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 

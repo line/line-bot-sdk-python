@@ -31,7 +31,6 @@ class AudienceGroupFailedType(str, Enum):
     """
     AUDIENCE_GROUP_AUDIENCE_INSUFFICIENT = 'AUDIENCE_GROUP_AUDIENCE_INSUFFICIENT'
     INTERNAL_ERROR = 'INTERNAL_ERROR'
-    NULL = 'null'
 
     @classmethod
     def from_json(cls, json_str: str) -> AudienceGroupFailedType:

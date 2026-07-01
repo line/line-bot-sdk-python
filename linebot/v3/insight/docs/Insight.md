@@ -8,6 +8,8 @@ Method | HTTP request | Description
 [**get_message_event**](Insight.md#get_message_event) | **GET** /v2/bot/insight/message/event | Get user interaction statistics
 [**get_number_of_followers**](Insight.md#get_number_of_followers) | **GET** /v2/bot/insight/followers | Get number of followers
 [**get_number_of_message_deliveries**](Insight.md#get_number_of_message_deliveries) | **GET** /v2/bot/insight/message/delivery | Get number of message deliveries
+[**get_rich_menu_insight_daily**](Insight.md#get_rich_menu_insight_daily) | **GET** /v2/bot/insight/richmenu/{richMenuId}/daily | Get rich menu insight daily
+[**get_rich_menu_insight_summary**](Insight.md#get_rich_menu_insight_summary) | **GET** /v2/bot/insight/richmenu/{richMenuId}/summary | Get rich menu insight summary
 [**get_statistics_per_unit**](Insight.md#get_statistics_per_unit) | **GET** /v2/bot/insight/message/event/aggregation | 
 
 
@@ -307,6 +309,170 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_rich_menu_insight_daily**
+> GetRichMenuInsightDailyResponse get_rich_menu_insight_daily(rich_menu_id, var_from, to)
+
+Get rich menu insight daily
+
+Gets rich menu statistics broken down by day for the specified period, for a rich menu created via the Messaging API. Returns the daily impression count for the whole rich menu and the daily click count for each tappable area. When the total number of unique clicks during the period is below the privacy threshold, only `richMenuId` is returned and the other fields are omitted. 
+
+### Example
+
+* Bearer Authentication (Bearer):
+```python
+import time
+import os
+import linebot.v3.insight
+from linebot.v3.insight.models.get_rich_menu_insight_daily_response import GetRichMenuInsightDailyResponse
+from linebot.v3.insight.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.line.me
+# See configuration.py for a list of all supported configuration parameters.
+configuration = linebot.v3.insight.Configuration(
+    host = "https://api.line.me"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: Bearer
+configuration = linebot.v3.insight.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with linebot.v3.insight.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = linebot.v3.insight.Insight(api_client)
+    rich_menu_id = 'richmenu-0123456789abcdef0123456789abcdef' # str | ID of the rich menu created via the Messaging API.
+    var_from = '20260213' # str | Start date of the aggregation period (inclusive). Must be within the most recent 3 years.  Format: yyyyMMdd (e.g. 20260213) Time zone: UTC+9 
+    to = '20260215' # str | End date of the aggregation period (inclusive). The end date can be specified for up to 99 days after the start date.  Format: yyyyMMdd (e.g. 20260215) Time zone: UTC+9 
+
+    try:
+        # Get rich menu insight daily
+        api_response = api_instance.get_rich_menu_insight_daily(rich_menu_id, var_from, to)
+        print("The response of Insight->get_rich_menu_insight_daily:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling Insight->get_rich_menu_insight_daily: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **rich_menu_id** | **str**| ID of the rich menu created via the Messaging API. | 
+ **var_from** | **str**| Start date of the aggregation period (inclusive). Must be within the most recent 3 years.  Format: yyyyMMdd (e.g. 20260213) Time zone: UTC+9  | 
+ **to** | **str**| End date of the aggregation period (inclusive). The end date can be specified for up to 99 days after the start date.  Format: yyyyMMdd (e.g. 20260215) Time zone: UTC+9  | 
+
+### Return type
+
+[**GetRichMenuInsightDailyResponse**](GetRichMenuInsightDailyResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad request. The `from` or `to` parameter is missing or invalid, or the aggregation period exceeds the allowed maximum. |  -  |
+**404** | Not found. The specified rich menu does not exist. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_rich_menu_insight_summary**
+> GetRichMenuInsightSummaryResponse get_rich_menu_insight_summary(rich_menu_id, var_from, to)
+
+Get rich menu insight summary
+
+Gets a summary of rich menu statistics for the specified period, for a rich menu created via the Messaging API. Returns the total impression count for the whole rich menu and the click count for each tappable area, aggregated over the entire period as a single result. When the total number of unique clicks during the period is below the privacy threshold, only `richMenuId` is returned and the other fields are omitted. 
+
+### Example
+
+* Bearer Authentication (Bearer):
+```python
+import time
+import os
+import linebot.v3.insight
+from linebot.v3.insight.models.get_rich_menu_insight_summary_response import GetRichMenuInsightSummaryResponse
+from linebot.v3.insight.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.line.me
+# See configuration.py for a list of all supported configuration parameters.
+configuration = linebot.v3.insight.Configuration(
+    host = "https://api.line.me"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: Bearer
+configuration = linebot.v3.insight.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with linebot.v3.insight.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = linebot.v3.insight.Insight(api_client)
+    rich_menu_id = 'richmenu-0123456789abcdef0123456789abcdef' # str | ID of the rich menu created via the Messaging API.
+    var_from = '20260213' # str | Start date of the aggregation period (inclusive). Must be within the most recent 3 years.  Format: yyyyMMdd (e.g. 20260213) Time zone: UTC+9 
+    to = '20260215' # str | End date of the aggregation period (inclusive). The end date can be specified for up to 396 days after the start date.  Format: yyyyMMdd (e.g. 20260215) Time zone: UTC+9 
+
+    try:
+        # Get rich menu insight summary
+        api_response = api_instance.get_rich_menu_insight_summary(rich_menu_id, var_from, to)
+        print("The response of Insight->get_rich_menu_insight_summary:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling Insight->get_rich_menu_insight_summary: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **rich_menu_id** | **str**| ID of the rich menu created via the Messaging API. | 
+ **var_from** | **str**| Start date of the aggregation period (inclusive). Must be within the most recent 3 years.  Format: yyyyMMdd (e.g. 20260213) Time zone: UTC+9  | 
+ **to** | **str**| End date of the aggregation period (inclusive). The end date can be specified for up to 396 days after the start date.  Format: yyyyMMdd (e.g. 20260215) Time zone: UTC+9  | 
+
+### Return type
+
+[**GetRichMenuInsightSummaryResponse**](GetRichMenuInsightSummaryResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad request. The `from` or `to` parameter is missing or invalid, or the aggregation period exceeds the allowed maximum. |  -  |
+**404** | Not found. The specified rich menu does not exist. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

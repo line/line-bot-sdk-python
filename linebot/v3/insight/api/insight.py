@@ -18,7 +18,7 @@ import io
 from pydantic.v1 import validate_arguments, ValidationError
 from typing_extensions import Annotated
 
-from pydantic.v1 import Field, constr, validator
+from pydantic.v1 import Field, StrictStr, constr, validator
 
 from typing import Optional
 
@@ -26,6 +26,8 @@ from linebot.v3.insight.models.get_friends_demographics_response import GetFrien
 from linebot.v3.insight.models.get_message_event_response import GetMessageEventResponse
 from linebot.v3.insight.models.get_number_of_followers_response import GetNumberOfFollowersResponse
 from linebot.v3.insight.models.get_number_of_message_deliveries_response import GetNumberOfMessageDeliveriesResponse
+from linebot.v3.insight.models.get_rich_menu_insight_daily_response import GetRichMenuInsightDailyResponse
+from linebot.v3.insight.models.get_rich_menu_insight_summary_response import GetRichMenuInsightSummaryResponse
 from linebot.v3.insight.models.get_statistics_per_unit_response import GetStatisticsPerUnitResponse
 
 from linebot.v3.insight.api_client import ApiClient
@@ -590,6 +592,324 @@ class Insight(object):
 
         return self.api_client.call_api(
             '/v2/bot/insight/message/delivery', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def get_rich_menu_insight_daily(self, rich_menu_id : Annotated[StrictStr, Field(..., description="ID of the rich menu created via the Messaging API.")], var_from : Annotated[constr(strict=True, max_length=8, min_length=8), Field(..., description="Start date of the aggregation period (inclusive). Must be within the most recent 3 years.  Format: yyyyMMdd (e.g. 20260213) Time zone: UTC+9 ")], to : Annotated[constr(strict=True, max_length=8, min_length=8), Field(..., description="End date of the aggregation period (inclusive). The end date can be specified for up to 99 days after the start date.  Format: yyyyMMdd (e.g. 20260215) Time zone: UTC+9 ")], **kwargs) -> GetRichMenuInsightDailyResponse:  # noqa: E501
+        """Get rich menu insight daily  # noqa: E501
+
+        Gets rich menu statistics broken down by day for the specified period, for a rich menu created via the Messaging API. Returns the daily impression count for the whole rich menu and the daily click count for each tappable area. When the total number of unique clicks during the period is below the privacy threshold, only `richMenuId` is returned and the other fields are omitted.   # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_rich_menu_insight_daily(rich_menu_id, var_from, to, async_req=True)
+        >>> result = thread.get()
+
+        :param rich_menu_id: ID of the rich menu created via the Messaging API. (required)
+        :type rich_menu_id: str
+        :param var_from: Start date of the aggregation period (inclusive). Must be within the most recent 3 years.  Format: yyyyMMdd (e.g. 20260213) Time zone: UTC+9  (required)
+        :type var_from: str
+        :param to: End date of the aggregation period (inclusive). The end date can be specified for up to 99 days after the start date.  Format: yyyyMMdd (e.g. 20260215) Time zone: UTC+9  (required)
+        :type to: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: GetRichMenuInsightDailyResponse
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the get_rich_menu_insight_daily_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.get_rich_menu_insight_daily_with_http_info(rich_menu_id, var_from, to, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def get_rich_menu_insight_daily_with_http_info(self, rich_menu_id : Annotated[StrictStr, Field(..., description="ID of the rich menu created via the Messaging API.")], var_from : Annotated[constr(strict=True, max_length=8, min_length=8), Field(..., description="Start date of the aggregation period (inclusive). Must be within the most recent 3 years.  Format: yyyyMMdd (e.g. 20260213) Time zone: UTC+9 ")], to : Annotated[constr(strict=True, max_length=8, min_length=8), Field(..., description="End date of the aggregation period (inclusive). The end date can be specified for up to 99 days after the start date.  Format: yyyyMMdd (e.g. 20260215) Time zone: UTC+9 ")], **kwargs) -> ApiResponse:  # noqa: E501
+        """Get rich menu insight daily  # noqa: E501
+
+        Gets rich menu statistics broken down by day for the specified period, for a rich menu created via the Messaging API. Returns the daily impression count for the whole rich menu and the daily click count for each tappable area. When the total number of unique clicks during the period is below the privacy threshold, only `richMenuId` is returned and the other fields are omitted.   # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_rich_menu_insight_daily_with_http_info(rich_menu_id, var_from, to, async_req=True)
+        >>> result = thread.get()
+
+        :param rich_menu_id: ID of the rich menu created via the Messaging API. (required)
+        :type rich_menu_id: str
+        :param var_from: Start date of the aggregation period (inclusive). Must be within the most recent 3 years.  Format: yyyyMMdd (e.g. 20260213) Time zone: UTC+9  (required)
+        :type var_from: str
+        :param to: End date of the aggregation period (inclusive). The end date can be specified for up to 99 days after the start date.  Format: yyyyMMdd (e.g. 20260215) Time zone: UTC+9  (required)
+        :type to: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(GetRichMenuInsightDailyResponse, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _host = self.line_base_path
+        _params = locals()
+
+        _all_params = [
+            'rich_menu_id',
+            'var_from',
+            'to'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_rich_menu_insight_daily" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['rich_menu_id']:
+            _path_params['richMenuId'] = _params['rich_menu_id']
+
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('var_from') is not None:  # noqa: E501
+            _query_params.append(('from', _params['var_from']))
+
+        if _params.get('to') is not None:  # noqa: E501
+            _query_params.append(('to', _params['to']))
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['Bearer']  # noqa: E501
+
+        _response_types_map = {
+            '200': "GetRichMenuInsightDailyResponse",
+            '400': "ErrorResponse",
+            '404': "ErrorResponse",
+        }
+
+        return self.api_client.call_api(
+            '/v2/bot/insight/richmenu/{richMenuId}/daily', 'GET',
+            _path_params,
+            _query_params,
+            _header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            response_types_map=_response_types_map,
+            auth_settings=_auth_settings,
+            async_req=_params.get('async_req'),
+            _return_http_data_only=_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=_params.get('_preload_content', True),
+            _request_timeout=_params.get('_request_timeout'),
+            _host=_host,
+            collection_formats=_collection_formats,
+            _request_auth=_params.get('_request_auth'))
+
+    @validate_arguments
+    def get_rich_menu_insight_summary(self, rich_menu_id : Annotated[StrictStr, Field(..., description="ID of the rich menu created via the Messaging API.")], var_from : Annotated[constr(strict=True, max_length=8, min_length=8), Field(..., description="Start date of the aggregation period (inclusive). Must be within the most recent 3 years.  Format: yyyyMMdd (e.g. 20260213) Time zone: UTC+9 ")], to : Annotated[constr(strict=True, max_length=8, min_length=8), Field(..., description="End date of the aggregation period (inclusive). The end date can be specified for up to 396 days after the start date.  Format: yyyyMMdd (e.g. 20260215) Time zone: UTC+9 ")], **kwargs) -> GetRichMenuInsightSummaryResponse:  # noqa: E501
+        """Get rich menu insight summary  # noqa: E501
+
+        Gets a summary of rich menu statistics for the specified period, for a rich menu created via the Messaging API. Returns the total impression count for the whole rich menu and the click count for each tappable area, aggregated over the entire period as a single result. When the total number of unique clicks during the period is below the privacy threshold, only `richMenuId` is returned and the other fields are omitted.   # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_rich_menu_insight_summary(rich_menu_id, var_from, to, async_req=True)
+        >>> result = thread.get()
+
+        :param rich_menu_id: ID of the rich menu created via the Messaging API. (required)
+        :type rich_menu_id: str
+        :param var_from: Start date of the aggregation period (inclusive). Must be within the most recent 3 years.  Format: yyyyMMdd (e.g. 20260213) Time zone: UTC+9  (required)
+        :type var_from: str
+        :param to: End date of the aggregation period (inclusive). The end date can be specified for up to 396 days after the start date.  Format: yyyyMMdd (e.g. 20260215) Time zone: UTC+9  (required)
+        :type to: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: GetRichMenuInsightSummaryResponse
+        """
+        kwargs['_return_http_data_only'] = True
+        if '_preload_content' in kwargs:
+            raise ValueError("Error! Please call the get_rich_menu_insight_summary_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
+        return self.get_rich_menu_insight_summary_with_http_info(rich_menu_id, var_from, to, **kwargs)  # noqa: E501
+
+    @validate_arguments
+    def get_rich_menu_insight_summary_with_http_info(self, rich_menu_id : Annotated[StrictStr, Field(..., description="ID of the rich menu created via the Messaging API.")], var_from : Annotated[constr(strict=True, max_length=8, min_length=8), Field(..., description="Start date of the aggregation period (inclusive). Must be within the most recent 3 years.  Format: yyyyMMdd (e.g. 20260213) Time zone: UTC+9 ")], to : Annotated[constr(strict=True, max_length=8, min_length=8), Field(..., description="End date of the aggregation period (inclusive). The end date can be specified for up to 396 days after the start date.  Format: yyyyMMdd (e.g. 20260215) Time zone: UTC+9 ")], **kwargs) -> ApiResponse:  # noqa: E501
+        """Get rich menu insight summary  # noqa: E501
+
+        Gets a summary of rich menu statistics for the specified period, for a rich menu created via the Messaging API. Returns the total impression count for the whole rich menu and the click count for each tappable area, aggregated over the entire period as a single result. When the total number of unique clicks during the period is below the privacy threshold, only `richMenuId` is returned and the other fields are omitted.   # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_rich_menu_insight_summary_with_http_info(rich_menu_id, var_from, to, async_req=True)
+        >>> result = thread.get()
+
+        :param rich_menu_id: ID of the rich menu created via the Messaging API. (required)
+        :type rich_menu_id: str
+        :param var_from: Start date of the aggregation period (inclusive). Must be within the most recent 3 years.  Format: yyyyMMdd (e.g. 20260213) Time zone: UTC+9  (required)
+        :type var_from: str
+        :param to: End date of the aggregation period (inclusive). The end date can be specified for up to 396 days after the start date.  Format: yyyyMMdd (e.g. 20260215) Time zone: UTC+9  (required)
+        :type to: str
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the ApiResponse.data will
+                                 be set to none and raw_data will store the
+                                 HTTP response body without reading/decoding.
+                                 Default is True.
+        :type _preload_content: bool, optional
+        :param _return_http_data_only: response data instead of ApiResponse
+                                       object with status code, headers, etc
+        :type _return_http_data_only: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(GetRichMenuInsightSummaryResponse, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        _host = self.line_base_path
+        _params = locals()
+
+        _all_params = [
+            'rich_menu_id',
+            'var_from',
+            'to'
+        ]
+        _all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        # validate the arguments
+        for _key, _val in _params['kwargs'].items():
+            if _key not in _all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_rich_menu_insight_summary" % _key
+                )
+            _params[_key] = _val
+        del _params['kwargs']
+
+        _collection_formats = {}
+
+        # process the path parameters
+        _path_params = {}
+        if _params['rich_menu_id']:
+            _path_params['richMenuId'] = _params['rich_menu_id']
+
+
+        # process the query parameters
+        _query_params = []
+        if _params.get('var_from') is not None:  # noqa: E501
+            _query_params.append(('from', _params['var_from']))
+
+        if _params.get('to') is not None:  # noqa: E501
+            _query_params.append(('to', _params['to']))
+
+        # process the header parameters
+        _header_params = dict(_params.get('_headers', {}))
+        # process the form parameters
+        _form_params = []
+        _files = {}
+        # process the body parameter
+        _body_params = None
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # authentication setting
+        _auth_settings = ['Bearer']  # noqa: E501
+
+        _response_types_map = {
+            '200': "GetRichMenuInsightSummaryResponse",
+            '400': "ErrorResponse",
+            '404': "ErrorResponse",
+        }
+
+        return self.api_client.call_api(
+            '/v2/bot/insight/richmenu/{richMenuId}/summary', 'GET',
             _path_params,
             _query_params,
             _header_params,

@@ -25,7 +25,7 @@ from linebot.v3 import (
 from linebot.v3.webhooks.models import (
     MessageEvent, FollowEvent, UnfollowEvent, JoinEvent,
     LeaveEvent, PostbackEvent, BeaconEvent, AccountLinkEvent,
-    MemberJoinedEvent, MemberLeftEvent,
+    MemberJoinedEvent, MemberLeftEvent, MessageEditedEvent,
     VideoPlayCompleteEvent, VideoPlayComplete, UnsendEvent, UnsendDetail,
     TextMessageContent, ImageMessageContent, VideoMessageContent, AudioMessageContent,
     LocationMessageContent, StickerMessageContent, FileMessageContent,
@@ -70,7 +70,7 @@ class TestWebhookParser(unittest.TestCase):
         events = self.parser.parse(body, 'channel_secret')
 
         # events count
-        self.assertEqual(len(events), 27)
+        self.assertEqual(len(events), 28)
 
         # MessageEvent, UserSource, TextMessageContent
         self.assertIsInstance(events[0], MessageEvent)
@@ -508,8 +508,25 @@ class TestWebhookParser(unittest.TestCase):
         self.assertEqual(events[25].message.type, 'text')
         self.assertEqual(events[25].message.text, 'Hello, world')
 
+        # MessageEditedEvent, UserSource, TextMessageContent
+        self.assertIsInstance(events[26], MessageEditedEvent)
+        self.assertEqual(events[26].reply_token, 'nHuyWiB7yP5Zw52FIkcQobQuGDXCTA')
+        self.assertEqual(events[26].type, 'messageEdited')
+        self.assertEqual(events[26].mode, 'active')
+        self.assertEqual(events[26].timestamp, 1462629479859)
+        self.assertIsInstance(events[26].source, UserSource)
+        self.assertEqual(events[26].source.type, 'user')
+        self.assertEqual(events[26].source.user_id, 'U206d25c2ea6bd87c17655609a1c37cb8')
+        self.assertEqual(events[26].webhook_event_id, 'testwebhookeventid')
+        self.assertIsInstance(events[26].delivery_context, DeliveryContext)
+        self.assertFalse(events[26].delivery_context.is_redelivery)
+        self.assertIsInstance(events[26].message, TextMessageContent)
+        self.assertEqual(events[26].message.id, '325708')
+        self.assertEqual(events[26].message.type, 'text')
+        self.assertEqual(events[26].message.text, 'Hello, edited world')
+
         # UnknownEvent
-        self.assertIsInstance(events[26], UnknownEvent)
+        self.assertIsInstance(events[27], UnknownEvent)
 
         # TODO: richmenu switch
 

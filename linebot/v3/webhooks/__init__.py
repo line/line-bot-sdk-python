@@ -72,6 +72,7 @@ from linebot.v3.webhooks.models.membership_event import MembershipEvent
 from linebot.v3.webhooks.models.mention import Mention
 from linebot.v3.webhooks.models.mentionee import Mentionee
 from linebot.v3.webhooks.models.message_content import MessageContent
+from linebot.v3.webhooks.models.message_edited_event import MessageEditedEvent
 from linebot.v3.webhooks.models.message_event import MessageEvent
 from linebot.v3.webhooks.models.module_content import ModuleContent
 from linebot.v3.webhooks.models.module_event import ModuleEvent

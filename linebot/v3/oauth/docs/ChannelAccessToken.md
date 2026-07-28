@@ -325,7 +325,7 @@ configuration = linebot.v3.oauth.Configuration(
 with linebot.v3.oauth.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = linebot.v3.oauth.ChannelAccessToken(api_client)
-    access_token = 'access_token_example' # str | Channel access token
+    access_token = 'access_token_example' # str | A short-lived or long-lived channel access token.
 
     try:
         api_instance.revoke_channel_token(access_token)
@@ -338,7 +338,7 @@ with linebot.v3.oauth.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **access_token** | **str**| Channel access token | 
+ **access_token** | **str**| A short-lived or long-lived channel access token. | 
 
 ### Return type
 

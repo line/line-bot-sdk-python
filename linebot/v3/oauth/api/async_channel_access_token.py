@@ -759,15 +759,15 @@ class AsyncChannelAccessToken(object):
             _request_auth=_params.get('_request_auth'))
 
     @overload
-    async def revoke_channel_token(self, access_token : Annotated[StrictStr, Field(..., description="Channel access token")], **kwargs) -> None:  # noqa: E501
+    async def revoke_channel_token(self, access_token : Annotated[StrictStr, Field(..., description="A short-lived or long-lived channel access token.")], **kwargs) -> None:  # noqa: E501
         ...
 
     @overload
-    def revoke_channel_token(self, access_token : Annotated[StrictStr, Field(..., description="Channel access token")], async_req: Optional[bool]=True, **kwargs) -> None:  # noqa: E501
+    def revoke_channel_token(self, access_token : Annotated[StrictStr, Field(..., description="A short-lived or long-lived channel access token.")], async_req: Optional[bool]=True, **kwargs) -> None:  # noqa: E501
         ...
 
     @validate_arguments
-    def revoke_channel_token(self, access_token : Annotated[StrictStr, Field(..., description="Channel access token")], async_req: Optional[bool]=None, **kwargs) -> Union[None, Awaitable[None]]:  # noqa: E501
+    def revoke_channel_token(self, access_token : Annotated[StrictStr, Field(..., description="A short-lived or long-lived channel access token.")], async_req: Optional[bool]=None, **kwargs) -> Union[None, Awaitable[None]]:  # noqa: E501
         """revoke_channel_token  # noqa: E501
 
         Revoke short-lived or long-lived channel access token  # noqa: E501
@@ -777,7 +777,7 @@ class AsyncChannelAccessToken(object):
         >>> thread = api.revoke_channel_token(access_token, async_req=True)
         >>> result = thread.get()
 
-        :param access_token: Channel access token (required)
+        :param access_token: A short-lived or long-lived channel access token. (required)
         :type access_token: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
@@ -798,7 +798,7 @@ class AsyncChannelAccessToken(object):
         return self.revoke_channel_token_with_http_info(access_token, **kwargs)  # noqa: E501
 
     @validate_arguments
-    def revoke_channel_token_with_http_info(self, access_token : Annotated[StrictStr, Field(..., description="Channel access token")], **kwargs) -> ApiResponse:  # noqa: E501
+    def revoke_channel_token_with_http_info(self, access_token : Annotated[StrictStr, Field(..., description="A short-lived or long-lived channel access token.")], **kwargs) -> ApiResponse:  # noqa: E501
         """revoke_channel_token  # noqa: E501
 
         Revoke short-lived or long-lived channel access token  # noqa: E501
@@ -808,7 +808,7 @@ class AsyncChannelAccessToken(object):
         >>> thread = api.revoke_channel_token_with_http_info(access_token, async_req=True)
         >>> result = thread.get()
 
-        :param access_token: Channel access token (required)
+        :param access_token: A short-lived or long-lived channel access token. (required)
         :type access_token: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional

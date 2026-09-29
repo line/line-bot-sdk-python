@@ -153,6 +153,11 @@ from linebot.v3.messaging.models.number_of_messages_response import NumberOfMess
 from linebot.v3.messaging.models.operator_demographic_filter import OperatorDemographicFilter
 from linebot.v3.messaging.models.operator_recipient import OperatorRecipient
 from linebot.v3.messaging.models.pnp_messages_request import PnpMessagesRequest
+from linebot.v3.messaging.models.pnp_templated_button import PnpTemplatedButton
+from linebot.v3.messaging.models.pnp_templated_emphasized_item import PnpTemplatedEmphasizedItem
+from linebot.v3.messaging.models.pnp_templated_item import PnpTemplatedItem
+from linebot.v3.messaging.models.pnp_templated_message_body import PnpTemplatedMessageBody
+from linebot.v3.messaging.models.pnp_templated_message_request import PnpTemplatedMessageRequest
 from linebot.v3.messaging.models.postback_action import PostbackAction
 from linebot.v3.messaging.models.push_message_request import PushMessageRequest
 from linebot.v3.messaging.models.push_message_response import PushMessageResponse

@@ -19,7 +19,7 @@ import json
 
 
 from typing import List, Optional
-from pydantic.v1 import BaseModel, Field, StrictBool, StrictStr, conlist
+from pydantic.v1 import BaseModel, Field, StrictBool, StrictStr, conlist, constr, validator
 from linebot.v3.messaging.models.message import Message
 
 class PnpMessagesRequest(BaseModel):
@@ -30,8 +30,9 @@ class PnpMessagesRequest(BaseModel):
     messages: conlist(Message, max_items=5, min_items=1) = Field(..., description="Message to be sent.")
     to: StrictStr = Field(..., description="Message destination. Specify a phone number that has been normalized to E.164 format and hashed with SHA256.")
     notification_disabled: Optional[StrictBool] = Field(False, alias="notificationDisabled", description="`true`: The user doesn’t receive a push notification when a message is sent. `false`: The user receives a push notification when the message is sent (unless they have disabled push notifications in LINE and/or their device). The default value is false. ")
+    custom_aggregation_units: Optional[conlist(constr(strict=True, max_length=30, min_length=1), max_items=1)] = Field(None, alias="customAggregationUnits", description="Name of aggregation unit. Case-sensitive.")
 
-    __properties = ["messages", "to", "notificationDisabled"]
+    __properties = ["messages", "to", "notificationDisabled", "customAggregationUnits"]
 
     class Config:
         """Pydantic configuration"""
@@ -78,7 +79,8 @@ class PnpMessagesRequest(BaseModel):
         _obj = PnpMessagesRequest.parse_obj({
             "messages": [Message.from_dict(_item) for _item in obj.get("messages")] if obj.get("messages") is not None else None,
             "to": obj.get("to"),
-            "notification_disabled": obj.get("notificationDisabled") if obj.get("notificationDisabled") is not None else False
+            "notification_disabled": obj.get("notificationDisabled") if obj.get("notificationDisabled") is not None else False,
+            "custom_aggregation_units": obj.get("customAggregationUnits")
         })
         return _obj
 

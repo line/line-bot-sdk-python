@@ -33,6 +33,7 @@ Method | HTTP request | Description
 [**get_number_of_sent_push_messages**](MessagingApi.md#get_number_of_sent_push_messages) | **GET** /v2/bot/message/delivery/push | 
 [**get_number_of_sent_reply_messages**](MessagingApi.md#get_number_of_sent_reply_messages) | **GET** /v2/bot/message/delivery/reply | 
 [**get_pnp_message_statistics**](MessagingApi.md#get_pnp_message_statistics) | **GET** /v2/bot/message/delivery/pnp | 
+[**get_pnp_templated_message_statistics**](MessagingApi.md#get_pnp_templated_message_statistics) | **GET** /v2/bot/message/delivery/pnp/templated | 
 [**get_profile**](MessagingApi.md#get_profile) | **GET** /v2/bot/profile/{userId} | 
 [**get_rich_menu**](MessagingApi.md#get_rich_menu) | **GET** /v2/bot/richmenu/{richMenuId} | 
 [**get_rich_menu_alias**](MessagingApi.md#get_rich_menu_alias) | **GET** /v2/bot/richmenu/alias/{richMenuAliasId} | 
@@ -56,6 +57,7 @@ Method | HTTP request | Description
 [**narrowcast**](MessagingApi.md#narrowcast) | **POST** /v2/bot/message/narrowcast | 
 [**push_message**](MessagingApi.md#push_message) | **POST** /v2/bot/message/push | 
 [**push_messages_by_phone**](MessagingApi.md#push_messages_by_phone) | **POST** /bot/pnp/push | 
+[**push_templated_messages_by_phone**](MessagingApi.md#push_templated_messages_by_phone) | **POST** /v2/bot/message/pnp/templated/push | 
 [**reply_message**](MessagingApi.md#reply_message) | **POST** /v2/bot/message/reply | 
 [**rich_menu_batch**](MessagingApi.md#rich_menu_batch) | **POST** /v2/bot/richmenu/batch | 
 [**set_default_rich_menu**](MessagingApi.md#set_default_rich_menu) | **POST** /v2/bot/user/all/richmenu/{richMenuId} | 
@@ -2240,6 +2242,81 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_pnp_templated_message_statistics**
+> NumberOfMessagesResponse get_pnp_templated_message_statistics(var_date)
+
+
+
+Get number of sent LINE notification messages (template)
+
+### Example
+
+* Bearer Authentication (Bearer):
+```python
+import time
+import os
+import linebot.v3.messaging
+from linebot.v3.messaging.models.number_of_messages_response import NumberOfMessagesResponse
+from linebot.v3.messaging.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.line.me
+# See configuration.py for a list of all supported configuration parameters.
+configuration = linebot.v3.messaging.Configuration(
+    host = "https://api.line.me"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: Bearer
+configuration = linebot.v3.messaging.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with linebot.v3.messaging.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = linebot.v3.messaging.MessagingApi(api_client)
+    var_date = 'var_date_example' # str | Date the message was sent  Format: `yyyyMMdd` (Example:`20211231`) Time zone: UTC+9 
+
+    try:
+        api_response = api_instance.get_pnp_templated_message_statistics(var_date)
+        print("The response of MessagingApi->get_pnp_templated_message_statistics:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling MessagingApi->get_pnp_templated_message_statistics: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **var_date** | **str**| Date the message was sent  Format: `yyyyMMdd` (Example:`20211231`) Time zone: UTC+9  | 
+
+### Return type
+
+[**NumberOfMessagesResponse**](NumberOfMessagesResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_profile**
 > UserProfileResponse get_profile(user_id)
 
@@ -3969,6 +4046,82 @@ void (empty response body)
 |-------------|-------------|------------------|
 **200** | OK |  -  |
 **422** | Unprocessable Entity |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **push_templated_messages_by_phone**
+> push_templated_messages_by_phone(pnp_templated_message_request, x_line_delivery_tag=x_line_delivery_tag)
+
+
+
+Send LINE notification message (template)
+
+### Example
+
+* Bearer Authentication (Bearer):
+```python
+import time
+import os
+import linebot.v3.messaging
+from linebot.v3.messaging.models.pnp_templated_message_request import PnpTemplatedMessageRequest
+from linebot.v3.messaging.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.line.me
+# See configuration.py for a list of all supported configuration parameters.
+configuration = linebot.v3.messaging.Configuration(
+    host = "https://api.line.me"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: Bearer
+configuration = linebot.v3.messaging.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with linebot.v3.messaging.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = linebot.v3.messaging.MessagingApi(api_client)
+    pnp_templated_message_request = linebot.v3.messaging.PnpTemplatedMessageRequest() # PnpTemplatedMessageRequest | 
+    x_line_delivery_tag = 'x_line_delivery_tag_example' # str | String returned in the delivery.data property of the delivery completion event via Webhook. (optional)
+
+    try:
+        api_instance.push_templated_messages_by_phone(pnp_templated_message_request, x_line_delivery_tag=x_line_delivery_tag)
+    except Exception as e:
+        print("Exception when calling MessagingApi->push_templated_messages_by_phone: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **pnp_templated_message_request** | [**PnpTemplatedMessageRequest**](PnpTemplatedMessageRequest.md)|  | 
+ **x_line_delivery_tag** | **str**| String returned in the delivery.data property of the delivery completion event via Webhook. | [optional] 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**202** | Accepted |  -  |
+**422** | Failed to send the LINE notification message. For example, there is no LINE user associated with the specified phone number, the phone number is outside the LINE notification message service area, the user has refused to receive LINE notification messages, or the user hasn't agreed to LINE's Privacy Policy.  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

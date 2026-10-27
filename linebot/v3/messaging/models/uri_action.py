@@ -19,7 +19,7 @@ import json
 
 
 from typing import Optional
-from pydantic.v1 import Field, StrictStr
+from pydantic.v1 import Field, constr
 from linebot.v3.messaging.models.action import Action
 from linebot.v3.messaging.models.alt_uri import AltUri
 
@@ -27,7 +27,7 @@ class URIAction(Action):
     """
     URIAction
     """
-    uri: Optional[StrictStr] = None
+    uri: Optional[constr(strict=True, max_length=10000)] = None
     alt_uri: Optional[AltUri] = Field(None, alias="altUri")
     type: str = "uri"
 

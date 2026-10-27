@@ -25,7 +25,7 @@ class AltUri(BaseModel):
     """
     AltUri
     """
-    desktop: Optional[constr(strict=True, max_length=1000, min_length=0)] = None
+    desktop: Optional[constr(strict=True, max_length=10000, min_length=0)] = None
 
     __properties = ["desktop"]
 

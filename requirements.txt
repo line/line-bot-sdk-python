@@ -4,5 +4,5 @@ aiohttp >=3.10.9, <4
 future >= 1.0.0
 pydantic >=2.0.3, <3
 aenum >= 3.1.11, <4
-python_dateutil >= 2.5.3, <3
+python_dateutil >=3, <4
 Deprecated>=1.2.18

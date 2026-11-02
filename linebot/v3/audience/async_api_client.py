@@ -137,7 +137,7 @@ class AsyncApiClient(object):
         :return: The ApiClient object.
         """
         if cls._default is None:
-            cls._default = ApiClient()
+            cls._default = cls()
         return cls._default
 
     @classmethod
